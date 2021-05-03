@@ -820,7 +820,18 @@ Se $Q = 1$ si parla di \emph{famiglia di Gaussiane}, strettamente correlate con 
 \begin{definition}
 La funzione 
 $$
-\Gamma
+\Gamma_D (x,t) = \frac{1}{\sqrt{4\pi Dt}}e^{-\frac{x^2}{4Dt}}
 $$
+è la soluzione fondamentale dell'equazione di diffusione in dimensione uno.
+\subsection{La distribuzione di Dirac}
+La soluzione fondamentale descrive l'evoluzione della temperatura da una sorgente puntiforme. Esaminando il comportamento per \(t \to 0^+\) della soluzione fondamentale si ha, per ogni \(x \not = 0\) fissato:
+\begin{equation}
+\lim_{t \to 0}\Gamma_D (x,t) = \lim_{t \to 0} \frac{1}{\sqrt{4 \pi Dt}}e^{-\frac{x^2}{4Dt}} = 0
+\end{equation}
+mentre
+\begin{equation}
+  \lim_{t \to 0}\Gamma_D (0,t) = \lim_{t \to 0} \frac{1}{\sqrt{4 \pi Dt}}e^{-\frac{x^2}{4Dt}} = +\infty
+\end{equation}
+Le equazioni (2.37) e (2.38) assieme a \(\int_{\mathbb{R}}\Gamma_D(x,t)dx = 1 \, \forall t >0\) implicano che per $t$ che tende a \(0\), la soluzione fondamentale tende a concentrarsi attorno all'origine. 
 \end{definition}
 \end{document}
