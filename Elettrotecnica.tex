@@ -1,0 +1,81 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{circuitikz}
+
+\begin{document}
+\title{Appunti di Elettrotecnica}
+\author{Andrea Bonifacio}
+\date{\today}
+\maketitle
+
+\newpage
+
+\section{Introduzione}
+\subsection{Corrente}
+
+Per definite una corrente è necessario prima introdurre il concetto di carica elettrica. Una carica elettrica è costituita da un numero definito di elettroni e la sua unità di misura è il Coulomb, che equivale circa a $6.24 \times 10^{18}$ elettroni. \\
+Cariche in movimento creano una corrente, se una carica attraversa una sezione trasversale di un filo, possiamo definire la corrente come il rapporto tra il numero di cariche che attraversano la sezione trasversale e il tempo da esse impiegate
+$$ i = \frac{\Delta q}{\Delta t}$$
+ossia il flusso di cariche. Poiché il flusso può cambiare nel tempo, si tende a prendere come tempo di riferimento un tempo prossimo allo zero, in modo da ottenere
+$$i(t) = \underset{\Delta t \rightarrow 0}{lim} \frac{\Delta q}{\Delta t} = \frac{dq}{dt}$$
+
+\subsection{Tensione}
+
+Ad ogni carica $q$ è associata una energia $w$. Definito il potenziale come
+$$V = \frac{w}{q}$$
+Una carica che si sposta subisce una variazione di energia, passando dalla energia posseduta al punto $a$ a quella del punto $b$. La differenza $\Delta w_{ab} = w_{a}- w_{b}$ si può chiamare differenza di potenziale (o tensione). La tensione è una grandezza che dipende solo dalle posizioni iniziale e finale del percorso, per cui $v_{ab} = -v_{ba}$.
+\subsection{Definizione di circuito}
+Un circuito elettrico è l'interconnessione di un numero arbitrario di elementi collegati mediante fili. Gli elementi sono accessibili tramite terminali. Gli elementi vengono contraddistinti in base al numero di terminali: un elemento con due terminali è un bipolo, con tre un tripolo etc...\\
+I fili che collegano gli elementi sono conduttori ideali, per cui l'energia si conserva nel passaggio tra i fili, può solo modificarsi all'interno degli elementi del circuito.
+\subsection{Leggi di Kirchhoff}
+\subsubsection{Legge di Kirchhoff delle correnti (LKC)}
+Definito nodo un punto al quale sono connessi due o più elementi, allora si può affermare che la somma algebrica delle correnti entranti e uscenti da un nodo è nulla. Per convenzione si prendono col segno positivo le correnti entranti e col segno negativo le correnti uscenti.
+\subsubsection{Legge di Kirchhoff delle maglie (LKT)}
+Una maglia viene definita come una sequenza di nodi che inizia e termina nello stesso nodo e che incontra tutti gli altri nodi eccetto il primo una volta sola. La legge di Kirchhoff delle tensioni afferma che la somma algebrica delle tensioni lungo una maglia è nulla.
+La LKT è una diretta conseguenza del principio di conservazione dell'energia, infatti non è importante il percorso, ma semplicemente la posizione iniziale e finale per studiare la variazione di energia, e se il punto iniziale e finale coincidono, allora la variazione di energia è nulla.
+\subsection{Potenza}
+Una carica che attraversa un bipolo perde una quantità di energia pari a $\Delta w = v \Delta q$, e siccome la potenza è il rapporto tra l'energia e un intervallo di tempo allora possiamo scrivere 
+$$p = \frac{v \, dq}{dt} = vi$$
+Questo valore rappresenta la potenza assorbita dal bipolo. La potenza assorbita dal bipolo può essere negativa o positiva, a seconda del fatto che i versi di tensione e corrente siano non coordinati o coordinati, e quindi rispettivamente erogata o assorbita dall'elemento. \\
+Inoltre la somma algebrica di tutte le potenze assorbite dagli elementi di un circuito è nulla in ogni istante.
+\section{Circuiti Resistivi}
+\subsection{Resistore}
+Un resistore è un bipolo caratterizzato da una relazione di proporzionalità tra la tensione e la corrente tale che 
+$$v = Ri$$
+La seguente relazione è detta Legge di Ohm. La resistenza si misura in Ohm ($\Omega$). Un'altra importante relazione è quella 
+$$ G = \frac{1}{R}$$
+dove $G$ indica la conduttanza e si misura in siemens($S$)\\
+La potenza assorbita da un resistore si misura come $vi$, per cui si ottiene che $v = Ri$ e $p = Ri^{2}$. Per l'effetto Joule la potenza assorbita dal resistore viene trasformata quasi completamente in calore.
+Due resistori posti in serie tra di loro possono essere osservati come un unico resistore la cui resistenza sia pari alla somma delle resistenze dei due resistori, mentre due resistori posti in parallelo possono essere studiati come un unico resistore la cui conduttanza sia somma delle conduttanze degli altri due.
+\subsection{Corto circuito e circuito aperto}
+Si possono definire, a partire dal resistore, altri due elementi ideali: il resistore di resistenza infinita e il resistore di resistenza nulla. \\
+Il resistore di resistenza nulla avrà tensione $v = R$ e corrente $i = 0$ per qualsiasi valore di corrente, ed è definito corto circuito. \\
+Un resistore di conduttanza nulla (resistenza infinita) avrà una corrente $i = Gv = 0$ per qualsiasi valore di tensione. Tale circuito viene chiamato circuito aperto.
+\subsection{Generatori indipendenti}
+Il generatore indipendente di tensione è un elemento caratterizzato dalla relazione $$
+v = v_s(t)$$
+dove $v_s(t)$ è una funzione nota del tempo o una costante. In un generatore indipendente di tensione, la tensione non dipende dalla corrente che lo attraversa, ma vale sempre $v_s(t)$ qualsiasi valore di $i$ venga preso in considerazione.
+Il suo elemento duale è il generatore indipendente di corrente, caratterizzato dalla relazione $$i = i_s(t)$$
+Come per il generatore di tensione, il valore della corrente non dipende dalla tensione ai poli del generatore, ma mantiene sempre il valore $i_s(t)$.
+\subsection{Circuiti particolari}
+\subsubsection{Partitore di tensione}
+Un caso particolare è il circuito ad una maglia con al suo interno due resistenze in serie. Questo circuito viene definito partitore di tensione, in quanto la relazione che lega le tensioni dei due resistori a quella del generatore è 
+$$v_1 = v_G\frac{R_1}{R_1 + R_2} \quad v_2 = v_G\frac{R_2}{R_1 + R_2}$$
+\subsubsection{Partitore di corrente}
+L'elemento duale del partitore di tensione è il partitore di corrente, che viene applicato ai circuiti con due nodi. In questo caso le resistenze sono poste in parallelo tra di loro, e le correnti che scorrono nei due resistori possono essere ricavate dalla formula 
+$$i_1 = i_G \frac{G_1}{G_1 + G_2} \quad i_2 = i_G \frac{G_2}{G_1 + G_2}$$
+\subsection{Combinazioni di generatori indipendenti}
+Anche più generatori possono essere studiati con un generatore equivalente, ma in questo caso bisogna tenere conto della polarità del generatore: due generatori che erogano la stessa tensione ma hanno i poli opposti sono equivalenti a un generatore di tensione $v = 0$. \\
+Allo stesso modo si possono studiare più generatori di corrente messi in parallelo tra di loro tramite un generatore di corrente il cui valore sarà pari alla somma algebrica delle correnti di ogni generatore.
+\subsection{Generatori controllati}
+Il resistore è caratterizzato da una relazione $i = Gv$. Un elemento simile è il transistore, che è caratterizzato da una relazione $ i = Gv_0$, dove $v_0$ è la tensione presente ai capi di una differente coppia di terminali. A questo scopo si introducono quattro nuovi elementi ideali
+\begin{itemize}
+\item il generatore di tensione controllato in corrente $v = ri_1$
+\item il generatore di tensione controllato in tensione $v = \alpha v_1$
+\item il generatore di corrente controllato in tensione $i = gv_1$
+\item il generatore di corrente controllato in corrente $i = \beta i_1$
+\end{itemize}
+Dimensionalmente $r$ rappresenta una resistenza, $g$ una conduttanza e la coppia $\alpha$ e $\beta$ sono adimensionali.
+
+\end{document}

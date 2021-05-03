@@ -1,0 +1,150 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{bm}
+\usepackage[margin=3cm]{geometry}
+\usepackage{bigfoot}
+\usepackage{amsthm}
+
+\newtheoremstyle{break}
+  {\partopsep}{\topsep}%  
+  {\normalfont}{}
+  {\bfseries}{}%
+  {\newline}{}%
+  \theoremstyle{break}
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{corollary}{Corollario}[section]
+\newtheorem{proposition}{Proposizione}[section]
+\renewcommand*{\proofname}{\textbf{Dimostrazione}}
+\renewcommand\qedsymbol{QED}
+\newtheorem{definition}{Definizione}[section]
+
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+
+\long\def\symbolfootnotemark[#1]#2{\begingroup%
+\def\thefootnote{\fnsymbol{footnote}}\footnotetext[#1]{#2}\footnotemark[#1]\endgroup}
+
+\long\def\symbolfootnotetext[#1]#2{\begingroup%
+\def\thefootnote{\fnsymbol{footnote}}\footnotetext[#1]{#2}\endgroup}
+
+
+\numberwithin{equation}{section}
+
+
+
+
+
+\begin{document}
+\title{Teoria di Probabilità}
+\author{Andrea Bonifacio}
+\date{\today}
+\maketitle
+
+\newpage
+\section{Definizione assiomatica di probabilità}
+Lo studio della probabilità, si basa su assiomi e definizioni. Alcuni concetti indispensabili sono gli \emph{eventi}, rappresentati come insiemi di oggetti, le \emph{$\sigma$-algebre}, collezioni (insiemi di insiemi) di eventi e la \emph{probabilità}, funzione che associa ad ogni evento un grado di fiducia da 0 a 1.
+\subsection{Eventi matematici}
+\begin{definition}
+Un esperimento aleatorio è una osservazione nel mondo reale il cui risultato non è né deterministico né noto a priori, ma influenzato dal caso.
+\end{definition}
+\begin{definition}
+Lo spazio campionario $\Omega$ è l'insieme degli esiti elementari possibili $\omega$ di un esperimento aleatorio. Non è definito univocamente dall'esperimento.
+\end{definition}
+\begin{definition}
+È detto evento un fatto a cui si può attribuire un grado di verità (vero o falso) al termine dell'esperimento. L'evento matematico $A$ rispetto a un evento dato è l'insieme degli esiti $\omega$ in cui l'evento è verificato.
+\end{definition}
+Esempi:
+\begin{itemize}
+\item Numero primo a tombola $\leftrightsquigarrow \, A = \{2,3,5,\ldots,89\} \subseteq \Omega =\{1,\ldots, 90\}$.
+\item Numeri uguali dal lancio di due dadi $\leftrightsquigarrow \, A = \{(1,1),(2,2),\ldots\} \subseteq \Omega = \{1, \ldots, 6\}^2$.
+\end{itemize}
+Vi sono varie operazioni con gli eventi:
+\begin{itemize}
+\item $\emptyset$: rappresenta l'evento impossibile;
+\item $\Omega$: rappresenta l'evento certo;
+\item $A^C$: evento contrario ad $A$;
+\item $A \cup B$: evento $A$ \emph{oppure} evento $B$;
+\item $A \cap B$: evento $A$ \emph{ed} evento $B$;
+\item $A \cap B = 0$: eventi \emph{incompatibili};
+\item $A \subseteq B$: $A$ \emph{implica} $B$;
+\end{itemize}
+\begin{definition}
+L'insieme delle parti di $\Omega$ si dice $2^{\Omega}$ la collezione di tutti i sottoinsiemi di $\Omega$ inclusi $\Omega$ e $\emptyset$.
+\end{definition}
+\subsection{Algebre e $\sigma$-algebre}
+\begin{definition}
+$\mathcal{A} \subseteq 2^{\Omega}$ si dice \textbf{algebra} se:
+\begin{enumerate}
+\item $\emptyset \in \mathcal{A}, \Omega \in \mathcal{A}$
+\item $A \in \mathcal{A} \Longrightarrow A^C \in \mathcal{A} \qquad \mbox{(}\mathcal{A} \mbox{ è chiusa per complementazione)}$
+\item $A_1, A_2, \ldots, A_n \in \mathcal{A} \Longrightarrow$ {\everymath ={\displaystyle}$\bigcup_{i=1}^n \mathcal{A}_i \in \mathcal{A}, \bigcap_{i=1}^n \mathcal{A}_i \in \mathcal{A}$} ($\mathcal{A}$ è chiusa per unioni e intersezioni finite)
+\end{enumerate}
+\end{definition}
+\begin{definition}
+$\mathcal{A} \subseteq 2^{\Omega}$ si dice \textbf{$\sigma$-algebra} se:
+\begin{enumerate}
+\item $\emptyset \in \mathcal{A}, \Omega \in \mathcal{A}$
+\item $A \in \mathcal{A} \Longrightarrow A^C \in \mathcal{A} \qquad \mbox{(}\mathcal{A} \mbox{ è chiusa per complementazione)}$
+\item $A_1, A_2, \ldots, A_n \in \mathcal{A} \Longrightarrow$ {\everymath ={\displaystyle}$\bigcup_{i=1}^{+\infty} \mathcal{A}_i \in \mathcal{A}, \bigcap_{i=1}^{+\infty} \mathcal{A}_i \in \mathcal{A}$} ($\mathcal{A}$ è chiusa per unioni e intersezioni numerabili)
+\end{enumerate}
+\end{definition}
+Alcune $\sigma$-algebre notevoli sono:
+\begin{itemize}
+\item $\mathcal{A} = \{\emptyset, \Omega\}$: la $\sigma$-algebra più piccola.
+\item $\mathcal{A} = \{2^{\Omega}$: la $\sigma$-algebra più grande.
+\item $\mathcal{A} = \{\emptyset, \Omega, A, A^C \}$: una generica $\sigma$-algebra.
+\end{itemize}
+\begin{definition}
+Siano $\Omega$ spazio campionario e $\mathcal{A}$ $\sigma$-algebra su $\Omega$, la coppia ($\Omega, \mathcal{A}$) è definita uno spazio misurabile.
+\end{definition}
+\begin{definition}
+Data la classe $\mathcal{C} \subseteq 2^{\Omega}$, si dice $\sigma$-algebra generata da $\mathcal{C}$ e si scrive $\sigma(\mathcal{C})$ la più piccola $\sigma$-algebra contenente $\mathcal{C}$.
+\end{definition}
+\begin{proposition}
+$\sigma(\mathcal{C})$ è ben definita $\forall \mathcal{C}$
+\end{proposition}
+\begin{proof}
+\begin{enumerate}
+\item Considerando la $\sigma$-algebra delle parti $2^{\Omega}$, per ipotesi $2^{C} \supseteq \mathcal{C}$. Dunque esiste almeno una $\sigma$-algebra $\mathcal{A} \supseteq \mathcal{C}$.
+\item Ne esiste una più piccola di tutte? \\
+Sia $\mathcal{A}_{\alpha}$ una famiglia di $\sigma$-algebre e $\mathcal{A} = ${\everymath ={\displaystyle}$\, \bigcap_{\alpha} \mathcal{A}_{\alpha}$} (con $\alpha$ finito o infinito).
+$\mathcal{A}$ è una $\sigma$-algebra, infatti:
+\begin{itemize}
+\item[(a)]{\everymath ={\displaystyle}$\, \bigcap_{\alpha} \mathcal{A}_{\alpha}$} contiene $\Omega$ e $\emptyset$: $\emptyset \in \mathcal{A}_{\alpha} \, \forall \alpha$ e dunque $\emptyset \in${\everymath ={\displaystyle}$\, \bigcap_{\alpha} \mathcal{A}_{\alpha}$}.
+Analogamente si può dimostrare l'appartenenza di $\Omega$
+\item[(b)] {\everymath ={\displaystyle}$\, \bigcap_{\alpha} \mathcal{A}_{\alpha}$} è chiusa per complementazione: sia $A \in \,${\everymath ={\displaystyle}$\, \bigcap_{\alpha} \mathcal{A}_{\alpha}$}. Dunque $A \in \mathcal{A}_{\alpha} \forall \, \alpha$
+Ciò avviene se e solo se $A^C \in \mathcal{A}_{\alpha} \, \forall \alpha$, essendo $\mathcal{A}_{\alpha}$ una $\sigma$-algebra. Dunque $A \in \mathcal{A}_{\alpha} \, \forall \alpha$.
+Ma allora $A^C \in${\everymath ={\displaystyle}$\, \bigcap_{\alpha} \mathcal{A}_{\alpha}$}
+\item[(c)] {\everymath ={\displaystyle}$\, \bigcap_{\alpha} \mathcal{A}_{\alpha}$} è chiusa per unioni e intersezioni numerabili:
+{\everymath ={\displaystyle}
+$$
+\begin{array}{lcl}
+A_k \in \bigcap_{\alpha} \, \mathcal{A}_{\alpha} \, \forall k \in \mathbb{N} & \Longleftrightarrow & A_k \in \mathcal{A}_{\alpha} \, \forall k \in \mathbb{N}, \forall \alpha \\
+& \Longrightarrow & \bigcup_k A_k \in \mathcal{A}_{\alpha} \, \forall \alpha \\
+& \Longrightarrow & \left( \bigcup_k A_k \right)\ \in \bigcap_{\alpha} \mathcal{A}_{\alpha} 
+\end{array}
+$$
+}
+\end{itemize}
+\end{enumerate}
+Allora $\sigma(\mathcal{C}) = {\displaystyle \bigcap_{\mathcal{A} \supseteq \mathcal{C}}} \mathcal{A}$.
+\end{proof}
+\begin{theorem}
+Se $A_n \in \mathcal{A} \, \forall n \in \mathbb{N}$ allora:
+$$
+\mbox{lim}\,\mbox{sup}A_n \in \mathcal{A} \quad \mbox{ e } \quad \mbox{lim}\,\mbox{inf} A_n \in \mathcal{A}
+$$
+\end{theorem}
+\begin{proposition}
+$\mathcal{A} \,\,\sigma$-algebra su $\Omega \quad \Longrightarrow \quad \mathcal{A} \mbox{ algebra su } \Omega$.
+\end{proposition}
+\begin{proof}
+Siano $A_1,\ldots, A_n$ eventi appartenenti alla $\sigma$-algebra $\mathcal{A}$.
+Definito $A_{n+1} = A_{n+2} = \cdots = A_n$, si ha che:
+$$
+\bigcap_{k=1}^n \, A_k = \bigcap_{k=1}^{\infty} \, A_k \in \mathcal{A} \mbox{ e } \bigcup_{k=1}^n \, A_k = \bigcup_{k=1}^{\infty} \, A_k \in \mathcal{A}
+$$
+\end{proof}
+\end{document}

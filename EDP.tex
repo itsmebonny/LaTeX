@@ -1,0 +1,826 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{bm}
+\usepackage[margin=3cm]{geometry}
+\usepackage{bigfoot}
+\usepackage{amsthm}
+
+
+
+\newtheoremstyle{break}
+  {\partopsep}
+  {\topsep}%  
+  {\normalfont}%
+  {\parindent}%
+  {\bfseries}%
+  {}%
+  {\newline}{}%
+  \theoremstyle{break}
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{corollary}{Corollario}[section]
+\newtheorem{proposition}{Proposizione}[section]
+\renewcommand*{\proofname}{\rm\bf{Dimostrazione}}
+\renewcommand\qedsymbol{$\bigstar$}
+\newtheorem{definition}{Definizione}[section]
+
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+
+\let\oldepsilon\epsilon
+\let\epsilon\varepsilon
+
+\long\def\symbolfootnotemark[#1]#2{\begingroup%
+\def\thefootnote{\fnsymbol{footnote}}\footnotetext[#1]{#2}\footnotemark[#1]\endgroup}
+
+\long\def\symbolfootnotetext[#1]#2{\begingroup%
+\def\thefootnote{\fnsymbol{footnote}}\footnotetext[#1]{#2}\endgroup}
+
+
+\numberwithin{equation}{section}
+
+
+
+
+
+\begin{document}
+\title{Equazioni alle Derivate Parziali}
+\author{Andrea Bonifacio}
+\date{\today}
+\maketitle
+
+\newpage
+\section*{Premessa}
+Prima di iniziare, è necessario specificare come verranno trattati i simboli nel testo: per indicare una derivata parziale si useranno i seguenti simboli in modo interscambiabile:
+$$\begin{array}{cc}
+\frac{\partial x}{\partial u}, & u_{xx} = \frac{d^2x}{du} 
+\end{array}
+$$
+
+\section{Introduzione}
+\subsection{Modelli Matematici}
+Per modello matematico si intende un insieme di equazioni o relazioni matematiche in grado di catturare le caratteristiche di una situazione in esame. Un modello è generalmente costruito a partire da due principali caratteristiche: $$leggi\ generali\ e\ relazioni\ costitutive.$$
+Le leggi generali prese in esame saranno quelle della Meccanica dei Continui e si presentano come leggi di conservazione o di bilancio (della massa, dell'energia, dei momenti...).  
+Le relazioni costitutive sono ottenute sperimentalmente e dipendono solamente dal fenomeno in esame (legge di Fourier del calore, di Fick per la diffusione o di Ohm per la corrente elettrica).  
+Da questa combinazione si ottiene solitamente un'\textit{equazione alle derivate parziali}.
+\subsection{EDP}
+Si definisce equazione alle derivate parziali una relazione del tipo
+\begin{equation}
+F(X_1,\ldots, x_n, u, u_{x1x1}, u_{x1x2}, \ldots, u_{x1xn}, u_{x1x1x1},\ldots) = 0
+\end{equation} dove $u = u(x_1,\ldots,x_n)$ è una funzione di $n$ variabili. Si definisce ordine di una equazione il suo grado massimo di derivabilità. \\
+Si distinguono due principali categorie: $lineari\ e\ nonlineari$.  
+L'equazione (1.1) è lineare se F è lineare rispetto a $u$ e a tutte le sue derivate.
+Equazioni lineari: 
+\begin{itemize}
+\item Equazione del calore $u_t- D\Delta u\symbolfootnotemark[2] = f(x,t)$ \item Laplace/Poisson: $\Delta u = f(x,t)$ 
+\item Equazione delle onde: $u_{tt} - c^2 \symbolfootnotemark[3] * \Delta u = 0$
+\end{itemize}
+\symbolfootnotetext[2]{$\Delta u = \sum_{j = 1}^n \frac {\partial ^2 u}{\partial x_j^2}$}
+\symbolfootnotetext[3]{$c(x, t)$}  
+\newpage
+Tra i tipi di nonlinearità si distinguono tre principali categorie:
+\begin{itemize}
+\item Semilineari: se F è nonlineare rispetto ad $u$, ma lo è rispetto alle sue derivate. (e.g. Equazione di Fisher-Kolmogorov: $u_t - D\Delta u = f(u) = ru(1-u)$)
+\item Quasilineari: se F è lineare rispetto alle derivate di $u$ di ordine massimo, con coefficienti dipendenti solo da \textbf{x}, $u$ e dalle derivate di ordine inferiore. (e.g. Equazione di Burgers: ($x \in \mathbb{R}$) $u_t - cuu_x = \epsilon u_{xx}$, Equazione delle superfici minime: $div\left(\frac{\nabla u}{\sqrt{1+|\nabla u|^2}}\right)$
+\item Completamente non lineare: se F è nonlineare rispetto alle derivate di $u$ di ordine massimo. (e.g. Equazione iconale: $|\nabla u| ^2 = c(x) \symbolfootnotemark[2] *$)
+\symbolfootnotetext[2]{c = indice di rifrazione}
+\end{itemize}
+\subsection{Problemi ben posti}
+Quando si affronta la costruzione di un modello vengono utilizzate solo alcune delle equazioni generali di campo, e le altre vengono semplificate, o direttamente eliminate. Per predire l'esistenza e/o l'unicità di una soluzione si utilizzano le \textit{condizioni al bordo del dominio e/o condizioni iniziali}. Un tipico esempio di condizione al bordo è quello di assegnare la soluzione o la sua derivata normale. 
+È necessario stabilire le condizioni sui dati che abbiano le seguenti caratteristiche:
+\begin{enumerate}
+\item Esista almeno una soluzione
+\item Esista una sola soluzione
+\item la soluzione dipenda con continuità dai dati
+\end{enumerate}
+L'ultima affermazione è estremamente importante affinché un piccolo errore nei dati causi una piccola perturbazione nella soluzione. Questa proprietà si chiama \textbf{stabilità locale della soluzione rispetto ai dati}.
+La nozione di continuità si precisa introducendo una opportuna distanza. In caso di numeri o vettori come dati una distanza può essere quella $euclidea$: se \textbf{x} =($x_1, x_2, \ldots, x_n$), \textbf{y} = ($y_1, y_2, \ldots, y_n$)
+$$dist(\textbf{x}, \textbf{y}) =  ||\textbf{x}-\textbf{y}|| = \sqrt{\sum_{k=1}^n(x_k-y_k)^2}$$
+Se si tratta di funzioni reali e definite su un dominio $I$, due distanze molto usate sono:
+$$
+\begin{array}{lcr}
+dist(f,g) = \underset{I}{\max}|f-g| &\quad \quad & dist(f,g) = \sqrt{\int_I (f-g)^2}
+\end{array}
+$$
+Un problema che possiede le caratteristiche (1, 2, 3) si dice \textbf{ben posto}, ed è il tipo di problema con cui è più comodo lavorare.
+\subsection{Integrazione per parti}
+Siano $$\Omega \in \mathbb{R}^n$$ un dominio limitato di classe $C^1$ e $\textbf{F}: \overline{\Omega}$ un campo vettoriale di classe $C^1(\overline{\Omega})$. Essendo $\textbf{F} \in C^1(\overline{\Omega}; \mathbb{R}^n)$ e $\boldsymbol{\nu}$ il versore normale, allora vale la formula di Gauss o della divergenza:
+\begin{equation}
+\int_{\Omega} div\textbf{F} \ dx = \int_{\partial\Omega} \textbf{F} \cdot \boldsymbol{\nu} \ d\sigma
+\end{equation}
+L'elemento $d\sigma$ rappresenta la superficie di $\partial\Omega$ e si può definire come:
+$$d\sigma = \sqrt{1+|\nabla \phi(\mathbf{y}')|^2}d\mathbf{y}'$$
+\section{Equazione di diffusione}
+\subsection{Introduzione}
+Come visto in precedenza, una delle equazioni che verrà analizzata è la cosiddetta equazione di diffusione, o del calore, che si può scrivere come:
+\begin{equation}
+u_t - D u_{xx} = f
+\end{equation}
+dove D è una costante positiva, definita come \textit{coefficiente di diffusione}
+In una dimensione spaziale $n>1$, l'equazione ha la forma\begin{equation}
+u_t - D \Delta u = f
+\end{equation}
+dove $\Delta$ indica l'operatore di Laplace
+$$\Delta = \sum_{k=1}^n \partial_{x_k, x_k}$$
+Il nome di questa equazione deriva dal fatto che è in grado di essere soddisfatta dalla temperatura in un mezzo omogeneo e isotropo rispetto alla propagazione del valore, con $f$ che rappresenta l'``intensità" della fonte di calore.  
+Più in generale l'equazione rappresenta il trasporto di materia dovuto al moto molecolare del mezzo in cui è immersa, da cui il nome diffusione.
+In condizioni di equilibrio l'equazione si definisce stazionaria, ossia
+\begin{equation}
+-D\Delta u = f
+\end{equation}
+che per $D=1$ è anche detta Equazione di Poisson, mentre se anche $f \equiv 0$ viene definita di Laplace, e le sue soluzioni sono definite funzioni armoniche. Con $f \equiv 0$ l'equazione si definisce \textit{omogenea} e sono da subito evidenziabili una serie di caratteristiche fondamentali.
+\begin{itemize}
+\item \textit{Linearità e principio di sovrapposizione}.
+Se $u$ e $v$ sono soluzioni e $a, \ b$ scalari, allora anche $au+bv$ è soluzione.  
+Si può dire che se $u_k(\mathbf{x},t)$ è soluzione di $u_t-D\Delta u = 0$ per ogni valore di $k$ e $g=g(k)$ è una funzione che si annulla abbastanza rapidamente all'infinito, allora sono soluzioni anche:
+{ 
+\everymath={\displaystyle}
+$$\begin{array}{lcr}
+
+\sum_{k=1}^{\infty}u_k(\mathbf{x},t)g(k) & \mbox{ e } & \int_{-\infty}^{+\infty} u_k(\mathbf{x},t)g(k)dk
+
+
+\end{array}
+$$
+}
+\item \emph{Cambio di direzione temporale}. Sia $u = u(\mathbf{x}, t)$una soluzione della equazione $u_t - D\Delta u = 0$, allora la funzione $v(\mathbf{x},-t)$ ottenuta tramite cambio di variabile sarà soluzione dell'equazione \textbf{backward}
+$$v_t + D\delta v = 0$$
+L'equazione $u(\mathbf{x}, t)$ sarà definita, rispettivamente, \textbf{forward}. Tuttavia il cambio di variabile $\mathbf{x} \to -\mathbf{x}$ lascia invariata l'equazione (\emph{invarianza rispetto a riflessioni nello spazio}.
+\item \emph{Invarianza rispetto a traslazioni spazio-temporali}.
+In un dominio spazio temporale $\Omega \times (0, T)$, sia $u = u(\mathbf{x}, t)$ soluzione dell'equazione omogenea, dove $\Omega \subseteq \mathbb{R}^n$, allora la funzione 
+$$ v(\mathbf{x}, t) = u(\mathbf{x \mbox{-} t}, t-s)$$
+per $\mathbf{y}, s$ fissati è ancora soluzione in un dominio $(\Omega + \mathbf{y}) \times (s, s+ T)$
+\item \emph{Invarianza rispetto a dilatazioni paraboliche}. La trasformazione 
+$$
+\begin{array}{ccc}
+\mathbf{x} \to a \mathbf{x}, & t \to bt, & (a, b >0)
+
+\end{array}
+$$
+rappresenta una dilatazione/contrazione spazio-temporale.  
+Affinché la funzione
+
+$$
+u^*(\mathbf{x},t) = u(a\mathbf{x},bt)
+$$
+sia ancora soluzione della funzione omogenea, è necessario trovare delle condizioni per i coefficienti $a \mbox{ e }b$.
+Poiché:
+$$ 
+u_t^*(\mathbf{x},t)-\Delta u^* (\mathbf{x},t) = bu_t(a\mathbf{x},bt)-a^2D\Delta u(a\mathbf{x}, bt)
+$$
+allora $u^*$ è ancora soluzione dell'equazione omogenea se $b = a^2$. La dilatazione parabolica lascia dunque invariati i blocchi 
+{\everymath = {\displaystyle}
+$$
+\begin{array}{lcr}
+\frac{|\mathbf{x}|^2}{t}& \mbox{oppure} & \frac{\mathbf{x}}{\sqrt{t}}
+
+\end{array}
+$$
+}
+\end{itemize}
+\subsection{La conduzione del calore}
+Per derivare un modello matematico che descriva la conduzione del calore in un corpo rigido, si assuma un corpo omogeneo ed isotropo, con densità $\rho$ costante e che possa ricevere energia da fonte esterna. Indicato con $r$ il tasso di calore per unità di massa fornito dalla fonte esterna, allora: \\
+Sia $V$ un elemento arbitrario di volume all'interno del corpo rigido, allora \emph{il tasso di variazione dell'energia di $V$ eguaglia il flusso di calore attraverso il bordo $\partial V$ più quello dovuto alla sorgente esterna}.  
+Indicato con $e = e(\mathbf{x}, t)$ l'energia interna per unità di massa, la quantità di energia in $V$ è data da 
+{
+\everymath = {\displaystyle}
+$$
+\begin{array}{lcr}
+
+
+\int_V e \rho \  d\mathbf{x} & \mbox{e il suo tasso di variazione da} &
+\frac{d}{dt}\int_V e\rho \ d\mathbf{x} = \int_V e_t \rho \ d\mathbf{x}
+\end{array}
+$$
+}
+Il vettore \emph{flusso di calore}  sarà \textbf{q}. Più precisamente se $d\sigma$ è l'elemento d'area contenuto in $\partial V$ e $\boldsymbol{\nu}$ il versore normale esterno, il prodotto $\mathbf{q} \cdot \boldsymbol{\nu}$ rappresenta la velocità con cui l'energia fluisce tramite $d\sigma$. Il flusso entrante in $\partial V$ sarà 
+$$
+-\int_{\partial V} \mathbf{q}\cdot \boldsymbol{\nu} \ d\sigma 
+$$
+mentre il contributo della fonte esterna sarà
+$$\int_V r\rho \ d\mathbf{x}$$
+Per bilanciare l'energia allora sarà necessario che 
+\begin{equation}
+\int_V e_t\rho \ d\mathbf{x} = \underset{\mbox{(Teorema di Gauss)}}{-\int_V div\mathbf{q} \ d\mathbf{x}} + \int_{V} r \rho \ d\mathbf{x}
+\end{equation}
+Che si può convertire nell'equazione, data l'arbitrarietà di $V$ nell'equazione:
+\begin{equation}
+e_t \rho = - div\mathbf{q} + r\rho
+\end{equation}
+che costituisce l'equazione fondamentale della diffusione del calore.
+Inoltre siano da assumere:
+\begin{itemize}
+\item \textbf{Legge di Fourier} per la conduzione del calore
+\begin{equation}
+\mathbf{q} = -k \nabla \theta
+\end{equation}
+dove $\theta$ è la temperatura assoluta e $k>0$ la conduttività termica, dipendente dalle proprietà del materiale. Il segno negativo tiene conto del fatto che il calore tende a fluire verso le regioni dove la temperatura è minore. Generalmente la variazione di $k$ è trascurabile, per cui si può considerare costante
+\begin{equation}
+div\mathbf{q} = -k\Delta \theta
+\end{equation}
+\item L'energia interna è proporzionale alla temperatura assoluta
+\begin{equation}
+e = c_v\theta
+\end{equation}
+con $c_v$ che è il calore specifico del materiale e che si può assumere anch'esso costante.
+\end{itemize}
+La (2.5) allora diventa
+\begin{equation}
+\theta_t = \frac{k}{c_v \rho} \Delta \theta + \frac{1}{c_v} r
+\end{equation}
+che è l'\emph{equazione di diffusione} con $D=\frac{k}{(c_v\rho )}$ e
+ $f=\frac{r}{c_v}$
+\subsection{Problemi ben posti (n=1)}
+Quali sono i problemi ben posti per l'equazione di diffusione?  
+In uno spazio monodimensionale si tratterà di osservare l'evoluzione della temperatura $u$ in una sbarra cilindrica di sezione $A$ e lunghezza $L$ molto superiore al raggio, \emph{isolata termicamenta ai lati}.
+Utilizzando un modello unidimensionale, su può identificare la sbarra in un segmento $0\leq x \leq L$. Per affrontare in modo ottimale il problema, oltre all'equazione di diffusione, è necessario stabilire:
+\begin{itemize}
+\item \emph{Condizioni iniziali}, ossia è necessario conoscere lo stato iniziale del sistema per studiarne l'evoluzione, che in questo caso è $u(x, 0) = g(x) \quad 0 \leq x \leq L$
+
+\item \emph{Condizioni al bordo}, ossia mantenere il sistema in uno stato controllato. Tre possibili condizioni al bordo sono:
+\begin{enumerate}
+\item \emph{Condizioni di Dirichlet}, cioè assegnare un valore ai due estremi della sbarra $$u(0, t) = h_1(t), \quad u(L,t) = h_2(t) \qquad t \in (0, T]$$
+\item \emph{Condizioni di Neumann}, permettono di mantenere sotto osservazione la sbarra attraverso il flusso di calore entrante/uscente dagli estremi adottando la legge di Fourier
+$$
+\phi_{\theta}(x = 0) = -ku_x(0,t), \qquad \phi_{\theta}
+= (x = L) ku_x(L,t)
+$$
+con $k > 0$ costante di conduttività termica, allora si assegnano due valori agli estremi
+$$
+-u_x(0,t) = h_1(t), \quad u_x(L,t) = h_2(t), \qquad t \in (0,T]
+$$
+\item \emph{Condizioni di Robin (o radiazione}, una condizione derivata dalla legge lineare sul raffreddamento di Newton, ossia, se l'ambiente circostante si trova a una temperatura $U$ e il flusso di calore entrante in $x = L$ sia proporzionale alla differenza $U-u$ ossia
+$$ku_x(L, t) = \gamma (U-u(L,t)) \qquad t \in (0,T]$$
+con $\gamma >0$. Si possono allora riscrivere le condizioni di Robin come
+$$
+u_x(L,T) +\alpha \symbolfootnotemark[2] u(L,t) = \beta \symbolfootnotemark[3] \qquad t \in (0,T]
+$$
+\symbolfootnotetext[2]{$\alpha  = \frac{\gamma}{k}$}
+\symbolfootnotetext[3] {$\beta = \frac{\gamma U}{k}$}
+\end{enumerate}
+Quando $h_1, h_2$ sono nulli, si dice che le condizioni al bordo sono \emph{omogenee}
+\end{itemize}
+Tuttavia nessuna \emph{condizione finale} per $0 < x < L, \quad t = T$ è assegnata, Le uniche condizioni assegnabili sono sulla frontiera parabolica del cilindro $Q_T$, indicata da $\partial_p Q_T$, data dall'unione della base $[0, L] \times \{t=0\}$ e dalla parte laterale costituita dai punti $(0,t) \mbox{ e } (L,t)$ con $0 \leq t \leq T$. \\
+Si può scrivere allora il \emph{problema di Cauchy globale}
+\begin{equation}
+\begin{cases}
+u_t -D u_{xx} = f \qquad \qquad x \in \mathbb{R}, 0<t<T\\
+u(x, 0) = g(x) \qquad \qquad x\in \mathbb{R}\\
+\mbox{+ condizioni per } x \to \pm \infty
+\end{cases}
+\end{equation}
+
+\subsection{Metodo di separazione delle variabili}
+Il problema da analizzare è quello di una sbarra di lunghezza $L$ è tenuta inizialmente a temperatura $\theta_0$. Successivamente l'estremo $x = L$ viene sottoposto a una temperatura $\theta_1 > \theta_0$. Il modello atto a rappresentare questa situazione è l'\emph{equazione di diffusione}
+$$
+\begin{cases}
+\theta_t -D \theta_{xx} = 0 & t > 0,\ 0 \leq t \leq T\\
+\theta(x, 0) = \theta_0  & 0 \leq x \leq L\\
+\theta(0,t) = \theta_0, \quad \theta(L,t)=\theta_1 & t >0
+\end{cases}
+$$
+Il comportamento da analizzare sarà quello a regime, per cui $t$ sarà illimitato. Uno dei metodi che si possono utilizzare è quello della \emph{separazione delle variabili}, ma è necessario applicare delle modifiche al problema.
+\begin{itemize}
+\item \emph{Variabili adimensionali}. Il problema va riformulato utilizzando variabili non dipendente dalla unità di misura, per cui la variabile $x$, espressa come una lunghezza, può essere sostituita dalla variabile $y$, ossia
+$$y = \frac{x}{L}$$
+che, essendo un rapporto tra lunghezze, è una variabile adimensionale. \\
+Il tempo va riscalato, e per farlo bisogna utilizzare la costante $D$ che ha dimensioni $$
+lunghezza^2 \times tempo^{-1}
+$$
+per cui una costante $\tau
+= \frac{L^2}{D}$ avrà dimensione temporale e permette di trovare la variabile $s$:
+$$s = \frac{t}{\tau}$$
+Passaggio analogo per la temperatura, che verrà trasformata in un rapporto tra temperature
+\begin{equation}
+u(y,s) = \frac{\theta(Ly,\tau s)-\theta_0}{\theta_1 -\theta_0}
+\end{equation}
+
+Le condizioni iniziali diventano allora:
+{\everymath = {\displaystyle}
+$$
+\begin{array}{ll}
+u(y, 0) = \frac{\theta(Ly, 0) - \theta_0}{\theta_1 -\theta_0} = 0, & 0 \leq y \leq 1 \\
+u(0, s) = \frac{\theta(0, \tau s) - \theta_0}{\theta_1 - \theta_0} = 0, & u(1, s) = \frac{\theta(L, \tau s) - \theta_0}{\theta_1 - \theta_0} = 1
+
+\end{array}
+$$
+}
+La (2.11) permette di ricavare altre due relazioni fondamentali
+{\everymath = {\displaystyle}
+$$
+\begin{array}{l}
+(\theta_1 -\theta_0) u_s = \pdv{t}{s} \theta_t=\tau
+\theta_t = \frac{L^2}{D} \theta_t \\
+(\theta_1 -\theta_0) u_{yy} = \left(\pdv{x}{y}\right)^2 \theta_{xx} = L^2 \theta_{xx}
+
+\end{array}
+$$
+}
+Sapendo inoltre, dalle condizioni del problema che $\theta_t = D \theta_{xx}$ allora
+$$(\theta_1 - \theta_0) (u_s -u_{yy}) = \frac{L^2}{D}\theta_t - L^2 \theta_{xx} = \frac{L^2}{D} D\theta_{xx} - L^2 \theta_{xx} = 0$$
+Si ottiene così $u_s - u_{yy} = 0$ con condizioni iniziali $u(y,0) = 0$
+\begin{equation}
+u(0,s) = 0,\quad u(1, s) = 1
+\end{equation}
+
+\item \emph{Soluzione stazionaria}. Il metodo di separazione delle variabili richiede di ricavare una soluzione $u^{St}$ che si dimentichi della condizione iniziale e soddisfi solamente l'equazione $u_{yy} = 0$ oltre alle condizioni (2.12), da cui si trova
+$$u^{St}(y) = y$$
+che si trasforma nelle variabili originali
+$$\theta^{St}(x) = \theta_0 + (\theta_1 -\theta_0) \frac{x}{L}$$
+\item \emph{Il regime transitorio} Per rappresentare il regime transitorio si utilizza
+$$
+U(y,s) = u^{St}(y,s) - u(y,s) = y -u(y,s)
+$$
+$U$ rappresenta il regime transitorio che per $s \to \infty$ tenderà a zero. $U$ soddisfa l'equazione $u_s - u_{yy} = 0$ con le seguenti condizioni 
+\begin{equation}
+\begin{cases}
+U(y,0) = y & \qquad 0 <y< 1\\
+U(0,s) = 0 & \qquad s>0\\
+U(1,s) = 0 & \qquad s >0
+\end{cases}
+\end{equation}
+\item \emph{Separazione delle variabili} Sfruttando la natura lineare del problema si può costruire una soluzione sovrapponendo due soluzioni della forma $w(s)v(y)$ in cui le variabili $s \mbox{ e } y$ si presentano separate. Fondamentale \textbf{avere condizioni al bordo omogenee}.
+\end{itemize}
+
+Una volta stabilito ciò si può cercare una soluzione della forma $$
+U(y,s) = w(s)v(y)
+$$
+con $v(0) = v(1) = 0$.
+Poiché $U_s - U_{yy} = w'(s)v(y) - w(s)v''(y) = 0$
+si ottiene separando le due variabili
+\begin{equation}
+\frac{w'(s)}{w(s)} = \frac{v''(y)}{v(y)}
+\end{equation}
+che è una identità valida per $\forall s > 0 \mbox{ e } \forall y \in (0,1)$.
+Tale identità è possibile solo nel caso in cui entrambi i membri siano uguali a una costante comune, definita $\lambda$. Ossia $$
+v''(y) - \lambda v(y) = w'(s) - \lambda w(s)$$
+Per la formula sopracitata vi sono tre possibili soluzioni per l'integrale
+\begin{itemize}
+\item[A)] $\lambda = 0, \ v(y) = A +By \mbox{ (A, B costanti arbitrarie)}$ e dalle condizioni $v(0) = v(1) = 0$ si ottiene $A=B=0$
+\item[B)] $\lambda > 0,\ \lambda = \mu^2 > 0$ allora $$
+v(y) = Ae^{-\mu y} + Be^{\mu y}
+$$
+e le condizioni iniziali implicano sempre $A=B=0$
+\item[C)] $\lambda = -\mu^2 < 0$ allora
+$$
+v(y) = A\, sin(\mu y)+B\, cos (\mu y)
+$$
+\end{itemize}
+Imponendo le condizioni iniziali
+$$
+v(0) = B = 0 \\
+v(1) = A sin(\mu) + Bcos(\mu) = 0
+$$
+per cui $A \mbox{ arbitrario }, \ B = 0, \ \mu = m\pi, \ m= 1,2, \ldots$
+In questo caso si otterranno soluzioni non nulle del tipo 
+$$
+v_m(y) = A\, sin\, m\, \pi y
+$$
+Tale problema si definisce \emph{problema agli autovalori} con i valori $\mu_m$ che si chiamano \emph{autovalori} e $v_m$ sono le corrispondenti \emph{autofunzioni}.
+Assegnando a $\lambda = -\mu^2 = -m^2\pi^2$ la funzione $w'(s) - \lambda w(s) = 0$ ha come integrale generale
+$$w_m(s) = Ce^{-m^2-\pi^2s} \, sin(m\pi y) \qquad \mbox{ (C costante arbitraria)}$$ 
+Si ottengono soluzioni del tipo 
+$$
+U_m(y,s) = A_me^{-m^2\pi^2s}\, sin(m\pi y)
+$$
+Nessuna delle soluzioni $U_m$ soddisfa la condizione $U(y,0) = y$, ma una soluzione si può approssimare sommando tutte le soluzioni 
+\begin{equation}
+U(y,s) = \sum_{m=1}^{\infty} A_m \, e^{-m^2\pi^2s} \, sin(m\pi y)
+\end{equation}
+
+È lecito cercare di capire come scegliere le costanti $A_m$ in modo che la condizione
+{\everymath ={\displaystyle}
+$$
+\begin{array}{lr}
+U(y,0) = \sum_{m=1}^{\infty} A_m  \, sin(m\pi y) = y & \qquad
+0 \leq y \leq 1
+\end{array}
+$$
+}
+sia verificata.   
+Per fare ciò bisogna ricorrere allo \emph{sviluppo di una funzione in serie di Fourier}, in particolare della funzione $f(y) = y$ nell'intervallo $(0,1)$. Poiché le condizioni di Dirichlet sono omogenee agli estremi, l'idea più conveniente è quella di sviluppare una serie di soli seni, ossia \emph{una funzione dispari periodica di periodo 2} che coincida con $y$ nell'intervallo $(0,1)$.  
+Per calcolare i coefficienti di Fourier si usa la formula
+
+\begin{equation*}
+\begin{aligned}
+A_k  = 2 \int_0^2 y\, sin(k \pi y) \, dy = -\frac{2}{k \pi}[y\, cos (k \pi y)]_0^1 + \frac{2}{k \pi} \int_0^1 cos(k \pi y) \, dy = & \\
+ =
+ -2 \frac{cos(k \pi)}{k \pi}
+ = (-1)^{k+1} \frac{2}{k \pi} sin (k \pi y)
+\end{aligned}
+\end{equation*}
+Lo sviluppo di $f(y) = y$ è
+$y = \sum_{m = 1}^{\infty} (-1)^{m+1} \frac{2}{m \pi} sin(m \pi y)$
+che però non è valido per esempio in $ y = 1$, dove ha valore $f(1) = 0$. Dalla teoria delle serie di Fourier questo sviluppo è valido nell'intervallo $(-1,1)$, mentre agli estremi è nulla. Tale serie converge uniformemente in ogni intervallo $[a,b] \subset (-1,1)$ 
+Tale uguaglianza vale anche in media quadratica, o nel senso della convergenza $L^2$  
+
+$$
+\int_0^1[y-\sum_{m=1}^N(-1)^{m+1} \frac{2}{m \pi} e^{-m^2 \pi^2s} sin(m\pi y)]^2dy \to 0 \qquad \mbox{ per } N \to +\infty
+$$
+Dunque al momento l'unica soluzione possibile è
+\begin{equation}
+U(y,s) = \sum_{m=1}^{\infty} (-1)^{m+1} \frac{2}{m \pi} e^{-m^2\pi^2s} sin(m \pi y)
+\end{equation}
+Poiché il dato iniziale è assunto in media quadratica, ossia
+\begin{equation}
+\lim_{s \to 0} \int_0^1[U(y,s)-y]^2dy=0
+\end{equation}
+Grazie all'uguaglianza di Bessel\footnote{Siano $C_n$ i coefficienti di Fourier della funzione $f(x)$ allora\\
+ {\everymath ={\displaystyle} $\sum_{n=-\infty}^{\infty} |C_n|^2 = \frac{1}{2\pi}\int_{-\pi}^{\pi}|f(x)|^2dx$}} si ottiene 
+\begin{equation}
+\int_0^1 [U(y,s) - y]^2dy = \frac{4}{\pi^2}\sum_{m+1}^{\infty} \frac{(e^{-m^2\pi^2s}-1)^2}{m^2}
+\end{equation}
+e per $s \geq 0$ si ha
+$$
+\frac{(e^{-m^2\pi^2s}-1)^2}{m^2} \leq \frac{1}{m^2}
+$$
+e la serie $\sum \frac{1}{m^2}$ è convergente, dunque per il test di Weierstrass anche la serie (2.18) converge uniformemente in $[0, \infty)$ e si può passare al limite per $s \to 0^+$ ottenendo la (2.17).
+Inoltre, nonostante $U_m$ sia soluzione dell'equazione del calore, non vi è la certezza che lo sia anche $U$. Tale affermazione si verifica differenziando sotto il segno di somma, ossia 
+\newpage
+\begin{equation}
+(\partial_s - \partial_{yy}) U(y,s) = \sum_{m=1}^{\infty}(\partial_s - \partial_{yy})U_m(y,s) = 0
+\end{equation}
+$U$ è una sovrapposizione di vibrazioni sinusoidali di frequenza $m$ sempre maggiore, con ampiezza fortemente attenuata dalla presenza dell'esponenziale. La rapida convergenza a zero del termine generale della (2.16) e delle sue derivate rispetto al tempo e allo spazio permette di scambiare le operazioni di derivazione con quella di somma. Più precisamente si ha $$\frac{\partial U_m}{\partial s} = \frac{\partial^2 U_m}{\partial y^2} = (-1)^{m+2}2m \pi e^{-m^2\pi^2s}sin(m\pi y)$$ 
+e se $s\leq s_0 < 0$
+$$\bigg\lvert \frac{\partial U_m}{\partial s} \bigg\rvert , \bigg\lvert \frac{\partial^2 U_m}{\partial y^2}\bigg\rvert \leq 2 m \pi e^{-m^2\pi^2s}.$$
+Dal momento che 
+$$\sum_{m=1}^{\infty} me^{-m^2\pi^2s_0}$$
+è una serie convergente, per il test di Weierstrass anche le serie
+$$\sum_{m=1}^{\infty} \frac{\partial U_m}{\partial s} \quad \mbox{ e } \quad \sum_{m=1}^{\infty} \frac{\partial^2 U_m}{\partial y^2}$$
+convergono uniformemente in $[0,1] \times [s_0, \infty)$, e $U$ è soluzione di $u_s - u_{yy} = 0$. Verificando le condizioni di Dirichlet per $s_0 > 0$
+$$U(z,s) \to 0 \mbox{ per } (z,s) \to (0,s_0) \mbox{ oppure } (z,s) \to (1,s_0)$$
+che è sempre vero per la convergenza uniforme della serie (2.16) che permette di passare al limite sotto il segno di somma in ogni regione $[0,1] \times (b, +\infty)$ con $b>0$. Fino alla frontiera laterale $[0,1] \times (b, +\infty)$ $U$ avrà derivate continue di ogni ordine. \\
+Ma è l'unica soluzione? \\
+Per rispondere a questa domanda è necessario usare un metodo detto “dell'energia".
+Moltiplicando per $u$ l'equazione 
+\begin{equation}
+u_s - u_{yy} = 0
+\end{equation}
+e integrando rispetto a $y$ su $[0,1]$, mantenendo $s > 0$ fissato si ottiene
+\begin{equation}
+\int_0^1 uu_s\, dx - \int_0^1 uu_{yy}\, dy = 0
+\end{equation}
+e dato che
+$$\int_0^1 uu_s \, dx = \frac{1}{2} \int_0^1 \frac{d}{ds}(u^2) dy = \frac{1}{2}\frac{d}{ds}\int_0^1 u^2dy$$
+integrando per parti 
+$$\int_0^1 uu_{yy}\, dy = [u(1,s)u_y(1,s)-u(0,s)u_y(0,s)] - \int_0^1 (u_y)^2 dy$$
+la (2.21) è uguale a
+$$\frac{1}{2}\frac{d}{ds}\int_0^1 u^2dy = \int_0^1 uu_{yy}\, dy = [u(1,s)u_y(1,s)-u(0,s)u_y(0,s)] - \int_0^1 (u_y)^2 dy$$
+Se $u$ e $v$ sono soluzioni del problema di Cauchy-Dirichlet, ossia con gli stessi dati iniziali e al bordo, data $w = u - v$ soluzione dell'equazione $w_s -w_{yy} = 0$ con dati al bordo e iniziali nulli si trova allora
+\begin{equation}
+\frac{1}{2}\frac{d}{ds}\int_0^1 w^2dy = \int_0^1 uu_{yy}\, dy = - \int_0^1 (w_y)^2 dy
+\end{equation}
+poiché
+$$w(1,s)w_y(1,s)-w(0,s)w_y(0,s) = 0.$$
+La (2.22) indica che la funzione non negativa
+$$E(s) = \int_0^1 w^2(y,s) \, dy$$
+ha derivata minore o uguale a zero, quindi è decrescente. Inoltre, poiché il dato è assunto in media quadratica e il dato iniziale è nullo, segue che
+$$E(s) \to 0 \quad \mbox{ se } s \to 0^+$$
+allora $E(s) = 0$ se $s > 0$. \\
+Poiché $w^2(y,s)$ è continua e non negativa se $s> 0, w = 0 \Longrightarrow u = v$.
+Ritornando al problema originale la soluzione risulta così enunciata
+$$\theta(x,t) = \theta_0 + (\theta_1 - \theta_0)\frac{x}{L} - (\theta_1 - \theta_0)\sum_{m=1}^{\infty}(-1)^{m+1}\frac{2}{m \pi}e^{\frac{-m^2 \pi^2 D}{L}t} sin \left(\frac{m\pi}{L}x\right)$$
+Da questa formula si trova conferma dell'ipotesi iniziale, infatti tutti i termini della serie convergono a zero esponenzialmente per $t \to +\infty$ per cui la temperatura di assesta, a regime, sulla soluzione stazionaria
+$$
+\theta(x,t) \to \theta_0 + (\theta_1 - \theta_0) \frac{x}{L} \qquad t \to + \infty
+$$
+Inoltre, tra i vari termini della serie, il più lento a decadere, e quindi quello che in maggior misura determinerà l'andamento della temperatura, è $m = 1$, che ha valore
+$$
+\frac{2}{\pi}e^{\frac{-\pi^2 D}{L^2}t}sin\left(\frac{\pi}{L}x\right)
+$$
+e andamento sinusoidale smorzato, con ampiezza massima $\frac{2}{\pi} e^{\frac{-\pi^2 D}{L^2}t}$. In un tempo $t$ di ordine $\frac{L^2}{4D}$ l'ampiezza diminuisce di $e^{\frac{-\pi^2}{4}}$ circa l'$8\%$ del valore iniziale. Dunque per raggiungere il valore a regime sarà necessario un tempo di grandezza $\frac{L^2}{D}$.
+\subsection{Problemi in dimensioni $\mathbf{n>1}$}
+Ragionando in dimensione spaziale $n$ generica, si tratta di voler determinare la temperatura di un corpo che occupi nello spazio un dominio limitato $\Omega$ nell'intervallo di tempo $[0,T]$ con la temperatura definita da una funzione $u = u(\mathbf{x}, t)$ che soddisfi l'equazione $u_t - D\Delta u = f$ nel cilindro spazio-temporale
+$$Q_T = \Omega \times (0, T)$$
+È necessario assegnare per prima cosa la distribuzione iniziale della temperatura
+$$u(\mathbf{x}, 0) = g(\mathbf{x}) \qquad \mathbf{x} \in \overline{\Omega}$$ 
+dove $\overline{\Omega} = \Omega\cup \partial \Omega$ indica la chiusura di $\Omega$.\\
+Per modellare l'interazione con l'ambiente circostante sono necessarie opportune condizioni al bordo, tra cui:
+\begin{itemize}
+\item \textbf{Condizioni di Dirichlet.} Si mantiene a un determinato livello la temperatura in ogni punto di $\partial \Omega$. 
+$$u(\bm{\sigma}, t) = h(\bm{\sigma}, t) \qquad \bm{\sigma} \in \partial \Omega, \quad t \in (0,T]$$
+\item \textbf{Condizione di Neumann.} Come osservato in precedenza, viene assegnato un flusso di calore al bordo di $\Omega$. Indicato con $\bm{\nu} = \bm{\nu}(\bm{\sigma})$ il versore normale a $\partial\Omega$ orientato verso l'esterno, si ottiene, tramite Fourier, che il flusso di calore $\mathbf{q} = -k\nabla u$, da cui si ottiene il flusso entrante
+$$
+-\mathbf{q}\cdot\bm{\nu} = k\nabla u \cdot \bm{\nu} = k \partial_{\bm{\nu}}u
+$$
+La condizione di Neumann impone di assegnare al bordo la derivata normale a ogni punto $\bm{\sigma}$ ottenendo
+$$
+\partial_{\bm{\nu}}u(\bm{\sigma},t) = h(\bm{\sigma}, t) \qquad \bm{\sigma} \in \partial \Omega, \quad t \in (0,T]
+$$
+\item \textbf{Condizione di Robin.} Secondo la legge del raffreddamento di Newton il flusso attraverso il bordo di $\Omega$ dipende linearmente dalla differenza tra la temperatura ambiente $U$ e la temperatura del corpo $u$. Ossia 
+$$
+-\mathbf{q}\cdot\bm{\nu} = \gamma(U-u) \qquad \gamma > 0
+$$
+Si ottiene dalla legge di Fourier
+$$
+\partial_{\bm{\nu}} u + \alpha u =  \beta \qquad \mbox{su }\partial\Omega
+$$
+con $\alpha = \frac{\gamma}{k} > 0, \beta = \frac{\gamma U}{k}$
+\item \textbf{Condizioni miste.} Alternativamente si possono imporre diverse condizioni a diversi punti della frontiera di $\Omega$. Considerando due sottoinsiemi non vuoti e disgiunti $\partial_D\Omega$ e $\partial_N\Omega$ tali che $\partial\Omega = \overline{\partial_D\Omega} \cup \partial_N\Omega$. A questo punto si possono assegnare diverse condizioni a diversi punti dell'insieme.
+\item \textbf{Frontiera parabolica.} Non sono state assegnate delle condizioni finali per $t = T, \mathbf{x} \in \Omega$. Le condizioni sono soltanto sulla frontiera parabolica del cilindro $Q_T$, dato dall'unione di $\overline{\Omega} \times \{t = 0\}$ e dal bordo laterale $S_T = \partial\Omega \times (0, T]$ per cui la frontiera parabolica sarà:
+$$
+\partial_p Q_T = (\overline{\Omega} \times \{t = 0\}) \cup S_T
+$$
+\end{itemize}
+\subsection{Principi di massimo e minimo}
+Il flusso del calore verso regioni con temperature minori permette alla soluzione della equazione del calore di assumere massimi e minimi globali sulla frontiera parabolica. Il seguente teorema a valore per funzioni continue fino al bordo del cilindro, con derivata prima temporale e derivate seconde legate alle variabili spaziali continue nell'interno $Q_T$. Sarà indicata come $\mathcal{C}^{2,1}(Q_T)\cap \mathcal{C}(\overline{Q}_T)$ questa classe di funzioni.
+\begin{theorem}[Principio di massimo/minimo debole]
+Sia $w \in \mathcal{C}^{2,1}(Q_T)\cap \mathcal{C}(\overline{Q}_T)$ tale che
+$$
+w_t - D\Delta w = q \leq 0 \qquad (\mbox{risp. } \geq 0) \mbox{ in }Q_T
+$$
+Allora il massimo (risp. minimo) di $w$ è assunto sulla frontiera parabolica $\partial_p Q_T$ di $Q_T$:
+$$
+\max_{\overline{Q}_T}w = \max_{\partial_p Q_T}w \qquad (\mbox{risp. } \min_{\overline{Q}_T}w = \min_{\partial_p Q_T}w)
+$$
+In particolare, se $w$ è negativa (risp. positiva) su $\partial_p Q_T$, allora è negativa (risp. positiva) in tutto $\overline{Q}_T$.
+\end{theorem}
+\begin{proof}
+La frontiera parabolica è costituita dai punti sulla base del cilindro $Q_T$ e da quelli sulla parte laterale. Sia $q \leq 0$. Per il principio di minimo la dimostrazione è analoga. Sono necessari due passi:
+\begin{itemize}
+\item \textit{Passo 1}. Sia $\epsilon > 0$ tale che $T - \epsilon > 0$. Bisogna dimostrare che
+\begin{equation}
+\max_{\overline{Q}_{T-\epsilon}} = \max_{\partial_p Q_{T-\epsilon}}u
+\end{equation}
+
+Posto $u = w- \epsilon t$, allora
+\begin{equation}
+u_t - D\Delta u = q -\epsilon < 0
+\end{equation}
+e il massimo di $u$ in $\overline{Q}_{T- \epsilon}$ è assunto in un punto di $\partial_p Q_{T-\epsilon}$. Infatti, supponiamo che ciò non sia vero. Allora esiste un punto ($\mathbf{x}_0, t_0$), $\mathbf{x}_0 \in \Omega$, $0 < t_0 \leq T - \epsilon$, tale che $u$($\mathbf{x}_0, t_0$) è il massimo di $u$ in $\overline{Q}_{T-\epsilon}$. \\
+Ma allora, essendo $u_{x_j x_j} (\mathbf{x}_0, t_0) \leq 0$ per ogni $j=1, \ldots, n$ si avrebbe
+$$
+\Delta u (\mathbf{x}_0, t_0) \leq 0
+$$ 
+mentre
+$$
+\begin{array}{ll}
+u_t(\mathbf{x}_0,t_0) = 0 &\quad \mbox{ se } t < T-\epsilon \\
+u_t(\mathbf{x}_0, t_0) \geq 0 &\quad \mbox{ se } t_0 = T-\epsilon
+\end{array}
+$$
+In ogni caso, si otterrebbe $u_t(\mathbf{x}_0, t_0) - D\Delta u (\mathbf{x}_0, t_0) \geq 0$, incompatibile con la (2.24). \\
+Pertanto,
+$$\max_{\overline{Q}_{T - \epsilon}} u = \max_{\partial_p Q_{T-\epsilon}} u$$
+ed essendo $w \leq u$, si ha
+$$
+\max_{\partial_p Q_{T-\epsilon}}u \leq \max_{\partial_p Q_{T-\epsilon}}w
+$$
+D'altra parte, $w \leq u + \epsilon T$ in $\overline{Q}_T$, quindi 
+$$
+\max_{\partial_p Q_{T-\epsilon}}w \leq \max_{\partial_p Q_{T-\epsilon}}u + \epsilon T \leq \max_{\partial_p Q_{T}}w + \epsilon T
+$$
+che è la (2.23).
+\item \textit{Passo 2}. Poiché $w$ è continua in $\overline{Q}_T$, deduciamo che 
+$$
+\max_{\overline{Q}_{T-\epsilon}} w \leq \max_{\overline{Q}_T} w \qquad \mbox{ per } \epsilon \to 0
+$$
+Passando al limite per $\epsilon \to 0$ nella (2.23) si ottiene
+$$
+\max_{\overline{Q}_{T-\epsilon}}w \leq \max_{\partial_p Q_T} w
+$$
+\end{itemize}
+\end{proof}
+\begin{definition}
+Le funzioni tali che $w_t - D\Delta w \leq 0$ (risp. $\geq 0$) si chiamano sottosoluzioni (risp. soprasoluzioni) dell'equazione del calore. \\
+Conseguenza immediata del teorema (2.1) è che: se in $Q_T$ si ha
+$$w_t -D \Delta w = 0$$
+il massimo e il minimo di $w$ sono assunti sulla frontiera parabolica $\partial_p Q_T$ di $Q_T$. In particolare
+$$
+\min_{\partial_p Q_T} w \leq w(\mathbf{x},t) \leq \max_{\partial_p Q_T} \qquad \mbox{per ogni} (\mathbf{x}, t) \in \overline{Q}_T$$
+\end{definition}
+\begin{corollary}[Confronto, unicità e stabilità. Problema di Cauchy-Dirichlet]
+Siano $v$ e $w$ soluzioni in $\mathcal{C}^{2,1}(Q_T)\cap \mathcal{C}(\overline{Q}_T)$ di
+$$
+v_t-D\Delta v_t = f_1, \qquad w_t -D\Delta w =f_2
+$$
+con $f_1, f_2$ limitate in $Q_T$. Allora:
+\begin{itemize}
+\item[a)] se $v \geq w$ su $\partial_p Q_T$ e $f_1 \geq f_2$ in $Q_T$, si ha $v \geq w$ in tutto $Q_T$
+\item[b)] vale la stima di stabilità 
+$$
+\max_{\overline{Q_T}}|v - w| \leq \max_{\partial_p Q_T}|v - w| + T\sup_{\overline{Q}_T}|f_1-f_2|
+$$
+\end{itemize}
+
+Dalla stima di stabilità si ricava che la soluzione dipende con continuità dai dati, infatti se $v = g_1$ e $w = g_2$ su $\partial_p Q_T$ e 
+$$
+\max_{\overline{Q}_T} |g_1 - g_2| \leq \epsilon, \sup_{\overline{Q}_T}|f_1 - f_2| \leq \epsilon
+$$
+allora 
+$$
+\max_{\overline{Q}_T} |v - w| \leq \epsilon(1 + T).
+$$
+\end{corollary}
+\begin{corollary}
+Il problema di Cauchy-Dirichlet
+$$
+\begin{cases}
+u_t -D\Delta u = f & \qquad \mbox{in } Q_T \\
+u = g & \qquad \mbox{su }\partial_p Q_T
+\end{cases}
+$$
+ha una sola soluzione in $\mathcal{C}^{2,1}(Q_T)\cap \mathcal{C}(\overline{Q}_T)$
+\end{corollary}
+\begin{proof}
+Siano $v, u$ soluzioni del problema di Cauchy-Dirichlet, e sia $w = v - u$ soluzione di
+$$
+\begin{cases}
+w_t - D\Delta w = 0 & \mbox{in }Q_T \\
+w = 0 & \mbox{su } \partial_p Q_T
+\end{cases}
+$$
+allora se 
+$$
+\min_{\partial_p Q_T} w = \max_{\partial_p Q_T} w = 0 \Longrightarrow w = 0 \mbox{ in } \overline{Q}_T
+$$
+\end{proof}
+Il teorema (2.1) non esclude la possibilità che il massimo o il minimo possano essere assunti anche in un punto al di fuori della frontiera parabolica. Vale quindi anche un risultato più preciso, detto:
+\begin{theorem}[Principio di massimo forte]
+Sia $u \in \mathcal{C}^{2,1}(Q_T)\cap \mathcal{C}(\overline{Q}_T)$ una sottosoluzione dell'equazione di diffusione. Se $u$ assume il massimo $M$ in un punto $(\mathbf{x}_1, t_1)$ con $\mathbf{x}_1 \in \Omega$ e $0 < t_1 \leq T$ allora $u \equiv M$ in $\overline{\Omega} \times [0, t_1]$.
+L'enunciato analogo vale per il minimo se $u$ è soprasoluzione in $Q_T$
+\end{theorem}
+Per calcolare la pendenza con la quale $u$ raggiunge un punto di massimo o minimo sulla frontiera laterale $S_T$ in un punto dove esiste una sfera tangente internamente a $\Omega$.
+\begin{theorem}[Principio di Hopf]
+Sia $u \in \mathcal{C}^{2,1}(Q_T)\cap \mathcal{C}(\overline{Q}_T)$ una sottosoluzione dell'equazione di diffusione. Posto che:
+\begin{enumerate}
+\item $\mathbf{x}_0 \in \partial \Omega$ ha la proprietà della sfera interna, ossia esiste una sfera $B_R \subset \Omega$ tangente a $\partial \Omega$ in $\mathbf{x}_0$
+\item ($\mathbf{x}_0, t_0$)$\in S_T$ è punto di minimo per $u$ in $\overline{Q}_T$ e inoltre $u(\mathbf{x}_0, t_0) < u(\mathbf{x}, t)$ in $\Omega \times [0, t_0)$
+\item esiste $\partial_{\bm{\nu}}u(\mathbf{x}_0, t_0)$
+\end{enumerate}
+Allora 
+$$
+\partial_{\bm{\nu}} u(\mathbf{x}_0, t_0) < 0
+$$
+Se il punto è di massimo, per ottenere lo stesso risultato vanno invertite tutte le disuguaglianze. Il teorema esprime chiaramente che la derivata normale \textbf{non} può essere nulla in $(\mathbf{x}_0, t_0)$
+\end{theorem}
+\begin{corollary}[Unicità per i problemi di Cauchy-Neumann/Robin]
+Esiste un'unica $u \in \mathcal{C}^{2,1}(Q_T)\cap \mathcal{C}(\overline{Q}_T)$ tale che $\partial_{\bm{\nu}}u$ esiste su $\partial \Omega$, soluzione di 
+\begin{equation}
+\begin{cases}
+u_t - D\Delta u = f & \qquad \mbox{in } Q_T \\
+\partial_{\bm{\nu}} u + \alpha u = h & \qquad \mbox{su } S_T \quad (\alpha > 0) \\
+u(\mathbf{x}, 0) = g(\mathbf{x} & \qquad \mbox{in } \Omega
+\end{cases}
+\end{equation}
+\end{corollary}
+\begin{proof}
+Siano $u$ e $v$ soluzioni della (2.25) in grado di soddisfare le ipotesi del teorema, allora la soluzione $w = u - v$ è soluzione dell'equazione omogenea, con $w(\mathbf{x}, 0) = 0 \mbox{ e } \partial_{\bm{\nu}}w + \alpha w = 0$ su $S_T$. Se $w$ è costante allora è nulla, mentre se dovesse avere un massimo positivo in $(\mathbf{x}_0, t_0)$ quest'ultimo dovrebbe essere $(\mathbf{x}_0, t_0) \in S_T$ e $w(\mathbf{x}, t) < w(\mathbf{x}_0, t_0)$ in $\Omega \times [0, t_0)$, per il principio di Hopf. Allora si avrebbe $\partial_{\bm{\nu}} w(\mathbf{x}_0, t_0) > 0$, che sarebbe in contraddizione con la condizione al bordo
+$$
+\partial_{\bm{\nu}}w(\mathbf{x}_0, t_0) = -\alpha w (\mathbf{x}_0, t_0) \leq 0
+$$
+Per identiche ragioni, non si può avere un minimo $< 0$. Pertanto $w = 0$ è l'unica soluzione della (2.36).
+\end{proof}
+\subsection{La soluzione fondamentale (n = 1)}
+Alcune soluzioni dell'equazione di diffusione permettono di costruirne molte altre e sono dette \emph{soluzioni fondamentali}.
+Ragionando in dimensione $n=1$, si ipotizza una sbarra di lunghezza infinita posta sull'asse $x$, con sorgente puntiforme nell'origine. \\
+Indicata con $u^*$ la soluzione dell'equazione del calore omogenea
+\begin{equation}
+u_t^*-Du_{xx}^* = 0
+\end{equation}
+Data l'assenza di sorgenti distribuite, non vi sono né produzione né assorbimento di calore, per cui l'energia deve mantenersi costante
+\begin{equation}
+E = \rho c_{v} \int_{\mathbb{R}} u^*(x,t) dx \qquad \mbox{per ogni } t>0
+\end{equation}
+Data l'invarianza della (2.26) per riflessioni nello spazio, ci si aspetta che $u^*$ sia positiva e pari rispetto a $x$.
+Ci sono due passi per determinare la soluzione.
+\begin{itemize}
+\item Passo 1. Mostrato che $u^*$ ha una espressione analitica tipo
+\begin{equation}
+u^*(x, t) = \frac{Q}{\sqrt{Dt}} U \left(\frac{x}{\sqrt{Dt}}\right)
+\end{equation}
+dove $Q = \frac{E}{\rho c_v}$ e $U = U(\xi), \xi \in \mathbb{R}$ è una funzione positiva e pari, al momento non nota. Per la dimostrazione si utilizzerà il Teorema Pi di Buckingham che sarà analizzato in seguito.
+\item Passo 2. Per dimostrare che 
+\begin{equation}
+U(\xi) = \frac{1}{2\sqrt{\pi}}e^{-\frac{\xi^2}{4}}
+\end{equation}
+\begin{itemize}
+\item[a)] La temperatura $u^*$ in $x$ all'istante $t$ è determinata da: il tempo $t$, la distanza $x$ dall'origine e i parametri $D \mbox{ e } Q$. Esiste allora una relazione del tipo
+\begin{equation}
+u^* = \mathcal{U}(x, t, D, Q)
+\end{equation}
+in cui tutte le quantità sono \emph{dimensionali}, e si possono convertire, sempre secondo il Teorema Pi di Buckingham, in variabili \emph{adimensionali}.
+Le variabili di $\mathcal{U}$ si possono esprimere nelle grandezze fondamentali $\Theta$ (grado), $L$ (lunghezza) e $T$ (tempo).
+$$
+[x] = L,\quad [t]=T,\quad [D] = L^2T^{-1}, \quad Q = \Theta L
+$$
+Per esprimere queste relazioni algebricamente si introduce un vettore con le seguenti componenti $$\mathbf{v} =\begin{pmatrix}
+\Theta \\
+L \\
+T
+\end{pmatrix}$$
+che permette di riscrivere le relazioni sopracitate come
+\begin{equation}
+[\mathbf{x}] \rightleftarrows \begin{pmatrix}
+0\\ 1 \\ 0
+\end{pmatrix}, \quad
+[\mathbf{t}] \rightleftarrows \begin{pmatrix}
+0\\ 0 \\ 1
+\end{pmatrix}, \quad
+[\mathbf{D}] \rightleftarrows \begin{pmatrix}
+0\\ 2 \\ -1
+\end{pmatrix}, \quad
+[\mathbf{Q}] \rightleftarrows \begin{pmatrix}
+1\\ 1 \\ 0
+\end{pmatrix}, \quad
+\end{equation}
+I vettori (2.31) generano tutto $\mathbb{R}^3$. Selezionandone tre linearmente indipendenti tra di loro, per esempio $\mathbf{t}, \mathbf{Q} \mbox{ e } \mathbf{D}$, si possono definire quantità primarie e riscrivendo $u^*$ trasformando $\mathbf{x}$ nelle dimensioni primarie si ottiene
+$$
+[u^*] = [Q][D]^{-\frac{1}{2}}[t]^{\frac{1}{2}} \quad \mbox{ e }\quad [x] = [D]^{\frac{1}{2}}[t]^{\frac{1}{2}} 
+$$
+Prese due quantità $\Pi$ e $\Pi_1$ definite come
+$$
+\Pi = \frac{u^*\sqrt{Dt}}{Q} \quad \mbox{ e } \quad \Pi_1 = \frac{x}{\sqrt{Dt}}
+$$
+che sono adimensionali. Moltiplicando entrambi i membri della (2.30) per $\frac{\sqrt{Dt}}{Q}$ e ponendo $x = \Pi_1\sqrt{Dt}$ si ottiene
+$$
+\Pi = \frac{\sqrt{Dt}}{Q}\mathcal{U}(x, t, D, Q) = \frac{\sqrt{Dt}}{Q}\mathcal{U}(\Pi_1\sqrt{Dt}, t, D, Q)
+$$
+Che si può riscrivere nella forma
+\begin{equation}
+\Pi = U(\Pi_1, t, D, Q)
+\end{equation}
+dove a sinistra si trova una quantità adimensionale, ma ciò implica che anche $U(\Pi_1, t, D, Q)$ debba essere adimensionale e quindi che $U$ sai indipendente dalle quantità primarie $t, Q, D,$ altrimenti a una variazione di queste ultime non corrisponderebbe una variazione di $\Pi$. Si deduce quindi che $\Pi = U(\Pi_1)$ che, riportato alle variabili originali, vale 
+$$
+u^* (x,t) = \frac{Q}{\sqrt{Dt}}U\left(\frac{x}{\sqrt{Dt}}\right)
+$$
+dove $U>0$ dal momento che $u^* > 0$. Una soluzione della forma (2.28) si dice soluzione di autosimilarità\footnote{Una soluzione si dice di autosimilarità o autosimile se il suo grafico rimane uguale a sé stesso per ogni $t$ durante l'evoluzione temporale. La forma generale è $$
+u(x,t) = a(t)F\left(\frac{x}{b(t)}\right)
+$$
+dove $\frac{u}{a} \mbox{ e } \frac{x}{b}$ sono, preferibilmente, quantità adimensionali.}
+\item [b)] Occorre ora determinare $U = U(\xi), \xi \in \mathbb{R}$ in modo che $u^*$ sia soluzione della (2.26). La (2.27) per la conservazione dell'energia deve essere
+$$
+Q = \frac{Q}{\sqrt{Dt}}\int_{\mathbb{R}}U \left(\frac{x}{\sqrt{Dt}}\right)dx \underset{\xi=\frac{x}{\sqrt{Dt}}}{=}Q\int_{\mathbb{R}}U(\xi)d\xi
+$$
+Va imposto allora
+\begin{equation}
+\int_{\mathbb{R}} U(\xi)d\xi = 1
+\end{equation}
+Per determinare $U$, $u^*$ deve essere soluzione di (2.26), ossia
+{\everymath = {\displaystyle}
+$$
+\begin{array}{rcl}
+u_t^* & = & \frac{Q}{\sqrt{D}} \left[-\frac{1}{2}t^{-\frac{3}{2}}U(\xi) - \frac{1}{2\sqrt{D}}xt^{-2}U'(\xi) \right]
+\\
+& = & -\frac{Q}{2t\sqrt{Dt}}\left[U(\xi)+ \xi U'(\xi)\right] \\
+u_{xx}^* & = & \frac{Q}{(Dt)^{\frac{3}{2}}}U''(\xi)
+\end{array} 
+$$
+}
+che, inserito nella (2.26) 
+$$
+u_t^* -D u_{xx}^* = -\frac{Q}{t\sqrt{Dt}} \left\lbrace U''(\xi) + \frac{1}{2}+\xi U'(\xi) + \frac{1}{2}U(\xi)\right\rbrace
+$$
+Affinché $u^*$ sia soluzione della (2.26), occorre che $U$ soddisfi l'equazione differenziale in $\mathbb{R}$:
+\begin{equation}
+U''(\xi) + \frac{1}{2}\xi U'(\xi) + \frac{1}{2}U(\xi) = 0
+\end{equation}
+Si tratta di una equazione del secondo ordine, per cui servono due condizioni supplementari. La (2.33) implica
+$$
+U(-\infty) = U(+\infty) = 0 
+$$
+Le soluzioni che vanno trovate devono essere \emph{pari}, di modo da poter limitare la ricerca al semiasse $\xi \geq 0$, con condizioni
+\begin{equation}
+U'(0) = U(+\infty) = 0
+\end{equation}
+La (2.34) si può riscrivere come 
+$$
+\frac{d}{d\xi} \left\lbrace U'(\xi) + \frac{1}{2}\xi U (\xi) \right\rbrace = 0
+$$
+che diventa
+\begin{equation}
+U'(\xi) + \frac{1}{2}\xi U(\xi) = C \qquad (C \in \mathbb{R})
+\end{equation}
+Con $\xi = 0$ e ricordando la (2.35) si deduce che $C = 0$, allora si può riscrivere
+$$
+U' (\xi) + \frac{1}{2}\xi U (\xi) = 0
+$$
+che è a variabili separabili, il cui integrale generale è la famiglia di esponenziali
+$$
+U(\xi) = c_0e^{-\frac{\xi^2}{4}} \qquad (c_0 \in \mathbb{R})
+$$
+che sono funzioni pari e si annullano a $+\infty$. Affinché valga la (2.33) va trovato un valore accettabile di $c_0$, per cui
+$$
+\int_{\mathbb{R}} e^{-\frac{\xi^2}{4}}d\xi \underset{\xi = 2z}{=} 2 \int_{\mathbb{R}} e^{-z^2}dz = 2\sqrt{\pi}
+$$
+per cui
+$c_0 = (4 \pi)^{\frac{1}{2}}$
+\end{itemize}
+\end{itemize}
+Tornando alle variabili originali l'unica soluzione positiva trovata è
+$$
+u^*(x,t)=\frac{Q}{\sqrt{4\pi Dt}}e^{-\frac{x^2}{4Dt}}, \qquad x \in \mathbb{R}, t > 0
+$$
+tale che 
+$$
+\int_{\mathbb{R}} u^* (x,t)dx = Q \qquad \mbox{ per ogni } t>0
+$$
+Se $Q = 1$ si parla di \emph{famiglia di Gaussiane}, strettamente correlate con la \emph{distribuzione normale di probabilità}.
+\begin{definition}
+La funzione 
+$$
+\Gamma
+$$
+\end{definition}
+\end{document}
