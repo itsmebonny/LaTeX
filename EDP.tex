@@ -31,6 +31,9 @@
 \let\oldepsilon\epsilon
 \let\epsilon\varepsilon
 
+\let\oldphi\phi
+\let\phi\varphi
+
 \long\def\symbolfootnotemark[#1]#2{\begingroup%
 \def\thefootnote{\fnsymbol{footnote}}\footnotetext[#1]{#2}\footnotemark[#1]\endgroup}
 
@@ -490,7 +493,7 @@ $$
 \frac{2}{\pi}e^{\frac{-\pi^2 D}{L^2}t}sin\left(\frac{\pi}{L}x\right)
 $$
 e andamento sinusoidale smorzato, con ampiezza massima $\frac{2}{\pi} e^{\frac{-\pi^2 D}{L^2}t}$. In un tempo $t$ di ordine $\frac{L^2}{4D}$ l'ampiezza diminuisce di $e^{\frac{-\pi^2}{4}}$ circa l'$8\%$ del valore iniziale. Dunque per raggiungere il valore a regime sarà necessario un tempo di grandezza $\frac{L^2}{D}$.
-\subsection{Problemi in dimensioni $\mathbf{n>1}$}
+\subsection{Problemi in dimensione $\mathbf{n>1}$}
 Ragionando in dimensione spaziale $n$ generica, si tratta di voler determinare la temperatura di un corpo che occupi nello spazio un dominio limitato $\Omega$ nell'intervallo di tempo $[0,T]$ con la temperatura definita da una funzione $u = u(\mathbf{x}, t)$ che soddisfi l'equazione $u_t - D\Delta u = f$ nel cilindro spazio-temporale
 $$Q_T = \Omega \times (0, T)$$
 È necessario assegnare per prima cosa la distribuzione iniziale della temperatura
@@ -823,6 +826,7 @@ $$
 \Gamma_D (x,t) = \frac{1}{\sqrt{4\pi Dt}}e^{-\frac{x^2}{4Dt}}
 $$
 è la soluzione fondamentale dell'equazione di diffusione in dimensione uno.
+\end{definition}
 \subsection{La distribuzione di Dirac}
 La soluzione fondamentale descrive l'evoluzione della temperatura da una sorgente puntiforme. Esaminando il comportamento per \(t \to 0^+\) della soluzione fondamentale si ha, per ogni \(x \not = 0\) fissato:
 \begin{equation}
@@ -840,15 +844,15 @@ Le equazioni (2.37) e (2.38) assieme a \(\int_{\mathbb{R}}\Gamma_D(x,t)dx = 1 \,
 incompatibili con i concetti classici di funzioni e integrali. Si tratta di una distribuzione di L. Schwartz, che verranno approfondite in seguito. Per comprenderla meglio, è necessario introdurre una funzione caratteristica dell'intervallo \([0, \infty)\), anche detta \emph{funzione di Heaviside}:
 \[
 \mathcal{H}(x) = \begin{cases}
-  1 \quad \mbox{se } x \geq 0 \\
-  0 \quad \mbox{se } x < 0
+  1 &\mbox{se } x \geq 0 \\
+  0 & \mbox{se } x < 0
 \end{cases}  
 \]
 che si può utilizzare per definire la funzione
 \[
 I_{\epsilon}(x) = \frac{\mathcal{H}(x + \epsilon) - \mathcal{H}(x - \epsilon)}{2\epsilon} = \begin{cases}
-  \frac{1}{2\epsilon} \quad \mbox{se } -\epsilon \leq x < \epsilon \\
-  0 \quad \mbox{altrove}
+  \frac{1}{2\epsilon} &\mbox{se } -\epsilon \leq x < \epsilon \\
+  0 &\mbox{altrove}
 \end{cases} 
 \]
 Valgono le seguenti proprietà
@@ -858,8 +862,50 @@ Valgono le seguenti proprietà
   \int_{\mathbb{R}} I_{\epsilon} (x) dx = \frac{1}{2\epsilon} \times 2\epsilon = 1  
   \]
   \item \[
-    \lim_{\epsilon \to 0} I_{}
+    \lim_{\epsilon \to 0} I_{\epsilon}(x) = \begin{cases}
+      0  &\mbox{se } x \not = 0 \\
+      \infty & \mbox{se } x = 0
+    \end{cases}
+  \]
+  \item Se \(\phi = \phi (x)\) è una funzione regolare, con valore nullo al di fuori di un intervallo limitato (detto \emph{test}), so ottiene 
+  \[
+  \int_{\mathbb{R}} I_{\epsilon}(x)\phi(x)dx = \frac{1}{2\epsilon}\int_{-\epsilon}^{\epsilon} \phi(x) dx \underset{\epsilon \longrightarrow 0}{\longrightarrow}   \phi (0)
   \]
 \end{enumerate}
+La prima e l'ultima proprietà elencate indicano che \(I_{\epsilon}\) al limite possiede le proprietà della distribuzione di Dirac.
+\begin{definition}
+  Si chiama distribuzione di Dirac nell'origine la funzione generalizzata che si indica con \(\delta\) e agisce su una funzione \emph{test} nel seguente modo 
+  \begin{equation}
+    \phi \overset{\delta}{\longrightarrow} \phi (0) 
+  \end{equation}
 \end{definition}
+La relazione (2.39) viene risrcritta anche come \(\left\langle \delta, \phi \right\rangle = \phi (0) \) o \(\int \phi(0)\delta(0)dx = \phi(0)\)
+Dalla proprietà (2) si evince che
+\[
+\mathcal{H}' = \delta
+\]
+ricavato da 
+\begin{equation}
+  \int_{\mathbb{R}} \phi d\mathcal{H} = -\int_{\mathbb{R}}\mathcal{H}\phi' = -\int_{0}^{\infty} \phi' = \phi(0)
+\end{equation}
+poiché per valori grandi di \(x\) \(\phi\) è nulla. Si parla di distribuzione di Dirac in \(y\) se la massa non è concentrata nell'origine, ma in un punto \(y\) e si indica come \(\delta(x-y)\), definita da
+\begin{equation}
+  \int \delta (x -y) \phi(x) dx = \phi (y)
+\end{equation}
+La funzione \(\Gamma_D (x-y, t)\) è unica soluzione dell'equazione del calore con massa unitaria per ogni tempo, che soddisfi
+\[
+  \Gamma_D (x-y, 0) = \delta(x-y)  
+\]
+Si può pensare a \(\Gamma_D(x,t)\) come a una \emph{unit source solution}, dove vi sono un numero \(N\) di particelle in un istante \(x\) e la funzione \(\Gamma_D\) descrive la probabilità che una singola particella si trovi tra \(x \mbox{ e } x+dx\) al tempo \(t\). All'istante iniziale \(\Gamma-D\) è nulla al di fuori dell'origine. Appena \(t > 0,\) \(\Gamma_D\) è sempre positiva in tutto \(\mathbb{R}\), ciò indica che la massa è concentrata in \(x = 0\) e si diffonde istantaneamente in tutto l'asse reale con \textbf{velocità di propagazione infinita}.
+\subsection{La soluzione fondamentale $\mathbf{(n > 1)}$}
+In dimensione spaziale maggiore di uno, si ripetono sostanzialmente gli stessi discorsi. L'assenza di sorgenti distribuite implica la legge di conservazione per la soluzione \(u^*\)
+\begin{equation}
+\int_{\mathbb{R}^n} u^*(\mathbf{x}, t)d\mathbf{x} = Q \qquad \mbox{ per ogni } t > 0
+\end{equation}
+Grazie all'analisi dimensionale si ottiene l'espressione analitica per \(u^*\)
+\[
+u^*(\mathbf{x}, t) = \frac{Q}{(Dt)^{\frac{n}{2}}}U(\xi) \qquad \xi = \frac{|\mathbf{x}|}{\sqrt{Dt}}  
+\]
+dove \(U\) è una funzione positiva. \\
+Posta \(u^*\) come soluzione di \(u_t^* - D\Delta u^* = 0\) 
 \end{document}
