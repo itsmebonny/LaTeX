@@ -907,5 +907,37 @@ Grazie all'analisi dimensionale si ottiene l'espressione analitica per \(u^*\)
 u^*(\mathbf{x}, t) = \frac{Q}{(Dt)^{\frac{n}{2}}}U(\xi) \qquad \xi = \frac{|\mathbf{x}|}{\sqrt{Dt}}  
 \]
 dove \(U\) è una funzione positiva. \\
-Posta \(u^*\) come soluzione di \(u_t^* - D\Delta u^* = 0\) 
+Posta \(u^*\) come soluzione di \(u_t^* - D\Delta u^* = 0\). Grazie all'operatore di Laplace per funzioni radiali si ottiene
+{\everymath = {\displaystyle}
+\[
+\begin{array}{c}
+  u_t^* = -\frac{1}{2t(Dt)^{\frac{n}{2}}}[nU(\xi) + \xi U'(\xi)] \\
+  \Delta u^* = \frac{1}{(Dt)^{\frac{1+n}{2}}} \left\lbrace U''(\xi) + \frac{n-1}{\xi}U'(\xi)\right\rbrace
+\end{array}  
+\]
+}
+Affinché \(u^*\) sia soluzione di \(u - D\Delta u = f\), \(U\) deve essere soluzione in \((0, +\infty)\) dell'equazione differenziale ordinaria
+\begin{equation}
+  \xi U''(\xi) + (n -1)U'(\xi) + \frac{\xi^2}{2}U'(\xi) + \frac{n}{2}\xi U (\xi) = 0
+\end{equation}
+che si può riscrivere, moltiplicando tutto per \(\xi^{n-2}\), come
+\[
+(\xi^{n-1}U'(\xi))'+\frac{1}{2}(\xi^n U(\xi))'= 0  
+\]
+che, integrando, restituisce
+\begin{equation}
+  \xi^{n-1} U'(\xi) +\frac{1}{2}\xi^n U(\xi) = C \qquad (C\in \mathbb{R})
+\end{equation}
+Assunti i limiti per \(\xi \to 0^+\) di \(U\) e \(U'\) siano finiti, si può passare al limite per \(\xi \to 0^+\) e dedurre che \(C = 0\), per cui
+\[
+U'(\xi) + \frac{1}{2}\xi U(\xi) = 0 
+\]
+da cui si ottiene sempre la famiglia di esponenziali
+\[
+U(\xi) = c_0e^{-\frac{\xi^2}{4}} \qquad (c_0 \in \mathbb{R})  
+\]
+Usando la conservazione della massa ricaviamo, dividendo per \(Q\):
+\begin{align}
+  1 = \frac{1}{(Dt)^{\frac{n}{2}}} \int_{\mathbb{R}^n} U \left(\frac{|\mathbf{x}|}{\sqrt{Dt}}\right)d\mathbf{x} = \frac{c_0}{(Dt)^\frac{n}{2}}
+\end{align}
 \end{document}
