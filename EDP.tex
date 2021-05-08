@@ -948,5 +948,24 @@ da cui \(c_0 = (4\pi)^{-\frac{n}{2}}\). Si ottengono quindi soluzioni della form
 Anche in dimensione \(n > 1\) la scelta di \(Q = 1\) è speciale.
 \begin{definition}
   La funzione 
+  \[
+     \Gamma_D(\mathbf{x}, t) = \frac{Q}{(4\pi Dt)^{\frac{n}{2}}}e^{-\frac{|\mathbf{x}|^2}{4Dt}} \qquad (\mathbf{x} \in \mathbb{R}^n, t>0)
+  \]
+  si chiama \textbf{soluzione fondamentale} dell'equazione di diffusione in dimensione \(n\).
+
 \end{definition}
+Si può generalizzare al caso multidimensionale anche la distribuzione di Dirac in un punto \(\mathbf{y}\) come
+\[
+\int\delta_n (\mathbf{x} - \mathbf{y}) \phi (\mathbf{x}) d\mathbf{x} = \phi(\mathbf{y})  
+\]
+con \(\phi\) funzione di test, continua su \(\mathbb{R}^n\) e nulla al di fuori di un insieme chiuso e limitato. \\
+La soluzione fondamentale \(\Gamma_D(\mathbf{x} - \mathbf{y}, t)\) per un \(\mathbf{y}\) fissato è l'unica soluzione del problema di Cauchy
+\[
+  \begin{cases}
+    u_t -D\Delta u = 0 & \mathbf{x}\in \mathbb{R}^n, \, t>0 \\
+    u(\mathbf{x}, 0) = \delta_n (\mathbf{x} -\mathbf{y}) & \mathbf{x} \in \mathbb{R}^n
+  \end{cases}
+\]
+\subsection{Passeggiata aleatoria simmetrica (n = 1)}
+
 \end{document}
