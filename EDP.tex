@@ -936,8 +936,17 @@ da cui si ottiene sempre la famiglia di esponenziali
 \[
 U(\xi) = c_0e^{-\frac{\xi^2}{4}} \qquad (c_0 \in \mathbb{R})  
 \]
-Usando la conservazione della massa ricaviamo, dividendo per \(Q\):
-\begin{align}
-  1 = \frac{1}{(Dt)^{\frac{n}{2}}} \int_{\mathbb{R}^n} U \left(\frac{|\mathbf{x}|}{\sqrt{Dt}}\right)d\mathbf{x} = \frac{c_0}{(Dt)^\frac{n}{2}}
-\end{align}
+Usando la conservazione della massa si ricava, dividendo per \(Q\):
+\begin{align*}
+  1 = \frac{1}{(Dt)^{\frac{n}{2}}} \int_{\mathbb{R}^n} U \left(\frac{|\mathbf{x}|}{\sqrt{Dt}}\right)d\mathbf{x} = \frac{c_0}{(Dt)^\frac{n}{2}} \int_{\mathbb{R}^n}e^{\left(-\frac{|\mathbf{x}|^2}{4Dt}\right)}d\mathbf{x} \\
+  \underset{\mathbf{y}=\frac{\mathbf{x}}{\sqrt{4Dt}}}{=} c_02^n \int_{\mathbb{R}^n} e^{-|\mathbf{y}|^2}d\mathbf{y} = c_02^n\left(\int_{\mathbb{R}^n}e^{z^2}dz\right)^n = c_0(4\pi)^{\frac{n}{2}}
+\end{align*}
+da cui \(c_0 = (4\pi)^{-\frac{n}{2}}\). Si ottengono quindi soluzioni della forma
+\[
+  u^*(\mathbf{x}, t) = \frac{Q}{(4\pi Dt)^{\frac{n}{2}}}e^{-\frac{|\mathbf{x}|^2}{4Dt}} \qquad (x \in \mathbb{R}^n, t > 0)
+\]
+Anche in dimensione \(n > 1\) la scelta di \(Q = 1\) è speciale.
+\begin{definition}
+  La funzione 
+\end{definition}
 \end{document}
