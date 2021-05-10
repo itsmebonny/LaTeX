@@ -967,5 +967,39 @@ La soluzione fondamentale \(\Gamma_D(\mathbf{x} - \mathbf{y}, t)\) per un \(\mat
   \end{cases}
 \]
 \subsection{Passeggiata aleatoria simmetrica (n = 1)}
+In questa sezione si affronterà la costruzione di un modello probabilistico, sia discreto che continuo.
+In questo modo si può affrontare l'equazione del calore approssimandola a una equazione alle differenza che la `discretizzi' e sarà più semplice comprendere la natura del coefficiente \(D\). \\
+Si ipotizzi una particella di massa unitaria in moto lungo l'asse \(x\) che segua due regole (fissati un passo \(h\) e un intervallo \(\tau\)):
+\begin{enumerate}
+  \item In un tempo \(\tau\) la particella si muove di \(h\) (all'istante \(t = 0\) la particella sta in \(x = 0\))
+  \item La particella si muove in modo indipendente dal passo precedente a destra o a sinistra con probabilità \(p = \frac{1}{2}\).
+\end{enumerate}
+All'istante \(t = N\tau\), ossia dopo \(N\) passi, la particella si troverà in un punto \(x = mh\), con \(-N \leq m \geq N\). \\
+Le due variabili \(x\) ed \(m\) sono variabili aleatorie, per cui si cerca di risolvere il seguente problema: calcolare la probabilità \(p(x,t)\) che la particella si trovi in un punto \(x\) al tempo \(t\).
+\begin{itemize}
+  \item Calcolo di \(p(x,t)\)
+\end{itemize}
+Sia \(x = mh\) la posizione della particella dopo \(N\) passi, per arrivare alla posizione \(x\) la particella avrà eseguito un numero di passi a destra \(k\) e un numero di passi a sinistra \(N - k\). Dal momento che \(0 \leq k \leq N\) e 
+\begin{equation}
+  m = k - (N - k) = 2k - N
+\end{equation}
+cosicché \(N\) e \(m\) hanno la stessa parità e 
+\[
+k = \frac{1}{2} (N + m)  
+\] 
+Ne segue che \(p(x,t) = p_k\) dove\begin{equation}
+  p_k = \frac{\mbox{numero di cammini con }k \mbox{ passi a destra su }N}{\mbox{numero dei cammini con }N\mbox{ passi}}
+\end{equation}
+Ora, il numero di cammini con \(k\) a destra e \(N - k\) è dato dal coefficiente binomiale
+\[
+  C_{N, k} = \binom{N}{k} \frac{N!}{k!(N - k)!} 
+\]
+D'altra parte, il numero dei possibili cammini è \(2^N\). Si ha:
+\begin{equation}
+  p_k = \frac{C_{N,k}}{2^N} \quad x = mh, \, t = N\tau, \, k = \frac{1}{2}(N+m)
+\end{equation}
+\begin{itemize}
+  \item Media e deviazione standard di x
+\end{itemize}
 
 \end{document}
