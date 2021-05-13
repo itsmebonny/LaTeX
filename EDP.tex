@@ -1004,10 +1004,10 @@ D'altra parte, il numero dei possibili cammini è \(2^N\). Si ha:
 Il passaggio in dimensione continua implica il far tendere a \(0\) sia \(h\) che \(\tau\). Alcuni parametri fondamentali devono rimanere inalterati:
 \begin{itemize}
   \item la media di \(x\) dopo \(N\) passi \(\left\langle x\right\rangle\ = \left\langle m \right\rangle) h\)
-  \item il momento secondo \footnote{Una variabile aleatoria \(x\) assume \(N\) possibili \(x_1,\ldots, x_N\) con probabilità \(p_1,\ldots,p_N\) e i suoi \emph{momenti di ordine \(q\geq 1\)} sono dati da:
+  \item il momento secondo \footnote{Una variabile aleatoria \(x\) assume \(N\) possibili \(x_1,\ldots, x_N\) con probabilità \(p_1,\ldots,p_N\) e i suoi \emph{momenti di ordine \(q\geq 1\) sono dati da:
   \[
     E(x^q) = \langle x^q \rangle = \sum_{j=1}^N x_j^q p_j
-  \]} di \(x\) dopo \(N\) passi \(= \langle x^2 \rangle = \langle m^2 \rangle h^2\)
+  \]}} di \(x\) dopo \(N\) passi \(= \langle x^2 \rangle = \langle m^2 \rangle h^2\)
 \end{itemize}
 La quantità \(\sqrt{\langle m^2\rangle}h\) rappresenta la distanza media dall'origine dopo \(N\) passi. 
 Dal momento che \(\langle m \rangle = 2\langle k\rangle - N\) e \(\langle m^2 \rangle = 4 \langle k^2 \rangle - 4 \langle k \rangle N + N^2\). \\
@@ -1018,10 +1018,40 @@ Sia \(\langle m \rangle\) che \(\langle m^2 \rangle\) si possono ottenere calcol
 \end{align}
 Nonostante dalla (2.48) e (2.49), si tende a utilizzare la \emph{funzione generatrice delle probabilità}:
 \[
-  G(s) = \sum_{k = 0}^N p_k s^k = \frac{1}{2^N} \sum_{k = 1}^N C_{N,k}s^{k-2}
+  G(s) = \sum_{k = 0}^N p_k s^k = \frac{1}{2^N} \sum_{k = 1}^N C_{N,k}s^{k}
 \]
 La funzione  \(G\) contiene in forma più compatta informazioni sui momenti di \(k\)e funziona per variabili aleatorie a valori interi
 \begin{align}
-  & G'(s) = \frac{1}{2^N} \sum_{k = 1}^N k
+  & G'(s) = \frac{1}{2^N} \sum_{k = 1}^N kC_{N,k} s^{k-1} \\
+  & G''(s) = \frac{1}{2^N} k(k-1) C_{N,k} s^{k-2}
 \end{align}
+Con \(s = 1\) si ha 
+\begin{align}
+  & G'(1) = \frac{1}{2^N} \sum_{k = 1}^N k C_{N,k} = \langle k \rangle \\
+  & G''(1) = \frac{1}{2^N} \sum_{k = 1}^N k(k -1)C_{N,k} = (k(k-1)) = \langle k^2 \rangle - \langle k \rangle
+\end{align}
+Poichè la formula del binomio è
+\[
+  (a + b)^N = \sum_{k = 0}^N C_{N,k}a{N-k}b^k 
+\]
+si deduce che 
+\newpage
+\[
+  G(s) = \frac{1}{2^N} \sum_{k=0}^N C_{N,k}s^k = \frac{1}{2^N}(1+s)^N
+\]
+da cui 
+\[
+\begin{array}{ccc}
+ G'(1) = \frac{N}{2} & & G''(1) \frac{N(N+1)}{4}\\
+ & \Downarrow & \\
+ \langle k \rangle = \frac{N}{2} & & \langle k^2 \rangle = \frac{N(N+1)}{4}
+\end{array}
+\]
+Per cui, poiché \( \langle m \rangle = 2 \langle k \rangle - N\) si ottiene \(2\frac{N}{2} - N = 0\), che si riflette in \(\langle x \rangle = 0\) a conferma della simmetria della passeggiata aleatoria. \\
+Inoltre 
+\[
+  \langle m^2 \rangle = 4 \langle k^2 \rangle - 4N \langle k \rangle + N^2 = N^2 +N- 2N^2 + N^2 = N
+\]
+da cui \(\sqrt{\langle x^2 \rangle} = \sqrt{N}h\) che è la deviazione standard di \(x\), dal momento che \(\langle x \rangle = 0\). Si evince da quest'ultima informazione che dopo \(N\tau\) istanti la distanza da \(x = 0\) è dell'ordine di \(\sqrt{N}h\), ossia che la scala temporale è dell'ordine del quadrato della scala spaziale, per cui occorre utilizzare le dilatazioni paraboliche viste precedentemente.
+Il secondo passaggio è trovare una equazione alle differenze \(p = p(x, t)\)
 \end{document}

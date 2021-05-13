@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1620663069 "c:/Users/andre/Documents/Polimi/Documenti sparsi/EDP.tex" "EDP.pdf" "EDP" 1620663070
+["pdflatex"] 1620829268 "c:/Users/andre/Documents/Polimi/Documenti sparsi/EDP.tex" "EDP.pdf" "EDP" 1620829270
   "C:/Users/andre/AppData/Local/MiKTeX/2.9/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm0700.pk" 1615561625 8268 93fc343a305efbcbf07ea39ff3765003 ""
   "C:/Users/andre/AppData/Local/MiKTeX/2.9/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm0800.pk" 1615561627 9292 bd776a5e9f0e2db64aca5c05fe57cba7 ""
   "C:/Users/andre/AppData/Local/MiKTeX/2.9/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk" 1593438458 14064 731b37c4b17f61d43da022a26eacb969 ""
@@ -43,6 +43,7 @@
   "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/cm/cmsy10.tfm" 1136768653 1124 6c73e740cf17375f03eec0ee63599741 ""
   "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/cm/cmsy6.tfm" 1136768653 1116 933a60c408fc0a863a92debe84b2d294 ""
   "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/cm/cmsy8.tfm" 1136768653 1120 8b7d695260f3cff42e636090a8002094 ""
+  "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/cm/cmti10.tfm" 1136768653 1480 aa8e34af0eb6a2941b776984cf1dfdc4 ""
   "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/public/cm/cmti12.tfm" 1136768653 1484 ed72f8f5cf654cda15ecc8e32bfcbee5 ""
   "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1247596666 32080 340ef9bf63678554ee606688e7b5339d ""
   "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx6.pfb" 1247596666 32378 2b20eba6bb36c716382b6d96240eaa69 ""
@@ -66,6 +67,7 @@
   "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy6.pfb" 1247596667 32587 65067f817f408bc71a7312f3d9828a9b ""
   "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1247596666 32716 08e384dc442464e7285e891af9f45947 ""
   "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1247596667 32626 5abc8bb2f28aa647d4c70f8ea38cc0d3 ""
+  "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb" 1247596667 37944 359e864bd06cde3b1cf57bb20757fb06 ""
   "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb" 1247596667 36118 fad905eba93cff5bce1e185fe980a177 ""
   "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cmextra/cmex8.pfb" 1247596670 30273 87a352d78b6810ae5cfdc68d2fb827b2 ""
   "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb" 1247596670 35479 2cca68718f15872e7cce1a8f6033b99b ""
@@ -99,10 +101,10 @@
   "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/tex/latex/ncctools/nccfoots.sty" 1565017809 1230 756b2502150ce6dc2179faebbd40e701 ""
   "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/tex/latex/physics/physics.sty" 1356005662 29610 a9597219b282d9c78b02393dcd7d4322 ""
   "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/tex/latex/tools/bm.sty" 1580648484 12671 ace2aac118748ea10d1717448ecafbed ""
-  "EDP.aux" 1620663070 2278 03fbb715431204ce8f13cc875952afa9 "pdflatex"
-  "EDP.tex" 1620663067 56322 fe3674bc3faa0e90962c9fc6b6159271 ""
-  "c:/Users/andre/Documents/Polimi/Documenti sparsi/EDP.tex" 1620663067 56322 fe3674bc3faa0e90962c9fc6b6159271 ""
+  "EDP.aux" 1620829269 2314 e9dd7371f1fc4b1cbe8df363037542c9 "pdflatex"
+  "EDP.tex" 1620829266 59456 79a48a686cc9c00f8155ab39565da3bf ""
+  "c:/Users/andre/Documents/Polimi/Documenti sparsi/EDP.tex" 1620829266 59456 79a48a686cc9c00f8155ab39565da3bf ""
   (generated)
-  "EDP.aux"
   "EDP.log"
   "EDP.pdf"
+  "EDP.aux"
