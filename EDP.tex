@@ -1055,14 +1055,25 @@ Inoltre
 da cui \(\sqrt{\langle x^2 \rangle} = \sqrt{N}h\) che è la deviazione standard di \(x\), dal momento che \(\langle x \rangle = 0\). Si evince da quest'ultima informazione che dopo \(N\tau\) istanti la distanza da \(x = 0\) è dell'ordine di \(\sqrt{N}h\), ossia che la scala temporale è dell'ordine del quadrato della scala spaziale, per cui occorre utilizzare le dilatazioni paraboliche viste precedentemente.
 Il secondo passaggio consiste nel trovare una equazione alle differenze \(p = p(x, t)\) sulla quale effettuare il passaggio al limite. \\
 Poichè la particella si muove indipendentemente dal passo precedente, se essa si trova in \(x\) al tempo \(t+\tau\), allora al tempo \(t\) si trovava: o in \(x-h\), o in \(x+h\), da cui si ricava
-\[
+\begin{equation}
 \begin{cases}
    p(x, t+\tau) = \frac{1}{2}p(x-h. t) +\frac{1}{2}p(x+h, t) \\
    p(0,0) = 1 \\
    p(x, 0) = 0 & \mbox{se } x \not = 0 
 \end{cases}
-\]
+\end{equation}
 Dati \(x \mbox{ e } t\), si vuole studiare il passaggio al limite di \(h \to 0, \tau \to 0\). 
 Si supponga che \(p(x, t)\) sia differenziabile, si ottiene allora
-
+\begin{flalign*}
+  p(x, t+\tau) = p(x, t) + p_t(x,t)\tau +\sigma(\tau) \\
+  p(x\pm h, t) = p(x,t)\pm p_x(x,t)h+\frac{1}{2}p_{xx}(x,t)h^2+\sigma{h^2}
+\end{flalign*}
+che all'interno della (2.54) restituiscono, dopo le opportune semplificazioni
+\[
+  \begin{array}{c}
+   p_t\tau + \sigma(\tau) = \frac{1}{2}p_{xx}h^2 +\sigma(h^2) \\
+   \Downarrow \mbox{ dividendo per }\tau \\
+   p_t + \sigma(1) = \frac{1}{2}
+  \end{array}
+\]
 \end{document}
