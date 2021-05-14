@@ -1030,7 +1030,7 @@ Con \(s = 1\) si ha
   & G'(1) = \frac{1}{2^N} \sum_{k = 1}^N k C_{N,k} = \langle k \rangle \\
   & G''(1) = \frac{1}{2^N} \sum_{k = 1}^N k(k -1)C_{N,k} = (k(k-1)) = \langle k^2 \rangle - \langle k \rangle
 \end{align}
-Poichè la formula del binomio è
+Poiché la formula del binomio è
 \[
   (a + b)^N = \sum_{k = 0}^N C_{N,k}a{N-k}b^k 
 \]
@@ -1054,7 +1054,7 @@ Inoltre
 \]
 da cui \(\sqrt{\langle x^2 \rangle} = \sqrt{N}h\) che è la deviazione standard di \(x\), dal momento che \(\langle x \rangle = 0\). Si evince da quest'ultima informazione che dopo \(N\tau\) istanti la distanza da \(x = 0\) è dell'ordine di \(\sqrt{N}h\), ossia che la scala temporale è dell'ordine del quadrato della scala spaziale, per cui occorre utilizzare le dilatazioni paraboliche viste precedentemente.
 Il secondo passaggio consiste nel trovare una equazione alle differenze \(p = p(x, t)\) sulla quale effettuare il passaggio al limite. \\
-Poichè la particella si muove indipendentemente dal passo precedente, se essa si trova in \(x\) al tempo \(t+\tau\), allora al tempo \(t\) si trovava: o in \(x-h\), o in \(x+h\), da cui si ricava
+Poiché la particella si muove indipendentemente dal passo precedente, se essa si trova in \(x\) al tempo \(t+\tau\), allora al tempo \(t\) si trovava: o in \(x-h\), o in \(x+h\), da cui si ricava
 \begin{equation}
 \begin{cases}
    p(x, t+\tau) = \frac{1}{2}p(x-h. t) +\frac{1}{2}p(x+h, t) \\
@@ -1069,11 +1069,45 @@ Si supponga che \(p(x, t)\) sia differenziabile, si ottiene allora
   p(x\pm h, t) = p(x,t)\pm p_x(x,t)h+\frac{1}{2}p_{xx}(x,t)h^2+\sigma{h^2}
 \end{flalign*}
 che all'interno della (2.54) restituiscono, dopo le opportune semplificazioni
+{\everymath={\displaystyle}
 \[
   \begin{array}{c}
    p_t\tau + \sigma(\tau) = \frac{1}{2}p_{xx}h^2 +\sigma(h^2) \\
    \Downarrow \mbox{ dividendo per }\tau \\
-   p_t + \sigma(1) = \frac{1}{2}
+   p_t + \sigma(1) = \frac{1}{2}\frac{h^2}{\tau} p_{xx}+\sigma\left(\frac{h^2}{\tau}\right) 
   \end{array}
 \]
+}
+Si supponga inoltre che 
+\[
+  \frac{h^2}{\tau} = 2D \quad (D > 0)
+\]
+Si può passare al limite e sostituire \(\frac{h^2}{\tau}\) per ottenere
+\[
+  p_t = Dp_{xx}
+\]
+che è l'equazione del calore con condizioni iniziali
+\[
+  \lim_{t \to 0^+} p(x, t) = \delta
+\]
+Dalla soluzione fondamentale trovata in precedenza si ottiene
+\[
+  p(x,t) = \Gamma_D(x,t)
+\]
+Dunque la costante \(D\) è proprio il \emph{coefficiente di diffusione}. Infatti si ha
+{\everymath = {\displaystyle}
+\[
+\begin{array}{c}
+  \langle x^2 \rangle = Nh^2, \qquad t= N\tau \\
+   \Downarrow  \\
+   \frac{\langle x^2 \rangle}{t} = \frac{h^2}{\tau} = 2D 
+  \end{array}  
+\]}
+Ossia: nell'unità di tempo la particella diffonde a una distanza media \(\sqrt{2D}\) con velocità che tende all'infinito.
+Utilizzando il Teorema Centrale del Limite si può avere una idea più chiara di cosa sia diventata la passeggiata aleatoria. \\
+Sia  \(x_j = x(j\tau)\) la posizione raggiunta dopo \(j\) passi e posto \(j \geq 1\) 
+\[
+  h\xi_j = x_j - x_{j -1}
+\]
+Le variabili \(\xi_j\) sono aleatorie i.i.d. 
 \end{document}
