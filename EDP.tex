@@ -1104,10 +1104,73 @@ Dunque la costante \(D\) è proprio il \emph{coefficiente di diffusione}. Infatt
   \end{array}  
 \]}
 Ossia: nell'unità di tempo la particella diffonde a una distanza media \(\sqrt{2D}\) con velocità che tende all'infinito.
-Utilizzando il Teorema Centrale del Limite si può avere una idea più chiara di cosa sia diventata la passeggiata aleatoria. \\
+Utilizzando il Teorema Centrale del Limite (TCL) si può avere una idea più chiara di cosa sia diventata la passeggiata aleatoria. \\
 Sia  \(x_j = x(j\tau)\) la posizione raggiunta dopo \(j\) passi e posto \(j \geq 1\) 
 \[
   h\xi_j = x_j - x_{j -1} 
 \]
-Le variabili \(\xi_j\) sono aleatorie i.i.d. con valore \(1 \mbox{ o } -1\)
+Le variabili \(\xi_j\) sono aleatorie i.i.d. con valore \(1 \mbox{ o } -1\), entrambi con probabilità \(\frac{1}{2}\). La loro media è \(\langle \xi_j \rangle = 0 \mbox{ e varianza }\langle \xi^2_j \rangle = 1\). La posizione della particella dopo \(N\) passi è 
+\[
+  x_N = h\sum_{j = 1}^N \xi_j
+\]
+Affinché \(\frac{h^2}{\tau} = 2D\), il valore di \(h\) deve essere \(\sqrt{\frac{2Dt}{N}}\). Passando al limite per \(N \to \infty\), il TCL assicura\footnote{se \(N \to \infty\), \[\mbox{Prob}\{a < x_N < b\} \to \int_a^b \Gamma_D(x,t)dx\]} la convergenza ad una variabile aleatoria con media \(0\) e varianza \(2Dt\), la cui densità corrisponde a \(\Gamma_D(x,t)\).
+Nel caso particolare \(D=\frac{1}{2}\) la passeggiata aleatoria è un moto continuo, definito come \textbf{moto Browniano}, caratterizzato dalla notazione \(B = B(t)\), che indica la posizione di una particella che si muove con tale moto nel tempo. \\
+Le variabili aleatorie \(B(t)\) sono definite su uno spazio \((\Omega, \mathcal{F}, P)\). Si omette per comodità di definite la variabile aleatoria come \(B(t, \omega)\), in quanto si sottintende la dipendenza da \(\omega\). \\
+Fissando \(\omega \in \Omega\), si ottiene la funzione
+\[
+  t \longrightarrow B(t, \omega)
+\]
+che descrive uno dei possibili cammini Browniani. Bloccando \(t\) si ottiene una variabile aleatoria
+\[
+  \omega \longrightarrow B(t, \omega)
+\]
+Fissare \(t\) significa fissare una retta verticale nel piano su cui si sta muovendo la particella all'istante \(\overline{t}\) e prendere un sottoinsieme \(I\) appartenente a quella retta. \(P\{B(t) \in I\}\) è la probabilità che \(B(t)\) si trovi in \(I\) all'istante \(\overline{t}\).
+Per valori generici di \(D\) la particella si muoverà come multiplo di un moto Browniano. 
+\begin{itemize}
+  \item Continuità delle traiettorie
+\end{itemize}
+I possibili cammini di una particella che segue un moto Browniano con probabilità \(1\) sono funzioni 
+\[
+  t \longrightarrow B(t) 
+\]
+continue per \(t \geq 0\). Dal momento che la velocità è infinita, la traiettoria non è differenziabile in nessun punto-
+\begin{itemize}
+  \item Legge di Gauss per gli incrementi
+\end{itemize}
+Partendo da un punto \(x \not = 0\) e considerando il processo
+\[
+  B^x(t) = x + B(t),
+\]
+si ottiene che ad ogni punto \(x\) corrisponda una probabilità \(P^x\), da interpretarsi come la distribuzione associata ai cammini che una particella, inizialmente ferma in \(x\), compie seguendo le proprietà\footnote{se \(x = 0\), allora \(P^{x=0}\) si scrive come \(P^0\)}:
+\begin{itemize}
+  \item [a)] \(P^x\{B^x(0) =x\} = P\{B(0) = 0\} = 1\)
+  \item [b)] per ogni \(s\geq 0, t \geq 0\), l'incremento 
+  \[
+  B^x(t+s) -B^x(s) = B(t+s) - B(s) 
+  \]
+\end{itemize}
+ha distribuzione normale con media \(0\) e varianza \(t\). Si può allora ricavare la densità dalla soluzione fondamentale
+\[
+  \Gamma(x,t) \equiv \Gamma_{\frac{1}{2}}(x,t) = \frac{1}{\sqrt{2\pi t}}e^{-\frac{x^2}{2t}}
+\]
+ed è indipendente da ogni evento accaduto in un tempo  \(\leq s\).
+\begin{itemize}
+  \item Probabilità di transizione 
+\end{itemize}
+Per ogni insieme di Borel \(I \subseteq \mathbb{R}\) è definita una funzione di transizione
+\[
+  P(x,t,I) = P^x\{B^x(t)\in I\} 
+\]
+che permette di rappresentare la probabilità all'instante \(t\) della particella, inizialmente in \(x\), di trovarsi in \(I\). Si hanno
+\[
+  P(x, t, I) = P\{B(t) \in I-x\} = \int_{I-x} \Gamma(y,t) dy = \int_I \Gamma(y-x,t)dy
+\]
+\begin{itemize}
+  \item Proprietà di Markov
+\end{itemize}
+Sia \(\mu\) una misura di probabilità su \(\mathbb{R}\). Se si può ricondurre la posizione iniziale della particella a una distribuzione di probabilità \(\mu\), allora si tratta di \emph{moto Browniano con distribuzione iniziale }\(\mu\), indicato da \(B^{\mu}\). A questo processo si associa la distribuzione \(P^{\mu}\) definita come
+\[
+  P^{\mu}\{B^{\mu}(0)\in I\} = \mu(I)
+\]
+
 \end{document}
