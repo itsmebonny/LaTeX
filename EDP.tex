@@ -1172,5 +1172,23 @@ Sia \(\mu\) una misura di probabilità su \(\mathbb{R}\). Se si può ricondurre 
 \[
   P^{\mu}\{B^{\mu}(0)\in I\} = \mu(I)
 \]
+La probabilità che la particella si trovi in \(I\) si calcola come
+\[
+  P^{\mu}\{B^{\mu}(t) \in I\} = \int_{\mathbb{R}} P^{x}\{B^x(t)\in I\}d\mu (x) = \int_{\mathbb{R}}P(x,t,I)d\mu(x)                                                           
+\]
+La proprietà di Markov si può esprimere come una condizione \(H\), legata al comportamento della particella prima dell'istante \(s\geq 0\), che, con un determinato moto Browniano \(Y(t) = B^x (t+s)\), stabilisce l'indipendenza del processo futuro \(B^x(t+s)\) da quello prima dell'istante \(s\). L'assenza di memoria è una caratteristica della passeggiata aleatoria. \\
+In alternativa esiste la proprietà di Markov forte che sostituisce all'istante \(s\) un'istante di tempo \(\tau\) aleatorio che dipende dal comportamento della particella nell'intervallo \([0, \tau]\).
+\begin{itemize}
+  \item Valore atteso
+\end{itemize}
+Per \(x,t\) fissati, la funzione \(P(x,t,I)\) coincide con la legge di un moto Browniano. Data allora una funzione \(g = g(y), \, y \in \mathbb{R}\) si può definite una variabile aleatoria
+\[
+  Z(t) = (g \circ B^x)(t) = g(B^x(t))
+\]
+il cui valore atteso sarà
+\[
+  E[Z(t)] = \int_{\mathbb{R}} g(y)P(x,t,dy) = \int_{\mathbb{R}} g(y) \Gamma(x-y,t)dy
+\]
+\subsection{Diffusione, trasporto e reazione}
 
 \end{document}
