@@ -1248,6 +1248,17 @@ Occorre dunque richiedere che
 \]
 con \(\beta\) finito. Inoltre, dato che \((p_0 + q_0) = 1\) si può riscrivere 
 \begin{flalign}
-  p_0 
+  p_0 = \frac{1}{2} - \frac{\beta}{2}h + \sigma(h) \\
+  q_0 = \frac{1}{2} + \frac{\beta}{2}h + \sigma(h)
 \end{flalign}
+da cui deriva 
+\begin{equation}
+  \frac{(q_0 - p_0)}{h} \frac{h^2}{\tau} \to 2D\beta \equiv b
+\end{equation}
+che permette di ottenere l'equazione 
+\begin{equation}
+  p_t = Dp_{xx} + bp_x
+\end{equation}
+Il termine \(bp_x\) ha delle dimensioni specifiche, essendo \(p_0 - q_0\) adimensionale, deve avere le dimensioni di \(\frac{h}{\tau}\), ossia una velocità. Tale coefficiente allora codifica la velocità della particella e, a seconda del suo segno, la sua direzione. La passeggiata aleatoria allora descrive un processo di \emph{diffusione con deriva}.
+Tale modello è spesso usato per descrivere la diffusione, per esempio, di un agente inquinante in un corso d'acqua. 
 \end{document}
