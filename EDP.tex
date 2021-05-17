@@ -1190,5 +1190,64 @@ il cui valore atteso sarà
   E[Z(t)] = \int_{\mathbb{R}} g(y)P(x,t,dy) = \int_{\mathbb{R}} g(y) \Gamma(x-y,t)dy
 \]
 \subsection{Diffusione, trasporto e reazione}
-
+Eliminando la simmetria dalla passeggiata aleatoria si ottiene la cossiddetta variante con \emph{drift}. Si abbia sempre una particella in moto sull'asse \(x\) con le proprietà:
+\begin{itemize}
+ \item La particella si muove di un passo \(h\) in un tempo di misura \(\tau\).
+ \item Si può muovere a sinistra con una probabilità \(p_0 \not = \frac{1}{2}\) e a destra con probabilità \(q_0 = 1- p_0\), indipendentemente dal passo precedente.
+\end{itemize}
+Come prima, \(p = p(x,t)\) è la probabilità che la particella si trovi in \(x = mh\) al tempo \(t = N\tau\). Come prima \(k\) rappresenta il numero di passi a destra compiuti dalla particella, allora si avrà la probabilità
+\[
+  p_k = C_{N,k}p_0^k\_0^{N-k}
+\] 
+Con la funzione generatrice delle probabilità pari a
+\[
+  G(s) = (p_0s + q_0)^N
+\]
+il valore atteso di \(x\) dopo \(N\) passi sarà: \(\langle x \rangle = N (p_0 - q_0)h\) e la sua varianza sarà pari a: \(\langle x^2 \rangle - \langle x \rangle^2 = 4p_0q_0Nh^2\). \\
+La posizione media rispetto all'origine si può dividere per l'unità di tempo, in questo caso \(t = N\tau\) e si ottiene
+\begin{equation}
+  \frac{\langle x  \rangle}{t} = \frac{(p_0 - q_0)h}{\tau}
+\end{equation}
+che indica la posizione media nell'unità di tempo. Passando al limite per \(h, \tau  \to 0 \) sarà necessario che si mantenga questa caratteristica del moto. \\
+La deviazione standard, come noto, è data da \(\sqrt{\mbox{Var}(x)}\) ed è sempre di ordine \(\sqrt{N}h\). 
+Il calcolo delle probabilità è influenzato in questo modo
+\[
+  \begin{cases}
+  p(x, t+\tau) = p_0p(x-h, t) + q_0(x-h,t) \\
+  p(0,0) = 1 \\
+  p(x, 0) = 0 \qquad \mbox{se }x \not = 0
+ \end{cases}
+\]
+Come prima, passando al limite per \(h, \tau \to 0\) e supponendo \(p\) differenziabile, si ha
+\begin{flalign*}
+  p(x,t+\tau) = p(x,t) = p_t(x,t)\tau + \sigma(\tau) \\
+  p(x \pm h, t) = p(x,t) \pm p_x(h,t)h + p_{xx}(x,t)h^2 + \sigma(h^2)
+\end{flalign*}
+Con le opportune semplificazioni, come prima si ottiene
+{\everymath={\displaystyle}
+\[
+  \begin{array}{c}
+   p_t\tau + \sigma(\tau) = \frac{1}{2}p_{xx}h^2 + (q_0 -p_0)hp_x + \sigma(h^2) \\
+   \Downarrow \mbox{ dividendo per }\tau \\
+   p_t + \sigma(1) = \frac{1}{2}\frac{h^2}{\tau} p_{xx}+\frac{(q_0-p_0)h}{\tau}p_x+\sigma\left(\frac{h^2}{\tau}\right) 
+  \end{array}
+\]
+}
+Rispetto al caso simmetrico appare un nuovo termine, il cui coefficiente inoltre è esattamente uguale alla media della posizione della particella rispetto all'unità di tempo. 
+Il passaggio al limite assume nuovamente
+\[
+ \frac{h^2}{\tau} = 2D 
+\]
+ma in questo caso non più sufficiente, in quanto mantenendo costanti \(p_0 \mbox{ e } q_0\) si avrebbe
+\[
+  \frac{(q_0 - p_0h)}{q} \to \infty
+\]
+Occorre dunque richiedere che 
+\[
+  \frac{q_0 - p_0}{h} = \beta
+\]
+con \(\beta\) finito. Inoltre, dato che \((p_0 + q_0) = 1\) si può riscrivere 
+\begin{flalign}
+  p_0 
+\end{flalign}
 \end{document}
