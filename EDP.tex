@@ -1330,5 +1330,17 @@ che, grazie all'uguaglianza \(c_t = Dc_{xx - vc_x}\), diventa
   w_t -Dw_{xx} = e^{hx+kt}[c_t Dc_{xx} - 2Dhc_x + (k-Dh^2)c] = \\
   = e^{hx+kt}[(-v-2Dh)c_x + (k-Dh^2)c]
 \end{align*}
-per cui, 
+per cui, posti
+\[
+  h=-\frac{v}{2D}, \qquad k = -\frac{v^2}{4D}
+\]
+la funzione \(w\) è soluzione dell'equazione del calore \(w_t -Dw_{xx} = 0\), con condizione iniziale 
+\[
+  w(x,t) = c(x,0)e^{-\frac{v}{2D}x}=Q\delta(x)e^{-\frac{v}{2D}x}
+\]
+In una situazione reale, l'inquinante è soggetto a decadimento naturale, per cui
+\begin{equation}
+  c_t = Dc_{xx}-vc_x-\gamma c
+\end{equation}
+Ipotizzando che la particella scompaia per decadimento, dato da \(\gamma > 0\), allora in un intervallo di tempo \([t, t+\tau]\)
 \end{document}
