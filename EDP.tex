@@ -1,4 +1,4 @@
-\documentclass[a4paper,12pt]{article}
+\documentclass[a4paper,12pt, draft]{article}
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{physics}
@@ -6,9 +6,10 @@
 \usepackage[margin=3cm]{geometry}
 \usepackage{bigfoot}
 \usepackage{amsthm}
+\usepackage{etoolbox}
 
 
-
+\AtBeginEnvironment{array}{\everymath{\displaystyle}}
 \newtheoremstyle{break}
   {\partopsep}
   {\topsep}%  
@@ -1174,10 +1175,16 @@ Sia \(\mu\) una misura di probabilità su \(\mathbb{R}\). Se si può ricondurre 
 \]
 La probabilità che la particella si trovi in \(I\) si calcola come
 \[
-  P^{\mu}\{B^{\mu}(t) \in I\} = \int_{\mathbb{R}} P^{x}\{B^x(t)\in I\}d\mu (x) = \int_{\mathbb{R}}P(x,t,I)d\mu(x)                                                           
+  P^{\mu}\{B^{\mu}(t) \in I\} = \int_{\mathbb{R}} P^{x}\{B^x(t)\in I\}d\mu (x) = \int_{\mathbb{R}}P(x,t,I)d\mu(x)                                             
 \]
-La proprietà di Markov si può esprimere come una condizione \(H\), legata al comportamento della particella prima dell'istante \(s\geq 0\), che, con un determinato moto Browniano \(Y(t) = B^x (t+s)\), stabilisce l'indipendenza del processo futuro \(B^x(t+s)\) da quello prima dell'istante \(s\). L'assenza di memoria è una caratteristica della passeggiata aleatoria. \\
-In alternativa esiste la proprietà di Markov forte che sostituisce all'istante \(s\) un'istante di tempo \(\tau\) aleatorio che dipende dal comportamento della particella nell'intervallo \([0, \tau]\).
+
+La proprietà di Markov si può esprimere come una condizione \(H\), legata al comportamento della particella prima di un istante \(s\geq 0\), che, con un determinato moto Browniano 
+\(Y(t) = B^x (t+s),\)
+stabilisce l'indipendenza del processo futuro 
+\(B^x(t+s)\)
+da quello prima di un istante \(s\). \\
+L'assenza di memoria è una caratteristica della passeggiata aleatoria. \\
+In alternativa esiste la proprietà di Markov forte che sostituisce all'istante \(s\) un istante di tempo \(\tau\) aleatorio che dipende dal comportamento della particella dentro l'intervallo \([0, \tau]\).
 \begin{itemize}
   \item Valore atteso
 \end{itemize}
@@ -1305,7 +1312,23 @@ La (2.63) permette di ottenere
 \end{equation}
 Dal momento che sia \(D\) e \(v\) sono due costanti, determinare l'evoluzione della massa inquinante è semplice. Si supponga una massa \(Q\) di sostanza inquinante e la condizione iniziale
 \[
-  c(x,0) = q\delta(x)
+  c(x,0) = Q\delta(x)
 \]
-
+Il termine \(-vc_x\) si può eliminare con un semplice cambio di variabili, ponendo
+\[
+  w(x,t) = c(x,t)e^{hx+kt}
+\]
+dove \(h, k\) sono da determinarsi in modo opportuno. Si ha allora
+\[
+\begin{array}{cc}
+  w_t = [c_t + kc]e^{hx + kt} & \\
+  w_x = [c_x + hc]e^{hx+kt}, & w_{xx} = [c_{xx} + 2hc_x + h^2c]e^{hx+kt} 
+\end{array}  
+\]
+che, grazie all'uguaglianza \(c_t = Dc_{xx - vc_x}\), diventa
+\begin{align*}
+  w_t -Dw_{xx} = e^{hx+kt}[c_t Dc_{xx} - 2Dhc_x + (k-Dh^2)c] = \\
+  = e^{hx+kt}[(-v-2Dh)c_x + (k-Dh^2)c]
+\end{align*}
+per cui, 
 \end{document}
