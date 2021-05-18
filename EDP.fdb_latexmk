@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1621002591 "c:/Users/andre/Documents/Polimi/Documenti sparsi/EDP.tex" "EDP.pdf" "EDP" 1621002593
+["pdflatex"] 1621264616 "c:/Users/andre/Documents/Polimi/Documenti sparsi/EDP.tex" "EDP.pdf" "EDP" 1621264618
   "C:/Users/andre/AppData/Local/MiKTeX/2.9/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm0700.pk" 1615561625 8268 93fc343a305efbcbf07ea39ff3765003 ""
   "C:/Users/andre/AppData/Local/MiKTeX/2.9/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm0800.pk" 1615561627 9292 bd776a5e9f0e2db64aca5c05fe57cba7 ""
   "C:/Users/andre/AppData/Local/MiKTeX/2.9/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk" 1593438458 14064 731b37c4b17f61d43da022a26eacb969 ""
@@ -101,10 +101,10 @@
   "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/tex/latex/ncctools/nccfoots.sty" 1565017809 1230 756b2502150ce6dc2179faebbd40e701 ""
   "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/tex/latex/physics/physics.sty" 1356005662 29610 a9597219b282d9c78b02393dcd7d4322 ""
   "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/tex/latex/tools/bm.sty" 1580648484 12671 ace2aac118748ea10d1717448ecafbed ""
-  "EDP.aux" 1621002593 2386 d27c937db6fd3e5849d1626626005647 "pdflatex"
-  "EDP.tex" 1621002590 66648 2d82d5a459dfffdc19b5194981175393 ""
-  "c:/Users/andre/Documents/Polimi/Documenti sparsi/EDP.tex" 1621002590 66648 2d82d5a459dfffdc19b5194981175393 ""
+  "EDP.aux" 1621264617 2511 4458cf6549799601fb67291ca3405157 "pdflatex"
+  "EDP.tex" 1621264613 71659 c7cc7d815d6b37bdcc728e076146d0cd ""
+  "c:/Users/andre/Documents/Polimi/Documenti sparsi/EDP.tex" 1621264613 71659 c7cc7d815d6b37bdcc728e076146d0cd ""
   (generated)
-  "EDP.aux"
-  "EDP.pdf"
   "EDP.log"
+  "EDP.pdf"
+  "EDP.aux"
