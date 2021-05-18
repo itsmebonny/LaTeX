@@ -1066,16 +1066,16 @@ Poiché la particella si muove indipendentemente dal passo precedente, se essa s
 Dati \(x \mbox{ e } t\), si vuole studiare il passaggio al limite di \(h \to 0, \tau \to 0\). 
 Si supponga che \(p(x, t)\) sia differenziabile, si ottiene allora
 \begin{flalign*}
-  p(x, t+\tau) = p(x, t) + p_t(x,t)\tau +\sigma(\tau) \\
-  p(x\pm h, t) = p(x,t)\pm p_x(x,t)h+\frac{1}{2}p_{xx}(x,t)h^2+\sigma{h^2}
+  p(x, t+\tau) = p(x, t) + p_t(x,t)\tau +o(\tau) \\
+  p(x\pm h, t) = p(x,t)\pm p_x(x,t)h+\frac{1}{2}p_{xx}(x,t)h^2+o{h^2}
 \end{flalign*}
 che all'interno della (2.54) restituiscono, dopo le opportune semplificazioni
 {\everymath={\displaystyle}
 \[
   \begin{array}{c}
-   p_t\tau + \sigma(\tau) = \frac{1}{2}p_{xx}h^2 +\sigma(h^2) \\
+   p_t\tau + o(\tau) = \frac{1}{2}p_{xx}h^2 +o(h^2) \\
    \Downarrow \mbox{ dividendo per }\tau \\
-   p_t + \sigma(1) = \frac{1}{2}\frac{h^2}{\tau} p_{xx}+\sigma\left(\frac{h^2}{\tau}\right) 
+   p_t + o(1) = \frac{1}{2}\frac{h^2}{\tau} p_{xx}+o\left(\frac{h^2}{\tau}\right) 
   \end{array}
 \]
 }
@@ -1227,16 +1227,16 @@ Il calcolo delle probabilità è influenzato in questo modo
 \]
 Come prima, passando al limite per \(h, \tau \to 0\) e supponendo \(p\) differenziabile, si ha
 \begin{flalign*}
-  p(x,t+\tau) = p(x,t) = p_t(x,t)\tau + \sigma(\tau) \\
-  p(x \pm h, t) = p(x,t) \pm p_x(h,t)h + p_{xx}(x,t)h^2 + \sigma(h^2)
+  p(x,t+\tau) = p(x,t) = p_t(x,t)\tau + o(\tau) \\
+  p(x \pm h, t) = p(x,t) \pm p_x(h,t)h + p_{xx}(x,t)h^2 + o(h^2)
 \end{flalign*}
 Con le opportune semplificazioni, come prima si ottiene
 {\everymath={\displaystyle}
 \[
   \begin{array}{c}
-   p_t\tau + \sigma(\tau) = \frac{1}{2}p_{xx}h^2 + (q_0 -p_0)hp_x + \sigma(h^2) \\
+   p_t\tau + o(\tau) = \frac{1}{2}p_{xx}h^2 + (q_0 -p_0)hp_x + o(h^2) \\
    \Downarrow \mbox{ dividendo per }\tau \\
-   p_t + \sigma(1) = \frac{1}{2}\frac{h^2}{\tau} p_{xx}+\frac{(q_0-p_0)h}{\tau}p_x+\sigma\left(\frac{h^2}{\tau}\right) 
+   p_t + o(1) = \frac{1}{2}\frac{h^2}{\tau} p_{xx}+\frac{(q_0-p_0)h}{\tau}p_x+o\left(\frac{h^2}{\tau}\right) 
   \end{array}
 \]
 }
@@ -1255,8 +1255,8 @@ Occorre dunque richiedere che
 \]
 con \(\beta\) finito. Inoltre, dato che \((p_0 + q_0) = 1\) si può riscrivere 
 \begin{flalign}
-  p_0 = \frac{1}{2} - \frac{\beta}{2}h + \sigma(h) \\
-  q_0 = \frac{1}{2} + \frac{\beta}{2}h + \sigma(h)
+  p_0 = \frac{1}{2} - \frac{\beta}{2}h + o(h) \\
+  q_0 = \frac{1}{2} + \frac{\beta}{2}h + o(h)
 \end{flalign}
 da cui deriva 
 \begin{equation}
@@ -1342,5 +1342,21 @@ In una situazione reale, l'inquinante è soggetto a decadimento naturale, per cu
 \begin{equation}
   c_t = Dc_{xx}-vc_x-\gamma c
 \end{equation}
-Ipotizzando che la particella scompaia per decadimento, dato da \(\gamma > 0\), allora in un intervallo di tempo \([t, t+\tau]\)
+Ipotizzando che la particella scompaia per decadimento, dato da \(\gamma > 0\), allora in un intervallo di tempo \([t, t+\tau]\), scompare una quantità di massa pari a
+\[
+  Q(x,t) = \tau \gamma p(x,t)
+\]
+Allora l'equazione alle differenze per \(p\) diventa
+\[
+  p(x, t+\tau) = p_0 [p(x-h, t) - Q(x-h, t)] + q_0[p(x+h,t) - Q(x+h,t)]
+\]
+Poiché\footnote{Si intende con \(O(x)\) una quantità dell'ordine di grandezza di \(x\)}
+\begin{align*}
+  p_0Q(x-h, t) + q_0Q(x+h, t) = q(x,t) + (q_0 -p_0)hQ_x(x,t)+ \ldots = \\
+  = \tau \gamma p(x,t) + O(\tau h)
+\end{align*}
+da cui si giunge a 
+\[
+  
+\]
 \end{document}
