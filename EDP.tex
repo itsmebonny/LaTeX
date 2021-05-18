@@ -1260,5 +1260,52 @@ che permette di ottenere l'equazione
   p_t = Dp_{xx} + bp_x
 \end{equation}
 Il termine \(bp_x\) ha delle dimensioni specifiche, essendo \(p_0 - q_0\) adimensionale, deve avere le dimensioni di \(\frac{h}{\tau}\), ossia una velocità. Tale coefficiente allora codifica la velocità della particella e, a seconda del suo segno, la sua direzione. La passeggiata aleatoria allora descrive un processo di \emph{diffusione con deriva}.
-Tale modello è spesso usato per descrivere la diffusione, per esempio, di un agente inquinante in un corso d'acqua. 
+Tale modello è spesso usato per descrivere la diffusione, per esempio, di un agente inquinante in un corso d'acqua. \\
+Il canale scorre con velocità \(v\) costante lungo l'asse \(x\).
+Il modello ha come obiettivo la descrizione della concentrazione \(c = c(x,t)\) della sostanza inquinante. 
+Allo stesso tempo \(c(x,t)dx\) rappresenta la massa al tempo \(t\) presente in \([x, x+\Delta x]\). La massa presente al tempo \(t\) è rappresentata dall'integrale 
+\begin {equation}
+  \int_x^{x+\Delta x} c(y,t)dy
+\end{equation}
+In generale vige il principio di conservazione della massa, ossia \emph{il tasso di variazione della massa contenuta in un intervallo \[x, x+\Delta x\]}. Il tasso di variazione è dato da
+\begin{equation}
+  \frac{d}{dt} \int_x^{x+\Delta x} c(y,t)dy = \int_x^{x+\Delta x} c_t(y,t)dy
+\end{equation}
+La quantità \(q = q(x,t)\) rappresenta il flusso di massa entrante nell'intervallo \([x, x+\Delta x]\). Il flusso netto agli estremi dell'intervallo si ottiene come 
+\begin{equation}
+  q(x,t) - q(x+\Delta x, t)
+\end{equation}
+e uguagliando la (2.61) e la (2.62) si ottiene
+\[
+  \int_x^{x+\Delta x} c_t (y,t)dy = q(x,t) - q(x+\Delta x, t)
+\]
+Passando al limite per \(\Delta x \to 0\) e dividendo per \(\Delta x\) si ha
+\begin{equation}
+  c_t = -q_x
+\end{equation}
+Per avere una idea del tipo di flusso di massa con cui si ha a che fare, è necessario stabilire una legge costitutiva per \(q\). Le opzioni sono:
+\begin{enumerate}
+  \item \emph{Convezione o trasporto}. Il flusso è determinato dalla corrente d'acqua, nel caso in cui l'inquinante mantenga la sua forma senza deformarsi; modellizzabile come
+  \[
+    q(x,t) = vc(x,t)
+  \]
+  \item \emph{Diffusione} Molto simile al modello di diffusione del calore, la sostanza inquinante si diffonde nel corso d'acqua secondo la legge di Fick (molto simile alla legge di Fourier)
+  \[
+    q(x,t) = -Dc_x(x,t)
+  \]
+  con \(D\) solita costante di diffusione con dimensione \(lunghezza^2 \times tempo^{-1}\)
+\end{enumerate}
+Poiché nel caso della sostanza inquinante sono presenti entrambi gli effetti, vanno sovrapposti, ottenendo
+\[
+  q(x,t) = vc(x,t) - Dc_x(x,t)
+\]
+La (2.63) permette di ottenere
+\begin{equation}
+  c_t = Dc_{xx}-vc_x
+\end{equation}
+Dal momento che sia \(D\) e \(v\) sono due costanti, determinare l'evoluzione della massa inquinante è semplice. Si supponga una massa \(Q\) di sostanza inquinante e la condizione iniziale
+\[
+  c(x,0) = q\delta(x)
+\]
+
 \end{document}
