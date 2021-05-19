@@ -1363,4 +1363,25 @@ Dividendo tutto per \(\tau\) e, come prima, passando al limite per \(h, \tau \to
 \[
   p_t = Dp_{xx} + bp_x - \gamma p, \qquad (b = 2D\beta)
 \]
+\subsection{Il problema di Cauchy globale}
+Questa sezione si occuperà di studiare il problema di Cauchy globale nel caso omogeneo unidimensionale.
+Il problema si pone come 
+\begin{equation}
+  \begin{cases}
+  u_t -Du_{xx} = 0 & \mbox{in } \mathbb{R} \times (0, \infty) \\
+  u(x, 0) = g(x) & \mbox{in } \mathbb{R}
+ \end{cases}
+\end{equation}
+dove \(g\) rappresenta il dato iniziale assegnato. Tale problema si presenta quando si cerca di studiare l'evoluzione della temperatura, o della concentrazione di massa lungo un filo infinito, conoscendo il valore al tempo \(t = 0\).
+Se \(u(x,t\) rappresenta la concentrazione della massa, allora \(u(x,t)dx\) assegna al tempo \(t\) una quantità di massa che si trova nell'intervallo \((x, x+dx)\).
+La quantità \(g(y)dy\) indica la massa concentrata in \((y, y+dy)\) al tempo \(t=0\). In precedenza si è parlato della \emph{unit source solution}, che rappresenta la diffusione di una massa inizialmente concentrata in \(y\), descritta dalla funzione \(\Gamma_D(x-y,t)\).
+La concentrazione in \(x\) al tempo \(t\) viene descritta da 
+\[
+  \Gamma_D(x-y, t)g(y)dy
+\]
+La linearità dell'equazione permette di utilizzare il principio di sovrapposizione, sommando i singoli contributi. Si ottiene così
+\begin{equation}
+  u(x,t)= \int_{\mathbb{R}} \Gamma_D(x-y,t)g(y,t)dy = \frac{1}{\sqrt{4\pi Dt}}\int_{\mathbb{R}}g(y)e^{-\frac{(x-y)^2}{4Dt}}dy
+\end{equation}
+La (2.67) rappresenta la convoluzione del dato iniziale con la Gaussiana per ogni \(t>0\). Sia, per semplicità, \(D=\frac{1}{2}\) e \(B^x(t)\) la posizione di una particella Browniana partita dal punto \(x\), con \(g(y)\)
 \end{document}
