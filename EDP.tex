@@ -110,8 +110,12 @@ $$
 Un problema che possiede le caratteristiche (1, 2, 3) si dice \textbf{ben posto}, ed è il tipo di problema con cui è più comodo lavorare.
 \subsection{Integrazione per parti}
 Siano $$\Omega \in \mathbb{R}^n$$ un dominio limitato di classe $C^1$ e $\textbf{F}: \overline{\Omega}$ un campo vettoriale di classe $C^1(\overline{\Omega})$. Essendo $\textbf{F} \in C^1(\overline{\Omega}; \mathbb{R}^n)$ e $\boldsymbol{\nu}$ il versore normale, allora vale la formula di Gauss o della divergenza:
+\begin{equation} 
+\int_{\Omega} div\textbf{F} \ dx = \int_{\partial\Omega} \textbf{F} \cdot \boldsymbol{\nu} \ d\sigma \label{Integrazione per parti}
+\end{equation}
+che permette di ottenere la seguente identità
 \begin{equation}
-\int_{\Omega} div\textbf{F} \ dx = \int_{\partial\Omega} \textbf{F} \cdot \boldsymbol{\nu} \ d\sigma
+  \int_{\Omega} v\Delta u \, d\textbf{x} = \int_{\partial\Omega} v\partial_{\bm\nu} u \, d\sigma - \int_{\Omega} \nabla v \cdot \nabla u \, d\textbf{x} \label{Identità di Green}
 \end{equation}
 L'elemento $d\sigma$ rappresenta la superficie di $\partial\Omega$ e si può definire come:
 $$d\sigma = \sqrt{1+|\nabla \phi(\mathbf{y}')|^2}d\mathbf{y}'$$
@@ -368,36 +372,36 @@ $$
 e le condizioni iniziali implicano sempre $A=B=0$
 \item[C)] $\lambda = -\mu^2 < 0$ allora
 $$
-v(y) = A\, sin(\mu y)+B\, cos (\mu y)
+v(y) = A\, \sin{\mu y}+B\, \cos{\mu y}
 $$
 \end{itemize}
 Imponendo le condizioni iniziali
 $$
 v(0) = B = 0 \\
-v(1) = A sin(\mu) + Bcos(\mu) = 0
+v(1) = A \sin{\mu} + B\cos{\mu} = 0
 $$
 per cui $A \mbox{ arbitrario }, \ B = 0, \ \mu = m\pi, \ m= 1,2, \ldots$
 In questo caso si otterranno soluzioni non nulle del tipo 
 $$
-v_m(y) = A\, sin\, m\, \pi y
+v_m(y) = A\, \sin{m} \pi y
 $$
 Tale problema si definisce \emph{problema agli autovalori} con i valori $\mu_m$ che si chiamano \emph{autovalori} e $v_m$ sono le corrispondenti \emph{autofunzioni}.
 Assegnando a $\lambda = -\mu^2 = -m^2\pi^2$ la funzione $w'(s) - \lambda w(s) = 0$ ha come integrale generale
-$$w_m(s) = Ce^{-m^2-\pi^2s} \, sin(m\pi y) \qquad \mbox{ (C costante arbitraria)}$$ 
+$$w_m(s) = Ce^{-m^2-\pi^2s} \, \sin{m\pi y} \qquad \mbox{ (C costante arbitraria)}$$ 
 Si ottengono soluzioni del tipo 
 $$
-U_m(y,s) = A_me^{-m^2\pi^2s}\, sin(m\pi y)
+U_m(y,s) = A_me^{-m^2\pi^2s}\, \sin{m\pi y}
 $$
 Nessuna delle soluzioni $U_m$ soddisfa la condizione $U(y,0) = y$, ma una soluzione si può approssimare sommando tutte le soluzioni 
 \begin{equation}
-U(y,s) = \sum_{m=1}^{\infty} A_m \, e^{-m^2\pi^2s} \, sin(m\pi y)
+U(y,s) = \sum_{m=1}^{\infty} A_m \, e^{-m^2\pi^2s} \, \sin{m\pi y}
 \end{equation}
 
 È lecito cercare di capire come scegliere le costanti $A_m$ in modo che la condizione
 {\everymath ={\displaystyle}
 $$
 \begin{array}{lr}
-U(y,0) = \sum_{m=1}^{\infty} A_m  \, sin(m\pi y) = y & \qquad
+U(y,0) = \sum_{m=1}^{\infty} A_m  \, \sin{m\pi y} = y & \qquad
 0 \leq y \leq 1
 \end{array}
 $$
@@ -408,23 +412,23 @@ Per calcolare i coefficienti di Fourier si usa la formula
 
 \begin{equation*}
 \begin{aligned}
-A_k  = 2 \int_0^2 y\, sin(k \pi y) \, dy = -\frac{2}{k \pi}[y\, cos (k \pi y)]_0^1 + \frac{2}{k \pi} \int_0^1 cos(k \pi y) \, dy = & \\
+A_k  = 2 \int_0^2 y\, \sin{k \pi y} \, dy = -\frac{2}{k \pi}[y\,  \cos{ \pi y}]_0^1 + \frac{2}{k \pi} \int_0^1 \cos{k \pi y}\, dy = & \\
  =
- -2 \frac{cos(k \pi)}{k \pi}
- = (-1)^{k+1} \frac{2}{k \pi} sin (k \pi y)
+ -2 \frac{\cos{k \pi}}{k \pi}
+ = (-1)^{k+1} \frac{2}{k \pi} \sin {k \pi y}
 \end{aligned}
 \end{equation*}
 Lo sviluppo di $f(y) = y$ è
-$y = \sum_{m = 1}^{\infty} (-1)^{m+1} \frac{2}{m \pi} sin(m \pi y)$
+$y = \sum_{m = 1}^{\infty} (-1)^{m+1} \frac{2}{m \pi} \sin{m \pi y}$
 che però non è valido per esempio in $ y = 1$, dove ha valore $f(1) = 0$. Dalla teoria delle serie di Fourier questo sviluppo è valido nell'intervallo $(-1,1)$, mentre agli estremi è nulla. Tale serie converge uniformemente in ogni intervallo $[a,b] \subset (-1,1)$ 
 Tale uguaglianza vale anche in media quadratica, o nel senso della convergenza $L^2$  
 
 $$
-\int_0^1[y-\sum_{m=1}^N(-1)^{m+1} \frac{2}{m \pi} e^{-m^2 \pi^2s} sin(m\pi y)]^2dy \to 0 \qquad \mbox{ per } N \to +\infty
+\int_0^1[y-\sum_{m=1}^N(-1)^{m+1} \frac{2}{m \pi} e^{-m^2 \pi^2s} \sin{m\pi y}]^2dy \to 0 \qquad \mbox{ per } N \to +\infty
 $$
 Dunque al momento l'unica soluzione possibile è
 \begin{equation}
-U(y,s) = \sum_{m=1}^{\infty} (-1)^{m+1} \frac{2}{m \pi} e^{-m^2\pi^2s} sin(m \pi y)
+U(y,s) = \sum_{m=1}^{\infty} (-1)^{m+1} \frac{2}{m \pi} e^{-m^2\pi^2s} \sin{m \pi y}
 \end{equation}
 Poiché il dato iniziale è assunto in media quadratica, ossia
 \begin{equation}
@@ -445,7 +449,7 @@ Inoltre, nonostante $U_m$ sia soluzione dell'equazione del calore, non vi è la 
 \begin{equation}
 (\partial_s - \partial_{yy}) U(y,s) = \sum_{m=1}^{\infty}(\partial_s - \partial_{yy})U_m(y,s) = 0
 \end{equation}
-$U$ è una sovrapposizione di vibrazioni sinusoidali di frequenza $m$ sempre maggiore, con ampiezza fortemente attenuata dalla presenza dell'esponenziale. La rapida convergenza a zero del termine generale della (2.16) e delle sue derivate rispetto al tempo e allo spazio permette di scambiare le operazioni di derivazione con quella di somma. Più precisamente si ha $$\frac{\partial U_m}{\partial s} = \frac{\partial^2 U_m}{\partial y^2} = (-1)^{m+2}2m \pi e^{-m^2\pi^2s}sin(m\pi y)$$ 
+$U$ è una sovrapposizione di vibrazioni sinusoidali di frequenza $m$ sempre maggiore, con ampiezza fortemente attenuata dalla presenza dell'esponenziale. La rapida convergenza a zero del termine generale della (2.16) e delle sue derivate rispetto al tempo e allo spazio permette di scambiare le operazioni di derivazione con quella di somma. Più precisamente si ha $$\frac{\partial U_m}{\partial s} = \frac{\partial^2 U_m}{\partial y^2} = (-1)^{m+2}2m \pi e^{-m^2\pi^2s}\sin{m\pi y}$$ 
 e se $s\leq s_0 < 0$
 $$\bigg\lvert \frac{\partial U_m}{\partial s} \bigg\rvert , \bigg\lvert \frac{\partial^2 U_m}{\partial y^2}\bigg\rvert \leq 2 m \pi e^{-m^2\pi^2s}.$$
 Dal momento che 
@@ -484,14 +488,14 @@ $$E(s) \to 0 \quad \mbox{ se } s \to 0^+$$
 allora $E(s) = 0$ se $s > 0$. \\
 Poiché $w^2(y,s)$ è continua e non negativa se $s> 0, w = 0 \Longrightarrow u = v$.
 Ritornando al problema originale la soluzione risulta così enunciata
-$$\theta(x,t) = \theta_0 + (\theta_1 - \theta_0)\frac{x}{L} - (\theta_1 - \theta_0)\sum_{m=1}^{\infty}(-1)^{m+1}\frac{2}{m \pi}e^{\frac{-m^2 \pi^2 D}{L}t} sin \left(\frac{m\pi}{L}x\right)$$
+$$\theta(x,t) = \theta_0 + (\theta_1 - \theta_0)\frac{x}{L} - (\theta_1 - \theta_0)\sum_{m=1}^{\infty}(-1)^{m+1}\frac{2}{m \pi}e^{\frac{-m^2 \pi^2 D}{L}t} \sin{ \left(\frac{m\pi}{L}x\right)}$$
 Da questa formula si trova conferma dell'ipotesi iniziale, infatti tutti i termini della serie convergono a zero esponenzialmente per $t \to +\infty$ per cui la temperatura di assesta, a regime, sulla soluzione stazionaria
 $$
 \theta(x,t) \to \theta_0 + (\theta_1 - \theta_0) \frac{x}{L} \qquad t \to + \infty
 $$
 Inoltre, tra i vari termini della serie, il più lento a decadere, e quindi quello che in maggior misura determinerà l'andamento della temperatura, è $m = 1$, che ha valore
 $$
-\frac{2}{\pi}e^{\frac{-\pi^2 D}{L^2}t}sin\left(\frac{\pi}{L}x\right)
+\frac{2}{\pi}e^{\frac{-\pi^2 D}{L^2}t}\sin{\left(\frac{\pi}{L}x\right)}
 $$
 e andamento sinusoidale smorzato, con ampiezza massima $\frac{2}{\pi} e^{\frac{-\pi^2 D}{L^2}t}$. In un tempo $t$ di ordine $\frac{L^2}{4D}$ l'ampiezza diminuisce di $e^{\frac{-\pi^2}{4}}$ circa l'$8\%$ del valore iniziale. Dunque per raggiungere il valore a regime sarà necessario un tempo di grandezza $\frac{L^2}{D}$.
 \subsection{Problemi in dimensione $\mathbf{n>1}$}
@@ -552,7 +556,7 @@ Posto $u = w- \epsilon t$, allora
 \begin{equation}
 u_t - D\Delta u = q -\epsilon < 0
 \end{equation}
-e il massimo di $u$ in $\overline{Q}_{T- \epsilon}$ è assunto in un punto di $\partial_p Q_{T-\epsilon}$. Infatti, supponiamo che ciò non sia vero. Allora esiste un punto ($\mathbf{x}_0, t_0$), $\mathbf{x}_0 \in \Omega$, $0 < t_0 \leq T - \epsilon$, tale che $u$($\mathbf{x}_0, t_0$) è il massimo di $u$ in $\overline{Q}_{T-\epsilon}$. \\
+e il massimo di $u$ in $\overline{Q}_{T- \epsilon}$ è assunto in un punto di $\partial_p Q_{T-\epsilon}$. Infatti, si immagini che ciò non sia vero. Allora esiste un punto ($\mathbf{x}_0, t_0$), $\mathbf{x}_0 \in \Omega$, $0 < t_0 \leq T - \epsilon$, tale che $u$($\mathbf{x}_0, t_0$) è il massimo di $u$ in $\overline{Q}_{T-\epsilon}$. \\
 Ma allora, essendo $u_{x_j x_j} (\mathbf{x}_0, t_0) \leq 0$ per ogni $j=1, \ldots, n$ si avrebbe
 $$
 \Delta u (\mathbf{x}_0, t_0) \leq 0
@@ -576,7 +580,7 @@ $$
 \max_{\partial_p Q_{T-\epsilon}}w \leq \max_{\partial_p Q_{T-\epsilon}}u + \epsilon T \leq \max_{\partial_p Q_{T}}w + \epsilon T
 $$
 che è la (2.23).
-\item \textit{Passo 2}. Poiché $w$ è continua in $\overline{Q}_T$, deduciamo che 
+\item \textit{Passo 2}. Poiché $w$ è continua in $\overline{Q}_T$, se ne deduce che 
 $$
 \max_{\overline{Q}_{T-\epsilon}} w \leq \max_{\overline{Q}_T} w \qquad \mbox{ per } \epsilon \to 0
 $$
@@ -1412,5 +1416,136 @@ Affinché la (2.67) sia effettivamente soluzione al problema di Cauchy si utiliz
   \end{enumerate}
 \end{theorem}
 Il teorema indica che, con un dato iniziale che abbia crescita esponenziale, la (2.67) è soluzione del problema di Cauchy. Di fatto è anche l'unica soluzione in quanto il dato temporale \(T < \frac{1}{4Da}\) ha un valore arbitrario e la costante \(a\) può avere valori estremamente piccoli.
-
+Inoltre dalla proprietà (1) si evince una informazione piuttosto importante, ossia che la diffusione è un processo regolarizzante.
+Inoltre se il dato iniziale \(g\) è continuo in \(\mathbb{R}\), allora la soluzione è continua in \(\mathbb{R} \times (0,T)\). Conseguenza di questo fatto è il poter approssimare ogni funzione continua in un intervallo \([a,b]\) con una somma di polinomi.
+Più precisamente
+\begin{theorem}[Teorema di Approssimazione di Weierstrass]
+  Sia \(g \in \mathcal{C}([a,b])\). Allora, per ogni \(\epsilon > 0\) esiste un polinomio \(p = p(x)\) tale che 
+  \begin{equation}
+    \max_{x\in [a,b]} \abs*{g(x)-p(x)} \leq \epsilon
+  \end{equation}
+\end{theorem}
+\begin{proof}
+  Si estenda \(g\) con continuità su tutto \(\mathbb{R}\), in modo che risulti nulla al di fuori di un intervallo che contenga \([a,b]\), tipo \([-L,L]\). In tal modo, \(g\) risulta anche limitata su \(\mathbb{R}\). Posto \(M = \max(g)\) si ha (\(\epsilon > 0\)):
+  \[
+    u(x,t) = \frac{1}{2\sqrt{\pi t}} \int_{-L}^L g(y)dye^{-\frac{(x-y)^2}{4t}dy}
+  \]
+  che è soluzione di \(u_t - u_{xx} = 0\) in \(\mathbb{R} \times (0,T)\), e per ogni \(\epsilon'>0\) sufficientemente piccolo, si ha
+  \begin{equation}
+    \max_{x \in [a,b]} \abs*{g(x) - u(x, t_0)} \leq \epsilon'
+  \end{equation}
+  D'altronde, avvalendosi della formula di Taylor di ordine \(N\) per la funzione esponenziale, si ha
+  \[
+  \left|e^{-\frac{(x-y)^2}{4t_0}} - \sum_{k = 0}^N \frac{(-1)^k}{k!} \left[\frac{(x-y)^2}{4t_0}\right]^k\right| \leq \epsilon'\sqrt{t_0}
+  \]
+Per ogni \(x \in [a,b]\) e \(y \in [-L, L]\). Definito il polinomio come 
+\[
+ p_N(x) = \frac{1}{2\sqrt{\pi t_0}} \int_{-L}^L g(y) \sum_{k=0} \frac{(-1)^k}{k!} \left[\frac{(x-y)^2}{4t_0}\right]^k dy 
+\]
+\(p_N(x)\) è un polinomio di grado \(2N\) e si ricava dalle ultime due equazioni
+\begin{equation}
+  \abs*{u(x, t_0) - p_N(x)} \leq \frac{\epsilon'}{2\sqrt{\pi}}\int_{-L}^L \abs*{g(y)}dy \leq \frac{\epsilon' LM}{\sqrt{\pi}}
+\end{equation} 
+per ogni \(x\in [a,b] \). Si ha quindi, dalle (2.69) e (2.70)
+\begin{flalign*}
+\max_{x\in[a,b]}\abs*{g(x)-p_N(x)} \leq \max_{x \in [a,b]} \abs*{g(x)-u(x, t_0)} + \max_{x \in [a,b]} \abs*{u(x,t_0 - p_N(x))} \leq \\
+\leq \epsilon' \left(1+\frac{LM}{\sqrt{\pi}}\right)
+\end{flalign*}
+È necessario dunque che \(\epsilon' = \epsilon\left(1+\frac{LM}{\sqrt{\pi}}\right)\) per ottenere la (2.68)
+\end{proof}
+\section{Equazione di Laplace}
+\subsection{Introduzione}
+L'equazione di Laplace appare frequentemente nello studio di varie scienze applicate, un esmpio sono i fenomeni stazionari, le cui soluzioni vengono definite \emph{funzioni armoniche}. Si può scrivere come 
+\begin{eqnarray}
+  \Delta u = 0  & (\mbox{Equazione di Laplace}) \label{Laplace} \\
+  \Delta u = f & (\mbox{Equazione di Poisson}) \label{Poisson}
+\end{eqnarray}
+Nella sua versione non omogenea si definisce \emph{Equazione di Poisson}, che ha un ruolo fondamnetale nella teoria dei campi conservativi, dove il vettore campo è il gradiente di un potenziale.
+Dato un campo elettrostatico \textbf{E} generato da una distribuzione di cariche in un dominio \(\Omega\) di \(\mathbb{R}^3\). Si trova \(div\bm{E} = \frac{4 \pi \rho}{\epsilon}\), con \(\rho\) densità di carica e \(\epsilon\) costante dielettrica del mezzo. Quando esiste un potenziale \(u\) tale che \(\nabla u = -\bm{E}\), allora \(\Delta u = div \nabla u = -\frac{4 \pi \rho}{\epsilon}\), che restituisce la \eqref{Poisson}. Se lo spazio è privo di cariche, si ha \(\rho = 0\) e \(u\) è funzione armonica in quella regione.
+In dimensione \(n = 2\), si ha uno stretto legame con la teoria delle funzioni olomorfe\footnote{Una funzione \(f = f(x)\) si può dire olomorfa in un aperto \(\Omega\) del piano complesso se in esso è derivabile, ossia se in ogni punto \(z_0 \in \Omega\) il limite 
+\[
+  \lim_{z \to z_0} \frac{f(z)-f(z_0)}{z-z_0} = f'(z_0)
+\]}
+poiché le parti reale e immaginaria di una funzione olomorfa sono armoniche. Per esempio
+\[
+  z^m = \rho^m(\cos{m\theta} + i \sin{m\theta}), \qquad m \in \mathbb{N}
+\]
+con \(\rho, \theta\) coordinate polari, sono olomorfe in tutto \(\mathbb{C}\). Di conseguenza, le funzioni
+\[
+\begin{array}{c}
+  u(\rho, \theta) = \rho^m \cos(m\theta) \\
+  v(\rho, \theta) = \rho^m \sin(m\theta)
+\end{array}  
+\]
+sono funzioni armoniche in \(\mathbb{R}^2\).
+\subsection{Problemi ben posti}
+Considerata l'equazione di Poisson
+\[
+  \Delta u = f \qquad \mbox{ in } \Omega
+\]
+con \(\Omega \subset \mathbb{R}^n\) dominio limitato. 
+Per i problemi ben posti si devono assegnare nuove condizioni al bordo, per cui si hanno sulla frontiera \(\partial \Omega\):
+\begin{itemize}
+  \item \emph{Condizione di Dirichlet}. Si assegnano i valori di \(u\):
+  \begin{equation}
+    u = g
+  \end{equation}
+  \item \emph{Condizione di Neumann}. Si assegna la derivata normale di \(u\):
+  \begin{equation}
+    \partial_{\bm\nu} u = h
+  \end{equation}
+  \item \emph{Condizione di Robin}. Si assegna 
+  \begin{equation}
+    \partial_{\bm{\nu}}u+\alpha u = h \qquad (\alpha > 0)
+  \end{equation}
+  \item \emph{Condizioni miste}. Si trovano due o più sottoinsiemi disgiunti e non vuoti la cui unione formi l'intera frontiera di \(\Omega\) e si assegna \((\overline{\Gamma}_D \cup \Gamma_N = \partial \Omega)\)
+  \begin{equation}
+    \begin{array}{cc}
+      u=g & \mbox{su } \overline{\Gamma}_D \\
+      \partial_{\bm{\nu}}u=  h & \mbox{su }\Gamma_N
+    \end{array}
+  \end{equation}
+\end{itemize}
+Nel caso si abbia \(g = h = 0\) le condizioni sono omogenee. Si immagini \(u\) come la posizione di una membrana perfettamente flessibile e \(f\) sia un carico esterno, allora la \eqref{Poisson} modella lo stato di equilibrio. In tal caso la condizione di Dirichlet descriverebbe la posizione esatta del bordo della membrana, Robin descriverebbe un attacco elastico al bordo della membrana e la condizione di Neumann rappresenterebbe la capacità della membrana di scorrere verticalmente senza attrito. \\
+Grazie all'identità di Green \eqref{Identità di Green} si può dimostrare il seguente teorema di unicità:
+\begin{theorem}
+  Sia \(\Omega \subset \mathbb{R}^n\) un dominio limitato e regolare. Esiste al più una funzione di classe \(\mathcal{C}^2(\Omega)\cap\mathcal{C}^1(\overline{\Omega})\) soluzione di \(\Delta u = f\) in \(\Omega\) tale che, su \(\partial\Omega\)
+  \[
+  \begin{array}{cccc}
+    u = g & \mbox{oppure} & \partial_{\nu}u +\alpha u = h & (\alpha > 0)
+  \end{array}  
+  \]
+  oppure 
+  \[
+  \begin{array}{ccccc}
+    u=g & \mbox{su }\overline{\Gamma}_D\subset \partial\Omega & \mbox{ e } & \partial_{\bm{\nu}}u = h & \mbox{su }\Gamma_N
+  \end{array}  
+  \]
+  con \(f, g \mbox{ e } h\) funzioni continue assegnate. Nel caso delle condizioni di Neumann, ossia
+  \[
+    \partial_{\bm{\nu}}u = h \qquad \mbox{su }\partial\Omega
+  \]
+  due soluzioni differiscono per una costante.
+\end{theorem}
+\begin{proof}
+  Siano \(u\) e \(v\) soluzioni dello stesso problema. Posto \(w = u-v\), allora \(\Delta w = 0\) e soddisfa una delle quattro condizioni al bordo. Sostituendolo nella \eqref{Identità di Green} si ottiene
+  \[
+    \int_{\Omega} \abs*{\nabla w}^2 \, d\textbf{x} = \int_{\partial\Omega} w\partial_{\bm{\nu}} w\, d\sigma
+  \]
+  Ma nel caso di Dirichlet, Neumann e condizioni miste si ha
+  \[
+   \int_{\partial\Omega} w\partial_{\bm{\nu}} w \, d\sigma 
+  \]
+  mentre nel caso di Robin 
+  \[
+  \int_{\partial\Omega} w\partial_{\bm{\nu}}  w \, d\sigma = -\int_{\partial\Omega} \alpha w^2 \, d\sigma \leq 0
+  \]
+  da cui si può dedurre, in ogni caso, che 
+  \[
+    \int_{\Omega}\abs*{\nabla w}^2 \, d\textbf{x} \leq 0
+  \]
+  che implica \(\nabla w = 0\) e dunque che \(w = u-v\) sia costante poiché \(\Omega\) è connesso. Negli altri casi la costante deve essere nulla, da cui si ha \(u = v\)
+\end{proof}
+\subsection{Funzioni armoniche}
+Anche con le funzioni armoniche esiste una stretta correlazione con la passeggiata aleatoria e il moto Browniano. Fissata una dimensione \(n = 2\) (si può estendere il ragionamento a ogni dimensione), siano \(\tau > 0\) il passo temporale e \(h > 0\) quello nello spazio. Sia a sua volta \(h\mathbb{Z}^2\) il reticolo di punti \(\textbf{x} = (x_1, x_2)\), con coordinate multipli interi di \(h\). Con \(p(\textbf{x}, t) =  p(x_1, x_2, t)\) che rappresenta la probabilità di trovare la particella in un punto \(\textbf{x}\) al tempo \(t\).
 \end{document}
