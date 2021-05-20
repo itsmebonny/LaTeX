@@ -1547,5 +1547,27 @@ Grazie all'identità di Green \eqref{Identità di Green} si può dimostrare il s
   che implica \(\nabla w = 0\) e dunque che \(w = u-v\) sia costante poiché \(\Omega\) è connesso. Negli altri casi la costante deve essere nulla, da cui si ha \(u = v\)
 \end{proof}
 \subsection{Funzioni armoniche}
-Anche con le funzioni armoniche esiste una stretta correlazione con la passeggiata aleatoria e il moto Browniano. Fissata una dimensione \(n = 2\) (si può estendere il ragionamento a ogni dimensione), siano \(\tau > 0\) il passo temporale e \(h > 0\) quello nello spazio. Sia a sua volta \(h\mathbb{Z}^2\) il reticolo di punti \(\textbf{x} = (x_1, x_2)\), con coordinate multipli interi di \(h\). Con \(p(\textbf{x}, t) =  p(x_1, x_2, t)\) che rappresenta la probabilità di trovare la particella in un punto \(\textbf{x}\) al tempo \(t\).
+Anche con le funzioni armoniche esiste una stretta correlazione con la passeggiata aleatoria e il moto Browniano. Fissata una dimensione \(n = 2\) (si può estendere il ragionamento a ogni dimensione), siano \(\tau > 0\) il passo temporale e \(h > 0\) quello nello spazio. Sia a sua volta \(h\mathbb{Z}^2\) il reticolo di punti \(\textbf{x} = (x_1, x_2)\), con coordinate multipli interi di \(h\). Con \(p(\textbf{x}, t) =  p(x_1, x_2, t)\) che rappresenta la probabilità di trovare la particella in un punto \(\textbf{x}\) al tempo \(t\). L'equazione alle differenze per \(p\) in dimensione due si scrive come
+\[
+  p(\textbf{x}, t+ \tau) = \frac{1}{4} \{p(\textbf{x}+h\bm{e}_1, t) + p(\textbf{x}-h\bm{e}_1, t) + p(\textbf{x}+h\bm{e}_2, t) + p(\textbf{x}-h\bm{e}_2, t)\}
+\]
+Per riscrivere tutto ciò si può introdurre l'operatore media \(M_h\) che si applica su generiche funzioni \(u =  
+u(\textbf{x})\) come
+\begin{flalign*}
+  M_hu(\textbf{x}) &= \frac{1}{4}\{u(\textbf{x}+h\bm{e}_1, t) + u(\textbf{x}-h\bm{e}_1, t) + u(\textbf{x}+h\bm{e}_2, t) + u(\textbf{x}-h\bm{e}_2, t)\} = \\
+  & = \frac{1}{4}\sum_{\abs*{\textbf{x}- \textbf{y}} = h}u(\textbf{y})
+\end{flalign*}
+Si noti che \(M_hu(\textbf{x})\) è la media aritmetica dei valori di \(u\) nei punti del reticolo \(h\mathbb{Z}^2\), posti a distanza \(h\) da \(\textbf{x}\).
+L'equazione alle differenze allora prende la forma
+\begin{equation}
+  p(\textbf{x}, t + \tau) = M_hp(\textbf{x}, t)
+\end{equation}
+La probabilità al tempo \(t + \tau\) è quindi determinata dall'azione di \(M_h\) sulla funzione \(p\) al tempo precedente. \(M_h\) è quindi il \emph{generatore della passeggiata aleatoria}.\\
+Inoltre, se \(u\) è una funzione di classe \(\mathcal{C}^2\), grazie alla formula di Taylor\footnote{La formula di Taylor al secondo ordine, dopo l'elisione dei termini opposti al primo ordine, è:
+\[
+Mu(\textbf{x}) = u(\textbf{x}) + \frac{h^2}{4}\{u_{x_1x_1}(\textbf{x})+ u_{x_2x_2}(\textbf{x}) + o(h^2)\} 
+\]} si ha
+\begin{equation}
+\lim_{h \to 0} \frac{M_h u(\textbf{x}) - u(\textbf{x})}{h^2} \to \frac{1}{4} \Delta u(\textbf{x})  
+\end{equation}
 \end{document}
