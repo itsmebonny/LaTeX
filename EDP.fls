@@ -55,6 +55,8 @@ INPUT C:\Users\andre\AppData\Local\Programs\MiKTeX 2.9\tex\latex\bigfoot\perpage
 INPUT C:\Users\andre\AppData\Local\Programs\MiKTeX 2.9\tex\latex\bigfoot\perpage.sty
 INPUT C:\Users\andre\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amscls\amsthm.sty
 INPUT C:\Users\andre\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amscls\amsthm.sty
+INPUT C:\Users\andre\AppData\Local\Programs\MiKTeX 2.9\tex\latex\etoolbox\etoolbox.sty
+INPUT C:\Users\andre\AppData\Local\Programs\MiKTeX 2.9\tex\latex\etoolbox\etoolbox.sty
 INPUT EDP.aux
 INPUT EDP.aux
 OUTPUT EDP.aux

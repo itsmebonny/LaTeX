@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1621264616 "c:/Users/andre/Documents/Polimi/Documenti sparsi/EDP.tex" "EDP.pdf" "EDP" 1621264618
+["pdflatex"] 1621508929 "c:/Users/andre/Documents/Polimi/Documenti sparsi/EDP.tex" "EDP.pdf" "EDP" 1621508932
   "C:/Users/andre/AppData/Local/MiKTeX/2.9/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm0700.pk" 1615561625 8268 93fc343a305efbcbf07ea39ff3765003 ""
   "C:/Users/andre/AppData/Local/MiKTeX/2.9/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm0800.pk" 1615561627 9292 bd776a5e9f0e2db64aca5c05fe57cba7 ""
   "C:/Users/andre/AppData/Local/MiKTeX/2.9/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk" 1593438458 14064 731b37c4b17f61d43da022a26eacb969 ""
@@ -90,6 +90,7 @@
   "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/tex/latex/bigfoot/bigfoot.sty" 1441107320 45349 273a3a42cdc1e0e69e94929e58fcd49d ""
   "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/tex/latex/bigfoot/perpage.sty" 1441107320 5884 8a111e2f4c8f511ad622494ac2fe3f6d ""
   "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/tex/latex/bigfoot/suffix.sty" 1441107321 3180 223874a03a08cecb9fb79bd86e5dcf97 ""
+  "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/tex/latex/etoolbox/etoolbox.sty" 1569083170 45259 743c52a37a6e5ed83cfe0e128b2da10d ""
   "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/tex/latex/geometry/geometry.cfg" 1578057145 1104 7ac475a4e3466b0b43e138e9356bda83 ""
   "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/tex/latex/geometry/geometry.sty" 1578057145 42759 9cf6c5257b1bc7af01a58859749dd37a ""
   "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/tex/latex/graphics/keyval.sty" 1580750142 2677 e3b24ff953e5b58d924f163d25380312 ""
@@ -101,10 +102,10 @@
   "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/tex/latex/ncctools/nccfoots.sty" 1565017809 1230 756b2502150ce6dc2179faebbd40e701 ""
   "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/tex/latex/physics/physics.sty" 1356005662 29610 a9597219b282d9c78b02393dcd7d4322 ""
   "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/tex/latex/tools/bm.sty" 1580648484 12671 ace2aac118748ea10d1717448ecafbed ""
-  "EDP.aux" 1621264617 2511 4458cf6549799601fb67291ca3405157 "pdflatex"
-  "EDP.tex" 1621264613 71659 c7cc7d815d6b37bdcc728e076146d0cd ""
-  "c:/Users/andre/Documents/Polimi/Documenti sparsi/EDP.tex" 1621264613 71659 c7cc7d815d6b37bdcc728e076146d0cd ""
+  "EDP.aux" 1621508931 2669 9719b545d716d35bae2dc54b38ee744d "pdflatex"
+  "EDP.tex" 1621508927 79206 0dd157340a3d4d20c6e9112cc651c559 ""
+  "c:/Users/andre/Documents/Polimi/Documenti sparsi/EDP.tex" 1621508927 79206 0dd157340a3d4d20c6e9112cc651c559 ""
   (generated)
-  "EDP.log"
   "EDP.pdf"
+  "EDP.log"
   "EDP.aux"

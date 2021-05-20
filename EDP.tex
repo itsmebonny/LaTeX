@@ -1383,5 +1383,34 @@ La linearità dell'equazione permette di utilizzare il principio di sovrapposizi
 \begin{equation}
   u(x,t)= \int_{\mathbb{R}} \Gamma_D(x-y,t)g(y,t)dy = \frac{1}{\sqrt{4\pi Dt}}\int_{\mathbb{R}}g(y)e^{-\frac{(x-y)^2}{4Dt}}dy
 \end{equation}
-La (2.67) rappresenta la convoluzione del dato iniziale con la Gaussiana per ogni \(t>0\). Sia, per semplicità, \(D=\frac{1}{2}\) e \(B^x(t)\) la posizione di una particella Browniana partita dal punto \(x\), con \(g(y)\)
+La (2.67) rappresenta la convoluzione del dato iniziale con la Gaussiana per ogni \(t>0\). Sia, per semplicità, \(D=\frac{1}{2}\) e \(B^x(t)\) la posizione di una particella Browniana partita dal punto \(x\), con \(g(y)\) il \emph{guadagno acquisito} al passaggio per \(y\).\\
+Si può allora calcolare il valore atteso rispetto alla probabilità \(P^x\) con densità \(\Gamma(x-y,t)\) come 
+\[
+  u(x,t) = E[g(B^x(t))]
+\]
+per cui per calcolare \(u\) nel punto \((x,t)\) si considera una particella Browniana che parta dal punto \(x\), si calcola la sua posizione \(B^x(t)\) al tempo \(t\) e si calcola il valore atteso del guadagno \(g(B^x(t))\).
+Affinché la (2.67) sia effettivamente soluzione al problema di Cauchy si utilizza il seguente Teorema
+\begin{theorem}
+  Sia \(g\) una funzione con un numero finito di punti di discontinuità in \(\mathbb{R}\) tale che 
+  \[
+    [g(x) \leq ce^{ax^2}], \qquad \forall x \in \mathbb{R}
+  \]
+  con \(a\) e \(c\) numeri positivi e sia \(u\) definita dal problema di Cauchy, allora:
+  \begin{enumerate}
+    \item \(u\) è ben definita ed è differenziabile fino a qualunque ordine in \(\mathbb{R} \times (0, T)\) con \(T < \frac{1}{4Da}\) e in questo intervallo 
+    \[
+    u_t - Du_{xx} = 0  
+    \]
+    \item se \(x_0\) è un punto in cui \(g\) è continua, allora
+    \[
+     u(y,t) \to g(x_0) \qquad \mbox{per }(y,t) \to (x_0,0), t>0 
+    \]
+    \item esistono due costanti \(c_1, A\) tali che 
+    \[
+      \abs*{u(y,t)} \leq c_1e^{Ax^2}, \qquad \forall x,t \in \mathbb{R} \times (0, T)
+    \]
+  \end{enumerate}
+\end{theorem}
+Il teorema indica che, con un dato iniziale che abbia crescita esponenziale, la (2.67) è soluzione del problema di Cauchy. Di fatto è anche l'unica soluzione in quanto il dato temporale \(T < \frac{1}{4Da}\) ha un valore arbitrario e la costante \(a\) può avere valori estremamente piccoli.
+
 \end{document}
