@@ -1683,6 +1683,16 @@ Da questa affermazione si ricava una informazione fondamentale, ossia che tale f
 \end{theorem}
 Se una funzione possiede proprietà di media in un dominio \(\Omega\), non può assumere massimi (o minimi) in punti interni al dominio, eccetto nel caso in cui sia costante. Se \(\Omega\) è limitato. Nel caso di \(\Omega\) limitato e \(u\) non costante e continua in \(\overline{\Omega}\), allora \(u\) assume il suo massimo (o minimo) esclusivamente su \(\partial \Omega\).
 \begin{theorem}[Principio di massimo (o minimo)]
-  hj
+  Se \(u \in \mathcal{C}(\Omega)\) ha la proprietà di media nel dominio \(\Omega \subseteq \mathbb{R}^n\) e \(\bm{p} \in \Omega\) è un punto di massimo (o minimo) globale per \(u\), allora \(u\) è costante. In particolare, nel caso \(\Omega\) sia limitato e \(u \in \mathcal{C}(\overline{\Omega})\) non sia costante, allora \(\forall \mathbf{x} \in \Omega\):
+  \[
+  u(\mathbf{x}) < \max_{\partial \Omega} u \qquad (u(\mathbf{x}) > \min_{\partial \Omega} u) 
+  \]
 \end{theorem}
+\begin{proof}
+  Sia \(u\) non costante e \(\bm{p}\) un punto di minimo:
+  \[
+    m = u(\bm{p}) \leq u(\mathbf{y}) \qquad \forall \mathbf{y} \in \Omega
+  \]
+  Si prenda un ulteriore punto \(\bm{q}\) all'interno di \(\Omega\). Per le proprietà di \(\Omega\)\footnote{Insieme aperto e connesso} si può determinare una sequenza finita di sfere \(B(\mathbf{x}_j) \subset \subset \Omega\)
+\end{proof}
 \end{document}
