@@ -1570,4 +1570,71 @@ Mu(\textbf{x}) = u(\textbf{x}) + \frac{h^2}{4}\{u_{x_1x_1}(\textbf{x})+ u_{x_2x_
 \begin{equation}
 \lim_{h \to 0} \frac{M_h u(\textbf{x}) - u(\textbf{x})}{h^2} \to \frac{1}{4} \Delta u(\textbf{x})  
 \end{equation}
+Dalla (3.8) si può definire l'operatore di Laplace discreto, per ogni \(h > 0\) fissato, come
+\[
+  \Delta_h^* = M_h - I
+\]
+dove \(I\) indica l'operatore identità (\(Iu = u\)). \(\Delta_h^*\) è ben definito in tutte le funzioni \(u\) del reticolo \(h\mathbb{Z}^2\) e la funzione è \emph{d-armonica} (con \emph{d} discreto) se \(\Delta_h^* = 0\).
+Una funzione \emph{d-armonica} è una funzione che in ogni punto \(\textbf{x}\) coincide con la media dei valori nei punti in un intorno discreto di \(\textbf{x}\) di raggio \(h\).
+Per definire un problema di Dirichlet discreto, sia \(A\) un sottoinsieme limitato di \(h\mathbb{Z}^2\) e \(\mathbf{x} \in A\):
+\begin{itemize}
+  \item \(\mathbf{x}\) è un punto interno di \(A\) se il suo intorno discreto di raggio \(h\) è contenuto in \(A\)
+  \item \textbf{x} è un punto di frontiera se non è interno ma il suo intorno discreto contiene almeno un punto interno. L'insieme dei punti di frontiera si indica come \(\partial A\)
+\end{itemize}
+Il \textbf{problema di Dirichlet discreto} si definisce così allora: \\
+Sia \(A\) un sottoinsieme limitato e connesso di \(h\mathbb{Z}^2\) e \(g\) una funzione definita sulla frontiera \(\partial A\). Si determini \(u\) in \(A\) tale che 
+\begin{equation}
+  \begin{cases}
+    \Delta_h^* u= 0 & \mbox{nei punti interni di }A \\
+    u = g & \mbox{su }\partial A
+  \end{cases}
+\end{equation}
+Sia \(u\) soluzione della (3.9), allora ne derivano due importanti proprietà:
+\begin{enumerate}
+  \item Principio di massimo: se \(u\) assume il suo massimo (o minimo) in un punto interno allora \(u\) è costante. Si immagini che \(\textbf{x} \in A\) sia punto interno e che \(u(\textbf{x}) = M \geq u(\textbf{y})\) per ogni \(\textbf{y} \in A\). Poiché \(u(\textbf{x})\) è la media aritmetica dei valori assunti nei quattro punti posti a distanza \(h\) da \(\textbf{x}\), in ognuno di questi punti \(u\) deve avere lo stesso valore di \(M\). Allo stesso modo, sia 8\(\mathbf{x}_1 \not = \mathbf{x}\) uno dei quattro punti, \(u(\mathbf{y}) = M\) per ogni \(\mathbf{y}\) nell'intorno di raggio \(h\) di \(\mathbf{x}_1\). Il fatto che \(A\) sia un insieme connesso e finito, permette di mostrare che \(u(\textbf{y}) = M\) in ogni punto di \(A\). \\
+  Per questo motivo il massimo (o minimo) di \(u\) è assunto sulla frontiera di \(A\).
+  \item La soluzione del problema di Dirichlet è unica, essendo la soluzione \(u\) una funzione d-armonica, si immagini di avere una funzione \(v\) anche essa soluzione del problema di Dirichlet. Allora anche \(v\) deve essere una funzione d-armonica che rispetti il principio di massimo sopra enunciato. Ma poiché la frontiera di \(A\) è sempre la stessa \((u-v)(\mathbf{x} = 0 \, \forall \mathbf{x} \in A)\), quindi il massimo (o minimo) di \(v\) coincide con quello di \(u\), ossia le due funzioni coincidono.
+\end{enumerate}
+Dal problema (3.9) sorge una interessante interpretazione probabilistica, che è di grande aiuto per la costruzione di una soluzione. La funzione \(g\) della passeggiata aleatoria della particella rappresenta un \emph{guadagno}, ossia, con una particella che parte da \(\mathbf{x}\) e termina la sua passeggiata sulla frontiera di \(A\) in \(\mathbf{y}\), allora il guadagno è pari a \(g(\mathbf{y})\). \\
+Si vuole mostrare che la particella, indipendentemente dal punto di partenza, raggiunge sempre la frontiera \(\partial A\), e che il valore \(u(\mathbf{x})\) rappresenta il valore atteso del guadagno \(g\) rispetto a una opportuna distribuzione di probabilità su \(\partial A\). Sia \(\Gamma \subseteq \partial A\), allora 
+\[
+  P(\mathbf{x}, \Gamma)
+\]
+indica la probabilità che la particella, partendo da \(\mathbf{x}\), giunga per la prima volta in un punto \(\mathbf{y} \in \Gamma\) sulla frontiera. Si vuole mostrare che \(P(\mathbf{x}, \partial A) = 1 \quad \forall \mathbf{x} \in A\).
+Nel caso in cui \(\mathbf{x} \in \Gamma\), si ottiene \(P(\mathbf{x}, \Gamma) = 1\), mentre con \(\mathbf{x} \in \partial A\backslash \Gamma\) si ha \(P(\mathbf{x}, \Gamma) = 0\). \\
+Fissato l'insieme \(\Gamma\) si ha che 
+\[
+  \mathbf{x} \longrightarrow w_{\Gamma}(\mathbf{x}) \equiv P(\mathbf{x}, \Gamma)
+\]
+è una funzione d-armonica nei punti interni di \(A\), ossia l'operatore di Laplace discreto \(\Delta^*_h w_{\Gamma} = 0\). Inoltre indicata come
+\[
+p(1, \mathbf{x}, \mathbf{y})  
+\]     
+la probabilità di transizione, ossia la probabilià di passare dal punto \(\mathbf{x} \mbox{ a } \mathbf{y}\) in un solo passo. La simmetria del moto permette di sapere che \(p(1, \mathbf{x}, \mathbf{y}) =  \frac{1}{4}\) se \(\abs*{\mathbf{x} -\mathbf{y}} = 1\), altrimenti \(p(1, \mathbf{x}, \mathbf{y}) = 0\). Poiché \(w_{\Gamma}(\mathbf{x})\) può essere ottenuta come somma di eventi disgiunti ed esaustivi (ossia la cui somma è l'evento certo), si ottiene così:
+\[
+  w_{\Gamma}(\mathbf{x}) = \sum_{\mathbf{y} \in h\mathbb{Z}^2}p(1, \mathbf{x}, \mathbf{y})w_{\Gamma}(\mathbf{y}) = M_hw_{\Gamma}(\mathbf{x})
+\]
+che è, di fatto, l'equivalente di 
+\[
+  (I - M_h)w_{\Gamma} = \Delta^*_h w_{\Gamma} = 0
+\]
+da cui si deduce che la funzione \(w_{\Gamma}\) è d-armonica in \(A\). Nel caso in cui \(\Gamma \equiv \partial A\), la funzione \(w_{\partial A}\) è sempre d-armonica e assume valore \(1\) al bordo. Inoltre, poiché la soluzione del problema di Dirichlet è unica, si ha \(w_{\partial A} \equiv 1\) in tutto \(A\). Pertanto raggiungere \(\partial A\) partendo da un punto \(\mathbf{x}\) è un evento certo, per cui si nota che la funzione 
+\[
+\Gamma \longrightarrow P(\mathbf{x}, \Gamma)  
+\]
+è additiva e definisce una misura di probabilità su \(\partial A\). \\
+La soluzione \(u\) della (3.9) diventa facile da comporre
+\newpage
+\begin{theorem}
+  Il valore della soluzione del problema di Dirichlet discreto nel punto \(\mathbf{x}\) è dato dal valore atteso del guadagno \(g(\cdot)\) rispetto alla probabilità \(P(\mathbf{x}, \cdot)\), ossia 
+  \begin{equation}
+    u(\mathbf{x}) = \sum_{\mathbf{y}\in \partial A} g(\mathbf{y})P(\mathbf{x}, \{\mathbf{y}\})
+  \end{equation}
+\end{theorem}
+\begin{proof}
+  Ogni addendo
+  \[
+  g(\mathbf{y})P(\mathbf{x}, \{\mathbf{y}\} = )  
+  \]
+\end{proof} 
 \end{document}
