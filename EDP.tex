@@ -14,10 +14,11 @@
   {\partopsep}
   {\topsep}%  
   {\normalfont}%
-  {\parindent}%
+  {}%
   {\bfseries}%
   {}%
-  {\newline}{}%
+  {\newline}%
+  {}%
   \theoremstyle{break}
 \newtheorem{theorem}{Teorema}[section]
 \newtheorem{corollary}{Corollario}[section]
@@ -1623,7 +1624,7 @@ da cui si deduce che la funzione \(w_{\Gamma}\) è d-armonica in \(A\). Nel caso
 \Gamma \longrightarrow P(\mathbf{x}, \Gamma)  
 \]
 è additiva e definisce una misura di probabilità su \(\partial A\). \\
-La soluzione \(u\) della (3.9) diventa facile da comporre
+La soluzione \(u\) della (3.9) diventa facile da comporre:
 \newpage
 \begin{theorem}
   Il valore della soluzione del problema di Dirichlet discreto nel punto \(\mathbf{x}\) è dato dal valore atteso del guadagno \(g(\cdot)\) rispetto alla probabilità \(P(\mathbf{x}, \cdot)\), ossia 
@@ -1636,7 +1637,52 @@ La soluzione \(u\) della (3.9) diventa facile da comporre
   \[
   g(\mathbf{y})P(\mathbf{x}, \{\mathbf{y}\}) = g(\mathbf{y}) w_{(\mathbf{y})}(\mathbf{x})
   \]
-  è d-armonico in \(A\), e quindi lo è anche \(u\).
+  è d-armonico in \(A\), e quindi lo è anche \(u\). \\
+  Se \(\mathbf{x} \in \partial A\) allora \(u(\mathbf{x}) = g(\mathbf{x})\) dal momento che ogni termine della somma è pari a \(g(\mathbf{x})\) se \(\mathbf{x} = \mathbf{y}\) o è nullo se \(\mathbf{x} \not = \mathbf{y}\).
 \end{proof}
-
+Il caso discreto permette di stabilire alcune proprietà fondamentali delle funzioni armoniche. Una funzione è armonica in un dominio \(\Omega \subseteq \mathbb{R}^n\) se \(u \in \mathcal{C}^2(\Omega) \mbox{ e }\Delta u = 0 \mbox{ in } \Omega\). Dal momento che le funzioni d-armoniche hanno una definizione in termini di media, ci si può aspettare che anche le funzioni armoniche godano di proprietà simili. Si immagini una sfera \(B_r(\mathbf{x})\)\footnote{Con questa dicitura si intende una sfera di raggio \(r\) centrata nel punto \(\mathbf{x}\).}, che sia \(\subset \subset\)\footnote{Il simbolo \(\subset \subset\) indica una \emph{chiusura compatta contenuta}, ossia il sottoinsieme contenuto all'interno non ha punti di contatto con l'insieme principale.}. Nel caso di una sfera \(B_r \subset \subset \Omega\) il valore al centro della sfera uguaglierà la media aritmetica dei valori al bordo \(\partial B_r\). Sapendo che \(\omega_n\) indica la misura superficiale di \(\partial B_1\) e \(\abs*{B_1} = \frac{\omega_n}{n}\) rappresenta il volume.
+\begin{theorem}
+  Sia \(u\) funzione armonica in \(\Omega \subset \mathbb{R}^n\). Per ogni sfera \(B_r(\mathbf{x}) \subset \subset \Omega\), valgono le formule
+  \begin{eqnarray}
+    u(\mathbf{x}) = \frac{n}{\omega_n R^n} \int_{B_R(\mathbf{x})u(\mathbf{y})} \, d\mathbf{y} \\
+    u(\mathbf{x}) = \frac{1}{\omega_n R^{n-1}} \int_{\partial B_R(\mathbf{x})} u(\bm{\sigma}) \, d\sigma
+  \end{eqnarray}
+  con \(d\sigma\) che rappresenta l'elemento di superficie su \(\partial B_R(\mathbf{x})\).
+\end{theorem}
+\begin{proof}
+  La seconda formula si può scrivere, ponendo \(r < R\)
+  \[
+    g(r) = \frac{1}{\omega_n R^{n-1}}\int_{\partial B_r(\mathbf{x})} u(\bm{\sigma}) \, d\sigma
+  \]
+  Attuando un cambio di variabili e ponendo \(\bm{\sigma} = \mathbf{x} + r\bm{\sigma}'\) si avranno come estremi di integrazione \(\bm{\sigma}' \in \partial B_1(\bm{0}), \, d\sigma = r^{n-1}d\sigma'\) e quindi
+  \[
+    g(r) = \frac{1}{\omega_n} \int_{\partial B_1(\bm{\sigma})} u(\mathbf{x}+r\bm{\sigma}') \, d\sigma'
+  \] 
+  Posta una funzione \(v(\mathbf{y})\) in modo che \(v(\mathbf{y}) = u(\mathbf{x} + r\mathbf{y})\). Questo permette di ottenere
+  \begin{eqnarray*}
+    \nabla v(\mathbf{y}) = r\nabla u(\mathbf{x} + r\mathbf{y}) \\
+  \Delta v(\mathbf{y}) = r^2\Delta u (\mathbf{x} + r\mathbf{y})
+  \end{eqnarray*}
+  Si ha, allora, 
+  \begin{eqnarray*}
+  g'(r) & = & \frac{1}{\omega_n} \int_{\partial B_1(\bm(0))} \frac{d}{dr}u(\mathbf{x} + r\bm{\sigma}') \, d\sigma' = \frac{1}{\omega_n} \int_{\partial B_1(\bm{0})} \nabla u(\mathbf{x} + r\sigma') \cdot \bm{\sigma}' \, d\sigma' \\
+  & = & \frac{1}{\omega_n r} \int_{\partial B_1 (\bm{0})} \nabla v(\bm{\sigma}') \cdot \bm{\sigma}' \, d\sigma' = (\mbox{Teorema della Divergenza}) \\
+  & = & \frac{1}{\omega_n r} \int_{B_1 (\bm{0})} \Delta v(\mathbf{y}) \, d\mathbf{y} = \frac{r}{\omega_n} \int_{B_1(\bm{0})} \Delta u(\mathbf{x} + r\mathbf{y}) \, d\mathbf{y} = 0
+  \end{eqnarray*}
+  Per questo motivo \(g\) è costante, poiché \(g(r) \to u(\mathbf{x})\) con \(r \to 0\) si ottiene la (3.12). \\
+  La (3.11) si ottiene moltiplicando la (3.12) per \(r^{n-1}\) e integrando entrmabi i membri tra \(0 \mbox{ e } R\) si ottiene
+  \[
+    \frac{R^n}{n} u(\mathbf{x}) = \frac{1}{\omega_n} \int_0^Rdr \int_{\partial B_r(\mathbf{0})} u(\bm{\sigma}) \, d\sigma = \frac{1}{\omega_n} \int_{B_R(\mathbf{x}}) u(\mathbf{y}) \, d\mathbf{y}
+  \]
+  che restituisce la (3.11)
+\end{proof}
+L'inverso del Teorema (3.3) permette di affermare che una funzione continua \(u\) soddisfa la proprietà di media in \(\Omega\) se la (3.11) o la (3.12) valgono per ogni sfera \(B_R(\mathbf{x}) \subset \subset \Omega\).
+Da questa affermazione si ricava una informazione fondamentale, ossia che tale funzione risulta necessariamente armonica in \(\Omega\). Inoltre si apprende che una funzione armonica in \(\Omega\) è dotata di derivate di ogni ordine, dunque è di classe \(\mathcal{C}^{\infty}(\Omega)\).
+\begin{theorem}
+  Sia \(u \in \mathcal{C}(\Omega).\) Se \(u\) ha la proprietà di media, allora si tratta di una funzione armonica e \(\mathcal{C}^{\infty}\) in \(\Omega\).
+\end{theorem}
+Se una funzione possiede proprietà di media in un dominio \(\Omega\), non può assumere massimi (o minimi) in punti interni al dominio, eccetto nel caso in cui sia costante. Se \(\Omega\) è limitato. Nel caso di \(\Omega\) limitato e \(u\) non costante e continua in \(\overlline{\Omega}\), allora \(u\) assume il suo massimo (o minimo) esclusivamente su \(\partial \Omega\).
+\begin{theorem}[Principio di massimo (o minimo)]
+  hj
+\end{theorem}
 \end{document}
