@@ -87,7 +87,7 @@ Equazioni lineari:
 Tra i tipi di nonlinearità si distinguono tre principali categorie:
 \begin{itemize}
 \item Semilineari: se F è nonlineare rispetto ad $u$, ma lo è rispetto alle sue derivate. (e.g. Equazione di Fisher-Kolmogorov: $u_t - D\Delta u = f(u) = ru(1-u)$)
-\item Quasilineari: se F è lineare rispetto alle derivate di $u$ di ordine massimo, con coefficienti dipendenti solo da \textbf{x}, $u$ e dalle derivate di ordine inferiore. (e.g. Equazione di Burgers: ($x \in \mathbb{R}$) $u_t - cuu_x = \epsilon u_{xx}$, Equazione delle superfici minime: $div\left(\frac{\nabla u}{\sqrt{1+|\nabla u|^2}}\right)$
+\item Quasilineari: se F è lineare rispetto alle derivate di $u$ di ordine massimo, con coefficienti dipendenti solo da $\bm{x}$, $u$ e dalle derivate di ordine inferiore. (e.g. Equazione di Burgers: ($x \in \mathbb{R}$) $u_t - cuu_x = \epsilon u_{xx}$, Equazione delle superfici minime: $div\left(\frac{\nabla u}{\sqrt{1+|\nabla u|^2}}\right)$
 \item Completamente non lineare: se F è nonlineare rispetto alle derivate di $u$ di ordine massimo. (e.g. Equazione iconale: $|\nabla u| ^2 = c(x) \symbolfootnotemark[2] *$)
 \symbolfootnotetext[2]{c = indice di rifrazione}
 \end{itemize}
@@ -100,8 +100,8 @@ Quando si affronta la costruzione di un modello vengono utilizzate solo alcune d
 \item la soluzione dipenda con continuità dai dati
 \end{enumerate}
 L'ultima affermazione è estremamente importante affinché un piccolo errore nei dati causi una piccola perturbazione nella soluzione. Questa proprietà si chiama \textbf{stabilità locale della soluzione rispetto ai dati}.
-La nozione di continuità si precisa introducendo una opportuna distanza. In caso di numeri o vettori come dati una distanza può essere quella $euclidea$: se \textbf{x} =($x_1, x_2, \ldots, x_n$), \textbf{y} = ($y_1, y_2, \ldots, y_n$)
-$$dist(\textbf{x}, \textbf{y}) =  ||\textbf{x}-\textbf{y}|| = \sqrt{\sum_{k=1}^n(x_k-y_k)^2}$$
+La nozione di continuità si precisa introducendo una opportuna distanza. In caso di numeri o vettori come dati una distanza può essere quella $euclidea$: se $\bm{x}$ =($x_1, x_2, \ldots, x_n$), $\bm{y}$ = ($y_1, y_2, \ldots, y_n$)
+$$dist(\bm{x}, \bm{y}) =  ||\bm{x}-\bm{y}|| = \sqrt{\sum_{k=1}^n(x_k-y_k)^2}$$
 Se si tratta di funzioni reali e definite su un dominio $I$, due distanze molto usate sono:
 $$
 \begin{array}{lcr}
@@ -116,10 +116,10 @@ Siano $$\Omega \in \mathbb{R}^n$$ un dominio limitato di classe $C^1$ e $\textbf
 \end{equation}
 che permette di ottenere la seguente identità
 \begin{equation}
-  \int_{\Omega} v\Delta u \, d\textbf{x} = \int_{\partial\Omega} v\partial_{\bm\nu} u \, d\sigma - \int_{\Omega} \nabla v \cdot \nabla u \, d\textbf{x} \label{Identità di Green}
+  \int_{\Omega} v\Delta u \, d\bm{x} = \int_{\partial\Omega} v\partial_{\bm\nu} u \, d\sigma - \int_{\Omega} \nabla v \cdot \nabla u \, d\bm{x} \label{Identità di Green}
 \end{equation}
 L'elemento $d\sigma$ rappresenta la superficie di $\partial\Omega$ e si può definire come:
-$$d\sigma = \sqrt{1+|\nabla \phi(\mathbf{y}')|^2}d\mathbf{y}'$$
+$$d\sigma = \sqrt{1+|\nabla \phi(\bm{y}')|^2}d\bm{y}'$$
 \section{Equazione di diffusione}
 \subsection{Introduzione}
 Come visto in precedenza, una delle equazioni che verrà analizzata è la cosiddetta equazione di diffusione, o del calore, che si può scrivere come:
@@ -142,28 +142,28 @@ che per $D=1$ è anche detta Equazione di Poisson, mentre se anche $f \equiv 0$ 
 \begin{itemize}
 \item \textit{Linearità e principio di sovrapposizione}.
 Se $u$ e $v$ sono soluzioni e $a, \ b$ scalari, allora anche $au+bv$ è soluzione.  
-Si può dire che se $u_k(\mathbf{x},t)$ è soluzione di $u_t-D\Delta u = 0$ per ogni valore di $k$ e $g=g(k)$ è una funzione che si annulla abbastanza rapidamente all'infinito, allora sono soluzioni anche:
+Si può dire che se $u_k(\bm{x},t)$ è soluzione di $u_t-D\Delta u = 0$ per ogni valore di $k$ e $g=g(k)$ è una funzione che si annulla abbastanza rapidamente all'infinito, allora sono soluzioni anche:
 { 
 \everymath={\displaystyle}
 $$\begin{array}{lcr}
 
-\sum_{k=1}^{\infty}u_k(\mathbf{x},t)g(k) & \mbox{ e } & \int_{-\infty}^{+\infty} u_k(\mathbf{x},t)g(k)dk
+\sum_{k=1}^{\infty}u_k(\bm{x},t)g(k) & \mbox{ e } & \int_{-\infty}^{+\infty} u_k(\bm{x},t)g(k)dk
 
 
 \end{array}
 $$
 }
-\item \emph{Cambio di direzione temporale}. Sia $u = u(\mathbf{x}, t)$una soluzione della equazione $u_t - D\Delta u = 0$, allora la funzione $v(\mathbf{x},-t)$ ottenuta tramite cambio di variabile sarà soluzione dell'equazione \textbf{backward}
+\item \emph{Cambio di direzione temporale}. Sia $u = u(\bm{x}, t)$una soluzione della equazione $u_t - D\Delta u = 0$, allora la funzione $v(\bm{x},-t)$ ottenuta tramite cambio di variabile sarà soluzione dell'equazione \textbf{backward}
 $$v_t + D\delta v = 0$$
-L'equazione $u(\mathbf{x}, t)$ sarà definita, rispettivamente, \textbf{forward}. Tuttavia il cambio di variabile $\mathbf{x} \to -\mathbf{x}$ lascia invariata l'equazione (\emph{invarianza rispetto a riflessioni nello spazio}.
+L'equazione $u(\bm{x}, t)$ sarà definita, rispettivamente, \textbf{forward}. Tuttavia il cambio di variabile $\bm{x} \to -\bm{x}$ lascia invariata l'equazione (\emph{invarianza rispetto a riflessioni nello spazio}.
 \item \emph{Invarianza rispetto a traslazioni spazio-temporali}.
-In un dominio spazio temporale $\Omega \times (0, T)$, sia $u = u(\mathbf{x}, t)$ soluzione dell'equazione omogenea, dove $\Omega \subseteq \mathbb{R}^n$, allora la funzione 
-$$ v(\mathbf{x}, t) = u(\mathbf{x \mbox{-} t}, t-s)$$
-per $\mathbf{y}, s$ fissati è ancora soluzione in un dominio $(\Omega + \mathbf{y}) \times (s, s+ T)$
+In un dominio spazio temporale $\Omega \times (0, T)$, sia $u = u(\bm{x}, t)$ soluzione dell'equazione omogenea, dove $\Omega \subseteq \mathbb{R}^n$, allora la funzione 
+$$ v(\bm{x}, t) = u(\mathbf{x \mbox{-} t}, t-s)$$
+per $\bm{y}, s$ fissati è ancora soluzione in un dominio $(\Omega + \bm{y}) \times (s, s+ T)$
 \item \emph{Invarianza rispetto a dilatazioni paraboliche}. La trasformazione 
 $$
 \begin{array}{ccc}
-\mathbf{x} \to a \mathbf{x}, & t \to bt, & (a, b >0)
+\bm{x} \to a \bm{x}, & t \to bt, & (a, b >0)
 
 \end{array}
 $$
@@ -171,18 +171,18 @@ rappresenta una dilatazione/contrazione spazio-temporale.
 Affinché la funzione
 
 $$
-u^*(\mathbf{x},t) = u(a\mathbf{x},bt)
+u^*(\bm{x},t) = u(a\bm{x},bt)
 $$
 sia ancora soluzione della funzione omogenea, è necessario trovare delle condizioni per i coefficienti $a \mbox{ e }b$.
 Poiché:
 $$ 
-u_t^*(\mathbf{x},t)-\Delta u^* (\mathbf{x},t) = bu_t(a\mathbf{x},bt)-a^2D\Delta u(a\mathbf{x}, bt)
+u_t^*(\bm{x},t)-\Delta u^* (\bm{x},t) = bu_t(a\bm{x},bt)-a^2D\Delta u(a\bm{x}, bt)
 $$
 allora $u^*$ è ancora soluzione dell'equazione omogenea se $b = a^2$. La dilatazione parabolica lascia dunque invariati i blocchi 
 {\everymath = {\displaystyle}
 $$
 \begin{array}{lcr}
-\frac{|\mathbf{x}|^2}{t}& \mbox{oppure} & \frac{\mathbf{x}}{\sqrt{t}}
+\frac{|\bm{x}|^2}{t}& \mbox{oppure} & \frac{\bm{x}}{\sqrt{t}}
 
 \end{array}
 $$
@@ -191,15 +191,15 @@ $$
 \subsection{La conduzione del calore}
 Per derivare un modello matematico che descriva la conduzione del calore in un corpo rigido, si assuma un corpo omogeneo ed isotropo, con densità $\rho$ costante e che possa ricevere energia da fonte esterna. Indicato con $r$ il tasso di calore per unità di massa fornito dalla fonte esterna, allora: \\
 Sia $V$ un elemento arbitrario di volume all'interno del corpo rigido, allora \emph{il tasso di variazione dell'energia di $V$ eguaglia il flusso di calore attraverso il bordo $\partial V$ più quello dovuto alla sorgente esterna}.  
-Indicato con $e = e(\mathbf{x}, t)$ l'energia interna per unità di massa, la quantità di energia in $V$ è data da 
+Indicato con $e = e(\bm{x}, t)$ l'energia interna per unità di massa, la quantità di energia in $V$ è data da 
 {
 \everymath = {\displaystyle}
 $$
 \begin{array}{lcr}
 
 
-\int_V e \rho \  d\mathbf{x} & \mbox{e il suo tasso di variazione da} &
-\frac{d}{dt}\int_V e\rho \ d\mathbf{x} = \int_V e_t \rho \ d\mathbf{x}
+\int_V e \rho \  d\bm{x} & \mbox{e il suo tasso di variazione da} &
+\frac{d}{dt}\int_V e\rho \ d\bm{x} = \int_V e_t \rho \ d\bm{x}
 \end{array}
 $$
 }
@@ -208,10 +208,10 @@ $$
 -\int_{\partial V} \mathbf{q}\cdot \boldsymbol{\nu} \ d\sigma 
 $$
 mentre il contributo della fonte esterna sarà
-$$\int_V r\rho \ d\mathbf{x}$$
+$$\int_V r\rho \ d\bm{x}$$
 Per bilanciare l'energia allora sarà necessario che 
 \begin{equation}
-\int_V e_t\rho \ d\mathbf{x} = \underset{\mbox{(Teorema di Gauss)}}{-\int_V div\mathbf{q} \ d\mathbf{x}} + \int_{V} r \rho \ d\mathbf{x}
+\int_V e_t\rho \ d\bm{x} = \underset{\mbox{(Teorema di Gauss)}}{-\int_V div\mathbf{q} \ d\bm{x}} + \int_{V} r \rho \ d\bm{x}
 \end{equation}
 Che si può convertire nell'equazione, data l'arbitrarietà di $V$ nell'equazione:
 \begin{equation}
@@ -500,10 +500,10 @@ $$
 $$
 e andamento sinusoidale smorzato, con ampiezza massima $\frac{2}{\pi} e^{\frac{-\pi^2 D}{L^2}t}$. In un tempo $t$ di ordine $\frac{L^2}{4D}$ l'ampiezza diminuisce di $e^{\frac{-\pi^2}{4}}$ circa l'$8\%$ del valore iniziale. Dunque per raggiungere il valore a regime sarà necessario un tempo di grandezza $\frac{L^2}{D}$.
 \subsection{Problemi in dimensione $\mathbf{n>1}$}
-Ragionando in dimensione spaziale $n$ generica, si tratta di voler determinare la temperatura di un corpo che occupi nello spazio un dominio limitato $\Omega$ nell'intervallo di tempo $[0,T]$ con la temperatura definita da una funzione $u = u(\mathbf{x}, t)$ che soddisfi l'equazione $u_t - D\Delta u = f$ nel cilindro spazio-temporale
+Ragionando in dimensione spaziale $n$ generica, si tratta di voler determinare la temperatura di un corpo che occupi nello spazio un dominio limitato $\Omega$ nell'intervallo di tempo $[0,T]$ con la temperatura definita da una funzione $u = u(\bm{x}, t)$ che soddisfi l'equazione $u_t - D\Delta u = f$ nel cilindro spazio-temporale
 $$Q_T = \Omega \times (0, T)$$
 È necessario assegnare per prima cosa la distribuzione iniziale della temperatura
-$$u(\mathbf{x}, 0) = g(\mathbf{x}) \qquad \mathbf{x} \in \overline{\Omega}$$ 
+$$u(\bm{x}, 0) = g(\bm{x}) \qquad \bm{x} \in \overline{\Omega}$$ 
 dove $\overline{\Omega} = \Omega\cup \partial \Omega$ indica la chiusura di $\Omega$.\\
 Per modellare l'interazione con l'ambiente circostante sono necessarie opportune condizioni al bordo, tra cui:
 \begin{itemize}
@@ -527,7 +527,7 @@ $$
 $$
 con $\alpha = \frac{\gamma}{k} > 0, \beta = \frac{\gamma U}{k}$
 \item \textbf{Condizioni miste.} Alternativamente si possono imporre diverse condizioni a diversi punti della frontiera di $\Omega$. Considerando due sottoinsiemi non vuoti e disgiunti $\partial_D\Omega$ e $\partial_N\Omega$ tali che $\partial\Omega = \overline{\partial_D\Omega} \cup \partial_N\Omega$. A questo punto si possono assegnare diverse condizioni a diversi punti dell'insieme.
-\item \textbf{Frontiera parabolica.} Non sono state assegnate delle condizioni finali per $t = T, \mathbf{x} \in \Omega$. Le condizioni sono soltanto sulla frontiera parabolica del cilindro $Q_T$, dato dall'unione di $\overline{\Omega} \times \{t = 0\}$ e dal bordo laterale $S_T = \partial\Omega \times (0, T]$ per cui la frontiera parabolica sarà:
+\item \textbf{Frontiera parabolica.} Non sono state assegnate delle condizioni finali per $t = T, \bm{x} \in \Omega$. Le condizioni sono soltanto sulla frontiera parabolica del cilindro $Q_T$, dato dall'unione di $\overline{\Omega} \times \{t = 0\}$ e dal bordo laterale $S_T = \partial\Omega \times (0, T]$ per cui la frontiera parabolica sarà:
 $$
 \partial_p Q_T = (\overline{\Omega} \times \{t = 0\}) \cup S_T
 $$
@@ -557,19 +557,19 @@ Posto $u = w- \epsilon t$, allora
 \begin{equation}
 u_t - D\Delta u = q -\epsilon < 0
 \end{equation}
-e il massimo di $u$ in $\overline{Q}_{T- \epsilon}$ è assunto in un punto di $\partial_p Q_{T-\epsilon}$. Infatti, si immagini che ciò non sia vero. Allora esiste un punto ($\mathbf{x}_0, t_0$), $\mathbf{x}_0 \in \Omega$, $0 < t_0 \leq T - \epsilon$, tale che $u$($\mathbf{x}_0, t_0$) è il massimo di $u$ in $\overline{Q}_{T-\epsilon}$. \\
-Ma allora, essendo $u_{x_j x_j} (\mathbf{x}_0, t_0) \leq 0$ per ogni $j=1, \ldots, n$ si avrebbe
+e il massimo di $u$ in $\overline{Q}_{T- \epsilon}$ è assunto in un punto di $\partial_p Q_{T-\epsilon}$. Infatti, si immagini che ciò non sia vero. Allora esiste un punto ($\bm{x}_0, t_0$), $\bm{x}_0 \in \Omega$, $0 < t_0 \leq T - \epsilon$, tale che $u$($\bm{x}_0, t_0$) è il massimo di $u$ in $\overline{Q}_{T-\epsilon}$. \\
+Ma allora, essendo $u_{x_j x_j} (\bm{x}_0, t_0) \leq 0$ per ogni $j=1, \ldots, n$ si avrebbe
 $$
-\Delta u (\mathbf{x}_0, t_0) \leq 0
+\Delta u (\bm{x}_0, t_0) \leq 0
 $$ 
 mentre
 $$
 \begin{array}{ll}
-u_t(\mathbf{x}_0,t_0) = 0 &\quad \mbox{ se } t < T-\epsilon \\
-u_t(\mathbf{x}_0, t_0) \geq 0 &\quad \mbox{ se } t_0 = T-\epsilon
+u_t(\bm{x}_0,t_0) = 0 &\quad \mbox{ se } t < T-\epsilon \\
+u_t(\bm{x}_0, t_0) \geq 0 &\quad \mbox{ se } t_0 = T-\epsilon
 \end{array}
 $$
-In ogni caso, si otterrebbe $u_t(\mathbf{x}_0, t_0) - D\Delta u (\mathbf{x}_0, t_0) \geq 0$, incompatibile con la (2.24). \\
+In ogni caso, si otterrebbe $u_t(\bm{x}_0, t_0) - D\Delta u (\bm{x}_0, t_0) \geq 0$, incompatibile con la (2.24). \\
 Pertanto,
 $$\max_{\overline{Q}_{T - \epsilon}} u = \max_{\partial_p Q_{T-\epsilon}} u$$
 ed essendo $w \leq u$, si ha
@@ -597,7 +597,7 @@ Conseguenza immediata del teorema (2.1) è che: se in $Q_T$ si ha
 $$w_t -D \Delta w = 0$$
 il massimo e il minimo di $w$ sono assunti sulla frontiera parabolica $\partial_p Q_T$ di $Q_T$. In particolare
 $$
-\min_{\partial_p Q_T} w \leq w(\mathbf{x},t) \leq \max_{\partial_p Q_T} \qquad \mbox{per ogni} (\mathbf{x}, t) \in \overline{Q}_T$$
+\min_{\partial_p Q_T} w \leq w(\bm{x},t) \leq \max_{\partial_p Q_T} \qquad \mbox{per ogni} (\bm{x}, t) \in \overline{Q}_T$$
 \end{definition}
 \begin{corollary}[Confronto, unicità e stabilità. Problema di Cauchy-Dirichlet]
 Siano $v$ e $w$ soluzioni in $\mathcal{C}^{2,1}(Q_T)\cap \mathcal{C}(\overline{Q}_T)$ di
@@ -647,22 +647,22 @@ $$
 \end{proof}
 Il teorema (2.1) non esclude la possibilità che il massimo o il minimo possano essere assunti anche in un punto al di fuori della frontiera parabolica. Vale quindi anche un risultato più preciso, detto:
 \begin{theorem}[Principio di massimo forte]
-Sia $u \in \mathcal{C}^{2,1}(Q_T)\cap \mathcal{C}(\overline{Q}_T)$ una sottosoluzione dell'equazione di diffusione. Se $u$ assume il massimo $M$ in un punto $(\mathbf{x}_1, t_1)$ con $\mathbf{x}_1 \in \Omega$ e $0 < t_1 \leq T$ allora $u \equiv M$ in $\overline{\Omega} \times [0, t_1]$.
+Sia $u \in \mathcal{C}^{2,1}(Q_T)\cap \mathcal{C}(\overline{Q}_T)$ una sottosoluzione dell'equazione di diffusione. Se $u$ assume il massimo $M$ in un punto $(\bm{x}_1, t_1)$ con $\bm{x}_1 \in \Omega$ e $0 < t_1 \leq T$ allora $u \equiv M$ in $\overline{\Omega} \times [0, t_1]$.
 L'enunciato analogo vale per il minimo se $u$ è soprasoluzione in $Q_T$
 \end{theorem}
 Per calcolare la pendenza con la quale $u$ raggiunge un punto di massimo o minimo sulla frontiera laterale $S_T$ in un punto dove esiste una sfera tangente internamente a $\Omega$.
 \begin{theorem}[Principio di Hopf]
 Sia $u \in \mathcal{C}^{2,1}(Q_T)\cap \mathcal{C}(\overline{Q}_T)$ una sottosoluzione dell'equazione di diffusione. Posto che:
 \begin{enumerate}
-\item $\mathbf{x}_0 \in \partial \Omega$ ha la proprietà della sfera interna, ossia esiste una sfera $B_R \subset \Omega$ tangente a $\partial \Omega$ in $\mathbf{x}_0$
-\item ($\mathbf{x}_0, t_0$)$\in S_T$ è punto di minimo per $u$ in $\overline{Q}_T$ e inoltre $u(\mathbf{x}_0, t_0) < u(\mathbf{x}, t)$ in $\Omega \times [0, t_0)$
-\item esiste $\partial_{\bm{\nu}}u(\mathbf{x}_0, t_0)$
+\item $\bm{x}_0 \in \partial \Omega$ ha la proprietà della sfera interna, ossia esiste una sfera $B_R \subset \Omega$ tangente a $\partial \Omega$ in $\bm{x}_0$
+\item ($\bm{x}_0, t_0$)$\in S_T$ è punto di minimo per $u$ in $\overline{Q}_T$ e inoltre $u(\bm{x}_0, t_0) < u(\bm{x}, t)$ in $\Omega \times [0, t_0)$
+\item esiste $\partial_{\bm{\nu}}u(\bm{x}_0, t_0)$
 \end{enumerate}
 Allora 
 $$
-\partial_{\bm{\nu}} u(\mathbf{x}_0, t_0) < 0
+\partial_{\bm{\nu}} u(\bm{x}_0, t_0) < 0
 $$
-Se il punto è di massimo, per ottenere lo stesso risultato vanno invertite tutte le disuguaglianze. Il teorema esprime chiaramente che la derivata normale \textbf{non} può essere nulla in $(\mathbf{x}_0, t_0)$
+Se il punto è di massimo, per ottenere lo stesso risultato vanno invertite tutte le disuguaglianze. Il teorema esprime chiaramente che la derivata normale \textbf{non} può essere nulla in $(\bm{x}_0, t_0)$
 \end{theorem}
 \begin{corollary}[Unicità per i problemi di Cauchy-Neumann/Robin]
 Esiste un'unica $u \in \mathcal{C}^{2,1}(Q_T)\cap \mathcal{C}(\overline{Q}_T)$ tale che $\partial_{\bm{\nu}}u$ esiste su $\partial \Omega$, soluzione di 
@@ -670,14 +670,14 @@ Esiste un'unica $u \in \mathcal{C}^{2,1}(Q_T)\cap \mathcal{C}(\overline{Q}_T)$ t
 \begin{cases}
 u_t - D\Delta u = f & \qquad \mbox{in } Q_T \\
 \partial_{\bm{\nu}} u + \alpha u = h & \qquad \mbox{su } S_T \quad (\alpha > 0) \\
-u(\mathbf{x}, 0) = g(\mathbf{x} & \qquad \mbox{in } \Omega
+u(\bm{x}, 0) = g(\bm{x} & \qquad \mbox{in } \Omega
 \end{cases}
 \end{equation}
 \end{corollary}
 \begin{proof}
-Siano $u$ e $v$ soluzioni della (2.25) in grado di soddisfare le ipotesi del teorema, allora la soluzione $w = u - v$ è soluzione dell'equazione omogenea, con $w(\mathbf{x}, 0) = 0 \mbox{ e } \partial_{\bm{\nu}}w + \alpha w = 0$ su $S_T$. Se $w$ è costante allora è nulla, mentre se dovesse avere un massimo positivo in $(\mathbf{x}_0, t_0)$ quest'ultimo dovrebbe essere $(\mathbf{x}_0, t_0) \in S_T$ e $w(\mathbf{x}, t) < w(\mathbf{x}_0, t_0)$ in $\Omega \times [0, t_0)$, per il principio di Hopf. Allora si avrebbe $\partial_{\bm{\nu}} w(\mathbf{x}_0, t_0) > 0$, che sarebbe in contraddizione con la condizione al bordo
+Siano $u$ e $v$ soluzioni della (2.25) in grado di soddisfare le ipotesi del teorema, allora la soluzione $w = u - v$ è soluzione dell'equazione omogenea, con $w(\bm{x}, 0) = 0 \mbox{ e } \partial_{\bm{\nu}}w + \alpha w = 0$ su $S_T$. Se $w$ è costante allora è nulla, mentre se dovesse avere un massimo positivo in $(\bm{x}_0, t_0)$ quest'ultimo dovrebbe essere $(\bm{x}_0, t_0) \in S_T$ e $w(\bm{x}, t) < w(\bm{x}_0, t_0)$ in $\Omega \times [0, t_0)$, per il principio di Hopf. Allora si avrebbe $\partial_{\bm{\nu}} w(\bm{x}_0, t_0) > 0$, che sarebbe in contraddizione con la condizione al bordo
 $$
-\partial_{\bm{\nu}}w(\mathbf{x}_0, t_0) = -\alpha w (\mathbf{x}_0, t_0) \leq 0
+\partial_{\bm{\nu}}w(\bm{x}_0, t_0) = -\alpha w (\bm{x}_0, t_0) \leq 0
 $$
 Per identiche ragioni, non si può avere un minimo $< 0$. Pertanto $w = 0$ è l'unica soluzione della (2.36).
 \end{proof}
@@ -721,7 +721,7 @@ T
 \end{pmatrix}$$
 che permette di riscrivere le relazioni sopracitate come
 \begin{equation}
-[\mathbf{x}] \rightleftarrows \begin{pmatrix}
+[\bm{x}] \rightleftarrows \begin{pmatrix}
 0\\ 1 \\ 0
 \end{pmatrix}, \quad
 [\mathbf{t}] \rightleftarrows \begin{pmatrix}
@@ -734,7 +734,7 @@ che permette di riscrivere le relazioni sopracitate come
 1\\ 1 \\ 0
 \end{pmatrix}, \quad
 \end{equation}
-I vettori (2.31) generano tutto $\mathbb{R}^3$. Selezionandone tre linearmente indipendenti tra di loro, per esempio $\mathbf{t}, \mathbf{Q} \mbox{ e } \mathbf{D}$, si possono definire quantità primarie e riscrivendo $u^*$ trasformando $\mathbf{x}$ nelle dimensioni primarie si ottiene
+I vettori (2.31) generano tutto $\mathbb{R}^3$. Selezionandone tre linearmente indipendenti tra di loro, per esempio $\mathbf{t}, \mathbf{Q} \mbox{ e } \mathbf{D}$, si possono definire quantità primarie e riscrivendo $u^*$ trasformando $\bm{x}$ nelle dimensioni primarie si ottiene
 $$
 [u^*] = [Q][D]^{-\frac{1}{2}}[t]^{\frac{1}{2}} \quad \mbox{ e }\quad [x] = [D]^{\frac{1}{2}}[t]^{\frac{1}{2}} 
 $$
@@ -906,11 +906,11 @@ Si può pensare a \(\Gamma_D(x,t)\) come a una \emph{unit source solution}, dove
 \subsection{La soluzione fondamentale $\mathbf{(n > 1)}$}
 In dimensione spaziale maggiore di uno, si ripetono sostanzialmente gli stessi discorsi. L'assenza di sorgenti distribuite implica la legge di conservazione per la soluzione \(u^*\)
 \begin{equation}
-\int_{\mathbb{R}^n} u^*(\mathbf{x}, t)d\mathbf{x} = Q \qquad \mbox{ per ogni } t > 0
+\int_{\mathbb{R}^n} u^*(\bm{x}, t)d\bm{x} = Q \qquad \mbox{ per ogni } t > 0
 \end{equation}
 Grazie all'analisi dimensionale si ottiene l'espressione analitica per \(u^*\)
 \[
-u^*(\mathbf{x}, t) = \frac{Q}{(Dt)^{\frac{n}{2}}}U(\xi) \qquad \xi = \frac{|\mathbf{x}|}{\sqrt{Dt}}  
+u^*(\bm{x}, t) = \frac{Q}{(Dt)^{\frac{n}{2}}}U(\xi) \qquad \xi = \frac{|\bm{x}|}{\sqrt{Dt}}  
 \]
 dove \(U\) è una funzione positiva. \\
 Posta \(u^*\) come soluzione di \(u_t^* - D\Delta u^* = 0\). Grazie all'operatore di Laplace per funzioni radiali si ottiene
@@ -944,32 +944,32 @@ U(\xi) = c_0e^{-\frac{\xi^2}{4}} \qquad (c_0 \in \mathbb{R})
 \]
 Usando la conservazione della massa si ricava, dividendo per \(Q\):
 \begin{align*}
-  1 = \frac{1}{(Dt)^{\frac{n}{2}}} \int_{\mathbb{R}^n} U \left(\frac{|\mathbf{x}|}{\sqrt{Dt}}\right)d\mathbf{x} = \frac{c_0}{(Dt)^\frac{n}{2}} \int_{\mathbb{R}^n}e^{\left(-\frac{|\mathbf{x}|^2}{4Dt}\right)}d\mathbf{x} \\
-  \underset{\mathbf{y}=\frac{\mathbf{x}}{\sqrt{4Dt}}}{=} c_02^n \int_{\mathbb{R}^n} e^{-|\mathbf{y}|^2}d\mathbf{y} = c_02^n\left(\int_{\mathbb{R}^n}e^{z^2}dz\right)^n = c_0(4\pi)^{\frac{n}{2}}
+  1 = \frac{1}{(Dt)^{\frac{n}{2}}} \int_{\mathbb{R}^n} U \left(\frac{|\bm{x}|}{\sqrt{Dt}}\right)d\bm{x} = \frac{c_0}{(Dt)^\frac{n}{2}} \int_{\mathbb{R}^n}e^{\left(-\frac{|\bm{x}|^2}{4Dt}\right)}d\bm{x} \\
+  \underset{\bm{y}=\frac{\bm{x}}{\sqrt{4Dt}}}{=} c_02^n \int_{\mathbb{R}^n} e^{-|\bm{y}|^2}d\bm{y} = c_02^n\left(\int_{\mathbb{R}^n}e^{z^2}dz\right)^n = c_0(4\pi)^{\frac{n}{2}}
 \end{align*}
 da cui \(c_0 = (4\pi)^{-\frac{n}{2}}\). Si ottengono quindi soluzioni della forma
 \[
-  u^*(\mathbf{x}, t) = \frac{Q}{(4\pi Dt)^{\frac{n}{2}}}e^{-\frac{|\mathbf{x}|^2}{4Dt}} \qquad (x \in \mathbb{R}^n, t > 0)
+  u^*(\bm{x}, t) = \frac{Q}{(4\pi Dt)^{\frac{n}{2}}}e^{-\frac{|\bm{x}|^2}{4Dt}} \qquad (x \in \mathbb{R}^n, t > 0)
 \]
 Anche in dimensione \(n > 1\) la scelta di \(Q = 1\) è speciale.
 \begin{definition}
   La funzione 
   \[
-     \Gamma_D(\mathbf{x}, t) = \frac{Q}{(4\pi Dt)^{\frac{n}{2}}}e^{-\frac{|\mathbf{x}|^2}{4Dt}} \qquad (\mathbf{x} \in \mathbb{R}^n, t>0)
+     \Gamma_D(\bm{x}, t) = \frac{Q}{(4\pi Dt)^{\frac{n}{2}}}e^{-\frac{|\bm{x}|^2}{4Dt}} \qquad (\bm{x} \in \mathbb{R}^n, t>0)
   \]
   si chiama \textbf{soluzione fondamentale} dell'equazione di diffusione in dimensione \(n\).
 
 \end{definition}
-Si può generalizzare al caso multidimensionale anche la distribuzione di Dirac in un punto \(\mathbf{y}\) come
+Si può generalizzare al caso multidimensionale anche la distribuzione di Dirac in un punto \(\bm{y}\) come
 \[
-\int\delta_n (\mathbf{x} - \mathbf{y}) \phi (\mathbf{x}) d\mathbf{x} = \phi(\mathbf{y})  
+\int\delta_n (\bm{x} - \bm{y}) \phi (\bm{x}) d\bm{x} = \phi(\bm{y})  
 \]
 con \(\phi\) funzione di test, continua su \(\mathbb{R}^n\) e nulla al di fuori di un insieme chiuso e limitato. \\
-La soluzione fondamentale \(\Gamma_D(\mathbf{x} - \mathbf{y}, t)\) per un \(\mathbf{y}\) fissato è l'unica soluzione del problema di Cauchy
+La soluzione fondamentale \(\Gamma_D(\bm{x} - \bm{y}, t)\) per un \(\bm{y}\) fissato è l'unica soluzione del problema di Cauchy
 \[
   \begin{cases}
-    u_t -D\Delta u = 0 & \mathbf{x}\in \mathbb{R}^n, \, t>0 \\
-    u(\mathbf{x}, 0) = \delta_n (\mathbf{x} -\mathbf{y}) & \mathbf{x} \in \mathbb{R}^n
+    u_t -D\Delta u = 0 & \bm{x}\in \mathbb{R}^n, \, t>0 \\
+    u(\bm{x}, 0) = \delta_n (\bm{x} -\bm{y}) & \bm{x} \in \mathbb{R}^n
   \end{cases}
 \]
 \subsection{Passeggiata aleatoria simmetrica (n = 1)}
@@ -1531,7 +1531,7 @@ Grazie all'identità di Green \eqref{Identità di Green} si può dimostrare il s
 \begin{proof}
   Siano \(u\) e \(v\) soluzioni dello stesso problema. Posto \(w = u-v\), allora \(\Delta w = 0\) e soddisfa una delle quattro condizioni al bordo. Sostituendolo nella \eqref{Identità di Green} si ottiene
   \[
-    \int_{\Omega} \abs*{\nabla w}^2 \, d\textbf{x} = \int_{\partial\Omega} w\partial_{\bm{\nu}} w\, d\sigma
+    \int_{\Omega} \abs*{\nabla w}^2 \, d\bm{x} = \int_{\partial\Omega} w\partial_{\bm{\nu}} w\, d\sigma
   \]
   Ma nel caso di Dirichlet, Neumann e condizioni miste si ha
   \[
@@ -1543,44 +1543,44 @@ Grazie all'identità di Green \eqref{Identità di Green} si può dimostrare il s
   \]
   da cui si può dedurre, in ogni caso, che 
   \[
-    \int_{\Omega}\abs*{\nabla w}^2 \, d\textbf{x} \leq 0
+    \int_{\Omega}\abs*{\nabla w}^2 \, d\bm{x} \leq 0
   \]
   che implica \(\nabla w = 0\) e dunque che \(w = u-v\) sia costante poiché \(\Omega\) è connesso. Negli altri casi la costante deve essere nulla, da cui si ha \(u = v\)
 \end{proof}
 \subsection{Funzioni armoniche}
-Anche con le funzioni armoniche esiste una stretta correlazione con la passeggiata aleatoria e il moto Browniano. Fissata una dimensione \(n = 2\) (si può estendere il ragionamento a ogni dimensione), siano \(\tau > 0\) il passo temporale e \(h > 0\) quello nello spazio. Sia a sua volta \(h\mathbb{Z}^2\) il reticolo di punti \(\textbf{x} = (x_1, x_2)\), con coordinate multipli interi di \(h\). Con \(p(\textbf{x}, t) =  p(x_1, x_2, t)\) che rappresenta la probabilità di trovare la particella in un punto \(\textbf{x}\) al tempo \(t\). L'equazione alle differenze per \(p\) in dimensione due si scrive come
+Anche con le funzioni armoniche esiste una stretta correlazione con la passeggiata aleatoria e il moto Browniano. Fissata una dimensione \(n = 2\) (si può estendere il ragionamento a ogni dimensione), siano \(\tau > 0\) il passo temporale e \(h > 0\) quello nello spazio. Sia a sua volta \(h\mathbb{Z}^2\) il reticolo di punti \(\bm{x} = (x_1, x_2)\), con coordinate multipli interi di \(h\). Con \(p(\bm{x}, t) =  p(x_1, x_2, t)\) che rappresenta la probabilità di trovare la particella in un punto \(\bm{x}\) al tempo \(t\). L'equazione alle differenze per \(p\) in dimensione due si scrive come
 \[
-  p(\textbf{x}, t+ \tau) = \frac{1}{4} \{p(\textbf{x}+h\bm{e}_1, t) + p(\textbf{x}-h\bm{e}_1, t) + p(\textbf{x}+h\bm{e}_2, t) + p(\textbf{x}-h\bm{e}_2, t)\}
+  p(\bm{x}, t+ \tau) = \frac{1}{4} \{p(\bm{x}+h\bm{e}_1, t) + p(\bm{x}-h\bm{e}_1, t) + p(\bm{x}+h\bm{e}_2, t) + p(\bm{x}-h\bm{e}_2, t)\}
 \]
 Per riscrivere tutto ciò si può introdurre l'operatore media \(M_h\) che si applica su generiche funzioni \(u =  
-u(\textbf{x})\) come
+u(\bm{x})\) come
 \begin{flalign*}
-  M_hu(\textbf{x}) &= \frac{1}{4}\{u(\textbf{x}+h\bm{e}_1, t) + u(\textbf{x}-h\bm{e}_1, t) + u(\textbf{x}+h\bm{e}_2, t) + u(\textbf{x}-h\bm{e}_2, t)\} = \\
-  & = \frac{1}{4}\sum_{\abs*{\textbf{x}- \textbf{y}} = h}u(\textbf{y})
+  M_hu(\bm{x}) &= \frac{1}{4}\{u(\bm{x}+h\bm{e}_1, t) + u(\bm{x}-h\bm{e}_1, t) + u(\bm{x}+h\bm{e}_2, t) + u(\bm{x}-h\bm{e}_2, t)\} = \\
+  & = \frac{1}{4}\sum_{\abs*{\bm{x}- \bm{y}} = h}u(\bm{y})
 \end{flalign*}
-Si noti che \(M_hu(\textbf{x})\) è la media aritmetica dei valori di \(u\) nei punti del reticolo \(h\mathbb{Z}^2\), posti a distanza \(h\) da \(\textbf{x}\).
+Si noti che \(M_hu(\bm{x})\) è la media aritmetica dei valori di \(u\) nei punti del reticolo \(h\mathbb{Z}^2\), posti a distanza \(h\) da \(\bm{x}\).
 L'equazione alle differenze allora prende la forma
 \begin{equation}
-  p(\textbf{x}, t + \tau) = M_hp(\textbf{x}, t)
+  p(\bm{x}, t + \tau) = M_hp(\bm{x}, t)
 \end{equation}
 La probabilità al tempo \(t + \tau\) è quindi determinata dall'azione di \(M_h\) sulla funzione \(p\) al tempo precedente. \(M_h\) è quindi il \emph{generatore della passeggiata aleatoria}.\\
 Inoltre, se \(u\) è una funzione di classe \(\mathcal{C}^2\), grazie alla formula di Taylor\footnote{La formula di Taylor al secondo ordine, dopo l'elisione dei termini opposti al primo ordine, è:
 \[
-Mu(\textbf{x}) = u(\textbf{x}) + \frac{h^2}{4}\{u_{x_1x_1}(\textbf{x})+ u_{x_2x_2}(\textbf{x}) + o(h^2)\} 
+Mu(\bm{x}) = u(\bm{x}) + \frac{h^2}{4}\{u_{x_1x_1}(\bm{x})+ u_{x_2x_2}(\bm{x}) + o(h^2)\} 
 \]} si ha
 \begin{equation}
-\lim_{h \to 0} \frac{M_h u(\textbf{x}) - u(\textbf{x})}{h^2} \to \frac{1}{4} \Delta u(\textbf{x})  
+\lim_{h \to 0} \frac{M_h u(\bm{x}) - u(\bm{x})}{h^2} \to \frac{1}{4} \Delta u(\bm{x})  
 \end{equation}
 Dalla (3.8) si può definire l'operatore di Laplace discreto, per ogni \(h > 0\) fissato, come
 \[
   \Delta_h^* = M_h - I
 \]
 dove \(I\) indica l'operatore identità (\(Iu = u\)). \(\Delta_h^*\) è ben definito in tutte le funzioni \(u\) del reticolo \(h\mathbb{Z}^2\) e la funzione è \emph{d-armonica} (con \emph{d} discreto) se \(\Delta_h^* = 0\).
-Una funzione \emph{d-armonica} è una funzione che in ogni punto \(\textbf{x}\) coincide con la media dei valori nei punti in un intorno discreto di \(\textbf{x}\) di raggio \(h\).
-Per definire un problema di Dirichlet discreto, sia \(A\) un sottoinsieme limitato di \(h\mathbb{Z}^2\) e \(\mathbf{x} \in A\):
+Una funzione \emph{d-armonica} è una funzione che in ogni punto \(\bm{x}\) coincide con la media dei valori nei punti in un intorno discreto di \(\bm{x}\) di raggio \(h\).
+Per definire un problema di Dirichlet discreto, sia \(A\) un sottoinsieme limitato di \(h\mathbb{Z}^2\) e \(\bm{x} \in A\):
 \begin{itemize}
-  \item \(\mathbf{x}\) è un punto interno di \(A\) se il suo intorno discreto di raggio \(h\) è contenuto in \(A\)
-  \item \textbf{x} è un punto di frontiera se non è interno ma il suo intorno discreto contiene almeno un punto interno. L'insieme dei punti di frontiera si indica come \(\partial A\)
+  \item \(\bm{x}\) è un punto interno di \(A\) se il suo intorno discreto di raggio \(h\) è contenuto in \(A\)
+  \item $\bm{x}$ è un punto di frontiera se non è interno ma il suo intorno discreto contiene almeno un punto interno. L'insieme dei punti di frontiera si indica come \(\partial A\)
 \end{itemize}
 Il \textbf{problema di Dirichlet discreto} si definisce così allora: \\
 Sia \(A\) un sottoinsieme limitato e connesso di \(h\mathbb{Z}^2\) e \(g\) una funzione definita sulla frontiera \(\partial A\). Si determini \(u\) in \(A\) tale che 
@@ -1592,128 +1592,186 @@ Sia \(A\) un sottoinsieme limitato e connesso di \(h\mathbb{Z}^2\) e \(g\) una f
 \end{equation}
 Sia \(u\) soluzione della (3.9), allora ne derivano due importanti proprietà:
 \begin{enumerate}
-  \item Principio di massimo: se \(u\) assume il suo massimo (o minimo) in un punto interno allora \(u\) è costante. Si immagini che \(\textbf{x} \in A\) sia punto interno e che \(u(\textbf{x}) = M \geq u(\textbf{y})\) per ogni \(\textbf{y} \in A\). Poiché \(u(\textbf{x})\) è la media aritmetica dei valori assunti nei quattro punti posti a distanza \(h\) da \(\textbf{x}\), in ognuno di questi punti \(u\) deve avere lo stesso valore di \(M\). Allo stesso modo, sia 8\(\mathbf{x}_1 \not = \mathbf{x}\) uno dei quattro punti, \(u(\mathbf{y}) = M\) per ogni \(\mathbf{y}\) nell'intorno di raggio \(h\) di \(\mathbf{x}_1\). Il fatto che \(A\) sia un insieme connesso e finito, permette di mostrare che \(u(\textbf{y}) = M\) in ogni punto di \(A\). \\
+  \item Principio di massimo: se \(u\) assume il suo massimo (o minimo) in un punto interno allora \(u\) è costante. Si immagini che \(\bm{x} \in A\) sia punto interno e che \(u(\bm{x}) = M \geq u(\bm{y})\) per ogni \(\bm{y} \in A\). Poiché \(u(\bm{x})\) è la media aritmetica dei valori assunti nei quattro punti posti a distanza \(h\) da \(\bm{x}\), in ognuno di questi punti \(u\) deve avere lo stesso valore di \(M\). Allo stesso modo, sia 8\(\bm{x}_1 \not = \bm{x}\) uno dei quattro punti, \(u(\bm{y}) = M\) per ogni \(\bm{y}\) nell'intorno di raggio \(h\) di \(\bm{x}_1\). Il fatto che \(A\) sia un insieme connesso e finito, permette di mostrare che \(u(\bm{y}) = M\) in ogni punto di \(A\). \\
   Per questo motivo il massimo (o minimo) di \(u\) è assunto sulla frontiera di \(A\).
-  \item La soluzione del problema di Dirichlet è unica, essendo la soluzione \(u\) una funzione d-armonica, si immagini di avere una funzione \(v\) anche essa soluzione del problema di Dirichlet. Allora anche \(v\) deve essere una funzione d-armonica che rispetti il principio di massimo sopra enunciato. Ma poiché la frontiera di \(A\) è sempre la stessa \((u-v)(\mathbf{x} = 0 \, \forall \mathbf{x} \in A)\), quindi il massimo (o minimo) di \(v\) coincide con quello di \(u\), ossia le due funzioni coincidono.
+  \item La soluzione del problema di Dirichlet è unica, essendo la soluzione \(u\) una funzione d-armonica, si immagini di avere una funzione \(v\) anche essa soluzione del problema di Dirichlet. Allora anche \(v\) deve essere una funzione d-armonica che rispetti il principio di massimo sopra enunciato. Ma poiché la frontiera di \(A\) è sempre la stessa \((u-v)(\bm{x} = 0 \, \forall \bm{x} \in A)\), quindi il massimo (o minimo) di \(v\) coincide con quello di \(u\), ossia le due funzioni coincidono.
 \end{enumerate}
-Dal problema (3.9) sorge una interessante interpretazione probabilistica, che è di grande aiuto per la costruzione di una soluzione. La funzione \(g\) della passeggiata aleatoria della particella rappresenta un \emph{guadagno}, ossia, con una particella che parte da \(\mathbf{x}\) e termina la sua passeggiata sulla frontiera di \(A\) in \(\mathbf{y}\), allora il guadagno è pari a \(g(\mathbf{y})\). \\
-Si vuole mostrare che la particella, indipendentemente dal punto di partenza, raggiunge sempre la frontiera \(\partial A\), e che il valore \(u(\mathbf{x})\) rappresenta il valore atteso del guadagno \(g\) rispetto a una opportuna distribuzione di probabilità su \(\partial A\). Sia \(\Gamma \subseteq \partial A\), allora 
+Dal problema (3.9) sorge una interessante interpretazione probabilistica, che è di grande aiuto per la costruzione di una soluzione. La funzione \(g\) della passeggiata aleatoria della particella rappresenta un \emph{guadagno}, ossia, con una particella che parte da \(\bm{x}\) e termina la sua passeggiata sulla frontiera di \(A\) in \(\bm{y}\), allora il guadagno è pari a \(g(\bm{y})\). \\
+Si vuole mostrare che la particella, indipendentemente dal punto di partenza, raggiunge sempre la frontiera \(\partial A\), e che il valore \(u(\bm{x})\) rappresenta il valore atteso del guadagno \(g\) rispetto a una opportuna distribuzione di probabilità su \(\partial A\). Sia \(\Gamma \subseteq \partial A\), allora 
 \[
-  P(\mathbf{x}, \Gamma)
+  P(\bm{x}, \Gamma)
 \]
-indica la probabilità che la particella, partendo da \(\mathbf{x}\), giunga per la prima volta in un punto \(\mathbf{y} \in \Gamma\) sulla frontiera. Si vuole mostrare che \(P(\mathbf{x}, \partial A) = 1 \quad \forall \mathbf{x} \in A\).
-Nel caso in cui \(\mathbf{x} \in \Gamma\), si ottiene \(P(\mathbf{x}, \Gamma) = 1\), mentre con \(\mathbf{x} \in \partial A\backslash \Gamma\) si ha \(P(\mathbf{x}, \Gamma) = 0\). \\
+indica la probabilità che la particella, partendo da \(\bm{x}\), giunga per la prima volta in un punto \(\bm{y} \in \Gamma\) sulla frontiera. Si vuole mostrare che \(P(\bm{x}, \partial A) = 1 \quad \forall \bm{x} \in A\).
+Nel caso in cui \(\bm{x} \in \Gamma\), si ottiene \(P(\bm{x}, \Gamma) = 1\), mentre con \(\bm{x} \in \partial A\backslash \Gamma\) si ha \(P(\bm{x}, \Gamma) = 0\). \\
 Fissato l'insieme \(\Gamma\) si ha che 
 \[
-  \mathbf{x} \longrightarrow w_{\Gamma}(\mathbf{x}) \equiv P(\mathbf{x}, \Gamma)
+  \bm{x} \longrightarrow w_{\Gamma}(\bm{x}) \equiv P(\bm{x}, \Gamma)
 \]
 è una funzione d-armonica nei punti interni di \(A\), ossia l'operatore di Laplace discreto \(\Delta^*_h w_{\Gamma} = 0\). Inoltre indicata come
 \[
-p(1, \mathbf{x}, \mathbf{y})  
+p(1, \bm{x}, \bm{y})  
 \]     
-la probabilità di transizione, ossia la probabilià di passare dal punto \(\mathbf{x} \mbox{ a } \mathbf{y}\) in un solo passo. La simmetria del moto permette di sapere che \(p(1, \mathbf{x}, \mathbf{y}) =  \frac{1}{4}\) se \(\abs*{\mathbf{x} -\mathbf{y}} = 1\), altrimenti \(p(1, \mathbf{x}, \mathbf{y}) = 0\). Poiché \(w_{\Gamma}(\mathbf{x})\) può essere ottenuta come somma di eventi disgiunti ed esaustivi (ossia la cui somma è l'evento certo), si ottiene così:
+la probabilità di transizione, ossia la probabilià di passare dal punto \(\bm{x} \mbox{ a } \bm{y}\) in un solo passo. La simmetria del moto permette di sapere che \(p(1, \bm{x}, \bm{y}) =  \frac{1}{4}\) se \(\abs*{\bm{x} -\bm{y}} = 1\), altrimenti \(p(1, \bm{x}, \bm{y}) = 0\). Poiché \(w_{\Gamma}(\bm{x})\) può essere ottenuta come somma di eventi disgiunti ed esaustivi (ossia la cui somma è l'evento certo), si ottiene così:
 \[
-  w_{\Gamma}(\mathbf{x}) = \sum_{\mathbf{y} \in h\mathbb{Z}^2}p(1, \mathbf{x}, \mathbf{y})w_{\Gamma}(\mathbf{y}) = M_hw_{\Gamma}(\mathbf{x})
+  w_{\Gamma}(\bm{x}) = \sum_{\bm{y} \in h\mathbb{Z}^2}p(1, \bm{x}, \bm{y})w_{\Gamma}(\bm{y}) = M_hw_{\Gamma}(\bm{x})
 \]
 che è, di fatto, l'equivalente di 
 \[
   (I - M_h)w_{\Gamma} = \Delta^*_h w_{\Gamma} = 0
 \]
-da cui si deduce che la funzione \(w_{\Gamma}\) è d-armonica in \(A\). Nel caso in cui \(\Gamma \equiv \partial A\), la funzione \(w_{\partial A}\) è sempre d-armonica e assume valore \(1\) al bordo. Inoltre, poiché la soluzione del problema di Dirichlet è unica, si ha \(w_{\partial A} \equiv 1\) in tutto \(A\). Pertanto raggiungere \(\partial A\) partendo da un punto \(\mathbf{x}\) è un evento certo, per cui si nota che la funzione 
+da cui si deduce che la funzione \(w_{\Gamma}\) è d-armonica in \(A\). Nel caso in cui \(\Gamma \equiv \partial A\), la funzione \(w_{\partial A}\) è sempre d-armonica e assume valore \(1\) al bordo. Inoltre, poiché la soluzione del problema di Dirichlet è unica, si ha \(w_{\partial A} \equiv 1\) in tutto \(A\). Pertanto raggiungere \(\partial A\) partendo da un punto \(\bm{x}\) è un evento certo, per cui si nota che la funzione 
 \[
-\Gamma \longrightarrow P(\mathbf{x}, \Gamma)  
+\Gamma \longrightarrow P(\bm{x}, \Gamma)  
 \]
 è additiva e definisce una misura di probabilità su \(\partial A\). \\
 La soluzione \(u\) della (3.9) diventa facile da comporre:
-\newpage
 \begin{theorem}
-  Il valore della soluzione del problema di Dirichlet discreto nel punto \(\mathbf{x}\) è dato dal valore atteso del guadagno \(g(\cdot)\) rispetto alla probabilità \(P(\mathbf{x}, \cdot)\), ossia 
+  Il valore della soluzione del problema di Dirichlet discreto nel punto \(\bm{x}\) è dato dal valore atteso del guadagno \(g(\cdot)\) rispetto alla probabilità \(P(\bm{x}, \cdot)\), ossia 
   \begin{equation}
-    u(\mathbf{x}) = \sum_{\mathbf{y}\in \partial A} g(\mathbf{y})P(\mathbf{x}, \{\mathbf{y}\})
+    u(\bm{x}) = \sum_{\bm{y}\in \partial A} g(\bm{y})P(\bm{x}, \{\bm{y}\})
   \end{equation}
 \end{theorem}
 \begin{proof}
   Ogni addendo
   \[
-  g(\mathbf{y})P(\mathbf{x}, \{\mathbf{y}\}) = g(\mathbf{y}) w_{(\mathbf{y})}(\mathbf{x})
+  g(\bm{y})P(\bm{x}, \{\bm{y}\}) = g(\bm{y}) w_{(\bm{y})}(\bm{x})
   \]
   è d-armonico in \(A\), e quindi lo è anche \(u\). \\
-  Se \(\mathbf{x} \in \partial A\) allora \(u(\mathbf{x}) = g(\mathbf{x})\) dal momento che ogni termine della somma è pari a \(g(\mathbf{x})\) se \(\mathbf{x} = \mathbf{y}\) o è nullo se \(\mathbf{x} \not = \mathbf{y}\).
+  Se \(\bm{x} \in \partial A\) allora \(u(\bm{x}) = g(\bm{x})\) dal momento che ogni termine della somma è pari a \(g(\bm{x})\) se \(\bm{x} = \bm{y}\) o è nullo se \(\bm{x} \not = \bm{y}\).
 \end{proof}
-Il caso discreto permette di stabilire alcune proprietà fondamentali delle funzioni armoniche. Una funzione è armonica in un dominio \(\Omega \subseteq \mathbb{R}^n\) se \(u \in \mathcal{C}^2(\Omega) \mbox{ e }\Delta u = 0 \mbox{ in } \Omega\). Dal momento che le funzioni d-armoniche hanno una definizione in termini di media, ci si può aspettare che anche le funzioni armoniche godano di proprietà simili. Si immagini una sfera \(B_r(\mathbf{x})\)\footnote{Con questa dicitura si intende una sfera di raggio \(r\) centrata nel punto \(\mathbf{x}\).}, che sia \(\subset \subset\)\footnote{Il simbolo \(\subset \subset\) indica una \emph{chiusura compatta contenuta}, ossia il sottoinsieme contenuto all'interno non ha punti di contatto con l'insieme principale.}. Nel caso di una sfera \(B_r \subset \subset \Omega\) il valore al centro della sfera uguaglierà la media aritmetica dei valori al bordo \(\partial B_r\). Sapendo che \(\omega_n\) indica la misura superficiale di \(\partial B_1\) e \(\abs*{B_1} = \frac{\omega_n}{n}\) rappresenta il volume.
+Il caso discreto permette di stabilire alcune proprietà fondamentali delle funzioni armoniche. Una funzione è armonica in un dominio \(\Omega \subseteq \mathbb{R}^n\) se \(u \in \mathcal{C}^2(\Omega) \mbox{ e }\Delta u = 0 \mbox{ in } \Omega\). Dal momento che le funzioni d-armoniche hanno una definizione in termini di media, ci si può aspettare che anche le funzioni armoniche godano di proprietà simili. Si immagini una sfera \(B_r(\bm{x})\)\footnote{Con questa dicitura si intende una sfera di raggio \(r\) centrata nel punto \(\bm{x}\).}, che sia \(\subset \subset\)\footnote{Il simbolo \(\subset \subset\) indica una \emph{chiusura compatta contenuta}, ossia il sottoinsieme contenuto all'interno non ha punti di contatto con l'insieme principale.}. Nel caso di una sfera \(B_r \subset \subset \Omega\) il valore al centro della sfera uguaglierà la media aritmetica dei valori al bordo \(\partial B_r\). Sapendo che \(\omega_n\) indica la misura superficiale di \(\partial B_1\) e \(\abs*{B_1} = \frac{\omega_n}{n}\) rappresenta il volume.
 \begin{theorem}
-  Sia \(u\) funzione armonica in \(\Omega \subset \mathbb{R}^n\). Per ogni sfera \(B_r(\mathbf{x}) \subset \subset \Omega\), valgono le formule
+  Sia \(u\) funzione armonica in \(\Omega \subset \mathbb{R}^n\). Per ogni sfera \(B_r(\bm{x}) \subset \subset \Omega\), valgono le formule
   \begin{eqnarray}
-    u(\mathbf{x}) = \frac{n}{\omega_n R^n} \int_{B_R(\mathbf{x})u(\mathbf{y})} \, d\mathbf{y} \\
-    u(\mathbf{x}) = \frac{1}{\omega_n R^{n-1}} \int_{\partial B_R(\mathbf{x})} u(\bm{\sigma}) \, d\sigma
+    u(\bm{x}) = \frac{n}{\omega_n R^n} \int_{B_R(\bm{x})u(\bm{y})} \, d\bm{y} \\
+    u(\bm{x}) = \frac{1}{\omega_n R^{n-1}} \int_{\partial B_R(\bm{x})} u(\bm{\sigma}) \, d\sigma
   \end{eqnarray}
-  con \(d\sigma\) che rappresenta l'elemento di superficie su \(\partial B_R(\mathbf{x})\).
+  con \(d\sigma\) che rappresenta l'elemento di superficie su \(\partial B_R(\bm{x})\).
 \end{theorem}
 \begin{proof}
   La seconda formula si può scrivere, ponendo \(r < R\)
   \[
-    g(r) = \frac{1}{\omega_n R^{n-1}}\int_{\partial B_r(\mathbf{x})} u(\bm{\sigma}) \, d\sigma
+    g(r) = \frac{1}{\omega_n R^{n-1}}\int_{\partial B_r(\bm{x})} u(\bm{\sigma}) \, d\sigma
   \]
-  Attuando un cambio di variabili e ponendo \(\bm{\sigma} = \mathbf{x} + r\bm{\sigma}'\) si avranno come estremi di integrazione \(\bm{\sigma}' \in \partial B_1(\bm{0}), \, d\sigma = r^{n-1}d\sigma'\) e quindi
+  Attuando un cambio di variabili e ponendo \(\bm{\sigma} = \bm{x} + r\bm{\sigma}'\) si avranno come estremi di integrazione \(\bm{\sigma}' \in \partial B_1(\bm{0}), \, d\sigma = r^{n-1}d\sigma'\) e quindi
   \[
-    g(r) = \frac{1}{\omega_n} \int_{\partial B_1(\bm{\sigma})} u(\mathbf{x}+r\bm{\sigma}') \, d\sigma'
+    g(r) = \frac{1}{\omega_n} \int_{\partial B_1(\bm{\sigma})} u(\bm{x}+r\bm{\sigma}') \, d\sigma'
   \] 
-  Posta una funzione \(v(\mathbf{y})\) in modo che \(v(\mathbf{y}) = u(\mathbf{x} + r\mathbf{y})\). 
+  Posta una funzione \(v(\bm{y})\) in modo che \(v(\bm{y}) = u(\bm{x} + r\bm{y})\). 
   \newpage
   Questo permette di ottenere: 
 
   \begin{eqnarray*}
-    \nabla v(\mathbf{y}) = r\nabla u(\mathbf{x} + r\mathbf{y}) \\
-  \Delta v(\mathbf{y}) = r^2\Delta u (\mathbf{x} + r\mathbf{y})
+    \nabla v(\bm{y}) = r\nabla u(\bm{x} + r\bm{y}) \\
+  \Delta v(\bm{y}) = r^2\Delta u (\bm{x} + r\bm{y})
   \end{eqnarray*}
   Si ha, allora, 
   \begin{eqnarray*}
-  g'(r) & = & \frac{1}{\omega_n} \int_{\partial B_1(\bm(0))} \frac{d}{dr}u(\mathbf{x} + r\bm{\sigma}') \, d\sigma' = \frac{1}{\omega_n} \int_{\partial B_1(\bm{0})} \nabla u(\mathbf{x} + r\sigma') \cdot \bm{\sigma}' \, d\sigma' \\
+  g'(r) & = & \frac{1}{\omega_n} \int_{\partial B_1(\bm(0))} \frac{d}{dr}u(\bm{x} + r\bm{\sigma}') \, d\sigma' = \frac{1}{\omega_n} \int_{\partial B_1(\bm{0})} \nabla u(\bm{x} + r\sigma') \cdot \bm{\sigma}' \, d\sigma' \\
   & = & \frac{1}{\omega_n r} \int_{\partial B_1 (\bm{0})} \nabla v(\bm{\sigma}') \cdot \bm{\sigma}' \, d\sigma' = (\mbox{Teorema della Divergenza}) \\
-  & = & \frac{1}{\omega_n r} \int_{B_1 (\bm{0})} \Delta v(\mathbf{y}) \, d\mathbf{y} = \frac{r}{\omega_n} \int_{B_1(\bm{0})} \Delta u(\mathbf{x} + r\mathbf{y}) \, d\mathbf{y} = 0
+  & = & \frac{1}{\omega_n r} \int_{B_1 (\bm{0})} \Delta v(\bm{y}) \, d\bm{y} = \frac{r}{\omega_n} \int_{B_1(\bm{0})} \Delta u(\bm{x} + r\bm{y}) \, d\bm{y} = 0
   \end{eqnarray*}
-  Per questo motivo \(g\) è costante, poiché \(g(r) \to u(\mathbf{x})\) con \(r \to 0\) si ottiene la (3.12). \\
+  Per questo motivo \(g\) è costante, poiché \(g(r) \to u(\bm{x})\) con \(r \to 0\) si ottiene la (3.12). \\
   La (3.11) si ottiene moltiplicando la (3.12) per \(r^{n-1}\) e integrando entrmabi i membri tra \(0 \mbox{ e } R\) si ottiene
   \[
-    \frac{R^n}{n} u(\mathbf{x}) = \frac{1}{\omega_n} \int_0^Rdr \int_{\partial B_r(\mathbf{0})} u(\bm{\sigma}) \, d\sigma = \frac{1}{\omega_n} \int_{B_R(\mathbf{x}}) u(\mathbf{y}) \, d\mathbf{y}
+    \frac{R^n}{n} u(\bm{x}) = \frac{1}{\omega_n} \int_0^Rdr \int_{\partial B_r(\mathbf{0})} u(\bm{\sigma}) \, d\sigma = \frac{1}{\omega_n} \int_{B_R(\bm{x}}) u(\bm{y}) \, d\bm{y}
   \]
   che restituisce la (3.11)
 \end{proof}
-L'inverso del Teorema (3.3) permette di affermare che una funzione continua \(u\) soddisfa la proprietà di media in \(\Omega\) se la (3.11) o la (3.12) valgono per ogni sfera \(B_R(\mathbf{x}) \subset \subset \Omega\).
+L'inverso del Teorema (3.3) permette di affermare che una funzione continua \(u\) soddisfa la proprietà di media in \(\Omega\) se la (3.11) o la (3.12) valgono per ogni sfera \(B_R(\bm{x}) \subset \subset \Omega\).
 Da questa affermazione si ricava una informazione fondamentale, ossia che tale funzione risulta necessariamente armonica in \(\Omega\). Inoltre si apprende che una funzione armonica in \(\Omega\) è dotata di derivate di ogni ordine, dunque è di classe \(\mathcal{C}^{\infty}(\Omega)\).
 \begin{theorem}
   Sia \(u \in \mathcal{C}(\Omega).\) Se \(u\) ha la proprietà di media, allora si tratta di una funzione armonica e \(\mathcal{C}^{\infty}\) in \(\Omega\).
 \end{theorem}
+\begin{proof}
+  Si osservi che, due funzioni che hanno la proprietà di media in un dominio \(\Omega\) trasmettono la stessa proprietà alla loro differenza. Sia \(u \in \mathcal{C}(\Omega)\), con la proprietà di media e si consideri una sfera \(B \subset \subset \Omega\) e una funzione \(v\) soluzione del problema 
+  \[
+    \begin{array}{cccc}
+      \Delta v = 0 & \mbox{in }B, & v = u & \mbox{su }\partial B
+    \end{array}
+  \]
+  Come verrà mostrato più avanti, \(v \in \mathcal{C}^{\infty}(B)\cap \mathcal{C}(\overline{B})\) ed è una funzione armonica con proprietà di media in \(B\). Allora anche una funzione \(w  = u - v\) ha proprietà di media in \(B\) e assume il suo massimo e minimo su \(\partial B\). Essendo \(w = 0\) su \(\partial B\) si deduce che \(u = v\) e allora \(u \in \mathcal{C}(B)\)
+
+\end{proof}
 Se una funzione possiede proprietà di media in un dominio \(\Omega\), non può assumere massimi (o minimi) in punti interni al dominio, eccetto nel caso in cui sia costante. Se \(\Omega\) è limitato. Nel caso di \(\Omega\) limitato e \(u\) non costante e continua in \(\overline{\Omega}\), allora \(u\) assume il suo massimo (o minimo) esclusivamente su \(\partial \Omega\).
 \begin{theorem}[Principio di massimo (o minimo)]
-  Se \(u \in \mathcal{C}(\Omega)\) ha la proprietà di media nel dominio \(\Omega \subseteq \mathbb{R}^n\) e \(\bm{p} \in \Omega\) è un punto di massimo (o minimo) globale per \(u\), allora \(u\) è costante. In particolare, nel caso \(\Omega\) sia limitato e \(u \in \mathcal{C}(\overline{\Omega})\) non sia costante, allora \(\forall \mathbf{x} \in \Omega\):
+  Se \(u \in \mathcal{C}(\Omega)\) ha la proprietà di media nel dominio \(\Omega \subseteq \mathbb{R}^n\) e \(\bm{p} \in \Omega\) è un punto di massimo (o minimo) globale per \(u\), allora \(u\) è costante. In particolare, nel caso \(\Omega\) sia limitato e \(u \in \mathcal{C}(\overline{\Omega})\) non sia costante, allora \(\forall \bm{x} \in \Omega\):
   \[
-  u(\mathbf{x}) < \max_{\partial \Omega} u \qquad (u(\mathbf{x}) > \min_{\partial \Omega} u) 
+  u(\bm{x}) < \max_{\partial \Omega} u \qquad (u(\bm{x}) > \min_{\partial \Omega} u) 
   \]
 \end{theorem}
 \begin{proof}
   Sia \(u\) non costante e \(\bm{p}\) un punto di minimo:
   \[
-    m = u(\bm{p}) \leq u(\mathbf{y}) \qquad \forall \mathbf{y} \in \Omega
+    m = u(\bm{p}) \leq u(\bm{y}) \qquad \forall \bm{y} \in \Omega
   \]
-  Si prenda un ulteriore punto \(\bm{q}\) all'interno di \(\Omega\). Per le proprietà di \(\Omega\)\footnote{Insieme aperto e connesso} si può determinare una sequenza finita di sfere \(B(\mathbf{x}_j) \subset \subset \Omega, j = 0, \ldots, N\) tali che 
+  Si prenda un ulteriore punto \(\bm{q}\) all'interno di \(\Omega\). Per le proprietà di \(\Omega\)\footnote{Insieme aperto e connesso} si può determinare una sequenza finita di sfere \(B(\bm{x}_j) \subset \subset \Omega, j = 0, \ldots, N\) tali che 
   \begin{itemize}
-    \item \(\mathbf{x}_j \in B(\mathbf{x_{j-1}})\) per ogni \(j = 1, \ldots, N\)
+    \item \(\bm{x}_j \in B(\bm{x}_{j-1})\) per ogni \(j = 1, \ldots, N\)
     \item \(x_0 = \mathbf{p}, x_N = \mathbf{q}\)
   \end{itemize}
   Per la proprietà di media (\(\abs*{B(\mathbf{p})}\) indica il volume della sfera \(B(\mathbf{p})\)):
   \[
-    m = u(\bm{p}) = \frac{1}{\abs*{B(\bm{p})}} \int_{B(\bm{p})} u(\mathbf{y}) \, d\mathbf{y}
+    m = u(\bm{p}) = \frac{1}{\abs*{B(\bm{p})}} \int_{B(\bm{p})} u(\bm{y}) \, d\bm{y}
   \]
 Se esiste \(\bm{z} \in B(\bm{p})\) tale che \(u(\bm{z}) > m\), allora, presa una sfera \(B_r(\bm{z}) \subset B(\bm{p})\), si può scrivere
 \begin{eqnarray*}
-  m & = & \frac{1}{\abs*{B(\bm{p})}} \int_{B(\bm{p})u(\mathbf{y})} \, d\mathbf{y} \\
-  & = & \frac{1}{\abs*{B(\bm{p})}} \left\lbrace \int_{B(\bm{p})\backslash B_r(\bm{z})} u(\mathbf{y}) \, d\mathbf{y} + \int_{B_r(\bm{z})} u(\mathbf{y}) \, d\mathbf{y} \right\rbrace
+  m & = & \frac{1}{\abs*{B(\bm{p})}} \int_{B(\bm{p})u(\bm{y})} \, d\bm{y} \\
+  & = & \frac{1}{\abs*{B(\bm{p})}} \left\lbrace \int_{B(\bm{p})\backslash B_r(\bm{z})} u(\bm{y}) \, d\bm{y} + \int_{B_r(\bm{z})} u(\bm{y}) \, d\bm{y} \right\rbrace
 \end{eqnarray*}
 Grazie alla proprietà di media si ha
 \begin{equation}
-  \int_{B_r(\bm{z})} u(\mathbf{y}) \, d\mathbf{y} = u(\bm{z})\abs*{B_r(\bm{z})} > m\abs*{B_r(\bm{z})}
+  \int_{B_r(\bm{z})} u(\bm{y}) \, d\bm{y} = u(\bm{z})\abs*{B_r(\bm{z})} > m\abs*{B_r(\bm{z})}
 \end{equation}
-
+Poiché \(u(\bm{y}) \geq m\) per ogni punto \(\bm{y}\) dalle equazioni precedenti si ottiene la contraddizione
+\[
+  m > \frac{1}{\abs*{B(\bm{p})}} \{m\abs*{B(\bm{p)}\backslash B_r(\bm{z})} + m\abs*{B_r(\bm{z})}\} = m
+\]
+Dunque in tutta \(B(\bm{p})\) si ha \(u = m\), in particolare in \(\bm{x}_1\). Tale ragionamento si può iterare, deducendo che \(u = m\) in \(B(\bm{x}_1)\), in particolare in \(\bm{x}_2\), e ancora fino a \(\bm{x}_N = \bm{q}\). Dal momento che \(\bm{q}\) è un punto arbitrario, permette di affermare che \(u = m\) in tutto \(\Omega\)
+\end{proof}.
+Si ricava un corollario per l'unicità della soluzione di Dirichlet. Definita, per ogni funzione \(g\) su \(\partial \Omega\), una soluzione \(u_g\) di 
+\begin{equation}
+  \begin{cases}
+    \Delta u = 0 & \mbox{in }\Omega \\
+    u = g & \mbox{su }\partial \Omega
+  \end{cases}
+\end{equation}
+\begin{corollary}
+  Siano \(\Omega\) un dominio limitato in \(\mathbb{R}^n\) e \(g \in \mathcal{C}(\partial\Omega)\). Il problema (3.14) ha, al massimo, una soluzione \(\in \mathcal{C}^2(\Omega) \cap \mathcal{C}(\overline{\Omega})\). Siano \(g_1, g_2 \in \mathcal{C}(\partial \Omega)\)
+\begin{itemize}
+  \item \emph{Confronto}: se \(g_1 \geq g_2\) su \(\partial \Omega\) e \(g_1 \not = g_2\) in almeno un punto della frontiera di \(\Omega\), allora 
+  \begin{equation}
+  u_{g_1} > u_{g_2} \qquad \mbox{in } \Omega  
+  \end{equation}
+  \item \emph{Stabilità}:
+  \begin{equation}
+    \max_{\overline{\Omega}}\abs*{u_{g_1} - u_{g_2}} = \max_{\partial \Omega}\abs*{g_1 - g_2}
+  \end{equation} 
+\end{itemize}
+\end{corollary}
+\begin{proof}
+  La funzione \(w = u_{g_1} - u_{g_2}\) è armonica e uguale a \(g_1 - g_2\) su \(\partial \Omega\). Dal momento che in almeno un punto di \(\partial\Omega\) \(g_1\) e \(g_2\) differiscono, la funzione \(w\) non è costante, e, grazie al teorema (3.5), si deduce che 
+  \[
+    w(\bm{x}) > \min_{\partial \Omega}(g_1 - g_2) \geq 0 \qquad \mbox{per ogni } \bm{x} \in \Omega
+  \]
+  che è esattamente la (3.15). Applicando lo stesso teorema a \(w \mbox{ e } -w\) si deducono le seguenti disuguaglianze
+  \[
+    \pm w(\bm{x}) \leq \max_{\partial \Omega}\abs*{g_1 - g_2} \qquad \mbox{per ogni }\bm{x} \in \Omega
+  \]
+  da cui la (3.16). Nel caso in cui \(g_1 = g_2\), la (3.16) implicherebbe che 
+  \[
+    \max_{\overline{\Omega}}\abs*{u_1 - u_2} = 0
+  \]
+  ossia che \(u_1  = u_2\), confermando l'unicità della soluzione per il problema di Dirichlet.
 \end{proof}
+In caso di geometrie particolari si possono utilizzare metodi speciali per risolvere il problema di Dirichlet, come il metodo di separazione delle variabili. Nel caso di un cerchio nel piano. Siano \(B_r(\bm{p})\) il cerchio di raggio \(r\) con centro \(\bm{p} = (p_1, p_2)\) e \(g \in \mathcal{C}(\partial B_r(\bm{p}))\). Per determinare la soluzione \(u \in \mathcal{C}^2(B_r(\bm{p})) \cap \mathcal{C}(\overline{B}_r(\bm{p}))\) del problema
+\begin{equation}
+  \begin{cases}
+    \Delta u = 0 & \mbox{in }B_r(\bm{p}) \\
+    u = g  & \mbox{su } \partial B_r(\bm{p})
+  \end{cases}
+\end{equation}
+\begin{theorem}
+  L'unica soluzione \(u \in \mathcal{C}^2(B_r(\bm{p})) \cap \mathcal{C}(\overline{B}_r(\bm{p}))\) del problema (3.17) 
+\end{theorem}
 \end{document}
