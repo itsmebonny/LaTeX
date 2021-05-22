@@ -1764,14 +1764,37 @@ Si ricava un corollario per l'unicità della soluzione di Dirichlet. Definita, p
   \]
   ossia che \(u_1  = u_2\), confermando l'unicità della soluzione per il problema di Dirichlet.
 \end{proof}
-In caso di geometrie particolari si possono utilizzare metodi speciali per risolvere il problema di Dirichlet, come il metodo di separazione delle variabili. Nel caso di un cerchio nel piano. Siano \(B_r(\bm{p})\) il cerchio di raggio \(r\) con centro \(\bm{p} = (p_1, p_2)\) e \(g \in \mathcal{C}(\partial B_r(\bm{p}))\). Per determinare la soluzione \(u \in \mathcal{C}^2(B_r(\bm{p})) \cap \mathcal{C}(\overline{B}_r(\bm{p}))\) del problema
+In caso di geometrie particolari si possono utilizzare metodi speciali per risolvere il problema di Dirichlet, come il metodo di separazione delle variabili. Nel caso di un cerchio nel piano. Siano \(B_R(\bm{p})\) il cerchio di raggio \(R\) con centro \(\bm{p} = (p_1, p_2)\) e \(g \in \mathcal{C}(\partial B_R(\bm{p}))\). Per determinare la soluzione \(u \in \mathcal{C}^2(B_R(\bm{p})) \cap \mathcal{C}(\overline{B}_R(\bm{p}))\) del problema
 \begin{equation}
   \begin{cases}
-    \Delta u = 0 & \mbox{in }B_r(\bm{p}) \\
-    u = g  & \mbox{su } \partial B_r(\bm{p})
+    \Delta u = 0 & \mbox{in }B_R(\bm{p}) \\
+    u = g  & \mbox{su } \partial B_R(\bm{p})
   \end{cases}
 \end{equation}
 \begin{theorem}
-  L'unica soluzione \(u \in \mathcal{C}^2(B_r(\bm{p})) \cap \mathcal{C}(\overline{B}_r(\bm{p}))\) del problema (3.17) 
+  L'unica soluzione \(u \in \mathcal{C}^2(B_R(\bm{p})) \cap \mathcal{C}(\overline{B}_R(\bm{p}))\) del problema (3.17) è data dalla seguente formula
+  \begin{equation}
+    u(\bm{x}) = \frac{R^2 - \abs*{\bm{x}- \bm{p}}^2}{2\pi R}\int_{\partial B_R(\bm{p})} \frac{g(\bm{\sigma})}{\abs*{\bm{x}-\bm{\sigma}}^2} \, d\sigma
+  \end{equation}
+  In particolare, si ha \(u \in \mathcal{C}^{\infty}(B_R(\bm{p}))\).
 \end{theorem}
+\begin{proof}
+  Si fissi \(\bm{p} = \bm{0}\), allora si avrà \(B_R = B_R(\bm{0})\). La simmetria del dominio suggerisce l'utilizzo di coordinate polari. Siano allora 
+  \[
+  x_1 = r\cos\theta, \qquad x_2 = r \sin\theta
+  \]
+  e 
+  \[
+    U(r, \theta) = u(r\cos\theta, r\sin\theta), \quad G(\theta) = g(R \cos \theta, R \sin \theta)
+  \]
+  L'operatore di Laplace si riscrive in coordinate polari\footnote{{\everymath = {\displaystyle}\(\Delta f = \frac{\partial^2 f}{\partial r^2} + \frac{1}{r}\frac{\partial f}{\partial r} + \frac{1}{r^2}\frac{\partial^2 f}{\partial \theta^2}\)}} e si ottiene
+  \begin{equation}
+    U_{rr} + \frac{1}{r} U_r + \frac{1}{r^2}U_{\theta\theta} = 0, \qquad 0 < r < R, 0 \leq \theta \leq 2\pi
+  \end{equation}
+con la seguente condizione di Dirichlet
+\[
+U(R, \theta) = v(r)w(\theta)  
+\]
+
+\end{proof}
 \end{document}
