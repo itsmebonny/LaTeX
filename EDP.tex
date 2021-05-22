@@ -1658,7 +1658,10 @@ Il caso discreto permette di stabilire alcune proprietà fondamentali delle funz
   \[
     g(r) = \frac{1}{\omega_n} \int_{\partial B_1(\bm{\sigma})} u(\mathbf{x}+r\bm{\sigma}') \, d\sigma'
   \] 
-  Posta una funzione \(v(\mathbf{y})\) in modo che \(v(\mathbf{y}) = u(\mathbf{x} + r\mathbf{y})\). Questo permette di ottenere
+  Posta una funzione \(v(\mathbf{y})\) in modo che \(v(\mathbf{y}) = u(\mathbf{x} + r\mathbf{y})\). 
+  \newpage
+  Questo permette di ottenere: 
+
   \begin{eqnarray*}
     \nabla v(\mathbf{y}) = r\nabla u(\mathbf{x} + r\mathbf{y}) \\
   \Delta v(\mathbf{y}) = r^2\Delta u (\mathbf{x} + r\mathbf{y})
@@ -1693,6 +1696,24 @@ Se una funzione possiede proprietà di media in un dominio \(\Omega\), non può 
   \[
     m = u(\bm{p}) \leq u(\mathbf{y}) \qquad \forall \mathbf{y} \in \Omega
   \]
-  Si prenda un ulteriore punto \(\bm{q}\) all'interno di \(\Omega\). Per le proprietà di \(\Omega\)\footnote{Insieme aperto e connesso} si può determinare una sequenza finita di sfere \(B(\mathbf{x}_j) \subset \subset \Omega\)
+  Si prenda un ulteriore punto \(\bm{q}\) all'interno di \(\Omega\). Per le proprietà di \(\Omega\)\footnote{Insieme aperto e connesso} si può determinare una sequenza finita di sfere \(B(\mathbf{x}_j) \subset \subset \Omega, j = 0, \ldots, N\) tali che 
+  \begin{itemize}
+    \item \(\mathbf{x}_j \in B(\mathbf{x_{j-1}})\) per ogni \(j = 1, \ldots, N\)
+    \item \(x_0 = \mathbf{p}, x_N = \mathbf{q}\)
+  \end{itemize}
+  Per la proprietà di media (\(\abs*{B(\mathbf{p})}\) indica il volume della sfera \(B(\mathbf{p})\)):
+  \[
+    m = u(\bm{p}) = \frac{1}{\abs*{B(\bm{p})}} \int_{B(\bm{p})} u(\mathbf{y}) \, d\mathbf{y}
+  \]
+Se esiste \(\bm{z} \in B(\bm{p})\) tale che \(u(\bm{z}) > m\), allora, presa una sfera \(B_r(\bm{z}) \subset B(\bm{p})\), si può scrivere
+\begin{eqnarray*}
+  m & = & \frac{1}{\abs*{B(\bm{p})}} \int_{B(\bm{p})u(\mathbf{y})} \, d\mathbf{y} \\
+  & = & \frac{1}{\abs*{B(\bm{p})}} \left\lbrace \int_{B(\bm{p})\backslash B_r(\bm{z})} u(\mathbf{y}) \, d\mathbf{y} + \int_{B_r(\bm{z})} u(\mathbf{y}) \, d\mathbf{y} \right\rbrace
+\end{eqnarray*}
+Grazie alla proprietà di media si ha
+\begin{equation}
+  \int_{B_r(\bm{z})} u(\mathbf{y}) \, d\mathbf{y} = u(\bm{z})\abs*{B_r(\bm{z})} > m\abs*{B_r(\bm{z})}
+\end{equation}
+
 \end{proof}
 \end{document}
