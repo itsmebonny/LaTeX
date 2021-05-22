@@ -1793,8 +1793,31 @@ In caso di geometrie particolari si possono utilizzare metodi speciali per risol
   \end{equation}
 con la seguente condizione di Dirichlet
 \[
-U(R, \theta) = v(r)w(\theta)  
+U(R, \theta) = G(\theta), \qquad 0 \leq \theta \leq 2\pi
 \]
-
+La soluzione deve essere continua, dunque \(U\) e \(G\) saranno continue rispettivamente in \([0,R] \times [0, 2\pi]\) e \([0,2\pi]\) e periodiche rispetto a \(\theta\) con un periodo \(2\pi\).
+Con il metodo di separazione delle variabili si trovano soluzioni del tipo 
+\[
+  U(r, \theta) = v(r)w(\theta)
+\]
+con le funzioni \(v,w\) limitate e \(w\) periodica con periodo \(2\pi\). Effettuando la sostituzione nella (3.19) si ricava 
+\[
+  v''(r)w(\theta) + \frac{1}{r} v'(r)w(\theta)+\frac{1}{r^2} v(r)w''(\theta) = 0\]
+  che diventa, separando le due variabili
+  \[
+  -\frac{r^2v''(r)+rv'(r)}{v(r)} = \frac{w''(\theta)}{w(\theta)}  
+  \] 
+  che è un'identità possibile solo quando i due quozienti sono accomunati da una costante \(\lambda\). I due membri dell'equazione costituiscono una equazione differenziale ordinaria
+  \begin{equation}
+    r^2v''(r) + rv'(r) + \lambda v(r) = 0
+  \end{equation}
+  e un problema di autovalori
+  \begin{equation}
+    \begin{cases}
+      w''(\theta) - \lambda w(\theta) = 0 \\
+      w \mbox{ funzione periodica }(2\pi) 
+    \end{cases}
+  \end{equation}
+  Il problema nella (3.21) ha soluzione nulla se \(\lambda \geq 0\), mentre
 \end{proof}
 \end{document}
