@@ -7,6 +7,7 @@
 \usepackage{bigfoot}
 \usepackage{amsthm}
 \usepackage{etoolbox}
+%\usepackage{doclicense}
 
 
 \AtBeginEnvironment{array}{\everymath{\displaystyle}}
@@ -1866,6 +1867,63 @@ Questi valori all'interno della (3.22) permettono di ottenere:
   = & \frac{1}{\pi} \int_0^{2\pi} G(\phi) \left[\frac{1}{2}+ \sum_{m=1}^{\infty} \left(\frac{r}{R}\right)^m \cos{m(\phi - \theta)}\right] \, d\phi
 \end{array}
 \]
-
+Per \(r < R\) la serie nell'ultimo passaggio converge uniformemente insieme alle derivate di ogni ordine, inoltre, essendo somma di funzioni armoniche, anche \(U(r, \theta)\) è funzione armonica e \(\mathcal{C}^{\infty}(B_R)\). \\
+Tra le parentesi quadre dell'ultimo termine appare la parte reale di una serie geometrica, più precisamente
+\[
+  \sum_{m=1}^{\infty} \left(\frac{r}{R}\right) \cos{m(\phi - \theta)} = \Re\left[\sum_{m=1}^{\infty}\left(e^{i(\phi -\theta)}\frac{r}{R}\right)^m\right]
+\]
+Dal momento che 
+\[
+\begin{array}{lcl}
+  \Re\sum_{m=1}^{\infty} \left(e^{i(\phi - \theta)}\frac{r}{R}\right)^m & = & \Re\frac{1}{1-e^{i(\phi - \theta)}\frac{r}{R}} - 1 \\
+  & = & \frac{R^2 - rR\cos{(\phi - \theta)}}{R^2 + r^2 - 2rR\cos{(\phi -\theta)}} - 1 \\
+  & = & \frac{rR\cos{(\phi -\theta)}-r^2}{R^2 +r^2 - 2rR\cos{(\phi - \theta)}}
+\end{array}  
+\]
+permette di ottenere 
+\begin{equation}
+  \frac{1}{2} + \sum_{m=1}^{\infty} \left(\frac{r}{R}\right)^m \cos{m(\phi - \theta)} = \frac{1}{2}\frac{R^2 - r^2}{R^2 + r^2 - 2rR\cos{(\phi - \theta)}}
+\end{equation}
+che permette di ricavare nella \(U\) la formula di Poisson in coordinate polari
+\begin{equation}
+  U(r, \theta) = \frac{R^2 - r^2}{2\pi}\int_0^{2\pi} \frac{g(\phi)}{R^2 + r^2 - 2rR \cos{(\theta - \phi)}} \, d\phi
+\end{equation}
+Che in variabili cartesiane torna a essere
+\begin{equation}
+  u(\bm{x}) = \frac{R^2 - \abs*{\bm{x}}^2}{2\pi R} \int_{\partial B_R} \frac{g(\bm{\sigma})}{\abs*{\bm{x}-\bm{\sigma}}}\, d\sigma
+\end{equation}
+che è esattamente la (3.18) con \(\bm{p} = \bm{0}\).
+Dal corollario (3.1) si può affermare che la (3.26) è soluzione unica del problema di Dirichlet (3.17). Inoltre, essendo \(u(\bm{x}) \equiv 1\) la soluzione del problema di Dirichlet con \(g \equiv 1\) si ricava
+\begin{equation}
+  \frac{R^2 - \abs*{\bm{x}}^2}{2\pi R} \int_{\partial B_R} \frac{1)}{\abs*{\bm{x}-\bm{\sigma}}}\, d\sigma = 1
+\end{equation}
+\begin{itemize}
+  \item \textbf{Caso} \(\bm{g \in \mathcal{C}(\partial B_R)}\)
+\end{itemize}
+Nel caso più generale in cui l'unica informazione è che la funzione \(g\) è continua, la formula (3.26) continua ad avere senso e a definire una funzione armonica e \(\mathcal{C}^{\infty}(B_R)\). Il problema ora sta nel mostrare 
+\[
+  \lim_{\bm{x} \to \bm{\xi}} u(\bm{x}) = g(\bm{\xi}), \qquad \forall \bm{\xi} \in \partial B_R
+\]
+Fissato \(\bm{\xi} \in \partial B_R, \epsilon > 0\). La continuità di \(g\) permette di scegliere un arco \(\Gamma_{\delta} \subset \partial B_R\) di lunghezza \(\delta\) e centrato nel punto \(\xi\) in modo da ottenere
+\[
+  \abs*{g(\bm{\sigma}) - g(\bm{\sigma})} < \epsilon \mbox{ su }\Gamma_{\delta}
+\]
+Grazie alla (3.27) si può riscrivere
+\begin{flalign*}
+    u(\bm{x}) - g(\bm{\xi}) = \frac{R^2 - \abs*{\bm{x}}^2}{2\pi R} \int_{\partial B_R} \frac{g(\bm{\sigma}) - g(\bm{\xi})}{\abs*{\bm{x}-\bm{\sigma}}}\, d\sigma = \\
+    = \frac{R^2 - \abs*{\bm{x}}^2}{2\pi R} \int_{\Gamma_{\delta}} (\ldots) \, d\sigma + \frac{R^2 - \abs*{\bm{x}}^2}{2\pi R} \int_{\partial B_R \backslash \Gamma_{\delta}} (\ldots) \, d\sigma \equiv I + II
+\end{flalign*}
+Poiché \(\abs*{u(\bm{x}) - g(\bm{\xi})} \leq \abs*{I} + \abs*{II}\), basta mostrare che \(\abs*{I} < \epsilon\) e che \(\abs*{II} \to 0\) se \(\bm{x} \to \bm{\xi}\).
+Grazie alla (3.29) e (3.27) si ha la soluzione del primo punto, infatti
+\begin{equation}
+  \abs*{I} \leq \frac{R^2 - \abs*{\bm{x}}^2}{2\pi R} \int_{\partial B_R} \frac{g(\bm{\sigma}) - g(\bm{\xi})}{\abs*{\bm{x}-\bm{\sigma}}}\, d\sigma < \epsilon \frac{R^2 - \abs*{\bm{x}}^2}{2\pi R} \int_{\partial B_R} \frac{1}{\abs*{\bm{x}-\bm{\sigma}}}\, d\sigma < \epsilon
+\end{equation}
+E, siccome \(\bm{x} \to \bm{\xi}\) e \(\bm{\sigma} \in \partial B_R\backslash \Gamma_{\delta}\), si deduce direttamente \(R^2 - \abs*{\bm{x}}^2 \to 0, \abs*{\bm{\sigma} - \bm{x}} \geq \frac{\delta}{2}\)
+Che permette di ottenere
+\[
+  \abs*{II} \leq \frac{R^2 - \abs*{\bm{x}}^2}{2\pi R} \int_{\partial B_R \backslash \Gamma_{\delta}} \frac{g(\bm{\sigma}) - g(\bm{\xi})}{\abs*{\bm{x}-\bm{\sigma}}}\, d\sigma \leq \frac{4 \max{\abs*{g}}}{\delta^2} (R^2 - \abs*{x}^2) \to 0
+\]
+Per cui anche in questo caso la (3.26) è l'unica soluzione del problema di Dirichlet.
 \end{proof}
+Una conseguenza immediata di questo teorema
 \end{document}
