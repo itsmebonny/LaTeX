@@ -1925,5 +1925,31 @@ Che permette di ottenere
 \]
 Per cui anche in questo caso la (3.26) è l'unica soluzione del problema di Dirichlet.
 \end{proof}
-Una conseguenza immediata di questo teorema
+Una conseguenza immediata di questo teorema è che se \(u\) è una funzione armonica in un dominio, allora è anche una funzione di classe \(\mathcal{C}^{\infty}\) in quel dominio. Dunque ogni derivata di una funzione amonica è anche essa armonica. Inoltre è possibile controllare le derivate di ogni ordine di una funzione armonica in un punto \(\bm{p}\) tramite il massimo della funzione.
+\begin{corollary}
+  Siano \(u\) funzione armonica in \(\Omega \subseteq \mathbb{R}^n\) e \(B_R(\bm{p}) \subset \subset \Omega\). Allora si ha, per ogni \(j, k = 1, \ldots, n\)
+  \begin{equation}
+   \abs*{u_{x_j}(\bm{p})} \leq \frac{n}{R}\max_{\partial B_R(\bm{p})} \abs*{u}, \qquad \abs*{u_{x_j x_k}(\bm{p})} \leq \frac{(2n)^2}{R^2} \max_{\partial B_R(\bm{p})} \abs*{u} 
+  \end{equation}
+\end{corollary}
+\begin{proof}
+  Poiché \(u_{x_j} (\bm{p}) = \frac{n}{\omega_n R^n} \int_{B_R(\bm{p})} u_{x_j}(\bm{y}) \, d\bm{y} = \frac{n}{\omega_n R^n}\int_{\partial B_R(\bm{p})} u(\bm{\sigma}) \bm{\nu_j} \, d\sigma\)
+Dal momento che \(\abs*{\partial B_R(\bm{p})} = \omega_n R^{n-1}\)
+\begin{equation}
+  \abs*{u_{x_j}(\bm{p})} \leq \frac{n}{\omega_n R^n} \int_{\partial B_R (\bm{p})} \abs*{u(\bm{\sigma})} \, d\sigma \leq \frac{n}{R} \max_{\partial B_R(\bm{p})}\abs*{u}
+\end{equation}
+Con la (3.33) si può (sostituendo \(u\) con \(u_{x_k}\) e \(\frac{R}{2}\) al posto di \(R\)) ottenere
+\[
+ \abs*{u_{x_k}(\bm{p})} \leq \frac{2n}{R} \max_{\partial B_{\frac{R}{2}} (\bm{p})} \abs*{u_{x_k}} 
+\]
+che, applicata \(\forall \bm{q} \in \partial B_{\frac{R}{2}}(\bm{p})\), restituisce
+\[
+  \abs*{u_{x_k}(\bm{q})} \leq \frac{2n}{R} \max_{\partial B_{\frac{R}{2}}(\bm{q})} \abs*{u}
+\]
+si deduce quindi che 
+\[
+  \abs*{u_{x_j}(\bm{p})} \leq \frac{2n}{R}\max_{\partial B_{\frac{R}{2}}(\bm{p})} \abs*{u_{x_k}}, \leq \frac{(2n)^2}{R^2} \max_{\partial B_R(\bm{p})} \abs*{u}  
+\]
+da cui \(\partial b_{\frac{R}{2}}(\bm{q}) \subset \partial B_R(\bm{p})\)
+\end{proof}
 \end{document}

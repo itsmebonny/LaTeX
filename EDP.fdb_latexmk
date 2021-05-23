@@ -1,10 +1,10 @@
 # Fdb version 3
-["pdflatex"] 1621768273 "c:/Users/andre/Documents/Polimi/Documenti sparsi/EDP.tex" "EDP.pdf" "EDP" 1621768276
+["pdflatex"] 1621782304 "c:/Users/andre/Documents/Polimi/Documenti sparsi/EDP.tex" "EDP.pdf" "EDP" 1621782306
   "C:/Users/andre/AppData/Local/MiKTeX/2.9/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm0700.pk" 1615561625 8268 93fc343a305efbcbf07ea39ff3765003 ""
   "C:/Users/andre/AppData/Local/MiKTeX/2.9/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm0800.pk" 1615561627 9292 bd776a5e9f0e2db64aca5c05fe57cba7 ""
   "C:/Users/andre/AppData/Local/MiKTeX/2.9/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk" 1593438458 14064 731b37c4b17f61d43da022a26eacb969 ""
   "C:/Users/andre/AppData/Local/MiKTeX/2.9/miktex/data/le/pdftex/pdflatex.fmt" 1617111146 10020405 2b7f080fad6ebfd1d928e541eba3a978 ""
-  "C:/Users/andre/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map" 1620316135 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
+  "C:/Users/andre/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map" 1621779665 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/jknappen/ec/tcrm0700.tfm" 993062506 1452 97bdc98984cb373fbcd868e2fa55f5f2 ""
   "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/jknappen/ec/tcrm0800.tfm" 993062506 1444 e35ead393df86aae37b5564284d9aa05 ""
   "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/fonts/tfm/jknappen/ec/tcrm1200.tfm" 993062508 1444 95ffe0f19b974d50849790c8225c7ef7 ""
@@ -103,9 +103,9 @@
   "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/tex/latex/ncctools/nccfoots.sty" 1565017809 1230 756b2502150ce6dc2179faebbd40e701 ""
   "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/tex/latex/physics/physics.sty" 1356005662 29610 a9597219b282d9c78b02393dcd7d4322 ""
   "C:/Users/andre/AppData/Local/Programs/MiKTeX 2.9/tex/latex/tools/bm.sty" 1580648484 12671 ace2aac118748ea10d1717448ecafbed ""
-  "EDP.aux" 1621768275 3460 2b90be66de3049c77f13d389c5e75735 "pdflatex"
-  "EDP.tex" 1621768272 110636 8941f9c32b2058e7293a063e2017cef0 ""
-  "c:/Users/andre/Documents/Polimi/Documenti sparsi/EDP.tex" 1621768272 110636 8941f9c32b2058e7293a063e2017cef0 ""
+  "EDP.aux" 1621782306 3460 2b90be66de3049c77f13d389c5e75735 "pdflatex"
+  "EDP.tex" 1621782302 116859 4ac5744383bc5610325cc2c0a481bc1b ""
+  "c:/Users/andre/Documents/Polimi/Documenti sparsi/EDP.tex" 1621782302 116859 4ac5744383bc5610325cc2c0a481bc1b ""
   (generated)
   "EDP.pdf"
   "EDP.aux"
