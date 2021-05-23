@@ -1818,6 +1818,54 @@ con le funzioni \(v,w\) limitate e \(w\) periodica con periodo \(2\pi\). Effettu
       w \mbox{ funzione periodica }(2\pi) 
     \end{cases}
   \end{equation}
-  Il problema nella (3.21) ha soluzione nulla se \(\lambda \geq 0\), mentre
+  Il problema nella (3.21) ha soluzione nulla se \(\lambda \geq 0\). Con \(\lambda = -\mu^2, \mu \geq 0\) si ha come integrale generale della \((3.21)\)
+  \[
+    w(\theta) = a \cos{\mu\theta} + b \sin{\mu\theta} \qquad (a,b \in \mathbb{R})
+  \]
+  Dal momento che \(w\) è periodica, si ha \(\mu = m\), che inserito nella (3.20), come \(\lambda = -m^2\), restituisce, poiché si tratta di una equazione di Eulero
+  \[
+    v(r) = d_1r^{-m} + d_2r^{m}, \qquad (d_1, d_2 \in \mathbb{R})
+  \]
+  Dal momento che \(v\) è, per definizione, limitata, si può escludere \(r^{-m}\), per cui \(d_1 = 0\). Da queste informazioni si ricavano le infinite armoniche elementari
+  \[
+    r^m\{a_m \cos{m\theta} + b_m \sin{m\theta}\} \qquad m = 0, 1, 2, \ldots
+  \] 
+Poiché l'equazione di Laplace è lineare, si possono sovrapporre queste soluzioni, ottenendo una soluzione possibile
+\begin{equation}
+  U(r, \theta) = a_0 + \sum_{m=1}^{\infty} r^m \{a_m \cos{m\theta} + b_m \sin{m\theta}\}
+\end{equation}
+con i coefficienti \(a, b\) scelti opportunamente in modo da rispettare la condizione al bordo
+\begin{equation}
+  \lim_{(r,\theta) \to (R, \xi)} U(r, \theta) = G(\xi) \qquad \forall \xi \in [0, 2\pi]
+\end{equation}
+Si distinguono ora due casistiche principali:
+\begin{itemize}
+  \item \textbf{Caso} \(\bm{G \in \mathcal{C}^{1}([0, 2\pi])}\)
+\end{itemize}
+Il primo caso implica che la funzione \(G\) sia regolare e dotata almeno di derivata \(G'\) continua in \([0, 2\pi]\). In tal caso si può sviluppare la serie di Fourier
+\[
+  G(\xi) = \frac{\alpha_0}{2} + \sum_{m = 1}^{\infty} \{\alpha_m \cos{m\xi} + \beta_m \sin{m\xi} \}
+\]
+che ha convergenza uniforme e si hanno
+\begin{eqnarray*}
+  \alpha_m & = & \frac{1}{\pi} \int_0^{2\pi} G(\phi) \cos{m\phi} \, d\phi \\
+  \beta_m & = & \frac{1}{\pi} \int_0^{2\pi} G(\phi) \sin{m\phi} \, d\phi
+\end{eqnarray*}
+Allora per soddisfare la condizione (3.23) si scelgono i valori
+\[
+  \begin{array}{ccc}
+    a_0 = \frac{\alpha_0}{2}, & a_m = R^{-m}\alpha_m, b_m = R^{-m} \beta_m
+  \end{array}
+\]
+Questi valori all'interno della (3.22) permettono di ottenere:
+\[
+\begin{array}{cl}
+  U(r, \theta) = & \\
+  = & \frac{\alpha_0}{2} + \frac{1}{\pi} \sum_{m=1}^{\infty} (\frac{r}{R})^m \int_0^{2\pi} G(\phi) \{\cos{m\phi}\cos{m\theta} + \sin{m \phi} \sin{m\theta} \, d\phi\} \\
+  = & \frac{1}{\pi} \int_0^{2\pi} G(\phi) \left[\frac{1}{2} + \sum_{m=1}^{\infty} \left(\frac{r}{R}\right)^m \{\cos{m\phi} \cos{m\theta} + \sin{m\phi} \sin{m\theta}\}\right] \, d\phi \\
+  = & \frac{1}{\pi} \int_0^{2\pi} G(\phi) \left[\frac{1}{2}+ \sum_{m=1}^{\infty} \left(\frac{r}{R}\right)^m \cos{m(\phi - \theta)}\right] \, d\phi
+\end{array}
+\]
+
 \end{proof}
 \end{document}
