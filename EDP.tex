@@ -1960,6 +1960,51 @@ Dal momento che
 \]
 e la matrice \(\bm{M}\) è ortogonale, si ha 
 \[
-  \Delta v(\bm{x}) = \Tr[]
+  \Delta v(\bm{x}) = \Tr[\bm{M}^T D^2u(\bm{Mx})\bm{M}] = \Tr{D^2u(\bm{Mx})} = \delta u(\bm{Mx}) = 0
 \]
+che conferma il fatto che \(v\) sia armonica. \\
+La distanza di un punto dall'origine è una tipica espressione invariante per rotazioni nello spazio, ossia preso un raggio \(r = \abs*{\bm{x}}\), si cercano soluzioni che dipendano solo da \(r\), quindi \emph{soluzioni a simmetria radiale}.
+Per fare questo si utilizza l'operatore di Laplace in coordinate sferiche (\(r, \psi, \theta\)):
+\[
+  \Delta = \underbrace{\frac{\partial^2}{\partial r^2} + \frac{2}{r} \frac{\partial}{\partial r}}_{\text{parte radiale}} + \frac{1}{r^2} \underbrace{\left\{ \frac{1}{(\sin\psi)^2} \frac{\partial^2}{\partial \theta^2} + \frac{\partial^2}{\partial \psi^2} + \cot{\psi \frac{\partial}{\partial \psi}}\right\}}_{\text{parte sferica (Laplace-Beltrami)}}
+\]
+che riduce l'equazione di Laplace per \(u = u(r)\) a 
+\[
+  \frac{\partial^2 u}{\partial r^2} + \frac{1}{r} \frac{\partial u}{\partial r} = 0
+\]
+da cui si ricava l'integrale generale (con \(C, C_1\) costanti arbitrarie)
+\[
+u(r) \frac{C}{r}+ C_1  
+\]
+Nel caso bidimensionale, per cui con coordinate polari, si ha 
+\[
+  \frac{\partial^2 u}{\partial r^2} + \frac{1}{r} \frac{\partial u}{\partial r} = 0
+\]
+che, integrata, restituisce
+\[
+  u(r) = C\log{r} + C_1
+\]
+Nel caso tridimensionale una scelta di \(C\) sarà \(\frac{1}{4\pi}\), mentre si due dimensioni sarà ottimale definre \(C = -\frac{1}{2\pi}\), mentre \(C_1\) sarà sempre nulla.
+Si può definire allora una funzione \(\bm{\Phi}(\bm{x})\) come
+\begin{equation}
+  \bm{\Phi}(\bm{x}) = \begin{cases}
+    -\frac{1}{2\pi} \log{\abs*{\bm{x}}} & n = 2 \\
+    \frac{1}{4\pi \abs*{\bm{x}}} & n = 3
+  \end{cases}
+\end{equation}
+che è la \emph{soluzione fondamentale} per l'operatore di Laplace. \(\bm{\Phi}\) è definita per \(\bm{x} \not = \bm{0}\) e la scelta della costante \(C\) permette di avere 
+\[
+  \Delta \bm{\Phi} = -\delta_n \qquad \mbox{in }\mathbb{R}^n
+\]
+con \(\delta_n\) distribuzione di Dirac nell'origine. \\
+In termini fisici, la funzione \(\bm{\Phi}\) è di notevole importanza. Infatti in tre dimensioni rappresenta il potenziale elettrostatico generato da una carica nell'origine che si annulla all'infinito, mentre in due dimensioni rappresenta il potenziale di una carica con densità totale unitaria distribuita lungo un'asse. \\
+In caso non si trovi nell'origine si ha 
+\[
+  \Delta_{\bm{x}} \bm{\Phi}(\bm{x} - \bm{y}) = -\delta_n (\bm{x} - \bm{y})
+\]
+Supponendo che la densità di carica posta in un sottoinsieme compatto di \(\mathbb{R}^3\) sia \((4\pi)^{-1} f(\bm{x})\). Allora il potenziale sarà \(\bm{\Phi}(\bm{x} - \bm{y}) f(\bm{y}) \, d\bm{y}\), che è generato in \(\bm{x}\) da una carica presente in una regione di volume \(d\bm{y}\). La somma di tutte le cariche presenti nella regione in esame permette di ottenere
+\begin{equation}
+  \mathcal{N}_\bm{f} (\bm{x}) = \int_{\mathbb{R}^3} \bm{\Phi} 
+\end{equation}
+
 \end{document}
