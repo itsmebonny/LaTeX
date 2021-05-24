@@ -3,7 +3,7 @@
 \usepackage{amsmath}
 \usepackage{physics}
 \usepackage{bm}
-\usepackage[margin=3cm]{geometry}
+\usepackage[margin=1.5cm]{geometry}
 \usepackage{bigfoot}
 \usepackage{amsthm}
 \usepackage{etoolbox}
@@ -84,7 +84,6 @@ Equazioni lineari:
 \end{itemize}
 \symbolfootnotetext[2]{$\Delta u = \sum_{j = 1}^n \frac {\partial ^2 u}{\partial x_j^2}$}
 \symbolfootnotetext[3]{$c(x, t)$}  
-\newpage
 Tra i tipi di nonlinearità si distinguono tre principali categorie:
 \begin{itemize}
 \item Semilineari: se F è nonlineare rispetto ad $u$, ma lo è rispetto alle sue derivate. (e.g. Equazione di Fisher-Kolmogorov: $u_t - D\Delta u = f(u) = ru(1-u)$)
@@ -447,7 +446,6 @@ $$
 $$
 e la serie $\sum \frac{1}{m^2}$ è convergente, dunque per il test di Weierstrass anche la serie (2.18) converge uniformemente in $[0, \infty)$ e si può passare al limite per $s \to 0^+$ ottenendo la (2.17).
 Inoltre, nonostante $U_m$ sia soluzione dell'equazione del calore, non vi è la certezza che lo sia anche $U$. Tale affermazione si verifica differenziando sotto il segno di somma, ossia 
-\newpage
 \begin{equation}
 (\partial_s - \partial_{yy}) U(y,s) = \sum_{m=1}^{\infty}(\partial_s - \partial_{yy})U_m(y,s) = 0
 \end{equation}
@@ -1042,7 +1040,6 @@ Poiché la formula del binomio è
   (a + b)^N = \sum_{k = 0}^N C_{N,k}a{N-k}b^k 
 \]
 si deduce che 
-\newpage
 \[
   G(s) = \frac{1}{2^N} \sum_{k=0}^N C_{N,k}s^k = \frac{1}{2^N}(1+s)^N
 \]
@@ -1298,7 +1295,7 @@ Passando al limite per \(\Delta x \to 0\) e dividendo per \(\Delta x\) si ha
 \end{equation}
 Per avere una idea del tipo di flusso di massa con cui si ha a che fare, è necessario stabilire una legge costitutiva per \(q\). Le opzioni sono:
 \begin{enumerate}
-  \item \emph{Convezione o trasporto}. Il flusso è determinato dalla corrente d'acqua, nel caso in cui l'inquinante mantenga la sua forma senza deformarsi; modellizzabile come
+  \item \emph{Convezione o trasporto}. Il flusso è determinato dalla corrente d'acqua, nel caso in cui la massa inquinante mantenga la sua forma senza deformarsi; modellizzabile come
   \[
     q(x,t) = vc(x,t)
   \]
@@ -1659,7 +1656,6 @@ Il caso discreto permette di stabilire alcune proprietà fondamentali delle funz
     g(r) = \frac{1}{\omega_n} \int_{\partial B_1(\bm{\sigma})} u(\bm{x}+r\bm{\sigma}') \, d\sigma'
   \] 
   Posta una funzione \(v(\bm{y})\) in modo che \(v(\bm{y}) = u(\bm{x} + r\bm{y})\). 
-  \newpage
   Questo permette di ottenere: 
 
   \begin{eqnarray*}
@@ -1952,4 +1948,18 @@ si deduce quindi che
 \]
 da cui \(\partial b_{\frac{R}{2}}(\bm{q}) \subset \partial B_R(\bm{p})\)
 \end{proof}
+\subsection{Soluzione fondamentale}
+Due proprietà fondamentali che caratterizzano l'operatore di Laplace sono: \emph{invarianza per traslazioni e rotazioni dello spazio}. Nel caso \(u = u(\bm{x})\) sia una funzione armonica, la funzione \(v(\bm{x}) = u(\bm{x} - \bm{y})\) è anche essa armonica, per ogni \(\bm{y}\) fissato. Nel caso di rotazioni nello spazio, si utilizza una rotazione in \(\mathbb{R}^n\), rappresentata da una matrice ortogonale \(\bm{M}\), allora anche \(v(\bm{x}) = u(\bm{Mx})\) è armonica in \(\mathbb{R}^n\). 
+La dimostrazione deriva, indicata con \(D^2 u\) la matrice Hessiana di \(u\), dalla possibilità di riscrivere il Laplaciano di \(u\) come
+\[
+  \Delta u = \Tr{D^2u} = \mbox{ traccia della Hessiana di }u 
+\]
+Dal momento che 
+\[
+  D^2v(\bm{x}) = \bm{M}^T D^2u(\bm{Mx})\bm{M}
+\]
+e la matrice \(\bm{M}\) è ortogonale, si ha 
+\[
+  \Delta v(\bm{x}) = \Tr[]
+\]
 \end{document}
