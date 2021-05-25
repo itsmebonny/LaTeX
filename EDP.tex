@@ -173,7 +173,7 @@ Affinché la funzione
 $$
 u^*(\bm{x},t) = u(a\bm{x},bt)
 $$
-sia ancora soluzione della funzione omogenea, è necessario trovare delle condizioni per i coefficienti $a \mbox{ e }b$.
+sia ancora soluzione della funzione omogenea, è necessario trovare delle condizioni per i due coefficienti $a \mbox{ e }b$.
 Poiché:
 $$ 
 u_t^*(\bm{x},t)-\Delta u^* (\bm{x},t) = bu_t(a\bm{x},bt)-a^2D\Delta u(a\bm{x}, bt)
@@ -259,8 +259,10 @@ con $k > 0$ costante di conduttività termica, allora si assegnano due valori ag
 $$
 -u_x(0,t) = h_1(t), \quad u_x(L,t) = h_2(t), \qquad t \in (0,T]
 $$
-\item \emph{Condizioni di Robin (o radiazione}, una condizione derivata dalla legge lineare sul raffreddamento di Newton, ossia, se l'ambiente circostante si trova a una temperatura $U$ e il flusso di calore entrante in $x = L$ sia proporzionale alla differenza $U-u$ ossia
-$$ku_x(L, t) = \gamma (U-u(L,t)) \qquad t \in (0,T]$$
+\item \emph{Condizioni di Robin (o radiazione)}, una condizione che deriva dalla legge lineare del raffreddamento di Newton, ossia, se tutto l'ambiente circostante si trova a una temperatura $U$ e il flusso di calore entrante in $x = L$ sia proporzionale alla differenza $U-u$ ossia
+$$
+ku_x(L, t) = \gamma (U-u(L,t)) \qquad t \in (0,T]
+$$
 con $\gamma >0$. Si possono allora riscrivere le condizioni di Robin come
 $$
 u_x(L,T) +\alpha \symbolfootnotemark[2] u(L,t) = \beta \symbolfootnotemark[3] \qquad t \in (0,T]
@@ -784,7 +786,7 @@ Affinché $u^*$ sia soluzione della (2.26), occorre che $U$ soddisfi l'equazione
 \begin{equation}
 U''(\xi) + \frac{1}{2}\xi U'(\xi) + \frac{1}{2}U(\xi) = 0
 \end{equation}
-Si tratta di una equazione del secondo ordine, per cui servono due condizioni supplementari. La (2.33) implica
+Si tratta di una equazione del secondo ordine, per la quale sono necessarie due condizioni supplementari. La (2.33) implica
 $$
 U(-\infty) = U(+\infty) = 0 
 $$
@@ -1367,7 +1369,7 @@ Dividendo tutto per \(\tau\) e, come prima, passando al limite per \(h, \tau \to
   p_t = Dp_{xx} + bp_x - \gamma p, \qquad (b = 2D\beta)
 \]
 \subsection{Il problema di Cauchy globale}
-Questa sezione si occuperà di studiare il problema di Cauchy globale nel caso omogeneo unidimensionale.
+Questa sezione si occuperà di studiare il problema di Cauchy globale nel caso omogeneo \(n=1\).
 Il problema si pone come 
 \begin{equation}
   \begin{cases}
