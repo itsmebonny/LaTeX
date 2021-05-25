@@ -2018,5 +2018,63 @@ Si può enunciare un comodo teorema per verificare la veridicità della (3.33):
   \]
   che si annulla \(\to \infty\)
 \end{theorem}
-\subsection{Funzione di Green}
+\subsection{Funzione di Green} 
+In domini limitati, ogni formula di rappresentazione tiene conto dei valori di \(u\) e della sua derivata normale al bordo. Si consideri la soluzione fondamentale
+\[
+  \bm{\Phi} (\bm{x}-\bm{y}) = \frac{1}{4\pi r_{\bm{xy}}} \qquad r_{\bm{xy}} = \abs*{\bm{x} - \bm{y}}
+\]
+Con \(\bm{x} \in \Omega\) fissato, il simbolo \(\bm{\Phi}(\bm{x} - \bm{\cdot})\) indica una funzione \(\bm{y} \to \bm{\Phi}(\bm{x}-\bm{y})\). La derivata normale al bordo di questa funzione si può scrivere come 
+\[
+\partial_{\bm{\nu}}\bm{\Phi}(\bm{x} - \bm{\sigma}) = \nabla_{\bm{y}}\bm{\Phi} (\bm{x}-\bm{\sigma}) \cdot \bm{\nu_{\sigma}}
+\]
+\begin{theorem}
+  Siano \(\Omega \subset \mathbb{R}^3\) un dominio limitato e regolare e \(u \in \mathcal{C}^2(\overline{\Omega})\). Si ha 
+  \begin{equation}
+    \begin{array}{lcl}
+      u(\bm{x}) & = & -\int_{\Omega} \bm{\Phi} (\bm{x} - \bm{y}) \Delta u(\bm{y}) \, d\bm{y} + \\
+      &  & + \int_{\partial \Omega} \bm{\Phi} (\bm{x} - \bm{\sigma}) \partial_{\bm{\nu}}u(\bm{\sigma}) \, d\sigma - \int_{\partial\Omega} \partial_{\bm{\nu}}\bm{\Phi}(\bm{x} - \bm{\sigma}) u(\bm{\sigma}) \, d\sigma
+    \end{array}
+  \end{equation}
+Il primo integrale è il potenziale Newtoniano di \(-\Delta u\) in \(\Omega\), mentre i due integrali di superficie si chiamano, rispettivamente, \emph{potenziale di strato semplice con densità} \(\partial_{\bm{\nu}}\) e \emph{doppio strato con momento} \(u\). 
+\end{theorem}
+\begin{proof}
+  Per la dimostrazione si applicherà l'identità di Green \eqref{Identità di Green}
+  \begin{equation}
+    \int_{\Omega} (v\Delta u - u\Delta v) \, d\bm{x} = \int_{\partial \Omega} (v \partial_{\bm{\nu}}u - u\partial_{\bm{\nu}}v) \, d\sigma 
+  \end{equation}
+  a \(u\) e \(\bm{\Phi}(\bm{x}-\bm{\cdot})\). Tuttavia \(\bm{\Phi}(\bm{x}-\bm{\cdot})\) ha una singolarità in \(\bm{x}\) che non permette di utilizzare direttamente la (3.35). Considerata una sfera di raggio \(\epsilon\) molto piccolo \(B_{\epsilon}(\bm{x})\) e definendo un insieme \(\Omega_{\epsilon} = \Omega \backslash \overline{B}_{\epsilon}(\bm{x})\). All'interno di questo insieme \(\bm{\Phi}(\bm{x} - \bm{\cdot})\) è una funzione regolare e armonica. Dal momento che 
+  \[
+    \partial\Omega_{\epsilon} = \partial\Omega \cup \partial B_{\epsilon}(\bm{x})
+  \]
+  e \(\Delta_{\bm{y}}\bm{\Phi}(\bm{x} - \bm{y}) = 0\), si ha
+  \begin{equation}
+    \begin{array}{l}
+      \int_{\Omega_{\epsilon}} \frac{1}{r_{\bm{xy}}} \Delta u \, d\bm{y} = \int_{\partial B_{\epsilon}} \left(\frac{1}{r_{\bm{xy}}} \frac{\partial u}{\partial \bm{\nu}} - u \frac{\partial}{\partial \bm{\nu}} \frac{1}{r_{\bm{x\sigma}}}\right) \, d\sigma = \\
+      \\
+    = \int_{\partial \Omega} (\ldots) \, d\sigma + \int_{\partial B_{\epsilon}(\bm{x})} \frac{1}{r_{\bm{xy}}} \frac{\partial u}{\partial \bm{\nu}} \, d\sigma - \int_{\partial B_{\epsilon}(\bm{x})} u\frac{\partial}{\partial \bm{\nu}} \frac{1}{r_{\bm{xy}}} \, d\sigma
+    \end{array}
+  \end{equation}
+Con \(\epsilon\) tendente a zero i tre integrali diventano
+\begin{equation}
+  \int_{\Omega_{\epsilon}} \frac{1}{r_{\bm{xy}}} \Delta u \, d\bm{y} \to \int_{\Omega} \frac{1}{r_{\bm{xy}}} \Delta u \, d\bm{y} \qquad \mbox{per }\epsilon \to 0
+\end{equation}
+poiché \(\frac{1}{r_{\bm{xy}}}\) è positiva e integrabile in \(\Omega\) e \(\Delta u \in \mathcal{C}(\overline{\Omega})\). \\
+Su \(\partial B_{\epsilon}(\bm{x})\) si ha \(r_{\bm{xy}} = \epsilon\) e \(\abs*{\partial_{\bm{\nu}}} \leq M\), e sapendo che \(\abs*{\nabla u}\) è limitato, si ottiene 
+\begin{equation}
+\left|\int_{\partial B_{\epsilon}(\bm{x})}\frac{1}{r_{\bm{x\sigma}}} \partial_{\bm{\nu}}u \, d\sigma\right| \leq 4\pi \epsilon M \to 0 \qquad \mbox{per } \epsilon \to 0
+\end{equation}
+La questione più delicata riguarda l'ultimo integrale
+\[
+  \int_{\partial B_{\epsilon}(\bm{x})} u\frac{\partial}{\partial \bm{\nu}} \frac{1}{r_{\bm{xy}}} \, d\sigma
+\]
+Al bordo della sfera \(B_{\epsilon}(\bm{x})\), il versore normale esterno a \(\Omega_{\epsilon}\) nel punto \(\bm{\sigma}\) è \(\bm{\nu_{\sigma}} = \frac{\bm{x}-\bm{\sigma}}{\epsilon}\), per cui
+\[
+  \frac{\partial}{\partial \bm{\nu}} \frac{1}{r_{\bm{x\sigma}}} = \nabla_{\bm{y}}\frac{1}{r_{\bm{x\sigma}}} \cdot \bm{\nu_{\sigma}} = \frac{\bm{x} - \bm{\sigma}}{\epsilon^3} \frac{\bm{x} - \bm{\sigma}}{\epsilon} = \frac{1}{\epsilon^2}
+\]
+Dalla quale segue
+\begin{equation}
+  \int_{\partial B_{\epsilon}(\bm{x})} u \frac{\partial}{\partial \bm{\nu}} \frac{1}{r_{\bm{x\sigma}}} \, d\sigma = \frac{1}{\epsilon^2} \int_{\partial B_{\epsilon}(\bm{x})} u \, d\sigma \to 4\pi u(\bm{x})
+\end{equation}
+Che, assieme agli altri termini permette di ottenere la (3.34)
+\end{proof}
 \end{document}
