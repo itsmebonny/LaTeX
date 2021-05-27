@@ -2080,4 +2080,36 @@ Dalla quale segue
 \end{equation}
 Che, assieme agli altri termini permette di ottenere la (3.34)
 \end{proof}
+La funzione \(\bm{\Phi}\) è la soluzione fondamentale di \(\Delta\) in tutto \(\mathbb{R}^n\). Si può immaginare una funzione \(G(\bm{x,y})\) come la rappresentazione del potenziale generato da una carica posta in \(\bm{x}\) dentro una regione formata da un conduttore messo a terra al bordo della regione. Ossia, fissato \(\bm{x}\in \Omega\)
+si ha:
+\[
+  \begin{array}{ll}
+    \Delta_{\bm{y}} G(\bm{x,y}) = -\delta_n (\bm{x} - \bm{y}) & \mbox{in } \Omega \\
+    G(\bm{x, \sigma})= 0 & \sigma \in \partial \Omega
+  \end{array}
+\]
+Vale allora la formula 
+\[
+  G(\bm{x,y}) = \bm{\Phi}(\bm{x} - \bm{y}) - \phi(\bm{x,y})
+\]
+con \(\phi\), come funzione di \(\bm{y}\), per \(\bm{x}\) fissato, soluzione del problema di Dirichlet
+\begin{equation}
+  \begin{cases}
+    \Delta_{\bm{y}} \phi(\bm{x,y}) = 0 & \mbox{in } \Omega \\
+    \phi(\bm{x, \sigma}) = \bm{\Phi}(\bm{x}-\bm{\sigma}) & \mbox{su } \partial \Omega
+  \end{cases}
+\end{equation} 
+Due proprietà importanti della funzione di Green sono:
+\begin{itemize}
+  \item[a)] Positività: \(G(\bm{x,y}) > 0\), per ogni \(bm{x,y} \in \Omega\) e \(G(\bm{x,y}) \to +\infty\), se \(\bm{x} - \bm{y} \to \bm{0}\)
+  \item[b)] Simmetria: \(G(\bm{x,y})\) = \(G(\bm{y,x})\)  
+\end{itemize}
+Le funzioni di Green esistono se il problema di Dirichlet è risolvibile in un determinato dominio. Se la funzione di Green esiste, in caso di domini specifici si possono utilizzare formule particolari, grazie a una tecnica nota come \emph{metodo delle immagini}. In questo metodo, considerata una funzione \(\phi(\bm{x, \cdot})\) pari al potenziale generato da una carica in \(\bm{x}\). 
+\begin{itemize}
+  \item La funzione di Green per il semispazio superiore in \(\mathbb{R}^3\). Definito \(\mathbb{R}^3_+\) il semispazio
+  \[
+    \mathbb{R}^3_+ = \{(x_1, x_2, x_3): x_3 > 0\}
+  \] 
+  Sia \(\bm{x} = (x_1, x_2, x_3)\) e \(\bm{x}^+ = (x_1, x_2 -x_3)\)  
+\end{itemize}
 \end{document}
