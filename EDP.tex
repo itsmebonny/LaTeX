@@ -2168,5 +2168,67 @@ da cui la funzione di Green:
 \begin{equation}
   G(\bm{0, y}) = \frac{1}{4\pi} \left[\frac{1}{\abs*{\bm{y}}} - \frac{1}{R}\right]
 \end{equation}
-Dal teorema (3.8) si evince che ogni funzione regolare \(u\) può essere riscritta come somma di un potenziale di volume con densità \(-\Delta u\), di un potenziale di strato demplice con densità \(\partial_{\bm{\nu}}\) e di un potenziale di doppio strato di momento \(u\)
+Dal teorema (3.8) si evince che ogni funzione regolare \(u\) può essere riscritta come somma di un potenziale di volume con densità \(-\Delta u\), di un potenziale di strato demplice con densità \(\partial_{\bm{\nu}}\) e di un potenziale di doppio strato di momento \(u\). 
+Sia \(u\) la soluzione del problema di Dirichlet 
+\begin{equation}
+  \begin{cases}
+    \Delta u = f & \mbox{in }\Omega \\
+    u = g & \mbox{su } \partial\Omega
+  \end{cases}
+\end{equation}
+Inoltre, per \(\bm{x} \in \Omega\) fissato, si ha
+\begin{equation}
+  \begin{array}{c}
+    u(\bm{x}) = - \int_{\Omega} \bm{\Phi}(\bm{x} - \bm{y})f(\bm{y}) \, d\bm{y} + \\
+    + \int_{\partial\Omega} \bm{\Phi}(\bm{x} - \bm{\sigma})\partial_{\bm{\nu}}u(\bm{\sigma}) \, d\sigma - \int_{\partial\Omega} g(\bm{\sigma}) \partial_{\bm{\nu}} \bm{\Phi}(\bm{x} -\bm{\sigma}) \, d\sigma
+  \end{array}
+\end{equation}
+Questa formula di rappresentazione esprime \(u\) in termini dei dati \(f \mbox{ e }g\), ma introduce anche \(\partial_{\bm{\nu})}\), sulla quale non si hanno informazioni. Ci si può liberare di tale termine considerando la funzione di Green \(G(\bm{x, y}) = \bm{\Phi} (\bm{x} - \bm{y}) - \phi(\bm{x,y})\) in \(\Omega\). Dal momento che \(\phi(\bm{x,\cdot})\) è armonica in \(\Omega\), grazie alla (3.35) applicata a \(u \mbox{ e }\phi(\bm{x, \cdot})\), si ha
+\begin{equation}
+  \begin{array}{c}
+    0 = - \int_{\Omega} \phi(\bm{x, y})f(\bm{y}) \, d\bm{y} + \\
+    + \int_{\partial\Omega} \phi(\bm{x, \sigma})\partial_{\bm{\nu}}u(\bm{\sigma}) \, d\sigma - \int_{\partial\Omega} g(\bm{\sigma}) \partial_{\bm{\nu}} \bm{\Phi}(\bm{x} -\bm{\sigma}) \, d\sigma
+  \end{array}
+\end{equation}
+Dalla somma di (3.47) e (3.48), sapendo che \(\phi(\bm{x}, \sigma)\) su tutto \(\partial\Omega\) si ottiene il seguente teorema
+\begin{theorem}
+  Sia \(\Omega\) un dominio regolare e \(u\) una funzione regolare del problema (3.46). Allora per ogni \(\bm{x} \in \Omega\):
+  \begin{equation}
+    u(\bm{x}) = -\int_{\Omega} f(\bm{y}) G(\bm{x,y}) \, d\bm{y} - \int_{\partial\Omega} g(\bm{\sigma}) \partial_{\bm{\nu}} G(\bm{x, \sigma}) \, d\sigma
+  \end{equation}
+\end{theorem}
+Pertanto, la soluzione del problema di Dirichlet, può essere riscritta come somma di due potenziali di Green, che permettono di utilizzare soltanto i dati del problema. Se \(u\) è armonica, allora
+\begin{equation}
+  u(\bm{x}) = -\int_{\partial\Omega} g(\bm{\sigma}) \partial_{\bm{\nu}} G(\bm{x, \sigma}) \, d\sigma
+\end{equation}
+da cui si deduce che
+\[
+  -\partial_{\bm{\nu}} G(\bm{x, \sigma}) \, d\sigma
+\] 
+rappresenta la misura armonica in \(\Omega\). 
+La funzione 
+\[
+  P(\bm{x, \sigma}) = -\partial_{\bm{\nu}} G(\bm{x, \sigma})
+\]
+è definita \emph{nucleo di Poisson}. Poiché \(G(\bm{\cdot, x}) > 0\) in \(\Omega\) e si annulla su \(\Omega\), \(P\) è nonnegativo. Inoltre la formula 
+\[
+  u(\bm{x}) = -\int_{\Omega} f(\bm{y}) G(\bm{x,y}) \, d\bm{y}
+\]
+che dà la soluzione dell'equazione di Poisson \(\Delta u = f\) in \(\Omega\), che si annulla su \(\partial\Omega\). Si ha inoltre dalla positività di \(G\) che 
+\[
+ f \geq 0 \mbox{ in }\Omega \mbox{ implica }u \leq 0 \mbox{ in } \Omega 
+\]
+che è un altro modo di definire il principio di massimo.
+\begin{itemize}
+  \item Nucleo di Poisson e formula di Poisson per la sfera.
+\end{itemize}
+Dalla (3.44) si può calcolare il nucleo di Poisson per la sfera \(B = B_R(\bm{0} \subset \mathbb{R}^3)\). Si ha allora (poiché \(\bm{x}^* = \frac{R^2}{\abs*{\bm{x}}^2}\bm{x}\), se \(\bm{x} \not = \bm{0}\))
+\[
+\nabla_{\bm{y}}\left[ \frac{1}{\abs*{\bm{x} - \bm{y}}} - \frac{R}{\abs*{\bm{x}} \abs*{\bm{x}^* - \bm{y}}}\right] = \frac{\bm{x} - \bm{y}}{\abs*{\bm{x} -\bm{y}}^3} - \frac{R}{\abs*{\bm{x}}} \frac{\bm{x}^* - \bm{y}}{\abs*{\bm{x}^* - \bm{y}}^3}
+\]
+Se \(\sigma \in \partial B_R\), dalla (3.43) si ha \(\abs*{\bm{x}^* - \bm{\sigma}} = \frac{R}{\abs*{x}}\abs*{\bm{x}- \bm{\sigma}}\), per cui 
+\[
+  \nabla_{\bm{y}} G(\bm{x, \sigma}) = \frac{1}{4\pi} \left[ \frac{\bm{x} - \bm{\sigma}}{\abs*{\bm{x} - \bm{\sigma}}^3} - \frac{\abs*{\bm{x}}^2}{R^2} \frac{\bm{x}^* - \sigma}{\abs*{\bm{x} - \bm{\sigma}}^3} \right] = \frac{-\bm{\sigma}}{4\pi \abs*{\bm{x} - \bm{\sigma}}^3} \left[1 - \frac{\abs*{\bm{x}}^2}{R^2}\right]
+\]
+
 \end{document}
