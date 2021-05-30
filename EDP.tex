@@ -2328,5 +2328,13 @@ con condizione iniziale
 \[
   w(0) = g(x_0)
 \]
-
+che integrata tra \([0, \overine{t}]\) permette di trovare
+\[
+  w(\overline{t}) = g(x_0) + \int_0^{\overline{t}} f(x_0 +vs,s) \, ds  
+\]
+Sapendo che \(x_0 = \overline{x} - v\overline{t}\), si ha 
+\begin{equation}
+  c(\overline{x}, \overline{t}) = w(\overline{t}) = g(\overline{x - v\overline{t}}) + \int_0^{\overline{t}} f(\overline{x} - v(\overline{t} -s), s) \, ds
+\end{equation}
+E, nel caso di \(g \mbox{ e } f\) sufficientemente regolari
 \end{document}
