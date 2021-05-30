@@ -2230,5 +2230,103 @@ Se \(\sigma \in \partial B_R\), dalla (3.43) si ha \(\abs*{\bm{x}^* - \bm{\sigma
 \[
   \nabla_{\bm{y}} G(\bm{x, \sigma}) = \frac{1}{4\pi} \left[ \frac{\bm{x} - \bm{\sigma}}{\abs*{\bm{x} - \bm{\sigma}}^3} - \frac{\abs*{\bm{x}}^2}{R^2} \frac{\bm{x}^* - \sigma}{\abs*{\bm{x} - \bm{\sigma}}^3} \right] = \frac{-\bm{\sigma}}{4\pi \abs*{\bm{x} - \bm{\sigma}}^3} \left[1 - \frac{\abs*{\bm{x}}^2}{R^2}\right]
 \]
+La normale esterna su \(\partial B_R\) è \(\bm{\nu}_{\Omega} = \frac{\bm{\sigma}}{R}\), che restituisce
+\[
+  P(\bm{x, \sigma}) = -\partial_{\bm{\nu}}G(\bm{x, \sigma}) = -\nabla_{\bm{y}}G(\bm{x, \sigma}) \cdot \bm{\nu}_{\sigma} = \frac{R^2 - \abs*{\bm{x}}^2}{4\pi R} \frac{1}{\abs*{\bm{x} - \bm{\sigma}}^3}
+\]
+Per cui si ritrova la formula di Poisson per \(n = 3\)
+\begin{equation}
+  u(\bm{x}) = \frac{R^2 - \abs*{\bm{x}}^2}{4\pi R} \int_{\partial B_R(\bm{0})} \frac{g(\bm{\sigma})}{\abs*{\bm{x} - \bm{\sigma}}^3} \, d\sigma
+\end{equation}
+per l'unica soluzione del problema di Dirichlet \(\Delta u = 0\) in \(B_R\) e \(u = g\) su \(\partial B_R\)
+\section{Leggi di conservazioni scalari ed equazioni del prim'ordine} 
+\subsection{Leggi di conservazione}
+Questa sezione si occupa di equazioni a derivate parziali del primo ordine tipo
+\begin{equation}
+  u_t + q(u)_x = 0, \qquad x \in \mathbb{R}, t > 0
+\end{equation}
+In generale, \(u = u(x,t)\) indica la densità o la concentrazione di una quantità fisica \(Q\) e \(q(u)\) indica il flusso. La (4.1) rappresenta la \emph{legge di conservazione} di \(u\). Sia \([x_1, x_2]\) un intervallo arbitrario, allora 
+\[
+  \int_{x_1}^{x_2} u(x,t) \, dx
+\]
+raèèresenta la quantità presente tra \(x_1 \mbox{ e }x_2\) al tempo \(t\). Tale legge afferma che, in assenza di sorgenti esterne, il tasso di variazione di \(Q\) all'interno di \([x_1, x_2]\) è determinato dal flusso netto attraverso gli estremi dell'intervallo. Se è modellato da da una funzione \(q = q(u)\), la legge di conservazione si esprime come
+\begin{equation}
+  \frac{d}{dt} \int_{x_1}^{x_2} u(x,t) \, dx = -q(u(x_2, t)) + q(u(x_1, t))
+\end{equation} 
+dove si ha \(q > 0\) (risp. \(< 0\)) se il flusso avviene in direzione positiva (risp. negativa) dell'asse \(x\). In ipotesi di regolarità di \(u\) e \(q\), la (4.2) si può riscrivere nella forma 
+\[
+  \int_{x_1}^{x_2} [u(x,t) + q(u(x,t))_x] \, dx = 0 
+\]
+che implica la (4.1), dall'arbitrarietà dell'intervallo \([x_1, x_2]\). A questo punto è necessario stabilire una \emph{legge costitutiva} per \(q\). Un esempio può essere una legge lineare in \(u\) in cui la funzione flusso è proporzionale a \(u\)
+\[
+  q(u) = vu
+\]
+dove \(v\) è una costante. Si tratta di un modello di convezione o trasporto, con \(v\bm{i}\) che rappresenta la velocità di deriva. 
+La (4.1) sta alla base di molti modelli unidimensionali e spesso è utilizzata per descrivere la propagazione delle onde d'urto (\emph{shock waves}). In questo ultimo caso sono presenti discontinuità a salto, per cui è necessario interpretare la (4.1) in modo da avere come funzione una funzione discontinua. \\
+Un tipico problema è quello \emph{ai valori iniziali}:
+\begin{equation}
+  \begin{cases}
+    u_t + q(u)_x = 0 \\
+    u(x,0) = g(x)
+  \end{cases}
+  \qquad x \in \mathbb{R}
+\end{equation}
+La legge di conservazione è un caso particolare di equazione quasilineare del primo ordine del tipo:
+\[
+  a(x,y,u)u_x + b(x,y,z)u_z = c(x,y,u)
+\]
+\subsection{Equazione lineare del trasporto}
+Nel caso dell'inquinante dentro un corso d'acqua, si ricava l'equazione
+\[
+  c_t = Dc_{xx} -vc_x
+\]
+dove \(c\) è la concentrazione della sostanza e \(v\bm{i}\) la velocità di trasporto della corrente. Nel caso in cui \(D = 0\) si riduce l'equazione a quella di puro trasporto senza diffusione:
+\begin{equation}
+  c_t + vc_x = 0
+\end{equation}
+che, introdotto il vettore
+\begin{equation}
+  \bm{v} = v\bm{i} + \bm{j}
+\end{equation}
+si può riscrivere come 
+\[
+  vc_x + c_t = \nabla c \cdot \bm{v} = 0
+\]
+che evidenzia la perpendicolarità tra il gradiente di \(c\) e il vettore \(\bm{v}\). Inoltre \(\nabla c\) è ortogonale alle linee di livello di \(c\), lungo le quali \(c\) è costante. Allora le linee di livello di \(c\) sono parallele al vettore \(\bm{v}\) descritte dall'equazione:
+\[
+x=vt+x_0  
+\]
+Tali rette sono definite \emph{caratteristiche}. Conoscendo il profilo iniziale della concentrazione \(c\) si cerca di studiarne l'evoluzione
+\begin{equation}
+c(x, 0) = g(x)  
+\end{equation}
+Posto un punto generico \((\overline{x}, \overline{t}, \overline{t}>0)\), il calcolo della soluzione risulta semplice: sia \(x = vt + x_0\) l'equazione della caratteristica che passa per tale punto. Seguendo la retta dal punto scelto fino al punto in cui essa interseca l'asse \(x\) (\(x_0, 0\)), poiché \(c\) è costante lungo tutta la caratteristica e \(x_0 = \overline{x} - v\overline{t}\), si avrà 
+\[
+  c(\overline{x}, \overline{t}) = g(x_0) = g(\overline{x} -v\overline{t})  
+\]
+Se \(g \in \mathcal{C}^1(\mathbb{R})\), la soluzione del problema di Cauchy (4.4), la (4.5) è data da 
+\begin{equation}
+  c(x,t) = g(x -vt)
+\end{equation}
+La (4.6) è l'equazione di una onda progressiva che si muove con velocità \(v\) in direzione positiva sull'asse \(x\). Si immagini la presenza, all'interno del canale, di una sorgente (o pozzo) di una sostanza inquinante di intensità \(f = f(x,t)\). La funzione \(f\) ha dimensione concentrazione per tempo. Al posto della (4.2) si ha 
+\[
+  \frac{d}{dt}\int_{x_1}^{x_2} c(x,t) \, dx = -q(c(x_2,t)) + q(c(x_1, t)) + \int_{x_1}^{x_2}f(x,t) \, dx
+\] 
+che permette di ottenere il modello 
+\begin{equation}
+  c_t + vc_x = f(x,t)
+\end{equation}
+con condizione iniziale 
+\begin{equation}
+  c(x, 0) = g(x)
+\end{equation}
+Come sopra, il calcolo della soluzione \(u\) in un generico punto \((\overline{x}, \overline{t})\) non presenta particolari difficoltà. Sia \(x = x_0 + vt\) l'equazione della caratteristica passante per \((\overline{x}, \overbrace{t})\), il calcolo di \(u\) lungo tale retta si attua ponendo \(w(t) = c(x_0 + vt)\). Dalla (4.7) si può osservare come \(w\) sia soluzione dell'equazione differenziale ordinaria 
+\[
+\dot{w}(t) = vc_x(x_0 + vt, t) + c_t(x_0 + vt, t) = f(x_0 + vt, t) 
+\]
+con condizione iniziale 
+\[
+  w(0) = g(x_0)
+\]
 
 \end{document}
