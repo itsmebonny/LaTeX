@@ -2285,9 +2285,9 @@ dove \(c\) è la concentrazione della sostanza e \(v\bm{i}\) la velocità di tra
   c_t + vc_x = 0
 \end{equation}
 che, introdotto il vettore
-\begin{equation}
+\[
   \bm{v} = v\bm{i} + \bm{j}
-\end{equation}
+\]
 si può riscrivere come 
 \[
   vc_x + c_t = \nabla c \cdot \bm{v} = 0
@@ -2492,5 +2492,27 @@ L'ultima ipotesi implica che ogni autista viaggi alla stessa velocità in presen
 \[
 v'(\rho) = \frac{dv}{d\rho} \leq 0 
 \]
-
+Si ricava così la legge di conservazione 
+\begin{eqnarray*}
+  \rho_t + q(\rho)_x = 0 \\
+  q(\rho) = v(\rho)\rho
+\end{eqnarray*}
+È ragionevole immaginare che nel caso \(\rho\) abbia un valore basso, allora \(v\) sia prossima alla velocità massima consentita \(v_m\). All'aumentare di \(\rho\) fino alla densità massima \(\rho_m\) (ossia quando la distanza tra le auto è minima), la velocità media diminuirà proporzionalmente allo scarto \(\frac{(\rho_m - \rho)}{\rho_m}\). 
+\begin{equation}
+  v(\rho) = v_m \left(1- \frac{\rho}{\rho_m}\right)
+\end{equation}
+Quindi 
+\begin{eqnarray*}
+  q(\rho) = v_m \rho\left(1 -\frac{\rho}{\rho_m}\right) \\
+  q(\rho_m)_x = q'(\rho)\rho_m = v_m\left(1-\frac{2\rho}{\rho_m}\right) \rho_x
+\end{eqnarray*}
+Da cui si ricava l'equazione finale
+\begin{equation}
+  \rho_t + \underbrace{v_m \left(1-\frac{2\rho}{\rho_m}\right)}_{q'(\rho)} \rho_x = 0
+\end{equation}
+Questa equazione, a causa del termine in \(\rho\rho_x\), non è lineare, ma quasilineare, ossia lineare rispetto alle derivate parziale. Inoltre
+\[
+  q''(\rho) = -\frac{2v_m}{\rho_m} < 0
+\]
+ossia \(q\) è concava. Inoltre
 \end{document}
