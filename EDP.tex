@@ -2336,5 +2336,161 @@ Sapendo che \(x_0 = \overline{x} - v\overline{t}\), si ha
 \begin{equation}
   c(\overline{x}, \overline{t}) = w(\overline{t}) = g(\overline{x - v\overline{t}}) + \int_0^{\overline{t}} f(\overline{x} - v(\overline{t} -s), s) \, ds
 \end{equation}
-E, nel caso di \(g \mbox{ e } f\) sufficientemente regolari
+E, nel caso di \(g \mbox{ e } f\) sufficientemente regolari, la (4.9) è la formula della soluzione.
+\begin{theorem}
+  Siano \(g \in \mathcal{C}^1 (\mathbb{R})\) e \(f, f_x \in \mathcal{C}(\mathbb{R} \times [0, +\infty))\). La soluzione di 
+  \[
+    \begin{cases}
+      c_t + vc_x = f(x,t) & x \in \mathbb{R}, t > 0 \\
+      C(x, 0) = g(x) & x \in \mathbb{R}
+    \end{cases}
+\]
+appartiene a \(\mathcal{C}^1(\mathbb{R} \times [0, +\infty))\) e si ottiene dalla formula
+\begin{equation}
+  c(x,t) = g(x -vt) + \int_0^t f(x-v(t-s), s) \, ds
+\end{equation}
+\end{theorem}
+Nel caso in cui la sostanza inquinante dovesse estinguersi seguendo un tasso
+\[
+  r(x, t) = -\gamma c(x,t) \qquad \gamma > 0
+\]
+Nel caso in cui \(D = 0\), ossia in assenza di diffusione, il modello da utilizzare è 
+\[
+c_t + vc_x = -\gamma c  
+\]
+con condizione iniziale
+\[
+  c(x, 0) = g(x)
+\]
+Posto 
+\begin{equation}
+  u(x,t) = c(x,t)e^{\frac{\gamma}{v} x}
+\end{equation}
+si ha allora
+\[
+u_x = \left(c_x + \frac{\gamma}{v} c\right)e^{\frac{\gamma}{v} x} \mbox{ e } u_t = c_t e^{\frac{\gamma}{v} x}
+\]
+da cui si ottiene l'equazione per \(u\) 
+\[
+  u_t + v u_x = 0
+\]
+con la condizione iniziale
+\[
+  u(x, 0) = g(x)e^{\frac{\gamma}{v} x}
+\] 
+Dal teorema (4.1) si ha 
+\[
+  u(x,t) = g(x-vt)e^{\frac{\gamma}{v}(x-vt)}
+\]
+e dalla (4.11):
+\[
+  c(x,t) = g(x-vt) e^{\gamma t}
+\]
+a rappresentare una onda progressiva smorzata. \\
+Una sorgente inquinante posta in \(x = 0\) si muoverà all'interno del canale, con l'assunzione che la concentrazione \(\beta > 0\) rimanga costante. Grazie alla funzione di Heaviside 
+\[
+  \mathcal{H}(t) =
+\begin{cases}
+1 & t\geq 0 \\
+0 & t < 0
+\end{cases}  
+\]
+con condizione al bordo
+\[
+c(0, t) = \beta\mathcal{H}(t) 
+\]
+dove \(\mathcal{H}\) è adimensionale e la condizione iniziale pari a
+\[
+c(x,0) = 0 \qquad \mbox{per }x>0
+\]
+Posto \(u(x,t) = c(x,t)e^{\frac{\gamma}{v} x}\), che è soluzione di \(u_t + vu_x = 0\), con le condizioni:
+\begin{eqnarray*}
+  u(x,0) = c(x,0)e^{\frac{\gamma}{v} x} = 0 & x > 0 \\
+  u(0,t) = c(0,t) = \beta\mathcal{H}(t) & t \in \mathcal{R}
+\end{eqnarray*}
+Poiché \(u\) è costante lungo le rette caratteristiche, si ha una soluzione del tipo
+\begin{equation}
+  u(x,t) = u_0 (x-vt)
+\end{equation}
+con \(u_0\) da determinarsi utilizzando sia le condizioni al bordo che quelle iniziali. \\
+Per trovare il valore di \(u\) all'interno di \(0 < x < vt\), si può notare come le caratteristiche uscenti da un punto $(0,t)$ sull'asse temporale trasportano il dato \(\beta\mathcal{H}(t)\). Si ha allora (posto \(s = -vt\))
+\[
+  u_0(s) = \beta\mathcal{H}\left(-\frac{s}{v}\right)  
+\]
+e dalla (4.12)si ottiene 
+\[
+  u(x,t) = \beta\mathcal{H}\left(t - \frac{x}{v}\right)
+\]
+che permette di ottenere la soluzione anche nel settore
+\[
+x > vt \qquad t > 0  
+\]
+Dal momento che le caratteristiche uscenti dall'asse \(x\) trasportano dati nulli, si deduce che \(u = c = 0\), per cui l'inquinante non ha ancora raggiunto \(x\) al tempo \(t\), se \(x > vt\). 
+Dalla (4.11) si ha inoltre
+\(
+  c(x, t) = \beta\mathcal{H}\left(t - \frac{x}{v}\right)e^{\frac{\gamma}{v} x}
+\)
+che presenta in \((0,0)\) una discontinuità che prosegue lungo la caratteristica \(x = vt\). \\
+Le caratteristiche \(x = vt\) operano nel quadrante \(x > 0, t > 0\). Inoltre, conoscendo il segno di \(v\) è possibile determinare la direzione in cui vengono trasportati i dati. In questo caso, l'aumento del tempo \(t\) permette che i dati vengano trasportati verso l'interno del quadrante (si parla di caratteristiche \emph{inflow}). Più in generale, per una equazione del tipo 
+\[
+  u_t + au_x = f(x,t)
+\]
+all'interno del quadrante \(x>0, t>0\), nel caso di \(a\) non nulla e costante. Le caratteristiche sono definite
+\(x -at = \mbox{ costante}\).
+Nel caso di \(a < 0\) le linee caratteristiche avranno un duplice comportamento, quelle che partono dall'asse \(x\) saranno entranti nel dominio (inflow), mentre quelle uscenti dall'asse \(t\) saranno dirette all'esterno del dominio (outflow). In entrambi i casi citati i dati iniziali sono sufficienti a determinare la soluzione, per cui non è necessario assegnare il valore su \(x = 0, t > 0\). \\
+Sia ora un problema nella striscia \(x \in [0, R], t > 0\), in cui è necessario assegnare anche i sseguenti dati 
+\[
+\begin{cases}
+  u(0,t) = h_0(t) & \mbox{se } a > 0 \\
+  u(R,t) = h_R(t) & \mbox{se } a < 0
+\end{cases}  
+\]
+che risulta ben posto, dal momento che la soluzione si può determinare univocamente in ogni punto della striscia dai valori lungo le caratteristiche. Per garantire la stabilità della soluzione rispetto ai dati si utilizza il seguente calcolo (siano \(a > 0\) e \(u\) soluzione del problema):
+\begin{equation}
+  \begin{cases}
+    u_t +au_x = 0 & 0 < x < R, t > 0 \\
+    u(0, t) = h(t) & t > 0 \\
+    u(x, 0) = g(x) & 0 < x < R
+  \end{cases}
+\end{equation}
+Che, moltiplicato tutto per \(u\), diventa
+\[
+  uu_t + auu_x = \frac{1}{2} \frac{d}{dt}u^2 + \frac{a}{2}\frac{d}{dx}u^2 = 0
+\]
+Integrando rispetto ad \(x\) nell'intervallo \((0, R)\) si ha
+\[
+\frac{d}{dr} \int_0^R u^2(x,t) \, dx + a[u^2(R,t) - u^2(0,t)] = 0  
+\]
+Grazie al dato \(u(0,t) = h(t)\) e la positività di \(a\) si ottiene
+\[
+  \frac{d}{dt} \int_0^R u^2(x,t) \, dx \leq ah^2(t)
+\]
+Integrando in \(t\) con condizione iniziale \(u(x,0) = g(x)\) si ottiene:
+\begin{equation}
+  \int_0^R u^2(x,t) \, dx \leq \int_0^R g^2(x) \, dx + a\int_0^t h^2(s) \, ds
+\end{equation}
+Siano \(u_1\) e \(u_2\) soluzioni del problema con i dati iniziali \(g_1\) e \(g_2\), e su \(x= 0\) i dati laterali sono \(h_1 \mbox{ e } h_2\). Trattandosi di un problema lineare, \(w = u_1 - u_2\) è ancora soluzione del problema (4.13) con dato iniziale \(g_1 - g_2\) e dato laterale \(h_1 - h_2\). Applicando a \(w\) la (4.14) si ottiene
+\[
+  \int_0^R [u_1(x,t) - u_2(x,t)]^2 \, dx \leq \int_0^R (g_1 - g_2)^2 \, dx + a\int_0^t(h_1 - h_2)^2 \, ds
+\]
+che mostra come lo scarto quadratico tra le soluzioni sia mantenuto controllato da quello presente tra i dati. La soluzione del problema allora dipende solo dai dati iniziali e non da quelli laterali.
+\subsection{Traffico su strada}
+In un tratto rettilineo di strada il traffico si può assimilare al flusso di un fluido descritto da variabili macroscopiche come la densità di auto \(\rho\), la loro velocità media \(v\) e il flusso di auto \(q\). Le tre variabili sono legate dalla relazione 
+\[
+q = v\rho  
+\]
+Le ipotesi da considerare sono le seguenti
+\begin{itemize}
+  \item Corsia singola senza possibilità di sorpasso.
+  \item Il numero di auto all'interno del tratto rimane costante.
+  \item La velocità delle auto dipende dalla densità
+  \[
+  v = v(\rho)  
+  \]
+\end{itemize}
+L'ultima ipotesi implica che ogni autista viaggi alla stessa velocità in presenza di una determinata densità, e che tale velocità sia variabile istantaneamente a seconda della densità del momento analizzato, decrescendo all'aumentare della densità.
+\[
+v'(\rho) = \frac{dv}{d\rho} \leq 0 
+\]
+
 \end{document}
