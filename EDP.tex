@@ -2514,5 +2514,23 @@ Questa equazione, a causa del termine in \(\rho\rho_x\), non è lineare, ma quas
 \[
   q''(\rho) = -\frac{2v_m}{\rho_m} < 0
 \]
-ossia \(q\) è concava. Inoltre
+ossia \(q\) è concava. Inoltre la condizione iniziale sarà 
+\begin{equation}
+  \rho(x, 0) = g(x)
+\end{equation}
+Risolvere il problema ai valori iniziali (4.16), (4.17). Per calcolare la densità \(\rho\) nel punto \((x,t)\), si connette il punto \((x,t)\) a un punto \((x_0, t)\), mediante una curva lungo la quale \(\rho\) sia costante, detta caratteristica.
+In tal modo il valore di \(\rho\) in \((x,t)\) sarà uguale a quello noto \(\rho(x_0, t) = g(x_0)\). Ripetendo tale procedimento per ogni punto \((x,t) \in \mathbb{R}, t > 0\) si riesce a calcolare il valore di \(\rho\) in ogni punto. Questo si chiama metodo \emph{delle caratteristiche}. \\
+Il metodo quindi consiste nel partire da un punto noto \((x_0, 0)\) e muoversi lungo una determinata curva caratteristica, come può essere l'equazione \(x = x(t)\), in modo da poter osservare sempre la stessa densità iniziale \(g(x_0)\).
+Matematicamente diventa 
+\begin{equation}
+  \rho(x(t), t) = g(x_0) \qquad \forall t > 0
+\end{equation}
+che derivata diventa 
+\[
+\frac{d}{dt}\rho(x(t), t) = \rho_x(x(t), t) \dot{x}(t) +\rho_t(x(t), t) = 0 \qquad (t > 0)  
+\]
+Del resto, dalla (4.16) si ha
+\[
+  \rho_t(x(t), t) + q'(g(x_0))\rho_x(x(t), t) = 0
+\]
 \end{document}
