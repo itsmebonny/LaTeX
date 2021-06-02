@@ -2533,4 +2533,62 @@ Del resto, dalla (4.16) si ha
 \[
   \rho_t(x(t), t) + q'(g(x_0))\rho_x(x(t), t) = 0
 \]
+che, sottraendo le due ultime equazioni, si ha 
+\[
+  \rho_x(x(t), t)[\dot{x}(t) - q'(g(x_0))] = 0
+\]
+Si assuma \(\rho_x(x(t), t) \not = 0\) in modo da ottenere
+\[
+  \dot{x}(t) = q'(g(x_0))
+\]
+con condizione iniziale \(x(0) = x_0\). Integrando si ottiene
+\begin{equation}
+  x(t) = q'(g(x_0))t + x_0
+\end{equation}
+Le rette caratteristiche hanno quindi pendenza \(q'(g(x_0))\), che varia al variare di \(x_0\). Ricavare la formula per \(\rho\) implica il metodo delle caratteristiche. Si ha, avendo \(x(t) = t\):
+\[
+  x_0 = x - q'(g(x_0))t
+\]
+da cui
+\begin{equation}
+  \rho(x,t) = g(x-q'(g(x_0)))
+\end{equation}
+che rappresenta l'equazione di una onda progressiva, diretta sull'asse \(x\) con velocità \(q'g(x_0))\). 
+Dalla (4.20) si ricava \(\rho\) in forma implicita 
+\[
+  \rho = g(x - q'(g(x_0)))
+\]
+Il termine \(q'(g(x_0))\) indica la velocità locale dell'onda, da non confondersi con la velocità del traffico.
+Infatti
+\[
+  \frac{dq}{d\rho} = \frac{d(\rho v)}{d\rho} = v + \rho\frac{dv}{d\rho} \leq v \qquad \rho \geq 0, \frac{dv}{d\rho} \leq 0
+\]
+Il problema sembra essere risolto, tuttavia anche se il dato \(g\) è regolare, può dare vita a delle singolarità nella soluzione in grado di rendere inefficace il metodo utilizzato. Se \(g(x_1) \not = g(x_2)\), il valore in \((x,t)\) non è univocamente determinato, in quanto dovrebbe assumere simultaneamente entrambi i valori. \\
+Una strada rappresentata dall'asse \(x\) ha un semaforo rosso posto in \(x = 0\) dove si è formata una coda. In \(x > 0\) la strada è libera. Il profilo iniziale della densità sarà 
+\[
+g(x) = \begin{cases}
+  \rho_m & x < 0 \\
+  0 & x > 0
+\end{cases}  
+\]
+Il valore di \(g(0)\) non è rilevante. Il semaforo diventa verde al tempo \(t\) e il comportamento delle macchine diventa, data \(q'(\rho) = v_m\left(1-\frac{2\rho}{\rho_m}\right)\) la velocità locale dell'onda sarà 
+\[
+q'(g(x_0)) = \begin{cases}
+  -v_m & x_0 < 0 \\
+  v_m & x_0 > 0
+\end{cases} 
+\]
+da cui le rette caratteristiche
+\begin{eqnarray*}
+  x = -v_m t + x_0 & \mbox{se } x_0 < 0 \\
+  x = v_m t + x_0 & \mbox{se } x_0 > 0
+\end{eqnarray*}
+Le rette \(x = \pm v_m t\) dividono il piano in tre regioni distinte. 
+Nella regione più a sinistra si avrà \(\rho(x,t) = \rho_m\), mentre in quella più a destra \(\rho(x,t) = 0\). Il segnale di partenza si propaga verso sinistra con velocità \(v_m\). Nel settore centrale che densità ci si può aspettare? Dal momento che nessuna caratteristica lo attraversa, è necessario attuare una nuova strategia
+\begin{itemize}
+  \item Approssimare il dato iniziale con una funzione continua \(g_{\epsilon}\) convergente a \(g\) per \(\epsilon \to 0\) in ogni punto eccetto l'origine.
+  \item Costruire la soluzione \(\rho_{\epsilon}\) del problema approssimato con il metodo delle caratteristiche.
+  \item Passando al limite per \(\epsilon \to 0\) e controllando che il limite di \(\rho_{\epsilon}\) sia effettivamente soluzione originale.
+\end{itemize}
+
 \end{document}
