@@ -2590,5 +2590,86 @@ Nella regione più a sinistra si avrà \(\rho(x,t) = \rho_m\), mentre in quella 
   \item Costruire la soluzione \(\rho_{\epsilon}\) del problema approssimato con il metodo delle caratteristiche.
   \item Passando al limite per \(\epsilon \to 0\) e controllando che il limite di \(\rho_{\epsilon}\) sia effettivamente soluzione originale.
 \end{itemize}
+Il rischio che si corre è quello di costruire soluzioni che dipendano solamente dal modo di regolarizzare il dato iniziale, tuttavia questo metodo va bene per trovare \emph{almeno una soluzione}
+\begin{itemize}
+  \item Sia \(g_{\epsilon}\)  la funzione 
+  \[
+  g_{\epsilon} (x) = \begin{cases}
+    \rho_m & x \leq 0 \\
+    \rho_m(1-\frac{x}{\epsilon}) & 0 < x < \epsilon \\
+    0 x \geq \epsilon
+  \end{cases}  
+  \]
+  Se \(\epsilon \to 0\), allora \(g_{\epsilon}(x) \to g(x)\)
+  \item Le caratteristiche del problema approssimato sono
+  \begin{eqnarray*}
+    x = - v_m t + x_0 & \mbox{se } x_0 < 0 \\
+    x = -v_m \left(1 - 2\frac{x_0}{\epsilon}\right)t + x_0 & \mbox{se }0 \leq x_0 < \epsilon \\
+    x = v_m t + x_0 & \mbox{se } x_0 \geq \epsilon
+  \end{eqnarray*}
+  essendo, per \(0 \leq x_0 < \epsilon\),
+  \[
+    q'(g_{\epsilon}(x_0)) = v_m \left(1 - \frac{2g_{\epsilon}(x_0)}{\rho_m}\right) = -v_m\left(1 - 2\frac{x_0}{\epsilon}\right)
+  \]
+Le caratteristiche della regione compresa tra \(-v_m t < x < v_m t + \epsilon\), si distribuiscono come un ventaglio. Fuori da tale regione si ha \(\rho_{\epsilon}(x, t) = 0\) per \(x \geq v_m t + \epsilon\), mentre in \(x < -v_mt\) si ha \(\rho_m (x, t) = \rho_m\). All'interno della regione invece si ha, ricavando \(x_0\) dall'equazione della caratteristica \(x = -v_m\left(1 - 2\frac{x_0}{\epsilon}\right)t + x_0\):
+\[
+  x_0 = \epsilon \frac{x + v_m t}{2v_m t + \epsilon}
+\] 
+Di conseguenza
+\begin{equation}
+  \rho_m (x,t) = g_x{\epsilon} (x_0) \rho_m \left(1- \frac{x_0}{\epsilon}\right) = \rho_m \left( 1 - \frac{x + v_m t}{2 v_m t + \epsilon}\right)
+\end{equation}
+\item Passando al limite per \(\epsilon \to 0\) nella (4.21) si ha 
+\begin{equation}
+  \rho(x,t) = \begin{cases}
+    \rho_m & \mbox{per }x \leq -v_mt \\
+    \frac{\rho_m}{2} \left(1 - \frac{x}{v_m t}\right) & \mbox{per } -v_m t < x < v_m t \\
+    0 & \mbox{per } x \geq v_m t
+  \end{cases}
+\end{equation}
+\end{itemize}
+In tutte le regioni \(\rho\) è soluzione della (4.16), inoltre fissato \(t\), \(\rho\) decresce in maniera lineare da \(\rho_m\) fino a \(0\). Nel ventaglio di rette definito tra \(-v_m \mbox{ e } v_m\) \(\rho\) è costante. Questo genere di soluzioni si chiamano \emph{onde di rarefazione.} \\ 
+Si può lavorare anche a posteriori per ottenere una soluzione, infatti essendo l'equazione delle caratteristiche riscrivibile come (\(g(x_0) = \rho(x,t)\)):
+\[
+  x = v_m \left(1 - \frac{2g_{\epsilon}(x_0)}{\rho_m}\right)t + x_0 = v_m \left(\frac{2\rho(x, t)}{\rho_m}\right)t + x_0 
+\]
+Inserendo \(x_0 = 0\) si ha:
+\[
+  x = v_m \left( 1 - \frac{2\rho(x,t)}{\rho_m}\right)t
+\]
+Da cu si trova, ricavando \(\rho\) 
+\begin{equation}
+  \rho(x,t) = \frac{\rho_m}{2} \left(1 - \frac{x}{v_m t}\right) \qquad (t > 0)
+\end{equation}
+Poiché \(v_m \left(1 - \frac{2\rho}{\rho_m}\right) = q'(\rho)\), si ottiene che la (4.23) equivale a 
+\[
+  \rho(x, t) = r\left(\frac{x}{t}\right)
+\]
+dove \(r = (q')^{-1}\) è la funzione inversa di \(q'\). Si ha così una soluzione continua su tutto il piano in grado di raccordare i due estremi \(0 \mbox{ e } \rho_m\) con un'onda di rarefazione. \\
+Si supponga di avere un dato iniziale
+\[
+g(x) = \begin{cases}
+  \frac{1}{8} \rho_m & x < 0
+  \rho_m & x > 0
+\end{cases}  
+\]
+In questo caso le auto sono ferme per \(x > 0\), mentre prima le auto si muoveranno a velocità \(v = \frac{7}{8}v_m\), rendendo una collisione inevitabile. Infatti
+\[
+  q'(g(x_0)) = \begin{cases}
+    \frac{3}{4}v_m \mbox{se } g(x_0) = \frac{\rho_m}{8} \\
+    -v_m & \mbox{se }g(x_0) = \rho_m 
+  \end{cases}
+\]
+Poiché le caratteristiche hanno coefficiente differente, in un tempo finito si dovranno intersecare. In questo istante occorre ammettere una discontinuità a salto nella soluzione, per cui va rivista tutta la differenziazione dell'equazione di conservazione, venendo meno l'ipotesi di regolarità della soluzione.
+La legge 
+\begin{equation}
+  \frac{d}{dt} \int_{x_1}^{x_2} \rho(x,t) \, dx = q[\rho(x_1, t) - q(x_2, t)]
+\end{equation}
+valida in ogni intervallo [\(x_1, x_2\)], e sia \(\rho\) una soluzione che presenti una discontinuità a salto in \(x = s(t)\). \\
+Se ciò avviene per tutti i \(t \in [t_1, t_2]\), allora \(x = s(t)\) prende il nome di \emph{linea d'urto}. L'idea è che una discontinuità segnali un brusco cambiamento, e lo propaghi lungo una linea del piano \((x,t)\). \\
+Si cerchi un'equazione per la funzione \(s(t)\), supponendola differenziabile. Al di fuori della linea d'urto si può supporre che sia regolare e dotata di derivate continue. Si consideri invece un intervallo \([x_1, x_2]\) per \(t\) fissato che contenga la discontinuità \(s(t)\). Dalla (4.24) si ha
+\begin{equation}
+    \frac{d}{dt} \left\lbrace \int_{x_1}^{s(t)} \rho(y,t) \, dy + \int_{s(t)}^{x_2} \rho(y,t) \, dy\right\rbrace = -q[\rho(x_2, t)] + q[\rho(x_1, t)]
+\end{equation}
 
 \end{document}
