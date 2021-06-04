@@ -2671,5 +2671,111 @@ Si cerchi un'equazione per la funzione \(s(t)\), supponendola differenziabile. A
 \begin{equation}
     \frac{d}{dt} \left\lbrace \int_{x_1}^{s(t)} \rho(y,t) \, dy + \int_{s(t)}^{x_2} \rho(y,t) \, dy\right\rbrace = -q[\rho(x_2, t)] + q[\rho(x_1, t)]
 \end{equation}
-
+Dato che 
+\[
+  \frac{d}{dt} \int_{x_1}^{s(t)} \rho(y,t) \, dy = \int_{x_1}^{s(t)} \rho_t(y, t) \, dy + \rho^{-}(s(t), t)\dot{s}(t)
+\]
+e
+\[
+  \frac{d}{dt} \int_{s(t)}^{x_2} \rho(y,t) \, dy = \int_{s(t)}^{x_2} \rho_t(y, t) \, dy - \rho^{+}(s(t), t)\dot{s}(t)
+\]
+dove 
+\[
+  \rho^- (s(t), t) = \lim_{y \to s(t)} \rho(y, t), \rho^+ (s(t), t) = \lim_{y \to s(t)} \rho(y,t)
+\]
+che trasforma la (4.25) in 
+\[
+\int_{x_1}^{x_2} \rho_t (y,t) \, dy + [\rho^- (s(t), t) - \rho^+ (s(t), t)] \dot{s}(t) = q[\rho(x_1, t)] - q[\rho(x_2,t)]
+\]
+Con il passaggio al limite \(x_1 \to s(t)\) e \(x_2 \to s(t)\) si ottiene
+\[
+  [\rho^- (s(t), t) - \rho^+ (s(t), t)] \dot{s}(t) = q[\rho^- (s(t), t)] - q[\rho^+(s(t), t)]
+\]
+ossia 
+\begin{equation}
+  \dot{s}(t) = \frac{q[\rho^+(s(t), t)] - q[\rho^+(s(t) ,t)]}{\rho^+(s(t) ,t) - \rho^- (s(t), t)}
+\end{equation}
+sintetizzabile come
+\[
+  \dot{s} = \frac{[q(\rho)]^+_-}{[\rho]^+_-}
+\]
+con la notazione \([\cdot]^+_-\) a indicare un salto a sinistra e a destra dell'urto. \\
+L'equazione differenziale per \(s = s(t)\) prende il nome di condizione di Rankine-Hugoniot, e indica la velocità di propagazione dello shock, conoscendo i valori della densità da entrambi i lati della linea d'urto e il punto iniziale di quest'ultima. Una soluzione in grado di soddisfare questa condizione prende il nome di onda d'urto.
+Applicando tali condizioni al problema del traffico si ha
+\begin{eqnarray*}
+  \rho^+ = \rho_m  & \rho^- = \frac{\rho_m}{8}    
+  q(\rho^+) = 0 & q(\rho^-) = \frac{7}{64}v_m\rho_m
+\end{eqnarray*}
+per cui la (4.26) 
+\[
+  \dot{s}(t) = \frac{q(\rho^+) - q(\rho^+)}{\rho^+ - \rho^-} = -\frac{1}{8}v_m
+\]
+Inoltre, dato che, \(s(0) = 0\), si trova la retta che rappresenta la linea d'urto come 
+\[
+  x = -\frac{1}{8}v_m t
+\]
+Lo shock si propaga all'indietro, come si può rilevare empiricamente nel mondo reale osservando un'auto che frena all'improvviso.
+La formula per la densità si ottiene come
+\[
+\rho(x,t) = \begin{cases}
+  \frac{1}{8} \rho_m & x < -\frac{1}{8} v_m t \\
+  \rho_m & x > - \frac{1}{8} v_m t
+\end{cases}  
+\]
+\subsection{Soluzioni integrali}
+Il metodo delle caratteristiche più in generale funziona per il problema 
+\begin{equation}
+  \begin{cases}
+    u_t + q(u)_x = 0 \\
+    u(x, 0) = g(x)
+  \end{cases}
+\end{equation}
+La soluzione \(u\) è definita dalla (4.20) (con \(x_0 = \xi\)): 
+\begin{equation}
+  u(x,t) = g[x - q'(g(\xi))t] \qquad \left(q' = \frac{dq}{du}\right)
+\end{equation}
+che rappresenta una famiglia di onde progressive con velocità locale \(q'(g(\xi))\). Essendo \(u(x,t) \equiv g(\xi)\) lungo la caratteristica
+\begin{equation}
+x = q'(g(\xi))t + \xi
+\end{equation}
+uscente dal punto \((\xi, 0)\), la (4.28) indica che \(u\) è definita implicitamente da 
+\begin{equation}
+  G(x, t, u) = u - g[x - q'(u)t] = 0
+\end{equation}
+Se \(g \mbox{ e } q'\) sono funzioni regolari, il teorema delle funzioni implicite, implica che la (4.30) definisce \(u\) come funzione di \((x, t)\) finché vale la condizione 
+\[
+  G_u(x, t, u) = 1 + t q''(u)g'[x - q'(u)t] \not = 0
+\]  
+Calcolando \(G_u\) lungo le caratteristiche (4.29), si ha
+\[
+  u = g(\xi) \mbox{ e } \xi = x - q'(g(\xi))t
+\]
+per cui 
+\begin{equation}
+  G_u (x, t, u) = 1 + t q''(g(\xi))g'(\xi)
+\end{equation}
+Conseguenza immediata è che se \(q'' \circ g\) e \(g'\) hanno lo stesso segno, la soluzione è definita e regolare per ogni \(t > 0\). Non sorprendente in quanto 
+\[
+q''(g(\xi))g'(\xi) = \frac{d}{d\xi}q'(g(\xi)) 
+\]
+esprime il fatto che le caratteristiche hanno pendenza crescente con \(\xi\), cosicché non riescano a intersecarsi.
+\begin{theorem}
+  Sia \(q \in \mathcal{C}^2\mathbb{R}, g\in \mathcal{C}^1(\mathbb{R})\) e inoltre \(q''(g(\xi))g'(\xi) \geq 0\) in \(\mathbb{R}\). Allora la (4.30) definisce \(u = u(x, t)\) come unica soluzione del problema (4.3). Inoltre \(u \in \mathcal{C}^1(\mathbb{R} \times [0, +\infty))\).
+\end{theorem}
+\begin{proof}
+  Sotto le ipotesi indicate, lungo ogni caratteristica \(\xi = x - q'(u)t\) e si ha 
+  \[
+    G_u (x, t, u) = 1 + tq''(u)g'(x - q'(u)t) \geq 1, \qquad \forall t > 0
+  \]
+  e inoltre, sempre dal teorema delle funzioni implicite, 
+  \[
+    u_t = -\frac{G_t(x, t, u)}{G_u(x, t, u)} = -\frac{g'(x-q'(u)t)q'(u)}{1+tq''(u)g'(x - q'(u)t)}
+  \]
+  e
+  \begin{equation}
+    u_x = -\frac{G_x(x,t,u)}{G_u(x,t,u)} = \frac{g'(x-q'(u)t)}{1+tq''(u)g'(x-q'(u)t)}
+  \end{equation}
+  e quindi \(u_t, u_x\) sono rapporti di funzioni continue, con denominatore positivo.
+\end{proof}
+Per esempio, nella \(\epsilon\)-approssimazione del problema al semaforo, \(q\) è concava, \(g_{\epsilon}\). Sebbene \(g_{\epsilon}\) non sia differenziabile nei due punti \(x = 0\) e \(x = \epsilon\), le caratteristiche non si intersecano e \(\rho_{\epsilon}\) è ben definita 
 \end{document}
