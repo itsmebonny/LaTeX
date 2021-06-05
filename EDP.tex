@@ -2777,5 +2777,53 @@ esprime il fatto che le caratteristiche hanno pendenza crescente con \(\xi\), co
   \end{equation}
   e quindi \(u_t, u_x\) sono rapporti di funzioni continue, con denominatore positivo.
 \end{proof}
-Per esempio, nella \(\epsilon\)-approssimazione del problema al semaforo, \(q\) è concava, \(g_{\epsilon}\). Sebbene \(g_{\epsilon}\) non sia differenziabile nei due punti \(x = 0\) e \(x = \epsilon\), le caratteristiche non si intersecano e \(\rho_{\epsilon}\) è ben definita 
+Per esempio, nella \(\epsilon\)-approssimazione del problema al semaforo, \(q\) è concava, \(g_{\epsilon}\). Sebbene \(g_{\epsilon}\) non sia differenziabile nei due punti \(x = 0\) e \(x = \epsilon\), le caratteristiche non si intersecano e \(\rho_{\epsilon}\) è ben definita per tutti i tempi \(t > 0\). Il teorema (4.2) continua a essere valido per tempi piccoli, in quanto \(G_u \sim 1\) se \(t \sim 0\), ma al crescere del tempo è legittimo aspettarsi la formazione di uno shock. Siano \(q\) concava e \(g\) crescente, per \(q''(g(\xi))g'(\xi) < 0\). Quando \(\xi\) cresce, \(g\) cresce, mentre \(q'(g(\xi))\) decresce, quindi l'intersezione delle caratteristiche avverrà lungo la linea d'urto. Il problema che si presenta è quello di determinare l'istante \(t_s\) e il punto \(x_s\) da cui parte la linea d'urto. \\
+Si osservi che, essendo \(q''(g(\xi))g'(\xi) < 0\) in \([a,b]\), l'espressione 
+\[
+  G_u(x,t,u) = 1 + tq''(g(\xi))g'(\xi)  
+\] 
+si azzera nel caso \(t(\xi) = -[q''(g(\xi))g'(\xi)]^{-1}\). L'istante \(t_s\) è il più piccolo fra questi tempi. Il punto \((x_s, t_s)\) si trova sulla caratteristica uscente dal punto \(\xi_M\), il quale minimizza \(t(\xi)\). 
+Con la funzione positiva
+\[
+  z(\xi) = -q''(g(\xi))g'(\xi) \qquad  \xi \in [a,b]
+\]
+e sia il suo massimo assunto soltanto su \(\xi_M\). Allora \(z(\xi_M) > 0\) e 
+\begin{equation}
+  t_s = \min_{\xi \in [a,b]} \frac{1}{z(\xi)} = \frac{1}{z(\xi_M)}
+\end{equation}
+Poiché \(x_s\) appartiene alla caratteristica \(x = q'(g(\xi_M))t + \xi_M\), si ha 
+\begin{equation}
+  x_s = \frac{q'(g(\xi_M))}{z(\xi_M)} + \xi_M
+\end{equation}
+Il punto \((x_s, t_s)\) ha un significato geometrico interessante. Infatti se \(q''(g(\xi))g'(\xi) < 0\) in qualche intervallo, la famiglia di caratteristiche (4.29) assume un inviluppo e \((x_s, t_s)\) è il punto dell'inviluppo con la minima coordinata temporale. \\
+Il problema 
+\begin{equation}
+  \begin{cases}
+    u_t + (1-2u)u_x = 0 \\
+    u(x, 0) = \arctan x
+  \end{cases}
+\end{equation}
+Siano \(q(u) = u-u^2, q'(u) = 1- 2u, q''(u) = -2\) e \(g(\xi) = \arctan \xi, g' (\xi) = \frac{1}{(1+\xi^2)}\). La funzione 
+\[
+  z(\xi) = -q''(g(\xi))g'(\xi) = \frac{2}{(1+\xi^2)}
+\]
+assume il suo massimo nel punto \(\xi_M = 0\) e \(z(0) = 2\). Il momento in cui parte la linea d'urto allora è \((x_s, t_s) = (\frac{1}{2}, \frac{1}{2})\). La soluzione \(u\) è regolare e definita per \(0 \leq t < \frac{1}{2}\) dall'equazione
+\begin{equation}
+  u - \arctan [x-(1 - 2u)t] = 0
+\end{equation} 
+Dopo \(t = \frac{1}{2}\), la (4.36) permette di definire \(u\) come una funzione di \((x, t)\) a più valori, che non assume più alcun significato fisico. \\
+Il metodo delle caratteristiche non è sufficiente a determinare il valore della soluzione di (4.1) in tutto il semipiano \(t > 0\), e non è applicabile in presenza di discontinuità. Sebbene siano possibili delle soluzioni per determinati casi, alcuni dubbi sorgono spontaneamente:
+\begin{itemize}
+  \item In che senso l'equazoine differenziale è soddisfatta attraverso una linea d'urto, dove l'equazione non è differenziabile?
+  \item La soluzione costruita è l'unica possibile?
+  \item Se non è l'unica, esiste un criterio per selezionare la soluzione più `adatta'?
+\end{itemize}
+A tale domanda si risponde introducendo una nozione di soluzione più `flessibile'
+\begin{equation}
+  \begin{cases}
+    u_t + q(u)_x = 0 & x \in \mathbb{R}, t> 0 \\
+    u(x, 0) = g(x) & x \in \mathbb{R}
+  \end{cases}
+\end{equation}
+
 \end{document}
