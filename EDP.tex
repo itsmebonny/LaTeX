@@ -2825,5 +2825,46 @@ A tale domanda si risponde introducendo una nozione di soluzione più `flessibil
     u(x, 0) = g(x) & x \in \mathbb{R}
   \end{cases}
 \end{equation}
-Sia \(u\) una soluzione regolare, almeno di classe \(\mathcal{C}^1\) in \(\mathbb{R} \times [0, +\infty)\). Si può dire che \(u\) sia una soluzione classica. Scelta ora una funzione \(v \in \mathcal{C}^1(\mathbb{R} \times [0, +\infty))\)
+Sia \(u\) una soluzione regolare, almeno di classe \(\mathcal{C}^1\) in \(\mathbb{R} \times [0, +\infty)\). Si può dire che \(u\) sia una soluzione classica. Scelta ora una funzione \(v \in \mathcal{C}^1(\mathbb{R} \times [0, +\infty))\), che abbia supporto compatto, definita come \emph{funzione test}. Moltiplicando l'equazione differenziale per \(v\) e integrandola su \(\mathbb{R} \times (0, \infty)\) si ottiene
+\begin{equation}
+  \int_0^{\infty} \int_{\mathbb{R}} [u_t + q(u)_x]v \, dxdt = 0
+\end{equation}
+Grazie all'integrazione per parti del primo termine rispetto a \(t\) si ha
+\begin{eqnarray*}
+  \int_0^{\infty} \int_{\mathbb{R}} u_tv \, dxdt & = & -\int_0^{\infty} \int_{\mathbb{R}} uv_t -\int_{\mathbb{R}} u(x,0)v(x,0) \, dx \\
+  & = & -\int_0^{\infty} \int_{\mathbb{R}} uv_t -\int_{\mathbb{R}} g(x)v(x,0) \, dx
+\end{eqnarray*}
+Integrando per parti rispetto a \(x\) il secondo termine si trova
+\[
+  \int_0^{\infty} \int_{\mathbb{R}} q(u)_x v \, dxdt = -\int_0^{\infty}\int_{\mathbb{R}} q(u)v_x \, dxdt
+\]
+La (4.38) diventa
+\begin{equation}
+  \int_0^{\infty} \int_{\mathbb{R}} q(u)_x v \, dxdt = - \int_0^{\infty} \int_{\mathbb{R}} q(u) v_x \, dxdt
+\end{equation}
+Si ottiene così una equazione integrale valida per qualsiasi funzione \(v\). Nella (4.39) non compaiono derivate di \(u\). Se \(u\) è regolare, integrando per parti, si ottiene 
+\begin{equation}
+  \int_0^{\infty} \int_{\mathbb{R}} [u_t + q(u)_x]v \, dxdt - \int_{\mathbb{R}} [g(x) - u(x, 0)]v(x,0) \, dx = 0
+\end{equation}
+che è vera per ogni funzione test \(v\). Scegliendo delle funzioni che si annullano per \(t=0\), il secondo integrale è nullo per cui si riottiene la (4.38), che implica\footnote{Sarà usato spesso il \emph{lemma di annullamento}: Sia \(f:\Omega \to \mathbb{R}, \Omega\) aperto di \(\mathbb{R}^n\) e continua. Se 
+\[
+\int_{\Omega} fv \, dx = 0  
+\]
+per ogni \(v \in \mathcal{C}^1(\Omega)\) a supporto compatto, allora \(f \equiv 0\)}
+\[
+u_t + q(u)_x = 0 \qquad \mbox{in }  \mathbb{R} \times (0, +\infty)
+\]
+Si riduce la (4.40) a 
+\[
+  \int_{\mathbb{R}} [g(x) - u(x,0)]v(x,0) \, dx = 0
+\]
+che, sempre per l'arbitrarietà di \(v\), implica
+\[
+  u(x, 0) = g(x) \qquad \mbox{in }\mathbb{R}
+\]
+Allora, per funzioni regolari, il problema (4.37) equivale a richiedere che la (4.39) sia valida per ogni funzione test.
+Poiché la (4.39) ha senso anche per funzioni non derivabili, si parla di formulazione \emph{integrale o debole} del problema (4.37), da cui
+\begin{definition}
+  Una funzione \(u\), limitata in \(\mathbb{R} \times [0, +\infty)\), si dice soluzione integrale (o debole) del problema (4.37) se la (4.39) vale per ogni funzione di test \(v\) in \(\mathbb{R} \times [0, +\infty)\), a supporto compatto.
+\end{definition}
 \end{document}
