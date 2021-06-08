@@ -2867,5 +2867,87 @@ Poiché la (4.39) ha senso anche per funzioni non derivabili, si parla di formul
 \begin{definition}
   Una funzione \(u\), limitata in \(\mathbb{R} \times [0, +\infty)\), si dice soluzione integrale (o debole) del problema (4.37) se la (4.39) vale per ogni funzione di test \(v\) in \(\mathbb{R} \times [0, +\infty)\), a supporto compatto.
 \end{definition}
-Poiché la soluzione integrale deve essere solo limitata, può ammettere discontinuità. La definizione (4.1) esprime in modo abbastanza soddisfacente tale soluzione. In alcuni casi tuttavia
+Poiché la soluzione integrale deve essere solo limitata, può ammettere discontinuità. La definizione (4.1) esprime in modo abbastanza soddisfacente tale soluzione. In alcuni casi tuttavia occorre capire quali informazioni sul comèprtamento di una soluzione debole siano nascoste nella formulazione integrale. \\
+Si consideri un aperto \(V\) contenuto nel semipiano \(t > 0\), diviso in due domini disgiunti \(V^+, V^-\), separati da una curva regolare \(\Gamma\) di equazione \(x = s(t)\). Si immagini ora una soluzione integrale \(u\) di classe \(\mathcal{C}^1\) in \(\overline{V}^+, \overline{V}^-\) e che presenti, lungo \(\Gamma\) una discontinuità a salto. In entrambi i domini, \(u\) è soluzione classica dell'equazione \(u_t + q(u)_x = 0\). Si trovi ora una funzione test \(v\) il cui supporto sia contenuto in \(V\), ma che intersechi la curva \(\Gamma\). Allora, essendo \(v(x, 0) = 0\):
+\begin{eqnarray*}
+  0 & = & \int_0^{\infty} \int_{\mathbb{R}} [uv_t + q(u)v_x] \, dxdt \\
+  & = & \int_{V^+} [uv_t + q(u)v_x] dxdt + \int_{V^-} [uv_t + q(u)v_x] \, dxdt
+\end{eqnarray*} 
+Utilizzando Gauss-Green e ricordando che \(v = 0\) su \(\partial V^+ \backslash \Gamma\), si ha
+\begin{eqnarray*}
+  \int_{V^+} [uv_t + q(u)v_x] \, dxdt = \\
+  = -\int_{V^+} [u_t + q(u)v_x]v \, dxdt + \int_{\Gamma} [u^+n_2 + q(u^+)n_1]v \, dl \\
+  = \int_{\Gamma} [u^+ n_2 + q(u^+)n_1] v \, dl
+\end{eqnarray*}
+dove \(u^+\) indica il valore a cui tende \(u\) quando ci si avvicina a \(\Gamma\) da destra, \(\bm{n} = (n_1, n_2)\) è il versore normale a \(\Gamma\) nel verso uscente da \(V^+\) e \(dl\) indica la lunghezza d'arco su \(\Gamma\). 
+Analogamente:
+\[
+  \int_{V^-} [uv_t + q(u)v_x] \, dxdt = -\int_{\Gamma} [u^-n_2 + q(u^-)n_1]v \, dl
+\]
+dove \(u^-\) indica il valore a cui tende \(u\) arrivando a \(\Gamma\) da sinistra. Si deduce che 
+\[
+  \int_{\Gamma} \{[q(u^+) - q(u^-)]n_1 + [u^+ - u^-]n_2\} v \, dl = 0
+\]
+L'arbitrarietà di \(v\) implica su \(\Gamma\), vale la condizione
+\begin{equation}
+  [q(u^+) - q(u^-)]n_1 + [u^+ - u^-]n_2 = 0
+\end{equation}
+La (4.41) in modo più esplicito, se \(x = s(t)\) è l'equazione di \(\Gamma\) e \(s \in \mathcal{C}^1([0, T])\), diventa
+\[
+\bm{n} = (n_1, n_2) = \frac{1}{\sqrt{1 + \dot{s}(t)^2}}(-1, \dot{s}(t))  
+\]
+che trasforma la (4.41) con qualche sistemazione
+\begin{equation}
+  \dot{s} = \frac{q(u^+(s,t)) - q(u^- (s,t))}{u^+(s,t) - u^- (s,t)}
+\end{equation}
+Che si chiama condizione di \emph{Rankine-Hugoniot}, da cui si ha la conferma che \(u\) è una onda d'urto. \\
+Tuttavia è da comprendere se la soluzione trovata è unica, e per farlo si può osservare un contro esempio basato sull'equazione di Burgers
+\[
+u_t + uu_x = u_t +\left(\frac{u^2}{2}\right)_x = 0  
+\]
+che corrisponde alla legge di conservazione
+\[
+q(u) = \frac{u^2}{2}  
+\]
+Importante notare come \(q\) sia strettamente convessa, \(q'(u) = u\) e \(q''(u) = 1\). Si esamini la soluzione del problema alle condizioni iniziali \(u(x,0) = g(x)\), dove 
+\[
+  g(x) = \begin{cases}
+    0 & x < 0 \\
+    1 & x > 1
+  \end{cases}
+\]
+Le caratteristiche sono allora rette di equazione 
+\begin{equation}
+  x = g(x_0) t + x_0
+\end{equation}
+Pertanto, si trova \(u = 0\) se \(x < 0\) e \(u = 1\) se \(x > t\). Nel settore compreso tra \(0 < x < t\) non passano caratteristiche. Come nel caso del modello del traffico al semaforo, in tale settore si definisce \(u\) come una onda di rarefazione, che mantenga continuità tra i valori estremi \(0 \mbox{ e } 1\). Essendo \(r(s) =(q')^{-1}(s) = s\), si perviene a 
+\begin{equation}
+  u(x,t) = \begin{cases}
+    0 & x \leq 0 \\
+    \frac{x}{t} & 0 < x < t \\
+    1 x \geq 1
+  \end{cases}
+\end{equation}
+che risulta anche soluzione integrale. 
+Non è tuttavia l'\emph{unica} soluzione integrale. Infatti, esiste anche un'onda d'urto che è soluzione con la curva di shock uscente dall'origine. 
+\[
+u^- = 0, u^+ = 1, q(u^-) = 0, q(u^+) = \frac{1}{2}  
+\]
+permette di ottenere una condizione di Rankine-Hugoniot 
+\[
+\dot{s}(t) = \frac{q(u^+) - q(u^-)}{u^+ - u^-}   = \frac{1}{2}
+\]
+Inoltre, sapendo che \(s(0) = 0\), la linea d'urto è la retta di equazione 
+\[
+x = \frac{t}{2}  
+\]
+Allora la funzione
+\[
+w(x,t) = \begin{cases}
+  0 & x < \frac{t}{2} \\
+  1 & x > \frac{t}{2}
+\end{cases}
+\]
+è anch'essa soluzione integrale (shock non fisico).
+Allora si può osservare come non sia garantita l'unicità di una soluzione integrale. 
 \end{document}
