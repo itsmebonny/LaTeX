@@ -2949,5 +2949,26 @@ w(x,t) = \begin{cases}
 \end{cases}
 \]
 è anch'essa soluzione integrale (shock non fisico).
-Allora si può osservare come non sia garantita l'unicità di una soluzione integrale. 
+Allora si può osservare come non sia garantita l'unicità di una soluzione integrale. È necessario allora stabilire un criterio che permetta di stabilire quale di queste soluzioni abbia senso dal punto di vista fisico. 
+Tornando al teorema (4.2), si assumano \(g' > 0\) e \(q'' \geq q_{\text{min}}''\). La soluzione è unica e classica, e dalla (4.32) si ricava 
+\[
+u_x (x,t) = \frac{g'(x-q'(u)t)}{1+tq''(u)g'(x-q'(u)t)} \leq   \frac{1}{tq''(u)} \leq \frac{E}{t}  
+\]
+dove \(E = \frac{1}{q_{\text{min}}''}\). \\
+Dal teorema del valor medio di Lagrange si ottiene la condizione di entropia, ossia: \\
+Esiste \(E > 0\) tale che, per ogni \(x, z \in \mathbb{R}, z > 0\) e per ogni \(t > 0\)
+\begin{equation}
+  u(x+z, t) - u(x,t) \leq \frac{E}{t}z
+\end{equation}
+La condizione di entropia non coinvolge operazioni di derivazione ed è utilizzabile anche in caso di soluzione discontinue. Se una soluzione integrale soddisfa la (4.45), si dirà che è una soluzione entropica. Allora, sia \(u\) una soluzione integrale che soddisfi la (4.45)
+\begin{itemize}
+  \item La funzione 
+  \[
+  x \longrightarrow u(x,t) - \frac{E}{t}x  
+  \]
+  è non è crescente. Infatti, sia \(x+z=x_2, x = x_1\) se \(z > 0\) si ha \(x_2 > x_1\) e la (4.45) equivale a
+  \begin{equation}
+    u(x_2, t) -\frac{E}{t} x_2 \leq u(x_1, t)
+  \end{equation}
+\end{itemize}
 \end{document}
