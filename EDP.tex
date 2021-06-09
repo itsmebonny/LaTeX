@@ -3002,7 +3002,7 @@ Applicando il teorema (4.3) per risolvere il problema (4.50) con i seguenti dati
     u^- & x < 0
   \end{cases}
 \]
-con \(u^+, u^-\) costanti e diversi tra loro. La funzione \(q\) può essere sia convessa che concava. Tale problema è noto come \emph{problema di Riemann} e ha una importanza particolare nei casi di approssimazione numerica.
+con \(u^+, u^-\) costanti e diversi tra loro. La funzione \(q\) può essere sia convessa che concava. Tale problema è noto come \emph{problema di Riemann} e ha una importanza particolare nei problemi in cui è necessario utilizzare l'approssimazione numerica.
 \begin{theorem}
   Sia \(q\) una funzione strettamente convessa e di classe \(\mathcal{C}^2(\mathbb{R})\) con \(q'' \geq h > 0\)
   \begin{itemize}
@@ -3027,6 +3027,57 @@ con \(u^+, u^-\) costanti e diversi tra loro. La funzione \(q\) può essere sia 
   \end{itemize}
 \end{theorem}
 \begin{proof}
-  Nel primo caso \(u\) è ovviamente una soluzione integrale e poiché 
+  Nel primo caso \(u\) è ovviamente una soluzione integrale e, poiché \(u^+ < u^-\), vale certamente la condizione di entropia. Dal teorema (4.3) ne segue la conclusione.
+  Nel secondo caso, poiché 
+  \[
+  r(q'(u^+)) = u^+ \qquad \mbox{ e } \qquad r(q'(u^-)) = u^-  
+  \]
+  \(u\) è continua nel semipiano \(t > 0\). Per verificare se \(u\) soddisfa \(u_t + q(u)_x = 0\) all'interno della regione
+  \[
+  S = \left\lbrace (x,t): q'(u^-) < \frac{x}{t} < q'(u^+)\right\rbrace  
+  \]
+  Posto \(u(x,t) = r(\frac{x}{t})\) si ottiene
+  \[
+   u_t + q(u)_x = -r'\left(\frac{x}{t}\right)\frac{x^2}{t} + q'(r)r'\left(\frac{x}{t}\right)\frac{1}{t} = r'\left(\frac{x}{t}\right)\frac{1}{t}\left[q'(r)-\frac{x}{t}\right] \equiv 0
+  \]
+  con \(r = (q')^{-1}\) come prima. Da questo si intuisce che \(u\) è soluzione integrale. Per la condizione di entropia si consideri il caso 
+  \[
+    q'(u^-)t \leq x < x + z \leq q'(u^+)t
+  \]
+  Poiché \(q'' \geq h > 0\) si ottiene
+  \[
+    r'(s) = \frac{1}{q''(r)} \leq \frac{1}{h} \qquad s = q'(r)
+  \]
+  e quindi, con \(z^*\) opportuno, si può ottenere
+  \begin{flalign}
+    u(x+z, t) - u(x,t) = r\left(\frac{x + z}{t}\right) - r\left( \frac{x}{t} \right) = \\
+    = r'\left(\frac{x + z^+}{t}\right)\frac{z}{t} \leq \frac{1}{h} \frac{z}{t}
+  \end{flalign}
+che è esattamente la condizione di entropia per \(E = \frac{1}{h}\)
 \end{proof}
+\section{Onde e vibrazioni}
+\subsection{Concetti generali}
+Quando si parla di onde ci sono diversi concetti da considerare, perché vi sono diversi tipi di onde. Un'idea che si può seguire è che una onda è un movimento oscillatorio che si propaga in un mezzo continuo. Nel caso di onde stazionarie, come possono esserlo le onde di rarefazione appena descritte, la propagazione è di un segnale. \\
+Le onde possono essere di vario tipo, per esempio, in dimensione \(n = 1\).
+\begin{itemize}
+  \item[a)]Onde progressive: sono onde descitte da una funzione del tipo 
+  \[
+    u(x,t) = g(x - ct)
+  \]
+  Per \(t = 0\), si ottiene \(u(x,0) = g(x)\), che è il profilo iniziale della perturbazione. Tale profilo si propaga in maniera inalterata con velocità \(\abs*{c}\).
+  \item[b)] Onde armoniche: un particolare tipo di onde progressive sono le onde armoniche, che hanno forma
+  \begin{equation}
+    u(x,t) = A e^{i(kx - \omega t)} \qquad A, k , \omega \in \mathbb{R}
+  \end{equation}
+  doi cui generalmente si considera solo la parte reale
+  \[
+    A \cos(kx - \omega t)
+  \]
+Si considerino \(\omega \mbox{ e } k\) positivi, allora si avranno
+\begin{itemize}
+  \item l'ampiezza dell'onda \(\abs*{A}\)
+  \item il numero di onde \(k\) (numero completo di oscillazioni in \([0, 2\pi]\)) e la lunghezza d'onda \(\lambda = \frac{2\pi}{k}\) che è la distanza tra successive creste d'onda
+  \item la frequenza angolare \(\omega \mbox{ e la frequenza } f = \frac{\omega}{2\pi}\)
+\end{itemize}
+\end{itemize}
 \end{document}
