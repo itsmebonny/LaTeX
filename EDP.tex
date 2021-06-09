@@ -2970,5 +2970,63 @@ La condizione di entropia non coinvolge operazioni di derivazione ed è utilizza
   \begin{equation}
     u(x_2, t) -\frac{E}{t} x_2 \leq u(x_1, t)
   \end{equation}
+  \item Se \((x,t)\) è un punto di discontinuità per \(u\), allora 
+  \begin{equation}
+    u^+(x,t) < u^- (x,t)
+  \end{equation}
+  dove \(u^{\pm} (x,t) = \lim_{y \to x^{\pm}}u(y,t)\). Basta scegliere \(x_1 < x < x_2\) e passare al limite nella (4.46). 
 \end{itemize}
+Se \(q\) è una funzione strettamente convessa, si ottiene dalla (4.47)
+\begin{equation}
+  q'(u^+) < \frac{q(u^+) - q'(u^-)}{u^+ - u^-} < q'(u^-)
+\end{equation}
+La condizione di Rankine-Hugoniot implica allora che, se \(x = s(t)\) è una linea d'urto,
+\begin{equation}
+  q'(u^+) < \dot{s} < q'(u^-)
+\end{equation}
+è definita come disuguaglianza dell'entropia. Si può definire geometricamente come la pendenza di una linea d'urto che è minore di quella delle caratteristiche che arrivano da sinistra e maggiore di quella delle caratteristiche di destra. Le caratteristiche sono quindi tutte entranti nella linea d'urto.
+\begin{theorem}
+  Se \(q \in \mathcal{C}^2(\mathbb{R})\) è convessa (o concava) e \(g\) è limitata, esiste una unica soluzione integrale del problema 
+  \begin{equation}
+    \begin{cases}
+      u_t + q(u)_x = 0 & x \in \mathbb{R}, t > 0 \\
+      u(x, 0) = g(x) & x \in \mathbb{R}
+    \end{cases}
+  \end{equation}
+  che soddisfi la condizione di entropia.
+\end{theorem}
+Applicando il teorema (4.3) per risolvere il problema (4.50) con i seguenti dati iniziali
+\[
+  g(x) = \begin{cases}
+    u^+ & x > 0 \\
+    u^- & x < 0
+  \end{cases}
+\]
+con \(u^+, u^-\) costanti e diversi tra loro. La funzione \(q\) può essere sia convessa che concava. Tale problema è noto come \emph{problema di Riemann} e ha una importanza particolare nei casi di approssimazione numerica.
+\begin{theorem}
+  Sia \(q\) una funzione strettamente convessa e di classe \(\mathcal{C}^2(\mathbb{R})\) con \(q'' \geq h > 0\)
+  \begin{itemize}
+    \item Se \(u^ < u^-\) l'unica soluzione integrale in grado di soddisfare la condizione di entropia è l'onda d'urto
+    \[
+     u(x,t) = \begin{cases}
+       u^+ & x > s(t) \\
+       u^- & x < s(t)
+     \end{cases}  
+    \]
+    dove \(s(0) = 0 \mbox{ e }\dot{s} = \frac{q(u^+) - q(u^-)}{u^+ - u^-}\)
+    \item Se \(u^+ > u^-\), l'unica soluzione integrale possibile per soddisfare la condizione di entropia si ritrova nell'onda di rarefazione
+    \[
+    u(x,t) = \begin{cases}
+      u^- & \frac{x}{t} < q'(u^-) \\
+      r(\frac{x}{t}) & q'(u^-) < \frac{x}{t} < q'(u^+) \\
+      u^+ & \frac{x}{t} > q'(u^+)
+    \end{cases}
+    \]
+    dove \(r = (q')^{-1}\) indica la funzione inversa di 
+    \(q'\).
+  \end{itemize}
+\end{theorem}
+\begin{proof}
+  Nel primo caso \(u\) è ovviamente una soluzione integrale e poiché 
+\end{proof}
 \end{document}
