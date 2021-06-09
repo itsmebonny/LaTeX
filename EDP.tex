@@ -3108,6 +3108,36 @@ corrisponde alle onde piane armoniche o monocromatiche. Qui \(\bm{k}\) è il vet
 \[
   u(\bm{x}, t) = v(r,t)
 \]
-dove \(r = \abs*{\bm{x} - \bm{x}_0}\) e \(\bm{x}_0 \in \mathbb{R}^n\) è un punto fisso. \(u(\bm{x}, t) = e^{i\omega t}v(r)\) rappresenta una onda stazionaria sferica mentre \(u(\bm{x}, t) = v(r - ct)\) è l'equazine di una onda progressiva i cui fronti d'onda appartengono alle sfere di equazione \(r - ct = \text{costante}\), con velocità \(\abs*{c}\)
+dove \(r = \abs*{\bm{x} - \bm{x}_0}\) e \(\bm{x}_0 \in \mathbb{R}^n\) è un punto fisso. \(u(\bm{x}, t) = e^{i\omega t}v(r)\) rappresenta una onda stazionaria sferica mentre \(u(\bm{x}, t) = v(r - ct)\) è l'equazine di una onda progressiva i cui fronti d'onda appartengono alle sfere di equazione \(r - ct = \text{costante}\), con velocità \(\abs*{c}\).
 \end{itemize}
+Molti sistemi fisici possono essere modellati da una serie di equazioni che hanno onde armoniche come soluzioni, con la frequenza angolare nota del numero delle onde, in generale una equazione non lineare
+\[
+  \omega = \omega(k)
+\]
+Si può osservare tale effetto in un sasso che cade in uno stagno. Nel caso lineare, se cioè \(\omega(k) = ck\), \(c\) costante, le creste si muovono con velocità \(c\) indipendente dal numero di onde. Se \(\omega(k)\) non è proporzionale a \(k\), le creste hanno velocità \(c_p = \omega(k)\) che dipende dal numero di onde. In altri termini, se le creste hanno diverse lunghezze d'onda, avranno differenti velocità. Allora la relazione \(\omega = \omega(k)\) è detta anche relazione di dispersione. La velocità di gruppo di un insieme di onde è data da 
+\[
+  c_g = \omega'(k)
+\]
+da cui si ottengono dei risultati importanti
+\begin{itemize}
+  \item[1)] È la velocità alla quale viaggia un pacchetto di onde isolato. Per pacchetto di onde si intende una sovrapposizione di onde armoniche dispersive, utilizzando, ad esempio, un integrale di Fourier del tipo
+  \begin{equation}
+    u(x,t) = \int_{-\infty}^{+\infty} a(k)e^{i[kx-\omega(k)t]} \, dk
+  \end{equation}
+  dove si considera solamente la parte reale. Considerato un pacchetto di onde localizzato, con un numero di onde quasi costante \(k \approx k_0\) e con ampiezze variabili di poco rispetto a \(x\). Allora il numero di creste del pacchetto di onde sarà sicuramente elevato, ma avranno tutte ampiezze minime, eccetto che in un intorno di \(k_0\). Si può allora approssimare la \emph{relazione di dispersione} come 
+  \[
+    \omega(k) \approx \omega(k_0) + \omega'(k_0)(k - k_0) = \omega(k_0) + c_g (k - k_0)
+  \]
+  per cui
+  \begin{equation}
+    u(x,t) \approx e^{i[k_0x - \omega(k_0)t]}\int_{k_0 - \delta}^{k_0 + \delta} a(k)e^{i(k-k_0)(x - c_g t)}\, dk
+  \end{equation}
+  che permette di ottenere \(u\) dal prodotto di due onde. La prima onda è armonica di lunghezza \(\frac{2\pi}{k_0}\), mentre la seconda dipende da \(x,t\) grazie alla combinazione \((x - c_g t)\) ed è la sovrapposizione di onde con numero d'onda \(k - k_0\).
+  \item[2)] Tolto l'effetto di una perturbazione iniziale, si ha a regime che \(c_g\) è la velocità alla quale un osservatore deve viaggiare per osservare della lunghezza \(\frac{2\pi}{k_0}\). 
+\end{itemize}
+Nel caso del sasso nello stagno, appena dopo il lancio, la perturbazione è molto complicata, ma dopo un tempo sufficientemente lungo si disperdono le componenti di Fourier e la perturbazione prende la forma di un treno di onde lentamente modulato, quasi ad avere un aspetto sinusoidale in prossimità di ogni punto, con un numero di onde locale \(k(x,t)\) e una frequenza locale \(\omega(x,t)\) che cambiano gradualmente assiema a \(x \mbox{ e } t\) Ci si aspetta che idealmente la lunghezza dell'onda aumenti con l'aumentare della distanza di quest'ultima dal punto di origine, mentre tenderà a diminuire con il tempo. Allora le caratteristiche essenziali possono essere osservate solo dopo un periodo transitorio e a grande distanza dalla perturbazione iniziale. \\
+Si assuma che il profilo della superficie libera \(u\) sia dato da un integrale di Fourier come (5.4), allora per un tempo \(t \gg 1\). Un importante strumento è dato dal metodo della fase stazionaria che permette di avere una formula asintotica per \(t \to +\infty\), per integrali del tipo
+\begin{equation}
+  I(t) = \int_{-\infty}
+\end{equation}
 \end{document}
