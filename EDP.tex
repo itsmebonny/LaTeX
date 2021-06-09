@@ -3078,6 +3078,36 @@ Si considerino \(\omega \mbox{ e } k\) positivi, allora si avranno
   \item l'ampiezza dell'onda \(\abs*{A}\)
   \item il numero di onde \(k\) (numero completo di oscillazioni in \([0, 2\pi]\)) e la lunghezza d'onda \(\lambda = \frac{2\pi}{k}\) che è la distanza tra successive creste d'onda
   \item la frequenza angolare \(\omega \mbox{ e la frequenza } f = \frac{\omega}{2\pi}\)
+  \item la velocità dell'onda o velocità di fase \(c_p = \frac{\omega}{k}\)
 \end{itemize}
+\item[c)] Onde stazionarie: sono onde descritte da espressioni tipo 
+\[
+  u(x,t) = B\cos kx \cos \omega t
+\] 
+tali onde presentano un'onda base sinusoidale \(\cos kx\), modulata nel tempo da \(B \cos \omega t\). Si ottiene un'onda stazionaria sovrapponendo due onde armoniche con ampiezza identica che si propagano in direzioni opposte:
+\begin{equation}
+  A\cos(kx-\omega t) + A\cos(kx-\omega t) = 2A\cos kx \cos \omega t
+\end{equation}
+\end{itemize}
+In dimensione spaziale \(n > 1\) si ha:
+\begin{itemize}
+  \item[d)] Onde piane: le onde progressive scalari sono della forma
+  \[
+    u(\bm{x}, t) = f(\bm{k}\cdot\bm{x} - \omega t) 
+  \] 
+  La perturbazione si propaga in direzione \(\bm{k}\) con velocità \(c_p = \frac{\omega}{\abs*{\bm{k}}}\). I piani ortogonali a \(\bm{k}\) di equazioni 
+  \[
+    \theta (\bm{x}, \bm{t}) = \bm{k} \cdot \bm{x} - \omega t = \mbox{ costante}
+  \]
+  costituiscono i fronti d'onda. Il caso particolare
+  \[
+    u(\bm{x}, t) = A e^{e(\bm{k}\cdot\bm{x} - \omega t)}
+  \]
+corrisponde alle onde piane armoniche o monocromatiche. Qui \(\bm{k}\) è il vettore numero d'onde e \(\omega\) è il frequenza angolare. Gli scalari \(\frac{\abs*{\bm{k}}}{2\pi}\) e \(\frac{\omega}{2\pi}\), rispettivamente, numero d'onde per unità di lunghezza e numero di oscillazioni al secondo.
+\item[e)] Le onde sferiche hanno forma del tipo
+\[
+  u(\bm{x}, t) = v(r,t)
+\]
+dove \(r = \abs*{\bm{x} - \bm{x}_0}\) e \(\bm{x}_0 \in \mathbb{R}^n\) è un punto fisso. \(u(\bm{x}, t) = e^{i\omega t}v(r)\) rappresenta una onda stazionaria sferica mentre \(u(\bm{x}, t) = v(r - ct)\) è l'equazine di una onda progressiva i cui fronti d'onda appartengono alle sfere di equazione \(r - ct = \text{costante}\), con velocità \(\abs*{c}\)
 \end{itemize}
 \end{document}
