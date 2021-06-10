@@ -3134,10 +3134,31 @@ da cui si ottengono dei risultati importanti
   \end{equation}
   che permette di ottenere \(u\) dal prodotto di due onde. La prima onda è armonica di lunghezza \(\frac{2\pi}{k_0}\), mentre la seconda dipende da \(x,t\) grazie alla combinazione \((x - c_g t)\) ed è la sovrapposizione di onde con numero d'onda \(k - k_0\).
   \item[2)] Tolto l'effetto di una perturbazione iniziale, si ha a regime che \(c_g\) è la velocità alla quale un osservatore deve viaggiare per osservare della lunghezza \(\frac{2\pi}{k_0}\). 
-\end{itemize}
 Nel caso del sasso nello stagno, appena dopo il lancio, la perturbazione è molto complicata, ma dopo un tempo sufficientemente lungo si disperdono le componenti di Fourier e la perturbazione prende la forma di un treno di onde lentamente modulato, quasi ad avere un aspetto sinusoidale in prossimità di ogni punto, con un numero di onde locale \(k(x,t)\) e una frequenza locale \(\omega(x,t)\) che cambiano gradualmente assiema a \(x \mbox{ e } t\) Ci si aspetta che idealmente la lunghezza dell'onda aumenti con l'aumentare della distanza di quest'ultima dal punto di origine, mentre tenderà a diminuire con il tempo. Allora le caratteristiche essenziali possono essere osservate solo dopo un periodo transitorio e a grande distanza dalla perturbazione iniziale. \\
 Si assuma che il profilo della superficie libera \(u\) sia dato da un integrale di Fourier come (5.4), allora per un tempo \(t \gg 1\). Un importante strumento è dato dal metodo della fase stazionaria che permette di avere una formula asintotica per \(t \to +\infty\), per integrali del tipo
 \begin{equation}
-  I(t) = \int_{-\infty}
+  I(t) = \int_{-\infty}^{+\infty} f(k)e^{it\phi(k)}\, dk
 \end{equation}
+che, utilizzata per \(u\), restituisce
+\[
+  u(x,t) = \int_{-\infty}^{+\infty} a(k)e^{it[k\frac{x}{t} - \omega(k)]}
+\]
+muovendosi dall'origine con velocità \(V\) \((x = Vt)\) e definita \(\phi\) come 
+\[
+  \phi(k) = kV - \omega(k)
+\]
+Utilizzando l'idea che in \(\phi\) ci sia un solo punto stazionario in \(k_0\), ossia
+\[
+  \omega'(k_0) = V
+\]
+e \(\omega''(k_0) \not = 0\). Allora si ha con il metodo della fase stazionaria 
+\begin{equation}
+  u(Vt, t) = \sqrt{\frac{\pi}{\abs*{\omega''(k_0)}}} \frac{a(k_0)}{\sqrt{t}}e^{it[k_0V - \omega(k_0)]} + O(t^{-1})
+\end{equation}
+Allora, muovendosi con velocità \(V = \omega'(k_0) = c_g\), in \(x = c_gt\) si osserverà sempre lo stesso numero \(k_0\) di onde. All'aumentare di \(t \to \infty\) l'ampiezza di \(u\) decrescerà fino a \(t^{-\frac{1}{2}}\).
+\item[3)] La velocità alla quale l'energia viene trasportata da onde di lunghezza \(\frac{2\pi}{k}\) è pari a \(c_g\). Nel caso del pacchetto (5.5) l'energia sarà proporzionale a 
+\[
+  
+\] 
+\end{itemize}
 \end{document}
