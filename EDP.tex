@@ -3157,6 +3157,41 @@ e \(\omega''(k_0) \not = 0\). Allora si ha con il metodo della fase stazionaria
 \end{equation}
 Allora, muovendosi con velocità \(V = \omega'(k_0) = c_g\), in \(x = c_gt\) si osserverà sempre lo stesso numero \(k_0\) di onde. All'aumentare di \(t \to \infty\) l'ampiezza di \(u\) decrescerà fino a \(t^{-\frac{1}{2}}\).
 \item[3)] La velocità alla quale l'energia viene trasportata da onde di lunghezza \(\frac{2\pi}{k}\) è pari a \(c_g\). Nel caso del pacchetto (5.5) l'energia sarà proporzionale a 
-
+\[
+\int_{k_0 - \delta}^{k_0 + \delta} \abs*{a(k)}^2 \, dk \simeq 2\delta\abs*{a(k_0)}^2  
+\]
+cosicché la velocità di propagazione sia la stessa di \(k_0\), \(c_g\).
 \end{itemize}
+Un osservatore di onde d'acqua di superficie tende a concentrare l'attenzione sul movimento delle creste, che si muovono con velocità di fase. Dalla velocità di arrivo dell'energia si può determinare il danno provocato da esplosioni o terremoti. Poiché l'energia viaggia alla velocità di gruppo, vi sono significative differenze nel moto delle onde a seconda che la velocità del gruppo sia maggiore o minore di quella di fase. Nel primo caso l'energia viaggia nella stessa direzione del sistema di creste, nel secondo in quella opposta. Dal momento che 
+\[
+  \frac{\partial}{\partial k} \frac{\omega (k)}{k} = \frac{k\omega'(k) - \omega(k)}{k^2} = \frac{1}{k}(c_g - c_p)
+\]
+si osserva che, per \(k > 0\), \(c_g < c_p\) se e solo se la velocità di fase è una funzione decrescente del numero d'onde. \\
+Nel caso di onde d'acqua in superficie, esse vengono richiamate all'equilibrio dalla forza di gravità e dalla tensione superficiale. Nel primo caso, si ha \(c_g < c_p\) e le onde aumentano la loro velocità all'aumentare della lunghezza d'onda, mentre nel secondo caso, ossia \(c_g > c_p\) le onde corte tendono a essere le più rapide. 
+\subsection{Onde trasversali in una corda}
+Nel caso di una corda di violino, si può ricavare un modello per le vibrazioni trasversali che la attraversano, assumendo una serie di ipotesi
+\begin{enumerate}
+  \item Le vibrazioni sono piccole, dunque la corda viaggia poco rispetto alla sua condizione iniziale.
+  \item Lo spostamento di un singolo punto sulla corda si considera lungo una retta.
+  \item Lo spostamento di un punto dipende dal tempo e dalla sua posizione lungo la corda; indicando con \(u\) lo spostamento verticale di un punto che si trova in \(x\) quando la corda è a riposo, si ha \(u = u(x,t)\) e, per la prima condizione, \(\abs*{u_x(x,t)} \ll 1\).
+  \item La corda non offre nessuna resistenza alla flessione, e si può modellare lo sforzo come una forza \(\bm{T}\) diretta lungo di essa, detta \emph{tensione}.
+  \item Si possono trascurare gli attriti.
+\end{enumerate}
+Con le ipotesi elencate, si può ricavare l'equazione del modo dalla legge di conservazione della massa e dal bilancio dei momenti lineari. Siano \(\rho_0 = \rho_0(x)\) la densità lineare della corda all'equilibrio e \(\rho = \rho(x,t)\) la densità al tempo \(t\). Si consideri un tratto di corda corrispondente a \([x, x+\Delta x]\) e, indicato con \(\Delta s\) l'elemento di lunghezza corrispondente al tempo \(t\). Dalla legge di conservazione della massa si ha 
+\begin{equation}
+  \rho_0 (x) = \Delta x = \rho(x,t) \Delta s \qquad t \geq 0
+\end{equation}
+Eguagliando la forza totale agente sul tratto selezionato al tasso di variazione del momento di lineare si ottiene il bilanciamento dei momenti. Dal momento che il moto avviene lungo una retta le componenti devono bilanciarsi. Se \(\tau(x,t)\) indica la tensione in \(x\) si avrà
+\[
+  \tau(x+\Delta x, t) \cos \alpha (x+\Delta x, t) - \tau(x,t) \cos \alpha (x,t) = 0
+\]
+che, diviso per \(\Delta x\) e portato al limite \(\Delta x \to 0\) si ha 
+\[
+  \frac{\partial}{\partial x} [\tau(x,t) \cos \alpha (x,t)] = 0
+\]
+da cui 
+\begin{equation}
+  \tau(x,t) \cos \alpha(x,t) = \tau_0(t)
+\end{equation}
+
 \end{document}
