@@ -3542,7 +3542,108 @@ Con i dati iniziali \(u(x,0) = g(x), u_t(x,0) = h(x)\) si ottiene
 \end{equation}
 che ha senso anche per \(u \mbox{ e } g\) continue e \(h\) limitata. Se invece \(u \in \mathcal{C}^2(\mathbb{R} particolare\times [0, +\infty)\) soddisfa la (5.41) per qualsiasi funzione test, allora è soluzione classica di (5.33). 
 \begin{definition}
-  Siano \(g \in \mathcal{C}(\mathbb{R})\) e \(h\) funzione limitata in \(\mathbb{R}\). Allora \(u\), continua in \(\mathbb{R} \times [0, +\infty)\) è soluzione generalizzata del problema (5.33).
+  Siano \(g \in \mathcal{C}(\mathbb{R})\) e \(h\) funzione limitata in \(\mathbb{R}\). Allora \(u\), continua in \(\mathbb{R} \times [0, +\infty)\), è soluzione generalizzata del problema (5.33).
 \end{definition}
-Risolvere il problema di Cauchy con \(g \equiv 0\) e un dato \(h\) , la delta di Dirac, risulta molto utile, perché permette di ricavare la cosiddetta 
+Risolvere il problema di Cauchy con \(g \equiv 0\) e un dato \(h\) , la delta di Dirac, risulta molto utile, perché permette di ricavare la cosiddetta soluzione fondamentale. Grazie alla soluzione globale si può affrontare il problema di Cauchy globale. Sia \(K = K(x,z,t)\), con la formula di d'Alembert si ha 
+\begin{equation}
+  K(x,z,t) = \frac{1}{2c} \int_{x-ct}^{x+ct} \delta(y-z) \, dy
+\end{equation}
+Ritornando a dei concetti visti in precedenza, si può calcolare \(\int_{-\infty}^x\delta(y) \, dy\) grazie alla funzione di Heaviside
+\[
+\mathcal{H}(x) = \begin{cases}
+  1 & \text{se }x \geq 0 \\
+  0 & \text{se } x < 0
+\end{cases}
+\]
+e 
+\begin{equation}
+  I_{\epsilon}(x) = \frac{\mathcal{H}(x + \epsilon) - \mathcal{H}(x - \epsilon)}{2\epsilon} = \begin{cases}
+    \frac{1}{2\epsilon} &\mbox{se } -\epsilon \leq x < \epsilon \\
+    0 &\mbox{altrove}  
+  \end{cases}
+\end{equation}
+descrive un impulso unitario di durata \(\epsilon\). Si può allora calcolare \(\int_{-\infty}^x \delta(y)\, dy\) grazie a 
+\[
+ \int_{-\infty}^x \delta(y) \, dy =\lim_{\epsilon \to 0} \int_{-\infty}^x I_{\epsilon} (y) \, dy
+\]
+Se \(x < -\epsilon, \int_{-\infty}^x I_{\epsilon}(y) \, dy = 0\), mentre se \(x > \epsilon, \int_{-\infty}^x I_{\epsilon}(y) \, dy = 1\). Si ottiene quindi
+\begin{equation}
+  \int_{-\infty}^x \delta(y) \, dy = \mathcal{H}(x)
+\end{equation}
+Si può riscrivere 
+\[
+  \int_{x-ct}^{x+ct} \delta(y-z) \, dy = \int_{-\infty}^{x-ct} \delta(y-z) \, dy - \int_{-\infty}^{x-ct} \delta(y-z) \, dy
+\]
+da cui si ricava facilmente
+\begin{equation}
+  K(x,z,t) = \frac{1}{2c}\left\lbrace \mathcal{H}(x-z+ct) - \mathcal{H}(x-z-ct)\right\rbrace
+\end{equation}
+La funzione \(K\) è la soluzione fondamentale dell'equazione delle onde unidimensionale. \\
+Vi è anche un'altra casistica, nel caso il problema non sia omogeneo. Per esempio
+\begin{equation}
+  \begin{cases}
+    u_{tt} - c^2 u_{xx} = f(x,t) & x \in \mathbb{R}, t > 0 \\
+    u(x,0) = 0, u_t(x,0)= 0 & x \in \mathbb{R}
+  \end{cases}
+\end{equation}
+Tale problema si risolve con il metodo di Duhamel. \\
+Ricordando che in caso si abbia un problema 
+\[
+  \begin{cases} 
+y'(t) + ay(t) = f(t) & t > 0 \\
+y(0) = 0  
+\end{cases}
+\]
+Si risolve con 
+\[
+  y(t) = \int_0^t \underbrace{e^{-a(t-s)}f(s)}_{w(t;s)} \, ds
+\]
+trattando \(s\) come un parametro (\(0 \leq s \leq t\))
+\[
+  w(t;s) = e^{-a(t-s)}f(s)
+\]
+si ottiene che \(w\) soddisfa il problema di Cauchy omogeneo avente il secondo membro dell'ultima equazoine come dato inziale (calcolato in \(t=s\))
+\[
+\begin{cases}
+  w_t + aw = 0 & t > s \\
+  w(s;s) = f(s) & t = s
+\end{cases}  
+\]
+allora si può risolvere il problema in \(w\) e ottenere la soluzione 
+\[
+  y(t) = \int_0^t w(t;s)ds
+\]
+Considerando il problema (5.45), fissato \(s\), sia \(w = w(x, t; s)\) soluzione del problema si ha
+\[
+\begin{cases}
+  w_{tt} - c^2w_{xx} = f(x,t) & x \in \mathbb{R}, t > 0 \\
+  w(x, s; s) = 0, w_t(x, s; s) = f(x,s) & x \in \mathbb{R}
+\end{cases}  
+\]
+Poiché l'equazione delle onde è invariante a qualsiasi tipo di traslazione, si ha dalla formula di d'Alembert
+\[
+w(x,t;s) = \frac{1}{2c} \int_{x-c(t-s)}^{x+c(t-s)} f(y,s) \, dy  
+\]
+La soluzione di (5.45) allora è
+\[
+  u(x,t) = \int_0^t w(x,t;s) \, ds = \frac{1}{2c} \int_0^t \, ds \int_{x-c(t-s)}^{x+c(t-s)} f(y,s) \, dy
+\]
+infatti 
+\begin{eqnarray*}
+  u(x,0) = 0 \\
+  u_t(x,t) = w(x, t; t) + \int_0^t w_t(x, t; s) \, ds = \int_0^t \int_0^t w_t(x, t; s) \, ds
+\end{eqnarray*}
+dal momento che \(w(x,t;t) = 0\). Di conseguenza anche \(u_t(x,0)\) è nullo. Si ha poi 
+\begin{eqnarray*}
+  u_{tt}(x,t) = w_{t}(x,t;t) + \int_0^t w_{tt}(x,t;s) \, ds = f(x,t) + \int_0^t w_{tt} (x,t;s) \, ds \\
+  u_{xx}(x,t) = \int_0^t w_{xx}(x,t;s) \, ds
+\end{eqnarray*}
+e segue, dal momento che \(w_{tt} - c^2w_{xx} = 0\), 
+\[
+\begin{array}{c}
+  u_{tt} (x,t)-c^2u_{xx} (x,t) = f(x,t) + \int_0^tw_{tt}(x,t;s) \, ds - c^2 \int_0^t w_{xx}(x,t;s) \, ds = \\
+  = f(x,t)
+\end{array}  
+\]
+che è l'unica soluzione \(\mathcal{C}^2(\mathbb{R} \times [0, +\infty))\)
 \end{document}
