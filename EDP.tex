@@ -3525,6 +3525,24 @@ La formula di d'Alembert ha perfettamente senso per \(g\) continua e \(h\) limit
 \int_0^{\infty}\int_{\mathbb{R}} [u_{tt} - c^2u_{xx}]v \, dxdt = 0  
 \]
 Integrando due volte per parti i termini e essendo \(v\) nulla fuori dal supporto compatto si ha
-
-
+\[
+ \int_0^{\infty} \int_{\mathbb{R}} c^2u_{xx} v \, dxdt = \int_0^{\infty}\int_{\mathbb{R}} c^2uv_{xx} \, dxdt
+\]
+e 
+\[
+  \begin{array}{lcl}
+    \int_0^{\infty} \int_{\mathbb{R}} u_{tt} v \, dxdt & = & -\int_{\mathbb{R}} u(x,0)v(x,0) \, dx - \int_0^{\infty}\int_{\mathbb{R}}u_tu_v \, dxdt \\
+    & = & - \int_{\mathbb{R}}[u_t(x,0)v(x,0) - u(x,0)v_t(x,0)] + \\
+    & & +\int_0^{\infty}\int_{\mathbb{R}} uv_{tt} \, dxdt
+  \end{array}
+\]
+Con i dati iniziali \(u(x,0) = g(x), u_t(x,0) = h(x)\) si ottiene 
+\begin{equation}
+  \int_0^{\infty} \int_{\mathbb{R}} u[v_{tt}- c^2v_{xx}] \, dxdt - \int_{\mathbb{R}} [h(x)v(x,0) - g(x)v_t(x,0)] \, dx = 0
+\end{equation}
+che ha senso anche per \(u \mbox{ e } g\) continue e \(h\) limitata. Se invece \(u \in \mathcal{C}^2(\mathbb{R} particolare\times [0, +\infty)\) soddisfa la (5.41) per qualsiasi funzione test, allora è soluzione classica di (5.33). 
+\begin{definition}
+  Siano \(g \in \mathcal{C}(\mathbb{R})\) e \(h\) funzione limitata in \(\mathbb{R}\). Allora \(u\), continua in \(\mathbb{R} \times [0, +\infty)\) è soluzione generalizzata del problema (5.33).
+\end{definition}
+Risolvere il problema di Cauchy con \(g \equiv 0\) e un dato \(h\) , la delta di Dirac, risulta molto utile, perché permette di ricavare la cosiddetta 
 \end{document}
