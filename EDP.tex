@@ -1429,7 +1429,7 @@ Più precisamente
 \begin{proof}
   Si estenda \(g\) con continuità su tutto \(\mathbb{R}\), in modo che risulti nulla al di fuori di un intervallo che contenga \([a,b]\), tipo \([-L,L]\). In tal modo, \(g\) risulta anche limitata su \(\mathbb{R}\). Posto \(M = \max(g)\) si ha (\(\epsilon > 0\)):
   \[
-    u(x,t) = \frac{1}{2\sqrt{\pi t}} \int_{-L}^L g(y)dye^{-\frac{(x-y)^2}{4t}dy}
+    u(x,t) = \frac{1}{2\sqrt{\pi t}} \int_{-L}^L g(y) \, dy e^{-\frac{(x-y)^2}{4t}\, dy}
   \]
   che è soluzione di \(u_t - u_{xx} = 0\) in \(\mathbb{R} \times (0,T)\), e per ogni \(\epsilon'>0\) sufficientemente piccolo, si ha
   \begin{equation}
@@ -3372,5 +3372,159 @@ che trasforma la (5.21) in
 \end{equation}
 che soddisfa sia la (5.22) che (5.23). \\
 Nonostante \(U_m\) sia soluzione regolare dell'equazione delle onde, la (5.25) è una soluzione formale, a meno che non sia possibile derivare due volte rispetto a entrambe le variabili. In tal caso si avrebbe
+\begin{equation}
+  (\partial_{tt} - c^2\partial^2_{xx})u(x,t) = \sum_{m=1}^{\infty} (\partial_{tt} - c^2\partial_{xx})U_m(x,t) = 0
+\end{equation}
+Chiaramente ciò può avvenire se \(\hat{g}_m\) e \(\hat{h}_m\) si annullano abbastanza rapidamente per \(m \to \infty\). Derivando due volte si ha infatti
+\begin{eqnarray}
+  u_{xx}(x,t) - \sum_{m=1}^{\infty} \left[\mu^2_m \hat{g}_m \cos (\mu_m ct) + \frac{\mu_m \hat{h}_m}{c} \sin (\mu_m ct)\right] \sin \mu_m x \\
+  u_{tt}(x,t) - \sum_{m=1}^{\infty} \left[\mu^2_m \hat{g}_m c^2\cos (\mu_m ct) + \mu_m \hat{h}_m c \sin (\mu_m ct)\right] \sin \mu_m x
+\end{eqnarray}
+Per esempio, avendo
+\begin{equation}
+  \abs*{\hat{g}_m}\leq \frac{K}{m^4}, \qquad \abs*{\hat{h}_m} \leq \frac{K}{m^3}
+\end{equation}
+si può, per il test di Weierstrass, stabilire che le serie (5.27) e (5.28) convergono uniformemente in \([0, L] \times [0, +\infty)\). Poiché nello stesso intervallo converge uniformemente anche la (5.25) è permessa la derivazione termine a termine.
+Dalle stesse ipotesi si può facilmente verificare
+\begin{equation}
+  u(y,t) \to g(x), \, u_t(y,t) \to h(x), \qquad \mbox{ per } (y,t) \to (x,0)
+\end{equation}
+per ogni \(x \in [0,L]\) da cui si conclude che \(u\) è soluzione regolare del problema (5.14). 
+\begin{itemize}
+  \item Unicità.
+\end{itemize} 
+Per mostrare che la (5.25) sia l'unica soluzione di (5.14) si utilizza la formula dell'energia (5.13). Siano \(u \mbox{ e } v\) soluzioni del problema, allora anche \(w = u - v\) è soluzione con dati iniziali e di Dirichlet nulli. Per mostrrare che \(w \equiv 0\) si utilizza la formula dell'energia meccanica, ricordando la formula
+\[
+  E(t) = E_{\text{cin}}(t)+ E_{\text{pot}}(t) = \frac{1}{2}\int_0^L [\rho_0 w^2_t + \tau_0 w^2_x] \, dx
+\]
+Dal momento che \(f\) è nulla e \(w_t(0,t) = w_t(L,t) = 0\) si deduce che \(\dot{E}(t) = 0\), ossia si ha una conservazione dell'energia totale
+\begin{equation}
+  E(t) = E(0) \qquad \forall t \geq 0
+\end{equation}
+Inoltre, essendo \(w_t(x,0) = w_x(x, 0) = 0\) si deduce che 
+\[
+  E(t) = E(0) = 0 \qquad \forall t > 0
+\]
+che quindi implica \(w_t = w_x = 0\), da cui si è sicuri che la soluzione trovata è l'unica (\(u = v\)).
+\begin{itemize}
+  \item Dipendenza continua.
+\end{itemize}
+Stabilire la dipendenza della soluzione dai dati necessita prima di definire il metodo di calcolo della distanza dei dati dalla soluzione corrispondente. Per fare ciò ci sono varie possibilità, come la distanza in media quadratica\footnote{Il simbolo \(\norm*{g}_0\) si legge norma di \(g\) in \(L^2(0, L)\)}:
+\[
+  \norm*{g_1 - g_2}_0 = \left(\int_0^L \abs*{g_1(x) - g_2(x)}^2 \, dx\right)^{\frac{1}{2}}
+\]
+Nel caso di funzioni dipendenti dal tempo si può valutare il massimo al variare del tempo della distanza in media quadratica
+\[
+  \norm*{u - v}_{0, \infty} = \sup_{t > 0}\left(\int_0^L \abs*{u(x,t) - v(x,t)}^2 \, dx\right)^{\frac{1}{2}}
+\]
+Siano ora \(u_1\) e \(u_2\) soluzioni di (5.14), corrispondenti a \(g_1, g_2 \mbox{ e } h_1, h_2\). Dalla (5.25) si sa che 
+\[
+w(x,t) = \sum_{m=1}^{\infty} \left[\hat{g}_m \cos (\mu_m ct) + \frac{\hat{h}_m}{\mu_m c} \sin (\mu_m ct)\right]\sin \mu_m x  
+\]
+Dall'identità di Parseval e grazie alla disuguaglianza \((a+b)^2 \leq 2(a^2+b^")\) si ha
+\begin{flalign*}
+  \int_0^L \abs*{w(x,t)}^2 \, dx = \frac{L}{2} \sum_{m=1}^{\infty} \left[\hat{g}_m \cos(\mu_m ct) + \frac{\hat{h}_m}{\mu_m c}\sin(\mu_m ct)\right]^2  \\
+  \leq L \sum_{m=1}^{\infty}\left[\hat{g}_m^2 + \left(\frac{\hat{h}_m}{\mu_m c}\right)^2\right]
+\end{flalign*}
+Dal momento che \(\mu_m \geq \frac{\pi}{L}\) si ha 
+\begin{flalign*}
+  \int_0^L \abs*{w(x,t)}^2 \, dx \leq L \max \left\lbrace1, \frac{L}{\pi c}\right\rbrace \sum_{m=1}^{\infty} \left[\hat{g}_m^2 + \hat{h^2_m}\right] = \\
+  = 2 \max \left\lbrace 1, \left(\frac{L}{\pi c}\right)^2 \right\rbrace \left[\norm*{g}^2_0 + \norm*{h}^2_0\right]
+\end{flalign*}
+da cui si ricava la seguente stima di stabilità
+\begin{equation}
+  \norm*{u_1 - u_2}^2_{0, \infty} \leq 2 \max \left\lbrace 1, \left(\frac{L}{\pi c}\right)^2 \right\rbrace \left[\norm*{g_1 - g_2}^2_0 + \norm*{h_1 - h_2}^2_0\right]
+\end{equation}
+che conferma come dei dati ravvicinati producano soluzioni poco distanti tra loro.
+\subsection{La formula di d'Alembert}
+Per risolvere il problema di Cauchy globale formulato prima ci si avvale della formula di d'Alembert. Dato 
+\begin{equation}
+  \begin{cases}
+    u_{tt} - c^2u_{xx}= 0 & x \in \mathbb{R}, t > 0 \\
+    u(x,0) = g(x), u_t(x,0) = h(x) & x \in \mathbb{R}
+  \end{cases}
+\end{equation}
+Fattorizzando l'equazione delle onde come
+\begin{equation}
+  (\partial_t - c\partial_x)(\partial_t + c\partial_x)u = 0
+\end{equation}
+e posto 
+\begin{equation}
+  v  = u_t + cu_x
+\end{equation}
+allora l'equazione del trasporto è soddisfatta da \(v\) come \(v_t - cv_x = 0\) e, sapendo che si può scrivere \(v(x,t) = \psi(x+ct)\), con \(\psi\) arbitraria e differenziabile. Dalla (5.35) si ha quindi
+\[
+u_t + cu_x = \phi(x+ct)  
+\]
+che ha come soluzione generale
+\begin{equation}
+  \begin{array}{r}
+    u(x,t) = \int_0^t \psi(x-c(t-s) + cs) \, ds + \phi(x - ct) = \\
+  \underset{x -ct +2cs = y}{=} \frac{1}{2c}\int_{x-ct}^{x+ct} \psi(y) \, dy + \phi(x-ct)
+\end{array}
+\end{equation}
+con \(\psi, \phi\) da scegliersi tramite le condizioni iniziali. Si ottiene cosi
+\[
+  \begin{array}{c}
+  u(x,0) = \phi(x) = g(x), \\
+  u_t (x,0) = \psi(x) - c\phi'(x) = h(x) \\
+  \Downarrow \\
+  \psi(x) = h(x) + cg'(x)
+\end{array}
+\]
+che, nella (5.36), permettono di ottenere 
+\[
+  \begin{array}{lcl}
+    u(x, t) & = & \frac{1}{2c} \int_{x-ct}^{x+ct} [h(y) + cg'(y)] \, dy + g(x - ct) \\
+    & = & \frac{1}{2c} \int_{x-ct}^{x+ct}h(y) \, dy + \frac{1}{2} [g(x+ct) - g(x-ct)] + g(x-ct)
+  \end{array}
+  \]
+  che permette di ricavare la \emph{formula di d'Alembert}:
+  \begin{equation}
+    u(x,t) = \frac{1}{2}[g(x+ct) + g(x-ct)] + \frac{1}{2c}\int_{x-ct}^{x+ct} h(y) \, dy
+  \end{equation}
+Dalla formmula si evincono alcune informazioni importanti: se \(g\) e \(h\) sono sufficientemente regolari, allora il problema è ben posto. Inoltre non avviene nessun effetto regolarizzante sulla soluzione, che rimane al massimo di classe \(\mathcal{C}^2\) per \(t > 0\). La soluzione poi dipende con continuità dai dati \(h \mbox{ e } g\). Siano \(u_1\) e \(u_2\) le soluzioni corrispondenti a \(g_1, h_1\) e \(g_2, h_2\). Usando la distanza definita come norma in \(L^{\infty}\):
+\[
+  \norm*{h_1 - h_2}_{\infty} = \sup_{x \in \mathbb{R}} \abs*{h_1(x) - h_2(x)} \qquad \norm*{g_1 - g_2}_{\infty} \sup_{x \in \mathbb{R}}\abs*{g_1(x) - g_2(x)}
+\]
+Dalla formula di d'Alembert si ha allora
+\[
+\abs*{u_1(x,t) - u_2(x,t)} \leq \norm*{g_1 - g_2}_{\infty} + T\norm*{h_1 - h_2}_{\infty}  
+\]
+ossia che data una piccola variazione all'interno dei dati provoca una piccola variazione sulle soluzioni.
+Riordinando i termini della (5.36) si ricava la possibilità di riscrivere ogni soluzione nella forma 
+\begin{equation}
+  u(x,t) = F(x + ct) + G(x-ct)
+\end{equation}
+ossia come una sovrapposizione di onde progressive che si muovono con stessa velocità in direzioni opposte. Dalla (5.38) si nota che le famiglie di rette di equazioni 
+\[
+x+ ct = \text{costante}  \qquad  x - ct =\text{costante}
+\]
+sono le caratteristiche che `trasportano i dati'. \\
+Dalla formula di d'Alembert, il valore di \(u\) in \((x,t)\) è determinato dai valori di \(h\) in \([x-ct, x+ct]\) e da quelli di \(g\) agli estremi \(x-ct, x+ct\). Tale intervallo si chiama \emph{dominio di dipendenza} di \((x,t)\). Allo stesso modo, dato un punto \(z, 0\) sempre sull'asse \(x\), i valori di \(g \mbox{ e } h\) influenzano \(u\) nei punti all'interno di \(z - ct \leq x \leq z + ct\), che prende il nome di \emph{dominio di influenza}. Dal punto di vista fisico, il primo dominio indica che il segnale viaggia con velocità \(c\) lungo le due caratteristiche, mentre il secondo indica che una perturbazione inizialmente localizzata in \(z\) non viene avvertita in \(x\) prima dell'istante \(t = \frac{\abs*{x-z}}{c}\).
+Derivando il secondo termine della (5.37) rispetto al tempo si ha:
+\[
+\begin{array}{lcl}
+  \frac{\partial}{\partial t}\frac{1}{2c} \int_{x-ct}^{x+ct} h(y) \, dy & = & \frac{1}{2c} [ch(x + ct)-(-c)h(x-ct)] \\
+  & = & \frac{1}{2} [h(x + ct) + h(x - ct)]
+\end{array}  
+\]
+che ha forma del primo termine con \(h\) al posto di \(g\). Per risolvere il problema di Cauchy completo allora è sufficiente saperlo risolvere con dati \(u(x,0) = 0, u_t(x,0) = h(x)\). Se \(w_{\phi} = w_{\phi}(x,t)\) indica una soluzione del problema 
+\begin{equation}
+  \begin{cases}
+    w_{tt} - c^2w_{xx} = 0 & x \in \mathbb{R}, t > 0 \\
+    w(x,0) = 0, w_t(x,0) = \phi(x) & x \in \mathbb{R}
+  \end{cases}
+\end{equation}
+allora si può riscrivere la (5.37) come
+\[
+u(x,t) = \frac{1}{2c}\frac{\partial}{\partial t} \int_{x-ct}^{x+ct} g(y) \, dy + \frac{1}{2c} \int_{x-ct}^{x+ct}h(y) \, dy = \frac{\partial}{\partial t} w_g(x,t) + w_h(x,t)  
+\]
+La formula di d'Alembert ha perfettamente senso per \(g\) continua e \(h\) limitata, ma non è detto sia necessariamente differenziabile. Ripetendo un processo visto in precedenza, si assuma che \(u\) sia una soluzione regolare del problema di Cauchy globale. Sia \(u\) una soluzione classica e \(v\) una funzione di test \(\mathcal{C}^2 (\mathbb{R} \times [0, +\infty))\) a supporto compatto. Moltiplicando le due funzioni e integrando su \(\mathbb{R} \times [0, +\infty)\) si ha 
+\[
+\int_0^{\infty}\int_{\mathbb{R}} [u_{tt} - c^2u_{xx}]v \, dxdt = 0  
+\]
+Integrando due volte per parti i termini e essendo \(v\) nulla fuori dal supporto compatto si ha
+
 
 \end{document}
