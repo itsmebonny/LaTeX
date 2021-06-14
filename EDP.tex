@@ -3108,12 +3108,12 @@ corrisponde alle onde piane armoniche o monocromatiche. Qui \(\bm{k}\) è il vet
 \[
   u(\bm{x}, t) = v(r,t)
 \]
-dove \(r = \abs*{\bm{x} - \bm{x}_0}\) e \(\bm{x}_0 \in \mathbb{R}^n\) è un punto fisso. \(u(\bm{x}, t) = e^{i\omega t}v(r)\) rappresenta una onda stazionaria sferica mentre \(u(\bm{x}, t) = v(r - ct)\) è l'equazine di una onda progressiva i cui fronti d'onda appartengono alle sfere di equazione \(r - ct = \text{costante}\), con velocità \(\abs*{c}\).
+dove \(r = \abs*{\bm{x} - \bm{x}_0}\) e \(\bm{x}_0 \in \mathbb{R}^n\) è un punto fisso. \(u(\bm{x}, t) = e^{i\omega t}v(r)\) rappresenta una onda stazionaria sferica mentre \(u(\bm{x}, t) = v(r - ct)\) è l'equazione di una onda progressiva i cui fronti d'onda appartengono alle sfere di equazione \(r - ct = \text{costante}\), con velocità \(\abs*{c}\).
 \end{itemize}
 Molti sistemi fisici possono essere modellati da una serie di equazioni che hanno onde armoniche come soluzioni, con la frequenza angolare nota del numero delle onde, in generale una equazione non lineare
-\[
+\begin{equation}
   \omega = \omega(k)
-\]
+\end{equation}
 Si può osservare tale effetto in un sasso che cade in uno stagno. Nel caso lineare, se cioè \(\omega(k) = ck\), \(c\) costante, le creste si muovono con velocità \(c\) indipendente dal numero di onde. Se \(\omega(k)\) non è proporzionale a \(k\), le creste hanno velocità \(c_p = \omega(k)\) che dipende dal numero di onde. In altri termini, se le creste hanno diverse lunghezze d'onda, avranno differenti velocità. Allora la relazione \(\omega = \omega(k)\) è detta anche relazione di dispersione. La velocità di gruppo di un insieme di onde è data da 
 \[
   c_g = \omega'(k)
@@ -3212,7 +3212,167 @@ La legge di Newton, dalla (5.8), dà:
 Dividendo per \(\Delta x\) e passando al limite \(\Delta x \to 0\):
 \begin{equation}
   u_{tt} - c^2u_{xx} = f
+\end{equation} 
+ Dove \(c^2(x,t) = \frac{\tau_0(t)}{\rho_0(x)}\). In caso la corda sia omogenea. allora \(\rho_0\) è costante. Può essere costante anche \(\tau_0\) se la corda è perfettamente elastica, ossia la tensione orizzontale è quasi la stessa della corda a riposo. \\
+Una corda perfettamente elastica e flessibile si trova a riposo al tempo \(t = 0\) in posizione orizzontale e occupi un segmento \([0, L]\) sull'asse \(x\). Poiché \(u_t(x,t)\) è la velocità di vibrazione del punto \(x\), l'energia cinetica totale della vibrazione si rappresenta come 
+\[
+  E_{\text{cin}}(t) = \frac{1}{2}\int_0^L \rho_0 u^2_t \, dx
+\]
+Trattandosi di piccole vibrazioni, la tensione \(\tau\) non dipende da \(x\). La corda inoltre immagazina dell'energia potenziale dovuta al lavoro delle forze elastiche. In un elemento della corda di lunghezza \(\Delta x\), queste forze provocano un allungamento pari a:
+\[
+  \int_x^{x+\Delta x} \sqrt{1+u^2_x} \, dx - \Delta x = \int_x^{x + \Delta x} \left(\sqrt{1 + u_x^2} - 1\right) \approx \frac{1}{2} u_x^2 \Delta x
+\]
+Da cui si ottiene il lavoro delle forze elastiche
+\[
+  dW = \frac{1}{2} \tau_0u^2_x \Delta x
+\]
+L'energia potenziale si ottiene sommando tutti i contributi degli elementi della corda 
+\begin{equation}
+  E_{\text{pot}}(t) = \frac{1}{2} \int_0^2 \tau_0 u^2_x \, dx
 \end{equation}
-dove \(c^2(x,t) = \frac{\tau_0(t)}{\rho_0(x)}\). In caso la corda sia omogenea (come quella del violino), allora \(\rho_0\) è costante. Può essere costante anche \(\tau_0\) se la corda è perfettamente elastica, ossia la tensione orizzontale è quasi la stessa della corda a riposo. \\
-
+Ossia l'energia meccanica totale
+\begin{equation}
+  E(t) = E_{\text{cin}}(t) + E_{\text{pot}} = \frac{1}{2}\int_0^L [\rho_0 u^2_t + \tau_0 u^2_x] \, dx
+\end{equation}
+La variazione di energia si calcola derivando sotto il segno di integrale
+\[
+  \dot{E}(t) = \int_0^L [\rho_0 u_t u_{tt} + \tau_0 u_x u_{xt}] \, dx
+\]
+Il secondo termine si può integrare per parti, ottenendo
+\[
+  \int_0^L \tau_0 u_x u_{xt} = \tau_0[u_x(L, t)u_t(L, t) - u_x(0,t)u_t(0,t)] -\tau_0 \int_0^L u_t u_{xx} \, dx
+\]
+per cui 
+\[
+  \dot{E}(t) = \int_0^L [\rho_0 u_{tt} - \tau_0 u_{xx}] u_t \, dx + \tau_0[u_x(L, t)u_t(L, t) - u_x(0,t)u_t(0,t)]
+\]
+Utilizzando la (5.10) si trova
+\begin{equation}
+  \dot{E}(t) = \int_0^L \rho_0 f u_t \, dx + \tau_0[u_x(L, t)u_t(L, t) - u_x(0,t)u_t(0,t)]
+\end{equation}
+In particolare, se \(f\) è nulla e agli estremi \(u\) è costante, si deduce che \(\dot{E}(t) = 0\) per cui \(E(t) = E(0)\), che esprime la conservazione dell'energia.
+\subsection{L'equazione delle onde unidimensionale}
+La (5.10) si chiama equazione delle onde unidimensionale. Il coefficiente \(c\) rappresenta la velocità di perturbazione. Se \(f \equiv 0\), si definisce omogenea l'equazione. Nell'equazione (5.10) appare una derivata seconda rispetto al tempo, quindi è appropriato assegnare,oltre alla posizione della corda, anche una velocità iniziale. Quindi, data una corda che occupa un segmento \([0, L]\) dell'asse \(x\) con condizioni iniziali
+\begin{eqnarray*}
+  u(x,0) = g(x), & u_t(x,0) = h(x), & x \in [0, L]
+\end{eqnarray*}
+Per le condizioni al bordo si hanno sempre le stesse opzioni
+\begin{itemize}
+  \item Condizioni di Dirichlet. Si bloccano gli estremi della corda:
+  \[
+  u(0,t) = u(L,t) = 0, \qquad t>0  
+  \]
+  o si descrive il loro movimento verticale
+  \[
+    u(0,t) = a(t), \quad u(L,t) = b(t), \qquad t > 0
+  \]
+  \item Condizioni di Neumann. Si descrive la tensione eesercitata agli estremi della corda, come \(\tau_0u_x\), da cui
+  \[
+    \tau_0u_x(0,t) = a(t), \quad -\tau_0u_x(L,t) = b(t), \qquad t > 0
+  \]
+  \item Condizioni di Robin. Descrivono la possibilità di avere un attacco elastico agli estremi della corda (per esempio una molla di costante \(k\)), che si traduce in 
+  \[
+    \tau_0u_x(0,t) = ku_(0,t), \quad \tau_0u_x(L,t) = -ku(L,t), \qquad t > 0
+  \]
+  \item Condizioni miste. In problemi reali si tende ad assegnare due condizioni diverse ai due estremi.
+\end{itemize}
+Si può quindi affrontare un problema di Cauchy globale pensando a una corda di lunghezza infinita, e assegnare solo i dati iniziali
+\[
+  u(x,0) = g(x), \quad u_t(x,0) = h(x), \qquad x \in \mathbb{R}
+\]
+Anche se si tratta di una situazione puramente teorica, è di vitale importanza la risoluzione del problema di Cauchy globale, come si vedrà in seguito. \\
+Risolvendo prima un problema classico si ha il seguente problema di Cauchy-Dirichlet
+\begin{equation}
+  \begin{cases}
+    u_{tt} - c^2u_{xx} = 0 & 0 < x < L, t > 0 \\
+    u(0,t) = u(L,t) = 0 & t \geq 0 \\
+    u(x,0) = g(x), \, u_t(x,0)=h(x) & 0 \leq x \leq L
+  \end{cases}
+\end{equation}
+con \(c^2 = \frac{\tau_0}{\rho_0}\) costante. \\
+Per capire se il problema è ben posto sono necessarie una serie di verifiche:
+\begin{itemize}
+  \item Esistenza. 
+\end{itemize}
+Avendo condizioni di Dirichlet omogenee, una soluzione si può ricavare dal metodo di separazione delle variabili. 
+\begin{itemize}
+  \item[Passo 1.] Si cercano soluzioni della forma 
+  \[
+  U(x,t) = w(t)v(x) 
+  \] 
+  con \(v(0) = v(L) = 0\). Sostituendola nell'equazione delle onde 
+  \[
+  U_{tt}-c^2U_{xx} = w''(t)v(x)-c^2w(t)v''(x) = 0
+  \]
+  che permette di ottenere, separando le variabili,
+  \begin{equation}
+    \frac{1}{c^2}\frac{w''(t)}{w(t)} = \frac{v''(x)}{v(x)}
+  \end{equation}
+  La (5.15) è una identità tra una funzione in variabile \(x\) e una in variabile \(t\). Come sempre avviene se i membri sono uguali a una costante comune \(\lambda\), da cui 
+  \begin{equation}
+    w''(t)-\lambda c^2 w(t) = 0
+  \end{equation}
+  da cui si ha il problema agli autovalori 
+  \begin{eqnarray}
+    v''(x) - \lambda v(x)= 0 \\
+    v(0) = v(L) = 0
+  \end{eqnarray}
+  \item[Passo 2.] Soluzione del problema agli autovalori. Vi sono tre possibili forme di integrale generale per la (5.17).
+  \begin{itemize}
+    \item[a)] Se \(\lambda = 0, v(x) = A + Bx\) e le condizioni (5.18) implicano che sia \(A\) che \(B\) siano nulle.
+    \item[b)] Se \(\lambda = \mu^2 > 0, v(x) = Ae^{-\mu x} + Be^{\mu x}\) e le condizioni (5.18) ancora implicano la nullità di \(A, B\).
+    \item[c)] Se \(\lambda = -\mu^2 < 0, v(x) = A\sin \mu x + B\cos \mu x\) e, imponendo (5.18) si ottiene
+    \begin{eqnarray*}
+      v(0) =  B = 0 \\
+      v(L) = A \sin \mu L + B \cos \mu L = 0
+    \end{eqnarray*}  
+    da cui 
+    \[
+      A \mbox{ arbitrario,} \, B = 0, \, \mu L = m\pi, ,\ m = 1, 2, \ldots
+    \]
+    Il terzo caso è l'unico che può produrre soluzioni non nulle del tipo 
+  \begin{equation}
+    v_m = A_m \sin \mu_m x, \qquad \mu_m = \frac{m\pi}{L}
+  \end{equation}  
+  \end{itemize}
+  \item[Passo 3.] Con valori come \(\lambda = -\mu_m^2 = -\frac{m^2\pi^2}{L^2}\). Come integrale generale della (5.16) si ha 
+  \begin{equation}
+    u_m(t) = C_m \cos(\mu_m ct) + D_m \sin(\mu_m ct)
+  \end{equation}
+  Si ottiene così, dalle (5.19) e (5.20), la famiglia di soluzioni 
+  \[
+    U_m(x,t) = [a_m \cos(\mu_m ct) + b_m \sin(\mu_m ct)] \sin \mu_m x \qquad m= 1, 2, \ldots
+  \]
+  Ogni \(U_m\) rappresenta un possibile moto della corda e rappresenta un'onda stazionaria di frequenza \(\frac{mc}{2L}\). La prima armonica e la sua frequenza \(\frac{c}{2L}\) si dice fondamentale, mentre le altre sono multipli interi della fondamentale. 
+  \item[Passo 4.] Con condizioni inziali del tipo
+  \[
+    u(x,0) = a_m \sin \mu_m x \qquad u_t(x,0) = cb_m \mu_m \sin \mu_m x
+  \] 
+  allora \(U_m\) coincide esattamente con la soluzione. L'idea alla base è quella di sovrapporre le infinite armoniche con la formula 
+  \begin{equation}
+    u(x,t) = \sum_{m=1}^{\infty} [a_m\cos(\mu_m ct) + b_m \sin(\mu_m ct)]\sin \mu_m x
+  \end{equation}
+  dove \(a_m \mbox{ e } b_m\) devono soddisfare le condizioni in \(0 \leq 0 \leq L\)
+  \begin{eqnarray}
+    u(x,0) = \sum_{m=1}^{\infty} a_m \sin \mu_m x = g(x) \\
+    u_t (x,0) = \sum_{m=1}^{\infty} c\mu_m b_m \sin \mu_m x= h(x)
+  \end{eqnarray}
+\end{itemize}
+Dalle (5.22) e (5.23) si può assumere che le funzioni \(g\) e \(h\) siano sviluppabili in serie di Fourier di soli seni in \([0, L]\). Siano i coefficienti di Fourier
+\[
+\hat{g}_m = \frac{2}{L} \int_0^L g(x) \sin \left(\frac{m\pi}{L}x\right) \,dx \qquad \hat{h}_m = \frac{2}{L} \int_0^L h(x) \sin \left(\frac{m\pi}{L}x\right) \,dx 
+\]
+Siano inoltre 
+\begin{equation}
+  a_m = \hat{g}_m \qquad b_m = \frac{\hat{h}_m}{c\mu_m}
+\end{equation}
+che trasforma la (5.21) in 
+\begin{equation}
+  u(x,t) = \sum_{m=1}^{\infty} \left[\hat{g}_m\cos(\mu_m ct) + \frac{\hat{h}_m}{c\mu_m} \sin(\mu_m ct)\right] \sin \mu_m x
+\end{equation}
+che soddisfa sia la (5.22) che (5.23). \\
+Nonostante \(U_m\) sia soluzione regolare dell'equazione delle onde, la (5.25) è una soluzione formale, a meno che non sia possibile derivare due volte rispetto a entrambe le variabili. In tal caso si avrebbe
+\begin{equation}
+  
+\end{equation}
 \end{document}
