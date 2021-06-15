@@ -59,7 +59,8 @@
 \newpage
 \section*{Premessa}
 Prima di iniziare, è necessario specificare come verranno trattati i simboli nel testo: per indicare una derivata parziale si useranno i seguenti simboli in modo interscambiabile:
-$$\begin{array}{cc}
+$$
+\begin{array}{cc}
 \frac{\partial x}{\partial u}, & u_{xx} = \frac{d^2x}{du} 
 \end{array}
 $$
@@ -3853,6 +3854,106 @@ Molti problemi per equazioni differenziali possono essere formulati in questo mo
   \[
   A :  V \to V  
   \]
+è un operatore lineare, continuo, iniettivo e suriettivo. \\
+Per mostrare la linearità e continuità di \(A\), si ha, per ogni \(u_1, u_2 , v \in V\) e \(\lambda_1,\lambda_2 \in \mathbb{R}\):
+\begin{flalign*}
+  (A[\lambda_1 u_1 + \lambda_2], v) = a(\lambda_1 u_1 + \lambda_2 u_2, v) = \lambda_1 a(u_1, v) + \lambda_2 a(u_2,v) =\\
+  =\lambda_1(A[u_1],v) + \lambda_2(A[u_2], v) + \lambda_2(A[u_2], v) = (\lambda_1 A[u_1] + \lambda_2 A[u_2],v)
+\end{flalign*}
+da cui si ricava
+\[
+  A[\lambda_1 u_1 + \lambda_2 u_2] = \lambda_1 A[u_1] + \lambda_2 A[u_2]
+\]
+Allora \(A\) è lineare e si può scrivere direttamente \(Au\), invece di \(A[u]\). Per dimostrare la continuità si veda che 
+\[\begin{array}{c}
+  
 
+\begin{array}{lcl}
+  \norm*{Au}^2 & = & (Au, Au) = a(u, Au) \\
+  & \leq & M \leq \norm*{u}\norm*{Au} \\
+\end{array} \\
+\begin{array}{ccc}
+  & &\Downarrow \\
+\end{array} \\
+\begin{array}{lcl}
+  &  &\norm*{Au} \leq M \norm*{u} 
+\end{array}  
+\end{array}
+\]
+Bisogna poi verificare che \(A\) sia iniettivo e a immagine chiusa, ossia 
+\[
+\mathcal{N}(A) = \{0\} \qquad \mbox{ e } \qquad \mathcal{R}(A) \mbox{ è un sottospazio chiuso di }V  
+\]
+Dalla coercività di \(a\) è possibile ricavare infatti
+\[
+  \alpha\norm*{u}^2 \leq a(u,u) = A(Au, u) \leq \norm*{Au} \norm*{u}
+\]
+da cui
+\begin{equation}
+  \norm*{u}\leq\frac{1}{\alpha} \norm*{Au}
+\end{equation}
+Se perciò \(Au = 0\), deve essere \(u = 0\) e quindi \(\mathcal{N}(A) = \{0\}\).
+Occorre mostrare che \(\mathcal{R}(A)\) è un sottospazio chiuso. Per farlo si considera una successione \(\{y_m\} \subset \mathcal{R}\) tale che \(y_m \to t \in V\) per \(m \to \infty\) e che si abbia \(y \in \mathcal{R}(A)\).
+Dal momento che \(y_m \in \mathcal{R}(A)\), si ha \(u_m\) tale che \(Au_m = y_m\). Dalla (6.8) si ottiene
+\[
+ \norm*{u_k - u_m} \leq \frac{1}{\alpha}\norm*{y_k - y_m} 
+\]
+per cui, essendo \(\{y_m\}\) di Cauchy, lo è anche \(\{u_m\}\). Poiché \(V\) è completo, esiste \(u \in V\) tale che 
+\[
+  u_m \to u
+\]
+e la continuità di \(A\) implica che \(y_m = Au_m \to Au\). Si deve quindi avere \(Au = y\), per cui \(y \in \mathcal{R}(A)\), il quale è chiuso. \\
+Per verficare che \(A\) sia un operatore suriettivo, ossia che \(\mathcal{R}(A) = V\), si immagini, per assurdo, che \(\mathcal{R}(A) \subset V\). Essendo \(\mathcal{R}(A)\) un sottospazio chiuso, si ha, per il Teorema di Proiezione, che esiste \(z \not = 0, z \in \mathcal{R}(A)^{\perp}\). Ciò implica che 
+\[
+  0 = (Az, z) = a(z,z) \geq a\norm*{z}^2
+\]
+da cui si ha \(z = 0\) che contraddice tutto. ALlora \(\mathcal{R}(A) = V\). \\
+Come accennato prima, il numero di soluzioni della (6.7) si ricava dal fatto che \(A\) è iniettivo e suriettivo. Per questo esiste ed è unico \(\overline{u} \in V\) tale che \(A\overline{u} = z_F\). Come già visto, allora \(\overline{u}\) è anche l'unica soluzione del problema (6.4). \\
+Inoltre dalla (6.8) è possibile ricavare, con \(u = \overline{u}\),
+\[
+\norm*{\overline{u}} \leq \frac{1}{\alpha} \norm*{A\overline{u}} = \frac{1}{\alpha} \norm*{z_F} = \frac{1}{\alpha}\norm*{F}_{V^*}  
+\]
+che porta a termine tutta la dimostrazione.
 \end{proof}
+Sia \(\Omega \subseteq \mathbb{R}^n\). Dato uno spazio di Sobolev\footnote{Si possono definire in maniera poco formale come `spazi di funzioni \(L^p\) aventi derivate \(L^p\)'} \(H^1(\Omega)\), sia \(H^1_0(\Omega)\) la chiusura di \(\mathcal{D}(\Omega)\). Quindi si ha \(u \in H^1_0(\Omega) \Leftrightarrow \exists \{\phi_k\}\subset \mathcal{D}(\Omega)\) tale che \(\phi_k \to u\) in \(H^1(\Omega)\), ossia \(\norm*{\phi_k - u}_0 \to 0\) e \(\norm*{\nabla\phi_k - \nabla u}_0 \to 0\) per \(k \to \infty\).In particolare per gli elementi di \(H^1_0(\Omega)\), vale la disuguaglianza di Poincaré, utile per la soluzione di problemi al contorno di equazioni alle derivate parziali.
+\begin{theorem}[Disuguaglianza di Poincaré]
+  Sia \(\Omega \subset \mathbb{R}^n\) un dominio limitato. Esiste una costante positiva (detta di Poincaré) \(C_P\) che dipende solo da \(n\) e da \(\Omega\) tale che, \(\forall u \in H^1_0(\Omega)\)
+  \begin{equation}
+    \norm*{u}_0 \leq C_P \norm*{\nabla u}_0
+  \end{equation}
+  \begin{proof}
+    Generalmente per dimostrare le disuguaglianze in \(H^1_0(\Omega)\) si immagina di aver dimostrato la formula (6.9) \(\forall v \in \mathcal{D}(\Omega)\) per poi estenderla a ogni \(u \in H^1_0(\Omega)\). Per fare questo si prende una successione \(\{v_k\} \subset \mathcal{D}(\Omega)\) che converge a \(u\) in \(H^1_0(\Omega)\) per \(k \to \infty \), ossia 
+    \[
+      \norm*{v_k - u}_0 \to 0, \qquad \norm*{\nabla v_k - \nabla u}_0 \to 0
+    \]
+    In particolare si ha 
+    \[
+    \norm*{v_k}_0 \to \norm*{u}_0, \qquad \norm*{\nabla v_k}_0 \to \norm*{\nabla u}_0
+    \]
+    e, sapendo che la (6.9) è vera per le \(v_k\), si ricava
+    \[
+      \norm*{v_k}_0 \leq C_P \norm*{\nabla v_k}_0
+    \]
+    Passando al limite per \(k \to \infty\) si ottiene appunto la (6.9) per \(u\). Allora è necessario mostrare che sia vera \(\forall v \in \mathcal{D}(\Omega)\). A tale scopo si ha, dal teorema della divergenza ed essendo \(v\) nullo sulla frontiera di \(\Omega\)
+    \begin{equation}
+      \int_{\Omega} div(v^2\bm{x}) \, d\bm{x} = 0
+    \end{equation}
+    E poiché \(div(v^2\bm{x})\,d\bm{x} = 2v\nabla v \cdot \bm{x} + nv^2\), dalla (6.10) si deduce 
+    \[
+      \int_{\Omega} v^2\, d\bm{x} = -\frac{2}{n} \int_{\Omega} v\nabla v \cdot \bm{x} \, dx
+    \]
+    Dal momento che \(\Omega\) è limitato, si ha {\everymath{\displaystyle}\(\max_{\bm{x} \in \Omega} = M < \infty\)}, e, per la disuguaglianza di Schwartz
+    \[
+    \int_{\Omega} v^2 \, d\bm{x} \leq \frac{2}{n}\left|\int_{\Omega} v\nabla v \cdot \bm{x} \, d\bm{x} \right| \leq \frac{2M}{n}\left(\int_{\Omega} v^2 \, d\bm{x}\right)^{\frac{1}{2}}\left(\int_{\Omega} \abs*{\nabla v}^2 \, d\bm{x}\right)^{\frac{1}{2}}  
+    \]
+  Dopo aver semplificato per 
+  \[
+  \left(\int_{\Omega} v^2 \, d\bm{x}\right)^{\frac{1}{2}}  
+  \]
+  si ha 
+  \[
+  \norm*{v}_0 \leq C_P \norm*{\nabla v}_0 \qquad C_P = \frac{2M}{n}  
+  \]
+  \end{proof}
+\end{theorem}
 \end{document}
