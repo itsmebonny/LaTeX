@@ -7,7 +7,7 @@
 \usepackage{bigfoot}
 \usepackage{amsthm}
 \usepackage{etoolbox}
-%\usepackage{doclicense}
+
 
 
 \AtBeginEnvironment{array}{\everymath{\displaystyle}}
@@ -3645,5 +3645,214 @@ e segue, dal momento che \(w_{tt} - c^2w_{xx} = 0\),
   = f(x,t)
 \end{array}  
 \]
-che è l'unica soluzione \(\mathcal{C}^2(\mathbb{R} \times [0, +\infty))\)
+che è l'unica soluzione \(\mathcal{C}^2(\mathbb{R} \times [0, +\infty))\).
+\section{Analisi funzionale}
+Sia \(X\) uno spazio vettoriale normato reale, allora si definisce norma un operatore \(\norm*{\cdot}:X \to \mathbb{R}\) tale che 
+\begin{itemize}
+  \item \(\norm*{x} \geq 0, \forall x \in X\) e \(\norm*{x} = 0 \Leftrightarrow x = 0\)
+  \item \(\norm{\lambda x} = \abs*{\lambda}\norm*{x}, \forall x \in X, \forall \lambda \in \mathbb{R}\)
+  \item \(\norm*{x + y} \leq \norm*{x}+\norm*{y}\)
+\end{itemize}
+Grazie alla norma si possono calcolare le distanze e la topologia degli insiemi (aperto, chiuso, \(\ldots\)). \\
+Sia \(\{x_n\} \subset X\) una successione, allora si possono definire la convergenza
+\[
+x_n \to \overline{x} \mbox{ per } n \to +\infty \mbox{ se }\norm*{x_n - \overline{x}} \to 0  
+\] 
+e da essa si può definire anche la continuità
+\[
+f: X \to Y \mbox{ è continua se } x_n \to \overline{x} \Rightarrow f(x_n) \to f(\overline{x})  
+\]
+Una successione si può definire di Cauchy se
+\[
+  \norm*{x_n - x_m} \to 0 \qquad \mbox{ per } n,m \to \infty
+\]
+Si può affermare che se una successione è convergente, allora è di Cauchy, ma più interessante è poter affermare il contrario, infatti se, in uno spazio \(X\) una successione di Cauchy implica la convergenza, allora tale spazio è completo. \\
+Si parla di Spazi di Banach quando si trattano spazi vettoriali normati e completi rispetto a quella norma, mentre spazi vettoriali, con prodotto scalare e completi rispetto alla norma indotta da tale prodotto sono detti Spazi di Hilbert.
+\begin{theorem}[Teorema delle Proiezioni]
+  Sia \(H\) uno spazio di Hilbert, \(V\) un sottospazio vettoriale di \(H\) chiuso e \(x \in H\). Allora \(\exists! P_V x \in V\) tale che 
+  \[
+    \norm*{P_V x - x} = \inf_{v \in V} \norm*{v - x}
+  \]
+  Sapendo anche che 
+  \begin{enumerate}
+    \item \(x \in V \Leftrightarrow x = P_Vx\)
+    \item Definendo \(Q_V x = x x- P_V x\) si ottiene \((Q_V x, v) = 0, \forall v \in V\), ossia \(Q_V x \in V^{\perp}\) e: \[\norm*{x}^2 = \norm*{P_V x}^2 + \norm*{Q_V x}^2\]
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  La dimostrazione di questo teorema è da eseguirsi seguendo diversi passi. Partendo dall'esistenza si ha 
+  \[
+  d= \inf_{v \in V} \norm*{v - x}, \, d \geq 0
+  \]
+  ovvero
+  \begin{enumerate}
+    \item \(\norm*{v - x} \geq d, \forall v \in V\)
+    \item \(\forall \epsilon \, \exists\epsilon \in V \mbox{ tale che } \norm*{v_{\epsilon} - x} \leq d + \epsilon\)
+  \end{enumerate}
+  che è la definizione di \(\inf\). Utilizzandola per costruire una successione 
+  \begin{equation}
+    (v_n)_{n \in \mathbb{N}} \subset V \, : \, d \leq\norm*{x - v_n} \leq d + \frac{1}{n} \qquad \left(\epsilon = \frac{1}{n}, n \in \mathbb{N}\right)
+    \end{equation}
+    per poi verificarne la convergenza. Per farlo bisogna dimostrare che sia una succesione di Cauchy. Usando la seguente identità
+    \[
+      \norm*{a - b}^2 = 2\norm*{a}^2 + 2\norm*{b}^2 - \norm*{a + b}^2
+    \]
+    con \(a = v_n - x, b = v_m\) si ottiene
+    \[
+      \begin{array}{c}
+      \norm*{a - b}^2 = \norm*{v_n - v_m}^2 \\
+      \norm*{a + b}^2 = \norm*{v_n + v_m - 2x}^2 = 4\left\|\underbrace{\frac{v_n + v_m}{2}}_{\in V} - x \right\|^2 \geq 4d^2
+    \end{array} 
+    \]
+    dove la disuguaglianza finale vale perché si ha \(\norm*{v - x} \geq d, \forall v \in V\) e \(\frac{v_n + v_m}{2} \in V\), essendo \(V\) un sottospazio.
+    La norma di \(a \mbox{ e di } b\) tenderà a \(d\), allora si ha 
+    \[
+    \begin{array}{lcl}
+      \norm*{v_n - v_m}^2 & = & 2\norm*{v_n - x}^2 + 2\norm*{v_m - x} - \norm*{v_n + v_m - 2x}^2 \\
+      & \leq & 2\norm*{v_n - x}^2 + 2\norm*{v_m -x} - 4d^2
+    \end{array}
+    \]
+    Passando al limite per \(m,n \to \infty\) si ottiene che il secondo membro della disuguaglianza tende a \(0\), forzando 
+    \[
+     \norm*{v_ - v_m} \to 0
+    \]
+    Allora si può affermare che la successione sia di Cauchy. Poiché \(H\) è uno spazio di Hilbert, \(v_n\) converge a un elemento \(v \in H\), che, essendo \(V\) chiuso, appartiene anche a \(V\).
+    Si deduce dalla continuità della norma che 
+    \[
+    \norm*{v_n - x} \to \norm*{v - x} = d  
+    \]
+    quindi \(v\) realizza la minima distanza da \(x\).
+    Va ora verificato che l'elemento \(v\) tale che \(\norm*{v - x} = d\) sia unico. Se ci fosse un elemento \(w \in V\) tale per cui \(\norm*{w - x} = d\) si avrebbe
+    \[
+    \begin{array}{lcl}
+      \norm*{w -v}^2 & = & 2\norm*{w - x}^2 + 2\norm*{v - x} - 4\left\|\frac{w+v}{2} -x \right\|^2 \\
+      & \leq & 2d^2 + 2d^2 - 4d^2 = 0
+    \end{array}
+    \]
+    per cui gli elementi coincidono. Esiste quindi un solo elemento \(v = P_V x \in V\) tale che 
+    \[
+      \norm*{x - P_V x} = d
+    \]
+    Poiché \(V\) è un insieme chiuso, \(x \in V \Leftrightarrow d = 0\), ossia solo se \(x = P_V x\).
+    Per mostrare che \(x - P_Vx \in V^{\perp}\), si prendono \(Q_V = x- P_V x, \, w \in V\) e \(t \in \mathbb{R}\). Sapendo che \(P_V x + tw \in V\) per ogni \(t\) si ottiene
+    \[
+    \begin{array}{lcl}
+      d^2 & \leq & \norm*{x - (P_V x + tw)}^2 = \norm*{Q_V x - tw}^2 \\
+      & = & \norm*{Q_Vx}^2 - 2t (Q_Vx, w) + t^2\norm*{w}^2 \\
+      & = & d^2 - 2t(Q_V x, w) + t^2 \norm*{w}^2
+    \end{array}  
+    \]
+    ossia 
+    \[
+    P(t) \equiv t^2 \norm*{w}^2 - 2t (Q_V x, w)  \geq 0 
+    \]
+    Tale trinomio è sempre non negativo e deve avere allora un discriminante non positivo, da cui \((Q_V x, w)^2 \leq 0\). Pertanto per ogni \(w \in V\) si ha \((Q_V x, w) = 0\), che implica \(Q_V x \in V^{\perp}\). ALlora anche 
+    \[\norm*{x}^2 = \norm*{P_V x + Q_V x}^2 =\norm*{P_V x}^2 + \norm*{Q_V x}^2\]
+\end{proof}
+Nel caso di spazi \(H_2= \mathbb{R}\) si utilizza il termine funzionale al posto di operatore.
+\begin{definition}
+  L'insieme dei funzionali lineari e continui su uno spazion di Hilbert \(H\) prende il nome di spazio duale di \(H\) e si indica con \(H^*\). La sua norma \(L \in H^*\) si indica come \(\norm*{L}_{H^*}\).
+  \[
+  \norm*{L}_{H^*} = \sup_{\norm*{x}  = 1} \abs*{Lx}
+  \]
+\end{definition}
+Determinare il duale di uno spazio di Hilbert è un problema che verrà risolto dal teorema di rappresentazione di Riesz. 
+\begin{theorem}[Teorema di Rappresentazione di Riesz]
+  Sia \(H\) uno spazio di Hilbert, per ogni \(L \in H^*\) esiste un unico elemento \(u_L \in H\) tale che 
+  \begin{equation}
+    Lx = (u_L, x) \qquad \mbox{ per ogni } x \in H
+  \end{equation}
+  Inoltre si ha 
+  \begin{equation}
+    \norm*{L}_{H^*} = \norm*{u_L}
+  \end{equation}
+\end{theorem}
+\begin{proof}
+  Per dimostrare l'esistenza di \(u_L\), sia \(\mathcal{N}\) il nucleo di L. Se \(\mathcal{N} = H\), la tesi segue scegliendo \(u_L = 0\). Se \(\mathcal{N} \subset H\), allora è anche un sottospazio chiuso di \(H\). \\
+  Grazie al teorema di Proiezione si deduce che esiste un elemento \(z\) non nullo appartenente a \(\mathcal{N}^{\perp}\). Allora \(Lz \not = 0\) e, dato un qualunque elemento \(x \in H\), \(w = x - \frac{Lx}{Lz}z \in \mathcal{N}\). Si ha infatti 
+  \[
+    Lw = L\left(x - \frac{Lx}{Lz}z\right) = Lx - \frac{Lx}{Lz}Lz =0
+  \]
+  Inoltre, essendo \(z \in \mathcal{N}^{\perp}\), si ha 
+  \[
+  0 = (z,w) = (z,x) -\frac{Lx}{Lz}\norm*{z}^2 \qquad Lx = \frac{L(z)}{\norm*{z}^2}(z,x)
+  \]
+  La (6.2) vale con \(u_L = \frac{L(z)}{\norm*{z}^2}z\).
+  Se non fosse unico, si avrebbe un elemento \(x \in H, v \not = u_L\) tale che 
+  \[
+    Lx = (v,x) \qquad \mbox{ per ogni }x \in H
+  \]
+  che sottratta alla (6.2) darebbe
+  \[
+  (u_L -v, x) = 0 \qquad \mbox{ per ogni } x \in H  
+  \]
+  che implica \(v = u_L\). Segue quindi che, essendo \(L = L_{u_L}\), è verificata anche \(\norm*{L}_{H^*} = \norm*{u_L}\)
+\end{proof}
+Un ruolo importante nella formulazione dei problemi al contorno, è svolto dalle forme bilineari. Siano \(V_1, V_2\) spazi pre-Hilbertiani, una funzione
+\[
+  a: V_1 \times V_2 \to \mathbb{R}
+\]
+si definisce forma bilineare in \(V_1 \times V_2\) e soddisfa le seguenti proprietà:
+\begin{itemize}
+  \item per ogni \(y \in V_2\) fissato, la funzione \(x \longrightarrow a(x,y)\) è lineare su \(V_1\)
+  \item per ogni \(x \in V_1\) fissato, la funzione \(y \longrightarrow a(x,y)\) è lineare su \(V_2\)
+\end{itemize}
+Nel caso particolare \(V_1 = V_2\) si parla di forma bilineare in \(V\), anziché in \(V \times V\). \\
+In uno spazio \(V\) di Hilbert, sia \(a = a(u,v)\) una forma bilineare in \(V\) e \(F \in V^*\). Si consideri il seguente problema definito come problema variazionale astratto 
+\begin{equation}
+  \begin{cases}
+    \mbox{Trovare } u \in V \\
+    \mbox{tale che} \\
+    a(u,v) = \langle F,v \rangle_* & \forall v \in V
+  \end{cases}
+\end{equation}
+Molti problemi per equazioni differenziali possono essere formulati in questo modo, e si può utilizzare un teorema fondamentale per risolverli.
+\begin{theorem}{Teorema di Lax-Milgram}
+  Sia \(V\) uno spazio di Hilbert reale, con prodotto interno \((\cdot, \cdot)\) e norma \(\norm*{\cdot}\). Siano \(a = a(u,v)\) una forma bilineare in \(V\) e \(F \in V^*\). Se 
+  \begin{itemize}
+    \item[i)] \(a\) è continua, cioè si può trovare una costante postiva \(M\) tale che 
+    \[
+      \abs*{a(u,v)} \leq M\norm*{u}\norm*{v}, \qquad \forall u, v \in V
+    \]
+    \item[ii)] \(a\) è \(V\)-coerciva, ossia esiste una costante \(\alpha > 0\) tale che
+    \[
+      a(v,v) \geq \alpha\norm*{v}^2, \qquad \forall v \in V
+    \]
+  \end{itemize}
+  Allora esiste una unica soluzione \(\overline{u} \in V\) del problema (6.4). Inoltre vale la stima di stabilità
+  \begin{equation}
+    \norm*{\overline{u}} \leq \frac{1}{\alpha} \norm*{F}_{V^*}
+  \end{equation}
+\end{theorem}
+\begin{proof}
+  Per prima cosa bisogna riscrivere il problema (6.4), quindi per ogni \(u \in V\) fissato, dalla continuità di \(a\) segue che 
+  \[
+  v \rightarrow a(u,v)  
+  \]
+  è una applicazione lineare, continua in \(V\) e definisce un elemento di \(V^*\). Come visto nel teorema di Rappresentazione di Riesz, esiste un unico elemento \(A[u] \in V\) tale che 
+  \begin{equation}
+    a(u,v) = (A[u],v), \qquad \forall v \in V
+  \end{equation}
+  In maniera analoga, essendo \(F \in V^*\), esiste un unico \(z_F \in V\) tale che 
+  \[
+    \langle F, v \rangle_* = (z_F, v) \qquad \forall v \in V
+  \]
+  e inoltre, \(\norm*{F}_{V^*} = \norm*{z_F}\). Il problema (6.4) diventa
+  \[
+    \begin{cases}
+      \mbox{Trovare } u \in V \\
+      \mbox{tale che} \\
+      (A[u], v) = (z_F,v) & \forall v \in V
+    \end{cases}  
+  \]
+  che equivale a trovare \(u\) tale che 
+  \begin{equation}
+    A[u] = z_F
+  \end{equation}
+  Per vedere quante soluzioni ha la (6.7) bisogna fare prima una serie di passaggi. Per prima cosa si mostra che 
+  \[
+  A :  V \to V  
+  \]
+
+\end{proof}
 \end{document}
