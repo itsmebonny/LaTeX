@@ -155,7 +155,7 @@ $$\begin{array}{lcr}
 $$
 }
 \item \emph{Cambio di direzione temporale}. Sia $u = u(\bm{x}, t)$una soluzione della equazione $u_t - D\Delta u = 0$, allora la funzione $v(\bm{x},-t)$ ottenuta tramite cambio di variabile sarà soluzione dell'equazione \textbf{backward}
-$$v_t + D\delta v = 0$$
+$$v_t + D\Delta v = 0$$
 L'equazione $u(\bm{x}, t)$ sarà definita, rispettivamente, \textbf{forward}. Tuttavia il cambio di variabile $\bm{x} \to -\bm{x}$ lascia invariata l'equazione (\emph{invarianza rispetto a riflessioni nello spazio}.
 \item \emph{Invarianza rispetto a traslazioni spazio-temporali}.
 In un dominio spazio temporale $\Omega \times (0, T)$, sia $u = u(\bm{x}, t)$ soluzione dell'equazione omogenea, dove $\Omega \subseteq \mathbb{R}^n$, allora la funzione 
@@ -243,7 +243,7 @@ che è l'\emph{equazione di diffusione} con $D=\frac{k}{(c_v\rho )}$ e
  $f=\frac{r}{c_v}$
 \subsection{Problemi ben posti (n=1)}
 Quali sono i problemi ben posti per l'equazione di diffusione?  
-In uno spazio monodimensionale si tratterà di osservare l'evoluzione della temperatura $u$ in una sbarra cilindrica di sezione $A$ e lunghezza $L$ molto superiore al raggio, \emph{isolata termicamenta ai lati}.
+In uno spazio monodimensionale si tratterà di osservare l'evoluzione della temperatura $u$ in una sbarra cilindrica di sezione $A$ e lunghezza $L$ molto superiore al raggio, \emph{isolata termicamente ai lati}.
 Utilizzando un modello unidimensionale, su può identificare la sbarra in un segmento $0\leq x \leq L$. Per affrontare in modo ottimale il problema, oltre all'equazione di diffusione, è necessario stabilire:
 \begin{itemize}
 \item \emph{Condizioni iniziali}, ossia è necessario conoscere lo stato iniziale del sistema per studiarne l'evoluzione, che in questo caso è $u(x, 0) = g(x) \quad 0 \leq x \leq L$
@@ -380,10 +380,10 @@ v(y) = A\, \sin{\mu y}+B\, \cos{\mu y}
 $$
 \end{itemize}
 Imponendo le condizioni iniziali
-$$
+\begin{eqnarray*}
 v(0) = B = 0 \\
 v(1) = A \sin{\mu} + B\cos{\mu} = 0
-$$
+\end{eqnarray*}
 per cui $A \mbox{ arbitrario }, \ B = 0, \ \mu = m\pi, \ m= 1,2, \ldots$
 In questo caso si otterranno soluzioni non nulle del tipo 
 $$
