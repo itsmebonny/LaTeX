@@ -1,0 +1,58 @@
+\documentclass[a4paper,12pt, draft]{article}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{bm}
+\usepackage[margin=1.5cm]{geometry}
+\usepackage{bigfoot}
+\usepackage{amsthm}
+\usepackage{etoolbox}
+
+
+
+\AtBeginEnvironment{array}{\everymath{\displaystyle}}
+\newtheoremstyle{break}
+  {\partopsep}
+  {\topsep}%  
+  {\normalfont}%
+  {}%
+  {\bfseries}%
+  {}%
+  {\newline}%
+  {}%
+  \theoremstyle{break}
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{corollary}{Corollario}[section]
+\newtheorem{proposition}{Proposizione}[section]
+\renewcommand*{\proofname}{\rm\bf{Dimostrazione}}
+\renewcommand\qedsymbol{$\bigstar$}
+\newtheorem{definition}{Definizione}[section]
+
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+
+\let\oldepsilon\epsilon
+\let\epsilon\varepsilon
+
+\let\oldphi\phi
+\let\phi\varphi
+
+\long\def\symbolfootnotemark[#1]#2{\begingroup%
+\def\thefootnote{\fnsymbol{footnote}}\footnotetext[#1]{#2}\footnotemark[#1]\endgroup}
+
+\long\def\symbolfootnotetext[#1]#2{\begingroup%
+\def\thefootnote{\fnsymbol{footnote}}\footnotetext[#1]{#2}\endgroup}
+
+
+\numberwithin{equation}{section}
+
+
+
+
+
+\begin{document}
+\title{Appunti di Statistica inferenziale}
+\author{Andrea Bonifacio}
+\date{\today}
+\maketitle
+\end{document}
