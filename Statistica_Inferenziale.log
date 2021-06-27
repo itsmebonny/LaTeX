@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.26)  19 JUN 2021 17:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.26)  19 JUN 2021 17:46
 entering extended mode
 **/home/bonni/Documents/LaTeX/LaTeX/Statistica_Inferenziale.tex
 (/home/bonni/Documents/LaTeX/LaTeX/Statistica_Inferenziale.tex
@@ -235,19 +235,19 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 57.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{/home/bonni/.miktex/texmfs/data/pdftex/config/pdftex.map}] (Statistica_Inferenziale.aux) ) 
+{/home/bonni/.miktex/texmfs/data/pdftex/config/pdftex.map}] [2] (Statistica_Inferenziale.aux) ) 
 Here is how much of TeX's memory you used:
- 3638 strings out of 481099
- 48107 string characters out of 2905790
+ 3680 strings out of 481099
+ 48569 string characters out of 2905790
  346945 words of memory out of 3000000
- 20996 multiletter control sequences out of 15000+600000
- 409387 words of font info for 49 fonts, out of 8000000 for 9000
+ 21025 multiletter control sequences out of 15000+600000
+ 417109 words of font info for 77 fonts, out of 8000000 for 9000
  0 hyphenation exceptions out of 8191
  68i,6n,77p,379b,207s stack positions out of 5000i,500n,10000p,200000b,80000s
-</home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr12.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on Statistica_Inferenziale.pdf (1 page, 22178 bytes).
+</home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx12.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi12.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi8.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr12.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr17.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr8.pfb>
+Output written on Statistica_Inferenziale.pdf (2 pages, 59902 bytes).
 PDF statistics:
- 14 PDF objects out of 1000 (max. 8388607)
+ 33 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
