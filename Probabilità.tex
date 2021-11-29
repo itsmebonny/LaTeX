@@ -17,7 +17,7 @@
 \newtheorem{corollary}{Corollario}[section]
 \newtheorem{proposition}{Proposizione}[section]
 \renewcommand*{\proofname}{\textbf{Dimostrazione}}
-\renewcommand\qedsymbol{QED}
+\renewcommand\qedsymbol{$\bigstar$}
 \newtheorem{definition}{Definizione}[section]
 
 \let\oldemptyset\emptyset
@@ -44,13 +44,14 @@
 
 \newpage
 \section{Definizione assiomatica di probabilità}
-Lo studio della probabilità, si basa su assiomi e definizioni. Alcuni concetti indispensabili sono gli \emph{eventi}, rappresentati come insiemi di oggetti, le \emph{$\sigma$-algebre}, collezioni (insiemi di insiemi) di eventi e la \emph{probabilità}, funzione che associa ad ogni evento un grado di fiducia da 0 a 1.
+Lo studio della probabilità si basa su assiomi e definizioni. \\
+Alcuni concetti fondamentali sono gli \emph{eventi}, rappresentati come insiemi di oggetti, le \emph{$\sigma$-algebre}, collezioni (insiemi di insiemi) di eventi e la \emph{probabilità}, funzione che associa ad ogni evento un grado di fiducia da 0 a 1.
 \subsection{Eventi matematici}
 \begin{definition}
 Un esperimento aleatorio è una osservazione nel mondo reale il cui risultato non è né deterministico né noto a priori, ma influenzato dal caso.
 \end{definition}
 \begin{definition}
-Lo spazio campionario $\Omega$ è l'insieme degli esiti elementari possibili $\omega$ di un esperimento aleatorio. Non è definito univocamente dall'esperimento.
+Lo spazio campionario $\Omega$ rappresenta l'insieme degli esiti elementari possibili $\omega$ di un esperimento aleatorio. Non è definito univocamente dall'esperimento.
 \end{definition}
 \begin{definition}
 È detto evento un fatto a cui si può attribuire un grado di verità (vero o falso) al termine dell'esperimento. L'evento matematico $A$ rispetto a un evento dato è l'insieme degli esiti $\omega$ in cui l'evento è verificato.
@@ -147,4 +148,9 @@ $$
 \bigcap_{k=1}^n \, A_k = \bigcap_{k=1}^{\infty} \, A_k \in \mathcal{A} \mbox{ e } \bigcup_{k=1}^n \, A_k = \bigcup_{k=1}^{\infty} \, A_k \in \mathcal{A}
 $$
 \end{proof}
+\begin{definition}
+  Sia \(\Omega = \mathbb{R}\). La topologia euclidea di \(\mathbb{R}\) è data dalla collezione \(\tau := \lbrace A \subseteq \mathbb{R} \; : \; A \text{ aperto}\). \\
+  La \(\sigma-\textbf{-algebra di Borel}\) è la \(\sigma\)-algebra generata dalla topologia euclidea di \(\mathbb{R} \; : \; \mathcal{B} = \sigma(\tau)\). \\
+  I boreliani sono gli elementi di tale \(\sigma\)-algebra 
+\end{definition}
 \end{document}
