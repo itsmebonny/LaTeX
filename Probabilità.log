@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.26)  19 JUN 2021 17:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.5.26)  29 NOV 2021 15:45
 entering extended mode
-**/home/bonni/Documents/LaTeX/LaTeX/Statistica_Inferenziale.tex
-(/home/bonni/Documents/LaTeX/LaTeX/Statistica_Inferenziale.tex
+**/home/bonni/Documents/LaTeX/LaTeX/Probabilità.tex
+(/home/bonni/Documents/LaTeX/LaTeX/Probabilità.tex
 LaTeX2e <2020-10-01> patch level 4
 L3 programming layer <2021-05-11> (/home/bonni/.miktex/texmfs/install/tex/latex/base/article.cls
 Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
@@ -164,31 +164,28 @@ Package: amsthm 2020/05/29 v2.20.6
 \thm@postskip=\skip54
 \thm@headsep=\skip55
 \dth@everypar=\toks29
-) (/home/bonni/.miktex/texmfs/install/tex/latex/etoolbox/etoolbox.sty
-Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count278
 )
-\c@theorem=\count279
-\c@corollary=\count280
-\c@proposition=\count281
-\c@definition=\count282
- (Statistica_Inferenziale.aux)
-\openout1 = `Statistica_Inferenziale.aux'.
+\c@theorem=\count278
+\c@corollary=\count279
+\c@proposition=\count280
+\c@definition=\count281
+ (Probabilità.aux)
+\openout1 = `Probabilità.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
+LaTeX Font Info:    ... okay on input line 39.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -198,15 +195,15 @@ LaTeX Font Info:    ... okay on input line 53.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(42.67912pt, 512.14963pt, 42.67912pt)
-* v-part:(T,H,B)=(42.67912pt, 759.6886pt, 42.67912pt)
+* h-part:(L,W,R)=(85.35826pt, 426.79135pt, 85.35826pt)
+* v-part:(T,H,B)=(85.35826pt, 674.33032pt, 85.35826pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
-* \textwidth=512.14963pt
-* \textheight=759.6886pt
-* \oddsidemargin=-29.59087pt
-* \evensidemargin=-29.59087pt
-* \topmargin=-66.59087pt
+* \textwidth=426.79135pt
+* \textheight=674.33032pt
+* \oddsidemargin=13.08827pt
+* \evensidemargin=13.08827pt
+* \topmargin=-23.91173pt
 * \headheight=12.0pt
 * \headsep=25.0pt
 * \topskip=12.0pt
@@ -226,28 +223,28 @@ LaTeX Font Info:    ... okay on input line 53.
 
 \footinsdefault=\insert251
 \FN@cache251=\box53
-LaTeX Font Info:    Trying to load font information for U+msa on input line 57.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 43.
 (/home/bonni/.miktex/texmfs/install/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 57.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 43.
  (/home/bonni/.miktex/texmfs/install/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{/home/bonni/.miktex/texmfs/data/pdftex/config/pdftex.map}] [2] (Statistica_Inferenziale.aux) ) 
+{/home/bonni/.miktex/texmfs/data/pdftex/config/pdftex.map}] [2] [3] [4] (Probabilità.aux) ) 
 Here is how much of TeX's memory you used:
- 3680 strings out of 481099
- 48569 string characters out of 2905790
- 346945 words of memory out of 3000000
- 21025 multiletter control sequences out of 15000+600000
- 417109 words of font info for 77 fonts, out of 8000000 for 9000
+ 3374 strings out of 481099
+ 44726 string characters out of 2905790
+ 355100 words of memory out of 3000000
+ 20720 multiletter control sequences out of 15000+600000
+ 418152 words of font info for 80 fonts, out of 8000000 for 9000
  0 hyphenation exceptions out of 8191
- 68i,6n,77p,379b,207s stack positions out of 5000i,500n,10000p,200000b,80000s
-</home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx12.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi12.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi8.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr12.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr17.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr8.pfb>
-Output written on Statistica_Inferenziale.pdf (2 pages, 59902 bytes).
+ 68i,6n,77p,368b,319s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx12.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi12.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi8.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr12.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr17.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy8.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmti12.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/symbols/msam10.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on Probabilità.pdf (4 pages, 139723 bytes).
 PDF statistics:
- 33 PDF objects out of 1000 (max. 8388607)
+ 72 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
