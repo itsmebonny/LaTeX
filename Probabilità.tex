@@ -7,6 +7,7 @@
 \usepackage{bigfoot}
 \usepackage{amsthm}
 
+
 \newtheoremstyle{break}
   {\partopsep}{\topsep}%  
   {\normalfont}{}
@@ -45,7 +46,7 @@
 \newpage
 \section{Definizione assiomatica di probabilità}
 Lo studio della probabilità si basa su assiomi e definizioni. \\
-Alcuni concetti fondamentali sono gli \emph{eventi}, rappresentati come insiemi di oggetti, le \emph{$\sigma$-algebre}, collezioni (insiemi di insiemi) di eventi e la \emph{probabilità}, funzione che associa ad ogni evento un grado di fiducia da 0 a 1.
+Alcuni concetti fondamentali sono: gli \emph{eventi}, rappresentati come insiemi di oggetti, le \emph{$\sigma$-algebre}, collezioni (insiemi di insiemi) di eventi e la \emph{probabilità}, funzione che associa ad ogni evento un grado di fiducia da 0 a 1.
 \subsection{Eventi matematici}
 \begin{definition}
 Un esperimento aleatorio è una osservazione nel mondo reale il cui risultato non è né deterministico né noto a priori, ma influenzato dal caso.
@@ -142,7 +143,7 @@ $$
 $\mathcal{A} \,\,\sigma$-algebra su $\Omega \quad \Longrightarrow \quad \mathcal{A} \mbox{ algebra su } \Omega$.
 \end{proposition}
 \begin{proof}
-Siano $A_1,\ldots, A_n$ eventi appartenenti alla $\sigma$-algebra $\mathcal{A}$.
+Siano $A_1,\ldots, A_n$ eventi appartenenti alla $\sigma$-algebra $\mathcal{A}$. \\
 Definito $A_{n+1} = A_{n+2} = \cdots = A_n$, si ha che:
 $$
 \bigcap_{k=1}^n \, A_k = \bigcap_{k=1}^{\infty} \, A_k \in \mathcal{A} \mbox{ e } \bigcup_{k=1}^n \, A_k = \bigcup_{k=1}^{\infty} \, A_k \in \mathcal{A}
@@ -150,7 +151,15 @@ $$
 \end{proof}
 \begin{definition}
   Sia \(\Omega = \mathbb{R}\). La topologia euclidea di \(\mathbb{R}\) è data dalla collezione \(\tau := \lbrace A \subseteq \mathbb{R} \; : \; A \text{ aperto}\). \\
-  La \(\sigma-\textbf{-algebra di Borel}\) è la \(\sigma\)-algebra generata dalla topologia euclidea di \(\mathbb{R} \; : \; \mathcal{B} = \sigma(\tau)\). \\
-  I boreliani sono gli elementi di tale \(\sigma\)-algebra 
+  La \(\sigma\textbf{-algebra di Borel}\) è la \(\sigma\)-algebra generata dalla topologia euclidea di \(\mathbb{R} \; : \; \mathcal{B} = \sigma(\tau)\). \\
+  I boreliani sono gli elementi di tale \(\sigma\)-algebra, ossia \[B \subseteq \mathbb{R}, \; B \in \mathcal{B} \Longrightarrow B \text{ boreliano}\]
 \end{definition}
+\begin{theorem}
+  Sia \(\mathcal{B}\) la \(\sigma\)-algebra di Borel, allora dati \(\mathcal{C} = \lbrace (a,b) : -\infty \leq a \leq b \leq +\infty\ \rbrace \) e \(\tilde{\mathcal{C}} = \lbrace (-\infty, q] : q \in \mathbb{Q} \rbrace\), si ha
+  \[
+    \mathcal{B} = \sigma(\mathcal{C}) = \sigma(\tilde{\mathcal{C}})
+  \]
+  L'insieme \(\tilde{\mathcal{C}}\) è la collezione delle semirette chiuse e limitate ad un solo estremo razionale. \\Quindi \(\mathcal{B}\) è un insieme più che continuo e generato da semirette di cardinalità meno che continua.
+\end{theorem}
+\subsection{Misure di probabilità}
 \end{document}
