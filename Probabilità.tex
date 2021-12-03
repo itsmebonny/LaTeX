@@ -3,7 +3,7 @@
 \usepackage{amsmath}
 \usepackage{physics}
 \usepackage{bm}
-\usepackage[margin=3cm]{geometry}
+\usepackage[margin=2cm]{geometry}
 \usepackage{bigfoot}
 \usepackage{amsthm}
 
@@ -49,10 +49,10 @@ Lo studio della probabilità si basa su assiomi e definizioni. \\
 Alcuni concetti fondamentali sono: gli \emph{eventi}, rappresentati come insiemi di oggetti, le \emph{$\sigma$-algebre}, collezioni (insiemi di insiemi) di eventi e la \emph{probabilità}, funzione che associa ad ogni evento un grado di fiducia da 0 a 1.
 \subsection{Eventi matematici}
 \begin{definition}
-Un esperimento aleatorio è una osservazione nel mondo reale il cui risultato non è né deterministico né noto a priori, ma influenzato dal caso.
+Un esperimento aleatorio è un'osservazione nel mondo reale il cui risultato non è noto a priori e nemmeno deterministico, ma influenzato dal caso.
 \end{definition}
 \begin{definition}
-Lo spazio campionario $\Omega$ rappresenta l'insieme degli esiti elementari possibili $\omega$ di un esperimento aleatorio. Non è definito univocamente dall'esperimento.
+Lo spazio campionario $\Omega$ rappresenta l'insieme degli esiti elementari possibili $\omega$ di un singolo esperimento aleatorio. Non è definito univocamente dall'esperimento.
 \end{definition}
 \begin{definition}
 È detto evento un fatto a cui si può attribuire un grado di verità (vero o falso) al termine dell'esperimento. L'evento matematico $A$ rispetto a un evento dato è l'insieme degli esiti $\omega$ in cui l'evento è verificato.
@@ -162,4 +162,105 @@ $$
   L'insieme \(\tilde{\mathcal{C}}\) è la collezione delle semirette chiuse e limitate ad un solo estremo razionale. \\Quindi \(\mathcal{B}\) è un insieme più che continuo e generato da semirette di cardinalità meno che continua.
 \end{theorem}
 \subsection{Misure di probabilità}
+Il grado di fiducia da 0 a 1 che un evento \(A\) si verifichi è detta probabilità \(\mathbb{P}(A)\). Si tratta di una valutazione a priori. \\
+Esistono diverse interpretazioni modellistiche al concetto di probabilità:
+\begin{itemize}
+  \item \textbf{Interpretazione soggettivistica:} secondo chi calcola la probabilità, con eventi non ripetibili.
+  \item \textbf{Interpretazione frequentista:} ripetizione degli eventi per calcolarne la frequenza
+  \[
+    \mathbb{P}(A) = \lim_{n\rightarrow + \infty} f_n(A)
+  \]
+  con \(f_n(A)\) frequenza relativa.
+  \item \textbf{Estrazione da popolazioni finite non truccate:} 
+  \[
+    \mathbb{P}(A) = \frac{\text{\#Casi favorevoli}}{\text{\#Casi possibili}}
+  \]
+\end{itemize}
+Una definizione più rigorosa di probabilità si può ottenere da
+\begin{definition}
+  Dato unp spazio misurabile \((\Omega, \mathcal{A})\), una misura di probabilità è una funzione \(\mathbb{P} : \mathcal{A} \rightarrow [0,1]\) tale che
+  \begin{enumerate}
+    \item \(\mathbb{P}(\Omega) = 1\)
+    \item \(\forall A_n \in \mathcal{A}\) di eventi disgiunti a coppie, ossia \(A_k \cap A_l = \emptyset \; \forall k \not = l\), vale la seguente proprietà di \(\sigma\)-additività:
+    \[
+      \mathbb{P}\left(\bigcup_{n=1}^{+\infty}A_n\right) = \sum_{n=1}^{+\infty} \mathbb{P}(A_n)
+    \]
+  \end{enumerate}
+\end{definition}
+\begin{theorem}
+  Sia \(\mathbb{P}\) una (misura di) probabilità su \(\mathcal{A}\). Allora:
+  \begin{enumerate}
+    \item \(\mathbb{P}(\emptyset) = 0\)
+    \item Dati \(A_1, \ldots, A_n \in \mathcal{A}\) eventi disgiunti a coppie, vale la seguente proprietà di additività:
+    \[
+      \mathbb{P}\left(\bigcup_{k=1}^n A_k\right) = \sum_{k=1}^n \mathbb{P}(A_k)
+    \]
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  \begin{enumerate}
+    \item Si crea una serie di \(A_n\) insiemi vuoti e si dimostra che la loro unione è la stessa dell'insieme vuoto. 
+    {\everymath = {\displaystyle}
+    \[
+      \begin{array}{llll}
+        A_n = \emptyset & \forall n \in \mathbb{N} & \Longrightarrow & A_n \in \mathcal{A}, \; A_k \cap A_l = \emptyset \cap \emptyset = \emptyset \\
+         & & \Longrightarrow & \mathbb{P}\left(\bigcup_{n=1}^{+\infty} A_n\right) = \sum_{n=1}^{+\infty} \mathbb{P}(A_n) \\
+         & & \Longrightarrow & \mathbb{P}(\emptyset) = \sum_{n=1}^{+\infty} = \sum_{n=1}^{+\infty} \mathbb{P}(\emptyset) \\
+         & & \Longrightarrow & \mathbb{P}(\emptyset) = 0
+      \end{array}
+    \]
+    }
+    \item Si sfrutta poi la \(\sigma\)-additività estendendo fino all'infinito gli \(A_k\):
+    \[
+      A_1, \ldots, A_n \in \mathcal{A} \quad A_k \cap A_l = \emptyset \quad \forall k \not  = l, \quad \tilde{A}_k = \begin{cases}
+        A_k & k = 1, \ldots, n \\
+        \emptyset & k > n
+      \end{cases} 
+    \]
+    {\everymath = {\displaystyle}
+    \[
+      \begin{array}{lll}
+        \Longrightarrow & \tilde{A}_k \cap \tilde{A}_l = \emptyset & \forall k \not = l \\
+        \Longrightarrow & \mathbb{P}\left(\bigcup_{k=1}^{+\infty} \tilde{A}_k\right) = & \sum_{k=1}^{+\infty} \mathbb{P}(\tilde{A}_k) \\
+        \Longrightarrow & \mathbb{P}\left(\bigcup_{k=1}^{n} A_k\right) = & \sum_{k=1}^n \mathbb{P}(\tilde{A}_k) + \sum_{k = n+1}^{+\infty} \mathbb{P}(\tilde{A}_k) = \sum_{k = 1}^{n} + 0 \\
+        \Longrightarrow & \mathbb{P}\left(\bigcup_{k=1}^{n} A_k\right) = & \sum_{k=1}^{n} \mathbb{P}(A_k)
+      \end{array}
+    \]
+    }
+  \end{enumerate}
+\end{proof}
+Si può scrivere \(\mathbb{P}(A \cap B)\) come \(\mathbb{P}(A,B)\).
+\begin{corollary}
+  \begin{itemize}
+    \item Dati \(A, A' \in \mathcal{A}\) si ha che \(A \subseteq A' \Longrightarrow \mathbb{P}(A) \leq \mathbb{P} (A')\) 
+    \item \(A \in \mathcal{A} \Longrightarrow \mathbb{P}(A^C) = 1 - \mathbb{P}(A)\), dove \(1\) è \(\mathbb{P}(\Omega)\)
+    \item \(A, B \in \mathcal{A} \Longrightarrow \mathbb{P}(A \cup B) = \mathcal{P}(A) + \mathbb{P}(B) - \mathbb{P}(A,B)\)
+  \end{itemize}
+\end{corollary}
+\subsection{Successioni di eventi}
+\begin{definition}
+  Dato \(A_n \in \mathcal{A} \; \forall n\):
+  \begin{itemize}
+    \item \(A_n \uparrow A\) significa che \(A_n\) è una successione di eventi crescente verso \(A\):
+    \[
+      A_n \subseteq A_{n+1}, \quad \bigcup_{n=1}^{+\infty} A_n = A
+    \]
+    \item \(A_n \downarrow A\) significa che \(A_n\) è una successione di eventi decrescente verso \(A\):
+    \[
+      A_n \supseteq A_{n+1}, \quad \bigcap_{n=1}^{+\infty} A_n = A
+    \]
+  \end{itemize}
+  In entrambi i casi \(A\) è l'insieme limite della successione.
+\end{definition}
+\begin{theorem}
+  Siano \((\Omega, \mathcal{A})\) uno spazio misurabile e \(\mathbb{P} : \mathcal{A} \rightarrow [0, 1]\) una funzione additiva tale che \(\mathbb{P}(\Omega) = 1\). Le seguenti affermazioni sono allora equivalenti:
+  \begin{enumerate}
+    \item \(\mathbb{P}\) è \(\sigma\)-additiva (ovvero \(\mathbb{P}\) è una probabilità)
+    \item \(A_n \in \mathcal{A}, \; A_n \downarrow \emptyset \Longrightarrow \mathbb{P}(A_n) \downarrow 0\)
+    \item \(A_n \in \mathcal{A}, \; A_n \downarrow A \Longrightarrow \mathbb{P}(A_n) \downarrow \mathbb{P}(A)\)
+    \item \(A_n \in \mathcal{A}, \; A_n \uparrow \Omega \Longrightarrow \mathbb{P}(A_n) \uparrow 1\)
+    \item \(A_n \in \mathcal{A}, \; A_n \uparrow A \Longrightarrow \mathbb{P}(A_n) \uparrow \mathbb{P}(A)\)
+    \end{enumerate}
+
+\end{theorem}
 \end{document}
