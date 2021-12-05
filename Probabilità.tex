@@ -260,7 +260,27 @@ Si può scrivere \(\mathbb{P}(A \cap B)\) come \(\mathbb{P}(A,B)\).
     \item \(A_n \in \mathcal{A}, \; A_n \downarrow A \Longrightarrow \mathbb{P}(A_n) \downarrow \mathbb{P}(A)\)
     \item \(A_n \in \mathcal{A}, \; A_n \uparrow \Omega \Longrightarrow \mathbb{P}(A_n) \uparrow 1\)
     \item \(A_n \in \mathcal{A}, \; A_n \uparrow A \Longrightarrow \mathbb{P}(A_n) \uparrow \mathbb{P}(A)\)
-    \end{enumerate}
-
+  \end{enumerate}
+Dai punti (3) e (5) si deduce lo scambio di limiti \(\mathbb{P}(A) = \mathbb{P}(\lim_n A_n) = \lim_n \mathbb{P}(A_n)\)
 \end{theorem}
+\begin{proof}
+  La dimostrazione si divide in quattro parti:
+  \begin{itemize}
+    \item[(a)] casi ovvi
+    \item[(b)] \((4) \Longrightarrow (5)\)
+    \item[(c)] \((5) \Longrightarrow (1)\)
+    \item[(d)] \((1) \Longrightarrow (5)\)   
+  \end{itemize}
+  \begin{itemize}
+    \item[(a)] \begin{itemize}
+      \item \((3) \Longleftrightarrow (5)\) per le leggi di De Morgan (complementarità)
+      \item \((2) \Longleftrightarrow (4)\) per le leggi di De Morgan (complementarità)
+      \item \((3) \Longrightarrow (2)\) e \((5) \Longrightarrow (4)\) perché sono casi particolari
+    \end{itemize}
+    \item[(b)] \((4) \Longrightarrow (5)\). Siano \(A_n \in \mathcal{A}\) tali che \(A_n \uparrow A\). Definita \(B_n = A_n \cup A^C\). \(B_{n+1} \supseteq B_n\). Allora \(B_n \uparrow \Omega\) e dunque \(\mathbb{P}(B_n) \rightarrow 1\). Inoltre vale 
+    \[
+      
+    \] 
+  \end{itemize}
+\end{proof}
 \end{document}
