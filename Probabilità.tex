@@ -279,8 +279,17 @@ Dai punti (3) e (5) si deduce lo scambio di limiti \(\mathbb{P}(A) = \mathbb{P}(
     \end{itemize}
     \item[(b)] \((4) \Longrightarrow (5)\). Siano \(A_n \in \mathcal{A}\) tali che \(A_n \uparrow A\). Definita \(B_n = A_n \cup A^C\). \(B_{n+1} \supseteq B_n\). Allora \(B_n \uparrow \Omega\) e dunque \(\mathbb{P}(B_n) \rightarrow 1\). Inoltre vale 
     \[
-      kk
+      \bigcup_n B_n = \bigcup_n (A_n \cup A^C) = \left(\bigcup_n A_n\right) \cup A^C = A \cup A^C = \Omega
     \] 
+    che si traduce in probabilità come 
+    \[
+      \begin{array}{lll}
+        \mathbb{P}(B_n) & = & \mathbb{P}(A_n \cup A^C) \\
+        & = & \mathbb{P}(A_n) + \mathbb{P}(A^C) - \mathbb{P}(A_n \cap A^C) \\
+        & = & \mathbb{P}(A_n) + \mathbb{P}(A^C) \rightarrow \mathbb{P}(A) + \mathbb{P}(A^C)
+      \end{array}
+    \]
+    sottraendo da entrambi i membri \(\mathbb{P}(A^C)\), si ottiene \(\mathbb{P}(A_n) \to \mathbb{P}(A)\)
   \end{itemize}
 \end{proof}
 \end{document}
