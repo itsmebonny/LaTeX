@@ -289,7 +289,54 @@ Dai punti (3) e (5) si deduce lo scambio di limiti \(\mathbb{P}(A) = \mathbb{P}(
         & = & \mathbb{P}(A_n) + \mathbb{P}(A^C) \rightarrow \mathbb{P}(A) + \mathbb{P}(A^C)
       \end{array}
     \]
-    sottraendo da entrambi i membri \(\mathbb{P}(A^C)\), si ottiene \(\mathbb{P}(A_n) \to \mathbb{P}(A)\)
+    sottraendo da entrambi i membri \(\mathbb{P}(A^C)\), si ottiene \(\mathbb{P}(A_n) \to \mathbb{P}(A)\). 
+    \item[(c)] \((5) \Longrightarrow (1)\). Siano \(A_n \in \mathcal{A}\) tali che \(A_k \cap A_l = \emptyset \; \forall k \not = l\). Sia {\everymath = {\displaystyle}\(B_n = \bigcup _{k=1}^n\)}, allora 
+    \[
+      B_n \subseteq B_{n+1} \qquad \mbox{ e } \qquad B_n = \bigcup_{k=1}^n B_k = \bigcup_{k = 1}^n A_k
+    \] 
+    che diventa, passando alle probabilità:
+    \[
+      \begin{array}{lll}
+        \mathbb{P}(B_n) = \mathbb{P}\left(\bigcup_{k=1}^n A_k\right) & \Longrightarrow & \sum_{k=1}^n (\mathbb{P}(A_k)) = \mathbb{P}\left(\bigcup_{k=1}^n A_k\right) \\
+        & \Longrightarrow & \sum_{k=1}^{+\infty} (\mathbb{P}(A_k)) = \mathbb{P}\left(\bigcup_{k=1}^{+\infty} A_k\right)
+      \end{array}
+    \]
+    \item[(d)] \((1) \Longrightarrow (5)\). Siano \(A_n \uparrow A, \; A_n  \in \mathcal{A}\). Sia la successione \(B_n\) definita come
+    \[
+      \begin{cases}
+        B_1 = A_1 \\
+        B_2 = A_2 \backslash A_1 = A_2 \cap A_1^C \\
+        \ldots \\
+        B_n = A_n \backslash A_{n-1}
+      \end{cases}
+    \] 
+    dal momento che \(A_n \uparrow A\), allora i \(B_n\) risultano disgiunti e si può sfruttare la \(\sigma\)-additività, ripetendo la procedura del punto precedente
+    \[
+      \mathbb{P}\left(\bigcup_{n = 1}^{+\infty} B_n\right) = \sum_{n=1}^{+\infty} \mathbb{P}(B_n)
+    \]
   \end{itemize}
 \end{proof}
+\begin{proposition}
+  Data una successione numerabile di eventi \(A_n \in \mathcal{A} \; \forall n\), vale la seguente disuguaglianza
+  \[
+    \mathbb{P}\left(\bigcup_{k=1}^{+\infty}\right) \leq \sum_{k=1}^{+\infty} \mathbb{P}(A_n)
+  \]
+\end{proposition}
+\subsection{Probabilità su spazi campionari discreti}
+\begin{theorem}[Probabilità su spazi discreti]
+  Sia \(\Omega\) uno spazio discreto, ossia con cardinalità al più numerabile, allora
+  \begin{enumerate}
+    \item \(\mathbb{P}\) su \((\Omega, 2^{\Omega})\) è caratterizzata dai valori sugli atomi, cioè
+    \[
+      p_{\omega} = \mathbb{P}(\left\lbrace \omega \right\rbrace), \; \omega \in \Omega; \quad \mbox{infatti }\mathbb{P}(A) = \sum_{\omega \in A} (p_{\omega}) \quad \mbox{con }p : \Omega \to [0,1]
+    \]
+    \item Sia \(p:\Omega \to [0,1]\), allora
+    \[
+      \exists ! \mathbb{P} : 2^{\Omega} \to [0,1] : \mathbb{P}(\left\lbrace \omega \right\rbrace) = p_{\omega} \Longleftrightarrow \begin{cases}
+        p_{\omega} \geq 0 & \forall \omega \\
+        \sum_{\omega \in \Omega} p_{\omega} = 1
+      \end{cases}
+    \]
+  \end{enumerate}
+\end{theorem}
 \end{document}
