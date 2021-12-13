@@ -1,8 +1,8 @@
 # Fdb version 3
-["pdflatex"] 1639407338 "/home/bonni/Documents/LaTeX/LaTeX/Probabilità.tex" "Probabilità.pdf" "Probabilità" 1639407339
+["pdflatex"] 1639414217 "/home/bonni/Documents/LaTeX/LaTeX/Probabilità.tex" "Probabilità.pdf" "Probabilità" 1639414218
   "/home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk" 1621986155 14064 b09d1f47cfa28292a74fbecea6a1196c ""
   "/home/bonni/.miktex/texmfs/data/miktex/data/le/pdftex/pdflatex.fmt" 1621986132 6342711 fd195dbef57dc7bc148369d2551ea2d6 ""
-  "/home/bonni/.miktex/texmfs/data/pdftex/config/pdftex.map" 1638283005 84263 37748407d5370f73ac542d667e1fa0b3 ""
+  "/home/bonni/.miktex/texmfs/data/pdftex/config/pdftex.map" 1639413542 85914 d462dd3e46c6b14631a286ee49de1853 ""
   "/home/bonni/.miktex/texmfs/install/fonts/tfm/jknappen/ec/tcrm1200.tfm" 1621986062 1444 95ffe0f19b974d50849790c8225c7ef7 ""
   "/home/bonni/.miktex/texmfs/install/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm" 1621986046 1124 14ccf5552bc7f77ca02a8a402bea8bfb ""
   "/home/bonni/.miktex/texmfs/install/fonts/tfm/public/amsfonts/cmextra/cmbsy7.tfm" 1621986046 1120 7f9f170e8aa57527ad6c49feafd45d54 ""
@@ -83,10 +83,10 @@
   "/home/bonni/.miktex/texmfs/install/tex/latex/ncctools/manyfoot.sty" 1621986146 13031 3be60c01c4009824bd1d566d9e939e30 ""
   "/home/bonni/.miktex/texmfs/install/tex/latex/ncctools/nccfoots.sty" 1621986146 1230 c31056291f4d569c8ed2eb82f3fee186 ""
   "/home/bonni/.miktex/texmfs/install/tex/latex/physics/physics.sty" 1621986136 29610 a9597219b282d9c78b02393dcd7d4322 ""
-  "/home/bonni/Documents/LaTeX/LaTeX/Probabilità.tex" 1639407337 20484 1d05a8d2650649fa8f9b2748e57b1eec ""
-  "Probabilità.aux" 1639407339 752 d2de980c20454ab654c927543d7d21ad "pdflatex"
-  "Probabilità.tex" 1639407337 20484 1d05a8d2650649fa8f9b2748e57b1eec ""
+  "/home/bonni/Documents/LaTeX/LaTeX/Probabilità.tex" 1639414217 22503 bbb4c32b88ca14c5fcb28f7cd5c4cf0d ""
+  "Probabilità.aux" 1639414218 1113 8d1b496f0578fb297d9dd8c67d60e00f "pdflatex"
+  "Probabilità.tex" 1639414217 22503 bbb4c32b88ca14c5fcb28f7cd5c4cf0d ""
   (generated)
-  "Probabilità.pdf"
-  "Probabilità.aux"
   "Probabilità.log"
+  "Probabilità.aux"
+  "Probabilità.pdf"
