@@ -339,4 +339,34 @@ Dai punti (3) e (5) si deduce lo scambio di limiti \(\mathbb{P}(A) = \mathbb{P}(
     \]
   \end{enumerate}
 \end{theorem}
+\begin{proof}
+  \begin{enumerate}
+    \item siano \(\mathbb{P} : (2^{\Omega}) \to [0,1]\) e \(A \in 2^{\Omega}, A \subseteq \Omega\).  \\
+    Allora {\everymath = {\displaystyle} \(A = \bigcup_{x \in A} \{x\}\)} e, essendo gli atomi eventi disgiunti, per la \(\sigma\)-additività vale che 
+    \[
+      \mathbb{P}(A) = \mathbb{P}\left(\bigcup_{x \in A}\{x\}\right) = \sum_{x \in A} \mathbb{P}(\{x\}) = \sum_{x \in A} p_{\omega}
+    \]
+    \item per ipotesi \(\exists ! \mathbb{P} : 2^{\Omega} \to [0,1]\); allora si può porre \(p_{\omega} = \mathbb{P}\{\omega\} \in [0,1]\). Inoltre 
+    \[
+      \sum_{\omega \in \Omega} p_{\omega} = \sum_{\omega \in \Omega} \mathbb{P}(\{\omega\}) = \mathbb{P}\left(\bigcup_{\omega \in \Omega}\{\omega\}\right) = \mathbb{P}(\Omega) = 1
+    \]
+    Inoltre, sia \(\mathbb{P} : \Omega \to \mathbb{R}\) tale che \(p_{\omega} \geq 0\) e {\everymath = {\displaystyle}\( \sum_{\omega \in \Omega}p_{\omega} = 1\) \\
+    Posto inoltre \(\mathbb{P}(A) = \sum_{\omega \in \Omega}p_{\omega}\)}, allora \(p_{\omega} = \mathbb{P}(\{\omega\})\) e si mostra che \(\mathbb{P}\) è una probabilità:
+    \begin{itemize}
+      \item \(\mathbb{P}(\Omega) = \sum_{\omega \in \Omega}p_{\omega} = 1\)
+      \item \(\mathbb{P}\) è \(\sigma\)-additiva, infatti, dati \(A_k \in 2^{\Omega}, \; k \in \mathbb{N}, \; A_k \cap A_l = \emptyset \; \forall k \not = l\):
+      \[
+        \mathbb{P}\left(\bigcup_{k=1}^{+\infty}A_k\right) = \sum_{\omega \in \bigcup_{k=1}^{+\infty} A_k} p_{\omega} = \sum_{k=1}^{+\infty} \left[\sum_{\omega \in A_k} p_{\Omega}\right] = \sum_{k=1}^{+\infty} \mathbb{P}(A_k)
+      \]
+    \end{itemize}
+  Allora \(\exists ! \mathbb{P} : 2^{\Omega} \to [0,1]\) tale che \(\mathbb{P}(\{\omega\}) = p_{\omega}\)
+  \end{enumerate}
+\end{proof}
+\begin{definition}
+  Siano \((\Omega, \mathcal{A})\) uno spazio misurabile e \(\mathbb{P}\) una probabilità su \(\mathcal{A}\), allora la tripletta \((\Omega, \mathcal{A}, \mathbb{P})\) è definita spazio di probabilità.
+\end{definition}
+\begin{definition}
+  Sia dato uno spazio di probabilità \((\Omega, \mathcal{A}, \mathbb{P})\), sia l'evento \(A \in \mathcal{A}\). Se \(\mathbb{P}(A) = 0\), allora l'evento \(A\) è detto improbabile, mentre se \(\mathbb{P}(A) = 1\), allora \(A\) è detto evento quasi certo.
+\end{definition}
+
 \end{document}
