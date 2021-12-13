@@ -24,6 +24,8 @@
 \let\oldemptyset\emptyset
 \let\emptyset\varnothing
 
+\newcommand{\ind}{\perp\!\!\!\!\perp} 
+
 \long\def\symbolfootnotemark[#1]#2{\begingroup%
 \def\thefootnote{\fnsymbol{footnote}}\footnotetext[#1]{#2}\footnotemark[#1]\endgroup}
 
@@ -368,5 +370,43 @@ Dai punti (3) e (5) si deduce lo scambio di limiti \(\mathbb{P}(A) = \mathbb{P}(
 \begin{definition}
   Sia dato uno spazio di probabilità \((\Omega, \mathcal{A}, \mathbb{P})\), sia l'evento \(A \in \mathcal{A}\). Se \(\mathbb{P}(A) = 0\), allora l'evento \(A\) è detto improbabile, mentre se \(\mathbb{P}(A) = 1\), allora \(A\) è detto evento quasi certo.
 \end{definition}
-
+\section{Probabilità condizionata e indipendenza}
+\subsection{Probabilità condizionata}
+\begin{definition}
+  Sia \((\Omega, \mathcal{A}, \mathbb{P})\) uno spazio di probabilità, \(A, B \in \mathcal{A}\) con \(\mathbb{P}(B) > 0\). Si parla allora di probabilità di \(A\) condizionata da \(B\) come: 
+  \[
+    \mathbb{P}(A|B) := \frac{\mathbb{P}(A,B)}{\mathbb{P}(B)}
+  \]
+\end{definition}
+Ci sono sempre varie interpretazioni della probabilità condizionata
+\begin{itemize}
+  \item Interpretazione soggettivistica, ossia considerando a priori tutto \(\Omega\). Uno punto interno può essere compreso in \(A, \; B, \; A \cap B, \; (A \cup B)^C\). 
+  \[
+    \mathbb{P}(A) = f_r (A) = \frac{\# A}{\# \Omega} \quad \mbox{ e } \quad \mathbb{P}(B) = f_r(B) = \frac{\#B}{\#\Omega}
+  \]
+  nel caso si verificasse \(B\) durante l'esperimento, allora \(B\) andreabbe a 'sostituire' \(\Omega\) nel valore della probabilità di \(A\). 
+  \[
+    \mathbb{P}(A|B) = \frac{\# (A \cap B)}{\#B} = \frac{\# (A \cap B)}{\#\Omega} \cdot \frac{\# \Omega}{\# B} = \frac{\mathbb{P}(A,B)}{\mathbb{P}(B)}
+  \]
+  \item Interpretazione frequentista, ossia ripetendo \(n\) volte l'esperimento (\(n \to \infty\))
+  \[
+    \mathbb{P}(A|B) \approx \frac{f_r(A, B)}{f_r(B)} = \frac{\mathbb{P}(A,B)}{\mathbb{P}(B)}
+  \]
+  difatti con le frequenze si hanno le seguenti relazioni
+  \[\mathbb{P}(A) \approx f_r(A) = \frac{F(A)}{n} \quad \mbox{ e } \quad \mathbb{P}(A,B) = \frac{F(A,B)}{n}\] 
+\end{itemize}
+\subsection{Indipendenza di eventi}
+\begin{definition}
+  Dati \(A, B \in \mathcal{A}\), sono detti eventi indipendenti se \(\mathbb{P}(A,B) = \mathbb{P}(A) \cdot \mathbb{P}(B)\) e si scrive \(A \ind B)\), ossia i due insiemi non si condizionano a vicenda, essendo indipendenti.
+\end{definition}
+\textbf{Casi degeneri} (\(\mathbb{P}(A) = 0\) oppure \(\mathbb{P}(B) = 0\))
+\begin{itemize}
+  \item \(A\) improbabile: \(A \ind B \quad \forall B \in \mathcal{A} \quad (\mathbb{P}(A) = 0)\)
+  \item \(A\) quasi certo: \(A \ind B \quad \forall B \in \mathcal{A}.\) Infatti \(P(B) = \mathcal{P}(B, A) + \mathbb{P}(B, A^C)\), ma \(\mathbb{P}(B, A^C) = \mathbb{P}(A^C) = 0\) 
+\end{itemize}
+Pescando una carta da un mazzo di carte, si definiscono i seguenti eventi: 
+\[
+  A = \{\mbox{esce Quadri}\} \quad \mbox{ e } \quad B = \{\mbox{esce Fante}\}
+\]
+In termini probabilistici significa che: \(\Omega: \mbox{ mazzo di carte}, \; \#\Omega = 52, \; \mathcal{A} = 2^{\Omega}\). Se \(\mathbb{P}\) è uniforme su \(\mathcal{A}\), allora \(p_{\omega} = \frac{1}{52} \; \forall \omega \in \Omega\). Per verificare l'indipendenza
 \end{document}
