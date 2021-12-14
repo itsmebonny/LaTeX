@@ -424,7 +424,51 @@ placeholder
 \begin{proof}
   Dimostrando che \(A \ind B \Longrightarrow A \ind B^C\), si ottengono tutte le altre per complementarità.
   \[
-    \mathbb{P}(A, B^C)
+    \begin{array}{ll}
+      \mathbb{P}(A, B^C)  & = \mathbb{P}(A) - \mathbb{P}(A,B) = \mathbb{P}(A) - \mathbb{P}(A)\mathbb{P}(B) \\
+      & = \mathbb{P}(A)(1-\mathbb{P}(B)) = \mathbb{P}(A)\mathbb{P}(B^C) 
+    \end{array}
   \]
 \end{proof}
+\begin{definition}
+  Una famiglia di eventi \(\{A_i\}_{i\in I}\) è detta mutuamente indipendente se, \(\forall J \subseteq I\) (con \(J\) insieme finito):
+  \[
+    \mathbb{P}\left(\bigcap_{i \in J} A_i\right) = \prod_{i\in J} \mathbb{P}(A_i)
+  \]
+\end{definition}
+Sia \(I = \{1, 2, 3\}\). Gli insiemi \(\{A_1, A_2, A_3\}\) sono mutuamente indipendenti se e solo se 
+\[
+\begin{cases}
+  \mathbb{P}(A_1, A_2) = \mathbb{P}(A_1) \cdot \mathbb{P}(A_2) \\
+  \mathbb{P}(A_2, A_3) = \mathbb{P}(A_2) \cdot \mathbb{P}(A_3) \\
+  \mathbb{P}(A_1, A_3) = \mathbb{P}(A_1) \cdot \mathbb{P}(A_3) \\
+  \mathbb{P}(A_1, A_2, A_3) = \mathbb{P}(A_1) \cdot \mathbb{P}(A_2) \cdot \mathbb{P}(A_3)\\
+\end{cases}  
+\]
+La quarta proprietà non è ricavabile dalle altre e comporta che \(A_1 \cap A_2 \ind A_3\). L'indipendenza tra i singoli insiemi non garantisce la mutua indipendenza della famiglia.
+\subsection{Proprietà della probabilità condizionata}
+\begin{theorem}
+  Siano \(B \in \mathcal{A}\) e \(\mathbb{P}\) probabilità su \(\mathcal{A}\), con \(\mathbb{P}(B) > 0\).
+  Allora la funzione \(\mathbb{P}(\cdot |B)\) è una misura di probabilità su \(\mathcal{A}\):
+  \[
+    \mathbb{P}(\cdot |B) : \mathcal{A} \to [0,1], \qquad A \rightarrow \mathbb{P}(A|B) = \frac{\mathbb{P}(A,B)}{\mathbb{P}(B)}
+  \]
+\end{theorem}
+\begin{proof}
+  La probabilità dell'intero dominio è 
+  \[
+     \mathbb{P}(\Omega |B) = \frac{\mathbb{P}(\Omega, B)}{\mathbb{P}(B)} = \frac{\mathbb{P}(B)}{\mathbb{P}(B)} = 1
+  \]
+  Va dimostrato che \(\mathbb{P}(\cdot|B)\) è \(\sigma\)-additiva. Siano \(A_n \in \mathcal{A}, \quad n \in \mathbb{N}, \quad A_k \cap A_l = \emptyset, \quad \forall k \not = l\). Allora
+  \[
+    \begin{array}{ll}
+      \mathbb{P}\left(\bigcup_{n=1}^{+\infty} \Bigg\vert B\right) & = \frac{\mathbb{P}(\bigcup A_n, B)}{\mathbb{P}} = \frac{\mathbb{P}(\bigcup(A_n, B))}{\mathbb{P}} \\
+      & = \frac{\sum \mathbb{P}(A_n, B)}{\mathbb{P}(B)} = \sum_{n = 1}^{+\infty} \mathbb{P}(A_n\vert B) 
+  \end{array}
+  \]
+  che conferma il fatto che \(\mathbb{P}\) rispetta tutte le proprietà di una probabilità.
+\end{proof}
+\begin{corollary}
+  Se \(\mathbb{P}(A)\)
+\end{corollary}
 \end{document}
