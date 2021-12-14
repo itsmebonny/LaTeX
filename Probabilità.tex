@@ -402,11 +402,29 @@ Ci sono sempre varie interpretazioni della probabilità condizionata
 \textbf{Casi degeneri} (\(\mathbb{P}(A) = 0\) oppure \(\mathbb{P}(B) = 0\))
 \begin{itemize}
   \item \(A\) improbabile: \(A \ind B \quad \forall B \in \mathcal{A} \quad (\mathbb{P}(A) = 0)\)
-  \item \(A\) quasi certo: \(A \ind B \quad \forall B \in \mathcal{A}.\) Infatti \(P(B) = \mathcal{P}(B, A) + \mathbb{P}(B, A^C)\), ma \(\mathbb{P}(B, A^C) = \mathbb{P}(A^C) = 0\) 
+  \item \(A\) quasi certo: \(A \ind B \quad \forall B \in \mathcal{A}.\) Infatti \(P(B) = \mathbb{P}(B, A) + \mathbb{P}(B, A^C)\), ma \(\mathbb{P}(B, A^C) = \mathbb{P}(A^C) = 0\) 
 \end{itemize}
 Pescando una carta da un mazzo di carte, si definiscono i seguenti eventi: 
 \[
   A = \{\mbox{esce Quadri}\} \quad \mbox{ e } \quad B = \{\mbox{esce Fante}\}
 \]
-In termini probabilistici significa che: \(\Omega: \mbox{ mazzo di carte}, \; \#\Omega = 52, \; \mathcal{A} = 2^{\Omega}\). Se \(\mathbb{P}\) è uniforme su \(\mathcal{A}\), allora \(p_{\omega} = \frac{1}{52} \; \forall \omega \in \Omega\). Per verificare l'indipendenza
+In termini probabilistici significa che: \(\Omega: \mbox{ mazzo di carte}, \; \#\Omega = 52, \; \mathcal{A} = 2^{\Omega}\). Se \(\mathbb{P}\) è uniforme su \(\mathcal{A}\), allora \(p_{\omega} = \frac{1}{52} \; \forall \omega \in \Omega\). Per verificare l'indipendenza si fa
+\[
+  \mathbb{P}(A) = \frac{\#A}{\#\Omega} = \frac{13}{52}, \quad \mathbb{P}(B) = \frac{\#B}{\#\Omega} = \frac{4}{52}, \quad \mathbb{P}(A,B) = \frac{\#(A \cap B)}{\#\Omega} = \frac{1}{52} 
+\]
+\[
+\Longrightarrow \mathbb{P}(A,B) = \mathbb{P}(A)\mathbb{P}(B) \Longrightarrow A \ind B  
+\]
+\begin{theorem}[indipendenza e complementarità]
+placeholder
+\[
+    A \ind B \Longleftrightarrow A \ind B^C \Longleftrightarrow A^C \ind B \Longleftrightarrow A^C \ind B^C
+\]
+\end{theorem}
+\begin{proof}
+  Dimostrando che \(A \ind B \Longrightarrow A \ind B^C\), si ottengono tutte le altre per complementarità.
+  \[
+    \mathbb{P}(A, B^C)
+  \]
+\end{proof}
 \end{document}
