@@ -1,8 +1,8 @@
 # Fdb version 3
-["pdflatex"] 1639498345 "/home/bonni/Documents/LaTeX/LaTeX/Probabilità.tex" "Probabilità.pdf" "Probabilità" 1639498345
+["pdflatex"] 1639588172 "/home/bonni/Documents/LaTeX/LaTeX/Probabilità.tex" "Probabilità.pdf" "Probabilità" 1639588172
   "/home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk" 1621986155 14064 b09d1f47cfa28292a74fbecea6a1196c ""
   "/home/bonni/.miktex/texmfs/data/miktex/data/le/pdftex/pdflatex.fmt" 1621986132 6342711 fd195dbef57dc7bc148369d2551ea2d6 ""
-  "/home/bonni/.miktex/texmfs/data/pdftex/config/pdftex.map" 1639413542 85914 d462dd3e46c6b14631a286ee49de1853 ""
+  "/home/bonni/.miktex/texmfs/data/pdftex/config/pdftex.map" 1639501762 85914 d462dd3e46c6b14631a286ee49de1853 ""
   "/home/bonni/.miktex/texmfs/install/fonts/tfm/jknappen/ec/tcrm1200.tfm" 1621986062 1444 95ffe0f19b974d50849790c8225c7ef7 ""
   "/home/bonni/.miktex/texmfs/install/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm" 1621986046 1124 14ccf5552bc7f77ca02a8a402bea8bfb ""
   "/home/bonni/.miktex/texmfs/install/fonts/tfm/public/amsfonts/cmextra/cmbsy7.tfm" 1621986046 1120 7f9f170e8aa57527ad6c49feafd45d54 ""
@@ -51,6 +51,7 @@
   "/home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1621986046 32626 4f5c1b83753b1dd3a97d1b399a005b4b ""
   "/home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmti12.pfb" 1621986046 36118 fad905eba93cff5bce1e185fe980a177 ""
   "/home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cmextra/cmex8.pfb" 1621986046 30273 87a352d78b6810ae5cfdc68d2fb827b2 ""
+  "/home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/latxfont/line10.pfb" 1621986047 11493 4f5ed183a47d3197cf8cd322325db6de ""
   "/home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/symbols/msam10.pfb" 1621986047 31764 459c573c03a4949a528c2cc7f557e217 ""
   "/home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/symbols/msbm10.pfb" 1621986047 34694 ad62b13721ee8eda1dcc8993c8bd7041 ""
   "/home/bonni/.miktex/texmfs/install/tex/generic/iftex/iftex.sty" 1621986066 6501 4011d89d9621e0b0901138815ba5ff29 ""
@@ -70,6 +71,7 @@
   "/home/bonni/.miktex/texmfs/install/tex/latex/bigfoot/bigfoot.sty" 1621986142 45349 041bf3256f77b9d785f3e78b5229fcd7 ""
   "/home/bonni/.miktex/texmfs/install/tex/latex/bigfoot/perpage.sty" 1621986142 5884 eefe9f085a9694fc930411f15df1027f ""
   "/home/bonni/.miktex/texmfs/install/tex/latex/bigfoot/suffix.sty" 1621986142 3180 160f7c6b28648b9e5a1c2e00b7ffeed1 ""
+  "/home/bonni/.miktex/texmfs/install/tex/latex/cancel/cancel.sty" 1639501760 7592 dd751af313a16a0308545d5bfd7aaaa2 ""
   "/home/bonni/.miktex/texmfs/install/tex/latex/geometry/geometry.cfg" 1621986139 1104 d237cad3f14be9fd91fe1f904d051a01 ""
   "/home/bonni/.miktex/texmfs/install/tex/latex/geometry/geometry.sty" 1621986139 42759 e63af52ccddba7489ac0e17d6a3344bd ""
   "/home/bonni/.miktex/texmfs/install/tex/latex/graphics/keyval.sty" 1621986064 2677 8bf0251bbc6fa542a4741485cf6bf9c9 ""
@@ -83,10 +85,10 @@
   "/home/bonni/.miktex/texmfs/install/tex/latex/ncctools/manyfoot.sty" 1621986146 13031 3be60c01c4009824bd1d566d9e939e30 ""
   "/home/bonni/.miktex/texmfs/install/tex/latex/ncctools/nccfoots.sty" 1621986146 1230 c31056291f4d569c8ed2eb82f3fee186 ""
   "/home/bonni/.miktex/texmfs/install/tex/latex/physics/physics.sty" 1621986136 29610 a9597219b282d9c78b02393dcd7d4322 ""
-  "/home/bonni/Documents/LaTeX/LaTeX/Probabilità.tex" 1639498343 26100 1ee5517c5b648f03d4505eac044e303e ""
-  "Probabilità.aux" 1639498345 1250 3ff1406c44944867db721f19aab1c650 "pdflatex"
-  "Probabilità.tex" 1639498343 26100 1ee5517c5b648f03d4505eac044e303e ""
+  "/home/bonni/Documents/LaTeX/LaTeX/Probabilità.tex" 1639588171 30638 7a2b451d56d4a6077798b67ffef237a9 ""
+  "Probabilità.aux" 1639588172 1250 34178fe062861376662aa87910768316 "pdflatex"
+  "Probabilità.tex" 1639588171 30638 7a2b451d56d4a6077798b67ffef237a9 ""
   (generated)
+  "Probabilità.log"
   "Probabilità.pdf"
   "Probabilità.aux"
-  "Probabilità.log"

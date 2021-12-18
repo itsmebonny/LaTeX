@@ -6,6 +6,7 @@
 \usepackage[margin=2cm]{geometry}
 \usepackage{bigfoot}
 \usepackage{amsthm}
+\usepackage[makeroom]{cancel}
 
 
 \newtheoremstyle{break}
@@ -460,15 +461,90 @@ La quarta proprietà non è ricavabile dalle altre e comporta che \(A_1 \cap A_2
      \mathbb{P}(\Omega |B) = \frac{\mathbb{P}(\Omega, B)}{\mathbb{P}(B)} = \frac{\mathbb{P}(B)}{\mathbb{P}(B)} = 1
   \]
   Va dimostrato che \(\mathbb{P}(\cdot|B)\) è \(\sigma\)-additiva. Siano \(A_n \in \mathcal{A}, \quad n \in \mathbb{N}, \quad A_k \cap A_l = \emptyset, \quad \forall k \not = l\). Allora
-  \[
+  {\everymath = {\displaystyle}\[
     \begin{array}{ll}
       \mathbb{P}\left(\bigcup_{n=1}^{+\infty} \Bigg\vert B\right) & = \frac{\mathbb{P}(\bigcup A_n, B)}{\mathbb{P}} = \frac{\mathbb{P}(\bigcup(A_n, B))}{\mathbb{P}} \\
       & = \frac{\sum \mathbb{P}(A_n, B)}{\mathbb{P}(B)} = \sum_{n = 1}^{+\infty} \mathbb{P}(A_n\vert B) 
   \end{array}
-  \]
+  \]}
   che conferma il fatto che \(\mathbb{P}\) rispetta tutte le proprietà di una probabilità.
 \end{proof}
 \begin{corollary}
-  Se \(\mathbb{P}(A)\)
+  Se \(\mathbb{P}(A), \mathbb{P}(B) > 0\), allora si ha
+  \[
+     \mathbb{P}(A,B) = \frac{\mathbb{P}(A,B)}{\mathbb{P}(B)} = \frac{\mathbb{P}(A,B)}{\mathbb{P}(B)} \cdot \frac{\mathbb{P}(A)}{\mathbb{P}(A)} = \mathbb{P}(B|A) \cdot \frac{\mathbb{P}(A)}{\mathbb{P}(B)}
+  \]
+  In tale modo si può scambiare l'ordine degli eventi, trasformando \(A\) da evento condizionato a evento condizionante. 
 \end{corollary}
+\begin{definition}
+  Siano \(A_k \in \mathcal{A}, \; k \in I\) con \(I\) discreto. \((A_k)_{k\in I}\) è detto partizione di \(\Omega\) se 
+  \begin{itemize}
+    \item \(A_k \cap A_l = \emptyset \quad \forall k \not = l\)
+    \item {\everymath = {\displaystyle}\(\bigcup_{k} A_k = \Omega\)}
+    \item \(\mathbb{P}(A_k) > 0 \quad \forall k\)
+  \end{itemize}
+\end{definition}
+\begin{theorem}
+  Siano \(A_1, \ldots, A_n \in \mathcal{A}\), con \(\mathbb{P}(A_1, \ldots, A_n) > 0\). Allora si ha che 
+  \[
+    \mathbb{P}(A_1, \ldots, A_n) = \mathbb{P}(A_n\vert A_1, \ldots, A_{n-1}) \cdot \mathbb{P}(A_{n-2}\vert A_1, \ldots, A_{n-2}) \cdots \mathbb{P}(A_2\vert A_1) \cdot \mathbb{P}(A_1)
+  \]
+\end{theorem}
+\begin{proof}
+  \begin{enumerate}
+    \item \(\mathbb{P}(A_k\vert A_{k-1}, \ldots, A_1)\) è ben definito \(\forall k = 1, \ldots, n\). \\
+    Infatti \(A_1 \cap \cdots \cap A_{k-1} \subseteq A_1 \cap \cdots \cap A_n\), e allora
+    \[
+      \mathbb{P}(A_1, \ldots, A_{k-1}) \geq \mathbb{P})(A_1, \ldots, A_n) > 0
+    \]
+    \item Va ora dimostrata l'uguaglianza 
+    \[
+      \mathbb{P}(A_n \vert A_1, \ldots, A_{n-1}) \cdot \mathbb{P}(A_{n-1}\vert A_1, \ldots A_{n-2}) \cdots \mathbb{P}(A_2\vert A_1)\cdot \mathbb{P}(A_1)
+    \]
+    {\everymath = {\displaystyle}\[
+      \begin{array}{l}
+        = \frac{\mathbb{P}(A_n, \ldots, A_1)}{\cancel{{\mathbb{P}(A_{n-1},\ldots, A_1)}}} \cdot \frac{\cancel{\mathbb{P}(A_n-1), \ldots, A_1}}{\cancel{\mathbb{P}(A_{n-2}, \ldots, A1)}} \cdots \frac{\cancel{\mathbb{P}(A_2\vert A_1)}}{\cancel{\mathbb{P}(A_1)}} \cdot \cancel{\mathbb{P}(A_1)} \\
+        = \mathbb{P}(A_n, \ldots, A_1)
+      \end{array}
+    \]}
+  \end{enumerate}
+\end{proof}
+\begin{theorem}[formula delle probabilità totali]
+  Siano \((\Omega, \mathcal{A}, \mathbb{P})\) uno spazio di probabilità, \((E_n)_n\) una partizione discreta di \(\Omega, \; A \in \mathcal{A}\).
+  Allora
+  \[
+    \mathbb{P}(A) = \sum_n \mathbb{P}(A, E_n) = \sum_n \mathbb{P} (A|E_n) \cdot \mathbb{P}(E_n)
+   \]
+\end{theorem}
+\begin{theorem}
+  Poiché \((A \cap E_n) \cap (A \cap E_l) = \emptyset \; \forall k \not = l\)
+  \[
+  \begin{array}{ll}
+    \mathbb{P}(A) & = \mathbb{P}(A \cap \Omega) = \mathbb{P}\left(A \cap \left(\bigcup_n E_n\right)\right) = \mathbb{P}\left(\bigcup_n \left(A \cap E_n\right)\right) \\
+    & = \sum_n \mathbb{P}(A \cap E_n) = \sum_n \mathbb{P}(A\vert E_n)\cdot \mathbb{P}(E_n) 
+  \end{array}
+  \]
+\end{theorem}
+\begin{theorem}[formula di Bayes]
+  Siano \((\Omega, \mathcal{A}, \mathbb{P})\) uno spazio di probabilità, \((E_n)_n\) una partizione discreta di \(\Omega, \; A \in \mathcal{A}, \; \mathbb{P}(A) > 0\). Allora
+  {\everymath = {\displaystyle}\[
+    \mathbb{P}(E_k \vert A) = \frac{\mathbb{P}(A \vert E_k)\cdot \mathbb{P}(E_k)}{\mathbb{P}(A)} = \frac{\mathbb{P}(A\vert E_k) \cdot \mathbb{P}(E_k)}{\sum_n\mathbb{P}(A\vert E_n) \cdot \mathbb{P}(E_n)}
+  \]}
+\end{theorem}
+La prima uguaglianza è confermata dal corollario \(2.1\), mentre la seconda è una conseguenza della formula delle probabilità totali.
+\begin{theorem}
+  Sia \((A_n)_n\) una partizione discreta di \(\Omega\), e sia \(\mathcal{A} = \sigma(A_n : n \in I)\) con \(I\) insieme arbitrario di indici. Allora \(\exists ! \mathbb{P}\) su \((\Omega, \mathcal{A})\), con \(\mathbb{P}(A_n) = p_n \; \forall n \in I\), tale che \(p_n \geq 0\) e \(\sum_{n \in I} p_n = 1\), ossia che una misura di probabilità \(\mathbb{P}\) su \((\Omega, \mathcal{A})\) è caratterizzata dai \(\mathcal{P}(A_n)\) con \(n \in I\). 
+\end{theorem}
+\begin{theorem}
+  Siano \((A_n)_n\) e \((B_k)_k\) partizioni discrete di \(\Omega\). Siano inoltre 
+  \begin{enumerate}
+    \item \(p_n\) tale che \(p_n \geq 0 \; \forall n\) e \(\sum_n p_n = 1\)
+    \item \(q_{k\vert n}\) tale che, \(\forall n \in \mathbb{N}\) fissato, \(q_{k \vert n} \geq 0 \; \forall k \mbox{ e } \sum_k \_{k \vert n} = 1\) 
+  \end{enumerate}
+  allora \(\exists ! \mathbb{P}\) su \(\sigma ((A_n)_n, (B_n)_n)\) tale che \(\forall n, \; k \in \mathbb{N}\), si ha che
+  \[
+    \mathbb{P}(A_n) = p_n \quad \mbox{ e } \quad \mathbb{P}(B_k \vert A_n) = q_{k\vert n}
+  \]
+\end{theorem}
+
 \end{document}
