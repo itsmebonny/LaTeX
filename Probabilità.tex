@@ -546,5 +546,16 @@ La prima uguaglianza è confermata dal corollario \(2.1\), mentre la seconda è 
     \mathbb{P}(A_n) = p_n \quad \mbox{ e } \quad \mathbb{P}(B_k \vert A_n) = q_{k\vert n}
   \]
 \end{theorem}
-
+\section{Costruzione di una probabilità}
+\subsection{Estensione di una probabilità}
+\begin{definition}
+  La definizione di probabilità si può riformulare su una algebra e non su una \(\sigma\)-algebra. Allora, essendo \((\Omega, \mathcal{A})\) uno spazio misurabile e \(\mathcal{A}_0 \subseteq 2^{\Omega}\) algebra su \(\Omega\). \(\mathbb{P}:\mathcal{A}_0 \to [0,1]\) è una probabilità se valgono le seguenti condizioni.
+  \begin{enumerate}
+    \item \(\mathbb{P}(\Omega) = 1\)
+    \item \(\mathbb{P}\) è \(\sigma\)-additiva: dati \(A_n \in \mathcal{A}_0 \; \forall n \in \mathbb{N}\), allora
+    \[
+      A_k \cap A_l = \emptyset \; \forall k \not = l, \; \bigcup_n A_n \in \mathcal{A}_0 
+    \]
+  \end{enumerate}
+\end{definition}
 \end{document}
