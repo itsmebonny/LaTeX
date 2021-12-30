@@ -591,4 +591,51 @@ La prima uguaglianza è confermata dal corollario \(2.1\), mentre la seconda è 
   Siano \((\Omega, \mathcal{A})\) spazio misurabile, \(\mathbb{P} \mbox{ e } \mathbb{Q}\) probabilità su \(\mathcal{A}\) e \(\mathcal{C} \subseteq \mathcal{A}\) classe chiusa per intersezioni finite e tale che \(\sigma(\mathcal{C}) = \mathcal{A}\). Se \(\mathbb{P}(A) = \mathbb{Q}(A) ; \forall A \in \mathcal{C}\), allora \(\mathbb{P}(A) = \mathbb{Q}(A) ; \forall A \in \mathcal{A}\), ossia \(\mathbb{P} = \mathbb{Q}\).
 \end{corollary}
 Questo garantisce l'unicità dell'estensione di una probabilità su una classe che rispetti opportune ipotesi. Se due probabilità coincidono sugli insiemi di una suddetta classe, allora coincideranno anche su tutto il dominio, essendo, di fatto, la stessa probabilità.
+\begin{corollary}[Criterio di Caratheodory]
+  Siano \(\Omega\) spazio campionario, \(\mathcal{A}_0\) algebra su \(\Omega\), \(\mathcal{A} = \sigma(\mathcal{A_0})\), \(\mathbb{P}\) e \(\mathbb{Q}\) probabilità su \(\mathcal{A}\). Se \(\mathbb{P}(A) = \mathbb{Q}(A) ; \forall A \in \mathcal{A_0}\), allora \(\mathbb{P}(A) = \mathbb{Q}(A) \; \forall A \in \mathcal{A}\).
+\end{corollary}
+È sufficiente avere informazioni su un ristretto gruppo di insiemi (due probabilità sono identiche su una algebra) per afferare una proprietà generale della \(\sigma\)-algebra generata (le probabilità sono identiche su tutto il dominio).
+\textit{Controesempio}
+L'ipotesi che \(\mathcal{C}\) sia chiusa per intersezioni finite è fondamentale per l'applicazione dei corollari. Se non fosse così, considerando un qualsiasi \(\Omega\) e delle sue partizioni \(A_1, A_2, B_1, B_2\), sapendo che \(\mathcal{A} = \sigma(A_1, A_2, B_1, B_2)\) con \(\mathbb{P}\) e \(\mathbb{Q}\) probabilità su \(\mathcal{A}\), si ha 
+\[
+  \mathbb{P}(A_k) = \frac{1}{4} + \frac{1}{4} = \frac{1}{2} = \frac{1}{2} + 0 = \mathbb{Q}(A_k) \; \forall k = 1,2
+\]
+SEZIONE DA SISTEMARE
+\[
+  \mathbb{P} \;
+  \begin{tabular}{c|c|c|}
+  
+    \cline{2-3}
+    \(B_1\) & \(\frac{1}{4}\) & \(\frac{1}{4}\) \\
+    \cline{2-3}
+     \(B_2\) & \(\frac{1}{4}\) & \(\frac{1}{4}\) \\
+    \cline{2-3}
+     \multicolumn{3}{r}{$A_1$ $A_2$}
+  \end{tabular}
+  \qquad
+  \mathbb{Q} \;
+  \begin{tabular}{c|c|c|}
+  
+    \cline{2-3}
+    \(B_1\) & 0 & \(\frac{1}{2}\) \\
+    \cline{2-3}
+     \(B_2\) & \(\frac{1}{2}\) & 0 \\
+    \cline{2-3}
+     \multicolumn{3}{r}{$A_1$ $A_2$}
+  \end{tabular}
+\]
+In questo caso \(\mathbb{P}(A) = \mathbb{Q}(A) \; \forall A \in \mathcal{C}\) e \(\mathcal{P}(A) = \mathcal{Q}(B)\), ma, poiché \(\mathcal{C}\) non è chiusa, non si può applicare il corollario alle classi monotone, ad esempio nel caso \(A_1 \cap B_2 \not \in \mathcal{C}\). In tal caso si può verificare facilmente che \(\mathbb{P} \not \equiv \mathbb{Q}\)
+\subsection{Probabilità su spazi finiti e discreti}
+\begin{definition}
+  Sia dato uno spazio probabilistico \((\Omega, \mathcal{A}, \mathbb{P})\) in cui:
+  \begin{itemize}
+    \item \(\Omega\) è uno spazio campionario finito e discreto tale che \(\# \Omega = n\)
+    \item \(\mathcal{A}\) è la \(\sigma\)-algebra definita su \(\Omega\) come \(\mathcal{A} = 2^{\Omega}\)
+    \item \(\mathbb{P}\) è la probabilità costruita sulla \(\sigma\)-algebra \(\mathcal{A}\) definita come 
+    \[
+      \mathbb{P}(\{w\}) = \frac{1}{\# \Omega} \mbox{ e con } \mathbb{P}(\{A\}) = \frac{\# A}{\# \Omega}
+    \]
+  \end{itemize}
+  Tale spazio probabilistico è definito come spazio probabilistico discreto e uniforme, ossia lo spazio discreto e finito dove tutti gli esiti sono equiprobabili.
+\end{definition}
 \end{document}
