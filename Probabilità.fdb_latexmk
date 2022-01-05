@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1640876052 "/home/bonni/Documents/LaTeX/LaTeX/Probabilità.tex" "Probabilità.pdf" "Probabilità" 1640876053
+["pdflatex"] 1641401598 "/home/bonni/Documents/LaTeX/LaTeX/Probabilità.tex" "Probabilità.pdf" "Probabilità" 1641401598
   "/home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk" 1621986155 14064 b09d1f47cfa28292a74fbecea6a1196c ""
   "/home/bonni/.miktex/texmfs/data/miktex/data/le/pdftex/pdflatex.fmt" 1621986132 6342711 fd195dbef57dc7bc148369d2551ea2d6 ""
   "/home/bonni/.miktex/texmfs/data/pdftex/config/pdftex.map" 1639501762 85914 d462dd3e46c6b14631a286ee49de1853 ""
@@ -85,10 +85,10 @@
   "/home/bonni/.miktex/texmfs/install/tex/latex/ncctools/manyfoot.sty" 1621986146 13031 3be60c01c4009824bd1d566d9e939e30 ""
   "/home/bonni/.miktex/texmfs/install/tex/latex/ncctools/nccfoots.sty" 1621986146 1230 c31056291f4d569c8ed2eb82f3fee186 ""
   "/home/bonni/.miktex/texmfs/install/tex/latex/physics/physics.sty" 1621986136 29610 a9597219b282d9c78b02393dcd7d4322 ""
-  "/home/bonni/Documents/LaTeX/LaTeX/Probabilità.tex" 1640876051 36368 f3e27361c73fe2e5abfd345b6895d477 ""
-  "Probabilità.aux" 1640876052 1627 347b384599b9f0276a99f855cd802ded "pdflatex"
-  "Probabilità.tex" 1640876051 36368 f3e27361c73fe2e5abfd345b6895d477 ""
+  "/home/bonni/Documents/LaTeX/LaTeX/Probabilità.tex" 1641401596 42286 2cb3985c1dd079802111ed88607a2934 ""
+  "Probabilità.aux" 1641401598 2206 8eeb29a23de25c5d83596d300add8b2a "pdflatex"
+  "Probabilità.tex" 1641401596 42286 2cb3985c1dd079802111ed88607a2934 ""
   (generated)
-  "Probabilità.log"
   "Probabilità.aux"
   "Probabilità.pdf"
+  "Probabilità.log"

@@ -201,6 +201,7 @@ Una definizione più rigorosa di probabilità si può ottenere da
   \end{enumerate}
 \end{theorem}
 \begin{proof}
+La dimostrazione segue due passaggi:
   \begin{enumerate}
     \item Si crea una serie di \(A_n\) insiemi vuoti e si dimostra che la loro unione è la stessa dell'insieme vuoto. 
     {\everymath = {\displaystyle}
@@ -237,7 +238,7 @@ Si può scrivere \(\mathbb{P}(A \cap B)\) come \(\mathbb{P}(A,B)\).
   \begin{itemize}
     \item Dati \(A, A' \in \mathcal{A}\) si ha che \(A \subseteq A' \Longrightarrow \mathbb{P}(A) \leq \mathbb{P} (A')\) 
     \item \(A \in \mathcal{A} \Longrightarrow \mathbb{P}(A^C) = 1 - \mathbb{P}(A)\), dove \(1\) è \(\mathbb{P}(\Omega)\)
-    \item \(A, B \in \mathcal{A} \Longrightarrow \mathbb{P}(A \cup B) = \mathcal{P}(A) + \mathbb{P}(B) - \mathbb{P}(A,B)\)
+    \item \(A, B \in \mathcal{A} \Longrightarrow \mathbb{P}(A \cup B) = \mathbb{P}(A) + \mathbb{P}(B) - \mathbb{P}(A,B)\)
   \end{itemize}
 \end{corollary}
 \subsection{Successioni di eventi}
@@ -638,4 +639,116 @@ In questo caso \(\mathbb{P}(A) = \mathbb{Q}(A) \; \forall A \in \mathcal{C}\) e 
   \end{itemize}
   Tale spazio probabilistico è definito come spazio probabilistico discreto e uniforme, ossia lo spazio discreto e finito dove tutti gli esiti sono equiprobabili.
 \end{definition}
+\section{Probabilità su \(\mathbb{R}\)}
+\subsection{Funzione di ripartizione}
+Per ricapitolare i teoremi fondamentali dei capitoli precedenti:
+\begin{enumerate}
+  \item Per generare \(\mathcal{A}\) è sufficiente definire \(\mathcal{C} \subset \mathcal{A}\) tale che \(\sigma(\mathcal{C}) = \mathcal{A}\). 
+  \item Per caratterizzare \(\mathbb{P}\) su \(\mathcal{A}\) è sufficiente definire \(\mathcal{C} \subset \mathcal{A}\) tale che \(\sigma(\mathcal{C}) = \mathcal{A}\) con \(\mathcal{C}\) chiuso per intersezioni finite. 
+  \item Per costruire \(\mathbb{P}\) su \(\mathcal{A}\) è sufficiente definire \(\mathcal{C} \subset \mathcal{A}\) tale che \(\sigma(\mathcal{C}) = \mathcal{A}\) con \(\mathcal{C}\) algebra
+\end{enumerate}
+\begin{definition}
+  Sia \((\Omega, \mathcal{A}) = (\mathbb{R}, \mathcal{B})\) e sia \(\mathbb{P} : \mathcal{B} \to [0,1]\) una probabilità su \(\mathcal{B}\). \\
+  È definita funzione di ripartizione di \(\mathbb{P}\) la funzione
+  \[
+    F : \mathbb{R} \to [0,1], \quad F(x) := \mathbb{P}((-\infty, x])
+  \] 
+\end{definition}
+\begin{theorem}
+  Siano \(\mathbb{P}\) probabilità su \((\mathbb{R}, \mathcal{B})\) e \(F\) funzione di ripartizione, allora \(F\) caratterizza \(\mathbb{P}\), ovvero dati \(\mathbb{P}_1 \mbox{ e } \mathbb{P}_2\) probabilità su \(\mathcal{B}\) allora
+  \[
+    \mathbb{P}_1 = \mathbb{P}_2 \Longleftrightarrow F_1 = F_2
+  \]
+\end{theorem}
+\begin{proof}
+  La dimostrazione di \((\Longrightarrow)\) è ovvia. \\
+  Va dimostrato \((\Longleftarrow)\): sia \(\Omega = \{(-\infty, q], q \in \mathbb{Q}\}\). È già stato dimostrato che \(\sigma(\mathcal{C}) = \mathcal{B}\).\\
+  Inoltre va mostrato che \(\mathcal{C}\) è chiuso per intersezioni finite. 
+  \[
+    \underbrace{(-\infty, q_1]}_{\in \mathcal{C}} \cap \underbrace{(-\infty, q_2]}_{\in \mathcal{C}} = \underbrace{(-\infty, \min(q_1, q_2)]}_{\in \mathcal{C}}
+  \]
+  Allora
+  \[
+    \begin{array}{llll}
+      F_1 = F_2 & \Longleftrightarrow & F_1(x) = F_2(x) & \forall x \in \mathbb{R} \\
+      & \Longrightarrow & F_1(q) = F_2(q) & \forall q \in \mathbb{Q} \\
+      & \Longleftrightarrow & \mathbb{P}_1((-\infty, q]) = \mathbb{P}_2((-\infty, q]) & \forall q \in \mathbb{Q} \\
+      & \Longleftrightarrow & \mathbb{P}_1(B) = \mathbb{P}_2(B) & \forall B \in \mathcal{C} \\
+      & \Longleftrightarrow & \mathbb{P}_1 = \mathbb{P}_2 & \mbox{su } B \in \sigma(\mathcal{C})
+    \end{array}
+  \]
+\end{proof}
+\begin{theorem}
+  \(F:\mathbb{R} \to [0,1]\) è funzione di ripartizione di una (e una sola) probabilità \(\mathbb{P}:\mathcal{B} \to [0,1]\) se e solo se
+  \begin{enumerate}
+    \item \(F\) è non-decrescente
+    \item \(F\) è continua da destra
+    \item {\everymath = {\displaystyle}\(\lim_{x \to -\infty} F(x) = 0, \; \lim_{x \to +\infty}F(x) = 1.\)}
+  \end{enumerate}
+\end{theorem}
+Si introduce la notazione {\everymath = {\displaystyle}\(F(x^-) := \lim_{y \uparrow x}\)}. Sicuramente \(F(x^-) \leq F(x)\).
+\begin{corollary}
+  Sia \(F\) la funzione di ripartizione di \(\mathbb{P}\) su \((\mathbb{R}, \mathcal{B})\). Allora, \(\forall x < y\)
+  \begin{enumerate}
+    \item \(\mathbb{P}((x, y]) = F(y) - F(x)\)
+    \item \(\mathbb{P}((x, y]) = F(y) - F(x^-)\)
+    \item \(\mathbb{P}((x, y)) = F(y^-) - F(x)\)
+    \item \(\mathbb{P}([x, y)) = F(y^-) - F(x^-)\)
+    \item \(\mathbb{P}(\{x\}) = F(x) - F(x^-)\)
+  \end{enumerate}
+\end{corollary}
+\begin{proof}
+  La dimostrazione sarà eseguita punto per punto
+  \begin{enumerate}
+    \item Per costruzione
+    \item {\everymath = {\displaystyle}\([x, y] = \bigcap_{n=1}^{+\infty} \left(x - \frac{1}{n}, y\right]\)}. Dunque:
+    \[
+    \begin{array}{lll}
+    \mathbb{P}([x, y]) & = & \lim_{n \to +\infty} \mathbb{P}\left(\left(x - \frac{1}{n}, y\right]\right) \\
+    & = & \lim_{n \to +\infty}\left(F(y) - F\left(x-\frac{1}{n}\right)\right) = F(y) - F(x^-)
+    \end{array}
+    \]
+  \end{enumerate}
+Analogamente si verificano i punti \((3), (4) \mbox{ e } (5).\)
+\end{proof}
+\begin{definition}
+  Si definisce massa o delta di Dirac in \(\alpha\), indicata con \(\delta_{\alpha}\), la probabilità
+  \[
+    \mathbb{P}(A) = \begin{cases}
+      1 & \mbox{se } \alpha \in A \\
+      0 & \mbox{se } \alpha \not \in A
+    \end{cases}
+  \]
+  La cui funzione di ripartizione è 
+  \[
+    F(x) = \mathbb{P}((-\infty, x]) = \begin{cases}
+      1 & \mbox{se } x \geq \alpha \\
+      0 & \mbox{se } x < \alpha
+    \end{cases}
+  \]
+\end{definition}
+\subsection{Densità continua di probabilità}
+\begin{definition}
+Si definisce densità continua di probabilità una funzione \(f:\mathbb{R} \to [0, +\infty)\), non negativa, Riemann-integrabile e tale che 
+\[
+  \int_{-\infty}^{+\infty} f(x) dx = 1
+\]    
+Si dice inoltre che \(F\) ammette densità \(f\) se 
+\[
+  F(x)  =\int_{-\infty}^x f(t) dt
+\]
+\end{definition}
+\section{Variabili aleatorie}
+Viene ora introdotto uno strumento cardine dello studio della probabilità: la variabile aleatoria. La variabile aleatoria indica una quantità ignota a priori, il cui valore dipende dall'esito dell'esperimento aleatorio. Associa gli esiti elementari da un dominio, anche non numerico, \(\Omega\) a un codominio \(F\). Ciò permette di trasportare gli eventi su un codominio numerico e utilizzare la applicazione della teoria su \(\mathbb{R}\). Agli eventi del codominio è associata una probabilità, detta legge della variabile aleatoria. 
+\subsection{Definizione}
+\begin{definition}
+  Data una funzione \(X : \Omega \to F\) e un insieme \(B \subseteq F\), si dice controimmagine di \(B\) l'insieme \(X^{-1}(B) = (X \in B) := \{\omega \in \Omega : X (\omega) \in B\} \supseteq \Omega\) 
+\end{definition}
+\begin{definition}
+  Dati gli spazi misurabili \((\Omega, \mathcal{A})\) e \((F, \mathcal{F})\), una funzione \(X : \Omega \to F\) si dice funzione misurabile o variabile aleatoria se 
+  \[
+    (X \in B) \in \mathcal{A} \; \forall B \in \mathcal{F}
+  \]
+\end{definition}
+
 \end{document}
