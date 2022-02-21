@@ -750,5 +750,41 @@ Viene ora introdotto uno strumento cardine dello studio della probabilità: la v
     (X \in B) \in \mathcal{A} \; \forall B \in \mathcal{F}
   \]
 \end{definition}
-
+\begin{definition}
+  Tutti i possibili valori della VA sono contenuti nell'insieme \(F\), detto anche lo spazio degli stati. \\
+  Proprietà della controimmagine:
+  \begin{itemize}
+    {\everymath = {\displaystyle}
+    \item \(X \in B = X^{-1}(B^C) = (X^{-1}(B))^C = (X \not \in B)\)
+    \item \((X \in \bigcup_n B_n) = \bigcup_n (X \in B_n)\)
+    \item \((X \in \bigcap_n B_n) = \bigcap_n (X \in B_n)\)
+    }
+    \end{itemize}
+\end{definition}
+\begin{theorem}
+  Siano \((\Omega, \mathcal{A})\) e \((F, \mathcal{F})\) spazi misurabili generici, \(X : \Omega \to F\) una funzione, e \(\mathcal{C} \subseteq \mathcal{F}\) tale che \(\sigma(\mathcal{C}) = \mathcal{F}\). Allora 
+  \[
+    (X \in B) \in A \forall B \in \mathcal{F} \Longleftrightarrow (X \in B) \in \mathcal{A} \forall B \in \mathcal{C}
+  \]
+  Ossia, la misurabilità su un insieme coincide con la misurabilità su un insieme più piccolo che genera l'altro insieme.
+\end{theorem}
+\begin{proof}
+  \(( \Longleftarrow ):\) ovvia. \\
+  \((\Longrightarrow):\) ponendo \(\mathcal{D} = \{B \in \mathcal{F} : (X \in B) \in \mathcal{A}\}\) si ha che \(\mathcal{C} \subseteq \mathcal{D} \subseteq \mathcal{F}\) e che \(\mathcal{D}\) è una \(\sigma\)-algebra, poiché le unioni, le intersezioni e le complementazioni commutano con le controimmagini, difatti 
+  \[
+    \begin{array}{ccc}
+      B \in \mathcal{D} & \Longrightarrow & (X \in B) \in \mathcal{A} \Longrightarrow (X \in B)^C \in \mathcal{A} \\
+      & \Longrightarrow & \((X \in B^C) \in \mathcal{A}\) \Longrightarrow B^C \in \mathcal{D}
+    \end{array} 
+  \]
+Dalla prima relazione \((\mathcal{C} \subseteq \mathcal{D} \subseteq \mathcal{F})\) otteniamo \(\sigma (\mathcal{C}) \subseteq \sigma(\mathcal{D}) \subseteq \sigma(\mathcal{F})\), da cui \(\mathcal{F} \subseteq \mathcal{D} \subseteq \mathcal{F}\). Allora \(\mathcal{D} = \mathcal{F}\), cioè tutti gli elementi \(B\) di \(\mathcal{F}\) sono tali per cui \((X \in B) \in \mathcal{A}\), da cui la tesi.
+\end{proof}
+\subsection{Criteri di misurabilità}
+\begin{definition}
+  Siano \((E, \mathcal{E}), (F, \mathcal{F})\) spazi misurabili. Una funzione \(X : E \longrightarrow F\) è detta misurabile se \(X^{-1} (B) \in \mathcal{E} \forall B \in \mathcal{F}\), oppure \(X^{-1} (\mathcal{F}) \subseteq \mathcal{E}\).
+  Nel caso in cui \((E, \mathcal{E}) = (\Omega, \mathcal{A})\), \(X\) è una variabile aleatoria. 
+\end{definition} 
+\begin{theorem}
+  Siano \((E, \mathcal{E}), (F, \mathcal{F})\)
+\end{theorem}
 \end{document}
