@@ -1,7 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.5.26)  5 JAN 2022 17:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2022.2.11)  22 FEB 2022 19:46
 entering extended mode
-**/home/bonni/Documents/LaTeX/LaTeX/Probabilità.tex
-(/home/bonni/Documents/LaTeX/LaTeX/Probabilità.tex
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**/home/bonni/Documents/LaTeX/LaTeX/Algoritmi.tex
+(/home/bonni/Documents/LaTeX/LaTeX/Algoritmi.tex
 LaTeX2e <2020-10-01> patch level 4
 L3 programming layer <2021-05-11> (/home/bonni/.miktex/texmfs/install/tex/latex/base/article.cls
 Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
@@ -171,8 +174,8 @@ Package: cancel 2013/04/12 v2.2 Cancel math terms
 \c@corollary=\count279
 \c@proposition=\count280
 \c@definition=\count281
- (Probabilità.aux)
-\openout1 = `Probabilità.aux'.
+ (Algoritmi.aux)
+\openout1 = `Algoritmi.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
 LaTeX Font Info:    ... okay on input line 43.
@@ -232,21 +235,29 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 LaTeX Font Info:    Trying to load font information for U+msb on input line 47.
  (/home/bonni/.miktex/texmfs/install/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
+)
+Overfull \hbox (20.10762pt too wide) in paragraph at lines 56--57
+[]\OT1/cmr/m/n/12 Automobili: ormai tutto cio che e presente nelle automobili e governato da un microprocessore,
+ []
 
-{/home/bonni/.miktex/texmfs/data/pdftex/config/pdftex.map}] [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] (Probabilità.aux) ) 
+[1
+
+
+
+pdfTeX warning: pdflatex (file pdftex.map): cannot open font map file
+] (Algoritmi.aux) ) 
 Here is how much of TeX's memory you used:
- 3418 strings out of 481099
- 45400 string characters out of 2905790
- 366004 words of memory out of 3000000
- 20760 multiletter control sequences out of 15000+600000
- 420012 words of font info for 87 fonts, out of 8000000 for 9000
+ 3421 strings out of 481073
+ 45347 string characters out of 2905097
+ 348007 words of memory out of 3000000
+ 20763 multiletter control sequences out of 15000+600000
+ 419007 words of font info for 84 fonts, out of 8000000 for 9000
  0 hyphenation exceptions out of 8191
- 68i,17n,77p,602b,329s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx12.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi12.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi6.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi8.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr12.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr17.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr6.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy6.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy8.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmti12.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/latxfont/line10.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/symbols/msam10.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Probabilità.pdf (15 pages, 231915 bytes).
+ 68i,8n,77p,472b,248s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmr10.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmr7.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmr8.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmr12.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi720/cmbx12.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi864/cmbx12.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi720/cmr12.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi720/cmr17.pk>
+Output written on Algoritmi.pdf (1 page, 54235 bytes).
 PDF statistics:
- 128 PDF objects out of 1000 (max. 8388607)
+ 177 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

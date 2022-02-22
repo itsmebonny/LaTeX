@@ -1,0 +1,68 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{bm}
+\usepackage[margin=2cm]{geometry}
+\usepackage{bigfoot}
+\usepackage{amsthm}
+\usepackage[makeroom]{cancel}
+
+
+\newtheoremstyle{break}
+  {\partopsep}{\topsep}%  
+  {\normalfont}{}
+  {\bfseries}{}%
+  {\newline}{}%
+  \theoremstyle{break}
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{corollary}{Corollario}[section]
+\newtheorem{proposition}{Proposizione}[section]
+\renewcommand*{\proofname}{\textbf{Dimostrazione}}
+\renewcommand\qedsymbol{$\bigstar$}
+\newtheorem{definition}{Definizione}[section]
+
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+
+\newcommand{\ind}{\perp\!\!\!\!\perp} 
+
+\long\def\symbolfootnotemark[#1]#2{\begingroup%
+\def\thefootnote{\fnsymbol{footnote}}\footnotetext[#1]{#2}\footnotemark[#1]\endgroup}
+
+\long\def\symbolfootnotetext[#1]#2{\begingroup%
+\def\thefootnote{\fnsymbol{footnote}}\footnotetext[#1]{#2}\endgroup}
+
+
+\numberwithin{equation}{section}
+
+
+
+
+
+\begin{document}
+\title{Appunti di Algoritmi e Architetture per il Calcolo ad Alte Prestazioni}
+\author{Andrea Bonifacio}
+\date{\today}
+\maketitle
+\section{Architettura dei Calcolatori}
+\subsection{Introduzione}
+I computer sono il prodotto di una industria nuova e in continuo cambiamento. Negli ultimi 30 anni il paradigma fondamentale di questa continua innvovazione era stato dato dalla Legge di Moore
+\begin{quote}
+    ``La complessità di un microcircuito, misurata ad esempio tramite il numero di transistor per chip, raddoppia ogni 18 mesi (e quadruplica quindi ogni 3 anni).'' 
+\end{quote}
+Dai loro albori a oggi i computer hanno fatto tantissima strada, al giorno d'oggi si trovano in quasi ogni oggetto presente nella vita delle persone
+\begin{itemize}
+    \item Automobili: ormai tutto ciò che è presente nelle automobili è governato da un microprocessore, questo è avvenuto grazie al rapido miglioramento di questi ultimi sia dal punto di vista economico che delle prestazioni.
+    \item Cellulari: negli ultimi venti anni sono diventati parte integrante della vita di tutti i giorni.
+    \item Humane Genome Project: il continuo diminuire del prezzo dei singoli computer a parità di prestazioni ha permesso la creazione di questo enorme progetto per sequenziare tutto il genoma umano.
+    \item World Wide Web: senza aggiungere altro, forse la più grande rivoluzione del terzo millennio.
+\end{itemize}
+Esistono varie categorie di calcolatori, sicuramente le principali in cui si possono suddividere sono:
+\begin{itemize}
+    \item Personal Computer (PC): macchine per il singolo operatore che permettono di avere un buon compromesso tra prezzo e prestazioni.
+    \item Server: macchine pensate per un utilizzo costante, spesso da una serie di operatori diversi. Esistono server che si occupano di algoritmi complessi e server che eseguono semplici compiti continuamente. In termini di spazio e costi, non sono ben definibili, possono avere le dimensioni e i prezzi di un normale PC, oppure costare svariate decine di migliaia di Euro e occupare una intera stanza.
+    \item Embedded computer\footnote{Non riesco a pensare a una traduzione migliore}: la classe più ampia, in quanto spaziano dai microprocessori dentro le automobili al network di processori che gestiscono vari sistemi dentro un aeroplano. I sistemi embedded sono generalmente progettati per far girare una singola applicazione.
+\end{itemize}
+
+\end{document}
