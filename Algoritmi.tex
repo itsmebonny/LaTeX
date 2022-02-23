@@ -53,7 +53,7 @@ I computer sono il prodotto di una industria nuova e in continuo cambiamento. Ne
 \end{quote}
 Dai loro albori a oggi i computer hanno fatto tantissima strada, al giorno d'oggi si trovano in quasi ogni oggetto presente nella vita delle persone
 \begin{itemize}
-    \item Automobili: ormai tutto ciò che è presente nelle automobili è governato da un microprocessore, questo è avvenuto grazie al rapido miglioramento di questi ultimi sia dal punto di vista economico che delle prestazioni.
+    \item Automobili: ormai praticamente tutto ciò che è presente nelle automobili è governato da un microprocessore, questo è avvenuto grazie al rapido miglioramento di questi ultimi sia dal punto di vista economico che delle prestazioni.
     \item Cellulari: negli ultimi venti anni sono diventati parte integrante della vita di tutti i giorni.
     \item Humane Genome Project: il continuo diminuire del prezzo dei singoli computer a parità di prestazioni ha permesso la creazione di questo enorme progetto per sequenziare tutto il genoma umano.
     \item World Wide Web: senza aggiungere altro, forse la più grande rivoluzione del terzo millennio.
@@ -64,5 +64,18 @@ Esistono varie categorie di calcolatori, sicuramente le principali in cui si pos
     \item Server: macchine pensate per un utilizzo costante, spesso da una serie di operatori diversi. Esistono server che si occupano di algoritmi complessi e server che eseguono semplici compiti continuamente. In termini di spazio e costi, non sono ben definibili, possono avere le dimensioni e i prezzi di un normale PC, oppure costare svariate decine di migliaia di Euro e occupare una intera stanza.
     \item Embedded computer\footnote{Non riesco a pensare a una traduzione migliore}: la classe più ampia, in quanto spaziano dai microprocessori dentro le automobili al network di processori che gestiscono vari sistemi dentro un aeroplano. I sistemi embedded sono generalmente progettati per far girare una singola applicazione.
 \end{itemize}
-
+\subsection{Otto idee fondamentali nell'architettura dei computer}
+Nella storia della progettazione dei computer, ci sono state otto intuizioni che sono riuscite a perdurare nel tempo, anni e anni dopo la loro formulazione. Nello specifico si tratta di:
+\begin{enumerate}
+    \item Progettare seguendo la legge di Moore: in quanto il cambiamento continuo è sempre stato una costante all'interno dell'industria IT, era necessario per i vari progettisti rendersi conto di dove sarebbe arrivata la tecnologia al momento del lancio del loro prodotto.
+    \item Astrazione: per semplificarsi il lavoro, è stato necessario lavorare con vari livelli di astrazione, non più partendo dal singolo transistor, per salire nei vari livelli, ma creando un sistema astratto per modellizzarli.
+    \item Rendere veloce il Common Case: concentrarsi sul rendere veloci le operazioni basiche, senza concentrarsi su come rendere performanti le operazioni meno comuni, permette di ottimizzare in maniera molto più semplice.
+    \item Parallelizzazione: già dai primi computer il principale obbiettivo era raggiungere in maniera efficiente l'esecuzione di istruzioni in parallelo, in quanto permetteva di ridurre di parecchio il tempo di esecuzione e aumentare le prestazioni del sistema.
+    \item Pipelining: tra gli esempi di parallelzzazione si trova il pipelining, che permette, agendo sostanzialmente come una catena di montaggio, dove ogni elemento esegue un singolo compito e poi passa il testimone all'elemento dopo per eseguire il compito successivo, mentre lui continua a eseguire il suo.
+    \item Predizione: la tecnica di eseguire in anticipo operazioni che, probabilmente, verranno richieste a breve per ridurre i tempi. Ovviamente in questo caso serve un meccanismo di recupero in caso di predizione errata e stare attenti a non sbagliare troppo le predizioni.
+    \item Gerarchia delle memorie: per accedere ai dati velocemente è necessario avere memorie veloci e molto costose, quindi tendenzialmente si usano memorie piccole per contenere i costi, mentre memorie più grandi e meno costose saranno più lente. Si tende quindi a gerarchizzare le memorie, in maniera da accedere prima alle memorie più veloci e poi a scendere.
+    \item Disponibilità: forse meno interessante all'utente finale, ma sicuramente fondamentale per i progettisti di server, oltre a essere veloci, devono essere affidabili e disponibili, per cui si tende ad avere magari più elementi che eseguono lo stesso compito, in maniera che il malfunzionamento di uno di essi non comprometta l'integrità dell'intero sistema.
+\end{enumerate}
+\subsection{Funzionamento di un programma}
+Un normale programma, come può esserlo un editor di testo, arriva a essere formato da milioni di righe di codice, che a loro volta vanno tradotte in linguaggio macchina. Per fare ciò si utilizza in gran parte l'astrazione
 \end{document}
