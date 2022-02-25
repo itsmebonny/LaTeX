@@ -328,6 +328,7 @@ INPUT /home/bonni/.miktex/texmfs/install/fonts/tfm/public/amsfonts/cmextra/cmmib
 INPUT /home/bonni/.miktex/texmfs/install/fonts/tfm/public/cm/cmbsy10.tfm
 INPUT /home/bonni/.miktex/texmfs/install/fonts/tfm/public/cm/cmbsy10.tfm
 INPUT /home/bonni/.miktex/texmfs/install/fonts/tfm/public/amsfonts/cmextra/cmbsy7.tfm
+OUTPUT Algoritmi.pdf
 INPUT /home/bonni/.miktex/texmfs/install/fonts/tfm/public/cm/cmr17.tfm
 INPUT /home/bonni/.miktex/texmfs/install/fonts/tfm/public/cm/cmbx12.tfm
 INPUT /home/bonni/.miktex/texmfs/install/fonts/tfm/jknappen/ec/tcrm1200.tfm
@@ -363,8 +364,10 @@ INPUT /home/bonni/.miktex/texmfs/install/fonts/tfm/public/amsfonts/symbols/msbm5
 INPUT /home/bonni/.miktex/texmfs/install/fonts/tfm/public/cm/cmbx5.tfm
 INPUT /home/bonni/.miktex/texmfs/install/fonts/tfm/public/amsfonts/cmextra/cmmib5.tfm
 INPUT /home/bonni/.miktex/texmfs/install/fonts/tfm/public/amsfonts/cmextra/cmbsy5.tfm
-OUTPUT Algoritmi.pdf
+INPUT /home/bonni/.miktex/texmfs/install/fonts/tfm/public/cm/cmti12.tfm
 INPUT Algoritmi.aux
+INPUT /home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmti12.pk
+INPUT /home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmti12.pk
 INPUT /home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmmi8.pk
 INPUT /home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmmi8.pk
 INPUT /home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmmi12.pk
@@ -379,12 +382,12 @@ INPUT /home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmr8.pk
 INPUT /home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmr8.pk
 INPUT /home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk
 INPUT /home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk
-INPUT /home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmr12.pk
-INPUT /home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmr12.pk
 INPUT /home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi720/cmbx12.pk
 INPUT /home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi720/cmbx12.pk
 INPUT /home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi864/cmbx12.pk
 INPUT /home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi864/cmbx12.pk
+INPUT /home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmr12.pk
+INPUT /home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmr12.pk
 INPUT /home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi720/cmr12.pk
 INPUT /home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi720/cmr12.pk
 INPUT /home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi720/cmr17.pk

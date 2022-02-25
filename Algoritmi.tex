@@ -45,6 +45,7 @@
 \author{Andrea Bonifacio}
 \date{\today}
 \maketitle
+\newpage
 \section{Architettura dei Calcolatori}
 \subsection{Introduzione}
 I computer sono il prodotto di una industria nuova e in continuo cambiamento. Negli ultimi 30 anni il paradigma fondamentale di questa continua innvovazione era stato dato dalla Legge di Moore
@@ -133,6 +134,22 @@ Allora si può definire il tempo di esecuzione di un programma come
 \begin{gather*}
     \mbox{Tempo di esecuzione della CPU di un programma} = \frac{\mbox{Cicli di clock per eseguire il programma}}{\mbox{Frequenza di clock}}
 \end{gather*}
-Tuttavia queste metriche sono molto approssimative e non tengono conto di svariati fattori, uno fra tutti quante istruzioni vengono eseguite durante l'esecuzione del programma.
+Tuttavia queste metriche sono molto approssimative e non tengono conto di svariati fattori, uno fra tutti quante istruzioni vengono eseguite durante l'esecuzione del programma. Si può parlare allora di cicli di clock della CPU come 
+\begin{align*}
+    \mbox{Cicli di clock della CPU} = \mbox{Numero di istruzioni per il programma} \\ \times \quad \mbox{Numero medio di cicli di clock per istruzione}
+\end{align*}
+Il termine \textit{Numero medio di cicli di clock per istruzione} si chiama anche cicli di clock per istruzione (CPI) ed è una comoda metrica che permette di definire il tempo CPU come
+\[
+    \mbox{Tempo CPU} = \frac{\mbox{Numero di istruzioni} \times \; \mbox{CPI}}{\mbox{Frequenza di clock}}
+\]
+Ci sono quindi vari modi per definire le prestazioni di un sistema, e si può agire sulle singole metriche per migliorare il sistema, ma bisogna sempre tenere conto dell'efficienza del sistema.
+\subsection{La questione energetica}
+Negli ultimi decenni ci si è resi conto di aver raggiunto un limite fisico al raffreddamento dei processori, per cui non possono assorbere più di una determinata potenza. Oltretutto con il proliferare di dispositivi alimentati da batterie e non connessi a una sorgente continua di elettricità si è dovuto cercare un giusto compromesso tra energia consumata e prestazioni. Incapaci di trovare una soluzione pratica al problema energetico, i progettisti hanno utilizzato la soluzione temporanea di aumentare il numero di \textit{cores} di un processore, arrivando ad avere magari otto unità dentro un singolo processore che potessero lavorare separatamente.
+
+
+ANDREBBE INSERITA LA PARTE SUI BENCHMARK SE HO SBATTI
+\newpage
+\section{Istruzioni: il linguaggio dei computer}
+
 
 \end{document}
