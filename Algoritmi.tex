@@ -26,6 +26,8 @@
 \let\emptyset\varnothing
 
 \newcommand{\ind}{\perp\!\!\!\!\perp} 
+\newcommand{\code}[1]{\texttt{#1}}
+
 
 \long\def\symbolfootnotemark[#1]#2{\begingroup%
 \def\thefootnote{\fnsymbol{footnote}}\footnotetext[#1]{#2}\footnotemark[#1]\endgroup}
@@ -86,12 +88,20 @@ Un normale programma, come può esserlo un editor di testo, arriva a essere form
 \end{enumerate}
 Perché un computer possa interpretare le istruzioni di un programma deve ricevere delle istruzioni ben specifiche da mandare al processore. Chiaramente non è il modo più comodo di lavorare, in quanto questi linguaggi macchina sono spesso complicati e poco intuitivi da scrivere. Si ricorre allora all'utilizzo di linguaggi di alto livello (HLL), che sono più comprensibili all'occhio umano. Il passaggio da HLL a linguaggio di basso livello (LLL) avviene tramite un compilatore, un programma che è in grado di tradurre il linguaggio di alto livello nel codice macchina corretto del processore.
 \subsection{Dentro a un computer}
-Nell'informatica classica, una delle definizioni accettate di computer è quella di Von Neumann, dove sono presenti i dispositivi di input (mouse, tastiera, microfoni), quelli di output (schermi, altoparlanti), la memoria e il processore, che sono sostanzialmente gli elementi minimi necessari per far funzionare un computer. \\
-Tra gli elementi di output il più noto è sicuramente lo schermo. La maggior parte di essi funziona con la tecnologia a cristalli liquidi (LCD), che è sostanzialmente una matrice di cristalli che vengono illuminati secondo le quantità di colore RGB necessarie per creare l'immagine richiesta. Il computer ha una matrice di dati, detta frame buffer che contiene le informazioni in codice binario che compongono l'immagine che verrà poi tradotta dal monitor. \\
+Nell'informatica classica, una delle definizioni accettate di computer è quella di Von Neumann, dove sono presenti i dispositivi di input (mouse, tastiera, microfoni), quelli di output (schermi, altoparlanti), la memoria e il processore, che sono sostanzialmente gli elementi minimi necessari per far funzionare un computer. 
+
+
+Tra gli elementi di output il più noto è sicuramente lo schermo. La maggior parte di essi funziona con la tecnologia a cristalli liquidi (LCD), che è sostanzialmente una matrice di cristalli che vengono illuminati secondo le quantità di colore RGB necessarie per creare l'immagine richiesta. Il computer ha una matrice di dati, detta frame buffer che contiene le informazioni in codice binario che compongono l'immagine che verrà poi tradotta dal monitor. 
+
+
 Sovrapponendo a un LCD un pannello capacitivo che permette di determinare la posizione del tocco dell'utente e si ottiene un touchscreen.
+
+
 All'interno di tutti i computer si trovano i circuiti integrati, detti anche chip, che possono avere diversi compiti, dal processore principale (CPU) ai vari controller di dispositivi all'interno del computer. 
 Per tornare al discorso dell'astrazione, uno dei passaggi fondamentali nella progettazione di un computer è la scelta di un set di istruzioni (ISA) per un determinato processore. Un ISA è il minimo necessario per poter interfacciarsi con il processore senza dover scrivere codice binario.
-Un circuito integrato solitamente è formato da una serie di transistor, che altro non sono che degli switch on-off che cambiano stato se attraversati da corrente. La crescita del numero di transistor presenti all'interno di un chip è stata quasi esponenziale, come ricorda la legge di Moore. Il silicio, come altri elementi simili è un semiconduttore, per cui ha sia caratteristiche di un conduttore che di un isolante, a seconda di come viene trattato o delle temperature a cui opera. \\
+Un circuito integrato solitamente è formato da una serie di transistor, che altro non sono che degli switch on-off che cambiano stato se attraversati da corrente. La crescita del numero di transistor presenti all'interno di un chip è stata quasi esponenziale, come ricorda la legge di Moore. Il silicio, come altri elementi simili è un semiconduttore, per cui ha sia caratteristiche di un conduttore che di un isolante, a seconda di come viene trattato o delle temperature a cui opera. 
+
+
 Per ottenere un chip si parte da un lingotto di silicio, che viene diviso in tante fette rotonde (dette wafer), sopra le quali viene impresso e lavorato il circuito mediante complicati processi industriali\footnote{Credetemi, ci ho lavorato dentro, complicato non rende l'idea}. Una volta ottenuto un wafer con sopra una serie di chip uguali vengono tagliati e testati per il funzionamento. Dopo questo passaggio sono pronti per essere venduti o installati dentro dei componenti.
 Questo processo di produzione in serie permette di scartare solo pochi chip.
 Il costo di produzione di un circuito integrato si ottiene con una serie di equazioni.
@@ -108,7 +118,9 @@ Si tratta di
     \item Latenza o tempo di risposta: probabilmente la più intuibile, determina il tempo in cui un sistema risponde a un determinato input.
     \item Portata: il numero di operazioni eseguite da un sistema in un determinato lasso di tempo.
 \end{enumerate}
-tendenzialmente per sistemi customer-oriented si osserva più la latenza, in quanto può essere anche un punto di forza in caso di vendita, mentre se si tratta di grossi sistemi di server la portata sarà una metrica più utile, in quanto si vorrà massimizzare la quantità di operazioni al secondo.\\
+tendenzialmente per sistemi customer-oriented si osserva più la latenza, in quanto può essere anche un punto di forza in caso di vendita, mentre se si tratta di grossi sistemi di server la portata sarà una metrica più utile, in quanto si vorrà massimizzare la quantità di operazioni al secondo.
+
+
 Nell'ambito della comparazione tra prestazioni, si supponga di voler confrontare un sistema \(X\) e un sistema \(Y\), si definiscano le prestazioni come 
 \[
     \mbox{Prestazioni} = \frac{1}{\mbox{Tempo di risposta}}
@@ -123,8 +135,12 @@ Allora si può anche ottenere un numero \(n\) definito come
 \[
     \frac{\mbox{Prestazioni}_X}{\mbox{Prestazioni}_Y} = n
 \]
-In tal modo si può dire che il sistema \(X\) è \(n\) volte più veloce di \(Y\). \\
-Nel caso dei computer il tempo di risposta è spesso correlato al tempo di lavoro della CPU. Per misurare il tempo di utilizzo di una CPU si ricorre all'utilizzo di un 'orologio' interno che definisce il tempo in cui avvengono gli eventi nel sistema. Tale orologio si definisce clock cycle, generalmente ha valori di parecchi ordini di grandezza più piccoli dei secondi, in quanto le operazioni all'interno del processore avvengono con velocità impressionante. Allora invece del periodo di clock, spesso si utilizza il suo inverso, la frequenza di clock, che indica quanti cicli vengono completati in un secondo. \\
+In tal modo si può dire che il sistema \(X\) è \(n\) volte più veloce di \(Y\). 
+
+
+Nel caso dei computer il tempo di risposta è spesso correlato al tempo di lavoro della CPU. Per misurare il tempo di utilizzo di una CPU si ricorre all'utilizzo di un 'orologio' interno che definisce il tempo in cui avvengono gli eventi nel sistema. Tale orologio si definisce clock cycle, generalmente ha valori di parecchi ordini di grandezza più piccoli dei secondi, in quanto le operazioni all'interno del processore avvengono con velocità impressionante. Allora invece del periodo di clock, spesso si utilizza il suo inverso, la frequenza di clock, che indica quanti cicli vengono completati in un secondo. 
+
+
 Allora si può definire il tempo di esecuzione di un programma come 
 \begin{align*}
     \mbox{Tempo di esecuzione della CPU 
@@ -144,12 +160,71 @@ Il termine \textit{Numero medio di cicli di clock per istruzione} si chiama anch
 \]
 Ci sono quindi vari modi per definire le prestazioni di un sistema, e si può agire sulle singole metriche per migliorare il sistema, ma bisogna sempre tenere conto dell'efficienza del sistema.
 \subsection{La questione energetica}
-Negli ultimi decenni ci si è resi conto di aver raggiunto un limite fisico al raffreddamento dei processori, per cui non possono assorbere più di una determinata potenza. Oltretutto con il proliferare di dispositivi alimentati da batterie e non connessi a una sorgente continua di elettricità si è dovuto cercare un giusto compromesso tra energia consumata e prestazioni. Incapaci di trovare una soluzione pratica al problema energetico, i progettisti hanno utilizzato la soluzione temporanea di aumentare il numero di \textit{cores} di un processore, arrivando ad avere magari otto unità dentro un singolo processore che potessero lavorare separatamente.
+Negli ultimi decenni ci si è resi conto di aver raggiunto un limite fisico al raffreddamento dei processori, per cui non possono assorbere più di una determinata potenza. Oltretutto con il proliferare di dispositivi alimentati da batterie e non connessi a una sorgente continua di elettricità si è dovuto cercare un giusto compromesso tra energia consumata e prestazioni. 
+Poiché si era giunti alla conclusione che il consumo di potenza si poteva calcolare come 
+\[
+    \mbox{Potenza} \propto \frac{1}{2} \; \times \; \mbox{Carico capacitivo} \; \times \; \mbox{Tensione}^2 \; \times \; \mbox{Frequenza}
+\]
+Poiché le frequenze sono aumentate di mille volte negli ultimi 30 anni e la tensione è arrivata da \(5V\) a \(1V\), ci si aspetterebbe un incremento della potenza notevole, mentre si parla di un aumento di circa trenta volte dagli anni '80. Purtroppo la tensione ha raggiunto un livello fisico insuperabile e la frequenza si è stabilizzata ormai, dunque si è raggiunto un tetto massimo alla potenza assorbita dai chip.
+Incapaci di trovare una soluzione pratica al problema energetico, i progettisti hanno utilizzato la soluzione temporanea di aumentare il numero di \textit{cores} di un processore, arrivando ad avere magari otto unità dentro un singolo processore che potessero lavorare separatamente. 
 
 
-ANDREBBE INSERITA LA PARTE SUI BENCHMARK SE HO SBATTI
+La questione dell'ottimizzazione energetica ha inoltre portato alla luce una serie di fallacie o problematiche che impediscono il progredire come era successo nelle ultime decadi
+\begin{itemize}
+    \item Legge di Amdahl: si può riassumere come \begin{quote}
+        Il miglioramento che si può ottenere su una certa parte del sistema è limitato dalla frazione di tempo in cui tale attività ha luogo.
+    \end{quote}
+    Ossia che a volte lavorare per migliorare una singola porzione di un sistema rischia di non produrre nessun effetto utile, ad esempio nel caso in cui tale operazione sia già stata ottimizzata al massimo. Si può formulare come 
+    \begin{align*}
+        \mbox{Tempo di esecuzione dopo il miglioramento} = \\
+        \frac{\mbox{Tempo di esecuzione influenzato dal miglioramento}}{\# \;\mbox{di volte che è migliorato il processo}} \; + \\
+        + \; \mbox{Tempo di esecuzione non influenzato}
+    \end{align*}
+    Si può utilizzare tale legge per stimare il miglioramento delle prestazion di un sistema conoscendo il tempo speso a fare determinati compiti e il miglioramento potenziale.
+    \item Consumo di energia al minimo: non si è ancora trovata una soluzione al rendere il consumo di energia lineare al carico di lavoro. Anche i sistemi più ottimizzati al \(10\%\) del carico di lavoro consumano il \(33\%\) della potenza massima.
+    \item Utilizzare un elemento solo dell'equazione delle prestazioni come metrica: una alternativa al tempo di esecuzione sono le MIPS (Million Instructions Per Second) definita come 
+    \[
+        \mbox{MIPS} = \frac{\mbox{Numero di istruzioni}}{\mbox{Tempo di esecuzione} \; \times \; 10^6}
+    \]
+    I problemi di questa metrica sono principalmente tre, in primo luogo non tiene conto dei diversi set di istruzioni e le loro velocità, inoltre varia da programma a programma sullo stesso computer, e inoltre in un programma con più istruzioni, ma la singola istruzione è più veloce, le MIPS variano indipendentemente dalle prestazioni.
+\end{itemize}
 \newpage
 \section{Istruzioni: il linguaggio dei computer}
+\subsection{Introduzione}
+Interagire con l'hardware di un computer, come detto in precedenza, richiede l'utilizzo di un set di istruzioni. Generalmente quando si parla di set di istruzioni si parla di linguaggi tutto sommato simili tra di loro, con delle filosofie alla base molto differenti. In questo caso il linguaggio in uso sarà il RISC-V, ma ne esistono molte altre, tra le più note Intel x86, MIPS e ARM.
+\subsection{Operazioni}
+Ogni computer è in grado di eseguire calcoli aritmetici. Nel caso del RISC-V il codice per sommare due numeri è dato da
+\begin{verbatim}
+    add a, b ,c
+\end{verbatim}
+che richiede al computer di sommare i numeri \code{b} e \code{c} e di salvare tale somma in \code{a}.
+Si tratta di un comando molto rigido che ha sempre una sola variabile come output e ne accetta due come input, per cui per sommare tra di loro quattro variabili diverse è necessario 
+\begin{verbatim}
+    add a, x, y             // La somma di x e y si trova in a
+    add a, a, w             // La somma di x, y e w si trova in a
+    add a, a, z             // La somma di x, y, w, e z si trova in a
+\end{verbatim}
+Tutte le parole oltre il doppio slash sono commenti che vengono ignorati e servono solo al lettore umano. 
 
 
+Questa scelta deriva da una filosofia di progettazione, la semplicità favorisce la regolarità. Tante operazioni semplici ripetute spesso rendono più veloce e regolare il flusso di lavoro.
+Per esempio un programma più complesso\footnote{Ho visto programmi più complicati} in C come può essere 
+\begin{verbatim}
+    f = (g + h) - (i + j);
+\end{verbatim}
+che contiene 5 variabili\footnote{Lo so, andavano dichiarate prima perdonatemi} \code{f, g, h, i, j} viene tradotto nel seguente modo da un compilatore C \(\to\) RISC-V
+\begin{verbatim}
+    add t0, g, h            // Crea una variabile temporanea per la somma 
+                            di g e h
+    add t1, i, j            // Variabile temporanea per i e j
+    sub f, t0, t1           // Salva in f la differenza delle due variabili 
+                            temporanee
+\end{verbatim}
+\subsection{Operandi}
+Gli operandi per eseguire istruzioni aritmetiche sono salvati all'interno di determinati registri del RISC-V. Un registro è un insieme di \(64\) bit all'interno dell'hardware. Poiché appaiono molto spesso, i gruppi di \(64\) bit sono definiti \textit{doublewords}, mentre i gruppi di \(32\) bit sono chiamati \textit{words}. A differenza delle variabili di un linguaggio di programmazione, il numero di registri in un set di istruzioni è limitato, in questo caso a \(32\) registri.
+Tale limite nasce da una seconda scelta stilistica: più una cosa è piccola più è veloce. Minore è il numero di registri da controllare, minore sarà il tempo di clock.  
+
+Poiché il numero di registri è limitato, è necessario avere un posto dove salvare i dati che non servono nell'immediato futuro. Ci sono delle istruzioni apposta per trasferire i dati dai registri alla memoria. La memoria è strutturata come un singolo vettore monodimensionale, a cui si accede utilizzando l'indirizzo della cella interessata. 
+
+Una delle istruzioni per trasferire i fati in memoria 
 \end{document}

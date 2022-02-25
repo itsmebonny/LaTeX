@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2022.2.11)  25 FEB 2022 16:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2022.2.11)  25 FEB 2022 23:14
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -177,20 +177,20 @@ Package: cancel 2013/04/12 v2.2 Cancel math terms
  (Algoritmi.aux)
 \openout1 = `Algoritmi.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 45.
+LaTeX Font Info:    ... okay on input line 45.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -228,11 +228,11 @@ LaTeX Font Info:    ... okay on input line 43.
 
 \footinsdefault=\insert251
 \FN@cache251=\box53
-LaTeX Font Info:    Trying to load font information for U+msa on input line 47.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 49.
 (/home/bonni/.miktex/texmfs/install/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 47.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 49.
  (/home/bonni/.miktex/texmfs/install/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
@@ -240,19 +240,19 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 
 pdfTeX warning: pdflatex (file pdftex.map): cannot open font map file
-] [2] [3] [4] [5] [6] [7] (Algoritmi.aux) ) 
+] [2] [3] [4] [5] [6] [7] [8] (Algoritmi.aux) ) 
 Here is how much of TeX's memory you used:
- 3425 strings out of 481073
- 45393 string characters out of 2905097
- 358018 words of memory out of 3000000
- 20766 multiletter control sequences out of 15000+600000
- 419354 words of font info for 85 fonts, out of 8000000 for 9000
+ 3432 strings out of 481073
+ 45469 string characters out of 2905097
+ 359047 words of memory out of 3000000
+ 20772 multiletter control sequences out of 15000+600000
+ 419523 words of font info for 86 fonts, out of 8000000 for 9000
  0 hyphenation exceptions out of 8191
- 68i,9n,77p,726b,248s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmti12.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmmi8.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmmi12.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi720/cmsy10.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmr10.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmr7.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmr8.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi720/cmbx12.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi864/cmbx12.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmr12.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi720/cmr12.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi720/cmr17.pk>
-Output written on Algoritmi.pdf (7 pages, 100302 bytes).
+ 68i,10n,77p,673b,248s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmtt12.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmti12.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmmi8.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmmi12.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi720/cmsy10.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmr10.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmr7.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmr8.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi720/cmbx12.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi864/cmbx12.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmr12.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi720/cmr12.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi720/cmr17.pk>
+Output written on Algoritmi.pdf (8 pages, 123665 bytes).
 PDF statistics:
- 301 PDF objects out of 1000 (max. 8388607)
+ 362 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

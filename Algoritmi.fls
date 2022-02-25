@@ -365,7 +365,10 @@ INPUT /home/bonni/.miktex/texmfs/install/fonts/tfm/public/cm/cmbx5.tfm
 INPUT /home/bonni/.miktex/texmfs/install/fonts/tfm/public/amsfonts/cmextra/cmmib5.tfm
 INPUT /home/bonni/.miktex/texmfs/install/fonts/tfm/public/amsfonts/cmextra/cmbsy5.tfm
 INPUT /home/bonni/.miktex/texmfs/install/fonts/tfm/public/cm/cmti12.tfm
+INPUT /home/bonni/.miktex/texmfs/install/fonts/tfm/public/cm/cmtt12.tfm
 INPUT Algoritmi.aux
+INPUT /home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmtt12.pk
+INPUT /home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmtt12.pk
 INPUT /home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmti12.pk
 INPUT /home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmti12.pk
 INPUT /home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmmi8.pk

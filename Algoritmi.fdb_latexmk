@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1645804457 "/home/bonni/Documents/LaTeX/LaTeX/Algoritmi.tex" "Algoritmi.pdf" "Algoritmi" 1645804458
+["pdflatex"] 1645827298 "/home/bonni/Documents/LaTeX/LaTeX/Algoritmi.tex" "Algoritmi.pdf" "Algoritmi" 1645827299
   "/home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk" 1621986155 14064 b09d1f47cfa28292a74fbecea6a1196c ""
   "/home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmmi12.pk" 1644590301 17956 cc041117d0d5c03958077030579cf7a5 ""
   "/home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmmi8.pk" 1645032754 11704 0737e14c6f5bb2ed63ece0051addc685 ""
@@ -8,6 +8,7 @@
   "/home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmr7.pk" 1645554897 7736 1879e646df501bbeff2a7444c0331a7d ""
   "/home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmr8.pk" 1644590299 8740 d620350b1d74ca67e5453d51e016c9b0 ""
   "/home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmti12.pk" 1645032761 18348 38bc6d04f5de26ca99d73047ddf9efea ""
+  "/home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmtt12.pk" 1645824542 10532 2f98a76d97646725df9399cd7d8a3dbf ""
   "/home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi720/cmbx12.pk" 1645032759 17936 053f4a38bf2289539d5a70bb82925ec4 ""
   "/home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi720/cmr12.pk" 1644590304 15968 471905ccb26866441981cd9ab4be6498 ""
   "/home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi720/cmr17.pk" 1644590306 24536 b56c717cc8a76aa7ec3a9c37ae466c39 ""
@@ -51,6 +52,7 @@
   "/home/bonni/.miktex/texmfs/install/fonts/tfm/public/cm/cmsy6.tfm" 1621986061 1116 933a60c408fc0a863a92debe84b2d294 ""
   "/home/bonni/.miktex/texmfs/install/fonts/tfm/public/cm/cmsy8.tfm" 1621986061 1120 8b7d695260f3cff42e636090a8002094 ""
   "/home/bonni/.miktex/texmfs/install/fonts/tfm/public/cm/cmti12.tfm" 1621986061 1484 ed72f8f5cf654cda15ecc8e32bfcbee5 ""
+  "/home/bonni/.miktex/texmfs/install/fonts/tfm/public/cm/cmtt12.tfm" 1621986061 772 9a936b7f5e2ff0557fce0f62822f0bbf ""
   "/home/bonni/.miktex/texmfs/install/tex/generic/iftex/iftex.sty" 1621986066 6501 4011d89d9621e0b0901138815ba5ff29 ""
   "/home/bonni/.miktex/texmfs/install/tex/generic/iftex/ifvtex.sty" 1621986066 1057 525c2192b5febbd8c1f662c9468335bb ""
   "/home/bonni/.miktex/texmfs/install/tex/latex/amscls/amsthm.sty" 1621986149 12594 0d51ac3a545aaaa555021326ff22a6cc ""
@@ -82,10 +84,10 @@
   "/home/bonni/.miktex/texmfs/install/tex/latex/ncctools/manyfoot.sty" 1621986146 13031 3be60c01c4009824bd1d566d9e939e30 ""
   "/home/bonni/.miktex/texmfs/install/tex/latex/ncctools/nccfoots.sty" 1621986146 1230 c31056291f4d569c8ed2eb82f3fee186 ""
   "/home/bonni/.miktex/texmfs/install/tex/latex/physics/physics.sty" 1621986136 29610 a9597219b282d9c78b02393dcd7d4322 ""
-  "/home/bonni/Documents/LaTeX/LaTeX/Algoritmi.tex" 1645804457 15061 5877d39861bec69e85158a8e59d55323 ""
-  "Algoritmi.aux" 1645804458 1048 6f265acdd93a833a300fd0052302332e "pdflatex"
-  "Algoritmi.tex" 1645804457 15061 5877d39861bec69e85158a8e59d55323 ""
+  "/home/bonni/Documents/LaTeX/LaTeX/Algoritmi.tex" 1645827297 20902 ea4f323855ebbffdaef477eac8597c04 ""
+  "Algoritmi.aux" 1645827299 1425 e20a31bae48825d2b68c6015a2bd7f73 "pdflatex"
+  "Algoritmi.tex" 1645827297 20902 ea4f323855ebbffdaef477eac8597c04 ""
   (generated)
-  "Algoritmi.log"
-  "Algoritmi.aux"
   "Algoritmi.pdf"
+  "Algoritmi.aux"
+  "Algoritmi.log"
