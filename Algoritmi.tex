@@ -86,5 +86,53 @@ Un normale programma, come può esserlo un editor di testo, arriva a essere form
 Perché un computer possa interpretare le istruzioni di un programma deve ricevere delle istruzioni ben specifiche da mandare al processore. Chiaramente non è il modo più comodo di lavorare, in quanto questi linguaggi macchina sono spesso complicati e poco intuitivi da scrivere. Si ricorre allora all'utilizzo di linguaggi di alto livello (HLL), che sono più comprensibili all'occhio umano. Il passaggio da HLL a linguaggio di basso livello (LLL) avviene tramite un compilatore, un programma che è in grado di tradurre il linguaggio di alto livello nel codice macchina corretto del processore.
 \subsection{Dentro a un computer}
 Nell'informatica classica, una delle definizioni accettate di computer è quella di Von Neumann, dove sono presenti i dispositivi di input (mouse, tastiera, microfoni), quelli di output (schermi, altoparlanti), la memoria e il processore, che sono sostanzialmente gli elementi minimi necessari per far funzionare un computer. \\
-Tra gli elementi di output il più noto è sicuramente lo schermo. La maggior parte di essi funziona con la tecnologia a cristalli liquidi (LCD)
+Tra gli elementi di output il più noto è sicuramente lo schermo. La maggior parte di essi funziona con la tecnologia a cristalli liquidi (LCD), che è sostanzialmente una matrice di cristalli che vengono illuminati secondo le quantità di colore RGB necessarie per creare l'immagine richiesta. Il computer ha una matrice di dati, detta frame buffer che contiene le informazioni in codice binario che compongono l'immagine che verrà poi tradotta dal monitor. \\
+Sovrapponendo a un LCD un pannello capacitivo che permette di determinare la posizione del tocco dell'utente e si ottiene un touchscreen.
+All'interno di tutti i computer si trovano i circuiti integrati, detti anche chip, che possono avere diversi compiti, dal processore principale (CPU) ai vari controller di dispositivi all'interno del computer. 
+Per tornare al discorso dell'astrazione, uno dei passaggi fondamentali nella progettazione di un computer è la scelta di un set di istruzioni (ISA) per un determinato processore. Un ISA è il minimo necessario per poter interfacciarsi con il processore senza dover scrivere codice binario.
+Un circuito integrato solitamente è formato da una serie di transistor, che altro non sono che degli switch on-off che cambiano stato se attraversati da corrente. La crescita del numero di transistor presenti all'interno di un chip è stata quasi esponenziale, come ricorda la legge di Moore. Il silicio, come altri elementi simili è un semiconduttore, per cui ha sia caratteristiche di un conduttore che di un isolante, a seconda di come viene trattato o delle temperature a cui opera. \\
+Per ottenere un chip si parte da un lingotto di silicio, che viene diviso in tante fette rotonde (dette wafer), sopra le quali viene impresso e lavorato il circuito mediante complicati processi industriali\footnote{Credetemi, ci ho lavorato dentro, complicato non rende l'idea}. Una volta ottenuto un wafer con sopra una serie di chip uguali vengono tagliati e testati per il funzionamento. Dopo questo passaggio sono pronti per essere venduti o installati dentro dei componenti.
+Questo processo di produzione in serie permette di scartare solo pochi chip.
+Il costo di produzione di un circuito integrato si ottiene con una serie di equazioni.
+\begin{gather*}
+    \mbox{Costo per chip}=\frac{\mbox{Costo per wafer}}{\mbox{Chip per wafer} \times \mbox{Rendimento}} \\
+    \mbox{Chip per wafer} \approx \frac{\mbox{Area del wafer}}{\mbox{Area del chip}} \\
+    \mbox{Rendimento} = \frac{1}{(1 + (\mbox{Difetti per area} \times \mbox{Area del chip}))^2}
+\end{gather*}
+L'ultima equazione è ottenuta da una serie di dati empirici ottenuti da varie fabbriche di chip, l'esponente tendenzialmente è legato al numero di step critici all'interno del processo produttivo.
+\subsection{Prestazioni}
+Un altro problema presente dagli albori di queste nuove tecnologie è sempre stato quello di definire in maniera corretta le prestazioni di un sistema. Ha più senso un sistema in grado di eseguire \(n\) operazioni al secondo ma che consuma una energia pari a \(m\), o un sistema che ne esegue \(\frac{n}{10}\), ma consuma \(\frac{m}{100}\) energia? Parecchie persone hanno pensato a questa questione, e sono giunti a due principali metriche in grado di fare dei confronti sensati tra vari sistemi.
+Si tratta di 
+\begin{enumerate}
+    \item Latenza o tempo di risposta: probabilmente la più intuibile, determina il tempo in cui un sistema risponde a un determinato input.
+    \item Portata: il numero di operazioni eseguite da un sistema in un determinato lasso di tempo.
+\end{enumerate}
+tendenzialmente per sistemi customer-oriented si osserva più la latenza, in quanto può essere anche un punto di forza in caso di vendita, mentre se si tratta di grossi sistemi di server la portata sarà una metrica più utile, in quanto si vorrà massimizzare la quantità di operazioni al secondo.\\
+Nell'ambito della comparazione tra prestazioni, si supponga di voler confrontare un sistema \(X\) e un sistema \(Y\), si definiscano le prestazioni come 
+\[
+    \mbox{Prestazioni} = \frac{1}{\mbox{Tempo di risposta}}
+\]
+Allora se le prestazioni di \(X\) sono migliori delle prestazioni di \(Y\) vuol dire che 
+\begin{gather*}
+    \mbox{Prestazioni}_X > \mbox{Prestazioni}_Y \\
+    \frac{1}{\mbox{Tempo di risposta}_X} > \frac{1}{\mbox{Tempo di risposta}_Y} \\
+    \mbox{Tempo di risposta}_Y > \mbox{Tempo di risposta}_X
+\end{gather*}
+Allora si può anche ottenere un numero \(n\) definito come 
+\[
+    \frac{\mbox{Prestazioni}_X}{\mbox{Prestazioni}_Y} = n
+\]
+In tal modo si può dire che il sistema \(X\) è \(n\) volte più veloce di \(Y\). \\
+Nel caso dei computer il tempo di risposta è spesso correlato al tempo di lavoro della CPU. Per misurare il tempo di utilizzo di una CPU si ricorre all'utilizzo di un 'orologio' interno che definisce il tempo in cui avvengono gli eventi nel sistema. Tale orologio si definisce clock cycle, generalmente ha valori di parecchi ordini di grandezza più piccoli dei secondi, in quanto le operazioni all'interno del processore avvengono con velocità impressionante. Allora invece del periodo di clock, spesso si utilizza il suo inverso, la frequenza di clock, che indica quanti cicli vengono completati in un secondo. \\
+Allora si può definire il tempo di esecuzione di un programma come 
+\begin{align*}
+    \mbox{Tempo di esecuzione della CPU 
+    di un programma} = \mbox{Cicli di clock per eseguire il programma}  \\
+    \times \quad \mbox{Tempo di un singolo ciclo}
+\end{align*}
+\begin{gather*}
+    \mbox{Tempo di esecuzione della CPU di un programma} = \frac{\mbox{Cicli di clock per eseguire il programma}}{\mbox{Frequenza di clock}}
+\end{gather*}
+Tuttavia queste metriche sono molto approssimative e non tengono conto di svariati fattori, uno fra tutti quante istruzioni vengono eseguite durante l'esecuzione del programma.
+
 \end{document}
