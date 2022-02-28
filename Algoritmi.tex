@@ -226,16 +226,16 @@ Tale limite nasce da una seconda scelta stilistica: più una cosa è piccola pi�
 
 I \(32\) registri hanno tutti delle funzioni specifiche
 \begin{itemize}
-    \item x\(0\): la costante nulla
-    \item x\(1\): indirizzo di return
-    \item x\(2\): puntatore dello stack
-    \item x\(3\): puntatore globale
-    \item x\(4\): puntatore del thread
-    \item x\(5 - \mbox{x}7\), x\(28 - \mbox{x}31\): temporanee
-    \item x\(8\): puntatore del frame
-    \item x\(9\), x\(18- \mbox{x}27\): salvataggio variabili
-    \item x\(10 - \mbox{x}11\): argomento funzioni/risultato
-    \item x\(12 - \mbox{x}17\): argomento funzioni
+    \item \code{x0}: la costante nulla
+    \item \code{x1}: indirizzo di return
+    \item \code{x2}: puntatore dello stack
+    \item \code{x3}: puntatore globale
+    \item \code{x4}: puntatore del thread
+    \item \code{x5} - \code{x7}, \code{28} - \code{x31}: temporanee
+    \item \code{x8}: puntatore del frame
+    \item \code{x9}, \code{18} - \code{x27}: salvataggio variabili
+    \item \code{x10} - \code{x11}: argomento funzioni/risultato
+    \item \code{x12} - \code{x17}: argomento funzioni
 \end{itemize}
 
 Poiché il numero di registri è limitato, è necessario avere un posto dove salvare i dati che non servono nell'immediato futuro. Ci sono delle istruzioni apposta per trasferire i dati dai registri alla memoria. La memoria è strutturata come un singolo vettore monodimensionale, a cui si accede utilizzando l'indirizzo della cella interessata. 
@@ -247,4 +247,27 @@ Supponendo di voler caricare nell'array memoria le variabili \code{g} e \code{i}
     g = h + A[8]
 \end{verbatim}
 Nonostante si tratti di una singola operazione, è necessario prima estrarre il valore \code{A[8]}, e per farlo si utilizza proprio il comando \code{ld}.
+Il comando \code{ld} carica il valore di \code{A[8]} in un registro temporaneo, in questo caso \code{x9}. Il valore \code{h} è salvato nel registro \code{x21} e il valore \code{g} in \code{x20}. Per accedere alla memoria \code{A} bisogna prendere il primo elemento, che si trova in \code{x22} e sommare la costante \code{8}
+
+Il codice prodotto dal compilatore sarà del tipo:
+\begin{verbatim}
+    ld x9, 64(x22)        // Il valore di A[8] viene caricato in x9
+    add x20, x21, x9     // g = h + A[8]
+\end{verbatim}
+Il comando \code{8(x22)} prende il registro base dall'indirizzo \code{x22} e aggiunge un offset di \code{8}, che va moltiplicato per \(8\), essendo un byte composto da \(8\) singoli bit.
+Il comando che esegue il compito opposto, ossia carica dei dati da un registro alla memoria è detto \code{sd}, che sta per \textit{store doubleword}. 
+
+Nel caso si volesse prendere un valore da un array, sommargli una costante e salvarlo in una nuova posizione all'interno dello stesso array, si dovrebbe scrivere in C
+\begin{verbatim}
+    A[12] = h + A[8]
+\end{verbatim}
+Quando viene dato in pasto al compilatore il risultato apparirà simile a:
+\begin{verbatim}
+    ld x9, 64(x22)
+    add x9, x21, x9
+    sd x9, 96(x22)
+\end{verbatim}
+Poiché il valore va salvato nella posizione \(12\) dell'array, il compilatore deve aggiungere un offset di \(8 \times 12\).
+
+
 \end{document}
