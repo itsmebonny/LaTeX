@@ -224,7 +224,27 @@ che contiene 5 variabili\footnote{Lo so, andavano dichiarate prima perdonatemi} 
 Gli operandi per eseguire istruzioni aritmetiche sono salvati all'interno di determinati registri del RISC-V. Un registro è un insieme di \(64\) bit all'interno dell'hardware. Poiché appaiono molto spesso, i gruppi di \(64\) bit sono definiti \textit{doublewords}, mentre i gruppi di \(32\) bit sono chiamati \textit{words}. A differenza delle variabili di un linguaggio di programmazione, il numero di registri in un set di istruzioni è limitato, in questo caso a \(32\) registri.
 Tale limite nasce da una seconda scelta stilistica: più una cosa è piccola più è veloce. Minore è il numero di registri da controllare, minore sarà il tempo di clock.  
 
+I \(32\) registri hanno tutti delle funzioni specifiche
+\begin{itemize}
+    \item x\(0\): la costante nulla
+    \item x\(1\): indirizzo di return
+    \item x\(2\): puntatore dello stack
+    \item x\(3\): puntatore globale
+    \item x\(4\): puntatore del thread
+    \item x\(5 - \mbox{x}7\), x\(28 - \mbox{x}31\): temporanee
+    \item x\(8\): puntatore del frame
+    \item x\(9\), x\(18- \mbox{x}27\): salvataggio variabili
+    \item x\(10 - \mbox{x}11\): argomento funzioni/risultato
+    \item x\(12 - \mbox{x}17\): argomento funzioni
+\end{itemize}
+
 Poiché il numero di registri è limitato, è necessario avere un posto dove salvare i dati che non servono nell'immediato futuro. Ci sono delle istruzioni apposta per trasferire i dati dai registri alla memoria. La memoria è strutturata come un singolo vettore monodimensionale, a cui si accede utilizzando l'indirizzo della cella interessata. 
 
-Una delle istruzioni per trasferire i fati in memoria 
+L'istruzione per trasferire i dati in memoria generalmente si chiama \textit{load} e ha una sintassi per cui prende come input la variabile da salvare, la cella dove salvarla e una costante che rappresenta la memoria. Nel caso del RISC-V il comando è dato da \code{ld}. 
+
+Supponendo di voler caricare nell'array memoria le variabili \code{g} e \code{i}, sia l'array memoria definito come \code{A} per comodità. Osservando questo snippet di codice C
+\begin{verbatim}
+    g = h + A[8]
+\end{verbatim}
+Nonostante si tratti di una singola operazione, è necessario prima estrarre il valore \code{A[8]}, e per farlo si utilizza proprio il comando \code{ld}.
 \end{document}
