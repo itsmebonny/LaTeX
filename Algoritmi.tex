@@ -252,7 +252,7 @@ Il comando \code{ld} carica il valore di \code{A[8]} in un registro temporaneo, 
 Il codice prodotto dal compilatore sarà del tipo:
 \begin{verbatim}
     ld x9, 64(x22)        // Il valore di A[8] viene caricato in x9
-    add x20, x21, x9     // g = h + A[8]
+    add x20, x21, x9      // g = h + A[8]
 \end{verbatim}
 Il comando \code{8(x22)} prende il registro base dall'indirizzo \code{x22} e aggiunge un offset di \code{8}, che va moltiplicato per \(8\), essendo un byte composto da \(8\) singoli bit.
 Il comando che esegue il compito opposto, ossia carica dei dati da un registro alla memoria è detto \code{sd}, che sta per \textit{store doubleword}. 
@@ -269,5 +269,11 @@ Quando viene dato in pasto al compilatore il risultato apparirà simile a:
 \end{verbatim}
 Poiché il valore va salvato nella posizione \(12\) dell'array, il compilatore deve aggiungere un offset di \(8 \times 12\).
 
+Spesso si utilizzano delle costanti nei programmi per determinati compiti, in quel caso si possono utilizzare le costanti immediatamente senza doverle recuperare dalla memoria. 
+\begin{verbatim}
+    addi x22, x22, 4       // Al valore x22 viene aggiunto un valore costante   
+\end{verbatim}
+La costante \code{0} è salvata in un registro apposta in quanto viene utilizzata molto spesso. Ad esempio quando si rende negativo un numero si utilizza il comando \code{sub} con la costante \code{0} e il numero da invertire.
 
+Come visto in precedenza, i processori sono formati da transistor, i quali sono sostanzialmente 
 \end{document}
