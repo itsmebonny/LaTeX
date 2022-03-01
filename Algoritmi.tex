@@ -27,7 +27,13 @@
 
 \newcommand{\ind}{\perp\!\!\!\!\perp} 
 \newcommand{\code}[1]{\texttt{#1}}
-
+\newcommand{\xdownarrow}[1]{%
+  {\left\downarrow\vbox to #1{}\right.\kern-\nulldelimiterspace}
+}
+\newcommand{\xuparrow}[1]{%
+  {\left\uparrow\vbox to #1{}\right.\kern-\nulldelimiterspace}
+}
+\newcommand{\arrvline}{\hfil\kern\arraycolsep\vline\kern-\arraycolsep\hfilneg}
 
 \long\def\symbolfootnotemark[#1]#2{\begingroup%
 \def\thefootnote{\fnsymbol{footnote}}\footnotetext[#1]{#2}\footnotemark[#1]\endgroup}
@@ -275,5 +281,147 @@ Spesso si utilizzano delle costanti nei programmi per determinati compiti, in qu
 \end{verbatim}
 La costante \code{0} è salvata in un registro apposta in quanto viene utilizzata molto spesso. Ad esempio quando si rende negativo un numero si utilizza il comando \code{sub} con la costante \code{0} e il numero da invertire.
 
-Come visto in precedenza, i processori sono formati da transistor, i quali sono sostanzialmente 
+Come visto in precedenza, i processori sono formati da svariati transistor, i quali sono sostanzialmente degli switch on/off, per cui possono assumere solo lo stato \(1\) e \(0\). Per tale motivo i computer elaborano i numeri in base binaria.
+Una regola generale per convertire un numero da una base non decimale a quella decimale è di suddividere il numero nelle singole cifre \(k_i\) con \(i\) che va da \(0\) alle \(n-1\) cifre del numero e poi eseguire una sommatoria
+\[
+    \sum_{i=0}^{n-1} k_i \times \mbox{Base}^i
+\]
+Al contrario invece è necessario prendere il numero in base decimale e dividerlo quante più volte si riesce usando come divisore la base scelta. Risulterà una serie di resti, da \(0\) a \(\mbox{Base}-1\) come valori, e andranno presi dall'ultima divisione effettuata a salire per formare il numero
+\begin{center}
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    Dividendo & Divisore& Risultato & Resto \\
+    \(145\) & \(4\) & \(36\) & \(1\) \\
+    \(36\) & \(4\) & \(9\) & \(0\) \\
+    \(9\) & \(4\) & \(2\) & \(1\) \\
+    \(2\) & \(4\) & \(0\) & \(2\) \\
+    \hline
+    \end{tabular}
+   \( \xuparrow{1cm}\)
+\end{center}
+Si ottiene così che \(145_{10} = 2101_{4}\)
+
+Una doubleword è composta da \(64\) bit, i quali sono numerati da destra verso sinistra. Si parla quindi di bit più significativo per riferirsi al bit più a sinistra (il \(63\)) e di bit meno significativo per il bit più a destra (lo \(0\)). 
+Dal momento che una doubleword ha queste dimensioni, è possibile ottenere \(2^{64}\) combinazioni diverse di bit, per un totale di numeri da \(0\) a \(2^{64}-1 \; (18,446,774,074,709,551,615_{10})\).
+Tuttavia i numeri rappresentati sono tutti positivi, o meglio, vengono detti \textit{unsigned}. Per rappresentare i numeri negativi si è deciso di prendere il bit più significativo e trasformarlo in un bit di segno, per cui se il numero inzia con uno \(0\) è un numero positivo, altrimenti è un numero negativo. Questo meccanismo è chiamato \textit{complemento a due}.
+In tale modo si ottiene la formula per la conversione dei numeri in complemento a due 
+\[
+    (x_{63} \times -2^{63}) + (x_{62} \times 2^{62}) + (x_{61} \times 2^{61}) + \cdots + (x_1 \times 2^1) + (x_0 \times 2^0)
+\]
+Il bit di segno viene moltiplicato per \(-2^{63}\) e tutto il resto viene sommato a quel risultato. Il negativo di un numero in complemento a due si ottiene in maniera molto semplice, si prende il numero in base binaria, si invertono tutti gli \(0\) con gli \(1\) e viceversa, e alla fine si somma un \(1\). Esempio: 
+\[
+\begin{array}{rcc}
+     \\
+    25 & = &0000000000000000000000000000000000000000000000000000000000011001  \\
+    \Downarrow &  &\Downarrow  \\
+    -25 & = &1111111111111111111111111111111111111111111111111111111111100111 
+\end{array}
+\]
+
+A questo punto si può osservare come i computer leggono le istruzioni che ricevono, visto che comprendono solo il codice binario. Un esempio visto in precedenza era il codice 
+\begin{verbatim}
+    add x9, x20, x21
+\end{verbatim}
+che viene rappresentato in base decimale come 
+\[
+\begin{tabular}{|c|c|c|c|c|c|}
+    \hline 
+    0 & 21 & 20 & 9 & 0 & 51 \\
+    \hline
+\end{tabular}
+\]
+e in base binaria come 
+\[
+\begin{tabular}{|c|c|c|c|c|c|}
+    \hline 
+    0000000  & 10101  & 10100  & 000  & 01001 & 0110011 \\
+    \hline
+    \multicolumn{1}{c}{7 bit} & \multicolumn{1}{c}{5 bit} & \multicolumn{1}{c}{5 bit} & \multicolumn{1}{c}{3 bit} & \multicolumn{1}{c}{5 bit} & \multicolumn{1}{c}{7 bit}
+\end{tabular}
+\]
+Il primo, il quarto e il sesto campo della istruzione in tabella (quelli contenenti \(0, 0, 51\)), assieme dicono al computer RISC-V di compiere una addizione con gli argomenti nei restanti campi. 
+
+Questo layout è detto formato dell'istruzione, e la sua traduzione in codice binario è detta linguaggio macchina. Come si vede dalla somma dei bit presenti nella tabella, le istruzioni in RISC-V sono word da \(32\) bit. Per evitare di scrivere lunghe istruzioni in codice binario si ricorre a un'altra base numerica molto comoda, quella esadecimale. Dal momento che la base \(16\) è una potenza di \(2\), si possono trovare delle corrispondenze tra i singoli valori esadecimali e dei gruppi di \(4\) bit in base \(2\)
+\begin{center}
+    \[
+    \begin{tabular}{|c|c|}
+        \hline
+        Esadecimale & Binario \\
+        \hline 
+        0 & 0000 \\
+        \hline
+        1 & 0001 \\
+        \hline
+        2 & 0010 \\
+        \hline
+        3 & 0011 \\
+        \hline
+        4 & 0100 \\
+        \hline
+        5 & 0101 \\
+        \hline
+        6 & 0110 \\
+        \hline
+        7 & 0111 \\
+        \hline
+        8 & 1000 \\
+        \hline
+        9 & 1001 \\
+        \hline
+        a & 1010 \\
+        \hline
+        b & 1011 \\
+        \hline
+        c & 1100 \\
+        \hline
+        d & 1101 \\
+        \hline
+        e & 1110 \\
+        \hline
+        f & 1111 \\
+        \hline
+        \end{tabular}
+    \]
+\end{center}
+Le istruzioni in RISC-V hanno dei nomi specifici
+\[
+\begin{tabular}{|c|c|c|c|c|c|}
+    \hline 
+    funct7  & rs2  & rs1  & funct3  & rd & opcode \\
+    \hline
+    \multicolumn{1}{c}{7 bit} & \multicolumn{1}{c}{5 bit} & \multicolumn{1}{c}{5 bit} & \multicolumn{1}{c}{3 bit} & \multicolumn{1}{c}{5 bit} & \multicolumn{1}{c}{7 bit}
+\end{tabular}
+\]
+che significano
+\begin{itemize}
+    \item opcode: il nome dell'operazione che si sta eseguendo
+    \item rd: il registro di destinazione dell'operando, dove si salva il risultato dell'operazione
+    \item funct3: un campo opcode addizionale
+    \item rs1: il registro sorgente del primo operando
+    \item rs2: il registro sorgente del secondo operando
+    \item funct7: un campo opcode addizionale
+\end{itemize}
+Possono sorgere dei problemi nel caso in cui una istruzione abbia bisogno di un maggior numero di bit di quelli presenti. Ad esempio nel caso del comando \code{ld} ha bisogno di due registri e una costante. Se il registro dell'indirizzo dovesse usare uno dei due campi da 5 bit, la costante potrebbe valere massimo \(2^5 - 1\) o \(31\). Si è dovuti scendere a compromessi, decidendo di mantenere le istruzioni tutte della stessa lunghezza. Allora si possono trovare delle istruzioni in formato R (che sta per registro), come quella presente poco sopra. Un altro tipo può essere il formato I (per immediato), che consente l'utilizzo di costanti.
+\[
+\begin{tabular}{|c|c|c|c|c|}
+    \hline 
+    immediate & rs1 & funct3  & rd  & opcode \\
+    \hline
+    \multicolumn{1}{c}{12 bit} & \multicolumn{1}{c}{5 bit} & \multicolumn{1}{c}{3 bit} & \multicolumn{1}{c}{5 bit} & \multicolumn{1}{c}{7 bit}
+\end{tabular}
+\] 
+Il campo \textit{immediate} può contenere valori in complemento a due a 12 bit. 
+L'esempio visto in precedenza del comando \code{ld}
+\begin{verbatim}
+    ld x9, 64(x22)
+\end{verbatim}
+diventa 
+\[
+\begin{tabular}{|c|c|c|c|c|}
+    \hline 
+    000001000000 & 22 & 000  & 01001  & 0000011 \\
+    \hline
+    \multicolumn{1}{c}{12 bit} & \multicolumn{1}{c}{5 bit} & \multicolumn{1}{c}{3 bit} & \multicolumn{1}{c}{5 bit} & \multicolumn{1}{c}{7 bit}
+\end{tabular}
+\] 
 \end{document}
