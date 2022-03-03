@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2022.2.11)  2 MAR 2022 20:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2022.2.11)  3 MAR 2022 18:33
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -242,17 +242,17 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 pdfTeX warning: pdflatex (file pdftex.map): cannot open font map file
 ] [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] (Algoritmi.aux) ) 
 Here is how much of TeX's memory you used:
- 3436 strings out of 481073
- 45504 string characters out of 2905097
+ 3437 strings out of 481073
+ 45512 string characters out of 2905097
  361099 words of memory out of 3000000
- 20776 multiletter control sequences out of 15000+600000
+ 20777 multiletter control sequences out of 15000+600000
  419523 words of font info for 86 fonts, out of 8000000 for 9000
  0 hyphenation exceptions out of 8191
  68i,10n,77p,724b,273s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi720/cmex10.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmsy8.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmtt12.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmti12.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmmi8.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmmi12.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi720/cmsy10.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmr10.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmr7.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmr8.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi720/cmbx12.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi864/cmbx12.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi600/cmr12.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi720/cmr12.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/public/cm/dpi720/cmr17.pk>
-Output written on Algoritmi.pdf (11 pages, 144113 bytes).
+Output written on Algoritmi.pdf (11 pages, 147423 bytes).
 PDF statistics:
- 407 PDF objects out of 1000 (max. 8388607)
+ 413 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

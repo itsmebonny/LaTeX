@@ -425,5 +425,23 @@ diventa
 \end{tabular}
 \]
 
-I computer si basano
+I computer si basano su due principi fondamentali
+\begin{enumerate}
+    \item Le istruzioni vengono rappresentate come numeri
+    \item I programmi sono salvati all'interno della memoria, per essere letti o scritti, come i dati
+\end{enumerate}
+Questa intuizione porta al concetto dello \textit{stored-program}. In questa maniera, sia il codice sorgente del programma, sia le istruzioni per il programma, sia per il compilatore e anche il compilatore stesso. I programmi allora possono essere condivisi come file di numeri binari, e questa cosa implica che, commercialmente, la compatibilità di un programma è data solo dalla capacità del computer di leggere tali numeri.
+
+È subito sembrato molto più efficiente operare sui singoli bit invece che sulle parole intere. Per eseguire operazioni sui singoli bit ci sono diversi comandi, che hanno delle corrispondenze con gli operatori logici in C
+\begin{center}
+    \begin{tabular}{ccc}
+        Shift left & \(<<\) & \\
+        Shift right & \(>>\) & \\
+        Shift right arithmetic & \(>>\) & \\
+        Bit-by-bit AND & \code{\&} & \\
+        Bit-by-bit OR & \vline & \\
+        Bit-by-bit XOR & \(\land\) & \\
+        Bit-by-bit NOT &\(~\)& \\
+    \end{tabular}
+\end{center}
 \end{document}
