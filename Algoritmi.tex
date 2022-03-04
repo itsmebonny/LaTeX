@@ -388,7 +388,7 @@ Le istruzioni in RISC-V hanno dei nomi specifici
 \[
 \begin{tabular}{|c|c|c|c|c|c|}
     \hline 
-    funct7  & rs2  & rs1  & funct3  & rd & opcode \\
+    \code{funct7}  & \code{rs2}  & \code{rs1} & \code{funct3}  & \code{rd} & \code{opcode} \\
     \hline
     \multicolumn{1}{c}{7 bit} & \multicolumn{1}{c}{5 bit} & \multicolumn{1}{c}{5 bit} & \multicolumn{1}{c}{3 bit} & \multicolumn{1}{c}{5 bit} & \multicolumn{1}{c}{7 bit}
 \end{tabular}
@@ -406,7 +406,7 @@ Possono sorgere dei problemi nel caso in cui una istruzione abbia bisogno di un 
 \[
 \begin{tabular}{|c|c|c|c|c|}
     \hline 
-    immediate & rs1 & funct3  & rd  & opcode \\
+    \code{immediate} & \code{rs1} & \code{funct3}  & \code{rd}  & \code{opcode} \\
     \hline
     \multicolumn{1}{c}{12 bit} & \multicolumn{1}{c}{5 bit} & \multicolumn{1}{c}{3 bit} & \multicolumn{1}{c}{5 bit} & \multicolumn{1}{c}{7 bit}
 \end{tabular}
@@ -436,14 +436,25 @@ Questa intuizione porta al concetto dello \textit{stored-program}. In questa man
 È subito sembrato molto più efficiente operare sui singoli bit invece che sulle parole intere. Per eseguire operazioni sui singoli bit ci sono diversi comandi, che hanno delle corrispondenze con gli operatori logici in C
 \begin{center}
     \begin{tabular}{ccc}
-        Shift left & \(<<\) & \\
-        Shift right & \(>>\) & \\
-        Shift right arithmetic & \(>>\) & \\
-        Bit-by-bit AND & \code{\&} & \\
-        Bit-by-bit OR & \vline & \\
-        Bit-by-bit XOR & \(\land\) & \\
-        Bit-by-bit NOT &\code{\texttildelow}& \\
+        \code{Shift left} & \(<<\) & \code{sll, slli}\\
+        \code{Shift right} & \(>>\) & \code{srl, srli} \\
+        \code{Shift right arithmetic} & \(>>\) & \code{sra, srai} \\
+        \code{Bit-by-bit AND} & \code{\&} & \code{and, andi} \\
+        \code{Bit-by-bit OR} & \vline & \code{or, ori} \\
+        \code{Bit-by-bit XOR} & \(\land\) & \code{xor, xori} \\
+        \code{Bit-by-bit NOT} &\code{\texttildelow} & \code{xori} \\
     \end{tabular}
 \end{center}
+Queste istruzioni sono codificate in istruzioni di tipo I
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        \code{funct6} & \code{immediate} & \code{rs1} & \code{funct3} & \code{rd} & \code{opcode} \\
+        \hline
+    \end{tabular}
+\end{center}
+dove la costante viene codificata in \(6\) bit, dal momento che sarebbe uno spreco spostare più di \(64\) bit. I restanti \(6\) bit del campo \code{immediate} vengono utilizzati per un \code{opcode} secondario.
+Oltre ai comandi per spostare i bit a destra e a sinistra ci sono i vari gate logici. 
 
+Con il comando \code{AND} si prendono due stringhe di bit, vengono confrontate e viene restituita una stringa di bit i cui bit hanno valore 1 se entrambi i bit degli argomenti avevano
 \end{document}
