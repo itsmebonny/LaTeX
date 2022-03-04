@@ -456,5 +456,17 @@ Queste istruzioni sono codificate in istruzioni di tipo I
 dove la costante viene codificata in \(6\) bit, dal momento che sarebbe uno spreco spostare più di \(64\) bit. I restanti \(6\) bit del campo \code{immediate} vengono utilizzati per un \code{opcode} secondario.
 Oltre ai comandi per spostare i bit a destra e a sinistra ci sono i vari gate logici. 
 
-Con il comando \code{AND} si prendono due stringhe di bit, vengono confrontate e viene restituita una stringa di bit i cui bit hanno valore 1 se entrambi i bit degli argomenti avevano
+Con il comando \code{AND} si prendono due stringhe di bit, vengono confrontate e viene restituita una stringa di bit i cui bit hanno valore \(1\) se entrambi i bit degli argomenti avevano valore \(1\), altrimenti \(0\), mentre il comando \code{OR} restituisce \(1\) se solo uno dei due bit vale \(1\).
+Il comando \code{XOR} restituisce \(1\) se i bit di entramni gli argomenti sono uguali, altrimenti \(0\), mentre il comando \code{NOT} inverte i bit.
+
+Inoltre nel RISC-V sono presenti delle istruzioni per prendere decisioni a seconda degli input ricevuti. I comandi nello specifico sono 
+\begin{verbatim}
+    beq rs1, rs2, L1
+\end{verbatim}
+che significa \textit{branch if equal}, e esegue il comando di spostarsi nella parte di codice chiamata \code{L1} solo se \code{rs1} e \code{rs2} sono uguali.
+Nel caso opposto, ossia verificare che i due operandi siano differenti, si utilizza
+\begin{verbatim}
+    bne rs1, rs2, L1
+\end{verbatim}
+
 \end{document}
