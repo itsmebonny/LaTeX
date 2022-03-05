@@ -488,7 +488,6 @@ dove le variabili \code{f}, \code{g}, \code{h}, \code{i} e \code{j} sono salvate
     \node(if)[process, below of=problem, xshift = -5cm]{f = g +h};
     \node(else)[process, below of=problem, xshift = 5cm]{f = g - h};
     \node(fine)[startstop, below of=if, xshift = 5cm]{Fine};
-    \node [above of=else]{Else:}
     \draw [arrow] (problem) -|node[anchor = north, yshift = 0.6cm, xshift = 1cm]{i = j} (if);
     \draw [arrow] (problem) -|node[anchor = north, yshift = 0.6cm, xshift = -1cm]{i \(\not=\) j} (else);
     \draw [arrow] (if) |- (fine);
