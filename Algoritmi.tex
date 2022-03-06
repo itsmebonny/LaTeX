@@ -13,6 +13,8 @@
 \tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=orange!30]
 \tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=0.3cm, text centered, draw=black, fill=green!30]
 \tikzstyle{arrow} = [thick,->,>=stealth]
+\usepackage{newunicodechar}
+\newunicodechar{≠}{\ensuremath{\not =}}
 \usepackage{textcomp}
 \usepackage[makeroom]{cancel}
 
@@ -288,8 +290,8 @@ Spesso si utilizzano delle costanti nei programmi per determinati compiti, in qu
     addi x22, x22, 4       // Al valore x22 viene aggiunto un valore costante   
 \end{verbatim}
 La costante \code{0} è salvata in un registro apposta in quanto viene utilizzata molto spesso. Ad esempio quando si rende negativo un numero si utilizza il comando \code{sub} con la costante \code{0} e il numero da invertire.
-
-Come visto in precedenza, i processori sono formati da svariati transistor, i quali sono sostanzialmente degli switch on/off, per cui possono assumere solo lo stato \(1\) e \(0\). Per tale motivo i computer elaborano i numeri in base binaria.
+\subsection{Numeri interi \textit{signed} e \textit{unsigned}}
+Come visto in precedenza, i processori sono formati da svariati transistor, i quali sono come degli switch on/off, per cui possono assumere solo lo stato \(1\) e \(0\). Per tale motivo i computer elaborano i numeri in base binaria.
 Una regola generale per convertire un numero da una base non decimale a quella decimale è di suddividere il numero nelle singole cifre \(k_i\) con \(i\) che va da \(0\) alle \(n-1\) cifre del numero e poi eseguire una sommatoria
 \[
     \sum_{i=0}^{n-1} k_i \times \mbox{Base}^i
@@ -325,7 +327,7 @@ Il bit di segno viene moltiplicato per \(-2^{63}\) e tutto il resto viene sommat
     -25 & = &1111111111111111111111111111111111111111111111111111111111100111 
 \end{array}
 \]
-
+\subsection{Rappresentare le istruzioni}
 A questo punto si può osservare come i computer leggono le istruzioni che ricevono, visto che comprendono solo il codice binario. Un esempio visto in precedenza era il codice 
 \begin{verbatim}
     add x9, x20, x21
@@ -439,7 +441,7 @@ I computer si basano su due principi fondamentali
     \item I programmi sono salvati all'interno della memoria, per essere letti o scritti, come i dati
 \end{enumerate}
 Questa intuizione porta al concetto dello \textit{stored-program}. In questa maniera, sia il codice sorgente del programma, sia le istruzioni per il programma, sia per il compilatore e anche il compilatore stesso. I programmi allora possono essere condivisi come file di numeri binari, e questa cosa implica che, commercialmente, la compatibilità di un programma è data solo dalla capacità del computer di leggere tali numeri.
-
+\subsection{Operazioni logiche}
 È subito sembrato molto più efficiente operare sui singoli bit invece che sulle parole intere. Per eseguire operazioni sui singoli bit ci sono diversi comandi, che hanno delle corrispondenze con gli operatori logici in C
 \begin{center}
     \begin{tabular}{ccc}
@@ -465,7 +467,7 @@ Oltre ai comandi per spostare i bit a destra e a sinistra ci sono i vari gate lo
 
 Con il comando \code{AND} si prendono due stringhe di bit, vengono confrontate e viene restituita una stringa di bit i cui bit hanno valore \(1\) se entrambi i bit degli argomenti avevano valore \(1\), altrimenti \(0\), mentre il comando \code{OR} restituisce \(1\) se solo uno dei due bit vale \(1\).
 Il comando \code{XOR} restituisce \(1\) se i bit di entramni gli argomenti sono uguali, altrimenti \(0\), mentre il comando \code{NOT} inverte i bit.
-
+\subsection{Prendere decisioni}
 Inoltre nel RISC-V sono presenti delle istruzioni per prendere decisioni a seconda degli input ricevuti. I comandi nello specifico sono 
 \begin{verbatim}
     beq rs1, rs2, L1
@@ -487,12 +489,63 @@ dove le variabili \code{f}, \code{g}, \code{h}, \code{i} e \code{j} sono salvate
     \node (problem) [decision] {i == j?};
     \node(if)[process, below of=problem, xshift = -5cm]{f = g +h};
     \node(else)[process, below of=problem, xshift = 5cm]{f = g - h};
-    \node(fine)[startstop, below of=if, xshift = 5cm]{Fine};
+    \node[above of=else, yshift=-1.2cm, xshift=-1cm]{Else:};
+    \node(fine)[below of=if, xshift = 5cm]{Exit};
     \draw [arrow] (problem) -|node[anchor = north, yshift = 0.6cm, xshift = 1cm]{i = j} (if);
-    \draw [arrow] (problem) -|node[anchor = north, yshift = 0.6cm, xshift = -1cm]{i \(\not=\) j} (else);
+    \draw [arrow] (problem) -|node[anchor = north, yshift = 0.6cm, xshift = -1cm]{i \(\not=\) j} (else); 
     \draw [arrow] (if) |- (fine);
     \draw [arrow] (else) |- (fine);
 \end{tikzpicture}
 \end{center}
-Come si vede dal diagramma di flusso
+Come si vede dal diagramma di flusso viene controllata l'uguaglianza e ci si sposta verso l'istruzione desiderata. Il compilatore per essere più rapido controllerà soltanto che i valori siano discordanti. In questo caso si suppongano tutte le variabili già assegnate ai registri.
+\begin{verbatim}
+          bne x22, x23, Else      // Vai a Else se i ≠ j
+          add x19,x20, x21        // f = g + h (viene saltato se i ≠ j)
+          beq x0, x0, Exit        // se 0 == 0 va a Exit (sempre vera)
+    Else: sub x19, x20, x21       // f = g - h (viene saltato se i = j)
+    Exit: 
+\end{verbatim}
+Poiché nella loro struttura più basica sono degli \textit{if-else}, anche i \textit{loop} vengono compilati in maniera simile. Il codice in C 
+\begin{verbatim}
+    while (save[i] == k)\{i += 1\}
+\end{verbatim}
+viene compilato come (assumendo che \code{i} e \code{k} siano salvati nei registri \code{x22} e \code{x24}, mentre la base dell'array \code{save} sia salvata nel registro \code{x25})
+\begin{verbatim}
+    Loop: slli x10, x22, 3    // Salva in x10 = i * 8
+          add x10, x10, x25   // Salva in x10 l'indirizzo save[i]
+          ld x9, 0(x10)       // Salva in x9 il valore di save[i]
+          bne x9, x24, Exit   // Va a Exit se x9 ≠ x24 
+          addi x22, x22, 1    // Aggiunge 1 a x22
+          beq x0, x0, Loop    // Torna a Loop
+    Exit:
+\end{verbatim}
+Un blocco di codice che non si sposta in altre \textit{branch} e non ha \textit{branch} al suo interno è detto blocco base.  
+Altri operatori condizionali possono essere per verificare il minore tra due valori \code{blt}, o il maggiore/uguale \code{bge}.
+
+Le operazioni di confronto devono tenere conto della presenza di numeri \textit{signed} e \textit{unsigned}, in quanto un numero con un \(1\) all'inizio può essere un numero molto grande o un numero negativo. Per ovviare a questo problema si utilizzano dei comandi apposta
+\begin{center}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        Operatore & Signed & Unsigned \\
+        \hline
+        = & \code{beq} & \code{beq} \\
+        ≠ & \code{bne} & \code{bne} \\
+        \(<\) & \code{blt} & \code{bltu} \\
+        \(\geq\) & \code{bge} & \code{bgeu} \\
+        \hline
+    \end{tabular}
+\end{center}
+\subsection{Programmazione procedurale}
+Si definisce programmazione procedurale quella tecnica di suddividere il codice in blocchi più semplici che eseguono sempre lo stesso compito. Si possono definire procedure o \textit{funzioni}. 
+In maniera astratta, affinché un programma possa avere una funzione al suo interno deve eseguire sei step
+\begin{enumerate}
+    \item Salvare i parametri dove la funzione possa accedere
+    \item Lasciare il controllo alla funzione
+    \item Creare lo spazio in memoria necessario per l'esecuzione
+    \item Eseguire il compito
+    \item Salvare il risultato dove il programma possa leggerlo
+    \item Tornare al punto di origine, così che si possa accedere anche da altri punti del programma
+\end{enumerate}
+Poiché i registri sono i posti dove è più rapido accedere ai valori, nel RISC-V ci sono \(8\) registri dedicati al salvataggio dei parametri di una procedura (\code{x10-x17}) e \(1\) per tornare al punto di origine \code{x1}.
+
 \end{document}

@@ -553,6 +553,17 @@ INPUT /home/bonni/.miktex/texmfs/install/tex/generic/pgf/frontendlayer/tikz/libr
 INPUT /home/bonni/.miktex/texmfs/install/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryarrows.code.tex
 INPUT /home/bonni/.miktex/texmfs/install/tex/generic/pgf/libraries/pgflibraryarrows.code.tex
 INPUT /home/bonni/.miktex/texmfs/install/tex/generic/pgf/libraries/pgflibraryarrows.code.tex
+INPUT /home/bonni/.miktex/texmfs/install/tex/latex/newunicodechar/newunicodechar.sty
+INPUT /home/bonni/.miktex/texmfs/install/tex/latex/newunicodechar/newunicodechar.sty
+INPUT /home/bonni/.miktex/texmfs/install/tex/latex/newunicodechar/newunicodechar.sty
+INPUT /home/bonni/.miktex/texmfs/install/tex/latex/newunicodechar/newunicodechar.sty
+INPUT /home/bonni/.miktex/texmfs/install/tex/latex/newunicodechar/newunicodechar.sty
+INPUT /home/bonni/.miktex/texmfs/install/tex/latex/newunicodechar/newunicodechar.sty
+INPUT /home/bonni/.miktex/texmfs/install/tex/latex/newunicodechar/newunicodechar.sty
+INPUT /home/bonni/.miktex/texmfs/install/tex/latex/newunicodechar/newunicodechar.sty
+INPUT /home/bonni/.miktex/texmfs/install/tex/latex/newunicodechar/newunicodechar.sty
+INPUT /home/bonni/.miktex/texmfs/install/tex/latex/newunicodechar/newunicodechar.sty
+INPUT /home/bonni/.miktex/texmfs/install/tex/latex/newunicodechar/newunicodechar.sty
 INPUT /home/bonni/.miktex/texmfs/install/tex/latex/base/textcomp.sty
 INPUT /home/bonni/.miktex/texmfs/install/tex/latex/base/textcomp.sty
 INPUT /home/bonni/.miktex/texmfs/install/tex/latex/base/textcomp.sty
@@ -747,6 +758,7 @@ INPUT /home/bonni/.miktex/texmfs/install/fonts/tfm/public/amsfonts/cmextra/cmmib
 INPUT /home/bonni/.miktex/texmfs/install/fonts/tfm/public/amsfonts/cmextra/cmbsy5.tfm
 INPUT /home/bonni/.miktex/texmfs/install/fonts/tfm/public/cm/cmti12.tfm
 INPUT /home/bonni/.miktex/texmfs/install/fonts/tfm/public/cm/cmtt12.tfm
+INPUT /home/bonni/.miktex/texmfs/install/fonts/tfm/public/cm/cmbxti10.tfm
 INPUT /home/bonni/.miktex/texmfs/install/tex/latex/base/ts1cmtt.fd
 INPUT /home/bonni/.miktex/texmfs/install/tex/latex/base/ts1cmtt.fd
 INPUT /home/bonni/.miktex/texmfs/install/tex/latex/base/ts1cmtt.fd
@@ -759,6 +771,8 @@ INPUT /home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm120
 INPUT /home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk
 INPUT /home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT /home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx12.pfb
+INPUT /home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbxti10.pfb
+INPUT /home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbxti10.pfb
 INPUT /home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT /home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT /home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi12.pfb
