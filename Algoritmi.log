@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2022.2.11)  6 MAR 2022 18:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2022.2.11)  7 MAR 2022 18:42
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -502,19 +502,19 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 454.
  (/home/bonni/.miktex/texmfs/install/tex/latex/base/ts1cmtt.fd
 File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-) [11] [12] [13] (Algoritmi.aux) ) 
+) [11] [12] [13] [14] [15] (Algoritmi.aux) ) 
 Here is how much of TeX's memory you used:
- 16177 strings out of 481073
- 316587 string characters out of 2905097
- 608013 words of memory out of 3000000
- 33222 multiletter control sequences out of 15000+600000
+ 16179 strings out of 481073
+ 316622 string characters out of 2905097
+ 612025 words of memory out of 3000000
+ 33224 multiletter control sequences out of 15000+600000
  420179 words of font info for 88 fonts, out of 8000000 for 9000
  0 hyphenation exceptions out of 8191
  100i,10n,104p,724b,680s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tctt1200.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx12.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi12.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi8.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr12.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr17.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr7.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy8.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmti12.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on Algoritmi.pdf (13 pages, 202430 bytes).
+Output written on Algoritmi.pdf (15 pages, 210018 bytes).
 PDF statistics:
- 114 PDF objects out of 1000 (max. 8388607)
+ 120 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

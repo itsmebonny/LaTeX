@@ -547,5 +547,111 @@ In maniera astratta, affinché un programma possa avere una funzione al suo inte
     \item Tornare al punto di origine, così che si possa accedere anche da altri punti del programma
 \end{enumerate}
 Poiché i registri sono i posti dove è più rapido accedere ai valori, nel RISC-V ci sono \(8\) registri dedicati al salvataggio dei parametri di una procedura (\code{x10-x17}) e \(1\) per tornare al punto di origine \code{x1}.
+Un esempio di codice è
+\begin{verbatim}
+    jal x1, ProcedureAddress  // Si sposta a ProcedureAddress e salva in x1 
+                                 l'indirizzo di ritorno
+\end{verbatim}
+in cui si utilizza il comando \textit{jump-and-link} \code{jal}, che permette di spostarsi in un nuovo indirizzo, salvando l'indirizzo di ritorno della funzione in \code{x1}.
+Il ritorno dalla funzione si esegue con il comando \textit{jump-and-link register} \code{jalr}, a cui si assegna il registro \(0\) e si somma il registro \code{x1}
+\begin{verbatim}
+    jalr x0, 0(x1)            // Si assegna x0 perché non può essere cambiato
+\end{verbatim}
+Nel caso servano più registri per eseguire un determinato comando, torna utile lo \textit{stack}, una coda che funziona secondo il principio \textit{last-in first-out} (LIFO). Il registro dedicato allo stack è il registro \code{x2}, detto anche \code{sp}.
+Prendendo una funzione in C chiamata \code{leaf\_example}
+\begin{verbatim}
+    long long int leaf_example(long long int g, long long int h, 
+                               long long int i, long long int j)
+    {
+        long long int f;
+        f = (g + h) - (i + j);
+        return f;
+    }
+\end{verbatim}
+che in RISC-V viene compilata come
+\begin{verbatim}
+    addi sp, sp, -24    // libera 3 posizioni nello stack
+    sd x5, 16(sp)       // salva il registro x5 nello stack
+    sd x6, 8(sp)        // salva il registro x6 nello stack
+    sd x20, 0(sp)       // salva il registro x20 nello stack
+    add x5, x10, x11    // salva in x5 g + h
+    add x6, x12, x13    // salva in x6 i + j
+    sub x20, x5, x6     // f = x5 - x6 
+    addi x10, x20 0     // restituisce f (x10 = x20 + 0)
+    ld x20, 0(sp)       // recupera il registro x20 dallo stack
+    ld x6, 8(sp)        // recupera il registro x6 dallo stack
+    ld x5, 16(sp)       // recupera il registro x5 dallo stack
+    addi sp, sp, 24     // toglie le tre posizioni libere dallo stack
+    jalr x0, 0(x1)      // torna all'inizio della funzione
+\end{verbatim}
+I registri \code{x5-x7} e \code{x28-x31} non vengono salvati all'uscita dalla funzione, mentre i registri \code{x8-x9} e \code{x18-x27} rimangono salvati dopo l'esecuzione della funzione.
+
+La funzione sopra viene chiamata \textit{leaf}, perché non richiama altre funzioni.
+Quelle che chiamano altre funzioni sono dette \textit{non-leaf}\footnote{Con grande fantasia}. 
+Un esempio può essere questa funzione che calcola il fattoriale di un numero
+\begin{verbatim}
+    long long int fact(long long int n)
+    {
+        if (n < 1) return(1);
+        else return (n * fact(n-1));
+    }
+\end{verbatim}
+che, data in pasto al compilatore, diventa
+\begin{verbatim}
+    fact:
+        addi sp, sp, -16      // libera due elementi nello stack
+        sd x1, 8(sp)          // salva x1 nello stack
+        sd x10, 0(sp)         // salva x10 nello stack
+        addi x5, x10, -1      // x5 = n - 1
+        bge x5, x0, L1        // se (n - 1) >= 0, va a L1
+        addi x10, x0, 1       // restituisce 1
+        addi sp, sp, 16       // riporta lo stack alla situazione iniziale
+        jalr x0, 0(x1)        // ritorna
+         alla chiamata della funzione 
+    L1: 
+        addi x10, x10, -1     // n = n -1
+        jal x1, fact          // chiama fact(n-1)
+        addi x6, x10, 0       // salva il risultato di fact(n-1) in x6
+        ld x10, 0(sp)         // recupera il valore n
+        ld x1, 8(sp)          // recupera l'indirizzo di ritorno
+        mul x10, x10, x6      // n = n* fact(n-1)
+        jalr x0, 0(x1)        // torna alla chiamata della funzione
+    \end{verbatim}
+Una variabile in C può essere salvata in due modi, automatico o statico. Una variabile automatica è accessibile solo da una determinata funzione e viene scartata quando la funzione termina, mentre le variabili statiche sono salvate in memoria e sono accessibili all'esterno e all'interno delle funzioni. Il registro \code{x3} facilita questo compito, creando un \textit{global pointer} \code{gp}, che permette di accedere a tutte le variabili.
+\begin{center}
+    \begin{tabular}{|c|c|}
+        \hline
+        Salvati & Temporanei \\
+        \hline
+        Registri salvati: \code{x8-x9}, \code{x18-x27} & Registri temporanei: \code{x5-x7}, \code{x28, x31} \\
+        Stack pointer: \code{x2 (sp)} & \\
+        Frame pointer: \code{x8 (fp)} & \\
+        Return address: \code{x1 (ra)} & \\
+        Stack sopra a \code{sp} & Stack sotto a \code{sp} \\
+        \hline
+    \end{tabular}
+\end{center}
+Poiché può capitare che, durante l'esecuzione di una funzione, il valore dello stack pointer cambi, è comodo salvare l'indirizzo iniziale dello stack nel \textit{frame pointer} \code{fp}.
+
+Nel caso di variabili dinamiche, come possono essere le liste, esiste uno spazio di memoria apposito, detto \textit{heap}, dove possono venire salvate ed eventualmente modificate. 
+\begin{center}
+    \begin{tabular}{|l|c|l|c|}
+        \hline
+        Nome & Registro & \multicolumn{1}{|c|}{Utilizzo} & Salvato? \\
+        \hline
+        \code{x0} & 0 & La costante nulla & // \\
+        \code{x1 (ra)} & 1 & Indirizzo di ritorno & Sì \\
+        \code{x2 (sp)} & 2 & Stack pointer & Sì \\
+        \code{x3 (gp)} & 3 & Global pointer & Sì \\
+        \code{x4 (tp)} & 4 & Thread pointer & Sì \\
+        \code{x5-x7} & 5-7 & Registri temporanei & No \\
+        \code{x8-x9} & 8-9 & Registri salvati & Sì \\
+        \code{x10-x17} & 10-17 & Argomenti funzione & No \\
+        \code{x18-x27} & 18-27 & Registri salvati & Sì \\
+        \code{x28-x31} & 28-31 & Registri temporanei & No \\
+        \hline
+    \end{tabular}
+\end{center}
+\subsection{Comunicare con il mondo esterno}
 
 \end{document}
