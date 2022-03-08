@@ -688,6 +688,19 @@ diventa (assumendo che gli indirizzi base di \code{x} e \code{y} sono salvati in
         addi sp, sp, 8        // riporta lo stack allo stato iniziale
         jalr x0, 0(x1)        // termina
 \end{verbatim}
-\subsection{Indirizzi nel RISC-V}
-
+\subsection{Grandi indirizzi in RISC-V}
+Sebbene sia molto comodo mantenere tutte le istruzioni di \(32\) bit, ogni tanto può essere comodo avere costanti o indirizzi più grandi.  
+Nel caso degli operandi, generalmente il caso più grande includeva \(12\) bit. L'istruzione \textit{load upper immediate} \code{lui} permette di caricare una costante di \(20\) bit dal bit \(12\) al \(31\) di un registro.  
+Le istruzioni che permettono di passare da una branch all'altra sono dette del tipo \textit{SB} e sono formate in questa maniera, spezzettando una costante da 12 bit in tante parti
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|}
+        \hline
+        imm[12] & imm[10:5] & rs2 & rs1 & funct3 & imm[4:1] & imm[11] & opcode \\
+        \hline
+        \multicolumn{1}{c}{1 bit} & \multicolumn{1}{c}{6 bit} & \multicolumn{1}{c}{5 bit} & \multicolumn{1}{c}{5 bit} &\multicolumn{1}{c}{3 bit} &\multicolumn{1}{c}{4 bit} &
+        \multicolumn{1}{c}{1 bit} &
+        \multicolumn{1}{c}{7 bit}
+    \end{tabular}
+\end{center}
+L'istruzione \code{jal} è del tipo \textit{UJ}
 \end{document}
