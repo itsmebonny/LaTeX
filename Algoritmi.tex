@@ -653,5 +653,41 @@ Nel caso di variabili dinamiche, come possono essere le liste, esiste uno spazio
     \end{tabular}
 \end{center}
 \subsection{Comunicare con il mondo esterno}
+I computer inizialmente eseguivano solo conti, ma con il loro divenire sempre più presenti nella vita delle persone è stato necessario trovare una maniera per processare il testo. Lo standard che si utilizza oggi è detto ASCII (American Standard Code for Information Interchange). Con una serie di sitruzioni si possono estrarre i byte da una doubleword, in questo caso però vanno trattati come numeri \textit{unsigned}. Esistono dei comandi apposta \textit{load byte unsigned} \code{lbu} e \textit{store byte} \code{sb}
+\begin{verbatim}
+    lbu x12, 0(x10)    // legge il byte dalla sorgente
+    sb x12, 0(x11)     // scrive il byte sulla destinazione
+\end{verbatim}
+Un insieme di byte va a formare una stringa. Nel caso del C la fine di una stringa è segnalata dalla presenza del byte \(0\). 
+Per esempio il comando \code{strcpy}, che serve a copiare delle stringhe.
+\begin{verbatim}
+    void strcpy(char x[], char y[])
+    {
+        size_t i;
+        i = 0;
+        while ((x[i] = y[i]) != '\0')
+            i += 1;
+    }
+\end{verbatim}
+diventa (assumendo che gli indirizzi base di \code{x} e \code{y} sono salvati in \code{x10} e \code{x11}, mentre \code{i} è salvata in \code{x19})
+\begin{verbatim}
+    strcpy:
+        addi sp, sp, -8       // libera un elemento nello stack
+        sd x19, 0(sp)         // sposta x19 in cima allo stack
+        add x19, x0, x0       // i = 0
+    L1:
+        add x6, x19, x10      // x5 = indirizzo di y[i]
+        lbu x6, 0(x5)         // x6 = y[i]
+        add x7, x19, x11      // x7 = indirizzo di x[i]
+        sb x6, 0(x7)          // x[i] = y[i]
+        beq x6, x0, L2        // se y[i] == 0, termina
+        addi x19, x19, 1      // i = i + 1
+        jal x0, L1            // ricomincia il loop
+    L2: 
+        ld x19, 0(sp)         // recupera il registro x19
+        addi sp, sp, 8        // riporta lo stack allo stato iniziale
+        jalr x0, 0(x1)        // termina
+\end{verbatim}
+\subsection{Indirizzi nel RISC-V}
 
 \end{document}
