@@ -702,5 +702,24 @@ Le istruzioni che permettono di passare da una branch all'altra sono dette del t
         \multicolumn{1}{c}{7 bit}
     \end{tabular}
 \end{center}
-L'istruzione \code{jal} è del tipo \textit{UJ}
+L'istruzione \code{jal} è del tipo \textit{UJ}, che utilizza solo un registro di destinazione e una costante da \(20\) bit, così ripartita
+\begin{center}
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline 
+        imm[20] & imm[10:1] & imm[11] & imm[19:12] & rd & opcode
+        \hline
+        \multicolumn{1}{c}{1 bit} & multicolumn{1}{c}{10 bit} & multicolumn{1}{c}{1 bit} & multicolumn{1}{c}{8 bit} & multicolumn{1}{c}{5 bit} & 
+        multicolumn{1}{c}{7 bit} &
+    \end{tabular}
+\end{center}
+Tuttavia se tutti gli indirizzi del programma dovessero stare all'interno della costante si avrebbero al massimo \(2^{20}\) possibili indirizzi, che non sono tantissimi. La soluzione arriva dal dividere il \textit{Program Counter} (\textit{PC}) in due parti
+\[
+    \mbox{Program Counter} = \mbox{Registro attuale} + \mbox{Branch offset}
+\]
+In questo modo si hanno un totale di \(2^{64}\) indirizzi disponibili per il programma, ma è raro spostarsi di così tanti indirizzi con un cambio di branch o un \code{jal}. Per spostarsi di parecchi indirizzi è necessario usare due istruzioni \code{lui} per scrivere i primi \(20\) bit dell'indirizzo e \code{jalr} per i restanti \(12\).  
+Ci sono quindi svariati modi per gestire gli indirizzi 
+\begin{enumerate}
+    \item Immediate addressing: in questo caso uno degli operandi è una costante che rappresenta l'indirizzo stesso.
+    \item Register addressing: in questo caso il 
+\end{enumerate}
 \end{document}
