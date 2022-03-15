@@ -706,13 +706,13 @@ L'istruzione \code{jal} è del tipo \textit{UJ}, che utilizza solo un registro d
 \begin{center}
     \begin{tabular}{|c|c|c|c|c|c|}
         \hline 
-        imm[20] & imm[10:1] & imm[11] & imm[19:12] & rd & opcode
+        imm[20] & imm[10:1] & imm[11] & imm[19:12] & rd & opcode \\
         \hline
-        \multicolumn{1}{c}{1 bit} & multicolumn{1}{c}{10 bit} & multicolumn{1}{c}{1 bit} & multicolumn{1}{c}{8 bit} & multicolumn{1}{c}{5 bit} & 
-        multicolumn{1}{c}{7 bit} &
+        \multicolumn{1}{c}{1 bit} & \multicolumn{1}{c}{10 bit} & \multicolumn{1}{c}{1 bit} & \multicolumn{1}{c}{8 bit} & \multicolumn{1}{c}{5 bit} & 
+        \multicolumn{1}{c}{7 bit} 
     \end{tabular}
 \end{center}
-Tuttavia se tutti gli indirizzi del programma dovessero stare all'interno della costante si avrebbero al massimo \(2^{20}\) possibili indirizzi, che non sono tantissimi. La soluzione arriva dal dividere il \textit{Program Counter} (\textit{PC}) in due parti
+Ma, se tutti gli indirizzi del programma dovessero stare all'interno della costante si avrebbero al massimo \(2^{20}\) possibili indirizzi, che non sono tantissimi. La soluzione arriva dal dividere il \textit{Program Counter} (\textit{PC}) in due parti
 \[
     \mbox{Program Counter} = \mbox{Registro attuale} + \mbox{Branch offset}
 \]
@@ -720,6 +720,10 @@ In questo modo si hanno un totale di \(2^{64}\) indirizzi disponibili per il pro
 Ci sono quindi svariati modi per gestire gli indirizzi 
 \begin{enumerate}
     \item Immediate addressing: in questo caso uno degli operandi è una costante che rappresenta l'indirizzo stesso.
-    \item Register addressing: in questo caso il 
+    \item Register addressing: in questo caso il registro dell'operazione rappresenta l'indirizzo
+    \item Base addressing: in questo caso l'indirizzo si ottiene dalla somma di un registro presente nell'istruzione e una costante
+    \item PC-relative addressing: l'indirizzo è ottenuto dalla somma del program counter e una costante presente nell'istruzione
 \end{enumerate}
+\subsection{Sincronizzazione}
+
 \end{document}
