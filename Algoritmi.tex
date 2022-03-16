@@ -725,5 +725,27 @@ Ci sono quindi svariati modi per gestire gli indirizzi
     \item PC-relative addressing: l'indirizzo è ottenuto dalla somma del program counter e una costante presente nell'istruzione
 \end{enumerate}
 \subsection{Sincronizzazione}
+L'esecuzione parallela di vari task è più semplice nel caso siano indipendenti tra di loro, ma non è sempre il caso, anzi, spesso è necessario sincronizzare tra di loro le varie istruzioni. 
+Nel caso del RISC-V le istruzioni sono \code{lr.d} (load-reserved doubleword) e \code{sc.d} (store-conditional doubleword). Queste istruzioni vengono usate in sequenza: se la memoria riservata dal primo comando viene modificata prima dell'esecuzione del secondo comando, quest'ultimo non viene eseguito. Infatti \code{sc.d} utilizza tre registri, uno per l'indirizzo, uno per verificare che l'operazione sia andata a buon fine e nell'ultimo il valore da sovrascrivere. Un esempio è dato da 
+\begin{verbatim}
+    again: lr.d x10, (x20)           // riserva il registro x20
+           sc.d x11, x23, (x20)      // salva il valore di x23 in x20
+           bne x11, x0, again        // verifica che x11 sia nullo
+           addi x23, x10, 0          // salva il valore di x10 in x23
+\end{verbatim}
+Alla fine di queste linee di codice il valore presente in \code{x23} si trova all'indirizzo di \code{x20} e l'indirizzo di \code{x20} viene salvato in \code{x23}. Il registro \code{x11} viene usato nel caso in cui il registro \code{x20} venga toccato prima che \code{sc.d} possa agire. In tal caso salverà un valore non nullo in \code{x11} che causa il loop del codice finché niente interferisce tra i due comandi.  
+\subsection{Tradurre un programma}
+Per eseguire un programma sono necessari quattro step fondamentali:
+\begin{enumerate}
+    \item Compiler: il compilatore prende il programma in C e lo traduce in linguaggio assembly, che è lo step intermedio tra quello che può leggere un umano e quello che può leggere una macchina. Dal linguaggio assembly è necessario passare solo al codice binario affinché la macchina possa leggerlo.
+    \item Assembler: alcune istruzioni all'interno del RISC-V sono delle \textit{pseudoistruzioni}, che l'assembler traduce in linguaggio macchina che possa essere effettivamente compreso. Un esempio è l'istruzione \code{li} (load-immediate), che si utilizza come 
+    \begin{verbatim}
+        li x9, x123
+    \end{verbatim}
+    che inserisce il valore di \code{x123} in \code{x9}, e viene tradotto come \code{addi} 
+    \begin{verbatim}
+        addi x9, x0, x123
+    \end{verbatim}
 
+\end{enumerate}
 \end{document}
