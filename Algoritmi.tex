@@ -752,7 +752,69 @@ Per eseguire un programma sono necessari quattro step fondamentali:
         \item[I.] l'header, che descrive la dimensione e la posizione di tutti gli altri pezzi dentro il file
         \item[II.] il \textit{text segment} che contiene tutta la parte di linguaggio macchina
         \item[III.] il \textit{static data segment} contiene tutti i dati necessari per l'esecuzione del programma (nei sistemi UNIX sono presenti anche i dati dinamici)
-        \item[IV.] la \textit{relocation information}
+        \item[IV.] la \textit{relocation information} identifica le istruzioni e i dati che dipendono da indirizzi assoluti quando il programma viene caricato in memoria
+        \item[V.] la \textit{symbol table} contiene le \textit{label} che non sono ancora state definite 
+        \item[VI.] la \textit{debugging information} che descrive come sono stati compilati i vari moduli  
+    \end{enumerate}
+    \item Linker: finora si è sempre parlato di compilare il programma riga per riga ogni volta che veniva eseguito. Dal momento che questa pratica richiede una quantità esagerata di risorse, si utilizza allora un comodo strumento che compila indipendentemente tutte le linee di codic e e le unisce alla fine, in tal modo, se viene modificata una sola linea, tutte le altre saranno già compilate. Una volta fatto questo si occupa di verificare tutte le referenze interne ed esterne al programma e assegnare ad esse i corretti indirizzi in memoria. Una volta fatto questo viene prodotto un \textit{file eseguibile} che può essere fatto girare sulla macchina
+    \item Loader: una volta creato l'\textit{eseguibile}, nei sistemi UNIX avvengono sei step
+    \begin{enumerate}
+        \item viene letto l'header del file per calcolare la dimensione del \textit{text segment} e \textit{data segment}
+        \item viene creato abbastanza spazio negli indirizzi per il testo e i dati
+        \item vengono copiate le istruzioni e i dati dal file alla memoria
+        \item vengono copiati eventuali parametri dal main allo stack
+        \item vengono inizializzati i registri del processore e posizionato lo stack pointer
+        \item si entra in una branch di start up che copia i parametri dallo stack ai registri degli argomenti e chiama il main del programma. Quando il main si chiude, lo start up esce dall'esecuzione del programma
     \end{enumerate}
 \end{enumerate}
+Le librerie venivano utilizzate in modo statico inizialmente, ma questo portava ad alcuni svantaggi
+\begin{itemize}
+    \item la libreria faceva parte del codice eseguibile, per cui se questa veniva aggiornata, andava aggiornata anche dentro il codice, che altrimenti continuava a recuperare la versione vecchia
+    \item vengono caricate tutte le funzioni all'interno della libreria anche se non vengono poi utilizzate, che spesso significa un grande spreco di memoria
+\end{itemize}
+Questi svantaggi hanno portato allo sviluppo delle \textit{dynamically linked libraries} (DLLs) che vengono chiamate dal programma nel momento dell'esecuzione in maniera dinamica, evitando di recuperare versioni obsolete e di saturare la memoria chiamando tutte le librerie non necessarie.  
+\subsection{Un esempio in C}
+In questa sezione si cerca di fare un riassunto di quanto visto finora, partendo da due snippet di codice in C
+\begin{verbatim}
+    void swap(long long v[], size_t  k)
+    {
+        long long temp;
+        temp = v[k];
+        v[k] = v[k+1];
+        v[k+1] = temp;
+    }
+\end{verbatim}
+Questo codice prende un elemento in un array e lo scambia con un altro elemento dell'array, modificando solo le loro posizioni. Per tradurlo in linguaggio macchina è necessario seguire tre step
+\begin{itemize}
+    \item Allocare i registri per le variabili del programma
+    \item Creare il codice per la funzione 
+    \item Mantenere inalterati i registri durante le eventuali iterazioni della funzione
+\end{itemize}
+Per allocare i registri, il RISC-V utilizza convenzionalmente \code{x10-x17} per i parametri della funzione. In questo caso, essendo solo due, si troveranno in \code{x10} e \code{x11}. La variabile interna \code{temp} sarà allocata al registro \code{x5}.  
+A questo punto rimangono solo le linee di codice
+\begin{verbatim}
+    temp = v[k];
+    v[k] = v[k+1];
+    v[k+1] = temp;
+\end{verbatim}
+Dal momento che il RISC-V utilizza gli indirizzi in \textit{byte}, ogni doubleword dista da quella prima \(8\) bit, quindi tutti gli indici vanno moltiplicati per \(8\).
+Per ottenere il valore di \code{v[k]} bisogna moltiplicare il valore di \code{k} per \(8\), tramite uno \textit{shift left} di 3
+\begin{verbatim}
+    slli x6, x11, 3    
+\end{verbatim}
+che salva in \code{x6} il valore \code{k * 8}
+\begin{verbatim}
+    add x6, x10, x6
+\end{verbatim}
+che aggiunge a \code{x6} il valore dell'indirizzo base di \code{v}, in maniera da ottenere \code{v[k]}
+\begin{verbatim}
+    ld x5, 0(x6)
+    ld x7, 8(x6)
+\end{verbatim}
+in \code{x5} viene salvato il valore \code{v[k]}, e aggiungendo \(8\) bit si ottiene il valore \code{v[k+1]} che viene salvato in \code{x6}
+\begin{verbatim}
+    sd x7, 0(x6)
+    sd x5, 8(x6)
+\end{verbatim}
+a questo punto vengono caricati \code{v[k+1]} alla posizione di \code{v[k]} e viceversa.
 \end{document}
