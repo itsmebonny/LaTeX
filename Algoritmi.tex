@@ -746,6 +746,13 @@ Per eseguire un programma sono necessari quattro step fondamentali:
     \begin{verbatim}
         addi x9, x0, x123
     \end{verbatim}
-
+    Il compito dell'assembler è quello di produrre un file che è una combinazione di istruzioni in linguaggio macchina, dati e le informazioni necessarie per mantenere tutti i dati al posto giusto.  
+    Nel caso dei sistemi UNIX, l'\textit{object-file} è composto da sei parti
+    \begin{enumerate}
+        \item[I.] l'header, che descrive la dimensione e la posizione di tutti gli altri pezzi dentro il file
+        \item[II.] il \textit{text segment} che contiene tutta la parte di linguaggio macchina
+        \item[III.] il \textit{static data segment} contiene tutti i dati necessari per l'esecuzione del programma (nei sistemi UNIX sono presenti anche i dati dinamici)
+        \item[IV.] la \textit{relocation information}
+    \end{enumerate}
 \end{enumerate}
 \end{document}
