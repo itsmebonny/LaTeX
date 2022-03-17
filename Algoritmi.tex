@@ -797,7 +797,8 @@ A questo punto rimangono solo le linee di codice
     v[k] = v[k+1];
     v[k+1] = temp;
 \end{verbatim}
-Dal momento che il RISC-V utilizza gli indirizzi in \textit{byte}, ogni doubleword dista da quella prima \(8\) bit, quindi tutti gli indici vanno moltiplicati per \(8\).
+Dal momento che il RISC-V utilizza gli indirizzi in \textit{byte}, ogni doubleword dista da quella prima \(8\) bit, quindi tutti gli indici vanno moltiplicati per \(8\).  
+
 Per ottenere il valore di \code{v[k]} bisogna moltiplicare il valore di \code{k} per \(8\), tramite uno \textit{shift left} di 3
 \begin{verbatim}
     slli x6, x11, 3    
@@ -816,5 +817,51 @@ in \code{x5} viene salvato il valore \code{v[k]}, e aggiungendo \(8\) bit si ott
     sd x7, 0(x6)
     sd x5, 8(x6)
 \end{verbatim}
-a questo punto vengono caricati \code{v[k+1]} alla posizione di \code{v[k]} e viceversa.
+a questo punto vengono caricati \code{v[k+1]} alla posizione di \code{v[k]} e viceversa.  
+
+Riassumendo il tutto, la funzione \code{swap} si traduce in RISC-V come
+
+\begin{verbatim}
+    swap:
+        slli x6, x11, 3      // reg x6 = k * 8
+        add x6, x10, x6      // reg x6 = v + (k * 8)
+        ld x5, 0(x6)         // reg x5 (temp) = v[k]
+        ld x7, 8(x6)         // reg x7 = v[k+1]
+        sd x7, 0(x6)         // v[k] = reg x7
+        sd x5, 8(x6)         // v[k+1] = reg x5
+        jalr x0, 0(x1)       // return
+\end{verbatim}
+Un altro esempio è dato dalla funzione \code{sort}, che in questo caso si occupa di mettere in ordine crescente gli elementi di un array. La funzione è scritta come
+\begin{verbatim}
+    void sort (long long v[], size_t int n)
+    {
+        size_t i, j;
+        for (i = 0; i < n; i += 1) {
+            for (j = i - 1; j >= 0 && v[j] > v[j+1]; j -= 1){
+                swap(v, j);
+            }
+        }
+    }
+\end{verbatim}
+Per prima cosa vengono allocati i registri necessari per i parametri della funzione, in questo caso \code{v} sarà associato a \code{x10}, \code{n} a \code{x11}, \code{i} a \code{x19} e \code{j} a \code{x20}.  
+La funzione è composta da due \code{for} loop annidati e una chiamata alla funzione \code{swap}. I loop sono composti da tre parti, una inizializzazione di variabile, un test e un incremento.  
+Il primo loop è dato sostanzialmente da 
+\begin{verbatim}
+        li x19, 0            // i  = 0
+    for1tst:
+        bge x19, x11, exit1  // esce se i >= n
+        ...
+        eventuali istruzioni del loop
+        ... 
+        addi x19, x19, 1     // i += 1
+        j for1tst            // torna al loop
+    exit1:
+\end{verbatim}
+Il secondo loop è leggermente più complesso 
+\begin{verbatim}
+        addi x20, x19, -1    // j = i - 1
+    for2tst:
+        blt x20, x0, exit2   // esce se j < 0
+        slli x5, x20, 3      // reg x5 = j * 8
+\end{verbatim}
 \end{document}
