@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1647537735 "/home/bonni/Documents/LaTeX/LaTeX/Algoritmi.tex" "Algoritmi.pdf" "Algoritmi" 1647537740
+["pdflatex"] 1647619465 "/home/bonni/Documents/LaTeX/LaTeX/Algoritmi.tex" "Algoritmi.pdf" "Algoritmi" 1647619468
   "/home/bonni/.miktex/texmfs/data/fonts/map/pdftex/pdftex.map" 1646480736 85914 d462dd3e46c6b14631a286ee49de1853 ""
   "/home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk" 1621986155 14064 b09d1f47cfa28292a74fbecea6a1196c ""
   "/home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tctt1200.pk" 1646408717 11368 a51b0677096ada166bd2fff6bd511587 ""
@@ -176,10 +176,10 @@
   "/home/bonni/.miktex/texmfs/install/tex/latex/pgf/utilities/pgfrcs.sty" 1621986092 325 f9f16d12354225b7dd52a3321f085955 ""
   "/home/bonni/.miktex/texmfs/install/tex/latex/physics/physics.sty" 1621986136 29610 a9597219b282d9c78b02393dcd7d4322 ""
   "/home/bonni/.miktex/texmfs/install/tex/latex/xcolor/xcolor.sty" 1621986099 57049 74963e80d77be39a0b7442967b27c75b ""
-  "/home/bonni/Documents/LaTeX/LaTeX/Algoritmi.tex" 1647537733 59248 7c1ac56d982b124bc7f125aef5d1c7b7 ""
-  "Algoritmi.aux" 1647537737 2655 b9c5229f1d1ae46cc5d1eb3f6f779222 "pdflatex"
-  "Algoritmi.tex" 1647537733 59248 7c1ac56d982b124bc7f125aef5d1c7b7 ""
+  "/home/bonni/Documents/LaTeX/LaTeX/Algoritmi.tex" 1647619464 63355 a5ed4703315d2b442c5fd2e81220b2aa ""
+  "Algoritmi.aux" 1647619467 2767 fb0a8fcf5f0711b6d2fff2c20d345203 "pdflatex"
+  "Algoritmi.tex" 1647619464 63355 a5ed4703315d2b442c5fd2e81220b2aa ""
   (generated)
-  "Algoritmi.log"
   "Algoritmi.aux"
   "Algoritmi.pdf"
+  "Algoritmi.log"

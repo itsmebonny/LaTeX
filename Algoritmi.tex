@@ -863,5 +863,115 @@ Il secondo loop è leggermente più complesso
     for2tst:
         blt x20, x0, exit2   // esce se j < 0
         slli x5, x20, 3      // reg x5 = j * 8
+        add x5, x10, x5      // reg x5 = v + (j * 8)
+        ld x6, 0(x5)         // reg x6 = v[j]
+        ld x7, 8(x5)         // reg x7 = v[j+1]
+        ble x6, x7, exit2    // esce se v[j] <= v[j+1]
+        ... 
+        eventuali istruzioni del loop
+        ... 
+        addi x20, x20, -1    // j -= 1
+        j for2tst            // torna in cima al loop
+    exit2:
 \end{verbatim}
+A questo punto rimane solo l'istruzione che chiama \code{swap}, che di per sé è abbastanza semplice
+\begin{verbatim}
+    jal x1, swap
+\end{verbatim}
+Tuttavia rimane il problema di passare i parametri corretti, perché sia \code{sort} che \code{swap} leggono i parametri da \code{x10} e \code{x11}. Un modo per farlo può essere quello di salvare i parametri da un'altra parte prima
+\begin{verbatim}
+    mv x21, x10               // copia x10 in x21
+    mv x22, x11               // copia x11 in x20
+\end{verbatim}
+Per poi riprenderli quando viene chiamata \code{swap}. 
+Inoltre è necessario fare spazio per i registri necessari nello stack a inizio procedura.  
+Mettendo assieme tutti i pezzi si ottiene la traduzione in RISC-V della funzione \code{sort}
+\begin{verbatim}
+    sort:
+        addi sp, sp, -40      // libera 5 elementi nello stack
+        sd x1, 32(sp)         // salva x1 nello stack 
+        sd x22, 24(sp)        // salva x22 nello stack        
+        sd x21, 16(sp)        // salva x21 nello stack
+        sd x20, 8(sp)         // salva x20 nello stack
+        sd x19, 0(sp)         // salva x19 nello stack
+        mv x21, x10           // copia x10 in x21
+        mv x22, x11           // copia x11 in x22 
+        li x19, 0             // i = 0
+    for1tst:
+        bge x19, x22, exit1   // esce se i >= n
+        addi x20, x19, -1     // j = i - 1
+    for2tst:
+        blt x20, x0, exit2    // esce se j < 0
+        slli x5, x20, 3       // reg x5 = j * 8
+        add x5, x10, x5       // reg x5 = v + (j * 8)
+        ld x6, 0(x5)          // reg x6 = v[j]
+        ld x7, 8(x5)          // reg x7 = v[j+1]
+        ble x6, x7, exit2     // esce se v[j] <= v[j+1]
+        mv x10, x21           // recupera v dallo stack in x10
+        mv x11, x22           // recupera j dallo stack in x11
+        jal x1, swap          // chiama swap
+        addi x20, x20, -1     // j -= 1
+        j for2tst             // torna a for2tst
+    exit2:
+        addi x19, x19, 1      // i += 1
+        j for1tst             // torna a for1tst
+    exit1:
+        ld x19, 0(sp)         // recupera x19 dallo stack
+        ld x20, 8(sp)         // recupera x20 dallo stack
+        ld x21, 16(sp)        // recupera x21 dallo stack
+        ld x22, 24(sp)        // recupera x22 dallo stack
+        ld x1, 32(sp)         // recupera x1 dallo stack
+        addi sp, sp, 40       // riporta alla posizione iniziale lo stack
+        jalr x0, 0(x1)        // esce dalla funzione
+\end{verbatim}
+\subsection{Array e puntatori}
+Ogni persona che si affaccia alla programmazione in C deve affrontare l'annosa questione dei puntatori. In questo caso si prendono a esempio due funzioni che, dato un array in ingresso, lo restituisce contenente solo valori nulli. 
+\begin{center}
+    \begin{tabular}{|p{8cm}|p{8cm}|}
+    \hline
+    Indici & Puntatori \\
+    \hline
+        \begin{verbatim}
+clearindices(long long array[],
+            size_t int size)
+{
+    size_t i;
+    for (i = 0; i < size, i += 1)
+            array[i] = 0;
+}
+        \end{verbatim}
+        
+        &
+        
+        \begin{verbatim}
+clearpointers(long long *array[],
+             size_t int size)
+{
+    long long *p;
+    for (p = &array[0], 
+        p < &array[size], p += 1)
+            *p = 0;
+}
+        \end{verbatim} 
+        \\
+        \hline
+        \begin{verbatim}
+    li x5, 0        // i = 0
+loop:
+    slli x6, x5, 3  // x6 = i * 8
+    add x7, x10, x6 // x7 = 
+                         indirizzo
+                         array[i]
+    sd x0, 0(x7)    // array[i] = 0
+    addi x5, x5, 1  // i += 1
+    blt x5, x11, loop1 
+        \end{verbatim}
+        &
+        \begin{verbatim}
+doopsie
+        \end{verbatim}
+        \\
+        \hline
+    \end{tabular}
+\end{center}
 \end{document}
