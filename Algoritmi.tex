@@ -968,8 +968,16 @@ loop:
         \end{verbatim}
         &
         \begin{verbatim}
-doopsie
-        \end{verbatim}
+    mv x5, x10      // p = indirizzo
+                            array[0]
+    slli x6, x11, 3 // Memory[p] = 0
+    add x7, x10, x6 // p = p + 8
+loop2: 
+    sd x0, 0(x5)    // x6 = size * 8
+    addi x5, x5, 8  // x7 =indirizzo
+                       array[size]
+    bltu x5, x7, loop2
+    \end{verbatim}
         \\
         \hline
     \end{tabular}
