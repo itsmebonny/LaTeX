@@ -11,7 +11,7 @@
 \tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
 \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
 \tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=orange!30]
-\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=0.3cm, text centered, draw=black, fill=green!30]
+\tikzstyle{decision} = [diamond,aspect = 2, text centered, draw=black, fill=green!30]
 \tikzstyle{arrow} = [thick,->,>=stealth]
 \usepackage{newunicodechar}
 \newunicodechar{≠}{\ensuremath{\not =}}
@@ -982,4 +982,90 @@ loop2:
         \hline
     \end{tabular}
 \end{center}
+Nel caso degli array tutte le operazioni avvengono all'interno del loop, quindi la variabile \code{i} viene incrementata e ogni indirizzo va calcolato nuovamente. Nel secondo caso l'incremento avviene direttamente sull'indirizzo, riducendo il numero di operazioni. Al giorno d'oggi i compilatori riescono comunque ad ottimizzare la versione con gli array a un livello pari a quella con i puntatori, per cui non vi è grande differenza nell'utilizzo. 
+\newpage
+\section{Aritmetica dei calcolatori}
+\subsection{Introduzione}
+Come visto in precedenza, tutto nei computer è composto da bit. A questo punto sorge spontaneo chiedersi cosa succeda per tutti gli altri numeri? Come vengono rappresentati i numeri reali? Se si cerca di calcolare un numero più grande di quelli che può rappresentare il computer? Come funzionano moltiplicazioni e sottrazioni? 
+
+Tutte queste domande sono legate al funzionamento dell'aritmetica dei calcolatori, il cui funzionamento verrà spiegato in questa sezione.
+\subsection{Addizioni e sottrazioni}
+Il funzionamento delle addizioni in un computer è abbastanza semplice, si sommano i numeri e eventuali riporti vengono spostati a sinistra. Un esempio possono essere i numeri \(6_{\mbox{\scriptsize dieci}} \mbox{ e } 7_{\mbox{\scriptsize dieci}}\).
+\[
+\begin{array}{cccc}
+    & 00000111_{\mbox{\scriptsize due}} & = & 7_{\mbox{\scriptsize dieci}} \\
+    + & 00000110_{\mbox{\scriptsize due}} & = & 6_{\mbox{\scriptsize dieci}} \\
+    \hline
+    = & 00001101_{\mbox{\scriptsize due}} & = & 13_{\mbox{\scriptsize dieci}}
+\end{array}    
+\]
+Nel caso della sottrazione si somma il negativo del numero da sottrarre, nel caso appena visto si avrà: 
+\[
+\begin{array}{cccc}
+    & 00000111_{\mbox{\scriptsize due}} & = & 7_{\mbox{\scriptsize dieci}} \\
+    + & 11111010_{\mbox{\scriptsize due}} & = & -6_{\mbox{\scriptsize dieci}} \\
+    \hline
+    = & 00000001_{\mbox{\scriptsize due}} & = & 1_{\mbox{\scriptsize dieci}}
+\end{array}    
+\]
+In questo caso si tratta di somme in complemento a due, perché i numeri negativi hanno bisogno di un bit speciale che rappresenti il meno all'inizio. Si hanno quindi un numero limitato di numeri che possono essere rappresentati, dando vita all'\textit{overflow}, ossia quando si eccede il numero di bit possibili e il risultato dell'operazione non è quello atteso.
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+    \hline
+    \multicolumn{4}{|c|}{Quando avviene overflow?} \\
+    \hline
+    Operazione & Operando A & Operando B & Risultato in caso di overflow \\
+    \hline
+    A + B & \(\geq\)0 & \(\geq\)0 & \(<\)0 \\
+    \hline
+    A + B & \(<\)0 & \(\geq\)0 & \(\geq\)0 \\
+    \hline
+    A - B & \(\geq\)0 & \(<\)0 & \(<\)0 \\
+    \hline
+    A - B & \(<\)0 & \(\geq\)0 & \(\geq\)0 \\
+    \hline
+\end{tabular} 
+\end{center}
+\subsection{Moltiplicazioni}
+Per comprendere le moltiplicazioni in base binaria bisogna prima riprendere il concetto di moltiplicazione in base decimale. Si veda la moltiplicazione \(1000_{\mbox{\scriptsize dieci}} \times 1001_{\mbox{\scriptsize dieci}}\)
+\begin{center}
+    \begin{tabular}{cccccccccc}
+        Moltiplicando & & & & & 1 & 0 & 0 & 0 & \(\times\)\\
+        Moltiplicatore & & & & & 1 & 0 & 0 & 1 & =\\
+        \hline
+        & & & & & 1 & 0 & 0 & 0 & +\\
+        & & & 0 & 0 & 0 & 0 & & & +\\
+        & & 0 & 0 & 0 & 0 & & & & +\\
+        & 1 & 0 & 0 & 0 & & & & & =\\
+        \hline
+        & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 &\\
+    \end{tabular}
+\end{center}
+Questo è l'algoritmo classico della moltiplicazione, ristretto al caso delle cifre \(1\) e \(0\). Nel caso al moltiplicatore sia presente un \(1\) viene riscritto il moltiplicando partendo dalla posizione dell'\(1\). In caso si abbia uno \(0\) si riscrive semplicemente \(0\). 
+Nel caso del computer si prende come esempio questo classico algoritmo e si ottimizza per l'hardware presente. Si assuma che il moltiplicatore sia una parola da 64-bit e che il prodotto sia una parola da 128-bit in un registro inizializzato a 0. Durante l'algoritmo il moltiplicatore subisce un bit shift verso destra per 64 volte, per riempire tutti i bit del prodotto. Allora segue che anche il moltiplicando sarà una parola da 128-bit.  
+
+Sostanzialmente l'algoritmo fa un check per vedere se l'ultima cifra del moltiplicatore è uno 0 o un 1 e a seconda del risultato somma al prodotto 0 o il valore del moltiplicando, fatto questo, fa uno shift verso sinistra del moltiplicando e uno shift verso destra del moltiplicatore, per poi ripetere tutto. 
+\begin{center}
+    \begin{tikzpicture}[node distance=2cm]
+        \node (inizio) [startstop] {Inizio};
+        \node (problem) [decision, below of= inizio, align=center, yshift=-1cm] {Test\\ moltiplicatore0};
+        \node(if)[process, below of=problem, xshift = -6cm, align=center]{Aggiungi il moltiplicando\\
+        al prodotto};
+        \node (shiftleft) [process, below of= if, align= center, xshift= 6cm] {Shift left del\\ 
+        moltiplicando};
+        \node (shiftright) [process, below of= shiftleft, align=center]{Shift right del \\ 
+        moltiplicatore};
+        \node (ripetizioni) [decision, below of=shiftright, align=center]{64 ripetizioni?};
+        \node(fine)[startstop, below of=ripetizioni, yshift=-2cm]{Exit};
+        \draw [arrow] (problem) -|node[pos=0.75,fill=white,inner sep=2pt]{moltiplicatore0 = 1} ++(-6,-1) --(if);
+        \draw [arrow] (problem) --node[pos=0.75,fill=white,inner sep=2pt]{moltiplicatore0 = 0} ++(0,-2) --(shiftleft);
+        \draw [arrow] (ripetizioni) -|node[pos=0.75,fill=white,inner sep=2pt]{\(<64\) ripetizioni} ++(5,6) |-(problem);
+        \draw [->] (inizio) -- (problem);
+        \draw [->] (if)|-(shiftleft);
+        \draw [->] (shiftleft)--(shiftright);
+        \draw [->] (shiftright) --(ripetizioni);
+        \draw [->] (ripetizioni)--node[pos=0.75,fill=white,inner sep=2pt]{64 ripetizioni} ++(0,-2)--(fine);
+    \end{tikzpicture}
+    \end{center}
+
 \end{document}
