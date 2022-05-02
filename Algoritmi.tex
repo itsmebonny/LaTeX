@@ -1,6 +1,7 @@
 \documentclass[a4paper,12pt]{article}
 \usepackage{amssymb}
 \usepackage{amsmath}
+\usepackage{hhline}
 \usepackage{physics}
 \usepackage{bm}
 \usepackage[margin=2cm]{geometry}
@@ -1056,7 +1057,7 @@ Sostanzialmente l'algoritmo fa un check per vedere se l'ultima cifra del moltipl
         \node (shiftright) [process, below of= shiftleft, align=center]{Shift right del \\ 
         moltiplicatore};
         \node (ripetizioni) [decision, below of=shiftright, align=center]{64 ripetizioni?};
-        \node(fine)[startstop, below of=ripetizioni, yshift=-2cm]{Exit};
+        \node(fine)[startstop, below of=ripetizioni, yshift=-2cm]{Fine};
         \draw [arrow] (problem) -|node[pos=0.75,fill=white,inner sep=2pt]{moltiplicatore0 = 1} ++(-6,-1) --(if);
         \draw [arrow] (problem) --node[pos=0.75,fill=white,inner sep=2pt]{moltiplicatore0 = 0} ++(0,-2) --(shiftleft);
         \draw [arrow] (ripetizioni) -|node[pos=0.75,fill=white,inner sep=2pt]{\(<64\) ripetizioni} ++(5,6) |-(problem);
@@ -1067,5 +1068,60 @@ Sostanzialmente l'algoritmo fa un check per vedere se l'ultima cifra del moltipl
         \draw [->] (ripetizioni)--node[pos=0.75,fill=white,inner sep=2pt]{64 ripetizioni} ++(0,-2)--(fine);
     \end{tikzpicture}
     \end{center}
+Chiaramente questo algoritmo si può parallelizzare per migliorarne l'efficienza, ad esempio ricreando il diagramma sopra in modo che non esegua una somma alla volta, ma lavori in parallelo per tutte le 64 somme.
+\subsection{Divisione}
+L'opposto della motliplicazione è la divisione, che è una operazione ancora più complicata da gestire, ad esempio perché non si può dividere per 0.
 
+Come per la moltiplicazione, un esempio di divisione tra due numeri in base 10
+\begin{center}
+    \begin{tabular}{cccc}
+        & & \multicolumn{1}{r}{$1001_{\mbox{\scriptsize dieci}}$} & Quoziente \\
+        \hhline{~~-~}
+        Divisore & \(1000_{\mbox{\scriptsize dieci}}\) & \multicolumn{1}{|r}{\phantom{-}\(1001010_{\mbox{\scriptsize dieci}}\)} & Dividendo \\
+        & & \multicolumn{1}{l}{-1000} & \\
+        \hhline{~~-~}
+        & & \multicolumn{1}{l}{\phantom{10}10} & \\
+        & & \multicolumn{1}{l}{\phantom{10}101} & \\
+        & & \multicolumn{1}{l}{\phantom{10}1010} & \\
+        & & \multicolumn{1}{l}{\phantom{10}-1000} & \\
+        \hhline{~~-~}
+        & & \phantom{1000}\(10_{\mbox{\scriptsize dieci}}\) & Resto \\
+    \end{tabular}
+\end{center}
+Si hanno quindi due operandi, il dividendo e il divisore, dalla cui divisione si ottengono il quoziente e il resto
+\[
+\mbox{Dividendo} = \mbox{Quoziente} \times \mbox{Divisore} + \mbox{Resto}    
+\]
+L'algoritmo che segue sarà sostanzialmente una sottrazione continua del numero più grande che si riesce a sottrarre moltiplicando il divisore, aggiungendo ogni volta una cifra al quoziente, fino ad arrivare a un valore più piccolo del divisore, che sarà il resto.
+\begin{center}
+    \begin{tikzpicture}[node distance=2cm]
+        \node (inizio) [startstop] {Inizio};
+        \node (primaop) [process, below of = inizio, align = left] {Sottrazione del registro divisore \\
+        dal registro resto e viene inserito\\ 
+        il risultato nel registro resto.};
+        \node (problem) [decision, below of= primaop, align=center] {Test\\ resto};
+        \node(if)[process, below of=problem, xshift = -6cm, align=left]{Sposta i bit del registro \\ 
+        quoziente a sinistra\\ 
+        il bit più a destra \\ 
+        diventa 1};
+        \node (else)[process, below of = problem, align = left,yshift = -2cm] {Recupera il valore originale \\ 
+        aggiungendo il registro divisore \\ 
+        al registro resto e inserendo \\ 
+        la somma al registro resto. \\ 
+        Inoltre fa uno shift left del \\ 
+        registro quoziente ponendo \\ 
+        il bit più a sinistra pari a 0.};
+        \node (shiftright) [process, below of= problem,yshift = -6cm, align=center]{Shift right del divisore};
+        \node (ripetizioni) [decision, below of=shiftright, align=center]{64 ripetizioni?};
+        \node(fine)[startstop, below of=ripetizioni, yshift=-2cm]{Fine};
+        \draw [arrow] (problem) -|node[pos=0.75,fill=white,inner sep=2pt]{resto \(\geq 0\)} ++(-6,-1) --(if);
+        \draw [arrow] (problem) --node[pos=0.75,fill=white,inner sep=2pt]{resto \(<\) 0} ++(0,-1) --(else);
+        \draw [arrow] (ripetizioni) -|node[pos=0.75,fill=white,inner sep=2pt]{\(<65\) ripetizioni} ++(6,6) |-(problem);
+        \draw [->] (inizio) -- (problem);
+        \draw [->] (if)|-(shiftright);
+        \draw [->] (shiftright) --(ripetizioni);
+        \draw [->] (else) -- (shiftright);
+        \draw [->] (ripetizioni)--node[pos=0.75,fill=white,inner sep=2pt]{65 ripetizioni} ++(0,-2)--(fine);
+    \end{tikzpicture}
+    \end{center}
 \end{document}
