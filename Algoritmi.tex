@@ -2,12 +2,15 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{hhline}
+\usepackage{ragged2e}
 \usepackage{physics}
 \usepackage{bm}
 \usepackage[margin=2cm]{geometry}
 \usepackage{bigfoot}
 \usepackage{amsthm}
 \usepackage{tikz}
+\usepackage{tabularx}
+\usepackage{graphicx}
 \usetikzlibrary{shapes.geometric, arrows}
 \tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
 \tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
@@ -19,6 +22,9 @@
 \usepackage{textcomp}
 \usepackage[makeroom]{cancel}
 
+\newlength\mylength
+\setlength\mylength{0.1cm}
+\newcolumntype{Y}{>{\Centering\arraybackslash}X}
 
 \newtheoremstyle{break}
   {\partopsep}{\topsep}%  
@@ -1124,5 +1130,53 @@ Come per la moltiplicazione, un esempio di divisione tra due numeri in base 10
     \end{tikzpicture}
     \end{center}
     L'algoritmo sarà sostanzialmente una sottrazione continua del numero più grande che si riesce a sottrarre moltiplicando il divisore, aggiungendo ogni volta una cifra al quoziente, fino ad arrivare a un valore più piccolo del divisore, che sarà il resto.
+    Nel caso di una divisione con i \textit{signed integers}, sarà necessaria la presenza di un bit di segno che distingua numeri positivi e negativi.
+
+    Anche in questo caso viene in aiuto la legge di Moore che permette di accelerare questo processo con la tecnica SRT. Con tale tecnica si cerca di predire più bit del quoziente con l'utilizzo di una lookup table, che permette di accelerare il processo se la tabella è usata correttamente.
+    \subsection{Floating point}
+    Nel mondo reale, tuttavia, non esistono solo i numeri interi, per cui è stato necessario trovare un modo per rappresentare i numeri reali con i computer. Un metodo affermato per rappresentare i numeri in base decimale è la notazione scientifica.
+    \[
+        3.141592_{\mbox{\scriptsize dieci}} \times 10^9
+    \]
+    Allo stesso modo si può usare la notazione scientifica per i numeri in base binaria
+    \[
+        1.0_{\mbox{\scriptsize due}} \times 2_{-1}
+    \]
+    In questo modo si può rappresentare un numero con al suo interno una virgola che si sposta al variare dell'esponente della base 2. Questa notazione è detta \textit{floating point} (virgola mobile per quelli a cui piace dire calcolatore), la cui forma sarà quindi 
+    \[
+        1.xxxxxxxx_{\mbox{\scriptsize due}} \times 2^{yyyy}    
+    \]
+    In questo caso si è tenuto per semplicità l'esponente in base decimale, ma chiaramente si tratta di un numero in base binaria.
+    È necessario trovare un compromesso tra la dimensione della frazione e quella dell'esponente, ricordando che i registri all'interno del RISC-V sono di 32 bit. Il consenso si è raggiunto nel creare un numero della forma 
+    \[
+        (-1)^S \times F \times 2^E
+    \]
+    \begin{center}
+        \tiny
+        \begin{tabularx}{\textwidth}{@{}|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|}
+            \hline
+            31 & 30 & 29 & 28 & 27 & 26 & 25 & 24 & 23  & 22 & 21 & 20 & 19 & 18 & 17 & 16 & 15 & 14 & 13 & 12 & 11 & 10 & 9 & 8 & 7 & 6 & 5 & 4 & 3 & 2 & 1 & 0 \\
+            \hline
+            \multicolumn{1}{|c|}{\normalsize s} & \multicolumn{8}{c|}{\normalsize esponente} & \multicolumn{23}{c|}{\normalsize frazione} \\
+            \hline
+            \multicolumn{1}{c}{\normalsize 1 bit} & \multicolumn{8}{c}{\normalsize 8 bit} & \multicolumn{23}{c}{\normalsize 23 bit}        
+        \end{tabularx}
+    \end{center}
+    In questa maniera è abbastanza facile ottenere numeri molto precisi, con tante cifre dopo la virgola, ma anche numeri molto grandi, senza nessun numero dopo la virgola. Nel caso il numero da rappresentare sia troppo piccolo per le capacità del registro si parla di \textit{underflow}.
+    Per ovviare a questo problema si utilizzano due differenti tipi di numeri floating point. Quello appena visto è detto \textit{single precision} ed è formato da 32 bit, mentre l'altro è detto \textit{double precision} ed è formato da 64 bit, di cui 52 per la frazione e 11 per l'esponente. 
+
+    Nel caso dei numeri floating point l'addizione è costituita da una serie di passaggi:
+    \begin{itemize}
+        \item[Step 1.] Per sommare due numeri in notazione scientifica è necessario allineare i due numeri in modo che le cifre dopo la virgola siano le stesse, per esempio \( 9.999_{\mbox{\scriptsize dieci}} \times 10^1\) e \(1.610_{\mbox{\scriptsize dieci}} \times 10^{-1}\) 
+        \[
+            1.610_{\mbox{\scriptsize dieci}} \times 10^{-1} = 0.1610_{\mbox{\scriptsize dieci}} \times 10^0 = 0.01610 \times 10^1
+        \]
+        \item[Step 2.] Poi c'è l'addizione delle due frazioni \[9.999_{\mbox{\scriptsize dieci}} \times 10^1 + 0.016_{\mbox{\scriptsize dieci}} \times 10^1 = 10.015_{\mbox{\scriptsize dieci}} \times 10^1\]
+        \item[Step 3.] A questo punto va normalizzato il risultato \[10.015_{\mbox{\scriptsize dieci}} \times 10^1 = 1.0015_{\mbox{\scriptsize dieci}}\times 10^2\]  
+        \item[Step 4.] Siccome i due numeri avevano quattro cifre significative, va arrotondato questo numero ottenuto al numero corretto di cifre significative
+        \[
+           1.0015_{\mbox{\scriptsize dieci}} \times 10^2 = 1.002_{\mbox{\scriptsize dieci}} \times 10^2 
+        \] 
+    \end{itemize}
     
 \end{document}
