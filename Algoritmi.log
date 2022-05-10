@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2022.2.11)  4 MAY 2022 18:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.1) (preloaded format=pdflatex 2022.2.11)  10 MAY 2022 17:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -88,6 +88,25 @@ LaTeX Info: Redefining \[ on input line 2923.
 LaTeX Info: Redefining \] on input line 2924.
 ) (/home/bonni/.miktex/texmfs/install/tex/latex/latex-tools/hhline.sty
 Package: hhline 2020/01/04 v2.04 Table rule package (DPC)
+) (/home/bonni/.miktex/texmfs/install/tex/latex/ragged2e/ragged2e.sty
+Package: ragged2e 2021/02/05 v3.0 ragged2e Package
+ (/home/bonni/.miktex/texmfs/install/tex/latex/everysel/everysel.sty
+Package: everysel 2021/01/20 v2.1 EverySelectfont Package (MS)
+ (/home/bonni/.miktex/texmfs/install/tex/latex/everysel/everysel-2011-10-28.sty))
+\CenteringLeftskip=\skip52
+\RaggedLeftLeftskip=\skip53
+\RaggedRightLeftskip=\skip54
+\CenteringRightskip=\skip55
+\RaggedLeftRightskip=\skip56
+\RaggedRightRightskip=\skip57
+\CenteringParfillskip=\skip58
+\RaggedLeftParfillskip=\skip59
+\RaggedRightParfillskip=\skip60
+\JustifyingParfillskip=\skip61
+\CenteringParindent=\skip62
+\RaggedLeftParindent=\skip63
+\RaggedRightParindent=\skip64
+\JustifyingParindent=\skip65
 ) (/home/bonni/.miktex/texmfs/install/tex/latex/physics/physics.sty
 Package: physics 
  (/home/bonni/.miktex/texmfs/install/tex/latex/l3packages/xparse/xparse.sty (/home/bonni/.miktex/texmfs/install/tex/latex/l3kernel/expl3.sty
@@ -149,7 +168,7 @@ Package: perpage 2014/10/25 2.0 Reset/sort counters per page
 \FN@slave=\marks2
 \FN@color=\marks3
 \FN@outervsize=\dimen157
-\FN@vsize=\skip52
+\FN@vsize=\skip66
 \FN@insertions=\box50
 \FN@output=\toks23
 \FN@tempbox=\box51
@@ -165,9 +184,9 @@ Package: amsthm 2020/05/29 v2.20.6
 \thm@headfont=\toks26
 \thm@notefont=\toks27
 \thm@headpunct=\toks28
-\thm@preskip=\skip53
-\thm@postskip=\skip54
-\thm@headsep=\skip55
+\thm@preskip=\skip67
+\thm@postskip=\skip68
+\thm@headsep=\skip69
 \dth@everypar=\toks29
 ) (/home/bonni/.miktex/texmfs/install/tex/latex/pgf/frontendlayer/tikz.sty (/home/bonni/.miktex/texmfs/install/tex/latex/pgf/basiclayer/pgf.sty (/home/bonni/.miktex/texmfs/install/tex/latex/pgf/utilities/pgfrcs.sty (/home/bonni/.miktex/texmfs/install/tex/generic/pgf/utilities/pgfutil-common.tex
 \pgfutil@everybye=\toks30
@@ -377,7 +396,26 @@ File: pgfmodulematrix.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 \tikz@expandcount=\count298
  (/home/bonni/.miktex/texmfs/install/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2021/05/15 v3.1.9a (3.1.9a)
-))) (/home/bonni/.miktex/texmfs/install/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.geometric.code.tex
+))) (/home/bonni/.miktex/texmfs/install/tex/latex/latex-tools/tabularx.sty
+Package: tabularx 2020/01/15 v2.11c `tabularx' package (DPC)
+ (/home/bonni/.miktex/texmfs/install/tex/latex/latex-tools/array.sty
+Package: array 2020/10/01 v2.5c Tabular extension package (FMi)
+\col@sep=\dimen267
+\ar@mcellbox=\box64
+\extrarowheight=\dimen268
+\NC@list=\toks42
+\extratabsurround=\skip70
+\backup@length=\skip71
+\ar@cellbox=\box65
+)
+\TX@col@width=\dimen269
+\TX@old@table=\dimen270
+\TX@old@col=\dimen271
+\TX@target=\dimen272
+\TX@delta=\dimen273
+\TX@cols=\count299
+\TX@ftn=\toks43
+) (/home/bonni/.miktex/texmfs/install/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryshapes.geometric.code.tex
 File: tikzlibraryshapes.geometric.code.tex 2021/05/15 v3.1.9a (3.1.9a)
  (/home/bonni/.miktex/texmfs/install/tex/generic/pgf/libraries/shapes/pgflibraryshapes.geometric.code.tex
 File: pgflibraryshapes.geometric.code.tex 2021/05/15 v3.1.9a (3.1.9a)
@@ -385,7 +423,7 @@ File: pgflibraryshapes.geometric.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 File: tikzlibraryarrows.code.tex 2021/05/15 v3.1.9a (3.1.9a)
  (/home/bonni/.miktex/texmfs/install/tex/generic/pgf/libraries/pgflibraryarrows.code.tex
 File: pgflibraryarrows.code.tex 2021/05/15 v3.1.9a (3.1.9a)
-\arrowsize=\dimen267
+\arrowsize=\dimen274
 )) (/home/bonni/.miktex/texmfs/install/tex/latex/newunicodechar/newunicodechar.sty
 Package: newunicodechar 2018/04/08 v1.2 Defining Unicode characters
 ) (/home/bonni/.miktex/texmfs/install/tex/latex/base/textcomp.sty
@@ -393,27 +431,30 @@ Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
 ) (/home/bonni/.miktex/texmfs/install/tex/latex/cancel/cancel.sty
 Package: cancel 2013/04/12 v2.2 Cancel math terms
 )
-\c@theorem=\count299
-\c@corollary=\count300
-\c@proposition=\count301
-\c@definition=\count302
+\mylength=\skip72
+\c@theorem=\count300
+\c@corollary=\count301
+\c@proposition=\count302
+\c@definition=\count303
  (Algoritmi.aux)
 \openout1 = `Algoritmi.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 62.
-LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+ ABD: EverySelectfont initializing macros
+LaTeX Info: Redefining \selectfont on input line 68.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -450,20 +491,20 @@ LaTeX Font Info:    ... okay on input line 62.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 \footinsdefault=\insert251
-\FN@cache251=\box64
+\FN@cache251=\box66
 (/home/bonni/.miktex/texmfs/install/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count303
-\scratchdimen=\dimen268
-\scratchbox=\box65
-\nofMPsegments=\count304
-\nofMParguments=\count305
-\everyMPshowfont=\toks42
-\MPscratchCnt=\count306
-\MPscratchDim=\dimen269
-\MPnumerator=\count307
-\makeMPintoPDFobject=\count308
-\everyMPtoPDFconversion=\toks43
+\scratchcounter=\count304
+\scratchdimen=\dimen275
+\scratchbox=\box67
+\nofMPsegments=\count305
+\nofMParguments=\count306
+\everyMPshowfont=\toks44
+\MPscratchCnt=\count307
+\MPscratchDim=\dimen276
+\MPnumerator=\count308
+\makeMPintoPDFobject=\count309
+\everyMPtoPDFconversion=\toks45
 ) (/home/bonni/.miktex/texmfs/install/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
  (/home/bonni/.miktex/texmfs/install/tex/generic/infwarerr/infwarerr.sty
@@ -491,32 +532,192 @@ Package grfext Info: Graphics extension search list:
  (/home/bonni/.miktex/texmfs/install/tex/latex/00miktex/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-LaTeX Font Info:    Trying to load font information for U+msa on input line 66.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 72.
  (/home/bonni/.miktex/texmfs/install/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 66.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 72.
  (/home/bonni/.miktex/texmfs/install/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {/home/bonni/.miktex/texmfs/data/fonts/map/pdftex/pdftex.map}] [2] [3] [4] [5] [6] [7] [8] [9] [10]
-LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 455.
+LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 461.
  (/home/bonni/.miktex/texmfs/install/tex/latex/base/ts1cmtt.fd
 File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-) [11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21] [22] [23] [24] [25] [26] (Algoritmi.aux) ) 
+) [11] [12] [13] [14] [15] [16] [17] [18] [19] [20] [21] [22] [23] [24] [25]
+Overfull \hbox (5.2963pt too wide) in paragraph at lines 1163--1163
+ []|\OT1/cmr/m/n/6 31| 
+ []
+
+
+Overfull \hbox (5.2963pt too wide) in paragraph at lines 1163--1163
+ []|\OT1/cmr/m/n/6 30| 
+ []
+
+
+Overfull \hbox (5.2963pt too wide) in paragraph at lines 1163--1163
+ []|\OT1/cmr/m/n/6 29| 
+ []
+
+
+Overfull \hbox (5.2963pt too wide) in paragraph at lines 1163--1163
+ []|\OT1/cmr/m/n/6 28| 
+ []
+
+
+Overfull \hbox (5.2963pt too wide) in paragraph at lines 1163--1163
+ []|\OT1/cmr/m/n/6 27| 
+ []
+
+
+Overfull \hbox (5.2963pt too wide) in paragraph at lines 1163--1163
+ []|\OT1/cmr/m/n/6 26| 
+ []
+
+
+Overfull \hbox (5.2963pt too wide) in paragraph at lines 1163--1163
+ []|\OT1/cmr/m/n/6 25| 
+ []
+
+
+Overfull \hbox (5.2963pt too wide) in paragraph at lines 1163--1163
+ []|\OT1/cmr/m/n/6 24| 
+ []
+
+
+Overfull \hbox (5.2963pt too wide) in paragraph at lines 1163--1163
+ []|\OT1/cmr/m/n/6 23| 
+ []
+
+
+Overfull \hbox (5.2963pt too wide) in paragraph at lines 1163--1163
+ []|\OT1/cmr/m/n/6 22| 
+ []
+
+
+Overfull \hbox (5.2963pt too wide) in paragraph at lines 1163--1163
+ []|\OT1/cmr/m/n/6 21| 
+ []
+
+
+Overfull \hbox (5.2963pt too wide) in paragraph at lines 1163--1163
+ []|\OT1/cmr/m/n/6 20| 
+ []
+
+
+Overfull \hbox (5.2963pt too wide) in paragraph at lines 1163--1163
+ []|\OT1/cmr/m/n/6 19| 
+ []
+
+
+Overfull \hbox (5.2963pt too wide) in paragraph at lines 1163--1163
+ []|\OT1/cmr/m/n/6 18| 
+ []
+
+
+Overfull \hbox (5.2963pt too wide) in paragraph at lines 1163--1163
+ []|\OT1/cmr/m/n/6 17| 
+ []
+
+
+Overfull \hbox (5.2963pt too wide) in paragraph at lines 1163--1163
+ []|\OT1/cmr/m/n/6 16| 
+ []
+
+
+Overfull \hbox (5.2963pt too wide) in paragraph at lines 1163--1163
+ []|\OT1/cmr/m/n/6 15| 
+ []
+
+
+Overfull \hbox (5.2963pt too wide) in paragraph at lines 1163--1163
+ []|\OT1/cmr/m/n/6 14| 
+ []
+
+
+Overfull \hbox (5.2963pt too wide) in paragraph at lines 1163--1163
+ []|\OT1/cmr/m/n/6 13| 
+ []
+
+
+Overfull \hbox (5.2963pt too wide) in paragraph at lines 1163--1163
+ []|\OT1/cmr/m/n/6 12| 
+ []
+
+
+Overfull \hbox (5.2963pt too wide) in paragraph at lines 1163--1163
+ []|\OT1/cmr/m/n/6 11| 
+ []
+
+
+Overfull \hbox (5.2963pt too wide) in paragraph at lines 1163--1163
+ []|\OT1/cmr/m/n/6 10| 
+ []
+
+
+Overfull \hbox (1.62968pt too wide) in paragraph at lines 1163--1163
+ []|\OT1/cmr/m/n/6 9| 
+ []
+
+
+Overfull \hbox (1.62968pt too wide) in paragraph at lines 1163--1163
+ []|\OT1/cmr/m/n/6 8| 
+ []
+
+
+Overfull \hbox (1.62968pt too wide) in paragraph at lines 1163--1163
+ []|\OT1/cmr/m/n/6 7| 
+ []
+
+
+Overfull \hbox (1.62968pt too wide) in paragraph at lines 1163--1163
+ []|\OT1/cmr/m/n/6 6| 
+ []
+
+
+Overfull \hbox (1.62968pt too wide) in paragraph at lines 1163--1163
+ []|\OT1/cmr/m/n/6 5| 
+ []
+
+
+Overfull \hbox (1.62968pt too wide) in paragraph at lines 1163--1163
+ []|\OT1/cmr/m/n/6 4| 
+ []
+
+
+Overfull \hbox (1.62968pt too wide) in paragraph at lines 1163--1163
+ []|\OT1/cmr/m/n/6 3| 
+ []
+
+
+Overfull \hbox (1.62968pt too wide) in paragraph at lines 1163--1163
+ []|\OT1/cmr/m/n/6 2| 
+ []
+
+
+Overfull \hbox (1.62968pt too wide) in paragraph at lines 1163--1163
+ []|\OT1/cmr/m/n/6 1| 
+ []
+
+
+Overfull \hbox (1.62968pt too wide) in paragraph at lines 1163--1163
+ []|\OT1/cmr/m/n/6 0| 
+ []
+
+[26] [27] (Algoritmi.aux) ) 
 Here is how much of TeX's memory you used:
- 16245 strings out of 481073
- 317832 string characters out of 2905097
- 617430 words of memory out of 3000000
- 33287 multiletter control sequences out of 15000+600000
+ 16445 strings out of 481073
+ 321364 string characters out of 2905097
+ 628609 words of memory out of 3000000
+ 33471 multiletter control sequences out of 15000+600000
  420179 words of font info for 88 fonts, out of 8000000 for 9000
  0 hyphenation exceptions out of 8191
  100i,10n,104p,726b,741s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tctt1200.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx12.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi12.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi8.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr12.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr17.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr7.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy8.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmti12.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on Algoritmi.pdf (26 pages, 243549 bytes).
+ </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tctt1200.pk> </home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbx12.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmex10.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi12.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmmi8.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr10.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr12.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr17.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr6.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr7.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr8.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy10.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy8.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmti12.pfb></home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on Algoritmi.pdf (27 pages, 258567 bytes).
 PDF statistics:
- 155 PDF objects out of 1000 (max. 8388607)
+ 162 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
