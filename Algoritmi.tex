@@ -1152,15 +1152,12 @@ Come per la moltiplicazione, un esempio di divisione tra due numeri in base 10
         (-1)^S \times F \times 2^E
     \]
     \begin{center}
-        \tiny
-        \begin{tabularx}{\textwidth}{@{}|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|}
+        \begin{tabular}{|c|c|c|}
             \hline
-            31 & 30 & 29 & 28 & 27 & 26 & 25 & 24 & 23  & 22 & 21 & 20 & 19 & 18 & 17 & 16 & 15 & 14 & 13 & 12 & 11 & 10 & 9 & 8 & 7 & 6 & 5 & 4 & 3 & 2 & 1 & 0 \\
+            s & esponente & frazione \\
             \hline
-            \multicolumn{1}{|c|}{\normalsize s} & \multicolumn{8}{c|}{\normalsize esponente} & \multicolumn{23}{c|}{\normalsize frazione} \\
-            \hline
-            \multicolumn{1}{c}{\normalsize 1 bit} & \multicolumn{8}{c}{\normalsize 8 bit} & \multicolumn{23}{c}{\normalsize 23 bit}        
-        \end{tabularx}
+            \multicolumn{1}{c}{\normalsize 1 bit} & \multicolumn{1}{c}{\normalsize 8 bit} & \multicolumn{1}{c}{\normalsize 23 bit}        
+        \end{tabular}
     \end{center}
     In questa maniera è abbastanza facile ottenere numeri molto precisi, con tante cifre dopo la virgola, ma anche numeri molto grandi, senza nessun numero dopo la virgola. Nel caso il numero da rappresentare sia troppo piccolo per le capacità del registro si parla di \textit{underflow}.
     Per ovviare a questo problema si utilizzano due differenti tipi di numeri floating point. Quello appena visto è detto \textit{single precision} ed è formato da 32 bit, mentre l'altro è detto \textit{double precision} ed è formato da 64 bit, di cui 52 per la frazione e 11 per l'esponente. 
@@ -1178,5 +1175,8 @@ Come per la moltiplicazione, un esempio di divisione tra due numeri in base 10
            1.0015_{\mbox{\scriptsize dieci}} \times 10^2 = 1.002_{\mbox{\scriptsize dieci}} \times 10^2 
         \] 
     \end{itemize}
-    
+In maniera simile si affronta la moltiplicazione tra numeri floating-point. Si prendano i numeri \(1.110_{\mbox{\scriptsize dieci}} \times 10^{10} \times 9.200_{\mbox{\scriptsize dieci}} \times 10^(-5)\).
+\begin{itemize}
+    \item[Step 1.] Per prima cosa si ottiene l'esponene del prodotto con la somma degli esponendi dei due fattori 
+\end{itemize}
 \end{document}
