@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1652198316 "/home/bonni/Documents/LaTeX/LaTeX/Algoritmi.tex" "Algoritmi.pdf" "Algoritmi" 1652198317
+["pdflatex"] 1652622277 "/home/bonni/Documents/LaTeX/LaTeX/Algoritmi.tex" "Algoritmi.pdf" "Algoritmi" 1652622280
   "/home/bonni/.miktex/texmfs/data/fonts/map/pdftex/pdftex.map" 1652193609 85914 d462dd3e46c6b14631a286ee49de1853 ""
   "/home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1200.pk" 1621986155 14064 b09d1f47cfa28292a74fbecea6a1196c ""
   "/home/bonni/.miktex/texmfs/data/fonts/pk/ljfour/jknappen/ec/dpi600/tctt1200.pk" 1646408717 11368 a51b0677096ada166bd2fff6bd511587 ""
@@ -52,7 +52,6 @@
   "/home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1621986046 35752 024fb6c41858982481f6968b5fc26508 ""
   "/home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1621986046 32722 d7379af29a190c3f453aba36302ff5a9 ""
   "/home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr17.pfb" 1621986046 32362 179c33bbf43f19adbb3825bb4e36e57a ""
-  "/home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr6.pfb" 1621986046 32734 69e00a6b65cedb993666e42eedb3d48f ""
   "/home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr7.pfb" 1621986046 32762 224316ccc9ad3ca0423a14971cfa7fc1 ""
   "/home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1621986046 32726 0a1aea6fcd6468ee2cf64d891f5c43c8 ""
   "/home/bonni/.miktex/texmfs/install/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1621986046 32569 5e5ddc8df908dea60932f3c484a54c0d ""
@@ -183,10 +182,10 @@
   "/home/bonni/.miktex/texmfs/install/tex/latex/physics/physics.sty" 1621986136 29610 a9597219b282d9c78b02393dcd7d4322 ""
   "/home/bonni/.miktex/texmfs/install/tex/latex/ragged2e/ragged2e.sty" 1621986096 9204 2f0aef9fbe22be710da148fcc4b33ddf ""
   "/home/bonni/.miktex/texmfs/install/tex/latex/xcolor/xcolor.sty" 1621986099 57049 74963e80d77be39a0b7442967b27c75b ""
-  "/home/bonni/Documents/LaTeX/LaTeX/Algoritmi.tex" 1652198312 77375 1f047f6a6cb1c3bbb819003c09ab2f00 ""
-  "Algoritmi.aux" 1652198317 3425 fb72ce57d14d6138109eb0f34b812168 "pdflatex"
-  "Algoritmi.tex" 1652198312 77375 1f047f6a6cb1c3bbb819003c09ab2f00 ""
+  "/home/bonni/Documents/LaTeX/LaTeX/Algoritmi.tex" 1652622276 76997 e7fb129f1a0b058f04edd5204ade9e5f ""
+  "Algoritmi.aux" 1652622279 3425 fb72ce57d14d6138109eb0f34b812168 "pdflatex"
+  "Algoritmi.tex" 1652622276 76997 e7fb129f1a0b058f04edd5204ade9e5f ""
   (generated)
   "Algoritmi.pdf"
-  "Algoritmi.log"
   "Algoritmi.aux"
+  "Algoritmi.log"
