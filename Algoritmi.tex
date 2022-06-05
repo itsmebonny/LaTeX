@@ -1177,6 +1177,38 @@ Come per la moltiplicazione, un esempio di divisione tra due numeri in base 10
     \end{itemize}
 In maniera simile si affronta la moltiplicazione tra numeri floating-point. Si prendano i numeri \(1.110_{\mbox{\scriptsize dieci}} \times 10^{10} \times 9.200_{\mbox{\scriptsize dieci}} \times 10^(-5)\).
 \begin{itemize}
-    \item[Step 1.] Per prima cosa si ottiene l'esponene del prodotto con la somma degli esponendi dei due fattori 
+    \item[Step 1.] Per prima cosa si ottiene l'esponene del prodotto con la somma degli esponendi dei due fattori  
+    \[
+        10 + (-5) = 5
+    \] 
+    \item[Step 2.] A questo punto è necessario eseguire la moltiplicazione dei due fattori 
+    \[1.110_{\mbox{\scriptsize dieci}} \times 9.200_{\mbox{\scriptsize dieci}} = 10.212000_{\mbox{\scriptsize dieci}}\]
+     che quindi diventa \(10.212_{\mbox{\scriptsize dieci}} \times 10^5\)
+    \item[Step 3.] Lo step successivo, come nell'addizione è la normalizzazione e eventuale arrotondamento, ossia
+    \[
+        10.212_{\mbox{\scriptsize dieci}} \times 10^5 = 1.0212_{\mbox{\scriptsize dieci}} \times 10^6
+    \]  
+    che chiaramente diventa \(1.021_{\mbox{\scriptsize dieci}} \times 10^6\)
+    \item[Step 4.] Lo step finale è la verifica dei bit di segno dei due fattori per stabilire il segno del risultato.
 \end{itemize}
+A seguire un piccolo snippet di codice utilizzato per convertire la temperatura da gradi Celsius a gradi Fahrenheit.
+\begin{verbatim}
+    float f2c (float fahr){
+        return ((5.0f/9.0f) * (fahr - 32.0f));
+    }
+\end{verbatim}
+diventa in RISC-V 
+\begin{verbatim}
+    f2c:
+        flw f0, const5(x3)   // f0 = 5.0f
+        flw f1, const9(x3)   // f1 = 9.0f
+        fdiv.s f0, f0, f1    // f0 = 5.0f/9.0f
+        flw f1, const32(x3)  // f1 = 32.0f
+        fsub.s f10, f10, f1  // f10 = fahr - 32.0f
+        fmul.s f10, f0, f10  // f10 = (5.0f /9.0f) * (fahr - 32.0f)
+        jalr x0, 0(x1)       // return
+\end{verbatim}
+\section{Il processore}
+\subsection{Le regole logiche}
+Bisogna stabilire delle convenzioni da seguire 
 \end{document}
