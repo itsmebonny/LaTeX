@@ -1,0 +1,794 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{bm}
+\usepackage[margin=2cm]{geometry}
+\usepackage{bigfoot}
+\usepackage{amsthm}
+\usepackage[makeroom]{cancel}
+
+
+\newtheoremstyle{break}
+  {\partopsep}{\topsep}%  
+  {\normalfont}{}
+  {\bfseries}{}%
+  {\newline}{}%
+  \theoremstyle{break}
+\newtheorem{theorem}{Teorema}[section]
+\newtheorem{corollary}{Corollario}[section]
+\newtheorem{proposition}{Proposizione}[section]
+\renewcommand*{\proofname}{\textbf{Dimostrazione}}
+\renewcommand\qedsymbol{$\bigstar$}
+\newtheorem{definition}{Definizione}[section]
+
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+
+\newcommand{\ind}{\perp\!\!\!\!\perp} 
+
+\long\def\symbolfootnotemark[#1]#2{\begingroup%
+\def\thefootnote{\fnsymbol{footnote}}\footnotetext[#1]{#2}\footnotemark[#1]\endgroup}
+
+\long\def\symbolfootnotetext[#1]#2{\begingroup%
+\def\thefootnote{\fnsymbol{footnote}}\footnotetext[#1]{#2}\endgroup}
+
+
+\numberwithin{equation}{section}
+
+
+
+
+
+\begin{document}
+\title{Teoria di Probabilità}
+\author{Andrea Bonifacio}
+\date{\today}
+\maketitle
+
+\newpage
+\section{Definizione assiomatica di probabilità}
+Lo studio della probabilità si basa su assiomi e definizioni. \\
+Alcuni concetti fondamentali sono: gli \emph{eventi}, rappresentati come insiemi di oggetti, le \emph{$\sigma$-algebre}, collezioni (insiemi di insiemi) di eventi e la \emph{probabilità}, funzione che associa ad ogni evento un grado di fiducia da 0 a 1.
+\subsection{Eventi matematici}
+\begin{definition}
+Un esperimento aleatorio è un'osservazione nel mondo reale il cui risultato non è noto a priori e nemmeno deterministico, ma influenzato dal caso.
+\end{definition}
+\begin{definition}
+Lo spazio campionario $\Omega$ rappresenta l'insieme degli esiti elementari possibili $\omega$ di un singolo esperimento aleatorio. Non è definito univocamente dall'esperimento.
+\end{definition}
+\begin{definition}
+È detto evento un fatto a cui si può attribuire un grado di verità (vero o falso) al termine dell'esperimento. L'evento matematico $A$ rispetto a un evento dato è l'insieme degli esiti $\omega$ in cui l'evento è verificato.
+\end{definition}
+Esempi:
+\begin{itemize}
+\item Numero primo a tombola $\leftrightsquigarrow \, A = \{2,3,5,\ldots,89\} \subseteq \Omega =\{1,\ldots, 90\}$.
+\item Numeri uguali dal lancio di due dadi $\leftrightsquigarrow \, A = \{(1,1),(2,2),\ldots\} \subseteq \Omega = \{1, \ldots, 6\}^2$.
+\end{itemize}
+Vi sono varie operazioni con gli eventi:
+\begin{itemize}
+\item $\emptyset$: rappresenta l'evento impossibile;
+\item $\Omega$: rappresenta l'evento certo;
+\item $A^C$: evento contrario ad $A$;
+\item $A \cup B$: evento $A$ \emph{oppure} evento $B$;
+\item $A \cap B$: evento $A$ \emph{ed} evento $B$;
+\item $A \cap B = 0$: eventi \emph{incompatibili};
+\item $A \subseteq B$: $A$ \emph{implica} $B$;
+\end{itemize}
+\begin{definition}
+L'insieme delle parti di $\Omega$ si dice $2^{\Omega}$ la collezione di tutti i sottoinsiemi di $\Omega$ inclusi $\Omega$ e $\emptyset$.
+\end{definition}
+\subsection{Algebre e $\sigma$-algebre}
+\begin{definition}
+$\mathcal{A} \subseteq 2^{\Omega}$ si dice \textbf{algebra} se:
+\begin{enumerate}
+\item $\emptyset \in \mathcal{A}, \Omega \in \mathcal{A}$
+\item $A \in \mathcal{A} \Longrightarrow A^C \in \mathcal{A} \qquad \mbox{(}\mathcal{A} \mbox{ è chiusa per complementazione)}$
+\item $A_1, A_2, \ldots, A_n \in \mathcal{A} \Longrightarrow$ {\everymath ={\displaystyle}$\bigcup_{i=1}^n \mathcal{A}_i \in \mathcal{A}, \bigcap_{i=1}^n \mathcal{A}_i \in \mathcal{A}$} ($\mathcal{A}$ è chiusa per unioni e intersezioni finite)
+\end{enumerate}
+\end{definition}
+\begin{definition}
+$\mathcal{A} \subseteq 2^{\Omega}$ si dice \textbf{$\sigma$-algebra} se:
+\begin{enumerate}
+\item $\emptyset \in \mathcal{A}, \Omega \in \mathcal{A}$
+\item $A \in \mathcal{A} \Longrightarrow A^C \in \mathcal{A} \qquad \mbox{(}\mathcal{A} \mbox{ è chiusa per complementazione)}$
+\item $A_1, A_2, \ldots, A_n \in \mathcal{A} \Longrightarrow$ {\everymath ={\displaystyle}$\bigcup_{i=1}^{+\infty} \mathcal{A}_i \in \mathcal{A}, \bigcap_{i=1}^{+\infty} \mathcal{A}_i \in \mathcal{A}$} ($\mathcal{A}$ è chiusa per unioni e intersezioni numerabili)
+\end{enumerate}
+\end{definition}
+Alcune $\sigma$-algebre notevoli sono:
+\begin{itemize}
+\item $\mathcal{A} = \{\emptyset, \Omega\}$: la $\sigma$-algebra più piccola.
+\item $\mathcal{A} = \{2^{\Omega}$: la $\sigma$-algebra più grande.
+\item $\mathcal{A} = \{\emptyset, \Omega, A, A^C \}$: una generica $\sigma$-algebra.
+\end{itemize}
+\begin{definition}
+Siano $\Omega$ spazio campionario e $\mathcal{A}$ $\sigma$-algebra su $\Omega$, la coppia ($\Omega, \mathcal{A}$) è definita uno spazio misurabile.
+\end{definition}
+\begin{definition}
+Data la classe $\mathcal{C} \subseteq 2^{\Omega}$, si dice $\sigma$-algebra generata da $\mathcal{C}$ e si scrive $\sigma(\mathcal{C})$ la più piccola $\sigma$-algebra contenente $\mathcal{C}$.
+\end{definition}
+\begin{proposition}
+$\sigma(\mathcal{C})$ è ben definita $\forall \mathcal{C}$
+\end{proposition}
+\begin{proof}
+\begin{enumerate}
+\item Considerando la $\sigma$-algebra delle parti $2^{\Omega}$, per ipotesi $2^{C} \supseteq \mathcal{C}$. Dunque esiste almeno una $\sigma$-algebra $\mathcal{A} \supseteq \mathcal{C}$.
+\item Ne esiste una più piccola di tutte? \\
+Sia $\mathcal{A}_{\alpha}$ una famiglia di $\sigma$-algebre e $\mathcal{A} = ${\everymath ={\displaystyle}$\, \bigcap_{\alpha} \mathcal{A}_{\alpha}$} (con $\alpha$ finito o infinito).
+$\mathcal{A}$ è una $\sigma$-algebra, infatti:
+\begin{itemize}
+\item[(a)]{\everymath ={\displaystyle}$\, \bigcap_{\alpha} \mathcal{A}_{\alpha}$} contiene $\Omega$ e $\emptyset$: $\emptyset \in \mathcal{A}_{\alpha} \, \forall \alpha$ e dunque $\emptyset \in${\everymath ={\displaystyle}$\, \bigcap_{\alpha} \mathcal{A}_{\alpha}$}.
+Analogamente si può dimostrare l'appartenenza di $\Omega$
+\item[(b)] {\everymath ={\displaystyle}$\, \bigcap_{\alpha} \mathcal{A}_{\alpha}$} è chiusa per complementazione: sia $A \in \,${\everymath ={\displaystyle}$\, \bigcap_{\alpha} \mathcal{A}_{\alpha}$}. Dunque $A \in \mathcal{A}_{\alpha} \forall \, \alpha$
+Ciò avviene se e solo se $A^C \in \mathcal{A}_{\alpha} \, \forall \alpha$, essendo $\mathcal{A}_{\alpha}$ una $\sigma$-algebra. Dunque $A \in \mathcal{A}_{\alpha} \, \forall \alpha$.
+Ma allora $A^C \in${\everymath ={\displaystyle}$\, \bigcap_{\alpha} \mathcal{A}_{\alpha}$}
+\item[(c)] {\everymath ={\displaystyle}$\, \bigcap_{\alpha} \mathcal{A}_{\alpha}$} è chiusa per unioni e intersezioni numerabili:
+{\everymath ={\displaystyle}
+$$
+\begin{array}{lcl}
+A_k \in \bigcap_{\alpha} \, \mathcal{A}_{\alpha} \, \forall k \in \mathbb{N} & \Longleftrightarrow & A_k \in \mathcal{A}_{\alpha} \, \forall k \in \mathbb{N}, \forall \alpha \\
+& \Longrightarrow & \bigcup_k A_k \in \mathcal{A}_{\alpha} \, \forall \alpha \\
+& \Longrightarrow & \left( \bigcup_k A_k \right)\ \in \bigcap_{\alpha} \mathcal{A}_{\alpha} 
+\end{array}
+$$
+}
+\end{itemize}
+\end{enumerate}
+Allora $\sigma(\mathcal{C}) = {\displaystyle \bigcap_{\mathcal{A} \supseteq \mathcal{C}}} \mathcal{A}$.
+\end{proof}
+\begin{theorem}
+Se $A_n \in \mathcal{A} \, \forall n \in \mathbb{N}$ allora:
+$$
+\mbox{lim}\,\mbox{sup}A_n \in \mathcal{A} \quad \mbox{ e } \quad \mbox{lim}\,\mbox{inf} A_n \in \mathcal{A}
+$$
+\end{theorem}
+\begin{proposition}
+$\mathcal{A} \,\,\sigma$-algebra su $\Omega \quad \Longrightarrow \quad \mathcal{A} \mbox{ algebra su } \Omega$.
+\end{proposition}
+\begin{proof}
+Siano $A_1,\ldots, A_n$ eventi appartenenti alla $\sigma$-algebra $\mathcal{A}$. \\
+Definito $A_{n+1} = A_{n+2} = \cdots = A_n$, si ha che:
+$$
+\bigcap_{k=1}^n \, A_k = \bigcap_{k=1}^{\infty} \, A_k \in \mathcal{A} \mbox{ e } \bigcup_{k=1}^n \, A_k = \bigcup_{k=1}^{\infty} \, A_k \in \mathcal{A}
+$$
+\end{proof}
+\begin{definition}
+  Sia \(\Omega = \mathbb{R}\). La topologia euclidea di \(\mathbb{R}\) è data dalla collezione \(\tau := \lbrace A \subseteq \mathbb{R} \; : \; A \text{ aperto}\). \\
+  La \(\sigma\textbf{-algebra di Borel}\) è la \(\sigma\)-algebra generata dalla topologia euclidea di \(\mathbb{R} \; : \; \mathcal{B} = \sigma(\tau)\). \\
+  I boreliani sono gli elementi di tale \(\sigma\)-algebra, ossia \[B \subseteq \mathbb{R}, \; B \in \mathcal{B} \Longrightarrow B \text{ boreliano}\]
+\end{definition}
+\begin{theorem}
+  Sia \(\mathcal{B}\) la \(\sigma\)-algebra di Borel, allora dati \(\mathcal{C} = \lbrace (a,b) : -\infty \leq a \leq b \leq +\infty\ \rbrace \) e \(\tilde{\mathcal{C}} = \lbrace (-\infty, q] : q \in \mathbb{Q} \rbrace\), si ha
+  \[
+    \mathcal{B} = \sigma(\mathcal{C}) = \sigma(\tilde{\mathcal{C}})
+  \]
+  L'insieme \(\tilde{\mathcal{C}}\) è la collezione delle semirette chiuse e limitate ad un solo estremo razionale. \\Quindi \(\mathcal{B}\) è un insieme più che continuo e generato da semirette di cardinalità meno che continua.
+\end{theorem}
+\subsection{Misure di probabilità}
+Il grado di fiducia da 0 a 1 che un evento \(A\) si verifichi è detta probabilità \(\mathbb{P}(A)\). Si tratta di una valutazione a priori. \\
+Esistono diverse interpretazioni modellistiche al concetto di probabilità:
+\begin{itemize}
+  \item \textbf{Interpretazione soggettivistica:} secondo chi calcola la probabilità, con eventi non ripetibili.
+  \item \textbf{Interpretazione frequentista:} ripetizione degli eventi per calcolarne la frequenza
+  \[
+    \mathbb{P}(A) = \lim_{n\rightarrow + \infty} f_n(A)
+  \]
+  con \(f_n(A)\) frequenza relativa.
+  \item \textbf{Estrazione da popolazioni finite non truccate:} 
+  \[
+    \mathbb{P}(A) = \frac{\text{\#Casi favorevoli}}{\text{\#Casi possibili}}
+  \]
+\end{itemize}
+Una definizione più rigorosa di probabilità si può ottenere da
+\begin{definition}
+  Dato unp spazio misurabile \((\Omega, \mathcal{A})\), una misura di probabilità è una funzione \(\mathbb{P} : \mathcal{A} \rightarrow [0,1]\) tale che
+  \begin{enumerate}
+    \item \(\mathbb{P}(\Omega) = 1\)
+    \item \(\forall A_n \in \mathcal{A}\) di eventi disgiunti a coppie, ossia \(A_k \cap A_l = \emptyset \; \forall k \not = l\), vale la seguente proprietà di \(\sigma\)-additività:
+    \[
+      \mathbb{P}\left(\bigcup_{n=1}^{+\infty}A_n\right) = \sum_{n=1}^{+\infty} \mathbb{P}(A_n)
+    \]
+  \end{enumerate}
+\end{definition}
+\begin{theorem}
+  Sia \(\mathbb{P}\) una (misura di) probabilità su \(\mathcal{A}\). Allora:
+  \begin{enumerate}
+    \item \(\mathbb{P}(\emptyset) = 0\)
+    \item Dati \(A_1, \ldots, A_n \in \mathcal{A}\) eventi disgiunti a coppie, vale la seguente proprietà di additività:
+    \[
+      \mathbb{P}\left(\bigcup_{k=1}^n A_k\right) = \sum_{k=1}^n \mathbb{P}(A_k)
+    \]
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+La dimostrazione segue due passaggi:
+  \begin{enumerate}
+    \item Si crea una serie di \(A_n\) insiemi vuoti e si dimostra che la loro unione è la stessa dell'insieme vuoto. 
+    {\everymath = {\displaystyle}
+    \[
+      \begin{array}{llll}
+        A_n = \emptyset & \forall n \in \mathbb{N} & \Longrightarrow & A_n \in \mathcal{A}, \; A_k \cap A_l = \emptyset \cap \emptyset = \emptyset \\
+         & & \Longrightarrow & \mathbb{P}\left(\bigcup_{n=1}^{+\infty} A_n\right) = \sum_{n=1}^{+\infty} \mathbb{P}(A_n) \\
+         & & \Longrightarrow & \mathbb{P}(\emptyset) = \sum_{n=1}^{+\infty} = \sum_{n=1}^{+\infty} \mathbb{P}(\emptyset) \\
+         & & \Longrightarrow & \mathbb{P}(\emptyset) = 0
+      \end{array}
+    \]
+    }
+    \item Si sfrutta poi la \(\sigma\)-additività estendendo fino all'infinito gli \(A_k\):
+    \[
+      A_1, \ldots, A_n \in \mathcal{A} \quad A_k \cap A_l = \emptyset \quad \forall k \not  = l, \quad \tilde{A}_k = \begin{cases}
+        A_k & k = 1, \ldots, n \\
+        \emptyset & k > n
+      \end{cases} 
+    \]
+    {\everymath = {\displaystyle}
+    \[
+      \begin{array}{lll}
+        \Longrightarrow & \tilde{A}_k \cap \tilde{A}_l = \emptyset & \forall k \not = l \\
+        \Longrightarrow & \mathbb{P}\left(\bigcup_{k=1}^{+\infty} \tilde{A}_k\right) = & \sum_{k=1}^{+\infty} \mathbb{P}(\tilde{A}_k) \\
+        \Longrightarrow & \mathbb{P}\left(\bigcup_{k=1}^{n} A_k\right) = & \sum_{k=1}^n \mathbb{P}(\tilde{A}_k) + \sum_{k = n+1}^{+\infty} \mathbb{P}(\tilde{A}_k) = \sum_{k = 1}^{n} + 0 \\
+        \Longrightarrow & \mathbb{P}\left(\bigcup_{k=1}^{n} A_k\right) = & \sum_{k=1}^{n} \mathbb{P}(A_k)
+      \end{array}
+    \]
+    }
+  \end{enumerate}
+\end{proof}
+Si può scrivere \(\mathbb{P}(A \cap B)\) come \(\mathbb{P}(A,B)\).
+\begin{corollary}
+  \begin{itemize}
+    \item Dati \(A, A' \in \mathcal{A}\) si ha che \(A \subseteq A' \Longrightarrow \mathbb{P}(A) \leq \mathbb{P} (A')\) 
+    \item \(A \in \mathcal{A} \Longrightarrow \mathbb{P}(A^C) = 1 - \mathbb{P}(A)\), dove \(1\) è \(\mathbb{P}(\Omega)\)
+    \item \(A, B \in \mathcal{A} \Longrightarrow \mathbb{P}(A \cup B) = \mathbb{P}(A) + \mathbb{P}(B) - \mathbb{P}(A,B)\)
+  \end{itemize}
+\end{corollary}
+\subsection{Successioni di eventi}
+\begin{definition}
+  Dato \(A_n \in \mathcal{A} \; \forall n\):
+  \begin{itemize}
+    \item \(A_n \uparrow A\) significa che \(A_n\) è una successione di eventi crescente verso \(A\):
+    \[
+      A_n \subseteq A_{n+1}, \quad \bigcup_{n=1}^{+\infty} A_n = A
+    \]
+    \item \(A_n \downarrow A\) significa che \(A_n\) è una successione di eventi decrescente verso \(A\):
+    \[
+      A_n \supseteq A_{n+1}, \quad \bigcap_{n=1}^{+\infty} A_n = A
+    \]
+  \end{itemize}
+  In entrambi i casi \(A\) è l'insieme limite della successione.
+\end{definition}
+\begin{theorem}
+  Siano \((\Omega, \mathcal{A})\) uno spazio misurabile e \(\mathbb{P} : \mathcal{A} \rightarrow [0, 1]\) una funzione additiva tale che \(\mathbb{P}(\Omega) = 1\). Le seguenti affermazioni sono allora equivalenti:
+  \begin{enumerate}
+    \item \(\mathbb{P}\) è \(\sigma\)-additiva (ovvero \(\mathbb{P}\) è una probabilità)
+    \item \(A_n \in \mathcal{A}, \; A_n \downarrow \emptyset \Longrightarrow \mathbb{P}(A_n) \downarrow 0\)
+    \item \(A_n \in \mathcal{A}, \; A_n \downarrow A \Longrightarrow \mathbb{P}(A_n) \downarrow \mathbb{P}(A)\)
+    \item \(A_n \in \mathcal{A}, \; A_n \uparrow \Omega \Longrightarrow \mathbb{P}(A_n) \uparrow 1\)
+    \item \(A_n \in \mathcal{A}, \; A_n \uparrow A \Longrightarrow \mathbb{P}(A_n) \uparrow \mathbb{P}(A)\)
+  \end{enumerate}
+Dai punti (3) e (5) si deduce lo scambio di limiti \(\mathbb{P}(A) = \mathbb{P}(\lim_n A_n) = \lim_n \mathbb{P}(A_n)\)
+\end{theorem}
+\begin{proof}
+  La dimostrazione si divide in quattro parti:
+  \begin{itemize}
+    \item[(a)] casi ovvi
+    \item[(b)] \((4) \Longrightarrow (5)\)
+    \item[(c)] \((5) \Longrightarrow (1)\)
+    \item[(d)] \((1) \Longrightarrow (5)\)   
+  \end{itemize}
+  \begin{itemize}
+    \item[(a)] \begin{itemize}
+      \item \((3) \Longleftrightarrow (5)\) per le leggi di De Morgan (complementarità)
+      \item \((2) \Longleftrightarrow (4)\) per le leggi di De Morgan (complementarità)
+      \item \((3) \Longrightarrow (2)\) e \((5) \Longrightarrow (4)\) perché sono casi particolari
+    \end{itemize}
+    \item[(b)] \((4) \Longrightarrow (5)\). Siano \(A_n \in \mathcal{A}\) tali che \(A_n \uparrow A\). Definita \(B_n = A_n \cup A^C\). \(B_{n+1} \supseteq B_n\). Allora \(B_n \uparrow \Omega\) e dunque \(\mathbb{P}(B_n) \rightarrow 1\). Inoltre vale 
+    \[
+      \bigcup_n B_n = \bigcup_n (A_n \cup A^C) = \left(\bigcup_n A_n\right) \cup A^C = A \cup A^C = \Omega
+    \] 
+    che si traduce in probabilità come 
+    \[
+      \begin{array}{lll}
+        \mathbb{P}(B_n) & = & \mathbb{P}(A_n \cup A^C) \\
+        & = & \mathbb{P}(A_n) + \mathbb{P}(A^C) - \mathbb{P}(A_n \cap A^C) \\
+        & = & \mathbb{P}(A_n) + \mathbb{P}(A^C) \rightarrow \mathbb{P}(A) + \mathbb{P}(A^C)
+      \end{array}
+    \]
+    sottraendo da entrambi i membri \(\mathbb{P}(A^C)\), si ottiene \(\mathbb{P}(A_n) \to \mathbb{P}(A)\). 
+    \item[(c)] \((5) \Longrightarrow (1)\). Siano \(A_n \in \mathcal{A}\) tali che \(A_k \cap A_l = \emptyset \; \forall k \not = l\). Sia {\everymath = {\displaystyle}\(B_n = \bigcup _{k=1}^n\)}, allora 
+    \[
+      B_n \subseteq B_{n+1} \qquad \mbox{ e } \qquad B_n = \bigcup_{k=1}^n B_k = \bigcup_{k = 1}^n A_k
+    \] 
+    che diventa, passando alle probabilità:
+    \[
+      \begin{array}{lll}
+        \mathbb{P}(B_n) = \mathbb{P}\left(\bigcup_{k=1}^n A_k\right) & \Longrightarrow & \sum_{k=1}^n (\mathbb{P}(A_k)) = \mathbb{P}\left(\bigcup_{k=1}^n A_k\right) \\
+        & \Longrightarrow & \sum_{k=1}^{+\infty} (\mathbb{P}(A_k)) = \mathbb{P}\left(\bigcup_{k=1}^{+\infty} A_k\right)
+      \end{array}
+    \]
+    \item[(d)] \((1) \Longrightarrow (5)\). Siano \(A_n \uparrow A, \; A_n  \in \mathcal{A}\). Sia la successione \(B_n\) definita come
+    \[
+      \begin{cases}
+        B_1 = A_1 \\
+        B_2 = A_2 \backslash A_1 = A_2 \cap A_1^C \\
+        \ldots \\
+        B_n = A_n \backslash A_{n-1}
+      \end{cases}
+    \] 
+    dal momento che \(A_n \uparrow A\), allora i \(B_n\) risultano disgiunti e si può sfruttare la \(\sigma\)-additività, ripetendo la procedura del punto precedente
+    \[
+      \mathbb{P}\left(\bigcup_{n = 1}^{+\infty} B_n\right) = \sum_{n=1}^{+\infty} \mathbb{P}(B_n)
+    \]
+  \end{itemize}
+\end{proof}
+\begin{proposition}
+  Data una successione numerabile di eventi \(A_n \in \mathcal{A} \; \forall n\), vale la seguente disuguaglianza
+  \[
+    \mathbb{P}\left(\bigcup_{k=1}^{+\infty}\right) \leq \sum_{k=1}^{+\infty} \mathbb{P}(A_n)
+  \]
+\end{proposition}
+\subsection{Probabilità su spazi campionari discreti}
+\begin{theorem}[Probabilità su spazi discreti]
+  Sia \(\Omega\) uno spazio discreto, ossia con cardinalità al più numerabile, allora
+  \begin{enumerate}
+    \item \(\mathbb{P}\) su \((\Omega, 2^{\Omega})\) è caratterizzata dai valori sugli atomi, cioè
+    \[
+      p_{\omega} = \mathbb{P}(\left\lbrace \omega \right\rbrace), \; \omega \in \Omega; \quad \mbox{infatti }\mathbb{P}(A) = \sum_{\omega \in A} (p_{\omega}) \quad \mbox{con }p : \Omega \to [0,1]
+    \]
+    \item Sia \(p:\Omega \to [0,1]\), allora
+    \[
+      \exists ! \mathbb{P} : 2^{\Omega} \to [0,1] : \mathbb{P}(\left\lbrace \omega \right\rbrace) = p_{\omega} \Longleftrightarrow \begin{cases}
+        p_{\omega} \geq 0 & \forall \omega \\
+        \sum_{\omega \in \Omega} p_{\omega} = 1
+      \end{cases}
+    \]
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  \begin{enumerate}
+    \item siano \(\mathbb{P} : (2^{\Omega}) \to [0,1]\) e \(A \in 2^{\Omega}, A \subseteq \Omega\).  \\
+    Allora {\everymath = {\displaystyle} \(A = \bigcup_{x \in A} \{x\}\)} e, essendo gli atomi eventi disgiunti, per la \(\sigma\)-additività vale che 
+    \[
+      \mathbb{P}(A) = \mathbb{P}\left(\bigcup_{x \in A}\{x\}\right) = \sum_{x \in A} \mathbb{P}(\{x\}) = \sum_{x \in A} p_{\omega}
+    \]
+    \item per ipotesi \(\exists ! \mathbb{P} : 2^{\Omega} \to [0,1]\); allora si può porre \(p_{\omega} = \mathbb{P}\{\omega\} \in [0,1]\). Inoltre 
+    \[
+      \sum_{\omega \in \Omega} p_{\omega} = \sum_{\omega \in \Omega} \mathbb{P}(\{\omega\}) = \mathbb{P}\left(\bigcup_{\omega \in \Omega}\{\omega\}\right) = \mathbb{P}(\Omega) = 1
+    \]
+    Inoltre, sia \(\mathbb{P} : \Omega \to \mathbb{R}\) tale che \(p_{\omega} \geq 0\) e {\everymath = {\displaystyle}\( \sum_{\omega \in \Omega}p_{\omega} = 1\) \\
+    Posto inoltre \(\mathbb{P}(A) = \sum_{\omega \in \Omega}p_{\omega}\)}, allora \(p_{\omega} = \mathbb{P}(\{\omega\})\) e si mostra che \(\mathbb{P}\) è una probabilità:
+    \begin{itemize}
+      \item \(\mathbb{P}(\Omega) = \sum_{\omega \in \Omega}p_{\omega} = 1\)
+      \item \(\mathbb{P}\) è \(\sigma\)-additiva, infatti, dati \(A_k \in 2^{\Omega}, \; k \in \mathbb{N}, \; A_k \cap A_l = \emptyset \; \forall k \not = l\):
+      \[
+        \mathbb{P}\left(\bigcup_{k=1}^{+\infty}A_k\right) = \sum_{\omega \in \bigcup_{k=1}^{+\infty} A_k} p_{\omega} = \sum_{k=1}^{+\infty} \left[\sum_{\omega \in A_k} p_{\Omega}\right] = \sum_{k=1}^{+\infty} \mathbb{P}(A_k)
+      \]
+    \end{itemize}
+  Allora \(\exists ! \mathbb{P} : 2^{\Omega} \to [0,1]\) tale che \(\mathbb{P}(\{\omega\}) = p_{\omega}\)
+  \end{enumerate}
+\end{proof}
+\begin{definition}
+  Siano \((\Omega, \mathcal{A})\) uno spazio misurabile e \(\mathbb{P}\) una probabilità su \(\mathcal{A}\), allora la tripletta \((\Omega, \mathcal{A}, \mathbb{P})\) è definita spazio di probabilità.
+\end{definition}
+\begin{definition}
+  Sia dato uno spazio di probabilità \((\Omega, \mathcal{A}, \mathbb{P})\), sia l'evento \(A \in \mathcal{A}\). Se \(\mathbb{P}(A) = 0\), allora l'evento \(A\) è detto improbabile, mentre se \(\mathbb{P}(A) = 1\), allora \(A\) è detto evento quasi certo.
+\end{definition}
+\section{Probabilità condizionata e indipendenza}
+\subsection{Probabilità condizionata}
+\begin{definition}
+  Sia \((\Omega, \mathcal{A}, \mathbb{P})\) uno spazio di probabilità, \(A, B \in \mathcal{A}\) con \(\mathbb{P}(B) > 0\). Si parla allora di probabilità di \(A\) condizionata da \(B\) come: 
+  \[
+    \mathbb{P}(A|B) := \frac{\mathbb{P}(A,B)}{\mathbb{P}(B)}
+  \]
+\end{definition}
+Ci sono sempre varie interpretazioni della probabilità condizionata
+\begin{itemize}
+  \item Interpretazione soggettivistica, ossia considerando a priori tutto \(\Omega\). Uno punto interno può essere compreso in \(A, \; B, \; A \cap B, \; (A \cup B)^C\). 
+  \[
+    \mathbb{P}(A) = f_r (A) = \frac{\# A}{\# \Omega} \quad \mbox{ e } \quad \mathbb{P}(B) = f_r(B) = \frac{\#B}{\#\Omega}
+  \]
+  nel caso si verificasse \(B\) durante l'esperimento, allora \(B\) andreabbe a 'sostituire' \(\Omega\) nel valore della probabilità di \(A\). 
+  \[
+    \mathbb{P}(A|B) = \frac{\# (A \cap B)}{\#B} = \frac{\# (A \cap B)}{\#\Omega} \cdot \frac{\# \Omega}{\# B} = \frac{\mathbb{P}(A,B)}{\mathbb{P}(B)}
+  \]
+  \item Interpretazione frequentista, ossia ripetendo \(n\) volte l'esperimento (\(n \to \infty\))
+  \[
+    \mathbb{P}(A|B) \approx \frac{f_r(A, B)}{f_r(B)} = \frac{\mathbb{P}(A,B)}{\mathbb{P}(B)}
+  \]
+  difatti con le frequenze si hanno le seguenti relazioni
+  \[\mathbb{P}(A) \approx f_r(A) = \frac{F(A)}{n} \quad \mbox{ e } \quad \mathbb{P}(A,B) = \frac{F(A,B)}{n}\] 
+\end{itemize}
+\subsection{Indipendenza di eventi}
+\begin{definition}
+  Dati \(A, B \in \mathcal{A}\), sono detti eventi indipendenti se \(\mathbb{P}(A,B) = \mathbb{P}(A) \cdot \mathbb{P}(B)\) e si scrive \(A \ind B)\), ossia i due insiemi non si condizionano a vicenda, essendo indipendenti.
+\end{definition}
+\textbf{Casi degeneri} (\(\mathbb{P}(A) = 0\) oppure \(\mathbb{P}(B) = 0\))
+\begin{itemize}
+  \item \(A\) improbabile: \(A \ind B \quad \forall B \in \mathcal{A} \quad (\mathbb{P}(A) = 0)\)
+  \item \(A\) quasi certo: \(A \ind B \quad \forall B \in \mathcal{A}.\) Infatti \(P(B) = \mathbb{P}(B, A) + \mathbb{P}(B, A^C)\), ma \(\mathbb{P}(B, A^C) = \mathbb{P}(A^C) = 0\) 
+\end{itemize}
+Pescando una carta da un mazzo di carte, si definiscono i seguenti eventi: 
+\[
+  A = \{\mbox{esce Quadri}\} \quad \mbox{ e } \quad B = \{\mbox{esce Fante}\}
+\]
+In termini probabilistici significa che: \(\Omega: \mbox{ mazzo di carte}, \; \#\Omega = 52, \; \mathcal{A} = 2^{\Omega}\). Se \(\mathbb{P}\) è uniforme su \(\mathcal{A}\), allora \(p_{\omega} = \frac{1}{52} \; \forall \omega \in \Omega\). Per verificare l'indipendenza si fa
+\[
+  \mathbb{P}(A) = \frac{\#A}{\#\Omega} = \frac{13}{52}, \quad \mathbb{P}(B) = \frac{\#B}{\#\Omega} = \frac{4}{52}, \quad \mathbb{P}(A,B) = \frac{\#(A \cap B)}{\#\Omega} = \frac{1}{52} 
+\]
+\[
+\Longrightarrow \mathbb{P}(A,B) = \mathbb{P}(A)\mathbb{P}(B) \Longrightarrow A \ind B  
+\]
+\begin{theorem}[indipendenza e complementarità]
+placeholder
+\[
+    A \ind B \Longleftrightarrow A \ind B^C \Longleftrightarrow A^C \ind B \Longleftrightarrow A^C \ind B^C
+\]
+\end{theorem}
+\begin{proof}
+  Dimostrando che \(A \ind B \Longrightarrow A \ind B^C\), si ottengono tutte le altre per complementarità.
+  \[
+    \begin{array}{ll}
+      \mathbb{P}(A, B^C)  & = \mathbb{P}(A) - \mathbb{P}(A,B) = \mathbb{P}(A) - \mathbb{P}(A)\mathbb{P}(B) \\
+      & = \mathbb{P}(A)(1-\mathbb{P}(B)) = \mathbb{P}(A)\mathbb{P}(B^C) 
+    \end{array}
+  \]
+\end{proof}
+\begin{definition}
+  Una famiglia di eventi \(\{A_i\}_{i\in I}\) è detta mutuamente indipendente se, \(\forall J \subseteq I\) (con \(J\) insieme finito):
+  \[
+    \mathbb{P}\left(\bigcap_{i \in J} A_i\right) = \prod_{i\in J} \mathbb{P}(A_i)
+  \]
+\end{definition}
+Sia \(I = \{1, 2, 3\}\). Gli insiemi \(\{A_1, A_2, A_3\}\) sono mutuamente indipendenti se e solo se 
+\[
+\begin{cases}
+  \mathbb{P}(A_1, A_2) = \mathbb{P}(A_1) \cdot \mathbb{P}(A_2) \\
+  \mathbb{P}(A_2, A_3) = \mathbb{P}(A_2) \cdot \mathbb{P}(A_3) \\
+  \mathbb{P}(A_1, A_3) = \mathbb{P}(A_1) \cdot \mathbb{P}(A_3) \\
+  \mathbb{P}(A_1, A_2, A_3) = \mathbb{P}(A_1) \cdot \mathbb{P}(A_2) \cdot \mathbb{P}(A_3)\\
+\end{cases}  
+\]
+La quarta proprietà non è ricavabile dalle altre e comporta che \(A_1 \cap A_2 \ind A_3\). L'indipendenza tra i singoli insiemi non garantisce la mutua indipendenza della famiglia.
+\subsection{Proprietà della probabilità condizionata}
+\begin{theorem}
+  Siano \(B \in \mathcal{A}\) e \(\mathbb{P}\) probabilità su \(\mathcal{A}\), con \(\mathbb{P}(B) > 0\).
+  Allora la funzione \(\mathbb{P}(\cdot |B)\) è una misura di probabilità su \(\mathcal{A}\):
+  \[
+    \mathbb{P}(\cdot |B) : \mathcal{A} \to [0,1], \qquad A \rightarrow \mathbb{P}(A|B) = \frac{\mathbb{P}(A,B)}{\mathbb{P}(B)}
+  \]
+\end{theorem}
+\begin{proof}
+  La probabilità dell'intero dominio è 
+  \[
+     \mathbb{P}(\Omega |B) = \frac{\mathbb{P}(\Omega, B)}{\mathbb{P}(B)} = \frac{\mathbb{P}(B)}{\mathbb{P}(B)} = 1
+  \]
+  Va dimostrato che \(\mathbb{P}(\cdot|B)\) è \(\sigma\)-additiva. Siano \(A_n \in \mathcal{A}, \quad n \in \mathbb{N}, \quad A_k \cap A_l = \emptyset, \quad \forall k \not = l\). Allora
+  {\everymath = {\displaystyle}\[
+    \begin{array}{ll}
+      \mathbb{P}\left(\bigcup_{n=1}^{+\infty} \Bigg\vert B\right) & = \frac{\mathbb{P}(\bigcup A_n, B)}{\mathbb{P}} = \frac{\mathbb{P}(\bigcup(A_n, B))}{\mathbb{P}} \\
+      & = \frac{\sum \mathbb{P}(A_n, B)}{\mathbb{P}(B)} = \sum_{n = 1}^{+\infty} \mathbb{P}(A_n\vert B) 
+  \end{array}
+  \]}
+  che conferma il fatto che \(\mathbb{P}\) rispetta tutte le proprietà di una probabilità.
+\end{proof}
+\begin{corollary}
+  Se \(\mathbb{P}(A), \mathbb{P}(B) > 0\), allora si ha
+  \[
+     \mathbb{P}(A,B) = \frac{\mathbb{P}(A,B)}{\mathbb{P}(B)} = \frac{\mathbb{P}(A,B)}{\mathbb{P}(B)} \cdot \frac{\mathbb{P}(A)}{\mathbb{P}(A)} = \mathbb{P}(B|A) \cdot \frac{\mathbb{P}(A)}{\mathbb{P}(B)}
+  \]
+  In tale modo si può scambiare l'ordine degli eventi, trasformando \(A\) da evento condizionato a evento condizionante. 
+\end{corollary}
+\begin{definition}
+  Siano \(A_k \in \mathcal{A}, \; k \in I\) con \(I\) discreto. \((A_k)_{k\in I}\) è detto partizione di \(\Omega\) se 
+  \begin{itemize}
+    \item \(A_k \cap A_l = \emptyset \quad \forall k \not = l\)
+    \item {\everymath = {\displaystyle}\(\bigcup_{k} A_k = \Omega\)}
+    \item \(\mathbb{P}(A_k) > 0 \quad \forall k\)
+  \end{itemize}
+\end{definition}
+\begin{theorem}
+  Siano \(A_1, \ldots, A_n \in \mathcal{A}\), con \(\mathbb{P}(A_1, \ldots, A_n) > 0\). Allora si ha che 
+  \[
+    \mathbb{P}(A_1, \ldots, A_n) = \mathbb{P}(A_n\vert A_1, \ldots, A_{n-1}) \cdot \mathbb{P}(A_{n-2}\vert A_1, \ldots, A_{n-2}) \cdots \mathbb{P}(A_2\vert A_1) \cdot \mathbb{P}(A_1)
+  \]
+\end{theorem}
+\begin{proof}
+  \begin{enumerate}
+    \item \(\mathbb{P}(A_k\vert A_{k-1}, \ldots, A_1)\) è ben definito \(\forall k = 1, \ldots, n\). \\
+    Infatti \(A_1 \cap \cdots \cap A_{k-1} \subseteq A_1 \cap \cdots \cap A_n\), e allora
+    \[
+      \mathbb{P}(A_1, \ldots, A_{k-1}) \geq \mathbb{P})(A_1, \ldots, A_n) > 0
+    \]
+    \item Va ora dimostrata l'uguaglianza 
+    \[
+      \mathbb{P}(A_n \vert A_1, \ldots, A_{n-1}) \cdot \mathbb{P}(A_{n-1}\vert A_1, \ldots A_{n-2}) \cdots \mathbb{P}(A_2\vert A_1)\cdot \mathbb{P}(A_1)
+    \]
+    {\everymath = {\displaystyle}\[
+      \begin{array}{l}
+        = \frac{\mathbb{P}(A_n, \ldots, A_1)}{\cancel{{\mathbb{P}(A_{n-1},\ldots, A_1)}}} \cdot \frac{\cancel{\mathbb{P}(A_n-1), \ldots, A_1}}{\cancel{\mathbb{P}(A_{n-2}, \ldots, A1)}} \cdots \frac{\cancel{\mathbb{P}(A_2\vert A_1)}}{\cancel{\mathbb{P}(A_1)}} \cdot \cancel{\mathbb{P}(A_1)} \\
+        = \mathbb{P}(A_n, \ldots, A_1)
+      \end{array}
+    \]}
+  \end{enumerate}
+\end{proof}
+\begin{theorem}[formula delle probabilità totali]
+  Siano \((\Omega, \mathcal{A}, \mathbb{P})\) uno spazio di probabilità, \((E_n)_n\) una partizione discreta di \(\Omega, \; A \in \mathcal{A}\).
+  Allora
+  \[
+    \mathbb{P}(A) = \sum_n \mathbb{P}(A, E_n) = \sum_n \mathbb{P} (A|E_n) \cdot \mathbb{P}(E_n)
+   \]
+\end{theorem}
+\begin{theorem}
+  Poiché \((A \cap E_n) \cap (A \cap E_l) = \emptyset \; \forall k \not = l\)
+  \[
+  \begin{array}{ll}
+    \mathbb{P}(A) & = \mathbb{P}(A \cap \Omega) = \mathbb{P}\left(A \cap \left(\bigcup_n E_n\right)\right) = \mathbb{P}\left(\bigcup_n \left(A \cap E_n\right)\right) \\
+    & = \sum_n \mathbb{P}(A \cap E_n) = \sum_n \mathbb{P}(A\vert E_n)\cdot \mathbb{P}(E_n) 
+  \end{array}
+  \]
+\end{theorem}
+\begin{theorem}[formula di Bayes]
+  Siano \((\Omega, \mathcal{A}, \mathbb{P})\) uno spazio di probabilità, \((E_n)_n\) una partizione discreta di \(\Omega, \; A \in \mathcal{A}, \; \mathbb{P}(A) > 0\). Allora
+  {\everymath = {\displaystyle}\[
+    \mathbb{P}(E_k \vert A) = \frac{\mathbb{P}(A \vert E_k)\cdot \mathbb{P}(E_k)}{\mathbb{P}(A)} = \frac{\mathbb{P}(A\vert E_k) \cdot \mathbb{P}(E_k)}{\sum_n\mathbb{P}(A\vert E_n) \cdot \mathbb{P}(E_n)}
+  \]}
+\end{theorem}
+La prima uguaglianza è confermata dal corollario \(2.1\), mentre la seconda è una conseguenza della formula delle probabilità totali.
+\begin{theorem}
+  Sia \((A_n)_n\) una partizione discreta di \(\Omega\), e sia \(\mathcal{A} = \sigma(A_n : n \in I)\) con \(I\) insieme arbitrario di indici. Allora \(\exists ! \mathbb{P}\) su \((\Omega, \mathcal{A})\), con \(\mathbb{P}(A_n) = p_n \; \forall n \in I\), tale che \(p_n \geq 0\) e \(\sum_{n \in I} p_n = 1\), ossia che una misura di probabilità \(\mathbb{P}\) su \((\Omega, \mathcal{A})\) è caratterizzata dai \(\mathcal{P}(A_n)\) con \(n \in I\). 
+\end{theorem}
+\begin{theorem}
+  Siano \((A_n)_n\) e \((B_k)_k\) partizioni discrete di \(\Omega\). Siano inoltre 
+  \begin{enumerate}
+    \item \(p_n\) tale che \(p_n \geq 0 \; \forall n\) e \(\sum_n p_n = 1\)
+    \item \(q_{k\vert n}\) tale che, \(\forall n \in \mathbb{N}\) fissato, \(q_{k \vert n} \geq 0 \; \forall k \mbox{ e } \sum_k \_{k \vert n} = 1\) 
+  \end{enumerate}
+  allora \(\exists ! \mathbb{P}\) su \(\sigma ((A_n)_n, (B_n)_n)\) tale che \(\forall n, \; k \in \mathbb{N}\), si ha che
+  \[
+    \mathbb{P}(A_n) = p_n \quad \mbox{ e } \quad \mathbb{P}(B_k \vert A_n) = q_{k\vert n}
+  \]
+\end{theorem}
+\section{Costruzione di una probabilità}
+\subsection{Estensione di una probabilità}
+\begin{definition}
+  La definizione di probabilità si può riformulare su una algebra e non su una \(\sigma\)-algebra. Allora, essendo \((\Omega, \mathcal{A})\) uno spazio misurabile e \(\mathcal{A}_0 \subseteq 2^{\Omega}\) algebra su \(\Omega\). \(\mathbb{P}:\mathcal{A}_0 \to [0,1]\) è una probabilità se valgono le seguenti condizioni.
+  \begin{enumerate}
+    \item \(\mathbb{P}(\Omega) = 1\)
+    \item \(\mathbb{P}\) è \(\sigma\)-additiva: dati \(A_n \in \mathcal{A}_0 \; \forall n \in \mathbb{N}\), allora
+    \[
+      A_k \cap A_l = \emptyset \; \forall k \not = l, \; \bigcup_n A_n \in \mathcal{A}_0  \Longrightarrow \mathbb{P}\left(\bigcup_n A_n\right) = \sum_n \mathbb{P}(A_n)  
+    \]
+  \end{enumerate}
+\end{definition}
+\begin{theorem}
+  Siano \(\Omega\) uno spazio campionario, \(\mathcal{A}_0\) una algebra su tale spazio e \(\mathbb{P}_0\) una probabilità su \(\mathcal{A}_0\). Allora \(\exists ! \mathbb{P}\) probabilità su \(\mathcal{A} = \sigma(\mathcal{A}_0)\) che estenda \(\mathbb{P}_0\), ossia
+  \[
+    \mathbb{P}(A) = \mathbb{P}_0(A) \; \forall A \in \mathcal{A}_0
+  \] 
+\end{theorem}
+\begin{definition}
+  Una collezione \(\mathcal{C} \subseteq s^{\Omega}\) 
+  \begin{itemize}
+    \item è chiusa per intersezioni finite se 
+     \[
+       A_1 ,\ldots, A_n \in \mathcal{C} \Longrightarrow \bigcap_{k=1}^n A_k \in \mathcal{C}
+     \]
+     \item è chiusa per limiti crescenti se
+     \[
+       \{A_n\}_{n \in \mathbb{N}} \subseteq \mathcal{C}, \; A_n \uparrow A \Longrightarrow A \in \mathcal{C}
+     \]
+     \item è chiusa per differenze se
+     \[
+       A, B \in \mathcal{C}, \; A \subseteq B \Longrightarrow B \backslash A = B \cap A^C \in \mathcal{C}
+     \]
+  \end{itemize}
+\end{definition}
+\begin{theorem}[Classi monotone]
+  Sia \(\mathcal{C} \subseteq 2^{\Omega}\) una collezione chiusa per intersezioni finite, con \(\Omega \in \mathcal{C}\). Inoltre, sia \(\mathcal{D} \subseteq 2^{\Omega}\) la più piccola collezione di insiemi tale che \(\mathcal{D} \supseteq \mathcal{C}\), chiusa per limiti crescenti e per differenze. Allora
+  \[
+    \mathcal{D} = \sigma(\mathcal{C})
+  \] 
+\end{theorem}
+\begin{corollary}
+  Siano \((\Omega, \mathcal{A})\) spazio misurabile, \(\mathbb{P} \mbox{ e } \mathbb{Q}\) probabilità su \(\mathcal{A}\) e \(\mathcal{C} \subseteq \mathcal{A}\) classe chiusa per intersezioni finite e tale che \(\sigma(\mathcal{C}) = \mathcal{A}\). Se \(\mathbb{P}(A) = \mathbb{Q}(A) ; \forall A \in \mathcal{C}\), allora \(\mathbb{P}(A) = \mathbb{Q}(A) ; \forall A \in \mathcal{A}\), ossia \(\mathbb{P} = \mathbb{Q}\).
+\end{corollary}
+Questo garantisce l'unicità dell'estensione di una probabilità su una classe che rispetti opportune ipotesi. Se due probabilità coincidono sugli insiemi di una suddetta classe, allora coincideranno anche su tutto il dominio, essendo, di fatto, la stessa probabilità.
+\begin{corollary}[Criterio di Caratheodory]
+  Siano \(\Omega\) spazio campionario, \(\mathcal{A}_0\) algebra su \(\Omega\), \(\mathcal{A} = \sigma(\mathcal{A_0})\), \(\mathbb{P}\) e \(\mathbb{Q}\) probabilità su \(\mathcal{A}\). Se \(\mathbb{P}(A) = \mathbb{Q}(A) ; \forall A \in \mathcal{A_0}\), allora \(\mathbb{P}(A) = \mathbb{Q}(A) \; \forall A \in \mathcal{A}\).
+\end{corollary}
+È sufficiente avere informazioni su un ristretto gruppo di insiemi (due probabilità sono identiche su una algebra) per afferare una proprietà generale della \(\sigma\)-algebra generata (le probabilità sono identiche su tutto il dominio).
+\textit{Controesempio}
+L'ipotesi che \(\mathcal{C}\) sia chiusa per intersezioni finite è fondamentale per l'applicazione dei corollari. Se non fosse così, considerando un qualsiasi \(\Omega\) e delle sue partizioni \(A_1, A_2, B_1, B_2\), sapendo che \(\mathcal{A} = \sigma(A_1, A_2, B_1, B_2)\) con \(\mathbb{P}\) e \(\mathbb{Q}\) probabilità su \(\mathcal{A}\), si ha 
+\[
+  \mathbb{P}(A_k) = \frac{1}{4} + \frac{1}{4} = \frac{1}{2} = \frac{1}{2} + 0 = \mathbb{Q}(A_k) \; \forall k = 1,2
+\]
+SEZIONE DA SISTEMARE
+\[
+  \mathbb{P} \;
+  \begin{tabular}{c|c|c|}
+  
+    \cline{2-3}
+    \(B_1\) & \(\frac{1}{4}\) & \(\frac{1}{4}\) \\
+    \cline{2-3}
+     \(B_2\) & \(\frac{1}{4}\) & \(\frac{1}{4}\) \\
+    \cline{2-3}
+     \multicolumn{3}{r}{$A_1$ $A_2$}
+  \end{tabular}
+  \qquad
+  \mathbb{Q} \;
+  \begin{tabular}{c|c|c|}
+  
+    \cline{2-3}
+    \(B_1\) & 0 & \(\frac{1}{2}\) \\
+    \cline{2-3}
+     \(B_2\) & \(\frac{1}{2}\) & 0 \\
+    \cline{2-3}
+     \multicolumn{3}{r}{$A_1$ $A_2$}
+  \end{tabular}
+\]
+In questo caso \(\mathbb{P}(A) = \mathbb{Q}(A) \; \forall A \in \mathcal{C}\) e \(\mathcal{P}(A) = \mathcal{Q}(B)\), ma, poiché \(\mathcal{C}\) non è chiusa, non si può applicare il corollario alle classi monotone, ad esempio nel caso \(A_1 \cap B_2 \not \in \mathcal{C}\). In tal caso si può verificare facilmente che \(\mathbb{P} \not \equiv \mathbb{Q}\)
+\subsection{Probabilità su spazi finiti e discreti}
+\begin{definition}
+  Sia dato uno spazio probabilistico \((\Omega, \mathcal{A}, \mathbb{P})\) in cui:
+  \begin{itemize}
+    \item \(\Omega\) è uno spazio campionario finito e discreto tale che \(\# \Omega = n\)
+    \item \(\mathcal{A}\) è la \(\sigma\)-algebra definita su \(\Omega\) come \(\mathcal{A} = 2^{\Omega}\)
+    \item \(\mathbb{P}\) è la probabilità costruita sulla \(\sigma\)-algebra \(\mathcal{A}\) definita come 
+    \[
+      \mathbb{P}(\{w\}) = \frac{1}{\# \Omega} \mbox{ e con } \mathbb{P}(\{A\}) = \frac{\# A}{\# \Omega}
+    \]
+  \end{itemize}
+  Tale spazio probabilistico è definito come spazio probabilistico discreto e uniforme, ossia lo spazio discreto e finito dove tutti gli esiti sono equiprobabili.
+\end{definition}
+\section{Probabilità su \(\mathbb{R}\)}
+\subsection{Funzione di ripartizione}
+Per ricapitolare i teoremi fondamentali dei capitoli precedenti:
+\begin{enumerate}
+  \item Per generare \(\mathcal{A}\) è sufficiente definire \(\mathcal{C} \subset \mathcal{A}\) tale che \(\sigma(\mathcal{C}) = \mathcal{A}\). 
+  \item Per caratterizzare \(\mathbb{P}\) su \(\mathcal{A}\) è sufficiente definire \(\mathcal{C} \subset \mathcal{A}\) tale che \(\sigma(\mathcal{C}) = \mathcal{A}\) con \(\mathcal{C}\) chiuso per intersezioni finite. 
+  \item Per costruire \(\mathbb{P}\) su \(\mathcal{A}\) è sufficiente definire \(\mathcal{C} \subset \mathcal{A}\) tale che \(\sigma(\mathcal{C}) = \mathcal{A}\) con \(\mathcal{C}\) algebra
+\end{enumerate}
+\begin{definition}
+  Sia \((\Omega, \mathcal{A}) = (\mathbb{R}, \mathcal{B})\) e sia \(\mathbb{P} : \mathcal{B} \to [0,1]\) una probabilità su \(\mathcal{B}\). \\
+  È definita funzione di ripartizione di \(\mathbb{P}\) la funzione
+  \[
+    F : \mathbb{R} \to [0,1], \quad F(x) := \mathbb{P}((-\infty, x])
+  \] 
+\end{definition}
+\begin{theorem}
+  Siano \(\mathbb{P}\) probabilità su \((\mathbb{R}, \mathcal{B})\) e \(F\) funzione di ripartizione, allora \(F\) caratterizza \(\mathbb{P}\), ovvero dati \(\mathbb{P}_1 \mbox{ e } \mathbb{P}_2\) probabilità su \(\mathcal{B}\) allora
+  \[
+    \mathbb{P}_1 = \mathbb{P}_2 \Longleftrightarrow F_1 = F_2
+  \]
+\end{theorem}
+\begin{proof}
+  La dimostrazione di \((\Longrightarrow)\) è ovvia. \\
+  Va dimostrato \((\Longleftarrow)\): sia \(\Omega = \{(-\infty, q], q \in \mathbb{Q}\}\). È già stato dimostrato che \(\sigma(\mathcal{C}) = \mathcal{B}\).\\
+  Inoltre va mostrato che \(\mathcal{C}\) è chiuso per intersezioni finite. 
+  \[
+    \underbrace{(-\infty, q_1]}_{\in \mathcal{C}} \cap \underbrace{(-\infty, q_2]}_{\in \mathcal{C}} = \underbrace{(-\infty, \min(q_1, q_2)]}_{\in \mathcal{C}}
+  \]
+  Allora
+  \[
+    \begin{array}{llll}
+      F_1 = F_2 & \Longleftrightarrow & F_1(x) = F_2(x) & \forall x \in \mathbb{R} \\
+      & \Longrightarrow & F_1(q) = F_2(q) & \forall q \in \mathbb{Q} \\
+      & \Longleftrightarrow & \mathbb{P}_1((-\infty, q]) = \mathbb{P}_2((-\infty, q]) & \forall q \in \mathbb{Q} \\
+      & \Longleftrightarrow & \mathbb{P}_1(B) = \mathbb{P}_2(B) & \forall B \in \mathcal{C} \\
+      & \Longleftrightarrow & \mathbb{P}_1 = \mathbb{P}_2 & \mbox{su } B \in \sigma(\mathcal{C})
+    \end{array}
+  \]
+\end{proof}
+\begin{theorem}
+  \(F:\mathbb{R} \to [0,1]\) è funzione di ripartizione di una (e una sola) probabilità \(\mathbb{P}:\mathcal{B} \to [0,1]\) se e solo se
+  \begin{enumerate}
+    \item \(F\) è non-decrescente
+    \item \(F\) è continua da destra
+    \item {\everymath = {\displaystyle}\(\lim_{x \to -\infty} F(x) = 0, \; \lim_{x \to +\infty}F(x) = 1.\)}
+  \end{enumerate}
+\end{theorem}
+Si introduce la notazione {\everymath = {\displaystyle}\(F(x^-) := \lim_{y \uparrow x}\)}. Sicuramente \(F(x^-) \leq F(x)\).
+\begin{corollary}
+  Sia \(F\) la funzione di ripartizione di \(\mathbb{P}\) su \((\mathbb{R}, \mathcal{B})\). Allora, \(\forall x < y\)
+  \begin{enumerate}
+    \item \(\mathbb{P}((x, y]) = F(y) - F(x)\)
+    \item \(\mathbb{P}((x, y]) = F(y) - F(x^-)\)
+    \item \(\mathbb{P}((x, y)) = F(y^-) - F(x)\)
+    \item \(\mathbb{P}([x, y)) = F(y^-) - F(x^-)\)
+    \item \(\mathbb{P}(\{x\}) = F(x) - F(x^-)\)
+  \end{enumerate}
+\end{corollary}
+\begin{proof}
+  La dimostrazione sarà eseguita punto per punto
+  \begin{enumerate}
+    \item Per costruzione
+    \item {\everymath = {\displaystyle}\([x, y] = \bigcap_{n=1}^{+\infty} \left(x - \frac{1}{n}, y\right]\)}. Dunque:
+    \[
+    \begin{array}{lll}
+    \mathbb{P}([x, y]) & = & \lim_{n \to +\infty} \mathbb{P}\left(\left(x - \frac{1}{n}, y\right]\right) \\
+    & = & \lim_{n \to +\infty}\left(F(y) - F\left(x-\frac{1}{n}\right)\right) = F(y) - F(x^-)
+    \end{array}
+    \]
+  \end{enumerate}
+Analogamente si verificano i punti \((3), (4) \mbox{ e } (5).\)
+\end{proof}
+\begin{definition}
+  Si definisce massa o delta di Dirac in \(\alpha\), indicata con \(\delta_{\alpha}\), la probabilità
+  \[
+    \mathbb{P}(A) = \begin{cases}
+      1 & \mbox{se } \alpha \in A \\
+      0 & \mbox{se } \alpha \not \in A
+    \end{cases}
+  \]
+  La cui funzione di ripartizione è 
+  \[
+    F(x) = \mathbb{P}((-\infty, x]) = \begin{cases}
+      1 & \mbox{se } x \geq \alpha \\
+      0 & \mbox{se } x < \alpha
+    \end{cases}
+  \]
+\end{definition}
+\subsection{Densità continua di probabilità}
+\begin{definition}
+Si definisce densità continua di probabilità una funzione \(f:\mathbb{R} \to [0, +\infty)\), non negativa, Riemann-integrabile e tale che 
+\[
+  \int_{-\infty}^{+\infty} f(x) dx = 1
+\]    
+Si dice inoltre che \(F\) ammette densità \(f\) se 
+\[
+  F(x)  =\int_{-\infty}^x f(t) dt
+\]
+\end{definition}
+\section{Variabili aleatorie}
+Viene ora introdotto uno strumento cardine dello studio della probabilità: la variabile aleatoria. La variabile aleatoria indica una quantità ignota a priori, il cui valore dipende dall'esito dell'esperimento aleatorio. Associa gli esiti elementari da un dominio, anche non numerico, \(\Omega\) a un codominio \(F\). Ciò permette di trasportare gli eventi su un codominio numerico e utilizzare la applicazione della teoria su \(\mathbb{R}\). Agli eventi del codominio è associata una probabilità, detta legge della variabile aleatoria. 
+\subsection{Definizione}
+\begin{definition}
+  Data una funzione \(X : \Omega \to F\) e un insieme \(B \subseteq F\), si dice controimmagine di \(B\) l'insieme \(X^{-1}(B) = (X \in B) := \{\omega \in \Omega : X (\omega) \in B\} \supseteq \Omega\) 
+\end{definition}
+\begin{definition}
+  Dati gli spazi misurabili \((\Omega, \mathcal{A})\) e \((F, \mathcal{F})\), una funzione \(X : \Omega \to F\) si dice funzione misurabile o variabile aleatoria se 
+  \[
+    (X \in B) \in \mathcal{A} \; \forall B \in \mathcal{F}
+  \]
+\end{definition}
+\begin{definition}
+  Tutti i possibili valori della VA sono contenuti nell'insieme \(F\), detto anche lo spazio degli stati. \\
+  Proprietà della controimmagine:
+  \begin{itemize}
+    {\everymath = {\displaystyle}
+    \item \(X \in B = X^{-1}(B^C) = (X^{-1}(B))^C = (X \not \in B)\)
+    \item \((X \in \bigcup_n B_n) = \bigcup_n (X \in B_n)\)
+    \item \((X \in \bigcap_n B_n) = \bigcap_n (X \in B_n)\)
+    }
+    \end{itemize}
+\end{definition}
+\begin{theorem}
+  Siano \((\Omega, \mathcal{A})\) e \((F, \mathcal{F})\) spazi misurabili generici, \(X : \Omega \to F\) una funzione, e \(\mathcal{C} \subseteq \mathcal{F}\) tale che \(\sigma(\mathcal{C}) = \mathcal{F}\). Allora 
+  \[
+    (X \in B) \in A \forall B \in \mathcal{F} \Longleftrightarrow (X \in B) \in \mathcal{A} \forall B \in \mathcal{C}
+  \]
+  Ossia, la misurabilità su un insieme coincide con la misurabilità su un insieme più piccolo che genera l'altro insieme.
+\end{theorem}
+\begin{proof}
+  \(( \Longleftarrow ):\) ovvia. \\
+  \((\Longrightarrow):\) ponendo \(\mathcal{D} = \{B \in \mathcal{F} : (X \in B) \in \mathcal{A}\}\) si ha che \(\mathcal{C} \subseteq \mathcal{D} \subseteq \mathcal{F}\) e che \(\mathcal{D}\) è una \(\sigma\)-algebra, poiché le unioni, le intersezioni e le complementazioni commutano con le controimmagini, difatti 
+  \[
+    \begin{array}{ccc}
+      B \in \mathcal{D} & \Longrightarrow & (X \in B) \in \mathcal{A} \Longrightarrow (X \in B)^C \in \mathcal{A} \\
+      & \Longrightarrow & (X \in B^C) \in \mathcal{A} \Longrightarrow B^C \in \mathcal{D}
+    \end{array} 
+  \]
+Dalla prima relazione \((\mathcal{C} \subseteq \mathcal{D} \subseteq \mathcal{F})\) otteniamo \(\sigma (\mathcal{C}) \subseteq \sigma(\mathcal{D}) \subseteq \sigma(\mathcal{F})\), da cui \(\mathcal{F} \subseteq \mathcal{D} \subseteq \mathcal{F}\). Allora \(\mathcal{D} = \mathcal{F}\), cioè tutti gli elementi \(B\) di \(\mathcal{F}\) sono tali per cui \((X \in B) \in \mathcal{A}\), da cui la tesi.
+\end{proof}
+\subsection{Criteri di misurabilità}
+\begin{definition}
+  Siano \((E, \mathcal{E}), (F, \mathcal{F})\) spazi misurabili. Una funzione \(X : E \longrightarrow F\) è detta misurabile se \(X^{-1} (B) \in \mathcal{E} \forall B \in \mathcal{F}\), oppure \(X^{-1} (\mathcal{F}) \subseteq \mathcal{E}\).
+  Nel caso in cui \((E, \mathcal{E}) = (\Omega, \mathcal{A})\), \(X\) è una variabile aleatoria. 
+\end{definition} 
+\begin{theorem}
+  Siano \((E, \mathcal{E}), (F, \mathcal{F})\) spazi misurabili, \(X : E \longrightarrow F\), e \(\mathcal{C} \in \mathcal{F}\) tale che \(\sigma(\mathcal{C}) = \mathcal{F}\). Allora
+  \[
+    X \mbox{ misurabile } \Longleftrightarrow X^{-1}(\mathcal{C}) \subseteq \mathcal{E}
+  \] 
+\end{theorem}
+
+\end{document}

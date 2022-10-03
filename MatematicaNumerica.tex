@@ -1,0 +1,371 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\begin{document}
+\title{Appunti di Matematica Numerica}
+\author{Andrea Bonifacio}
+\date{\today}
+\maketitle
+
+
+\section{Sistemi lineari}
+\subsection{Introduzione}
+Un sistema lineare è un insieme di $m$ equazioni lineari in $n$ incognite \textbf{$x_j$}, ossia 
+$$ \sum_{j = 1}^n a_{ij}x_{j}=b_{i} $$
+Si può riscrivere in forma compatta come 
+$$ A\textbf{x} = \textbf{b}$$
+L'interesse sarà rivolto principalmente ai sistemi quadrati con matrice $A$ non singolare. \\
+\textbf{Teorema 3.1} \\
+\textit{Sia $A \in  \ \mathbb{R}^{n\times n}$ non singolare, $\delta A \, \in \, \ \mathbb{R}^{n}$, $\delta \textbf{b}\, \in  \, \mathbb{R}^{n}$ con $\Vert A \Vert \Vert A^{-1}\Vert < 1 $ in una generica norma matriciale indotta $\Vert \cdot \Vert$. Detta $\textbf{x}$ la soluzione di $A\textbf{x} = \textbf{b}$ e $\textbf{x} + \delta\textbf{x}$ la soluzione del sistema perturbato 
+$$(A + \delta A) (\textbf{x} + \delta\textbf{x}) = \textbf{b} + \delta\textbf{b} $$
+si ottiene la seguente stima dell'errore relativo
+$$
+\frac{\Vert \delta\textbf{x} \Vert}{\Vert \textbf{x}\Vert} \leq \frac{K(A)}{1-K(A)\Vert \delta A \Vert / \Vert A\Vert} \left(\frac{\Vert \delta \textbf{b}\Vert}{\Vert \textbf{b}\Vert} + \frac{\Vert \delta A \Vert}{\Vert A \Vert} \right)
+$$
+} \\
+\subsection{Metodi diretti} 
+\textbf{Fattorizzazione LU} \\
+Si dice che una matrice $A \, \in \, \mathbb{R}^{n \times n}$ ammette una fattorizzazione LU se esistono due matrici $L \, \in \, \mathbb{R}^{n \times n}$ triangolare inferiore con elementi diagonali unitari e una matrice $U \, \in \, \mathbb{R}^{n \times n}$ triangolare superiore tali che $A = LU$ \\
+Se $A$ ammette una fattorizzazione $LU$, possiamo risolvere efficientemente $A\textbf{x}= \textbf{b}$ con la risoluzione dei sistemi $L\textbf{y}=\textbf{b}$ e $U\textbf{x} = \textbf{y}$ mediante semplici sostituzioni in avanti/indietro. \\
+\textbf{Teorema 3.2} \\
+\textit{$A \, \in \, \mathbb{R}^{n \times n}$ ammette una unica fattorizzazione LU se e solo se $det(A_{k}) \neq 0$, $k = 1, 2, \ldots, n-1$ } \\
+La condizione necessaria e sufficiente affinché esista una sola fattorizzazione LU è che, detta $A_k$ la sottomatrice estratta dalle prime $k$ righe e colonne di $A$, $det(A) \neq 0 k = 1, 2, \ldots, n.$ \\
+Inoltre due condizioni sufficienti affinché la matrice $A$ ammetta una fattorizzazione $LU$ sono:
+\begin{enumerate}
+\item La matrice è a dominanza diagonale stretta per righe/colonne
+\item La matrice è definita simmetrica e positiva
+\end{enumerate}
+
+\textbf{Fattorizzazione di Cholesky} \\
+\textit{Sia $A \, \in \, \mathbb{R}^{n \times n}$ simmetrica e definita positiva, allora esiste una unica matrice $H$ triangolare superiore e con elementi diagonali positivi tale che 
+$$ A = H^{T}H $$
+}
+\subsection{Metodi iterativi}
+Un metodo iterativo è un algoritmo che genera una successione di $\textbf{x}^{(k)}$ che converge al vettore $\textbf{x}$ soluzione esatta di $A\textbf{x} = \textbf{b}$. \\
+\textbf{Teorema 3.7} \\
+\textit{La successione $\textbf{x}^{(k)}$ generata da un metodo iterativo lineare converge a $\textbf{x}$ se e solo se $\rho(B) < 1$, dove $B$ è la matrice associata all'algoritmo.} \\
+\\
+Di seguito saranno indicate con D, E e F rispettivamente la matrice formata dagli elementi diagonali di A, la matrice sottodiagonale formata dagli opposti degli elementi di A e la matrice sopradiagonale formata dagli opposti degli elementi di A, tali che A = D - E - F. \\
+\textbf{Metodo di Jacobi} \\
+Sia D definita come la matrice diagonale con gli elementi diagonali di A, si ottiene la matrice di iterazione associata  come $$B_{J} = I - D^{-1}A $$
+\textbf{Metodo di Gauss-Seidel}
+Sia D - E non singolare, il metodo di Gauss-Seidel è un algoritmo iterativo che genera la seguente matrice associata $$B_{GS} = (D - E)^{-1}F$$ \\
+\textbf{Parametro di rilassamento} \\
+\textbf{Metodo JOR} \\
+Definito $\omega \, \in \, \mathbb{R}$ come parametro di rilassamento, si ottiene che $$x_{i}^{k+1} = \omega x_{i,J}^{(k+1)}+ (1 -\omega)x_{i}^{(k)}$$ ove $x_{i}^{k+1}$ è la i-esima componente del vettore dato da una iterazione del metodo di Jacobi. 
+La matrice associata al metodo JOR è
+$$B(\omega) = \omega B_{j} + (1 - \omega)I$$ \\
+\textbf{Metodo SOR} \\
+In analogia al metodo JOR, si può introdurre un parametro di rilassamento anche nel metodo di Gauss-Seidel, ottenendo una nuova matrice associata definita come $$B(\omega) = (I - \omega D^{-1}E^{-1}[(1 - \omega)I + \omega D^{-1} F$$ \\
+\textbf{Condizioni di convergenza per metodi iterativi} \\
+
+\begin{enumerate}
+
+\item Se A è a dominanza diagonale stretta per righe, allora sia Jacobi che Gauss-Seidel sono convergenti
+\item Se A è simmetrica e definita positiva, allora il metodo di Gauss-Seidel è convergente
+\item Se A è simmetrica e definita positiva allora il metodo JOR converge se e solo se $0 < \omega < \frac{2}{\rho(D^{-1}A)}$
+\item Se A è simmetrica e definita positiva allora il metodo SOR converge se e solo se $0 < \omega < 2$
+
+\end{enumerate} 
+\textbf{Metodi di Richardson} \\
+Definito residuo alla k-esima iterazione di un generico metodo iterativo $\textbf{r}^{(k)} =  \textbf{b} - A\textbf{x}^{(k)}$
+Si può quindi introdurre un parametro $\alpha$, detto di accelerazione, per considerare $$P(\textbf{x}^{(k+1)} - \textbf{x}^{(k)}) = \alpha_{k}\textbf{r}^{(k)}, \ k \geq 0$$
+Preso $\alpha_{k} = \alpha$ costante, si può considerare il metodo di Richardson stazionario. \\
+\textbf{Metodo di Richardson stazionario} \\
+Sia $\textbf{x}^{(0)} \, \in \, \mathbb{R}^{n}$ assegnato, $\textbf{r}^{(0)} = \textbf{b} - A\textbf{x}^{(0)}$, per $k = 0, 1, ,\ldots $ si calcoli 
+
+\begin{align*}
+P\textbf{z}^{(k)}  & = \textbf{r}^{(k)} \\
+\textbf{x}^{(k+1)} & = \textbf{x}^{(k)} + \alpha\textbf{z}^{(k)} \\
+\textbf{r}^{(k + 1)} & = \textbf{r}^{(k)} - \alpha A \textbf{z}^{(k)}
+\end{align*}
+da cui si ottiene la matrice associata $B = I - P^{-1}A$ \\
+\textbf{Convergenza di Richardson stazionario} \\
+Sia P non singolare, allora il metodo di Richardson converge per ogni $\textbf{x}^{(k)} \, \in \, \mathbb{R}^{n}$ se e solo se 
+$$ \frac{2Re(\lambda_{i})}{\alpha|\lambda_{i}|} > 1 \ \forall i = 1, \ldots , n$$
+dove $\lambda_{i}$ sono gli autovalori di $P^{-1}A$ \\
+\textbf{Metodo del gradiente} \\
+In caso di matrici simmetriche e definite positive, si può utilizzare un metodo di Richardson non stazionario, definito \textit{metodo del gradiente}. Nella versione non precondizionata ($P = I$) si sceglie $\alpha_k$ tale che l'errore sia minimo, ossia
+$$
+\Vert \textbf{x}^{(k)} + \alpha_k \textbf{r}^{(k)} - \textbf{x} \Vert_{A}^{2} = \underset{\alpha \in \mathbb{R}}{min} \Vert \textbf{x}^{(k)} + \alpha_k \textbf{r}^{(k)} - \textbf{x} \Vert_{A}^{2}
+$$
+Si ottiene dunque il seguente metodo \\
+\textbf{Metodo del gradiente (precondizionato)} \\
+Sia $\textbf{x}^{(0)} \, \in \, \mathbb{R}^{n}$ assegnato, $\textbf{r}^{(0)} = \textbf{b} - A\textbf{x}^{(0)}$, per $k = 0, 1, ,\ldots $ si calcoli
+\begin{align*}
+P\textbf{z}^{(k)}  & = \textbf{r}^{(k)} \\
+\alpha_k & = \frac{\textbf{r}^{(k)T} \textbf{z}^{(k)}}{A\textbf{z}^{(k)T} \textbf{z}^{(k)}} \\
+\textbf{x}^{(k+1)} & = \textbf{x}^{(k)} + \alpha_k \textbf{z}^{(k)} \\
+\textbf{r}^{(k + 1)} & = \textbf{r}^{(k)} - \alpha_k A \textbf{z}^{(k)}
+\end{align*}
+\section{Risoluzione sistemi non lineari}
+Data una funzione $f \, : \, [a, b] \subset \mathbb{R} \rightarrow \mathbb{R} $ consideriamo il problema della ricerca di $\alpha \, \in \, [a, b]$ tale che $ f(\alpha) = 0$, ossia lo zero della funzione. \\
+$$\underset{k \rightarrow \infty}{lim} x^{(k)} = \alpha$$
+Generalmente un metodo numerico per l'approssimazione si definisce
+\begin{itemize}
+\item \textit{localmente convergente} se $\exists \delta > 0$ per cui si ottiene ogni $x^{(0)}$ tale che $|x^{(0)} - \alpha| < 0$
+\item \textit{globalmente convergente} se il limite vale $\forall x^{(0)} \, \in \, [a, b]$
+\end{itemize}
+
+\subsection{Ricerca geometrica delle radici}
+\subsubsection{Metodi globalmente convergenti}
+\textbf{Il metodo di bisezione} \\
+Un esempio di metodo globalmente convergente è il metodo di bisezione, che prende $f(a)f(b) < 0, \, a^{(0)} = a, \, b^{(0)} = b, \, x^{(0)} = \frac{(a^{(0)}+b^{(0)})}{2}$ \\
+Posto $k \geq 0$, si pone
+\begin{align*}
+a^{(k+1)}  & = a^{k}, \quad b^{(k+1)} = x^{(k)} \quad & se \ f(a^{(k)})f(x^{(k)}) < 0 && \\
+a^{(k+1)}  & = x^{k}, \quad b^{(k+1)} = b^{(k)} \quad  & se \ f(x^{(k)})f(b^{(k)}) < 0  \\
+x^{(k+1)} & = \frac{(a^{(k+1)} + b^{(k+1)})}{2}
+\end{align*}
+Il metodo è convergente di ordine 1 e si ha la stima dell'errore
+$$|x^{(k)}-\alpha| \leq \frac{b-a}{2^{(k+1)}} \quad \forall k \geq 0$$
+\subsubsection{Metodi globalmente convergenti}
+Inoltre è possibile avvalersi di vari metodi localmente convergenti tali che, assegnato $x^{(0)} \, \in \, [a, b]$ si pone $$
+x^{(k+1)} = x^{(k)}-\frac{f(x^{(k)})}{q_k}, \quad k \geq 0
+$$
+Sostituendo $q_k$, si ottengono i seguenti metodi localmente convergenti: \\
+\textbf{Metodo delle corde} \\
+$$q_k = q = \frac{f(b) - f(a)}{b - a}$$
+\textbf{Metodo delle secanti} \\
+$$q_k = \frac{f(x^{(k)}-f(x^{(k-1)})}{x^{(k)}-x^{(k-1)}}$$
+\textbf{Metodo di Newton}
+$$q_k = f'(x^{(k)})$$
+\section{Interpolazione polinomiale}
+Data una funzione $f \, \in \, C^{k}([a, b])$ con $k \geq 0$ è possibile approssimare la funzione mediante funzioni polinomiali più semplici, questo processo è definito interpolazione polinomiale.
+\subsection{Interpolazione lagrangiana}
+Dati $n + 1$ punti distinti $x_0 , x_1 , \ldots, x_n$ e $n + 1$  corrispondenti valori $y_0, y_1 , \ldots ,y_n$ esiste un unico polinomio $\Pi_n \, \in \, \mathbb{P}_n$ che interpola tali dati, ossia $$\Pi_n (x_i) = y_i \ \forall i = 0, \ldots,n $$
+Gli elementi della base di Lagrange associata ai nodi $x_0, \ldots , x_n$ sono i polinomi
+$$l_i (x) = \prod\limits_{j = 0, j\neq i}^{n} \frac{x - x_j}{x_i - x_j} \quad i= 0, \ldots , n$$
+L'insieme \{$l_0, \ldots, l_n$\} è l'unica base di $\mathbb{P}_n$ che soddisfa $l_i(x_j) = \delta_{ij}$, ove $\delta_{ij} = 1$ se $ i = j$ e $\delta_{ij} = 0$ altrimenti.
+Il polinomio interpolatore ammette la seguente forma 
+$$
+\Pi_n(x)=\sum\limits_{i=0}^ny_il_i(x)
+$$
+mentre, dati $n+1$ nodi distinti $x_0, \ldots, x_n$ si definisce polinomio nodale associato 
+$$\omega_{n+1}(x) = \prod\limits_{i = 0}^n(x-x_i) \, \in , \mathbb{P}_{n+1}$$
+Il polinomio nodale è utile ad esempio per la stima dell'errore di interpolazione. \\
+\textbf{Errore di interpolazione} \\
+Sia $f \, \in \, C^{n+1}([a, b])$, e siano $x_0, \ldots, x_n$ $n +1$ nodi distinti in $[a,b]$. Allora, per ogni $x \, \in \, [a,b] \exists \xi = \xi (x) \, \in \, [a,b]$ tale che
+$$
+E_n(x) = f(x) - \Pi_nf(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!}\omega_{n+1}(x)
+$$
+È inoltre possibile riscrivere i polinomi della base di Lagrange rispetto al polinomio nodale
+$$
+l_i(x) = \frac{\omega_{n+1}(x)}{(x-x_i)\omega'_{n+1}(x_i)}\quad i= 0, \ldots, n
+$$
+Definita la norma dello spazio $C^0([a, b])$ come
+$$
+\Vert f\Vert_\infty = \underset{x \in [a,b]}{max} |f(x)|
+$$
+Si può definire $X$ la matrice con elementi $x_{ij}$ dati da $x_{n, 0}, \ldots, x_{n, n}$ $n + 1$ nodi. Data $f \, \in \, C^0([a, b])$ e associato alla $(n+1)$-esima riga di $X$ il polinomio $\Pi_nf \, \in \, \mathbb{P}_n$, allora l'errore di interpolazione si può calcolare come
+$$
+E^{n, \infty}(X) = \Vert f - \Pi_nf \Vert_\infty
+$$
+Si definisce costante di Lebesgue 
+$$
+\Lambda_n(X) = \underset{x \in [a,b]}{max} \sum\limits_{j=0}^n|l_{n,j}(x)|
+$$
+La costante di Lebesgue generalmente cresce al crescere di n, ma nel caso particolare di nodi equispaziati si mostra che
+$$
+\Lambda_n(X) \simeq \frac{2^{n+1}}{en \, \log n}
+$$
+e questa espressione mostra come l'interpolazione su nodi equispaziati tenda a essere instabile per $n$ grande.
+\section{Integrazione numerica}
+Definita una funzione integrabile nell'intervallo $[a,b]$ come $f : [a,b] \rightarrow \mathbb{R}$. Il calcolo dell'integrale di una funzione per via analitica può risultare molto complesso, pertanto si possono studiare le formule di quadratura, o di integrazione numerica.\\
+\subsection{Formule di quadratura}
+Generalmente si definisce una formula di integrazione numerica sostituendo a $f$ una funzione $f_n$ approssimata, dove $n \, in \, \mathbb{N}$ è un numero associato alla approssimazione considerata. 
+
+$$
+I_n(f) = \int_a^b f_n(x) dx \quad n \geq 0
+$$
+L'errore di quadratura sarà quindi
+$$
+|E_n(f)| \leq \int_a^b |f(x) - f_n(x)| dx \leq (b-a) \underset{x \in [a,b]}{max}|f(x)-f_n(x)|
+$$
+Ogni formula di quadratura interpolatoria si può scrivere come
+$$
+I_n(f) = \sum\limits_{i=0}^m w_if(x_i)
+$$
+Mentre il grado di esattezza si può definire come il più grande intero $r \geq 0$ tale che
+$$
+I_n(p) = I(p) \quad \forall p \in \mathbb{P}_r
+$$
+Le formule di quadratura si dicono composite se ottenute mediante interpolazione polinomiale composita della funzione integranda utilizzando $m$ sotto-intervalli di $[a, b]$ di ampiezza $H = \frac{(b-a)}{m}$. In questo modo è possibile approssimare $I(f)$ in maniera arbitrariamente precisa per $m \rightarrow \infty$
+Alcune formule di quadratura composite sono \\
+\textbf{Formula del punto medio composita} \\
+$$
+I_{0,m}(f)=H \sum\limits_{i=0}^{m-1} f(x_i), \quad x_i = a + \frac{H}{2} + iH \ i=0, \ldots, m-1
+$$
+L'errore di quadratura si ottiene come $\exists \xi \in [a,b]$
+$$
+E_{0,m}(f)= \frac{b-a}{24}H^2f''(\xi)
+$$
+\textbf{Formula del trapezio composita}\\
+$$
+I_{1,m}(f)=H \left[\frac{1}{2}f(x_0) + \sum\limits_{i=1}^{m-1} f(x_i) + \frac{1}{2}f(x_m)\right], \quad x_i = a  + iH \ i=0, \ldots, m
+$$
+L'errore di quadratura si ottiene come $\exists \xi \in [a,b]$
+$$
+E_{1,m}(f)= -\frac{b-a}{12}H^2f''(\xi)
+$$
+\textbf{Formula di Cavalieri-Simpson composita} \\
+$$
+I_{2,m}(f)=\frac{H}{6} \left[f(x_0)+2\sum\limits_{r=1}^{m-1} f(x_{2r}) +4 \sum\limits_{s=0}^{m-1}f(x_{2s+1}) +f(x_{2m})\right], \quad x_i = a  + i\frac{H}{2} \ i=0, \ldots, 2m
+$$
+L'errore di quadratura si ottiene come $\exists \xi \in [a,b]$
+$$
+E_{2,m}(f)= -\frac{b-a}{180}\left(\frac{H}{2}\right)^4f^{(4)}(\xi)
+$$
+\subsection{Formula di Newton-Cotes}
+Le formule trattate in precedenza non sono altro che casi particolari delle più generiche formule di Newton-Cotes che si scrivono come formule chiuse o aperte a seconda che nell'intervallo di integrazione siano compresi gli estremi.\\
+La formula chiusa si scrive come
+$$
+I_n(f) = h \sum\limits_{i=0}^n w_i f(x_i), \quad w_i = \int_0^n \phi_i(t)dt, \quad \phi_i(t) = \prod\limits_{k=0,k \neq i}^n  \frac{t-k}{i-k}, \quad i=0, \ldots, n
+$$
+Mentre la formula aperta
+$$
+I_n(f) = h \sum\limits_{i=0}^n w_i f(x_i), \quad w_i = \int_{-1}^{n+1} \phi_i(t)dt, \quad \phi_i(t) = \prod\limits_{k=0,k\neq i}^n  \frac{t-k}{i-k}, \quad i=0,\ldots,n
+$$
+Per le formule sia aperte che chiuse l'errore di quadratura varia nelle costanti $M_n$ e $K_n$ che saranno rispettivamente negative o positive a seconda che la formula sia aperta o chiusa. \\
+Per $n$ pari $\exists \xi \in [a,b] :$
+$$E_n(f) = \frac{M_n}{(n+2)!}h^{n+3}f^{(n+2)}(\xi)$$
+Per $n$ pari $\exists \eta \in [a,b] :$
+$$E_n(f) = \frac{M_n}{(n+1)!}h^{n+2}f^{(n+1)}(\eta)$$
+Il grado di esattezza è quindi $n+1$ per $n$ pari e $n$ per $n$ dispari.
+\subsection{Formule di quadratura Gaussiane (da sistemare)} 
+La relazione fra ordine di convergenza e grado di esattezza mette in mostra l'interesse di determinare le formule di quadratura a grado di esattezza massimo. \\
+Condizione necessaria e sufficiente affinché $I_n(f)$ abbia grado di esattezza pari a $r = n + k$ con $k > 0$ è che siano soddisfatte le seguenti condizioni
+\begin{itemize}
+\item $I_n(f)$ sia una formula interpolatoria 
+\item il polinomio nodale $\omega_{n+1}(x) = \prod_{i=0}^n (x-x_i) $ soddisfi la seguente proprietà di ortogonalità
+\end{itemize}
+$$\int_{-1}^1 \omega_{n+1}(x) p(x) w(x) dx = 0, \quad \forall p \in \mathbb{P}_{k-1}$$
+Il grado massimo di esattezza di una formula di quadratura a $n +1$ nodi è $2n + 1$ 
+\section{Equazioni differenziali ordinarie}
+\subsection{Introduzione}
+Dato un intervallo $I \subset \mathbb{R}, t_0 \in I, y_0 \in \mathbb{R}$ e una funzione $f : I \times \mathbb{R} \rightarrow \mathbb{R}$, il relativo problema di Cauchy consiste nel trovare una funzione reale $y \in C^1(I)$ tale che 
+$$
+\begin{cases}
+y'(t) = f(t,y(t)), \quad t\in I \\
+y(t_0)=y_0
+\end{cases}
+$$
+In generale una equazione del tipo $y'(t) = f(t, f(t))$ si dice equazione differenziale ordinaria. \\
+\subsection{Metodi a un passo}
+Nei metodi a un passo per la risoluzione di sistemi di equazioni differenziali ordinarie la soluzione numerica $u_{n+1}$ è assegnata a partire dal valore al passo precedente $u_n$, dopo aver fissato un istante di tempo $h > 0$\\
+I metodi a un passo più noti sono \\
+\textbf{Metodo di Eulero esplicito} \\
+$$
+\begin{cases}
+u_{n+1} = u_n + hf(t_n, u_n), \quad n\geq 0 \\
+u_0 = y_0
+\end{cases}
+$$
+\textbf{Metodo di Eulero Implicito} \\
+$$
+\begin{cases}
+u_{n+1} = u_n + hf(t_{n+1}, u_{n+1}), \quad n\geq 0 \\
+u_0 = y_0
+\end{cases}
+$$
+\textbf{Metodo di Crank-Nicholson} \\
+$$
+\begin{cases}
+u_{n+1} = u_n + \frac{h}{2}[f(t_n, u_n)+f(t_{n+1}, u_{n+1})], \quad n\geq 0 \\
+u_0 = y_0
+\end{cases}
+$$
+\textbf{Metodo di Heun} \\
+
+
+$$
+\begin{cases}
+u_{n+1} = u_n + \frac{h}{2}[f(t_n, u_n)+f(t_{n+1}, hf(t_n, u_n))], \quad n\geq 0 \\
+u_0 = y_0
+\end{cases}
+$$
+Un metodo è esplicito se si può calcolare $u_{n+1}$ tramite una formula esplicita a partire dai valori $u_k, k\leq n$. Il generico metodo ad un passo esplicito si scrive come 
+$$
+u_{n+1} = u_n + h\Phi(t_n, u_n; h), \quad 0 \leq n < N_h, \quad u_0 = y_0
+$$
+dove $\Phi(\cdot,\cdot;\cdot)$ è la funzione di incremento, che permette di definire l'errore di troncamento locale $\tau_{n+1}(h)$ come
+$$
+y_{n+1} = y_n + h(\Phi(t_n, y_n;h) + \tau_{n+1}
+$$
+Mentre il valore massimo di $\tau_{n+1}$ si definisce errore di troncamento globale $\tau(h) = \underset{0 \leq n <N_h}{max} |\tau_{n+1}(h)$. \\
+Un metodo a un passo si dice consistente se $\underset{h \rightarrow 0}{lim} = 0$ e si dice consistente di ordine $p > 0$ se 
+$$
+\tau(h) = \mathcal{O}(h^p) \quad h \rightarrow 0
+$$
+È definito zero-stabile un metodo numerico in cui esistono una costante $h_0 > 0$ e una costante $C >0$ indipendente da $h \in (0, h_0]$ tali che
+$$
+|z_n^{(h)} - u_n^{(h)} \leq C\varepsilon, \, 0 \leq n \leq N_h \quad \forall h \in (0, h_0], \forall \varepsilon >0
+$$
+dove $z_n^{(h)}, u_n^{(h)}$ sono le soluzioni dello schema perturbato
+$$
+\begin{cases}
+z_{n+1}^{(h)} = z_n^{(h)} + h[\Phi (t_n, z_n^{(h)}; h) + \delta_{n+1}], \quad 0 \leq n < N_h \\
+z_0 = y_0 + \delta_0
+\end{cases}
+$$
+con $|\delta_k| \leq \varepsilon, 0 \leq k < N_h$.
+\subsection{Assoluta stabilità}
+Un metodo numerico per l'approssimazione si dice assolutamente stabile se esiste $h_0 > 0$ tale che per ogni $h <h_0$ si abbia
+$$
+\underset{n \rightarrow \infty}{lim} |u_n| = 0
+$$
+La regione di assoluta stabilità è definita come 
+$$
+\mathcal{A} = \left\lbrace z = h\lambda \in \mathbb{C} : \underset{n \rightarrow \infty}{lim} |u_n| =0 \right\rbrace
+$$
+\subsection{Metodi multistep}
+Un metodo è definito a $p+1$ passi se $u_{n+1}$ dipende dai $p + 1$ valori precedenti $u_{n-j}, j = 0, \ldots, p$. \\
+Un esempio è il metodo di Adams-Bashforth, ottenuto a partire dalla formulazione seguente
+$$
+y_{n+1} = y_n + \int_{t_n}^{t_{n+1}} f(t, y(t))dt
+$$
+I metodi più noti sono i metodi di Adams-Bashforth(AB), Adams-Moulton(AM) e Backwards Differentiation Formula (BDF)
+$$
+\begin{array}{cccc}
+\mathrm{Metodo} & \mathrm{Schema} &\mathrm{Passi} & \mathrm{Ordine} \\
+AB2 & u_{n+1} = u_n +\frac{h}{2}[3f_n - f_{n-1}] & 2 & 2 \\
+AB3 & u_{n+1} = u_n +\frac{h}{12}[23f_n - 16f_{n-1}+5F_{n-2}] & 3 & 3 \\
+AM2 & u_{n+1} = u_n +\frac{h}{12}[5f_{n+1} + 8f_n - f_{n-1}] & 2 & 3 \\
+AM3 & u_{n+1} = u_n +\frac{h}{24}[9f_{n+1} + 19f_n - 5f_{n-1} + f_{n-2}] & 3 & 4 \\
+BDF3 & u_{n+1} = \frac{18}{11}u_n -\frac{9}{11}u_{n-1} + \frac{2}{11} u_{n-2} +\frac{6h}{11}f_{n+1} & 2 & 2 \\
+
+
+\end{array}
+$$
+Tutti questi metodi sono detti metodi a più passi lineari e si generalizzano come
+$$
+u_{n+1} = \sum\limits_{j=0}^p a_ju_{n-j} + h\sum\limits_{j=0}^p b_j f_{n-j} + h b_{-1}f_{n+1}, \quad n=p,p+1, \ldots, N_h-1
+$$
+I metodi lineari si dicono consistenti se sono verificate
+\begin{enumerate}
+\item $\sum\limits_{j=0}^pa_j = 1$
+\item $-\sum\limits_{j = 0}^pja_j + \sum\limits_{j=-1}^pb_j = 1$
+\end{enumerate}
+Per un metodo multistep lineare la zero-stabilità coincide con la condizione delle radici, ossia
+$$
+\begin{cases}
+|r_j| \leq 1 \quad  & j = 0, \ldots, p \\
+|r_j| = 1 \quad & solo \ se \ \rho'(r_j) \neq 0
+\end{cases}
+$$
+Inoltre un metodo multistep è convergente (di ordine $q$) se e solo se 
+$$ 
+|y_j - u_j| = \mathcal{O}(h^q), \quad j = 0,\ldots, p 
+$$
+\subsection{Metodi Runge-Kutta}
+Un metodo di Runge-Kutta a $s \geq 1$ stadi si scrive 
+$$
+u_{n+1} = u_n + h\sum\limits_{i=1}^s b_iK_i
+$$
+dove $K_i$ si definisce
+$$
+K_i = f \left(t_n +c_ih, u_n+h\sum\limits_{j=1}^s a_{ij}K_j \right), \quad i = 1, \ldots, s
+$$
+
+\end{document}
