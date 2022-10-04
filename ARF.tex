@@ -546,7 +546,33 @@ The common way to define an outer measure is to start with a family of elementar
 \begin{proof}
     \(\forall \; A \subset X \; \exists \left\lbrace E_n \right\rbrace \subset \mathcal{E}\) s.t. \(A \subset \bigcup_n E_n : \mbox{ take } E_n = X \forall \; n\)
     then \(\mu^*\) is well defined. Obviously, \(\mu^*(\emptyset) = 0\) (with \(E_n = \emptyset \quad \forall\; n\)), and \(\mu^*(A) \leq \mu^*(B)\) for \(A \subset B\) (any covering of \(B\) with elements of \(\mathcal{E}\) is also a covering of \(A\).)
+
+    We have to prove the \(\sigma\)-subadditivity. Let \(\left\lbrace A_n \right\rbrace_{n \in \mathbb{N}} \subseteq \mathcal{P}(X)\) and \(\epsilon > 0\). For each \(n, \exists \left\lbrace E_{n_j} \right\rbrace_{j \in \mathbb{N}} \in \mathcal{E}\) s.t. \(A_n \subset \bigcup_{i = 1}^{\infty} E_{n_j}\) and \(\sum_{j=1}^{\infty} \rho(E_{n_j}) \leq \mu^*(A_n) + \frac{\epsilon}{2^n}\).  
+    But then, if \(A = \bigcup_{n=1}^{\infty} A_n\), we have that \(A \subset \bigcup_{n,j \in \mathbb{N}^2} E_{n_j}\) and
+    \[
+        \mu^*(A) \leq \sum_{n,j} \rho(E_{n_j}) \leq \sum_{n} \left(\mu^*(A_n) + \frac{\epsilon}{2^n}\right) = \sum_{n} \mu^*(A_n) + \epsilon
+    \]
+    Since \(\epsilon\) is arbitrary, we are done.
 \end{proof}
+Ex:  
+\begin{enumerate}
+    \item \(X \in \mathbb{R}, \mathcal{E} = \left\lbrace (a,b) : a \leq b, a,b \in \mathbb{R} \right\rbrace \mbox{ family of open intervals:} \)
+    \[
+        \rho((a,b)) = b-a
+    \]
+    
+    \item \(X = \mathbb{R}^n, \mathcal{E} = \left\lbrace (a_1, b_1) \times \ldots \times (a_n, b_n) : a_i \leq b_i, a_i, b_i \in \mathbb{R} \right\rbrace\): 
+    \[
+        \rho((a_1, b_1)\times \ldots \times (a_n, b_n)) = (b_1 -a_1) \cdot \ldots \cdot (b_n - a_n)
+    \]
+\end{enumerate}
+\begin{remark}
+    \(E \in \mathcal{E} \Longrightarrow \mu^*(E) = \rho(E)\). In examples 1 and 2, we have in fact \(\mu^*((a,b)) = b-a, \mu^*\left((a_1, b_1) \times \ldots \times (a_n, b_n)\right) = \prod_{i=1}^{n} (b_i - a_i)\) 
+\end{remark}
+To pass from the outer measure to a measure there is a condition 
+\begin{definition}[Caratheodory condition]
+    If \(\mu^*\) is an outer measure on \(X\) 
+\end{definition}
 \section{Lesson 22/09/2022}
 \begin{enumerate}
     \item  \(((X, \mathcal{M}))\) is a measurable space obtained by means of an outer measure. Ex: \((\mathbb{R}^n, \mathcal{L}(\mathbb{R}^n))\), \((Y, d_y)\) metric space
