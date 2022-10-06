@@ -735,6 +735,75 @@ Moreover if f is bounded then \(s_n \to f\) uniformly on \(X\) as \(n \to \infty
 
     Then any \(x \in X\) stays in \(f^{-1}([a_j, b_j))\) for some j \(\Longrightarrow \) 
 \end{proof}
+\section{06/10/2022}
+\(f \not \in R(I)\). Is it true that \(\exists g \in R(I)\) s.t. \(g = f\) almost everywhere (a.e.) on \(I\)? No.
+
+For instance, consider \(T_{\mathcal{E}}\), the generalized Cantor set (\(\lambda(T_{\mathcal{E}})\)). Consider \(\chi_{\mathcal{E}}\). 
+In general, \(\chi_{A}\) is discontinuous on \(\delta A\).  But \(T_{\mathcal{E}}\) has no interior parts \(\Longrightarrow T_{\mathcal{E}} = \delta T_{\mathcal{E}}\) \(\Longrightarrow \chi_{T_{\mathcal{E}}}\) is discontinuous on \(T_{\mathcal{E}}\). cosine
+
+Clearly 
+\[
+    \int_{[0,1]} \chi_{T_{\mathcal{E}}} d\lambda = \lambda(T_{\mathcal{E}})
+\]
+so \(\chi_{T_{\mathcal{E}}} \in \mathcal{L}^1([0,1])\).  
+If \(g = \chi_{T_{\mathcal{E}}}\) a.e., then \(g\) is discontinuous at almost every part of \(T_{\mathcal{E}} \Longrightarrow\) \(g\) is discontinuous on a set of positive measure \(\Longrightarrow g \not \in R(I)\). 
+So, the Lebesgue integral is a true extension of the Riemann one.
+
+Regarding generalized integrals we have
+\begin{theorem}
+    \(-\infty \leq a < b \leq +\infty, \quad f \in R^g([a,b])\) where 
+    \[
+        R^g([a,b]) = \left\lbrace \mbox{Riemann-int functions on }[a,b]\mbox{ in the generalized sense} \right\rbrace
+    \]
+    Then, \(f\) is \(([a,b], \mathcal{L}([a,b]))\)-measurable. Moreover
+    \begin{enumerate}
+        \item \(f \geq 0\) on \([a,b] \Longrightarrow f \in \mathcal{L}^1([a,b])\)
+        \item \(\vert f \vert \in R^g([a,b]) \Longrightarrow f \in \mathcal{L}^1 ([a,b])\)
+    \end{enumerate}
+    and in both cases
+    \[
+        \int_{[a,b]} fd\lambda = \int_a^b f(x)dx
+    \]
+    If \(f\) is in \(R^g([a,b])\), but \(\vert f\vert \not \in R^g([a,b])\),then the two notions of \(\int\) are not really related
+\end{theorem}
+Ex:
+\(f(x) = \frac{\sin x}{x}, \quad x \in [1, \infty]\)
+\[\int_1^{\infty} \vert f(x) \vert dx = +\infty \Longrightarrow f \not \in \mathcal{L}^1([1, +\infty])\].
+But on the other hand
+\[
+    \int_1^{\infty} \frac{\sin x}{x} dx = \lim_{\omega \to \infty} \int_1^{\infty} \frac{\sin x}{x} dx = \frac{\pi}{2}
+\]
+\subsubsection*{Spaces of integrable functions}
+\((X, \mathcal{M}, \mu)\) complete measure space.
+\[
+    \mathcal{L}^1 = \left\lbrace f: X \to \bar{\mathbb{R}} : \mbox{ f is integrable}\right\rbrace
+\]
+\(\mathcal{L}^1\) is a vector space. On \(\mathcal{L}^1\) we can introduce \(d : \mathcal{L}^1 \times \mathcal{L}^1 \to [0, +\infty)\) defined by 
+\[
+    d_1 (f,g) =\int_{X} \vert f-g \vert 
+\]
+cose 
+
+However, \(d_1\) is not a distance on \(\mathcal{L}^1(X)\), since 
+\[
+    d_1(f,g) = 0 \Longrightarrow f=g \quad \mbox{a.e on }X
+\tag*{(Pseudo-distance)}\]
+To overcome this problem, we introduce an equivalent relation in \(\mathcal{L}^1(X)\): we say that 
+\[
+    f ~ g \Longleftrightarrow f = g \quad \mbox{a.e. on }X
+\]
+If \(f \in \mathcal{L}^1(X)\), we can consider the equivalence class
+\[
+    [f] = \left\lbrace g \in \mathcal{L}^1(X) : g = f \mbox{ a.e on }X \right\rbrace
+\]
+We define
+\[
+    L^1(X) = \frac{\mathcal{L}^1(X)}{~}
+\]
+\(L^1(X)\) is a vector space, and on \(L^1(X)\) the function \(d_1\) is a distance: 
+\[
+    d_1([f], [g]) cosoeocoeoce
+\]
+To simplify the notations, the elements of \(L^1(X)\) are called functions, and one writes \(f \in L^1(X)\). With this, we means that we choose a representative in \([f]\), and f denotes both the representative and the equivalence class. The representative can be arbitrarily modified on any set with \(0\) measure.
 \end{document}
 
- 
