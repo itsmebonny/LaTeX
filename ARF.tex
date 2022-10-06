@@ -821,6 +821,28 @@ Ex:
 \end{cases}
 \] 
 For \(M > 1\), \(\lambda(\left\lbrace x \in \mathbb{R} : \vert f(x) \vert > M\right\rbrace) = \lambda(\left\lbrace 0 \right\rbrace) = 0 \Longrightarrow f\mbox{ is essentially bounded}\).
-
+If \(f\) is essentially bounded, it is well defined the \textbf{essential supremum} of \(f\).
+\[
+    \underset{X}{esssup} f := \inf \left\lbrace M > 0 \mbox{ s.t. } f \leq M \mbox{ a.e. on }X\right\rbrace = pezzi
+\]
+It can also be defined on essential inf.
+\begin{remark}
+    Note that, by def of inf, \(\forall \; \epsilon > 0\) we have 
+    \[
+        f \leq (\underset{X}{esssup} f) + \epsilon
+    \]
+\end{remark}
+We define 
+\[
+    L^{\infty} (X, \mathcal{M}, \mu) = \frac{\mathcal{L}^{\infty}(X, \mathcal{M}, \mu)}{~}
+\]
+\(L^{\infty}(X)\) is a vector space, and it is also a metric space for \(d_{\infty}(f,g) = \underset{X}{essup} \vert f-g \vert\)
+\subsubsection*{Relation between different types of convergence}
+\(\left\lbrace f_n \right\rbrace\) sequence of measurable functions \(X \to \bar{\mathbb{R}}\)
+\begin{itemize}
+    \item recupera
+    \item \(f_n \to f\) pointwise
+    \item \(f_n \to f\) uniformly
+\end{itemize}
 \end{document}
 
