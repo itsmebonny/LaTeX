@@ -843,6 +843,35 @@ We define
     \item recupera
     \item \(f_n \to f\) pointwise
     \item \(f_n \to f\) uniformly
+    \item \(f_n \to f\)
+    \item \underline{Convergence in \(L^1(X)\)}
+    \item \underline{Convergence in measure/probability}
 \end{itemize}
+cose cose parlavo con ila 
+\begin{theorem}[Egorov]
+    Let \(\mu(X) < +\infty\), and suppose that \(f_n \to f\) a.e. on \(X\). Then, \(\forall \; \epsilon > 0, \exists X_{\epsilon} \subset X\), measurable, s.t. 
+    \[
+        \mu(X \backslash X_{\epsilon}) < \epsilon
+    \]
+    and \(f_n \to f\) uniformly on \(X_{\epsilon}\)
+\end{theorem}
+\begin{theorem}
+    If \(\mu(X) < +\infty\) and \(f_n \to f\) a.e. on \(X\) \(\Longrightarrow f_n \to f\) is measure on \(X\)
+\end{theorem}
+\begin{proof}
+    Let \(\alpha > 0\). We want to show that \(\forall \; \epsilon > 0\) \(\exists \bar{n} \in \mathbb{N}\) s.t. 
+    \[
+        n > \bar{n} \Longrightarrow \mu(\left\lbrace \right\rbrace)
+    \]
+    altre cosette 
+\end{proof}
+\begin{remark}
+    \(\mu(X) < +\infty\) is essential
+\end{remark}
+For example, in \((\mathbb{R}, \mathcal{L}(\mathbb{R}), \lambda)\) consider
+\[
+    f_n (x) = \chi_{[n, n+1)}(x)
+\]
+\(f_n(x) \to 0\) for every \(x \in \mathbb{R}\). However, \(\lambda(\left\lbrace \vert f_n \vert \geq \frac{1}{2}\right\rbrace) = \lambda([n, n+1)) = 1\) not \(0\)
 \end{document}
 
