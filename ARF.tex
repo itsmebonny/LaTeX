@@ -805,5 +805,22 @@ We define
     d_1([f], [g]) cosoeocoeoce
 \]
 To simplify the notations, the elements of \(L^1(X)\) are called functions, and one writes \(f \in L^1(X)\). With this, we means that we choose a representative in \([f]\), and f denotes both the representative and the equivalence class. The representative can be arbitrarily modified on any set with \(0\) measure.
+
+Another relevant space of measurable functions is the space of \textbf{essentially bounded} functions
+\begin{definition}
+    \(f : X \to \bar{\mathbb{R}}\) measurable is called essentially bounded if \(\exists M > 0\) s.t.
+    \[
+        \mu(\left\lbrace x \in X : \vert f(x) \vert \geq M \right\rbrace) = 0
+    \]
+\end{definition}
+Ex: 
+\[f(x) = \begin{cases}
+    1 & x > 0 \\
++\infty & x = 0 \\
+0 & x < 0 \\
+\end{cases}
+\] 
+For \(M > 1\), \(\lambda(\left\lbrace x \in \mathbb{R} : \vert f(x) \vert > M\right\rbrace) = \lambda(\left\lbrace 0 \right\rbrace) = 0 \Longrightarrow f\mbox{ is essentially bounded}\).
+
 \end{document}
 
