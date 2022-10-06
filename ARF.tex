@@ -48,6 +48,7 @@
 \newcommand{\measurespace}{(X, \mathcal{M}, \mu)}
 \newcommand{\sigalg}{\sigma\mbox{-algebra}}
 \newcommand{\boreal}{\mathcal{B}(\mathbb{R})}
+\newcommand{\real}{\mathbb{R}}
 \newcommand{\code}[1]{\texttt{#1}}
 \newcommand{\xdownarrow}[1]{%
   {\left\downarrow\vbox to #1{}\right.\kern-\nulldelimiterspace}
@@ -619,6 +620,41 @@ To sum up: \(X \mbox{ set}, (\mathcal{E}, \rho)\)elementary and measurable sets,
 \end{itemize}
 \section{Lesson 21/09/2022}
 \subsubsection*{Lebesgue measure}
+\(\mathcal{E}\) = family of open intervals (a,b), \(a,b \in \mathbb{R}^*, a < b\). \(\rho =\) lenght \(l\).
+\(\rho((a,b)) = b - a\). 
+
+\underline{Notations:} open interval \(I\) with lenght \(l(I)\)
+\subsubsection*{Outer measure}
+\(E \subset \real\). The outer measure of \(E\) is 
+\[
+    \lambda^*(E) = \inf \left\lbrace \sum_{n=1}^{+\infty} l(I_n) \vert I_n \mbox{ is an open interval, } E \subset \bigcup_{n = 1}^{\infty} I_n \right\rbrace
+\]
+\subsubsection*{Caratheodory condition (CC)}
+\(A \subset \real\) is \(\lambda^*\)-measurable if 
+\[
+    \lambda^*(E) = \lambda^*(E \cap A) + \lambda^*(E \cap A^C) \qquad \forall \; E \subset \real
+\]
+\[
+    \left\lbrace A \subset \real : A \mbox{ is }\lambda^*\mbox{-measurable} \right\rbrace =: \mathcal{L}(\real)
+\tag*{(Lebesgue \(\sigalg\))}\]
+\[
+    \lambda := \lambda^* \vert_{\mathcal{L}(\real)}
+\tag*{(Lebesgue measure on \(\real\))}\]
+Then, \((\real, \mathcal{L}(\real), \lambda)\) is a complete measure space. In particular, \(\lambda^*(A) = 0 \Longrightarrow A \in \mathcal{L}(\real)\) and \(\lambda(A) = 0\).
+\begin{remark}[CC-Criterion for measurability]
+    To check that \(A\) is \(\lambda^*\)-measurable, it is sufficient to check that 
+    \[
+        \lambda^* \geq \lambda^*(E \cap A) + \lambda^*(E \cap A^C)
+    \] for every \(E \subset \real\) rith \(\lambda^*(E) < +\infty\)
+\end{remark}
+\begin{proposition}
+    Any countable set is measurable, with \(0\) Lebesgue measure.
+\end{proposition}
+\begin{proof}
+    Let \(a \in \real\), \[\left\lbrace a \right\rbrace \subseteq (a-\epsilon, a+\epsilon), \forall \; \epsilon > 0 \overset{\mbox{by def.}}{\Longrightarrow} \lambda^*(\left\lbrace a \right\rbrace) \leq 2\epsilon \overset{\mbox{lim}}{\Longrightarrow} \lambda^*(\left\lbrace a \right\rbrace) = 0\]
+    \(\left\lbrace a \right\rbrace\) is measurable with \(\lambda(\left\lbrace a \right\rbrace) = 0, \forall \; a \in \real\). Now if a set \(A\) is countable, \(A = \left\lbrace a_n \right\rbrace_{n \in \mathbb{N}} = \bigcup_n \left\lbrace a_n \right\rbrace\) (disjoint) \(\Longrightarrow \lambda(A) \underset{\sigma-add}{=} \sum_n \lambda(\left\lbrace a_n \right\rbrace) = 0\)
+\end{proof}
+
 \section{Lesson 22/09/2022}
 \begin{enumerate}
     \item  \(((X, \mathcal{M}))\) is a measurable space obtained by means of an outer measure. Ex: \((\mathbb{R}^n, \mathcal{L}(\mathbb{R}^n))\), \((Y, d_y)\) metric space
