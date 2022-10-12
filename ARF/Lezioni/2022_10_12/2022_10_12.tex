@@ -72,3 +72,128 @@
 
 
 
+\begin{document}
+\section*{Lesson 12/10/2022}
+... typewriter sequence
+But we do have convergence in measure
+
+\begin{remark}
+    \( f_p \nrightarrow 0 $ a.e. on [0, 1]
+    But consider \( \{ f_{p(n,1)}: n \in \mathbb{N} \} \). This is a subsequence and, by def \[  \] 
+    For this subsequence, we have $f_{p(n,1)}(x) \rightarrow 0 \) as \( n \to\infty \ \forall x \in (0, 1] \)
+    ..
+    
+\end{remark}
+This is not random
+
+\begin{proposition}
+    If \(\mu(X) < \infty \) and \(f_n \rightarrow f \) in measure, then \(\exists\)
+\end{proposition}
+Now we analize ..
+\begin{theorem}
+    \( \{f_n \subset L^1(X), f \in L^1(X)\} \) If \(f_n \rightarrow f \) in \(L^1(X)\) then \(f_n \rightarrow f \) in measure on \(X\)
+\end{theorem}
+\begin{proof}
+    By contradiction.
+    suppose that \(f_n \nrightarrow f $ in measure on X: $\exists \bar{\alpha} >0 \) s.t. 
+    \[ \limsup_{n\to\infty} \mu(\{ f_n-f \geq \bar{\alpha} \}) >0  \]
+    \(\Rightarrow \exists \bar{\epsilon}\) and a subsequence \( \{ f_{n_k} \} \) s.t.
+    \[ \mu(\{ f_{n_k}-f \geq \bar{\alpha} \}) > \bar{\epsilon}  \]
+
+    ....
+
+    But, by assumption, \(d_1(f_n, f) \rightarrow 0\)
+    \[ \Rightarrow d_1(f_{n_k}, f) \rightarrow 0 \] 
+    contradiction.
+\end{proof}
+
+\begin{remark}
+    the convergence in measure doesn't imply the convergence in $L^1$
+\end{remark}
+for example, consider 
+on the other hand
+
+convergence a.e. \(\nRightarrow\) convergence in \(L^1\)
+use the same example above, \(f_n \rightarrow 0\) a.e. on \([0, 1] \nRightarrow f_n \rightarrow 0\) in \(L^1\)
+Consider the typewriter sequence: .....
+But we don't have a.e. convergence 
+However, recall the dominated convergence theorem: (DOM)
+\[ f_n \rightarrow f a.e. + \exists \text{ of a dom function} \Rightarrow d(f_n, f)\rightarrow 0 \]
+It is also possible to show a reverse dom:
+.... s.t. 
+\begin{enumerate}
+    \item \(f_{n_k} \rightarrow f\) a.e. on X
+    \item \(\| f_{n_k} \| \leq w(x) \) for a.e. x \(\in X\)
+\end{enumerate}
+
+\subsection*{Derivatives of measures}
+.....
+
+necessary condition
+\[ \exists \frac{d \nu}{d \mu} \Rightarrow \nu << \mu \]
+
+\begin{proof}
+    \(\nu(E) = \int_E () .. \)
+\end{proof}
+
+.....
+
+\begin{theorem}
+    Radon Nykodim Theorem
+    ....
+\end{theorem}
+
+\begin{remark}
+    if \(\mu\) is not sigma finite the theorem may fail.
+    ..... 
+\end{remark}
+
+mi sto addormentando io ci sto provando anche
+altre cose su radon 
+
+\subsection*{Product Measure}
+\( (X, \mathcal{M}, \mu), (Y, \mathcal{N}, \nu) \) measure spaces.
+the goal is to define a measure space on \(X \times Y\)
+\begin{definition}
+    we call measurable rectangle in \(X \times Y\) a set of type \(A \times B\) where \(A \in \mathcal{M}, B \in \mathcal{N}\)
+    \[  R = \{ A \times B \subset X\times Y ....\}\]
+    We define the product \(\sigma\) algebra 
+    ...
+\end{definition}
+\begin{definition}
+    let \(E \subset X \times Y \) For \( \bar{x} \in X \) and \(\bar{y} \in Y \) we define
+    \begin{enumerate}
+        \item \( E_{\bar{x}} = \{ y \in Y: \left( \bar{x}, y \right) \in E \} \subset Y \)
+        \item \( E_{\bar{y}} = \{ x \in X: \left( x, \bar{y} \right) \in Y \} \subset E \)
+    \end{enumerate}
+\end{definition}
+
+\begin{proposition}
+    \(\left( X, \mathcal{M} \right), \left( Y, \mathcal{N} \right)\) measurable spaces. 
+    ....
+
+\end{proposition}
+...
+
+\begin{theorem}
+    If \(\left(X, \mathcal{M}, \mu \right)\) and \(\left(Y, \mathcal{N}, \nu \right)\) are \(\sigma\) finite spaces, then:
+    \begin{enumerate}
+        \item if \(\phi\) is \(\mathcal{M}\) measurable and \(\psi\) is \( \mathcal{N}\) meas
+        \item we have that 
+    \end{enumerate}
+
+ \end{theorem}
+using ....
+
+\begin{theorem}
+    iterated integrals for characteristic functions \\ 
+    \(\mu \times \nu : \mathcal{M} \otimes \mathcal{N} \rightarrow \mathbb{R} \) defined by
+    \[ \left(\mu \otimes \nu \right)(E) = \int_X \nu(E_x) \, d\mu = \int_Y \mu(E_y) \, d\nu\]
+    is a measure, the product measure 
+\end{theorem}
+
+...
+\begin{theorem}
+    Let \(\lambda_n\) be the lebesgue measure in \(\mathbb{R}^n\). If \(n= K+m\), then \(\left(\mathbb{R}^n, \mathcal{L}(\mathbb{R}^n), \lambda_n \right)\) is the complection of \(\real^k \times \real^m .., \lambda_k \otimes \lambda_m\)
+\end{theorem}
+\end{document}

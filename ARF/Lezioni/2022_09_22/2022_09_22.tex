@@ -72,3 +72,122 @@
 
 
 
+\begin{document}
+\section{Lesson 22/09/2022}
+We will mainly focus on 2 situations:
+\begin{enumerate}
+    \item  \(((X, \mathcal{M}))\) is a measurable space obtained by means of an outer measure. Ex: \((\mathbb{R}^n, \mathcal{L}(\mathbb{R}^n))\), \((Y, d_y)\) metric space
+    If \(X \to Y\) is (Lebesgue) measurable \(\Longleftrightarrow\) \((\mathcal{M}, \mathcal{B}(Y))\) is measurable
+    \item \((X, d_X), (Y, d_Y)\) are metric spaces \(\longrightarrow (X, \mathcal{B}(X))\)
+    If \(X \to Y\) are borel measurable \(\Longleftrightarrow (\mathcal{B}(X), \mathcal{B}(Y)) \)measurable
+\end{enumerate}
+\begin{remark}
+     \(f\) is Lebesgue measurable if the continuity of the borel set is a Lebesgue-measurable set.
+\end{remark}
+\begin{proposition}
+    \begin{enumerate}
+        \item \((X, d_X), (Y, d_Y)\) metric spaces. If \(X \to Y\) is continuous, then is Borel measurable
+        \item \((Y, d_Y)\) metric space. If \(\mathbb{R}^n \to Y\) is continuous, then it is a Lebesgue measure.
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    \begin{enumerate}
+        \item \(f\) is continuous \(\Longleftrightarrow f^{-1}(A)\) is open \(\forall \; A \in Y\)
+        open \(\Longrightarrow\) \(f^{-1}(A) \in \mathcal{B}(Y) \; \forall \; A \in Y\) open
+        Since \(\mathcal{B}(Y) = \sigma_0(\mbox{open sets})\) by proposition \(1\) thus implies that \(f\) is Borel measurable
+        \item \(f\) is continuous \(\Longrightarrow\) \(f\) is Borel measurable
+        mancano pezzi namely \(f\) is Lebesgue measurable
+    \end{enumerate}
+\end{proof}
+\begin{proposition}
+    \((X, \mathcal{M})\) measurable space, \((X, d_Y), (Y, d_Y)\) metric spaces. 
+    if \(f: X \to Y\) is \(\mathcal{M}, \mathcal{B}(Y)\)-measurable and \(g : Y \to Z\) is continuous \(\Longrightarrow\) \(g \circ f : x \to Z\) is \(\mathcal{M}, \mathcal{B}(Y)\)-measurable
+\end{proposition}
+\begin{proposition}
+    \((X, \mathcal{M})\) measurable space 
+    Let \(\Phi : \mathbb{R}^n \to Y\) be continuous where \((Y, d_Y)\) is a metric space. Then \(h: X\to Y\) defined by \(h(x) = \Phi(u(x), boh)\) is \(\mathcal{M}, \mathcal{B}(Y)\)-measurable.
+\end{proposition}
+\begin{proof}
+    Define \(f: X \to \mathbb{R}^n\), \(f(x) = u(x), v(x)\). By def \(h = \Phi \circ f\) by prop 3 if we show that \(f\) is measurable, then \(h\) is measurable. It can be proved that \[\mathcal{B}(\mathbb{R}^2) = \sigma_0 \left(\left\lbrace (a_1, b_1) \times (a_2, b_2): a,b \in \mathbb{R}\right\rbrace\right)\]
+    pezzi
+    \(f^{-1}(\mathcal{R} \in \mathcal{M}) \quad \forall \mbox{open rectangle in }\mathcal{R}^2\)
+    \(R = I \times J\)
+    \(F^{-1} = \left\lbrace x \in X \right\rbrace\) 
+\end{proof}
+\begin{remark}
+    roba 
+    \[
+        g(x) = \begin{cases}
+            x & \mbox{where } x \geq 0 \\
+            0 & \mbox{where } x < 0
+        \end{cases}
+    \]
+\end{remark}
+cosine 
+\((X,\mathcal{M})\) measurable space, then such a  function f is measurable iff
+\[
+    f^{-1}(a, +\infty)] \in \mathcal{M} \quad \forall a \in \mathcal{R}
+\]
+LEt now \(\left\lbrace f_n \right\rbrace\) be a Sequence of measurable functions from \(X\) to \(\bar{\mathcal{R}}\). Then we define \[
+    (\inf_n f_n)(x) = \inf_n f_n(x)
+\]
+\[
+    (\sup_n f_n)(x) = \sup_n f_n(x)
+\]
+\[
+    (\liminf_n f_n)(x) = \liminf_n f_n(x)
+\]
+\[
+    (\limsup_n f_n)(x) = \limsup_n f_n(x)
+\]
+\[
+    (\lim_n f_n)(x) = \lim_n f_n(x) \quad \mbox{if the limit exists}
+\]
+\begin{proposition}
+    \((X, \mathcal{M})\) measurable space, \(f_n : X \to \bar{\mathcal{R}}\) measurable, then 
+    \(\sup \inf \liminf \limsup\) of \(f_n\) are measurable, in particular if \(\lim f_n\) exists, then \(f\) is measurable
+\end{proposition}
+\begin{proof}
+    \((\sup f_n)^{-1} ((a, \infty]) = \left\lbrace x \in X : \sup f_n(x) > a \right\rbrace\) (manca pezzi)
+    \[
+        \bigcup \left\lbrace x \in X : f_n(x) > a \right\rbrace
+    \]
+    Then \((\sup f_n)^{-1} ((a, \infty])\) is measurable, cose da aggiungere
+Noe the limsup
+\[\limsup_n f_n = \lim_n (\sup_{k > n} f_n(x))\]
+cose cose 
+\end{proof}
+\subsection*{Simple functions}
+\begin{definition}
+    \((X, \mathcal{M})\) measurable space. A measurable function s: \(X \to \bar{\mathcal{R}}\) is said to be simple if \(s(X)\) is a finite set 
+    altre cose 
+    Then \(s(x) = \sum_{n = 1} a_n \chi_{E_n}(x)\) where \(E_n\) is a measurable set 
+    sistemare. 
+\end{definition}
+\underline{Particular case}: if s:\(\mathbb{R} \to \bar{\mathbb{R}}\) and each \(E_n\) is a finite union of intervals, then \(s\) is said to be a STEP FUNCTION.
+
+The idea is to approximate functions with simple functions.
+\begin{theorem}
+    \((X,\mathcal{M})\) measurable space, \(f: X \to [0, \infty]\) measurable. Then \(\exists\) a sequence \(\left\lbrace s_n \right\rbrace\) of simple functions s.t. 
+    \[
+        0 \leq s_1 \leq \ldots \leq s_n \leq \ldots \leq f \quad \mbox{pointwise}
+    \]
+    and \(s_n(x) \to f(x)\)
+Moreover if f is bounded then \(s_n \to f\) uniformly on \(X\) as \(n \to \infty\)
+\end{theorem}
+\begin{proof}[f is bounded]
+    Fix \(n \in \mathbb{N}\) and divide \([0,n)\) in \(n \cdot 2^n\) intervals called \(I_j = [a_j,b_j)\) with lenght \(\frac{1}{2^n}\)
+
+    Let \(E_0 = f^{-1}([n, \infty)), E_j = f^{-1}([a_j, b_j))\) for \(j = 1, \ldots, n\cdot 2^n\)
+    
+    We let Array
+
+    Namely we define 
+    \[
+    s_n (x) = n\chi_{E_0}(X) + \sum_{j =1}^{n \cdot 2^n} a_j \chi_{E_j}(x)    
+    \]
+    Then \(s_n \leq s_{n+1}\) by contradiction
+
+    Then any \(x \in X\) stays in \(f^{-1}([a_j, b_j))\) for some j \(\Longrightarrow \) 
+\end{proof}
+\end{document}
