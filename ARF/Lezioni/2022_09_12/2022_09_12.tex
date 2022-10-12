@@ -1,0 +1,325 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hhline}
+\usepackage{hyperref}
+\usepackage{bm}
+\usepackage[margin=2cm]{geometry}
+
+\usepackage{amsthm}
+\usepackage{tikz}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usetikzlibrary{shapes.geometric, arrows}
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=orange!30]
+\tikzstyle{decision} = [diamond,aspect = 2, text centered, draw=black, fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+\usepackage{newunicodechar}
+\newunicodechar{≠}{\ensuremath{\not =}}
+\usepackage{textcomp}
+\usepackage[makeroom]{cancel}
+
+\newlength\mylength
+\setlength\mylength{0.1cm}
+\newcolumntype{Y}{>{\Centering\arraybackslash}X}
+
+\AtBeginEnvironment{array}{\everymath{\displaystyle}}
+\newtheoremstyle{break}
+  {\partopsep}{\topsep}%  
+  {\normalfont}{}
+  {\bfseries}{}%
+  {\newline}{}%
+  \theoremstyle{break}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{remark}[section]{Remark}
+\newtheorem{lemma}{Lemma}[section]
+\renewcommand*{\proofname}{\textbf{Proof}}
+\renewcommand\qedsymbol{$\bigstar$}
+\newtheorem{definition}{Definition}[section]
+\renewcommand\labelenumi{(\theenumi)}
+
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+
+\newcommand{\ind}{\perp\!\!\!\!\perp} 
+\newcommand{\measurespace}{(X, \mathcal{M}, \mu)}
+\newcommand{\sigalg}{\sigma\mbox{-algebra}}
+\newcommand{\boreal}{\mathcal{B}(\mathbb{R})}
+\newcommand{\real}{\mathbb{R}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\xdownarrow}[1]{%
+  {\left\downarrow\vbox to #1{}\right.\kern-\nulldelimiterspace}
+}
+\newcommand{\xuparrow}[1]{%
+  {\left\uparrow\vbox to #1{}\right.\kern-\nulldelimiterspace}
+}
+\newcommand{\arrvline}{\hfil\kern\arraycolsep\vline\kern-\arraycolsep\hfilneg}
+
+\long\def\symbolfootnotemark[#1]#2{\begingroup%
+\def\thefootnote{\fnsymbol{footnote}}\footnotetext[#1]{#2}\footnotemark[#1]\endgroup}
+
+\long\def\symbolfootnotetext[#1]#2{\begingroup%
+\def\thefootnote{\fnsymbol{footnote}}\footnotetext[#1]{#2}\endgroup}
+
+
+\numberwithin{equation}{section}
+
+
+
+
+
+
+\begin{document}
+\section{Lesson 12/09/2022}
+
+\subsection*{Element of set theory}
+Let \(X\) be a set. Then 
+\[
+    \mathcal{P}(X) = \left\lbrace Y \; | \; Y \subseteq X \right\rbrace \tag{\textbf{Power Set}}
+\]
+Let \(I \subseteq \mathbb{R}\) be a set of indexes. A family of sets induced by \(I\) is 
+\[
+    \left\lbrace E_i \right\rbrace_{i \in I}, \quad E_i \subseteq X  \tag{\textbf{Family/Collection}}
+\]
+If \(I = \mathbb{N} \) is called a 
+\[
+    \left\lbrace E_n \right\rbrace_{n \in \mathbb{N}} \tag{\textbf{Sequence}}
+\]
+\begin{definition}
+    \( \left\lbrace E_n \right\rbrace \subseteq \mathcal{P}(X) \) is monotone increasing (resp. decreasing) if 
+    \[
+        E_n \subseteq E_{n+1} \,\forall n \qquad (\mbox{resp. } E_n \supseteq E_{n+1} \, \forall n)
+    \]
+    and is written as 
+    \[
+        \left\lbrace E_n \right\rbrace \nearrow \qquad (\mbox{resp. }\left\lbrace E_n \right\rbrace \searrow)
+    \]
+\end{definition}
+Given a family of sets \(\left\lbrace E_i \right\rbrace_{i \in I} \subseteq \mathcal{P}(X)\), will be often considered
+\[
+    \bigcup_{i \in I} E_i = \left\lbrace x \in X : \exists \; i \in I \, s.t. \, x \in E_i \right\rbrace 
+\]
+\[
+    \bigcap_{i \in I} E_i = \left\lbrace x \in X : x \in E_i, \, \forall i \in I \right\rbrace
+\]
+\(\left\lbrace E_i \right\rbrace\) is said to be \textbf{disjoint} if \(E_i \cap E_j = \emptyset \; \forall i \not = j\).
+
+Examples:
+\[
+    [a,b] = \bigcap_{n = 1}^{\infty} (a - \frac{1}{n}, b + \frac{1}{n}) 
+\]
+\[
+    (a,b) = \bigcup_{n = 1}^{\infty}[a + \frac{1}{n}, b - \frac{1}{n}]
+\]
+\begin{definition}
+    \(\left\lbrace E_n \right\rbrace \subseteq \mathcal{P}(X)\). We define 
+    \[
+        \limsup_{n} E_n := \bigcap_{k = 1}^{\infty} \bigl(\bigcup_{n = k}^{\infty} E_n\bigr)
+    \]
+    \[
+        \liminf_{n} E_n := \bigcup_{k = 1}^{\infty} \bigl(\bigcap_{n = k}^{\infty} E_n\bigr)
+    \]
+    If these two sets are equal, then 
+    \[
+        \lim_n E_n = \limsup_n E_n = \liminf_n E_n
+    \]
+\end{definition}
+\begin{proposition}
+    Some limits are:
+    \begin{itemize}
+        \item \(\limsup_n E_n = \left\lbrace x \in X :\, x \in E_n \; \mbox{for }\infty-\mbox{many indexes }n \right\rbrace\)
+        \item \(\liminf_n E_n = \left\lbrace x \in X :\, x \in E_n \; \mbox{for all but finitely many indexes }n \right\rbrace\)
+        \item \(\liminf_n E_n \subseteq \limsup_n E_n\)
+        \item \(\left( \liminf_n E_n\right)^C = \limsup_n E_n^C\) 
+    \end{itemize}
+\end{proposition}
+\begin{definition}
+    
+    \[
+    \begin{array}{ccc}
+        x \in \limsup_n E_n & \Longleftrightarrow & x \in \bigcap_{k = 1}^{\infty} \left(\bigcup_{n = k}^{\infty} E_n\right) \\
+        & \Longleftrightarrow & \forall k \in \mathbb{N} \, : \; \bigcup_{n = k}^{\infty} E_n \\
+        & \Longleftrightarrow &  \forall k \in \mathbb{N} \; \exists n_k \geq k \, s.t. \, x \in E_{n_k}
+        
+    \end{array}
+\]
+So \(x \in \limsup_n E_n \; \Longrightarrow\) \(\begin{array}[t]{l}
+    \exists m_1 = n_1 \, s.t. \, x \in E_{n_1} \\
+    \exists m_2 := n_{m_1 + 1} \geq m_1 + 1 \, s.t. \, x \in E_{n_2} \\
+    \vdots \\
+    \exists m_k := n_{m_{k-1} + 1} \geq m_{k-1} + 1 \, s.t. \, x \in E_{n_k} \\
+    \vdots \\
+    x \in E_{m_1}, \ldots, E_{m_k}, \ldots 
+\end{array}
+\)
+
+On the other hand, assume that \(x \in E_n\) for \(\infty\)-many indexes.
+We claim that \(\forall k \in \mathbb{N} \, \exists n_k \geq k \, s.t. \, x \in E_{n_k} \, \Longleftrightarrow \, x \in \limsup_n E_n\). 
+If that claim is not true, then \(\exists \bar{k} \, s.t. \, x \not \in E_n \, \forall n > \bar{k} \Longrightarrow x\) belongs at most to \(E_1, \ldots, E_{\bar{k}}\), a contradiction. 
+\qed
+\end{definition}
+\begin{definition}
+    \(\left\lbrace E_i \right\rbrace_{i \in I}\) is a \textbf{covering} of \(X\) if 
+    \[
+        X \subseteq \bigcup_{i \in I} E_i
+    \]
+A subfamily of \(E_i\) that is still a covering is called a \textbf{subcovering}
+\end{definition}
+\begin{definition}
+    Let \(E \subseteq X\). The function \(\chi_E \, : X \rightarrow \mathbb{R}\) 
+    \[
+        \chi_E (x):= \begin{cases}
+            1 & \mbox{if } x \in E \\
+            0 & \mbox{if } x \in X\backslash E
+        \end{cases}
+    \]
+    is called \textbf{characteristic function} of \(E\)
+\end{definition}
+Let \(E_1, E_2\) be sets:
+\[
+    \chi_{E_1 \cap E_2} = \chi_{E_1} \cdot \chi_{E_2}
+\]
+\[
+    \chi_{E_1 \cup E_2} = \chi_{E_1} + \chi_{E_2} - \chi_{E_1 \cap E_2} 
+\]
+\[
+    \left\lbrace E_n \right\rbrace \subseteq \mathcal{P}(X), \mbox{ disjoint}, E = \bigcup_{n = 1}^{\infty} E_n \Longrightarrow \mathcal{X_E} = \sum_{n = 1}^{\infty} \chi_{E_n}
+\]
+\[
+    \left\lbrace E_n \right\rbrace \subseteq \mathcal{P}, P = \liminf_n E_n, Q = \limsup_n E_n \Longrightarrow \chi_P = \liminf \chi_{E_n}, \chi_Q = \limsup_n \chi_{E_n}
+\]
+Recall that \(\limsup_n a_n = \lim_{k \to \infty} \sup_{n \geq k} a_n\) and \(\liminf_n a_n = \lim_{k \to \infty} \inf_{n \geq k} a_n\)
+
+
+Let's also check that \(\chi_Q = \limsup_n \chi_{E_n}\)
+\[
+    \begin{array}{ccc}   
+    x \in \limsup_n E_n & \Longleftrightarrow & \chi_Q(x) = 1 \\
+    & \Longleftrightarrow & \forall \, k \in \mathbb{N} \, \exists \, n_k \geq k \; s.t. \; x \in E_{n_k}
+    \end{array}
+    \]
+If we fix \(k\) then 
+\[
+    \begin{array}{c}
+        \sup_{n \geq k} \chi_{E_n}(x) = \chi_{E_{n_k}}(x) = 1 \\
+        \lim_{k \to \infty} \sup_{n \geq k} \chi_{E_n}(x) = \limsup_n \chi_{E_n}(x) = 1
+    \end{array}
+\]
+    Let now \(x \not \in \limsup E_n \Longleftrightarrow \chi_Q(x) = 0\).
+    Then \(x\) belongs at most to finitely many \(E_n\) \(\Longrightarrow \exists \, \bar{k}\; s.t. \; x \not \in E_n, \forall n \geq \bar{k}\)
+    
+    If \(k \geq \bar{k}\), then \(\sup_{n \geq k} \chi_{E_n} (x) = 0 \Longrightarrow \lim_{k \to \infty} \sup_{n \geq k} \chi_{E_n}(x) = \limsup_n \chi_{E_n} (x) = 0\)
+
+    \subsubsection*{Relations}
+    Given \(X, Y\) sets, is called a \textbf{relation} of \(X\) and \(Y\) a subset of \(X \times Y\)
+    \[
+        R \subseteq X + Y \quad R = \left\lbrace (x,y) \, : \, x \in X, y \in Y \right\rbrace
+    \]
+    \[
+        (x,y) \in R \Longleftrightarrow xRy
+    \]
+    \[
+        X = \left\lbrace 0,1,2,3 \right\rbrace \quad R = \left\lbrace (0,1), (1,2), (2,1) \right\rbrace \mbox{ is a relation in } X
+    \]
+\begin{definition}
+    A \textbf{function} from \(X\) to \(Y\) is a relation \(R\) s.t. for any element \(x\) of \(X\) \(\exists !\) element \(y\) of \(Y\) s.t. \(xRy\)
+\end{definition}
+\begin{definition}
+    \(R\) on \(X\) is an \textbf{equivalence relation} if 
+    \begin{enumerate}
+        \item \(xRx\) \(\forall \; x \in X\) (\(R\) is \textbf{reflexive})
+        \item \(xRy \Longrightarrow yRx\) (\(R\) is \textbf{symmetric})
+        \item \(xRy, yRz \Longrightarrow xRz\) (\(R\) is \textbf{transitive})
+    \end{enumerate}
+    If \(R\) is an equivalence relation, the set 
+    \(
+        E_X := \left\lbrace y \in X \, : \, yRx \right\rbrace, \; x \in X
+    \)
+    is called the \textbf{equivalence class} of \(X\)
+\end{definition}
+\begin{definition}
+    \(\frac{X}{R} := \left\lbrace E_X \, : \, x \in X \right\rbrace\) is the \textbf{quotient set}
+\end{definition}
+Ex: \(X = \mathbb{Z}\), let's say that \(nRm\) if \(n-m\) is even. This is an equivalence relation.
+\[
+    E_n = \left\lbrace \ldots, n-4, n-2, n, n+2, n+4, \ldots \right\rbrace
+\]
+in this case if \(n\) is even, \(E_n = \left\lbrace \mbox{even numbers} \right\rbrace\) and if \(n\) is odd, \(E_n = \left\lbrace \mbox{odd numbers} \right\rbrace\)
+\subsection*{Measure theory}
+\begin{definition}
+    A family \(\mathcal{M} \subseteq \mathcal{P}(X)\) is called a \textbf{\(\mathbf{\sigma}\)-algebra} if 
+    \begin{enumerate}
+        \item \(X \in \mathcal{M}\)
+        \item \(E \in \mathcal{M} \Longrightarrow E^C = X\backslash E \in \mathcal{M}\)
+        \item If \(E = \bigcup_{n \in \mathbb{N}}\) and \(E_n \in \mathcal{M} \; \forall \, n\), then \(E \in \mathcal{M}\)
+    \end{enumerate}
+\end{definition}
+If \(\mathcal{M}\) is a \(\sigalg\), \((X, \mathcal{M})\) is called \textbf{measurable space} and the sets in \(\mathcal{M}\) are called \textbf{measurable}.  
+Ex: \begin{itemize}
+    \item \((X, \mathcal{P}(X))\) is a measurable space
+    \item Let \(X\) be a set, then \(\left\lbrace \emptyset, X \right\rbrace\) is a \(\sigalg\)
+\end{itemize}
+\begin{remark}
+    \(\sigma\) is often used to denote the closure w.r.t. countably many operators. If we replace the countable unions with finite unions in the definition of \(\sigalg\), we obtain an \textbf{algebra}.
+\end{remark}
+Some \textbf{basic properties} of a measurable space \((X, \mathcal{M})\):
+\begin{enumerate}
+    \item \(\emptyset \in \mathcal{M}\): \(\emptyset = X^C\) and \(X \in \mathcal{M}\)
+    \item \(\mathcal{M}\) is an algebra, and \(E_1, \ldots, E_n \in \mathcal{M}\)
+    \[
+        E_1 \cup \ldots \cup E_n = E_1 \cup \ldots \cup E_n \cup \underbrace{\emptyset}_{\in \mathcal{M}} \cup \emptyset \ldots \in \mathcal{M} 
+    \]
+    \item \(E_n \in \mathcal{M}\), \(\bigcap_{n \in \mathbb{N}} E_n \in \mathcal{M}\)
+    \[
+        \bigcap_{n \in \mathbb{N}} E_n = \biggl(\underbrace{\bigcup_{n \in \mathbb{N}} \underbrace{E_n^C}_{\in \mathcal{M}}}_{\in \mathcal{M}}\biggr)^C \qquad (\mathcal{M} \mbox{ is also closed under finite intersection})
+    \]
+    \end{enumerate}
+\begin{itemize}
+    \item \(E, F \in \mathcal{M} \Longrightarrow E \backslash F \in \mathcal{M} = E \backslash F = E \cap F^C \in \mathcal{M}\)
+    \item If \(\Omega \subset X\), then the \textbf{restriction} of \(\mathcal{M}\) to \(\Omega\), written as \[\mathcal{M}\vert_{\Omega} := \left\lbrace F \subseteq \Omega: F = E \cap \Omega, \mbox{ with } E \in \mathcal{M} \right\rbrace\] is a \(\sigalg\) on \(\Omega\)
+\end{itemize}
+\begin{theorem}
+    \(\mathcal{S} \subseteq \mathcal{P}(X)\). Then it is well defined the smallest \(\sigalg\) containing \(\mathcal{S}\), the \(\sigalg\) generated by \(\mathcal{S} := \sigma_0(\mathcal{S})\):
+    \begin{itemize}
+        \item \(\mathcal{S} \subseteq \sigma_0(\mathcal{S})\) and thus is a \(\sigalg\)
+        \item \(\forall \sigma(\mathcal{M})\) s.t. \(\mathcal{M} \supseteq \mathcal{S}\), we have \(\mathcal{M} \supseteq \sigma_0(\mathcal{S})\)
+    \end{itemize}
+\end{theorem}
+\begin{proof}[Proof idea]
+    \[
+        \mathcal{V} = \left\lbrace \mathcal{M} \subseteq \mathcal{P}(X): \mathcal{M} \mbox{ is a } \sigalg \mbox{ and }\mathcal{S} \subseteq \mathcal{M}\right\rbrace \not = \emptyset \mbox{ since } \mathcal{P}(X) \in \mathcal{V}
+    \]
+    We define \(\sigma_0(\mathcal{S}) = \bigcap \left\lbrace \mathcal{M} \; : \; \mathcal{M} \in \mathcal{V}\right\rbrace\), so it can be proved that this is the desired \(\sigalg\)
+\end{proof}
+\subsubsection*{Borel sets}
+Given \((X, d)\) metric space, the \(\sigalg\) generated by the open sets is called \textbf{Borel} \(\sigalg\), written as \(\mathcal{B}(X)\). The sets in \(\mathcal{B}(X)\) are called \textbf{Borel sets}. The following sets are Borel sets:
+\begin{itemize}
+    \item open sets
+    \item closed sets
+    \item countable intersections of open sets: \(G_{\sigma}\) sets
+    \item countable unions of closed sets: \(F_{\sigma}\) sets
+\end{itemize}
+
+\begin{remark}
+    \(\mathcal{B}(\mathbb{R})\) can be equivalently defined as the \(\sigalg\) generated by 
+    \[
+        \left\lbrace (a,b): \; a,b \in \mathcal{R}, a < b \right\rbrace
+    \]
+    \[
+        \left\lbrace (-\infty,b): \; b \in \mathcal{R} \right\rbrace
+    \]
+    \[
+        \left\lbrace (a,+\infty ): \; a \in \mathcal{R} \right\rbrace
+    \]
+    \[
+        \left\lbrace [a,b): \; a,b \in \mathcal{R}, a < b \right\rbrace
+    \]
+    \[
+        \vdots
+    \]
+\end{remark}
+\end{document}
