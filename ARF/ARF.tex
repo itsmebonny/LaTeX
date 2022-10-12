@@ -726,7 +726,72 @@ The relation between \(\boreal\) and \(\mathcal{L}(\real)\) is clarified by
         \]
     \end{enumerate}
 \end{theorem}
+\underline{\textbf{Consequence:}} \(E \in \mathcal{L}(\real) \Longrightarrow E = F \cup N\), where \(F\) is of class \(F_{\delta}\), and \(\lambda(N) = 0\).
+\begin{proof}[Partial proof]
+    For simplicity, we will consider only sets with finite measure.
+    \begin{itemize}
+        \item[\((1) \Rightarrow (2)\)] \(E \in \mathcal{L}(\real)\). By definition of \(\lambda^*\), \(\forall \; \epsilon > 0 \exists \; \bigcup_n I_n \supset E\) s.t. each \(I_n\) is an open interval, and 
+        \[
+            \lambda(E) = \lambda^*(E) \geq \sum_n l(I_n) -\epsilon
+        \]
+        We define \(A = \bigcup_n I_n\), which is open. Also \(A \supset E\) and 
+        \[
+            \lambda(A)= \lambda\left(\bigcup_n I_n\right) \overset{\sigma-\mbox{sub.}}{\leq} \sum_n l(I_n) \leq \lambda(E) + \epsilon
+        \]
+        Then, by excision
+        \[
+            \lambda(A \backslash E) = \lambda(A) - \lambda(E) \leq \epsilon
+        \]
+        \item[\((2) \Rightarrow (3)\)] Define, for every \(K \in \mathbb{N}\), an open set \(A_k\) s.t. \(A_k \supset E\) and \(\lambda(A_k \backslash E) < \frac{1}{k}\). Let \(A = \bigcap_k A_k\). This is a \(G_{\delta}\) set, it contains \(E\) (since each \(A_k\) contains \(E\)) and 
+        \[
+            \lambda(A \backslash E) \underset{(A \subset A_k \; \forall \; k)}{\leq} \lambda(A_k \backslash E) < \frac{1}{k} \Longrightarrow \lambda(A \backslash E) = 0 \quad \forall \; k
+        \]
+        \item[\((3) \Rightarrow (1)\)] If \(E \subset \real\) and \(\exists\; G \supset E\), with \(G\) of class \(G_{\delta},\) s.t. \(\lambda(G \backslash E) = 0\), then
+        \[
+            E = G \backslash(G \backslash E) \mbox{ is measurable}
+        \]
+        since \(G\) is a Borel set and \((G \backslash E)\) has \(0\) measure, then both are in \(\mathcal{L}\)
+    \end{itemize}
+\end{proof}
+\begin{remark}
+    Any countable set has \(0\) measure. he inverse is false. An example is given by the \textbf{Cantor set}.
+    
+    Let \(T_0 = [0,1]\). Then we define \(T_{n+1}\) stating from \(T_n\) in the following way:
+    given \(T_n\), finite union of closed disjoint intervals of lenght \(l_n (\frac{1}{3})^n\), \(T_{n+1}\) is obtained by removing from each interval of \(T_n\), the open central subinterval of lenght \(\frac{l_n}{3}\).
+
+    The Cantor set is \(T := \bigcap_{k=0}^{+\infty}\). It can be proved that \(T\) is compact, \(\lambda(T) = 0\) and \(T\) is uncountable.
+
+    If, instead of removing intervals of size \(\frac{1}{3}, \frac{1}{9}, \ldots, \frac{1}{3^k}\), we remove sets of size \(\left(\frac{\epsilon}{3}\right)^k\), with \(\epsilon \in (0,1)\), we obtain the \textbf{generalized Cantor set} (or \textbf{fat Cantor set}) \(T_{\epsilon}\). \(T_{\epsilon}\) is uncountable, compact and has no interior points (it contains no intervals). However, \(\lambda(T_{\epsilon}) = \frac{3(1 -\epsilon)}{3 - 2\epsilon} > 0\)
+\end{remark}
+\begin{remark}
+    We worked on \(\real\), but everything can be adapted to \(\real^n\)
+\end{remark}
+\subsubsection*{Measurable functions and integration}
+\begin{definition}
+    \(f:X \to Y\), then it is well defined the counterimage 
+    \[
+        f^{-1} : \mathcal{P}(Y) \to \mathcal{P}(Y)
+    \]
+    \[
+        E \to f^{-1}(E) = \left\{ x \in X : f(x) \in E \right\}
+    \]
+\end{definition}
+\begin{definition}
+    \((X, \mathcal{M}), (Y, \mathcal{N})\) measurable spaces. \(f:X \to Y\) is called \textbf{measurable} or \((\mathcal{M}, \mathcal{N})\)-measurable if 
+    \[
+        f^{-1}(E) \in \mathcal{M} \mbox{ for every } E \in \mathcal{M}
+    \]
+    so, the counterimage of measurable sets in \(Y\) is a measurable set on \(X\).
+\end{definition}
+To check if a function is measurable or not, it is often sed the following proposition
+\begin{proposition}
+    \((X, \mathcal{M}), (Y, \mathcal{N})\) measurable spaces. Let \(\mathcal{F} \subseteq \mathcal{P}(Y)\) be s.t. \(\mathcal{N} = \sigma_0(\mathcal{F})\). Then
+    \[
+        f: X \to Y \mbox{ is } (\mathcal{M}, \mathcal{N})-\mbox{measurable} \Longleftrightarrow f^{-1}(E) \in \mathcal{M} \mbox{ for every } E \in \mathcal{F}
+    \]
+\end{proposition}
 \section{Lesson 22/09/2022}
+We will mainly focus on 2 situations:
 \begin{enumerate}
     \item  \(((X, \mathcal{M}))\) is a measurable space obtained by means of an outer measure. Ex: \((\mathbb{R}^n, \mathcal{L}(\mathbb{R}^n))\), \((Y, d_y)\) metric space
     If \(X \to Y\) is (Lebesgue) measurable \(\Longleftrightarrow\) \((\mathcal{M}, \mathcal{B}(Y))\) is measurable
