@@ -2,7 +2,7 @@
 Typewriter sequence che però aveva iniziato la lezione scorsa
 
 \begin{remark}
-    \( f_p \nrightarrow 0 \) a.e. on \left[ 0, 1\right].  
+    \( f_p \nrightarrow 0 \) a.e. on \(\left[ 0, 1\right]\).  
     But consider \( \{ f_{p(n,1)}: n \in \mathbb{N} \} \). 
     This is a subsequence and, by definition \( f_{p(n, 1)}(x) = \chi_{n, 1}(x)= \chi_{\left[0, \frac{0}{n} \right]}(x) \). 
     For this subsequence, we have \( f_{p(n,1)}(x) \rightarrow 0 \) as \( n \to\infty \; \forall x \in (0, 1] \), then a.e. on \(\left[0, 1\right]\)
@@ -24,7 +24,7 @@ Now we analize the relation between convergence in \(L^1(X)\) and the other conv
     \(\Rightarrow \exists \bar{\epsilon}\) and a subsequence \( \{ f_{n_k} \} \) s.t.
     \[ \mu(\{ |f_{n_k}-f| \geq \bar{\alpha} \}) > \bar{\epsilon} \]
     Consider then \(d_1(f_{n_k}, f)= \int_X |f_{n_k} - f| \, d\mu  \geq \int_{\left\{|f_{n_k}-f|\geq \bar{\alpha}  \right\}} 1 \, d\mu 
-    = \bar{\alpha} \mu (\{|f_{n_k } - f| \geq \bar{\alpha}\})\) > \bar{\alpha} \bar{\epsilon} 
+    = \bar{\alpha} \mu (\{|f_{n_k } - f| \geq \bar{\alpha}\}) > \bar{\alpha} \bar{\epsilon}\) 
     But, by assumption, \(d_1(f_n, f) \rightarrow 0\)
     \[ \Rightarrow d_1(f_{n_k}, f) \rightarrow 0 \] 
     contradiction.
@@ -32,7 +32,7 @@ Now we analize the relation between convergence in \(L^1(X)\) and the other conv
 
 \begin{remark}
     the convergence in measure doesn't imply the convergence in \(L^1\). For example, consider 
-    \( f_n (x) = n \chi_\left[0, \frac{1}{n} \right](x) \)
+    \( f_n (x) = n \chi_{\left[0, \frac{1}{n} \right]}(x) \)
     \( \mu \left( \left\{ |f_n| \geq \alpha \right\}\right) \to 0 \) for every \(\alpha\) \\
     On the other hand \( \int _{\left[0, 1\right]} n \chi_{\left[0, \frac{1}{n} \right]} \, d\lambda = \int_{\left[0, \frac{1}{n}\right]} n \, d\lambda = n \frac{1}{n} = 1\)
     \( f_n \nrightarrow 0\) in \(L^1\) 
@@ -64,7 +64,8 @@ If the equation above holds, then we say that \(\phi \) is the Radon Nykodym der
     \[\mu(E) = 0 \Rightarrow \nu(E)=0\]
 \end{definition}
 
-\begin{lemma}[necessary condition]
+\begin{lemma}
+    There is a necessary condition:
     \[ \exists \frac{d \nu}{d \mu} \Rightarrow \nu << \mu \]
 \end{lemma}
 

@@ -111,41 +111,57 @@ Let now \(\left\lbrace f_n \right\rbrace\) be a sequence of measurable functions
     \[
         \bigcup_n \left\lbrace x \in X : f_n(x) > a \right\rbrace = \bigcup_n \underbrace{f_n^{-1}((a, +\infty])}_{\in \mathcal{M}}
     \]
-    Then \((\sup f_n)^{-1} ((a, \infty])\) is measurable, since 
-Noe the limsup
-\[\limsup_n f_n = \lim_n (\sup_{k > n} f_n(x))\]
-cose cose o
+    Then \((\sup f_n)^{-1} ((a, \infty])\) is measurable, since it is the countable union of measurable sets.
+
+Now we check that the \(\limsup_n f_n\) is measurable
+\[\limsup_n f_n(x) = \lim_n \underbrace{(\sup_{k > n} f_k(x))}_{\mbox{is decreasing on } n} = \inf_n (\sup_{k \geq n} f_k(x))\]
+If we write \(g_n(x) = \sup_{k \geq n} f_k(x)\), then 
+\begin{itemize}
+    \item \(g_n\) is measurable, by what we proved previously
+    \item \(\limsup_n f_n = \inf_n g_n\) is measurable
+\end{itemize}
 \end{proof}
 \subsection*{Simple functions}
 \begin{definition}
-    \((X, \mathcal{M})\) measurable space. A measurable function s: \(X \to \barreal\) is said to be simple if \(s(X)\) is a finite set 
-    altre cose 
-    Then \(s(x) = \sum_{n = 1} a_n \chi_{E_n}(x)\) where \(E_n\) is a measurable set 
-    sistemare. 
+    \((X, \mathcal{M})\) measurable space. A measurable function \(s:X \to \barreal\) is said to be simple if \(s(X)\) is a finite set. 
+    \[
+        s(X) = \{a_1 \ldots, a_n\} \mbox{ for some }n \in \mathbb{N}, a_i \not= a_j
+    \]
+    Then \(s(x) = \sum_{n = 1} a_n \chi_{E_n}(x)\), where \(E_n\) is a measurable set, \(E_n = \left\{ x \in X : s(X) = a_n \right\}\), and \(E_i \cap E_j = \emptyset\) for \(i \not = j\), and \(\bigcup_{n = 1}^N E_n = X\).
 \end{definition}
-\underline{Particular case}: if s:\(\mathbb{R} \to \bar{\mathbb{R}}\) and each \(E_n\) is a finite union of intervals, then \(s\) is said to be a STEP FUNCTION.
+\underline{Particular case}: if s:\(\mathbb{R} \to \barreal\), and each \(E_n\) is a finite union of intervals, then \(s\) is said to be a STEP FUNCTION.
 
-The idea is to approximate functions with simple functions.
+\underline{Goal}: to approximate arbitrary measurable functions with simple functions.
 \begin{theorem}
     \((X,\mathcal{M})\) measurable space, \(f: X \to [0, \infty]\) measurable. Then \(\exists\) a sequence \(\left\lbrace s_n \right\rbrace\) of simple functions s.t. 
     \[
-        0 \leq s_1 \leq \ldots \leq s_n \leq \ldots \leq f \quad \mbox{pointwise}
+        0 \leq s_1 \leq \ldots \leq s_n \leq \ldots \leq f \quad \underset{\forall \; x \in X}{\mbox{(pointwise)}}
     \]
-    and \(s_n(x) \to f(x)\)
+    and \(s_n(x) \to f(x) \forall \; x \in X \mbox{ as }n \to \infty\)
 Moreover if f is bounded then \(s_n \to f\) uniformly on \(X\) as \(n \to \infty\)
 \end{theorem}
-\begin{proof}[f is bounded]
+\begin{proof}[for f bounded]
     Fix \(n \in \mathbb{N}\) and divide \([0,n)\) in \(n \cdot 2^n\) intervals called \(I_j = [a_j,b_j)\) with lenght \(\frac{1}{2^n}\)
 
-    Let \(E_0 = f^{-1}([n, \infty)), E_j = f^{-1}([a_j, b_j))\) for \(j = 1, \ldots, n\cdot 2^n\)
+    Let \(E_0 = f^{-1}([n, +\infty)), E_j = f^{-1}([a_j, b_j))\) for \(j = 1, \ldots, n\cdot 2^n\)
     
-    We let Array
+    We let \(\begin{array}{cc}
+        s_n(x) = a_j & \mbox{for } x \in E_j \\
+        s_n(x) = n & \mbox{for } x \in E_0
+    \end{array}\)
 
-    Namely we define 
+    Namely we define the simple function \(s_n\) as
     \[
     s_n (x) = n\chi_{E_0}(X) + \sum_{j =1}^{n \cdot 2^n} a_j \chi_{E_j}(x)    
     \]
-    Then \(s_n \leq s_{n+1}\) by contradiction
+    Then \(s_n \leq s_{n+1}\) by contradiction, and, since \(f\) is bounded, \(E_0 = \emptyset\) for \(n\) sufficiently large (\(n > \sup f\)).
 
-    Then any \(x \in X\) stays in \(f^{-1}([a_j, b_j))\) for some j \(\Longrightarrow \) 
+    Then any \(x \in X\) stays in \(f^{-1}([a_j, b_j))\) for some \(j\) 
+    \[
+        \begin{array}{l}
+            \Longrightarrow \stackbelow{a_j}{s_n(x)} \leq f(x) < b_j \\
+            \Longrightarrow 0 \leq f(x)-s_n(x) < b_j - a_j = \frac{1}{2^n} \\
+            \Longrightarrow \sup_{x \in X} \abs{f(x)- s_n{x}}
+        \end{array}
+    \] 
 \end{proof}

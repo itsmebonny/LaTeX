@@ -2,8 +2,8 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{hhline}
-\usepackage{physics}
 \usepackage{hyperref}
+\usepackage{mathtools}
 \usepackage{bm}
 \usepackage[margin=2cm]{geometry}
 
@@ -38,12 +38,18 @@
 
 \let\oldemptyset\emptyset
 \let\emptyset\varnothing
+\let\oldepsilon\epsilon
+\let\epsilon\varepsilon
+\let\oldphi\phi
+\let\phi\varphi
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
 
 \newcommand{\ind}{\perp\!\!\!\!\perp} 
 \newcommand{\measurespace}{(X, \mathcal{M}, \mu)}
 \newcommand{\sigalg}{\sigma\mbox{-algebra}}
 \newcommand{\boreal}{\mathcal{B}(\mathbb{R})}
-\renewcommand{\real}{\mathbb{R}}
+\newcommand{\real}{\mathbb{R}}
 \newcommand{\barreal}{\overline{\mathbb{R}}}
 \newcommand{\code}[1]{\texttt{#1}}
 \newcommand{\xdownarrow}[1]{%
@@ -53,6 +59,9 @@
   {\left\uparrow\vbox to #1{}\right.\kern-\nulldelimiterspace}
 }
 \newcommand{\arrvline}{\hfil\kern\arraycolsep\vline\kern-\arraycolsep\hfilneg}
+
+\def\stackbelow#1#2{\underset{\displaystyle\overset{\displaystyle\shortparallel}{#2}}{#1}}
+
 
 \long\def\symbolfootnotemark[#1]#2{\begingroup%
 \def\thefootnote{\fnsymbol{footnote}}\footnotetext[#1]{#2}\footnotemark[#1]\endgroup}

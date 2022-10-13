@@ -109,7 +109,7 @@ The relation between \(\boreal\) and \(\mathcal{L}(\real)\) is clarified by
 \begin{proof}[Partial proof]
     For simplicity, we will consider only sets with finite measure.
     \begin{itemize}
-        \item[\((1) \Rightarrow (2)\)] \(E \in \mathcal{L}(\real)\). By definition of \(\lambda^*\), \(\forall \; \epsilon > 0 \exists \; \bigcup_n I_n \supset E\) s.t. each \(I_n\) is an open interval, and 
+        \item[(1)]\( \Rightarrow (2)\) \(E \in \mathcal{L}(\real)\). By definition of \(\lambda^*\), \(\forall \; \epsilon > 0 \exists \; \bigcup_n I_n \supset E\) s.t. each \(I_n\) is an open interval, and 
         \[
             \lambda(E) = \lambda^*(E) \geq \sum_n l(I_n) -\epsilon
         \]
@@ -121,11 +121,11 @@ The relation between \(\boreal\) and \(\mathcal{L}(\real)\) is clarified by
         \[
             \lambda(A \backslash E) = \lambda(A) - \lambda(E) \leq \epsilon
         \]
-        \item[\((2) \Rightarrow (3)\)] Define, for every \(K \in \mathbb{N}\), an open set \(A_k\) s.t. \(A_k \supset E\) and \(\lambda(A_k \backslash E) < \frac{1}{k}\). Let \(A = \bigcap_k A_k\). This is a \(G_{\delta}\) set, it contains \(E\) (since each \(A_k\) contains \(E\)) and 
+        \item[(2)]\( \Rightarrow (3)\) Define, for every \(K \in \mathbb{N}\), an open set \(A_k\) s.t. \(A_k \supset E\) and \(\lambda(A_k \backslash E) < \frac{1}{k}\). Let \(A = \bigcap_k A_k\). This is a \(G_{\delta}\) set, it contains \(E\) (since each \(A_k\) contains \(E\)) and 
         \[
             \lambda(A \backslash E) \underset{(A \subset A_k \; \forall \; k)}{\leq} \lambda(A_k \backslash E) < \frac{1}{k} \Longrightarrow \lambda(A \backslash E) = 0 \quad \forall \; k
         \]
-        \item[\((3) \Rightarrow (1)\)] If \(E \subset \real\) and \(\exists\; G \supset E\), with \(G\) of class \(G_{\delta},\) s.t. \(\lambda(G \backslash E) = 0\), then
+        \item[(3)]\( \Rightarrow (1)\)] If \(E \subset \real\) and \(\exists\; G \supset E\), with \(G\) of class \(G_{\delta},\) s.t. \(\lambda(G \backslash E) = 0\), then
         \[
             E = G \backslash(G \backslash E) \mbox{ is measurable}
         \]
