@@ -1,6 +1,6 @@
-\section*{Lesson 13/10/2022}
+\section{Lesson 13/10/2022}
 \subsubsection*{Integration on product spaces}
-\((X, \mathcal{M}, \mu), (Y, \mathcal{N},\nu)\) measure spaces. \(f : X \times Y \to \bar{\real}\) measurable.
+\((X, \mathcal{M}, \mu), (Y, \mathcal{N},\nu)\) measure spaces. \(f : X \times Y \to \barreal\) measurable.
 
 If \(f \geq 0\), then 
 \[
@@ -13,13 +13,13 @@ Goal: obtain a formula of iterated integral like the one in Analysis 2.
     cose
 \]
 \begin{proposition}
-    If \(f\) is measurable \(\Rightarrow\) \(f_{\bar{x}}\) is \((\mathcal{N}, \boreal)\)-measurable and \(f_{\bar{y}}\) is \((\mathcal{M}, \mathcal{B}(\bar{\real}))\)-measurable.
+    If \(f\) is measurable \(\Rightarrow\) \(f_{\bar{x}}\) is \((\mathcal{N}, \boreal)\)-measurable and \(f_{\bar{y}}\) is \((\mathcal{M}, \mathcal{B}(\barreal))\)-measurable.
     Then we can conclude
     \( \phi : X \to \bar\real \):
     \[
         \phi(x) = \int_Y f_x d\nu = \int_Y f(x,y) d\nu(y)
     \]
-    and \(\psi : Y \to \bar{\real}\)
+    and \(\psi : Y \to \barreal\)
     \[
         \psi(y) = \int_X f_y d\mu = \int_X f(x,y) d\mu(x)
     \]
@@ -28,7 +28,7 @@ Goal: obtain a formula of iterated integral like the one in Analysis 2.
 cose cose
 \begin{theorem}[Tonelli's theorem]
     \((X, \mathcal{M}, \mu)\) and \((Y, \mathcal{N}, \nu)\) complete measure spaces and \(\sigma\)-finite.
-    Suppose that \(f\) is \((\mathcal{M} \otimes \mathcal{N}, \mathcal{B}(\bar{\real}))\)-measurable and that \(f > 0\) a.e. on \(X \times Y\). Then \(\psi\) and \(\phi\) are measurable and
+    Suppose that \(f\) is \((\mathcal{M} \otimes \mathcal{N}, \mathcal{B}(\barreal))\)-measurable and that \(f > 0\) a.e. on \(X \times Y\). Then \(\psi\) and \(\phi\) are measurable and
     \[
         \iint_{X \times Y} f d\mu \otimes d\nu = cose
     \]
