@@ -16,11 +16,47 @@
 \[
     \mu\left(\left\{ x \in X : P(x) \mbox{ is false }\right\}\right) = 0
 \]
-\(P(x)\) is true \(\underset{(\mu-\mbox{a.e.})}{\mbox{a.e.}}\) on \(X\).
+\(P(x)\) is true \(\underset{(\mu-\text{a.e.})}{\mbox{a.e.}}\) on \(X\).
 
 \underline{Ex}: \((\real, \mathcal{L}(\real), \lambda)\), \(f(x) = x^2\).  
 Then \(f(x) > 0\) a.e. on \(\real\) (for a.e. \(x\)):
 \[
     \left\{ f(x) \leq 0 \right\} = \left\{ 0 \right\}, \mbox{ and } \lambda(\left\{ 0 \right\}) = 0
 \]
-\((\real, \mathcal{P}(\real), \mu_C)\)
+\((\real, \mathcal{P}(\real), \mu_C)\) with \(\mu_C\) counting measure. Then it is not true that \(f(x) > 0\) \(\mu_C\)-a.e. 
+\[
+    \mu_C \left(\left\{ 0 \right\}\right) = 1
+\]
+It will be useful to consider sequences converging a.e.: 
+\[
+    f_n \to f \qquad \mbox{a.e. on }X_{\mbox{mbox} \text{text}}
+\]
+if \(\mu\left( \left\{ x \in X : \lim_n f_n(x) \neq f(x), \mbox{ or does not exist } \right\}\right) = 0\)
+\begin{proposition}
+    \((X, \mathcal{M}, \mu)\) complete measure space. 
+    \begin{enumerate}
+        \item \(f: X \to \real\) is measurable, and \(g = f \) a.e. on \(X\), then \(g\) is measurable
+        \item \(f_n \to f\) a.e. on \(X\), \(f_n : X \to \real\) measurable for all \(n\), then \(f\) is measurable
+    \end{enumerate}
+\end{proposition}
+\subsubsection*{Integration of non-negative functions}
+\underline{Notation}: \[
+    \begin{array}{c}
+        \left\{ x \in X : f(x) \geq 0 \right\} = \left\{ f \geq 0 \right\} \\
+        \left\{ x \in X : f(x) > 0 \right\} = \left\{ f > 0 \right\}   \\
+        \vdots
+    \end{array}
+    \]
+\((X, \mathcal{M}, \mu)\) complete measure space.
+We consider measurable functions \(f: X \to [0, +\infty]\)
+
+\underline{Convention}: we define 
+\[
+    \begin{array}{l}
+        a + \infty = +\infty \quad \forall \; a \in \real \\
+        a \cdot (+\infty) = \begin{cases}
+            +\infty & \mbox{if } a \neq 0, a > 0 \\
+            0 & \mbox{if } a = 0
+        \end{cases}        
+    \end{array}
+\]

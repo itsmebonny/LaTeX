@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1665752157 "/home/bonni/Documents/LaTeX/ARF/ARF.tex" "ARF.pdf" "ARF" 1665752158
+["pdflatex"] 1665755097 "/home/bonni/Documents/LaTeX/ARF/ARF.tex" "ARF.pdf" "ARF" 1665755098
   "/etc/texmf/web2c/texmf.cnf" 1663235487 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/bonni/Documents/LaTeX/ARF/ARF.tex" 1665750495 2589 b3d96ca27cc717485a15c395b6352315 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -133,15 +133,15 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1663245285 4379155 98693266ff65f58d9f98aff394de12d2 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1663245305 2799600 82c7499e2bbeaef077fd78ca2cedfab0 ""
-  "ARF.aux" 1665752158 1837 712f162bf155f3242c00a3313e44fb49 "pdflatex"
-  "ARF.out" 1665752158 1312 cbb50b1368c7e68a5ac1395a5bda42db "pdflatex"
+  "ARF.aux" 1665755098 1837 a6a9bffd388e1f354514d2e6bb0bc51b "pdflatex"
+  "ARF.out" 1665755098 1312 cbb50b1368c7e68a5ac1395a5bda42db "pdflatex"
   "ARF.tex" 1665750495 2589 b3d96ca27cc717485a15c395b6352315 ""
   "Lezioni/2022_09_12/2022_09_12.tex" 1665668697 11607 57fd2cfff9e2cd56f5d9bff51ee7387f ""
   "Lezioni/2022_09_14/2022_09_14.tex" 1665668822 10541 890fb44be9b18572824796a51392f0be ""
   "Lezioni/2022_09_15/2022_09_15.tex" 1665752157 7808 2dae177915a07e2eedf30d4c2c20dc65 ""
   "Lezioni/2022_09_21/2022_09_21.tex" 1665678843 9826 ada19c901364c732789c2d9e399acf16 ""
   "Lezioni/2022_09_22/2022_09_22.tex" 1665747866 9102 66d52483f845204e258f39ed8ff22e59 ""
-  "Lezioni/2022_09_29/2022_09_29.tex" 1665751696 1281 400cec6fe4b9d47f08112dbb69ab5125 ""
+  "Lezioni/2022_09_29/2022_09_29.tex" 1665755096 2704 2ba80e538082f92353b47d5a61f83aad ""
   "Lezioni/2022_10_05/2022_10_05.tex" 1665673791 27 05bffd482cb16e8ea57c6a046744e70b ""
   "Lezioni/2022_10_06/2022_10_06.tex" 1665673756 6169 af2a27e629680f28d284723b5d652ba3 ""
   "Lezioni/2022_10_12/2022_10_12.tex" 1665679018 6316 6199b197c781ec581216739c7cc78df7 ""
