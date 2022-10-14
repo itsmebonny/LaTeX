@@ -54,13 +54,13 @@ if \(f_n \to f \) in \(L^1(X)\), then \(\exists\) a subsequence \(\left\{f_{n_k}
 \end{enumerate}
 
 \subsection*{Derivatives of measures}
-\(\left(X, \mathbb{M}, \mu \right)\) measure space. 
-\(\phi : X \to \left[0, \infty \right]\) measurable. 
-We learned that \(\nu: \mathbb{M} \to \left[0, \infty \right]\) by \[\nu(E)= \int_E \phi \, d\mu\] is a measure on \(X, \mathbb{M}\).
+\(\left(X, \mathcal{M}, \mu \right)\) measure space. 
+\(\oldphi : X \to \left[0, \infty \right]\) measurable. 
+We learned that \(\nu: \mathcal{M} \to \left[0, \infty \right]\) by \[\nu(E)= \int_E \oldphi \, d\mu\] is a measure on \(X, \mathcal{M}\).
 
-If the equation above holds, then we say that \(\phi \) is the Radon Nykodym derivative of \(\nu\) with respect to \(\mu\) and we write \[\phi = \frac{d\nu}{d\mu}\]
+If the equation above holds, then we say that \(\oldphi \) is the Radon Nykodym derivative of \(\nu\) with respect to \(\mu\) and we write \[\oldphi = \frac{d\nu}{d\mu}\]
 \begin{definition}
-    \(\mu, \nu  \) measures on \(\left(x, \mathbb{M}\right)\). We say that \(\nu\) is absolutely continuous with respect to \(\mu\), \(\nu << \mu \) if 
+    \(\mu, \nu  \) measures on \(\left(x, \mathcal{M}\right)\). We say that \(\nu\) is absolutely continuous with respect to \(\mu\), \(\nu << \mu \) if 
     \[\mu(E) = 0 \Rightarrow \nu(E)=0\]
 \end{definition}
 
@@ -74,57 +74,71 @@ If the equation above holds, then we say that \(\phi \) is the Radon Nykodym der
 \end{proof}
 
 \begin{theorem}[Radon Nykodim Theorem]
-    \(\left(X, \mathbb{M}\right) \) measurable space, \(\mu, \nu\) measures. If \(\nu << \mu \) and moreover \(\mu \) is \(\sigma\) finite, then \(\phi : \to \left[0, \infty\right]\) measurable s.t.
-    \(\phi = \frac{d \nu}{d \mu}\) namely \(\nu(E)= \int_E \phi \, d\mu \; \forall E \in \mathbb{M}\)
+    \(\left(X, \mathcal{M}\right) \) measurable space, \(\mu, \nu\) measures. If \(\nu << \mu \) and moreover \(\mu \) is \(\sigma\) finite, then \(\oldphi : \to \left[0, \infty\right]\) measurable s.t.
+    \(\oldphi = \frac{d \nu}{d \mu}\) namely \(\nu(E)= \int_E \oldphi \, d\mu \; \forall E \in \mathcal{M}\)
 \end{theorem}
 
 \begin{remark}
     if \(\mu\) is not sigma finite the theorem may fail.
-    ..... 
+    In \(\left(\left[0, 1\right], \mathcal{L}\left(\left[0, 1\right]\right)\right)\) consider the counting measure \(\mu = \mu_c\) and the lebesque measure \(\nu= \lambda\)
+    \(\nu << \mu\) since \(\mu(E)= 0 \iff E= \emptyset \Rightarrow \lambda(E) = \nu(E)=0\) \\
+    But we can check that \( \nexists \oldphi : \left[0, 1\right] \rightarrow \left[0, \infty \right]\) measurable s.t. \(\lambda(E)= \int_E \oldphi \, d\mu_c\)
 \end{remark}
 
-mi sto addormentando io ci sto provando anche
-altre cose su radon-
+Check by contradiction: assume that \(\oldphi \) does exist, and take \(x_0 \in \left[0, 1\right]\)
+\[ 0 = \lambda (\left\{x_0\right\}) = \int_{\left\{x_0\right\}} \oldphi \, d\mu_c = \oldphi (x_0) \mu_c (\left\{x_0\right\}) = \oldphi (x_0)\]
+\(\Rightarrow \oldphi (x_0) = 0 \; \forall x_0 \in \left[0, 1\right]\). But then \(1 = \lambda(\left[0, 1\right]) = \int_{\left[0, 1\right]} 0 \, d\mu_c = 0\). Contradiction
+Note that \(\mu_c (\left[0, 1\right]) = \infty \) and \(\left( \left[0,1\right], \mathcal{L}(\left[0, 1\right]), \mu_c\right)\) is not \(\sigma\) - finite (\(\left[0,1\right]\) is uncountable)
+
 
 \subsection*{Product Measure}
 \( (X, \mathcal{M}, \mu), (Y, \mathcal{N}, \nu) \) measure spaces.
-the goal is to define a measure space on \(X \times Y\)
+The goal is to define a measure space on \(X \times Y\)
 \begin{definition}
     we call measurable rectangle in \(X \times Y\) a set of type \(A \times B\) where \(A \in \mathcal{M}, B \in \mathcal{N}\)
-    \[  R = \{ A \times B \subset X\times Y ....\}\]
-    We define the product \(\sigma\) algebra 
-    ...
+    \[  R = \{ A \times B \subset X\times Y \text{ s.t. } A \in \mathcal{M}, b \in \mathcal{N}\}\]
+    We define the product \(\sigma\) algebra \(\mathcal{M} \otimes \mathcal{N}\) as \(\sigma_0(R)\). \\
+    This is a \(\sigma\) algebra in \(X \times Y\)
 \end{definition}
+
 \begin{definition}
     let \(E \subset X \times Y \) For \( \bar{x} \in X \) and \(\bar{y} \in Y \) we define
-    \begin{enumerate}
-        \item \( E_{\bar{x}} = \{ y \in Y: \left( \bar{x}, y \right) \in E \} \subset Y \)
-        \item \( E_{\bar{y}} = \{ x \in X: \left( x, \bar{y} \right) \in Y \} \subset E \)
-    \end{enumerate}
+\[ 
+    \begin{array}{ll}
+        E_{\bar{x}} = \{ y \in Y: \left( \bar{x}, y \right) \in E \} \subseteq Y & \qquad \bar{x} \text{-section of } E \\
+        E_{\bar{y}} = \{ x \in X: \left( x, \bar{y} \right) \in E \} \subseteq X & \qquad \bar{y} \mbox{-section of } E \\
+    \end{array}
+\]
 \end{definition}
 
 \begin{proposition}
-    \(\left( X, \mathcal{M} \right), \left( Y, \mathcal{N} \right)\) measurable spaces. 
-    ....
-
+    \(\left( X, \mathcal{M} \right), \left( Y, \mathcal{N} \right)\) measurable spaces. \(E \in \mathcal{M} \otimes \mathcal{N}\) \\
+    Then \(E_x \in \mathcal{M} \) and \(E_y \in \mathcal{N} \) 
+    \(\Rightarrow \) we can define 
+    \[
+    \begin{array}{rlrl}
+        \phi : & X \rightarrow \left[ 0, \infty \right] & \qquad  \psi : &Y \rightarrow \left[ 0, \infty \right] \\
+                & x \mapsto \nu(E_x) & & y \mapsto \mu(E_y) 
+        
+    \end{array}    
+    \]
 \end{proposition}
-...
+
 
 \begin{theorem}
     If \(\left(X, \mathcal{M}, \mu \right)\) and \(\left(Y, \mathcal{N}, \nu \right)\) are \(\sigma\) finite spaces, then:
     \begin{enumerate}
-        \item if \(\phi\) is \(\mathcal{M}\) measurable and \(\psi\) is \( \mathcal{N}\) meas
-        \item we have that 
+        \item \(\phi\) is \(\mathcal{M}\) measurable and \(\psi\) is \( \mathcal{N}\) meas
+        \item we have that \(\int_X \nu(E_x) \, d\mu = \int_Y \mu(E_y) \, d\nu \)
     \end{enumerate}
+\end{theorem}
 
- \end{theorem}
-using ....
+Using the fact that \(\mu \) and \(\nu\) are measures, and that \(\int\) of non negative function is a measure, we deduce the following
 
-\begin{theorem}
-    iterated integrals for characteristic functions \\ 
-    \(\mu \times \nu : \mathcal{M} \otimes \mathcal{N} \rightarrow \mathbb{R} \) defined by
+\begin{theorem}[Iterated integrals for characteristic functions]
+    \(\mu \otimes \nu : \mathcal{M} \otimes \mathcal{N} \rightarrow \mathbb{R} \) defined by
     \[ \left(\mu \otimes \nu \right)(E) = \int_X \nu(E_x) \, d\mu = \int_Y \mu(E_y) \, d\nu\]
-    is a measure, the product measure 
+    is a measure, the product measure.
 \end{theorem}
 
 ...
