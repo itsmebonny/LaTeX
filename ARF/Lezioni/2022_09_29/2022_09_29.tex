@@ -1,1 +1,26 @@
 \section{Lesson 29/09/2022}
+\begin{remark}
+    On the relation between \((\real, \boreal, \lambda)\) and  \((\real, \mathcal{L}(\real), \lambda)\) = (\(\lambda =\) Lebesgue measure)
+
+    \((\real, \boreal, \lambda)\) is not complete. In fact, \((\real, \mathcal{L}(\real), \lambda)\) is the completion of \((\real, \boreal, \lambda)\).
+
+    Note that, \(\forall \; E \in \mathcal{L}(\real) \exists \; \mbox{ a } G_{\delta}-\mbox{set } A\) and an \(F_{\delta}-\mbox{set } B\) s.t.
+    \[
+        \begin{array}{l}
+            A \supset E \mbox{ and } \lambda(A \backslash E) = 0 \\
+            B \subset E \mbox{ and } \lambda(E \backslash B) = 0
+        \end{array}
+    \]
+\end{remark}
+\((X, \mathcal{M}, \mu)\) a complete measure space. Let \(P(x)\) be a proposition depending on \(x \in X\). We say that \(P(x)\) is true \((\mu-)\)almost everywhere if 
+\[
+    \mu\left(\left\{ x \in X : P(x) \mbox{ is false }\right\}\right) = 0
+\]
+\(P(x)\) is true \(\underset{(\mu-\mbox{a.e.})}{\mbox{a.e.}}\) on \(X\).
+
+\underline{Ex}: \((\real, \mathcal{L}(\real), \lambda)\), \(f(x) = x^2\).  
+Then \(f(x) > 0\) a.e. on \(\real\) (for a.e. \(x\)):
+\[
+    \left\{ f(x) \leq 0 \right\} = \left\{ 0 \right\}, \mbox{ and } \lambda(\left\{ 0 \right\}) = 0
+\]
+\((\real, \mathcal{P}(\real), \mu_C)\)

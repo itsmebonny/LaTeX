@@ -54,13 +54,13 @@ if \(f_n \to f \) in \(L^1(X)\), then \(\exists\) a subsequence \(\left\{f_{n_k}
 \end{enumerate}
 
 \subsection*{Derivatives of measures}
-\(\left(X, \mathbb{M}, \mu \right)\) measure space. 
+\(\left(X, \mathcal{M}, \mu \right)\) measure space. 
 \(\oldphi : X \to \left[0, \infty \right]\) measurable. 
-We learned that \(\nu: \mathbb{M} \to \left[0, \infty \right]\) by \[\nu(E)= \int_E \oldphi \, d\mu\] is a measure on \(X, \mathbb{M}\).
+We learned that \(\nu: \mathcal{M} \to \left[0, \infty \right]\) by \[\nu(E)= \int_E \oldphi \, d\mu\] is a measure on \(X, \mathcal{M}\).
 
 If the equation above holds, then we say that \(\oldphi \) is the Radon Nykodym derivative of \(\nu\) with respect to \(\mu\) and we write \[\oldphi = \frac{d\nu}{d\mu}\]
 \begin{definition}
-    \(\mu, \nu  \) measures on \(\left(x, \mathbb{M}\right)\). We say that \(\nu\) is absolutely continuous with respect to \(\mu\), \(\nu << \mu \) if 
+    \(\mu, \nu  \) measures on \(\left(x, \mathcal{M}\right)\). We say that \(\nu\) is absolutely continuous with respect to \(\mu\), \(\nu << \mu \) if 
     \[\mu(E) = 0 \Rightarrow \nu(E)=0\]
 \end{definition}
 
@@ -74,13 +74,13 @@ If the equation above holds, then we say that \(\oldphi \) is the Radon Nykodym 
 \end{proof}
 
 \begin{theorem}[Radon Nykodim Theorem]
-    \(\left(X, \mathbb{M}\right) \) measurable space, \(\mu, \nu\) measures. If \(\nu << \mu \) and moreover \(\mu \) is \(\sigma\) finite, then \(\oldphi : \to \left[0, \infty\right]\) measurable s.t.
-    \(\oldphi = \frac{d \nu}{d \mu}\) namely \(\nu(E)= \int_E \oldphi \, d\mu \; \forall E \in \mathbb{M}\)
+    \(\left(X, \mathcal{M}\right) \) measurable space, \(\mu, \nu\) measures. If \(\nu << \mu \) and moreover \(\mu \) is \(\sigma\) finite, then \(\oldphi : \to \left[0, \infty\right]\) measurable s.t.
+    \(\oldphi = \frac{d \nu}{d \mu}\) namely \(\nu(E)= \int_E \oldphi \, d\mu \; \forall E \in \mathcal{M}\)
 \end{theorem}
 
 \begin{remark}
     if \(\mu\) is not sigma finite the theorem may fail.
-    In \(\left(\left[0, 1\right], \mathbb{L}\left(\left[0, 1\right]\right)\right)\) consider the counting measure \(\mu = \mu_c\) and the lebesque measure \(\nu= \lambda\)
+    In \(\left(\left[0, 1\right], \mathcal{L}\left(\left[0, 1\right]\right)\right)\) consider the counting measure \(\mu = \mu_c\) and the lebesque measure \(\nu= \lambda\)
     \(\nu << \mu\) since \(\mu(E)= 0 \iff E= \emptyset \Rightarrow \lambda(E) = \nu(E)=0\) \\
     But we can check that \( \nexists \oldphi : \left[0, 1\right] \rightarrow \left[0, \infty \right]\) measurable s.t. \(\lambda(E)= \int_E \oldphi \, d\mu_c\)
 \end{remark}
@@ -88,7 +88,7 @@ If the equation above holds, then we say that \(\oldphi \) is the Radon Nykodym 
 Check by contradiction: assume that \(\oldphi \) does exist, and take \(x_0 \in \left[0, 1\right]\)
 \[ 0 = \lambda (\left\{x_0\right\}) = \int_{\left\{x_0\right\}} \oldphi \, d\mu_c = \oldphi (x_0) \mu_c (\left\{x_0\right\}) = \oldphi (x_0)\]
 \(\Rightarrow \oldphi (x_0) = 0 \; \forall x_0 \in \left[0, 1\right]\). But then \(1 = \lambda(\left[0, 1\right]) = \int_{\left[0, 1\right]} 0 \, d\mu_c = 0\). Contradiction
-Note that \(\mu_c (\left[0, 1\right]) = \infty \) and \(\left( \left[0,1\right], \mathbb{L}(\left[0, 1\right]), \mu_c\right)\) is not \(\sigma\) - finite (\(\left[0,1\right]\) is uncountable)
+Note that \(\mu_c (\left[0, 1\right]) = \infty \) and \(\left( \left[0,1\right], \mathcal{L}(\left[0, 1\right]), \mu_c\right)\) is not \(\sigma\) - finite (\(\left[0,1\right]\) is uncountable)
 
 
 \subsection*{Product Measure}
@@ -96,8 +96,8 @@ Note that \(\mu_c (\left[0, 1\right]) = \infty \) and \(\left( \left[0,1\right],
 The goal is to define a measure space on \(X \times Y\)
 \begin{definition}
     we call measurable rectangle in \(X \times Y\) a set of type \(A \times B\) where \(A \in \mathcal{M}, B \in \mathcal{N}\)
-    \[  R = \{ A \times B \subset X\times Y \text{ s.t. } A \in \mathbb{M}, b \in \mathbb{N}\}\]
-    We define the product \(\sigma\) algebra \(\mathbb{M} \otimes \mathbb{N}\) as \(\sigma_0(R)\). \\
+    \[  R = \{ A \times B \subset X\times Y \text{ s.t. } A \in \mathcal{M}, b \in \mathcal{N}\}\]
+    We define the product \(\sigma\) algebra \(\mathcal{M} \otimes \mathcal{N}\) as \(\sigma_0(R)\). \\
     This is a \(\sigma\) algebra in \(X \times Y\)
 \end{definition}
 
@@ -112,8 +112,8 @@ The goal is to define a measure space on \(X \times Y\)
 \end{definition}
 
 \begin{proposition}
-    \(\left( X, \mathcal{M} \right), \left( Y, \mathcal{N} \right)\) measurable spaces. \(E \in \mathbb{M} \otimes \mathbb{N}\) \\
-    Then \(E_x \in \mathbb{N} \) and \(E_y \in \mathbb{N} \) 
+    \(\left( X, \mathcal{M} \right), \left( Y, \mathcal{N} \right)\) measurable spaces. \(E \in \mathcal{M} \otimes \mathcal{N}\) \\
+    Then \(E_x \in \mathcal{M} \) and \(E_y \in \mathcal{N} \) 
     \(\Rightarrow \) we can define 
     \[
     \begin{array}{rlrl}
@@ -135,11 +135,10 @@ The goal is to define a measure space on \(X \times Y\)
 
 Using the fact that \(\mu \) and \(\nu\) are measures, and that \(\int\) of non negative function is a measure, we deduce the following
 
-\begin{theorem}
-    iterated integrals for characteristic functions \\ 
-    \(\mu \times \nu : \mathcal{M} \otimes \mathcal{N} \rightarrow \mathbb{R} \) defined by
+\begin{theorem}[Iterated integrals for characteristic functions]
+    \(\mu \otimes \nu : \mathcal{M} \otimes \mathcal{N} \rightarrow \mathbb{R} \) defined by
     \[ \left(\mu \otimes \nu \right)(E) = \int_X \nu(E_x) \, d\mu = \int_Y \mu(E_y) \, d\nu\]
-    is a measure, the product measure 
+    is a measure, the product measure.
 \end{theorem}
 
 ...
