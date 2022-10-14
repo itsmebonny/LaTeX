@@ -410,23 +410,23 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 84.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./Lezioni/2022_09_12/2022_09_12.tex [2] [3] [4] [5]) (./Lezioni/2022_09_14/2022_09_14.tex [6] [7] [8] [9]) (./Lezioni/2022_09_15/2022_09_15.tex [10] [11]) (./Lezioni/2022_09_21/2022_09_21.tex [12] [13] [14]) (./Lezioni/2022_09_22/2022_09_22.tex [15] [16] [17]) (./Lezioni/2022_09_29/2022_09_29.tex [18]) (./Lezioni/2022_10_05/2022_10_05.tex) (./Lezioni/2022_10_06/2022_10_06.tex [19] [20]) (./Lezioni/2022_10_12/2022_10_12.tex [21] [22] [23]) (./Lezioni/2022_10_13/2022_10_13.tex [24]) [25] (./ARF.aux)
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./Lezioni/2022_09_12/2022_09_12.tex [2] [3] [4] [5]) (./Lezioni/2022_09_14/2022_09_14.tex [6] [7] [8] [9]) (./Lezioni/2022_09_15/2022_09_15.tex [10] [11]) (./Lezioni/2022_09_21/2022_09_21.tex [12] [13] [14]) (./Lezioni/2022_09_22/2022_09_22.tex [15] [16] [17]) (./Lezioni/2022_09_29/2022_09_29.tex [18]) (./Lezioni/2022_10_05/2022_10_05.tex) (./Lezioni/2022_10_06/2022_10_06.tex [19] [20] [21]) (./Lezioni/2022_10_12/2022_10_12.tex [22] [23]) (./Lezioni/2022_10_13/2022_10_13.tex [24]) [25] [26] (./ARF.aux)
 Package rerunfilecheck Info: File `ARF.out' has not changed.
 (rerunfilecheck)             Checksum: CBB50B1368C7E68A5AC1395A5BDA42DB;1312.
  ) 
 Here is how much of TeX's memory you used:
- 11158 strings out of 480247
- 173722 string characters out of 5896150
+ 11163 strings out of 480247
+ 173769 string characters out of 5896150
  469477 words of memory out of 5000000
  28718 multiletter control sequences out of 15000+600000
  486218 words of font info for 89 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  60i,15n,63p,711b,511s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/ilaria/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0700.600pk> </home/ilaria/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0800.600pk> </home/ilaria/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on ARF.pdf (25 pages, 324884 bytes).
+Output written on ARF.pdf (26 pages, 327050 bytes).
 PDF statistics:
- 455 PDF objects out of 1000 (max. 8388607)
- 379 compressed objects within 4 object streams
- 180 named destinations out of 1000 (max. 500000)
+ 465 PDF objects out of 1000 (max. 8388607)
+ 388 compressed objects within 4 object streams
+ 185 named destinations out of 1000 (max. 500000)
  81 words of extra memory for PDF output out of 10000 (max. 10000000)
 

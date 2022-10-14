@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1665756960 "/home/ilaria/Latex/Appunti/LaTeX/ARF/ARF.tex" "ARF.pdf" "ARF" 1665756961
+["pdflatex"] 1665757010 "/home/ilaria/Latex/Appunti/LaTeX/ARF/ARF.tex" "ARF.pdf" "ARF" 1665757010
   "/etc/texmf/web2c/texmf.cnf" 1665566528 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/ilaria/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0700.600pk" 1665585989 8244 5938686f65e384c9a6e9c2b7e1598b73 ""
   "/home/ilaria/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0800.600pk" 1665585989 9268 a5bc46dc236030c8e6bb56cd3ba8051c ""
@@ -131,15 +131,15 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1665566738 125915 807ff72f6023b33a59c427bfd156a3d1 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1665566535 1405655 982b15e5a09bd83f7bd500dc1a76f396 ""
-  "ARF.aux" 1665756960 1837 712f162bf155f3242c00a3313e44fb49 "pdflatex"
-  "ARF.out" 1665756960 1312 cbb50b1368c7e68a5ac1395a5bda42db "pdflatex"
+  "ARF.aux" 1665757010 1837 c1afdbd798e2d14764bc478e2a80d276 "pdflatex"
+  "ARF.out" 1665757010 1312 cbb50b1368c7e68a5ac1395a5bda42db "pdflatex"
   "ARF.tex" 1665755467 2589 b3d96ca27cc717485a15c395b6352315 ""
   "Lezioni/2022_09_12/2022_09_12.tex" 1665675114 11607 57fd2cfff9e2cd56f5d9bff51ee7387f ""
   "Lezioni/2022_09_14/2022_09_14.tex" 1665675114 10541 890fb44be9b18572824796a51392f0be ""
   "Lezioni/2022_09_15/2022_09_15.tex" 1665755467 7808 2dae177915a07e2eedf30d4c2c20dc65 ""
   "Lezioni/2022_09_21/2022_09_21.tex" 1665747639 9826 ada19c901364c732789c2d9e399acf16 ""
   "Lezioni/2022_09_22/2022_09_22.tex" 1665755467 9102 66d52483f845204e258f39ed8ff22e59 ""
-  "Lezioni/2022_09_29/2022_09_29.tex" 1665755467 1281 400cec6fe4b9d47f08112dbb69ab5125 ""
+  "Lezioni/2022_09_29/2022_09_29.tex" 1665757008 2704 2ba80e538082f92353b47d5a61f83aad ""
   "Lezioni/2022_10_05/2022_10_05.tex" 1665675174 27 05bffd482cb16e8ea57c6a046744e70b ""
   "Lezioni/2022_10_06/2022_10_06.tex" 1665675174 6169 af2a27e629680f28d284723b5d652ba3 ""
   "Lezioni/2022_10_12/2022_10_12.tex" 1665756959 8382 e8cad547ebeb2559cfab79affcd72845 ""
