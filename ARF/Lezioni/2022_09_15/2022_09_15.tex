@@ -4,9 +4,8 @@ The elements of \(\overline{\mathcal{M}}\) are sets of the type \(E \cup N\), wi
 We wish to define a measure \(\lambda\) ``on \(\mathcal{R}\)'' with the following properties:
 \begin{enumerate}
     \item \(\lambda((a,b)) = b-a\)
-    \item \(\lambda(E + t)\symbolfootnotemark[2]  \; = \lambda(E)\) for every measurable set \(E \subset \mathbb{R}\) and \(t \in \mathbb{R}\)
+    \item \(\lambda(E + t)\symbolfootnotemark[2]{\(\left\lbrace x \in \mathbb{R} : x=y+t, \mbox{ with } y \in E\right\rbrace\)}  \; = \lambda(E)\) for every measurable set \(E \subset \mathbb{R}\) and \(t \in \mathbb{R}\)
 \end{enumerate}
-\symbolfootnotetext[2]{\(\left\lbrace x \in \mathbb{R} : x=y+t, \mbox{ with } y \in E\right\rbrace\)}
 It would be nice to define such a measure on \(\mathcal{P}(\mathbb{R})\). In such case, note that \(\lambda(\left\lbrace x \right\rbrace) = 0\), \(\forall \; x \in \mathbb{R}\)
 But then 
 \begin{theorem}[Ulam]
@@ -86,7 +85,7 @@ Their relevance to the notion of \(\mu^*\)-measurability is clarified by the fol
 \begin{proof}
     Let \(E \subset X\) with \(\mu^*(E) < +\infty\). Then 
     \[
-        \mu^*(E) \geq \mu^*(E) + \mu^*(A) \overset{\symbolfootnotemark[3]{3}}{\geq}  \mu^*(E \cap A) + \mu^*(E \cap A^C)
+        \mu^*(E) \geq \mu^*(E) + \mu^*(A) \overset{\symbolfootnotemark[3]{\(E \cap A^C \subseteq E\) and \(E\cap A \subseteq A\) + monotonicity}}{\geq}  \mu^*(E \cap A) + \mu^*(E \cap A^C)
     \]
     \symbolfootnotetext[3]{\(E \cap A^C \subseteq E\) and \(E\cap A \subseteq A\) + monotonicity}
     This implies that A is \(\mu^*\)-measurable.
