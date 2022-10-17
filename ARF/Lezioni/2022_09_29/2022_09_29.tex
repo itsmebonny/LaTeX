@@ -60,3 +60,38 @@ We consider measurable functions \(f: X \to [0, +\infty]\)
         \end{cases}        
     \end{array}
 \]
+With this convention, \(+ and \cdot\) of measurable functions are measurable functions.
+\begin{definition}
+    Let \(s: X \to [0, +\infty]\) be a measurable simple function, 
+    \[
+        s(x) = \sum_{n=1}^m a_n \chi_{D_n}(\bar{x})
+    \]
+    where \(D_1,\ldots,D_m\) are measurable, disjoint, and \(\bigcup_{n=1}^m D_n = X\). Let also \(E \in \mathcal{M}\). Then we define 
+    \[
+        \int_E s \, d\mu := \sum_{n=1}^m a_n \mu(D_n \cap E)
+    \]
+\end{definition}
+\begin{remark}
+    \[s:[a,b] \to \real, \lambda = \mu \Longrightarrow \int_E s \, d\mu \mbox{ is the area under the curve}\]
+\end{remark}
+\begin{remark}
+    There are several points:
+    \begin{itemize}
+        \item In the definition we have already used the convention \(\mu(D_n \cap E = +\infty) \quad \mbox{ for some }n\)
+        \item \(E \in \mathcal{M} \Longrightarrow \chi_E\) is a simple function
+        \[
+            \chi_E(x) = 1 \cdot \chi_E + 0 \cdot \chi_{X\backslash E}(x)
+        \] 
+        In this case 
+        \[
+            \int_X \chi_E \, d\mu = 1\cdot \mu(E) + 0 \cdot \mu(X\backslash E) = \mu(E)
+        \]
+        \item \(s\chi_E = \sum_{n=1}^m a_n\chi_{D_n \cap E} \Longrightarrow \int_E s\, d\mu = \int_X s\chi_E \, d\mu\)
+    \end{itemize}
+\end{remark}
+\begin{definition}
+    \(f:X \to [0, +\infty]\) measurable, \(E \in \mathcal{M}\). The \textbf{Lebesgue integral} of \(f\) on \(E\), with respect to (w.r.t.) \(\mu\), is 
+    \[
+        \int_E f \, d\mu = \sup \left\{ \int_E d\mu \vert \begin{array}{l}s\text{ is simple} \\ 0 \leq s \leq f \end{array}\right\}
+    \]
+\end{definition}
