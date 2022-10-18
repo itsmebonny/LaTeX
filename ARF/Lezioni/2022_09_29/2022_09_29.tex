@@ -176,5 +176,15 @@ The \(\int\) does not see sets with 0 measure.
         \item \(E_n \in E_{n+1} \; \forall n:\) \\ if \(x \in E_n, \) then \(f_n(x) \geq cs(x) \Rightarrow f_{n+1}(x) \geq cs(x)\) \\ \(\Rightarrow f_{n+1}(x) \geq f_n(x) \geq cs(x) \Rightarrow x \in E_{n+1}\)
         \item Moreover, \(X = \bigcup_{n=1}^\infty E_n\). Indeed: \\ - if \(f(x)=0\), then \(s(x)=0 \Rightarrow f_1(x)=0 = cs(x), \; x \in E_1\) \\ - if \(f(x)>0\), then \(cs(x) < f(x)=\lim_n f_n(x)\) since \(s \leq f \) and \(c <1\) \\ \(\Rightarrow cs(x) < f_n(x)\) for \(n \) sufficiently large, namely \(x \in E_n \) for \(n \) sufficiently large. 
     \end{enumerate} 
+    Therefore, \(\alpha \geq \int_X f_n \, d\mu \geq \int_{E_n} f_n \, d\mu \geq c \int_{E_n} s \, d\mu = c \phi(E_n)\)
+    \(\forall n, \forall 0 \leq s \leq f, \forall c \in \left[0, 1\right]\)
+    \(\phi(E_n) = \int_{E_n} s \, d\mu\). \(\phi\) is a measure, and \(\{E_n\} \nearrow\)
+    Therefore, taking the lim when \(n \to \infty\) by continuity \(\alpha \geq \lim_n c \int_{E_n} s \, d\mu = c \int_X s \, d\mu \; \forall c \in \left[0, 1\right]\)
+    Take the limit when \(c \to 1^-: \ \alpha \geq \int_X s \, d\mu \; \forall o \leq s \leq f \)
+    Take the sup over s: \(\alpha \geq \int_X f \, d\mu \)
+    We proved both inequalities, so the tesis holds. \\
+    Part 2. Note that \(\{x \in X: \text{ assumpions i) and ii) of the theorem do not hold}\}\) is a set of zero measure. Take \(F. \ X = E \cup F \) since we have the assumpion on \(E\) and \(\mu (F)=0\)
+    Then, by the Vanishing Lemma, since \((f - f \chi_E)=0\) a.e. and \((f_n - f_n \chi_E)=0\) we have that \[ \int_X f \, d\mu = \int_E d \, d\mu = \lim_n \int_E f_n \, d\mu = \lim_n \int_X f_n \, d\mu \]
+
 
 \end{proof}
