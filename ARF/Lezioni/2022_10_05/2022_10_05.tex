@@ -57,5 +57,15 @@ Ex: \(f, g : X \to [0, +\infty]\). Then
     \[
         \int_X \liminf_n f_n \, d\mu = \int_X \lim_n g_n \, d\mu = \lim_n \int_X g_n \, d\mu = \liminf \int_X g_n \, d\mu
     \]
-
+    Now, note that \(g_n (x) = \inf_{k\geq n} f_k(x) \leq f_n(x) \leq \liminf_n \int_X f_n \, d\mu\) 
+\end{proof}
+\begin{theorem}[\(\sigma\)-additivity of \(\int\)]
+    Given \((X, \mathcal{M}, \mu)\) measurable space, \(\Phi : X \to [0, +\infty]\). Define \(\nu(E) = \int_E \Phi \, d\mu\), with \(E \in \mathcal{M}\). \(\nu : \mathcal{M} \to [0, +\infty]\) is a measure. Moreover, let \(f:X \to [0, +\infty]\) measurable
+    \[
+        \int_X f \, d\nu = \int_X f\Phi \, d\nu \tag*{*}
+    \]
+\end{theorem}
+\begin{proof}
+    \underline{\(\nu\) is a measure}:  
+    \(\nu(\emptyset) = 0\), since \(\mu\)
 \end{proof}
