@@ -41,3 +41,14 @@ What happens if ?
     Then the Lebesgue pint of \(f\) could be different from the one of \(g\).  
     This is not a big problem if \(f = g\) a.e. on \([a,b] \Longrightarrow f = g \in [a,b]\backslash N\) where \(\lambda(N) = 0\). Altre cose da recuperare
 \end{remark}
+To speak about Lebesgue points, one has to choose a specific representative \(f \in L^1([a,b])\). If you change representative, you obtain the same set of Lebesgue points up to sets with \(0\)-measure.
+\begin{theorem}[Fistt fundamental theorem of calculus]
+Given \(f \in L^1([a,b]), F(x) = \int_a^xf(t) \, dt\)
+Then \(f\) is differentiable a.e. on \([a,b]\) and \(F'(x) = f(x) \text{ a.e. in } [a,b]\)    
+\end{theorem}
+\begin{proof}
+    Let \(x \in [a,b]\) for any Lebesgue point for \(f\) (a.e. \(\x \in [a,b]\) is fine). Consider
+    \[
+        \abs{\frac{F(x+h)-F(x)}{h} - f(x)} = \abs{\frac{1}{h} \int_x^{x+h} (f(t) - f(x)) \,dt } \leq \frac{1}{h} \int_x^{x+h} (f(t) - f(x)) \,dt \to 0 
+    \]
+\end{proof}
