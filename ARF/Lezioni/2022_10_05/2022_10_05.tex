@@ -67,9 +67,9 @@ Ex: \(f, g : X \to [0, +\infty]\). Then
 \end{theorem}
 \begin{proof}
     \underline{\(\nu\) is a measure}:  
-    
+
     \(\nu(\emptyset) = 0\), since \(\mu(\emptyset) = 0\). Now, let \(E = \bigcup_{n=1}^{\infty} E_k\), \(\left\{ E_k \right\}\) disjoint. Then 
     \[
-        \nu(E) = \int_X \Phi\chi_{E_n} \, d\mu
+        \nu(E) = \int_X \Phi\chi_{E} \, d\mu = \int_X \Phi\sum_n \chi_{E_n} \, d\mu \underset{\begin{array}{l} \text{\scriptsize{monot. conv.}}\\ \text{\scriptsize{for }}\textstyle\sum\end{array}}{=}  \sum_n \int_X \Phi \chi_{E_n} \, d\mu = \sum_n \int_X \Phi \, d\mu 
     \]
 \end{proof}
