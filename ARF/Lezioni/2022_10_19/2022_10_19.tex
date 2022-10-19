@@ -47,8 +47,63 @@ Given \(f \in L^1([a,b]), F(x) = \int_a^xf(t) \, dt\)
 Then \(f\) is differentiable a.e. on \([a,b]\) and \(F'(x) = f(x) \text{ a.e. in } [a,b]\)    
 \end{theorem}
 \begin{proof}
-    Let \(x \in [a,b]\) for any Lebesgue point for \(f\) (a.e. \(\x \in [a,b]\) is fine). Consider
+    Let \(x \in [a,b]\) for any Lebesgue point for \(f\) (a.e. \(x \in [a,b]\) is fine). Consider
     \[
-        \abs{\frac{F(x+h)-F(x)}{h} - f(x)} = \abs{\frac{1}{h} \int_x^{x+h} (f(t) - f(x)) \,dt } \leq \frac{1}{h} \int_x^{x+h} (f(t) - f(x)) \,dt \to 0 
+        \left|{\frac{F(x+h)-F(x)}{h} - f(x)}\right| = \abs{\frac{1}{h} \int_x^{x+h} (f(t) - f(x)) \,dt } \leq \frac{1}{h} \int_x^{x+h} (f(t) - f(x)) \,dt \to 0 
     \]
 \end{proof}
+\begin{definition}
+    Given \(f : I \to \real\) is called \textbf{absolutely continuous} in \(I\), \(f \in\) cose 
+    s.t. 
+    \(\bigcup_{k=1}^n [a_x, b_x] \in I\) and disjoint, \(\lambda(\bigcup_{k=1}^n [a_x, b_x]) = \sum_{k=1}^n (b_x -a_x) < \int\)
+    cose
+\end{definition}
+\begin{remark}
+    \(f\) is uniformly continuous on \([a,b]\) if \(\forall \; \epsilon > 0\) \(\exists \; \delta > 0\) s.t. 
+    \[
+         cose
+    \]
+    An absolutely continuous function is also uniformly continuous.
+    But the converse is false.
+\end{remark}
+
+\begin{itemize}
+    \item If \(f\) is Lipschitz on \([a,b] \Longrightarrow f \in \text{AC}([a,b])\) 
+\end{itemize}
+Recall that \(f \in \mbox{Lip}([a,b])\) if \(\exists \; L > 0\) s.t. 
+\[
+    \abs{f(x) - f(y)} \leq L\abs{x-y}
+\]
+\underline{Check}: For any \(\epsilon > 0\), and consider 
+\[
+    \sum_{k=1}^n \abs{ cose}
+\]
+If we take \(\delta = \delta(\epsilon) = \frac{\epsilon}{L}\), then 
+\[
+    \sum_{k=1}^n (b_x, a_x) < \delta \Longrightarrow \sum_{k=1}^n cose cose
+\]
+\qed
+\[
+    \mbox{Lip}([a,b]) \subsetneqq \mbox{AC}([a,b]) \subsetneqq \mbox{UC}([a,b])
+\]
+\begin{theorem}[Regularity of integral functions]
+    Given \(f \in L^1([a,b]), F(x) = \int_a^xf(t) \, dt\), then \(F \in \mbox{AC}([a,b])\)
+\end{theorem}
+To prove the theorem we need the
+\begin{theorem}[Absolute continuity of the integral]
+    Given \(f \in L^1(X, \mathcal{M}, \mu)\). Then \(\forall \; \epsilon >0 \) \(\exists \; \delta > 0\) s.t.     
+    \[
+        \begin{array}{l}
+            E \in \mathcal{M} \\
+            \mu(E) < \delta
+        \end{array} \Longrightarrow 
+    \]
+\end{theorem}
+\begin{proof}
+    We fix \(\epsilon > 0\). Let \(F_n := \left\{ \abs{f} < n \right\}\), \(n \in \mathbb{N}\). Also \(F_n \in \mathcal{M} \forall \; n\), \(F_n \subseteq F_{n+1}\) and 
+    \[
+        \bigcup_{n=1}^{\infty} F_n = \left\{ \abs{f} < \infty \right\} =: F
+    \]
+    \(f \in L^1 \Longrightarrow \abs{f}\)
+\end{proof}
+
