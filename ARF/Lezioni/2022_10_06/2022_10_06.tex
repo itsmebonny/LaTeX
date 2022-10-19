@@ -2,7 +2,8 @@
 \(f \not \in R(I)\). Is it true that \(\exists g \in R(I)\) s.t. \(g = f\) almost everywhere (a.e.) on \(I\)? No.
 
 For instance, consider \(T_{\mathcal{E}}\), the generalized Cantor set (\(\lambda(T_{\mathcal{E}})\)). Consider \(\chi_{\mathcal{E}}\). 
-In general, \(\chi_{A}\) is discontinuous on \(\delta A\).  But \(T_{\mathcal{E}}\) has no interior parts \(\Longrightarrow T_{\mathcal{E}} = \delta T_{\mathcal{E}}\) \(\Longrightarrow \chi_{T_{\mathcal{E}}}\) is discontinuous on \(T_{\mathcal{E}}\). cosine
+In general, \(\chi_{A}\) is discontinuous on \(\delta A\).  But \(T_{\mathcal{E}}\) has no interior parts \(\Longrightarrow T_{\mathcal{E}} = \delta T_{\mathcal{E}}\) \(\Longrightarrow \chi_{T_{\mathcal{E}}}\) is discontinuous on \(T_{\mathcal{E}}\), which has positive measure
+\(\Rightarrow \) by theorem 2, \(\chi_{T_\epsilon}\) is not \(R(I)\)
 
 Clearly 
 \[
@@ -13,6 +14,7 @@ If \(g = \chi_{T_{\mathcal{E}}}\) a.e., then \(g\) is discontinuous at almost ev
 So, the Lebesgue integral is a true extension of the Riemann one.
 
 Regarding generalized integrals we have
+
 \begin{theorem}
     \(-\infty \leq a < b \leq +\infty, \quad f \in R^g([a,b])\) where 
     \[
@@ -29,6 +31,7 @@ Regarding generalized integrals we have
     \]
     If \(f\) is in \(R^g([a,b])\), but \(\vert f\vert \not \in R^g([a,b])\),then the two notions of \(\int\) are not really related
 \end{theorem}
+
 Ex:
 \(f(x) = \frac{\sin x}{x}, \quad x \in [1, \infty]\)
 \[\int_1^{\infty} \vert f(x) \vert dx = +\infty \Longrightarrow f \not \in \mathcal{L}^1([1, +\infty])\].
@@ -36,6 +39,16 @@ But on the other hand
 \[
     \int_1^{\infty} \frac{\sin x}{x} dx = \lim_{\omega \to \infty} \int_1^{\infty} \frac{\sin x}{x} dx = \frac{\pi}{2}
 \]
+
+\begin{proposition}
+    \((X, \mathcal{M}, \mu)\) complete measure space. Let \(\{f_n\} \subseteq \mathcal{L}'(X, \mathcal{M}, \mu)\). Suppose that \(\sum_{n=1}^\infty \int_X |f_n| \, d\mu < \infty\)
+    Then the series \(\sum_{n=1}^\infty f_n\) converges a.e. on \(X\), it is in \(\mathcal{L}'(X)\) and 
+    \[
+        \int_X \left( \sum_{n=1}^\infty f_n  \right) \, d\mu = \sum_{n=1}^\infty \int_X f_n \, d\mu
+    \]
+\end{proposition}
+
+
 \subsubsection*{Spaces of integrable functions}
 \((X, \mathcal{M}, \mu)\) complete measure space.
 \[
@@ -45,7 +58,9 @@ But on the other hand
 \[
     d_1 (f,g) =\int_{X} \vert f-g \vert 
 \]
-cose 
+
+It is immediate to check that \(d_1 (f, g) = d_1(g, f)\) (symmetry) \\
+\(d_1(f, g) \leq d_1(f, h) + d_1(h, g) \; \forall f, g, h \in \mathcal{L}'(X)\) (triangular inequality) \\
 
 However, \(d_1\) is not a distance on \(\mathcal{L}^1(X)\), since 
 \[
@@ -61,11 +76,11 @@ If \(f \in \mathcal{L}^1(X)\), we can consider the equivalence class
 \]
 We define
 \[
-    L^1(X) = \frac{\mathcal{L}^1(X)}{~}
+    L^1(X) = \frac{\mathcal{L}^1(X)}{~} = \{[f]: f \in \mathcal{L}'(X)\}
 \]
 \(L^1(X)\) is a vector space, and on \(L^1(X)\) the function \(d_1\) is a distance: 
 \[
-    d_1([f], [g]) cosoeocoeoce
+    d_1([f], [g]) = 0 \iff \int_X |[f]-[g]|\, d\mu =0 \iff [f]= [g] \text{ a.e. } \iff f=g \text{ a.e. }
 \]
 To simplify the notations, the elements of \(L^1(X)\) are called functions, and one writes \(f \in L^1(X)\). With this, we means that we choose a representative in \([f]\), and f denotes both the representative and the equivalence class. The representative can be arbitrarily modified on any set with \(0\) measure.
 
@@ -84,11 +99,13 @@ Ex:
 \end{cases}
 \] 
 For \(M > 1\), \(\lambda(\left\lbrace x \in \mathbb{R} : \vert f(x) \vert > M\right\rbrace) = \lambda(\left\lbrace 0 \right\rbrace) = 0 \Longrightarrow f\mbox{ is essentially bounded}\).
+
+
 If \(f\) is essentially bounded, it is well defined the \textbf{essential supremum} of \(f\).
 \[
-    \underset{X}{esssup} f := \inf \left\lbrace M > 0 \mbox{ s.t. } f \leq M \mbox{ a.e. on }X\right\rbrace = pezzi
+    \underset{X}{esssup} f := \inf \left\lbrace M > 0 \mbox{ s.t. } f \leq M \mbox{ a.e. on }X\right\rbrace = \inf \left\lbrace M > 0 \mbox{ s.t. } \mu(\{f \geq M \})=0 \right\rbrace
 \]
-It can also be defined on essential inf.
+It can also be defined an essential inf.
 \begin{remark}
     Note that, by def of inf, \(\forall \; \epsilon > 0\) we have 
     \[
