@@ -1,1 +1,34 @@
 \section{Lesson 05/10/2022}
+\begin{theorem}[Monotone Convergence (or Beppo Levi's theorem)]
+    \(f_n : X \to [0, +\infty]\) measurable. Suppose that 
+    \begin{enumerate}
+        \item \(f_n(x) \leq f_{n+1}(x)\) for a.e. \(x \in X\), for every \(n\)
+        \item \(f_n \to f\) a.e. on \(X\) 
+    \end{enumerate}
+    Then 
+    \[
+        \int_X f \, d\mu = \lim_n \int_X f_n \, d\mu
+    \]
+\end{theorem}
+\begin{corollary}
+    \(f_n : X \to [0, +\infty]\) measurable, then 
+    \[
+        \int_X \left( \sum_{n=0}^{\infty} f_n\right) \, d\mu = \sum_{n=0}^{\infty} \int_X f_n \, d\mu
+    \]
+\end{corollary}
+\begin{theorem}[Approximation with simple functions]
+    Given \((X, \mathcal{M})\) measure space, \(f: X \to [0, +\infty]\) measurable, then \(\exists\) a sequence \(\left\{ s_n \right\}\) of simple functions s.t. 
+    \[
+        0 \leq s_1 \leq \ldots \leq s_n \leq \ldots \leq f \qquad \text{pointwise } \forall \; x \in X
+    \]
+    and 
+    \[
+        s_n (x) \to f(x) \qquad \forall \; x \in X \text{as } n \to \infty 
+    \]
+    Moreover, if \(f\) is bounded, then \(s_n \to f\) uniformly on \(X\) as \(n \to \infty\).  
+\end{theorem}
+\begin{remark}
+    \[
+        \int_X f \, d\mu = \sup \left\{ \int_X s \, d\mu \lvert \begin{array}{l}s\text{ is simple} \\ 0 \leq s \leq f \end{array}\right\}
+    \]
+\end{remark}
