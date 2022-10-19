@@ -67,5 +67,9 @@ Ex: \(f, g : X \to [0, +\infty]\). Then
 \end{theorem}
 \begin{proof}
     \underline{\(\nu\) is a measure}:  
-    \(\nu(\emptyset) = 0\), since \(\mu\)
+    
+    \(\nu(\emptyset) = 0\), since \(\mu(\emptyset) = 0\). Now, let \(E = \bigcup_{n=1}^{\infty} E_k\), \(\left\{ E_k \right\}\) disjoint. Then 
+    \[
+        \nu(E) = \int_X \Phi\chi_{E_n} \, d\mu
+    \]
 \end{proof}
