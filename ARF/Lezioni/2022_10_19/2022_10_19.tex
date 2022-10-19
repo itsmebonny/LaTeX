@@ -1,1 +1,43 @@
 \section{Lesson 19/10/2022}
+\subsection*{The first fundamental theorem of calculus}
+
+Consider \(f \in L^1\left([a,b]\right)\). We can define the \textbf{integral function}
+\[F(x) = \int_{[a,b]} f d\lambda = \int_a^b f(t)dt , \quad x \in [a,b]\]
+
+If the function cose 
+
+What happens if ?
+
+\begin{definition}
+    Given \(f \in L^1([a,b])\). We say that \(x \in [a,b]\) is a \textbf{Lebesgue point} for \(f\) if 
+    \[
+        \lim_{h \to 0} \frac{1}{h} \int_x^{x+h} \abs{f(t) - f(x)} \, dt = 0
+    \]
+    If \(x=a\) or \(x=b\), this is the left/right \(\lim\).
+\end{definition}
+\begin{remark}
+    A point \(x\) is called a Lebesgue point for \(f\) if \(f\) `does not oscillate too much' close to \(x\):
+    \begin{itemize}
+        \item \(f\) \(\mathcal{C}([a,b]) \to \text{ every } x \in [a,b]\) is a Lebesgue point.
+        \item \[
+            f(x) = \begin{cases}
+                1  & x > 0 \\
+            0 & x < 0
+            \end{cases}
+        \]
+        \[
+            \lim_{h \to 0} \frac{1}{h} \int_0^{h} \abs{f(t) - f(0)} \, dt = \lim_{h \to 0} \frac{1}{\abs{h}} \int_0^{h} \abs{0 - 1} \, dt = 0
+        \]
+    \end{itemize}
+\end{remark}
+\begin{theorem}[Lebesgue theorem]
+    If \(f \in L^1([a.b])\) then a.e. \(x \in [a,b]\) is a Lebesgue point for \(f\)
+\end{theorem}
+\begin{remark}
+    In the definition of Lebesgue point, the pointwise values of \(f\) are relevant 
+    \[
+        f = g \in L^1 \Longleftrightarrow f = g \text{a.e.}
+    \]
+    Then the Lebesgue pint of \(f\) could be different from the one of \(g\).  
+    This is not a big problem if \(f = g\) a.e. on \([a,b] \Longrightarrow f = g \in [a,b]\backslash N\) where \(\lambda(N) = 0\). Altre cose da recuperare
+\end{remark}
