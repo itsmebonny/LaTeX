@@ -25,10 +25,37 @@
     \[
         s_n (x) \to f(x) \qquad \forall \; x \in X \text{as } n \to \infty 
     \]
-    Moreover, if \(f\) is bounded, then \(s_n \to f\) uniformly on \(X\) as \(n \to \infty\).  
+    Moreover, if \(f\) is bounded, then \(s_n \to f\) uniformly on \(X\) as \(n \to \infty\).
 \end{theorem}
 \begin{remark}
+    There is also
     \[
-        \int_X f \, d\mu = \sup \left\{ \int_X s \, d\mu \lvert \begin{array}{l}s\text{ is simple} \\ 0 \leq s \leq f \end{array}\right\}
+        \int_X f \, d\mu = \sup \left\{ \int_X s \, d\mu \, \bigg\vert \begin{array}{l}s\text{ is simple} \\ 0 \leq s \leq f \end{array}\right\}
     \]
 \end{remark}
+But let \(\left\{ s_n \right\}\) be the sequence given by the simple approximation theorem. By monotone convergence 
+\[
+    \int_X f \, d\mu = \lim_n \int_X s_n \, d\mu
+\]
+Ex: \(f, g : X \to [0, +\infty]\). Then 
+\[
+    \int_X (f+g) \, d\mu = \int_X f \, d\mu + \int_X g \, d\mu
+\]
+\begin{lemma}[Fatou's Lemma]
+    Given \(f_n \to [0, +\infty]\) measurable \(\forall \, n\). Then 
+    \[
+        \int_X (\liminf_n f_n) \, d\mu \leq \liminf_n \int_X f_n \, d\mu
+    \]
+    In particular, if \(f_n \to f\) a.e. on \(X\).
+\end{lemma}
+\begin{proof}
+    Given that \((\liminf_n f_n)(x) = \lim_n (\underbrace{\inf_{k \geq n} f_k(x)}_{= g_n (x)})\). Now, for every \(x \in X\), \(\left\{ g_n(x) \right\}\nearrow\)
+    \[
+        g_{n+1}(x) = \inf_{k \geq n+1} f_k(x) \geq \inf_{k \geq n} f_k(x) = g_n (x)
+    \]
+    Also, \(g_n \geq 0\) on \(X\). Thus, by monotone convergence
+    \[
+        \int_X \liminf_n f_n \, d\mu = \int_X \lim_n g_n \, d\mu = \lim_n \int_X g_n \, d\mu = \liminf \int_X g_n \, d\mu
+    \]
+
+\end{proof}
