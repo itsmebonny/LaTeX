@@ -24,3 +24,55 @@ We can now come back to the proof of Lemma 1
     \dots
     We can start with the proof
 \end{proof}
+
+Take this \(\delta\). By regularity of \(\lambda\), \(\exists \; A \) open set of \(\left[a, b\right]\)s.t. \(A \supset E\) and \(\lambda(A) < \delta\). 
+
+....
+
+But then 
+\[
+    \mu (E) \leq \mu(A) = \sum_n \mu (I_n) \text{ since } \mu \text{ is a measure}
+\]
+
+We proved that 
+\[
+    \lambda(E) = 0 \Rightarrow \forall \; \epsilon >0 : \, \mu(E) < \epsilon \Rightarrow \mu(E) =0
+\]
+So \(\mu << \lambda\). We can apply Radon Nikodym \(\exists \; \oldphi : \left[ a, b\right] \to \left[0, \infty\right]\) s.t. 
+\[
+    G(x) - G(a) = \int_a^x \oldphi \, d\lambda
+\]
+Since \(G\) is bounded, then \(\oldphi \in L^1(\left[a, b\right])\)
+\[
+    G(x)=G(a) + \int_a^x \oldphi(t) \, dt
+\]
+By the first foundamental theorem of calculus, this is differentiable a.e. 
+\[
+    G'(x) = \oldphi(x) \text{ a.e. on } \left[a, b\right]
+\]
+\[
+    G'(x) = cose
+\]
+
+Now we want to get rid of the additional assumption (monotonicity)
+
+\begin{proof}
+    of the second fundamental theorem of calculus in the general case.
+    Idea:  \(G \in AC\) 
+    we want to write \(G= G_1 + G_2\) where \(G_1 \nearrow \) and \(G_2 \searrow\), both AC. \\
+    Then the second fundamental theorem holds for \(G_1 \) and \(G_2\) so it holds for \(G\) by linearity of the integral. 
+    \dots
+    Clearly, \(G_1+G_2 = G\), \(G_1, G_2\) are AC, by preliminary result n4.
+    \dots
+    Therefore, 
+    \[
+        G_1 (y) - G_1(x) = \frac{1}{2} \left(G(y) - G(x) + V_a^y(G) + V_a^x(G)\right) \geq - \abs{G(y) - G(x)} \geq - V_x^y(G)
+    \]
+    So \(G_1\) is decreasing. In an analogue way, we can prove that \(G_2\) is decreasing.
+\end{proof}
+
+\section*{Functional analysis}
+Normed spaces and Banach spaces
+\begin{definition}
+    Given \(X\) vector space, a norm on \(X\) is a function \(\norm{\cdot}\)
+\end{definition}

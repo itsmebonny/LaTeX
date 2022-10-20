@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1666249000 "/home/bonni/Documents/LaTeX/ARF/ARF.tex" "ARF.pdf" "ARF" 1666249001
+["pdflatex"] 1666251507 "/home/bonni/Documents/LaTeX/ARF/ARF.tex" "ARF.pdf" "ARF" 1666251509
   "/etc/texmf/web2c/texmf.cnf" 1663235487 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/bonni/Documents/LaTeX/ARF/ARF.tex" 1666185473 2680 ff6e688cd896771f080a9c049c070ce4 ""
+  "/home/bonni/Documents/LaTeX/ARF/ARF.tex" 1666251507 2681 5ffd13e3061d3080a9448ecf0dfd27a9 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm0700.tfm" 1136768653 1536 73da8e8f1d2a4c957d51ca133585586b ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm0800.tfm" 1136768653 1536 05df9db6aeccc4eea94fec15c9024f79 ""
@@ -136,9 +136,9 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1663245285 4379155 98693266ff65f58d9f98aff394de12d2 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1663245305 2799600 82c7499e2bbeaef077fd78ca2cedfab0 ""
-  "ARF.aux" 1666249001 2071 6b84162ab990ce3fdd9410e6f0b254d1 "pdflatex"
-  "ARF.out" 1666249001 1578 4dd030fcb984236ee79845b1aad9f813 "pdflatex"
-  "ARF.tex" 1666185473 2680 ff6e688cd896771f080a9c049c070ce4 ""
+  "ARF.aux" 1666251508 2071 27f410c3fd9d8907244675f4d676589b "pdflatex"
+  "ARF.out" 1666251508 1578 4dd030fcb984236ee79845b1aad9f813 "pdflatex"
+  "ARF.tex" 1666251507 2681 5ffd13e3061d3080a9448ecf0dfd27a9 ""
   "Lezioni/2022_09_12/2022_09_12.tex" 1665668697 11607 57fd2cfff9e2cd56f5d9bff51ee7387f ""
   "Lezioni/2022_09_14/2022_09_14.tex" 1665668822 10541 890fb44be9b18572824796a51392f0be ""
   "Lezioni/2022_09_15/2022_09_15.tex" 1665752157 7808 2dae177915a07e2eedf30d4c2c20dc65 ""
@@ -150,7 +150,7 @@
   "Lezioni/2022_10_12/2022_10_12.tex" 1665757271 8382 e8cad547ebeb2559cfab79affcd72845 ""
   "Lezioni/2022_10_13/2022_10_13.tex" 1666183407 2519 6f4566f4f974692c911fbef64533cf1c ""
   "Lezioni/2022_10_19/2022_10_19.tex" 1666186079 4618 cee86e0506afbda963df7496e9bf6684 ""
-  "Lezioni/2022_10_20/2022_10_20.tex" 1666249000 1188 9885e56e926cf99ebae5c47d615c39ce ""
+  "Lezioni/2022_10_20/2022_10_20.tex" 1666251468 2963 05eaa720ce50b303b838947fbb5310f4 ""
   (generated)
   "ARF.aux"
   "ARF.log"
