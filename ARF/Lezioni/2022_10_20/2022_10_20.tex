@@ -5,4 +5,22 @@ Example and comments:
     \[
         V_a^b (f) = \abs{f(b) - f(a)}
     \]
+    Note that \(f\) may not be continuous
+    cases
+    \item \(f \in \mbox{BV}([a,b]) \Longrightarrow f\) is bounded. Indeed
+    \[
+        \sup_{x \in [a,b]} \abs{f(x)} \leq \abs{f(x)} + V_a^b(f)
+    \]
+    \item \(f\) is continuous on \([a,b]\) \(\not\Longrightarrow f \in \mbox{BV}([a,b])\)
+    \item \(f \in \mbox{BV}([a,b]) \cap \mbox{UC}([a,b]) \not \Longrightarrow f \in \mbox{AC}([a,b])\)
+    Given \(v\) a Vitali-Cantor function. \(v\) is bounded and monotone \(\Longrightarrow v \in \mbox{BV}([0,1])\) and \(v \in \mbox{UC}([0,1])\). But \(v \not \in \mbox{AC}([0,1])\)
 \end{itemize}
+We can now come back to the proof of Lemma 1
+\begin{proof}
+    \underline{Preliminary result}: \(A \in \real\) open. Then \(A = \bigcup_{n=1}^{\infty}(a_n, b_n)\)
+    any open set of \(\real\) is....
+    \underline{Preliminary result}: \(f \in \mbox{AC}([a,b]) \Longleftrightarrow \forall \; \epsilon > 0 \exists \; \delta > 0\)
+    \dots
+    \dots
+    We can start with the proof
+\end{proof}
