@@ -199,7 +199,33 @@ The most relevant theorem for convergence is the following
         |f_n-f| \leq |f_n|+|f| \leq 2g \quad \text{ a.e. on }X \quad \Phi_n \geq 0 \quad \text{ a.e. on }X  
     \]
     We can use Fatou's lemma:
+    \[\begin{array}{l}
+        \int_X (\underbrace{\liminf_n \phi_n}_{\stackbelowlittle{\mbox{= 2g a.e.}}{\int_X 2g \; d\mu}}) \; d\mu \leq \liminf_n \int_X \phi_n \, d\mu = \liminf_n \int_X (2g - \abs{f_n - f}) \, d\mu = \\
+        = \int_X 2g \, d\mu + \liminf_n (-\int_X \abs{f_n - f} \, d\mu) =\int_X 2g \, d\mu - \limsup_n \int_X \abs{f_n - f} \, d\mu
+    \end{array}
+    \]
+    Subtracting \(\int_X 2g \, d\mu\) from both sides 
     \[
-        \int_X 
+        0 \leq -\limsup_n \int_X \abs{f_n - f} \, d\mu \Longrightarrow 0 \leq \liminf_n \int_X \abs{f_n - f} \, d\mu \leq \limsup_n \int_X \abs{f_n - f} \, d\mu \leq 0 
     \]  
 \end{proof}
+\begin{remark}
+    If \(\mu(X) < +\infty\), and \(\exists M > 0\) s.t. \(\abs{f_n} \leq M\) a.e. on \(X, \forall \; n\), then we can take \(g = M\) as dominating function.
+\end{remark}
+
+\underline{COmments on the relation between Riemann and Lebesgue integrals}
+Let \(f : I \subset \real \to \real\), \(I\) interval, be bounded. Assume also that \(I\) is closed and bounded.
+\begin{theorem}
+    Let \(f\) be Riemann-integrable on \(I(f \in R(I))\). Then 
+    \[
+        f\in \mathcal{L}^1(I, \mathcal{L}(I), \lambda)
+    \]
+    and 
+    \[
+        \int_I f \, d\lambda = \int_I f(x) \, dx
+    \]
+\end{theorem}
+\begin{theorem}
+    \(f \in R(I) \Longleftrightarrow f\) is continuous on \(x\), for a.e. \(x \in I\).
+\end{theorem}
+\underline{Ex}: \(\chi_{\mathbb{Q}}\) on \([0,1]\) is not Riemann integrable, because it is discontinuous at any point. Note that, instead, \(\chi_{\mathbb{Q}} = 0\) a.e. on \([0,1]\) \(\Longrightarrow \int_{[0,1]} \chi_{\mathbb{Q}} \, d\lambda = 0\)
