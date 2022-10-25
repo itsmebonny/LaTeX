@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1666686664 "/home/bonni/Documents/LaTeX/ARF/ARF.tex" "ARF.pdf" "ARF" 1666686665
+["pdflatex"] 1666688437 "/home/bonni/Documents/LaTeX/ARF/ARF.tex" "ARF.pdf" "ARF" 1666688439
   "/etc/texmf/web2c/texmf.cnf" 1663235487 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/bonni/Documents/LaTeX/ARF/ARF.tex" 1666685972 2783 4c8aecf78e33bbbd0e5eb54d1b44fa47 ""
+  "/home/bonni/Documents/LaTeX/ARF/ARF.tex" 1666688434 2859 0a43afcd8daf9b0d47ae1c79da034c46 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm0700.tfm" 1136768653 1536 73da8e8f1d2a4c957d51ca133585586b ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm0800.tfm" 1136768653 1536 05df9db6aeccc4eea94fec15c9024f79 ""
@@ -136,9 +136,9 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1663245285 4379155 98693266ff65f58d9f98aff394de12d2 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1663245305 2799600 82c7499e2bbeaef077fd78ca2cedfab0 ""
-  "ARF.aux" 1666686665 2071 74c8acd35b41208665560bb047c76229 "pdflatex"
-  "ARF.out" 1666686665 1578 4dd030fcb984236ee79845b1aad9f813 "pdflatex"
-  "ARF.tex" 1666685972 2783 4c8aecf78e33bbbd0e5eb54d1b44fa47 ""
+  "ARF.aux" 1666688439 2305 c9c1b7b9867e33ff9e735ec019cc8032 "pdflatex"
+  "ARF.out" 1666688439 1844 7124c10d383bc7dfc767c822f14591bb "pdflatex"
+  "ARF.tex" 1666688434 2859 0a43afcd8daf9b0d47ae1c79da034c46 ""
   "Lezioni/2022_09_12/2022_09_12.tex" 1665668697 11607 57fd2cfff9e2cd56f5d9bff51ee7387f ""
   "Lezioni/2022_09_14/2022_09_14.tex" 1665668822 10541 890fb44be9b18572824796a51392f0be ""
   "Lezioni/2022_09_15/2022_09_15.tex" 1665752157 7808 2dae177915a07e2eedf30d4c2c20dc65 ""
@@ -146,11 +146,13 @@
   "Lezioni/2022_09_22/2022_09_22.tex" 1665747866 9102 66d52483f845204e258f39ed8ff22e59 ""
   "Lezioni/2022_09_29/2022_09_29.tex" 1666605848 10395 86b841466eea003fb6053825b8db84aa ""
   "Lezioni/2022_10_05/2022_10_05.tex" 1666686664 9877 d14693c54a47e516c4d7cba43a58875f ""
-  "Lezioni/2022_10_06/2022_10_06.tex" 1666686600 7113 86f1f63f5c662e7d20ee4c5d82990594 ""
+  "Lezioni/2022_10_06/2022_10_06.tex" 1666688434 7207 7e86d74a6ef4045e19571789d5cec235 ""
   "Lezioni/2022_10_12/2022_10_12.tex" 1665757271 8382 e8cad547ebeb2559cfab79affcd72845 ""
   "Lezioni/2022_10_13/2022_10_13.tex" 1666183407 2519 6f4566f4f974692c911fbef64533cf1c ""
   "Lezioni/2022_10_19/2022_10_19.tex" 1666186079 4618 cee86e0506afbda963df7496e9bf6684 ""
   "Lezioni/2022_10_20/2022_10_20.tex" 1666251468 2963 05eaa720ce50b303b838947fbb5310f4 ""
+  "Lezioni/2022_10_26/2022_10_26.tex" 1666688434 27 2ec9909c73eafe720e4b3c27c9442a76 ""
+  "Lezioni/2022_10_27/2022_10_27.tex" 1666688434 27 3ea3f9b869ac79cda51d393c4ae13f7a ""
   (generated)
   "ARF.aux"
   "ARF.log"
