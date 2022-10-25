@@ -9,15 +9,16 @@ To check if a function is measurable or not, it is often sed the following propo
 
 We will mainly focus on 2 situations:
 \begin{enumerate}
-    \item  \(((X, \mathcal{M}))\) is a measurable space obtained by means of an outer measure.
+    \item  \(((X, \mathcal{M}))\) is a measurable space obtained by means of an outer measure. \\
     Ex: \((\mathbb{R}^n, \mathcal{L}(\mathbb{R}^n))\), \((Y, d_y)\) metric space \(\to (Y, \mathcal{B}(Y))\). 
 
     If \(X \to Y\) is (Lebesgue) measurable \(\Longleftrightarrow\) \((\mathcal{M}, \mathcal{B}(Y))\) is measurable
-    \item \((X, d_X), (Y, d_Y)\) are metric spaces \(\longrightarrow (X, \mathcal{B}(X)), (Y, \mathcal{B}(Y))\)
+
+    \item \((X, d_X), (Y, d_Y)\) are metric spaces \(\longrightarrow (X, \mathcal{B}(X)), (Y, \mathcal{B}(Y))\) \\
     \(f: X \to Y\) is Borel measurable \(\Longleftrightarrow (\mathcal{M}(X), \mathcal{B}(Y)) \)-measurable.
 \end{enumerate}
 \begin{remark}
-     \(f\) is Lebesgue measurable if the continuity of the borel set is a Lebesgue-measurable set.
+     \(f\) is Lebesgue measurable if the continuity of the Borel set is a Lebesgue-measurable set.
 \end{remark}
 \begin{proposition}
     There are two parts:
@@ -31,7 +32,7 @@ We will mainly focus on 2 situations:
     \begin{enumerate}
         \item \(f\) is continuous \(\Longleftrightarrow f^{-1}(A)\) is open \(\forall \; A \subset Y\)
         open \(\Longrightarrow\) \(f^{-1}(A) \in \mathcal{B}(Y) \; \forall \; A \subset Y\) open
-        Since \(\mathcal{B}(Y) = \sigma_0(\mbox{open sets})\) by proposition \((1)\) this implies that \(f\) is Borel measurable
+        Since \(\mathcal{B}(Y) = \sigma_0 \; (\mbox{open sets})\) by proposition \((1)\) this implies that \(f\) is Borel measurable
         \item \(f\) is continuous \(\overset{(1)}{\Longrightarrow}\) \(f\) is Borel measurable.
         \(f^{-1}(A) \in \mathcal{B}(\real^n) \subseteq \mathcal{L}(\real^n) \forall \; A \in \mathcal{B}(Y)\). Namely \(f\) is Lebesgue measurable
     \end{enumerate}
@@ -42,7 +43,7 @@ We will mainly focus on 2 situations:
 \end{proposition}
 \begin{proposition}
     \((X, \mathcal{M})\) measurable space , \(u,v : X \to  \real\) measurable functions.
-    Let \(\Phi : \mathbb{R}^2 \to Y\) be continuous where \((Y, d_Y)\) is a metric space. Then \(h: X\to Y\) defined by \(h(x) = \Phi(u(x), v(x))\) is ()\(\mathcal{M}, \mathcal{B}(Y)\))-measurable.
+    Let \(\Phi : \mathbb{R}^2 \to Y\) be continuous where \((Y, d_Y)\) is a metric space. Then \(h: X\to Y\) defined by \(h(x) = \Phi(u(x), v(x))\) is \((\mathcal{M}, \mathcal{B}(Y))\)-measurable.
 \end{proposition}
 \underline{Consequence}: \(u, v\) measurable \(\Rightarrow\) \(u+v\) is measurable.
 \begin{proof}
@@ -127,9 +128,13 @@ If we write \(g_n(x) = \sup_{k \geq n} f_k(x)\), then
     \[
         s(X) = \{a_1 \ldots, a_n\} \mbox{ for some }n \in \mathbb{N}, a_i \not= a_j
     \]
-    Then \(s(x) = \sum_{n = 1} a_n \chi_{E_n}(x)\), where \(E_n\) is a measurable set, \(E_n = \left\{ x \in X : s(X) = a_n \right\}\), and \(E_i \cap E_j = \emptyset\) for \(i \not = j\), and \(\bigcup_{n = 1}^N E_n = X\).
+    Then 
+    \[
+        s(x) = \sum_{n = 1} a_n \chi_{E_n}(x)
+    \]
+    where \(E_n\) is a measurable set, \(E_n = \left\{ x \in X : s(X) = a_n \right\}\), and \(E_i \cap E_j = \emptyset\) for \(i \not = j\), and \(\bigcup_{n = 1}^N E_n = X\).
 \end{definition}
-\underline{Particular case}: if s:\(\mathbb{R} \to \barreal\), and each \(E_n\) is a finite union of intervals, then \(s\) is said to be a STEP FUNCTION.
+\underline{Particular case}: if s:\(\mathbb{R} \to \barreal\), and each \(E_n\) is a finite union of intervals, then \(s\) is said to be a STEP function.
 
 \underline{Goal}: to approximate arbitrary measurable functions with simple functions.
 \begin{theorem}
@@ -137,10 +142,12 @@ If we write \(g_n(x) = \sup_{k \geq n} f_k(x)\), then
     \[
         0 \leq s_1 \leq \ldots \leq s_n \leq \ldots \leq f \quad \underset{\forall \; x \in X}{\mbox{(pointwise)}}
     \]
-    and \(s_n(x) \to f(x) \forall \; x \in X \mbox{ as }n \to \infty\)
+    and \(s_n(x) \to f(x) \quad \forall \; x \in X \mbox{ as }n \to \infty\).
+
 Moreover if f is bounded then \(s_n \to f\) uniformly on \(X\) as \(n \to \infty\)
 \end{theorem}
-\begin{proof}[for f bounded]
+
+\begin{proof}[proof - for f bounded]
     Fix \(n \in \mathbb{N}\) and divide \([0,n)\) in \(n \cdot 2^n\) intervals called \(I_j = [a_j,b_j)\) with lenght \(\frac{1}{2^n}\)
 
     Let \(E_0 = f^{-1}([n, +\infty)), E_j = f^{-1}([a_j, b_j))\) for \(j = 1, \ldots, n\cdot 2^n\)
