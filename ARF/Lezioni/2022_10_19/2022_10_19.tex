@@ -4,9 +4,11 @@
 Consider \(f \in L^1\left([a,b]\right)\). We can define the \textbf{integral function}
 \[F(x) = \int_{[a,b]} f d\lambda = \int_a^b f(t)dt , \quad x \in [a,b]\]
 
-If the function cose 
+If \(f \in \mathcal{C}\left(\left[a, b\right]\right)\), then \(F\) is differentiable on \(\left[a, b\right]\), and \(F'(x)=f(x)\)
 
-What happens if ?
+What happens if \(f \in L^1([a, b])\)?
+
+
 
 \begin{definition}
     Given \(f \in L^1([a,b])\). We say that \(x \in [a,b]\) is a \textbf{Lebesgue point} for \(f\) if 
@@ -30,7 +32,7 @@ What happens if ?
         \]
     \end{itemize}
 \end{remark}
-\begin{theorem}[Lebesgue theorem]
+\begin{theorem}[Lebesgue]
     If \(f \in L^1([a.b])\) then a.e. \(x \in [a,b]\) is a Lebesgue point for \(f\)
 \end{theorem}
 \begin{remark}
@@ -38,32 +40,43 @@ What happens if ?
     \[
         f = g \in L^1 \Longleftrightarrow f = g \text{a.e.}
     \]
-    Then the Lebesgue pint of \(f\) could be different from the one of \(g\).  
-    This is not a big problem if \(f = g\) a.e. on \([a,b] \Longrightarrow f = g \in [a,b]\backslash N\) where \(\lambda(N) = 0\). Altre cose da recuperare
+    Then the Lebesgue point of \(f\) could be different from the one of \(g\).  
+    This is not a big problem if \(f = g\) a.e. on \([a,b] \Longrightarrow f = g \in [a,b]\backslash N\) where \(\lambda(N) = 0\); \(x\) is a Lebesgue point for \(f\), \(\forall \; x \in \left[a, b\right] \backslash M, \ \lambda(M)=0\) \\
+    \(\Rightarrow x \) is a Lebesgue point for \(g\), \(\ \forall x \in \left[a, b\right] \backslash (M \cup N)\) \\
+    \(\left[a, b\right] \backslash (M \cup N)\) is a set of full measure of Lebesgue points for \(f\) and \(g\).
 \end{remark}
 To speak about Lebesgue points, one has to choose a specific representative \(f \in L^1([a,b])\). If you change representative, you obtain the same set of Lebesgue points up to sets with \(0\)-measure.
-\begin{theorem}[Fistt fundamental theorem of calculus]
-Given \(f \in L^1([a,b]), F(x) = \int_a^xf(t) \, dt\)
+
+\begin{theorem}[First fundamental theorem of calculus]
+Given \(f \in L^1([a,b]),\ F(x) = \int_a^xf(t) \, dt\) \\
 Then \(f\) is differentiable a.e. on \([a,b]\) and \(F'(x) = f(x) \text{ a.e. in } [a,b]\)    
 \end{theorem}
 \begin{proof}
     Let \(x \in [a,b]\) for any Lebesgue point for \(f\) (a.e. \(x \in [a,b]\) is fine). Consider
     \[
-        \left|{\frac{F(x+h)-F(x)}{h} - f(x)}\right| = \abs{\frac{1}{h} \int_x^{x+h} (f(t) - f(x)) \,dt } \leq \frac{1}{h} \int_x^{x+h} (f(t) - f(x)) \,dt \to 0 
+        \left|{\frac{F(x+h)-F(x)}{h} - f(x)}\right| = \abs{\frac{1}{h} \int_x^{x+h} (f(t) - f(x)) \,dt } \leq \frac{1}{h} \int_x^{x+h} |f(t) - f(x)| \,dt \to 0 
     \]
+    Since \(x\) is a Lebesgue point.
 \end{proof}
 \begin{definition}
-    Given \(f : I \to \real\) is called \textbf{absolutely continuous} in \(I\), \(f \in\) cose 
+    Given \(f : I \to \real\) is called \textbf{absolutely continuous} in \(I\), \(f \in AC(I)\), if \(\forall \; \epsilon >0 \; \exists \; \delta >0\)  
     s.t. 
-    \(\bigcup_{k=1}^n [a_x, b_x] \in I\) and disjoint, \(\lambda(\bigcup_{k=1}^n [a_x, b_x]) = \sum_{k=1}^n (b_x -a_x) < \int\)
-    cose
+    \[
+        \bigcup_{k=1}^n [a_x, b_x] \in I \text{ disjoint ma per finta}
+    \] 
+    \[
+        \lambda(\bigcup_{k=1}^n [a_x, b_x]) = \sum_{k=1}^n (b_x -a_x) < \delta
+    \]
+    \[
+        \Rightarrow \sum_{k=1}^n \abs{f(b_k)-f(a_k)} < \epsilon
+    \]
 \end{definition}
 \begin{remark}
     \(f\) is uniformly continuous on \([a,b]\) if \(\forall \; \epsilon > 0\) \(\exists \; \delta > 0\) s.t. 
     \[
-         cose
+        \abs{t - \tau} < \delta \Rightarrow \abs{f(t)-f(\tau)} < \epsilon
     \]
-    An absolutely continuous function is also uniformly continuous.
+    An absolutely continuous function is also uniformly continuous. \\
     But the converse is false.
 \end{remark}
 
@@ -72,15 +85,15 @@ Then \(f\) is differentiable a.e. on \([a,b]\) and \(F'(x) = f(x) \text{ a.e. in
 \end{itemize}
 Recall that \(f \in \mbox{Lip}([a,b])\) if \(\exists \; L > 0\) s.t. 
 \[
-    \abs{f(x) - f(y)} \leq L\abs{x-y}
+    \abs{f(x) - f(y)} \leq L\abs{x-y} \qquad \forall x, y \in \left[a, b\right]
 \]
 \underline{Check}: For any \(\epsilon > 0\), and consider 
 \[
-    \sum_{k=1}^n \abs{ cose}
+    \sum_{k=1}^n \abs{f(b_k)-f(a_k)} \leq \sum_{k=1}^n L(b_k-a_k) = L \sum_{k=1}^n (b_k-a_k)
 \]
 If we take \(\delta = \delta(\epsilon) = \frac{\epsilon}{L}\), then 
 \[
-    \sum_{k=1}^n (b_x, a_x) < \delta \Longrightarrow \sum_{k=1}^n cose cose
+    \sum_{k=1}^n (b_x, a_x) < \delta \Longrightarrow \sum_{k=1}^n \abs{f(b_k)-f(a_k) } \leq L \sum_{k=1}^n (b_k-a_k)
 \]
 \qed
 \[
