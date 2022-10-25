@@ -70,10 +70,10 @@ Ex: \(f, g : X \to [0, +\infty]\). Then
 \end{proof}
 
 \begin{theorem}[\(\sigma\)-additivity of \(\int\)]
-    Given \((X, \mathcal{M}, \mu)\) measurable space, \(\Phi : X \to [0, +\infty]\). Define \(\nu(E) = \int_E \Phi \, d\mu\), with \(E \in \mathcal{M}\). 
+    Given \((X, \mathcal{M}, \mu)\) measurable space, \(\oldphi : X \to [0, +\infty]\). Define \(\nu(E) = \int_E \oldphi \, d\mu\), with \(E \in \mathcal{M}\). 
     \(\nu : \mathcal{M} \to [0, +\infty]\) is a measure. Moreover, let \(f:X \to [0, +\infty]\) measurable
     \[
-        \int_X f \, d\nu = \int_X f\Phi \, d\nu \tag*{*}
+        \int_X f \, d\nu = \int_X f\oldphi \, d\nu \tag*{*}
     \]
 \end{theorem}
 \begin{proof}
@@ -82,20 +82,20 @@ Ex: \(f, g : X \to [0, +\infty]\). Then
     \(\nu(\emptyset) = 0\), since \(\mu(\emptyset) = 0\). 
     Now, let \(E = \bigcup_{n=1}^{\infty} E_k\), \(\left\{ E_k \right\}\) disjoint. Then 
     \[
-        \nu(E) = \int_X \Phi\chi_{E} \, d\mu = \int_X \Phi\sum_n \chi_{E_n} \, d\mu \underset{\begin{array}{l} \text{\scriptsize{monot. conv.}} \\ 
-            \text{\scriptsize{for }}\textstyle\sum\end{array}}{=}  \sum_n \int_X \Phi \chi_{E_n} \, d\mu = \sum_n \int_X \Phi \, d\mu = \sum_n \nu(E_n) 
+        \nu(E) = \int_X \oldphi\chi_{E} \, d\mu = \int_X \oldphi\sum_n \chi_{E_n} \, d\mu \underset{\begin{array}{l} \text{\scriptsize{monot. conv.}} \\ 
+            \text{\scriptsize{for }}\textstyle\sum\end{array}}{=}  \sum_n \int_X \oldphi \chi_{E_n} \, d\mu = \sum_n \int_X \oldphi \, d\mu = \sum_n \nu(E_n) 
     \]
     We have proven \(\sigma\) additivity, so \(\nu\) is a measure.
 
     \underline{(*) holds}
     Let \(E \in \mathcal{M}\). Then
     \[
-        \int_X \chi_E \, d\nu = \int_E 1 \, d\nu = \nu(E) = \int_E = \int_E \Phi \, d\mu = \int_X \Phi \chi_E \, d\mu
+        \int_X \chi_E \, d\nu = \int_E 1 \, d\nu = \nu(E) = \int_E = \int_E \oldphi \, d\mu = \int_X \oldphi \chi_E \, d\mu
     \]
     This shows that \((*)\) holds for \(\chi_E\), \(\forall \; E\). Then it holds for simple functions. \\
     Let now f be any measurable function, positive. Then we can take \(\{s_n\}\) given by the simple approximation theorem
     \[
-        \int_X f \, d\nu \overset{\text{monot}}{=} \lim_n \int_X s_n \, d\nu = \lim_n \int_X s_n \Phi \, d\mu \overset{\text{monot}}{=} \int_X f \Phi \, d\mu 
+        \int_X f \, d\nu \overset{\text{monot}}{=} \lim_n \int_X s_n \, d\nu = \lim_n \int_X s_n \oldphi \, d\mu \overset{\text{monot}}{=} \int_X f \oldphi \, d\mu 
     \]
     which is \((*)\) 
 \end{proof}
@@ -124,8 +124,8 @@ Note that both are positive and measurable.
 If \(f\) is integrable, we define \(\int_X f \, d\mu = \int_X f^+ \, d\mu + \int_X f^- \, d\mu\) \\
 The set of integrable functions is denoted by 
 \[
-    \mathcal{L}' (X, \mathcal{M}, \mu) := \{f:X \to \bar{\real} \text{integrable} \} \\
-    \mathcal{L}' (X, \mathcal{M}, \mu) = \mathcal{L}' (X) = \mathcal{L}' 
+    \mathcal{L}^1 (X, \mathcal{M}, \mu) := \{f:X \to \bar{\real} \text{integrable} \} \\
+    \mathcal{L}^1 (X, \mathcal{M}, \mu) = \mathcal{L}^1 (X) = \mathcal{L}^1 
 \]
 
 If \(E \in \mathcal{M}\), we define
@@ -134,7 +134,7 @@ If \(E \in \mathcal{M}\), we define
 \]
 
 \begin{remark}
-    \(f \in \mathcal{L}'(X) \Rightarrow \int_X f \, d\mu \in \real\). Indeed \(0 \leq f^\pm \leq |f|\)
+    \(f \in \mathcal{L}^1(X) \Rightarrow \int_X f \, d\mu \in \real\). Indeed \(0 \leq f^\pm \leq |f|\)
     \[
         \Rightarrow 0 \leq \int_X f^+ \, d\mu ,\ \int_X f^- \, d\mu \leq \int_X |f| \, d\mu < \infty \\
         \Rightarrow \int_X f \, d\mu = \int_X f^+ \, d\mu - \int_X f^- \, d\mu \in \real
@@ -194,13 +194,13 @@ The most relevant theorem for convergence is the following
         n \to \infty \qquad |f(x)| \leq g(x) \text{ a.e. on } X \\
         \Rightarrow f \in \mathcal{L}^1(X)
     \]  
-    Now, consider \(\Phi_n = 2g - |f_n - f|\). We have
+    Now, consider \(\oldphi_n = 2g - |f_n - f|\). We have
     \[
-        |f_n-f| \leq |f_n|+|f| \leq 2g \quad \text{ a.e. on }X \quad \Phi_n \geq 0 \quad \text{ a.e. on }X  
+        |f_n-f| \leq |f_n|+|f| \leq 2g \quad \text{ a.e. on }X \quad \oldphi_n \geq 0 \quad \text{ a.e. on }X  
     \]
     We can use Fatou's lemma:
     \[\begin{array}{l}
-        \int_X (\underbrace{\liminf_n \phi_n}_{\stackbelowlittle{\mbox{= 2g a.e.}}{\int_X 2g \; d\mu}}) \; d\mu \leq \liminf_n \int_X \phi_n \, d\mu = \liminf_n \int_X (2g - \abs{f_n - f}) \, d\mu = \\
+        \int_X (\underbrace{\liminf_n \oldphi_n}_{\stackbelowlittle{\mbox{= 2g a.e.}}{\int_X 2g \; d\mu}}) \; d\mu \leq \liminf_n \int_X \oldphi_n \, d\mu = \liminf_n \int_X (2g - \abs{f_n - f}) \, d\mu = \\
         = \int_X 2g \, d\mu + \liminf_n (-\int_X \abs{f_n - f} \, d\mu) =\int_X 2g \, d\mu - \limsup_n \int_X \abs{f_n - f} \, d\mu
     \end{array}
     \]

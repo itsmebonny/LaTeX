@@ -42,10 +42,10 @@ But on the other hand
 \]
 
 \begin{proposition}
-    \((X, \mathcal{M}, \mu)\) complete measure space. Let \(\{f_n\} \subseteq \mathcal{L}'(X, \mathcal{M}, \mu)\). 
+    \((X, \mathcal{M}, \mu)\) complete measure space. Let \(\{f_n\} \subseteq \mathcal{L}^1(X, \mathcal{M}, \mu)\). 
     
     Suppose that \(\sum_{n=1}^\infty \int_X |f_n| \, d\mu < \infty\)
-    Then the series \(\sum_{n=1}^\infty f_n\) converges a.e. on \(X\), it is in \(\mathcal{L}'(X)\) and 
+    Then the series \(\sum_{n=1}^\infty f_n\) converges a.e. on \(X\), it is in \(\mathcal{L}^1(X)\) and 
     \[
         \int_X \left( \sum_{n=1}^\infty f_n  \right) \, d\mu = \sum_{n=1}^\infty \int_X f_n \, d\mu
     \]
@@ -68,7 +68,7 @@ It is immediate to check that
 \]  
 
 \[
-    d_1(f, g) \leq d_1(f, h) + d_1(h, g) \; \;\forall f, g, h \in \mathcal{L}'(X) \tag*{(triangular inequality)}
+    d_1(f, g) \leq d_1(f, h) + d_1(h, g) \; \;\forall f, g, h \in \mathcal{L}^1(X) \tag*{(triangular inequality)}
 \]  
 However, \(d_1\) is not a distance on \(\mathcal{L}^1(X)\), since 
 \[
@@ -84,7 +84,7 @@ If \(f \in \mathcal{L}^1(X)\), we can consider the equivalence class
 \]
 We define
 \[
-    L^1(X) = \frac{\mathcal{L}^1(X)}{\sim} = \{[f]: f \in \mathcal{L}'(X)\}
+    L^1(X) = \frac{\mathcal{L}^1(X)}{\sim} = \{[f]: f \in \mathcal{L}^1(X)\}
 \]
 \(L^1(X)\) is a vector space, and on \(L^1(X)\) the function \(d_1\) is a distance: 
 \[
@@ -128,9 +128,16 @@ We define
 \subsubsection*{Relation between different types of convergence}
 \(\left\lbrace f_n \right\rbrace\) sequence of measurable functions \(X \to \barreal\)
 \begin{itemize}
-    \item \(f_n \to f\) is pointwise (everywhere) on \(X\) if \(f_n(x) \overset{n \to \infty}{\to} f(x) \; \forall \; x \in X\)
-    \item \(f_n \to f\) uniformly
-    \item \(f_n \to f\)
+    \item \(f_n \to f\) pointwise (everywhere) on \(X\) if \(f_n(x) \overset{n \to \infty}{\to} f(x) \; \forall \; x \in X\)
+    \item \(f_n \to f\) uniformly on \(X\) if \(\sup_{x \in X} \abs{f_n(x) - f(x)} \overset{n \to \infty}{\to} 0\)
+    \item \(f_n \to f\) a.e. on \(X\) if 
+    \[
+        \begin{array}{c}
+            \mu\left(\left\{ x \in X : \lim_n f_n(x) \neq f(x) \mbox{ or does not exist} \right\}\right) = 0 \\
+            \Updownarrow \\
+            f_n(x) \to f(x) \mbox{ for a.e } x \in X
+        \end{array}
+    \]
     \item \underline{Convergence in \(L^1(X)\)}
     \item \underline{Convergence in measure/probability}
 \end{itemize}
