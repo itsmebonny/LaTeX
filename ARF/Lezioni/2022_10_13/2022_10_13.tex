@@ -8,14 +8,18 @@ If \(f \geq 0\), then
 \]
 Goal: obtain a formula of iterated integral like the one in Analysis 2.
 
-\(\forall \bar{x} \in X\) and \(\bar{y} \in Y\)
+\(\forall \; \bar{x} \in X\) and \(\bar{y} \in Y\), we define
 \[
-    cose
+    \begin{array}{llll}
+        f_\bar{x} :& Y \to \barreal & f_\bar{y}:& X \to \barreal  \\
+        & y \mapsto f(\bar{x}, y) & & x \mapsto f(x, \bar{y})
+
+    \end{array}
 \]
 \begin{proposition}
     If \(f\) is measurable \(\Rightarrow\) \(f_{\bar{x}}\) is \((\mathcal{N}, \boreal)\)-measurable and \(f_{\bar{y}}\) is \((\mathcal{M}, \mathcal{B}(\barreal))\)-measurable.
     Then we can conclude
-    \( \phi : X \to \bar\real \):
+    \( \phi : X \to \bar\real \)
     \[
         \phi(x) = \int_Y f_x d\nu = \int_Y f(x,y) d\nu(y)
     \]
@@ -25,14 +29,18 @@ Goal: obtain a formula of iterated integral like the one in Analysis 2.
     \]
 \end{proposition}
 \underline{Questions:} what is the solution of \(\iint_{X \times Y}\)
-cose cose
+
 \begin{theorem}[Tonelli's theorem]
     \((X, \mathcal{M}, \mu)\) and \((Y, \mathcal{N}, \nu)\) complete measure spaces and \(\sigma\)-finite.
     Suppose that \(f\) is \((\mathcal{M} \otimes \mathcal{N}, \mathcal{B}(\barreal))\)-measurable and that \(f > 0\) a.e. on \(X \times Y\). Then \(\psi\) and \(\phi\) are measurable and
     \[
-        \iint_{X \times Y} f d\mu \otimes d\nu = cose
+        \iint_{X \times Y} f d\mu \otimes d\nu = \int_X \phi(x) \, d\mu(x) = \int_Y \psi(y) \, d\nu(y)
     \]
     Equally holds also if one of the integrals is \(\infty\).
+    \[
+        \int_X \phi(x) \, d\mu(x) = \int_X \left(\int_Y f(x, y) \, d\nu(y) \right) \, d\mu(x) 
+        \int_Y \psi(y) \, d\nu(y) = \int_Y \psi(y) \, d\nu(y)  
+    \]
 \end{theorem}
 \begin{remark}
     The double integral can be reduced to single integrals, iterated. Moreover we can always change the order of the integrals
@@ -44,13 +52,13 @@ cose cose
 \end{theorem}
 \underline{Question}: how to check if \(f\in L^1(X \times Y)\)? Typically, to check cosette
 
-If \(\iiiint_{X \times Y} \vert f \vert d\mu \otimes d\nu < \infty\) then we can apply Fubini for \(\iint_{X \times Y} f d\mu \otimes d\nu\)
+If \(\iint_{X \times Y} \vert f \vert d\mu \otimes d\nu < \infty\) then we can apply Fubini for \(\iint_{X \times Y} f d\mu \otimes d\nu\)
 \begin{remark}
     the proof of Fubini's and Tonelli's theorems is based for the iterated integrals for characteristic functions.
     (Note that \((\mu \otimes \nu)(E) = \int_X ()\) e altre cosette)
 \end{remark}
 \begin{remark}
-    Sometimes double integrals are very useful to compute single integrals.
+    Sometimes double nnjintegrals are very useful to compute single integrals.
 \end{remark}
 Ex: \(\int_{-\infty}^{+\infty}\exp{-x^2} = \sqrt{\pi}\)
 
