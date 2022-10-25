@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1666713739 "/home/bonni/Documents/LaTeX/ARF/ARF.tex" "ARF.pdf" "ARF" 1666713740
+["pdflatex"] 1666714840 "/home/bonni/Documents/LaTeX/ARF/ARF.tex" "ARF.pdf" "ARF" 1666714842
   "/etc/texmf/web2c/texmf.cnf" 1663235487 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/bonni/Documents/LaTeX/ARF/ARF.tex" 1666688434 2859 0a43afcd8daf9b0d47ae1c79da034c46 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -136,8 +136,8 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1663245285 4379155 98693266ff65f58d9f98aff394de12d2 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1663245305 2799600 82c7499e2bbeaef077fd78ca2cedfab0 ""
-  "ARF.aux" 1666713740 2305 6f4b309eb4d6c5dbdba27ccaedaa3630 "pdflatex"
-  "ARF.out" 1666713740 1844 7124c10d383bc7dfc767c822f14591bb "pdflatex"
+  "ARF.aux" 1666714842 2305 6f4b309eb4d6c5dbdba27ccaedaa3630 "pdflatex"
+  "ARF.out" 1666714842 1844 7124c10d383bc7dfc767c822f14591bb "pdflatex"
   "ARF.tex" 1666688434 2859 0a43afcd8daf9b0d47ae1c79da034c46 ""
   "Lezioni/2022_09_12/2022_09_12.tex" 1665668697 11607 57fd2cfff9e2cd56f5d9bff51ee7387f ""
   "Lezioni/2022_09_14/2022_09_14.tex" 1665668822 10541 890fb44be9b18572824796a51392f0be ""
@@ -149,7 +149,7 @@
   "Lezioni/2022_10_06/2022_10_06.tex" 1666705633 7632 30698a5f58b9a0fbbd5aa6b93387648e ""
   "Lezioni/2022_10_12/2022_10_12.tex" 1666708473 8710 f8c88b00b116272929de69bb00090fb7 ""
   "Lezioni/2022_10_13/2022_10_13.tex" 1666708824 2912 92fadd0e0d2c2d1e95c964d023f6ed01 ""
-  "Lezioni/2022_10_19/2022_10_19.tex" 1666713738 5443 c60936622236f1fc22d1fc2358e1d9ac ""
+  "Lezioni/2022_10_19/2022_10_19.tex" 1666714839 5484 bb6a00ae78ad74384d703428c260239c ""
   "Lezioni/2022_10_20/2022_10_20.tex" 1666251468 2963 05eaa720ce50b303b838947fbb5310f4 ""
   "Lezioni/2022_10_26/2022_10_26.tex" 1666688434 27 2ec9909c73eafe720e4b3c27c9442a76 ""
   "Lezioni/2022_10_27/2022_10_27.tex" 1666688434 27 3ea3f9b869ac79cda51d393c4ae13f7a ""
