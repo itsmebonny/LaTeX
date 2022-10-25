@@ -76,7 +76,7 @@ However, \(d_1\) is not a distance on \(\mathcal{L}^1(X)\), since
 \tag*{(pseudo-distance)}\]
 To overcome this problem, we introduce an equivalent relation in \(\mathcal{L}^1(X)\): we say that 
 \[
-    f ~ g \Longleftrightarrow f = g \quad \mbox{a.e. on }X
+    f \sim g \Longleftrightarrow f = g \quad \mbox{a.e. on }X
 \]
 If \(f \in \mathcal{L}^1(X)\), we can consider the equivalence class
 \[
@@ -84,7 +84,7 @@ If \(f \in \mathcal{L}^1(X)\), we can consider the equivalence class
 \]
 We define
 \[
-    L^1(X) = \frac{\mathcal{L}^1(X)}{~} = \{[f]: f \in \mathcal{L}'(X)\}
+    L^1(X) = \frac{\mathcal{L}^1(X)}{\sim} = \{[f]: f \in \mathcal{L}'(X)\}
 \]
 \(L^1(X)\) is a vector space, and on \(L^1(X)\) the function \(d_1\) is a distance: 
 \[
@@ -94,7 +94,7 @@ To simplify the notations, the elements of \(L^1(X)\) are called functions, and 
 
 Another relevant space of measurable functions is the space of \textbf{essentially bounded} functions
 \begin{definition}
-    \(f : X \to \overline{\mathbb{R}}\) measurable is called essentially bounded if \(\exists M > 0\) s.t.
+    \(f : X \to \overline{\mathbb{R}}\) measurable is called essentially bounded if \(\exists \; M > 0\) s.t.
     \[
         \mu(\left\lbrace x \in X : \vert f(x) \vert \geq M \right\rbrace) = 0
     \]
@@ -111,24 +111,23 @@ For \(M > 1\), \(\lambda(\left\lbrace x \in \mathbb{R} : \vert f(x) \vert > M\ri
 
 If \(f\) is essentially bounded, it is well defined the \textbf{essential supremum} of \(f\).
 \[
-    \underset{X}{esssup} f := \inf \left\lbrace M > 0 \mbox{ s.t. } f \leq M \mbox{ a.e. on }X\right\rbrace = \inf \left\lbrace M > 0 \mbox{ s.t. } \mu(\{f \geq M \})=0 \right\rbrace
+    \underset{X}{\esssup} f := \inf \left\lbrace M > 0 \mbox{ s.t. } f \leq M \mbox{ a.e. on }X\right\rbrace = \inf \left\lbrace M > 0 \mbox{ s.t. } \mu(\{f \geq M \})=0 \right\rbrace
 \]
 It can also be defined an essential inf.
 \begin{remark}
     Note that, by def of inf, \(\forall \; \epsilon > 0\) we have 
     \[
-        f \leq (\underset{X}{esssup} f) + \epsilon
+        f \leq (\underset{X}{\esssup} f) + \epsilon \qquad \text{a.e. on }X
     \]
 \end{remark}
 We define 
 \[
-    L^{\infty} (X, \mathcal{M}, \mu) = \frac{\mathcal{L}^{\infty}(X, \mathcal{M}, \mu)}{~}
+    L^{\infty} (X, \mathcal{M}, \mu) = \frac{\mathcal{L}^{\infty}(X, \mathcal{M}, \mu)}{\sim}
 \]
-\(L^{\infty}(X)\) is a vector space, and it is also a metric space for \(d_{\infty}(f,g) = \underset{X}{essup} \vert f-g \vert\)
+\(L^{\infty}(X)\) is a vector space, and it is also a metric space for \(d_{\infty}(f,g) = \underset{X}{\esssup} \vert f-g \vert\)
 \subsubsection*{Relation between different types of convergence}
 \(\left\lbrace f_n \right\rbrace\) sequence of measurable functions \(X \to \barreal\)
 \begin{itemize}
-    \item recupera
     \item \(f_n \to f\) pointwise
     \item \(f_n \to f\) uniformly
     \item \(f_n \to f\)
