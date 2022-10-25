@@ -127,13 +127,13 @@ Let \(f, g : X \to \left[0, \infty\right]\) measurable. \(E, F \in \mathcal{M}, 
 \end{proof}
 
 \begin{theorem}
-    \(s : X \to \left[0, \infty\right]\) simple. Define \(\phi : \mathbb{M} \to \left[0, \infty\right] \\ \phi(E) = \int_E s \, d\mu \\ \Rightarrow \phi \) is a measure. 
+    \(s : X \to \left[0, \infty\right]\) simple. Define \(\phi : \mathcal{M} \to \left[0, \infty\right] \\ \phi(E) = \int_E s \, d\mu \\ \Rightarrow \phi \) is a measure. 
 \end{theorem}
 
 \begin{proof}
     \(\mu(\emptyset) =0 \Rightarrow \phi(\emptyset)=0 \) by definition. 
     \begin{definition}[sigma additivity]
-        \(\{E_n \subset \mathbb{M}\}\) disjoint, and let \(E = \bigcup_{n=1}^\infty E_n \Rightarrow s = \sum_{k=1}^m a_k \chi_{D_k} \; D_k \in \mathbb{M}
+        \(\{E_n \subset \mathcal{M}\}\) disjoint, and let \(E = \bigcup_{n=1}^\infty E_n \Rightarrow s = \sum_{k=1}^m a_k \chi_{D_k} \; D_k \in \mathcal{M}
         \)
     \end{definition}
     Then, by definition and since \(\mu\) is a measure and \(E \cap D_k = \bigcup_n (E_n \cap D_k)  \) \\
@@ -171,7 +171,7 @@ The \(\int\) does not see sets with 0 measure.
     \(\Rightarrow \int_X f_n \, d\mu \leq \int_X f \, d\mu \; \forall n\) \\
     \(\Rightarrow \alpha \leq \int_X f \, d\mu \)
     We want to show that also \(\geq \) is true. Let \(s\) be a simple function s.t. \(0 \leq s \leq f\) and \(c \in \left(0,1\right)\)
-    Let \(E_n = \{f_n \geq cs\} \in \mathbb{M}\)
+    Let \(E_n = \{f_n \geq cs\} \in \mathcal{M}\)
     \begin{enumerate}
         \item \(E_n \in E_{n+1} \; \forall n:\) \\ if \(x \in E_n, \) then \(f_n(x) \geq cs(x) \Rightarrow f_{n+1}(x) \geq cs(x)\) \\ \(\Rightarrow f_{n+1}(x) \geq f_n(x) \geq cs(x) \Rightarrow x \in E_{n+1}\)
         \item Moreover, \(X = \bigcup_{n=1}^\infty E_n\). Indeed: \\ - if \(f(x)=0\), then \(s(x)=0 \Rightarrow f_1(x)=0 = cs(x), \; x \in E_1\) \\ - if \(f(x)>0\), then \(cs(x) < f(x)=\lim_n f_n(x)\) since \(s \leq f \) and \(c <1\) \\ \(\Rightarrow cs(x) < f_n(x)\) for \(n \) sufficiently large, namely \(x \in E_n \) for \(n \) sufficiently large. 

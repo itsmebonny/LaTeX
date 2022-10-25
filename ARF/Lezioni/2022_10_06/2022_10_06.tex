@@ -1,15 +1,16 @@
 \section{Lesson 06/10/2022}
-\(f \not \in R(I)\). Is it true that \(\exists g \in R(I)\) s.t. \(g = f\) almost everywhere (a.e.) on \(I\)? No.
+Let \(f \not \in R(I)\). Is it true that \(\exists \; g \in R(I)\) s.t. \(g = f\) a.e. on \(I\)? No.
 
-For instance, consider \(T_{\mathcal{E}}\), the generalized Cantor set (\(\lambda(T_{\mathcal{E}})\)). Consider \(\chi_{\mathcal{E}}\). 
+For instance, consider \(T_{\mathcal{E}}\), the generalized Cantor set (\(\lambda(T_{\mathcal{E}}) = 0\))and then consider \(\chi_{T_{\mathcal{E}}}\). 
 In general, \(\chi_{A}\) is discontinuous on \(\delta A\).  But \(T_{\mathcal{E}}\) has no interior parts \(\Longrightarrow T_{\mathcal{E}} = \delta T_{\mathcal{E}}\) \(\Longrightarrow \chi_{T_{\mathcal{E}}}\) is discontinuous on \(T_{\mathcal{E}}\), which has positive measure
-\(\Rightarrow \) by theorem 2, \(\chi_{T_\epsilon}\) is not \(R(I)\)
+\(\Rightarrow \) by the last theorem, \(\chi_{T_\epsilon}\) is not \(R(I)\)
 
 Clearly 
 \[
     \int_{[0,1]} \chi_{T_{\mathcal{E}}} d\lambda = \lambda(T_{\mathcal{E}})
 \]
 so \(\chi_{T_{\mathcal{E}}} \in \mathcal{L}^1([0,1])\).  
+
 If \(g = \chi_{T_{\mathcal{E}}}\) a.e., then \(g\) is discontinuous at almost every part of \(T_{\mathcal{E}} \Longrightarrow\) \(g\) is discontinuous on a set of positive measure \(\Longrightarrow g \not \in R(I)\). 
 So, the Lebesgue integral is a true extension of the Riemann one.
 
@@ -29,19 +30,21 @@ Regarding generalized integrals we have
     \[
         \int_{[a,b]} fd\lambda = \int_a^b f(x)dx
     \]
-    If \(f\) is in \(R^g([a,b])\), but \(\vert f\vert \not \in R^g([a,b])\),then the two notions of \(\int\) are not really related
+    If \(f\) is in \(R^g([a,b])\), but \(\vert f\vert \not \in R^g([a,b])\), then the two notions of \(\int\) are not really related
 \end{theorem}
 
 Ex:
-\(f(x) = \frac{\sin x}{x}, \quad x \in [1, \infty]\)
+\(f(x) = \frac{\sin x}{x},  x \in [1, \infty]\)
 \[\int_1^{\infty} \vert f(x) \vert dx = +\infty \Longrightarrow f \not \in \mathcal{L}^1([1, +\infty])\].
 But on the other hand
 \[
-    \int_1^{\infty} \frac{\sin x}{x} dx = \lim_{\omega \to \infty} \int_1^{\infty} \frac{\sin x}{x} dx = \frac{\pi}{2}
+    \int_1^{\infty} \frac{\sin x}{x} dx = \lim_{\omega \to \infty} \int_1^{\omega} \frac{\sin x}{x} dx = \frac{\pi}{2}
 \]
 
 \begin{proposition}
-    \((X, \mathcal{M}, \mu)\) complete measure space. Let \(\{f_n\} \subseteq \mathcal{L}'(X, \mathcal{M}, \mu)\). Suppose that \(\sum_{n=1}^\infty \int_X |f_n| \, d\mu < \infty\)
+    \((X, \mathcal{M}, \mu)\) complete measure space. Let \(\{f_n\} \subseteq \mathcal{L}'(X, \mathcal{M}, \mu)\). 
+    
+    Suppose that \(\sum_{n=1}^\infty \int_X |f_n| \, d\mu < \infty\)
     Then the series \(\sum_{n=1}^\infty f_n\) converges a.e. on \(X\), it is in \(\mathcal{L}'(X)\) and 
     \[
         \int_X \left( \sum_{n=1}^\infty f_n  \right) \, d\mu = \sum_{n=1}^\infty \int_X f_n \, d\mu
@@ -59,15 +62,18 @@ But on the other hand
     d_1 (f,g) =\int_{X} \vert f-g \vert 
 \]
 
-It is immediate to check that \(d_1 (f, g) = d_1(g, f)\) (symmetry)  
+It is immediate to check that 
+\[
+    d_1 (f, g) = d_1(g, f) \tag*{(symmetry)}
+\]  
 
-\(d_1(f, g) \leq d_1(f, h) + d_1(h, g) \; \forall f, g, h \in \mathcal{L}'(X)\) (triangular inequality)  
-
-
+\[
+    d_1(f, g) \leq d_1(f, h) + d_1(h, g) \; \;\forall f, g, h \in \mathcal{L}'(X) \tag*{(triangular inequality)}
+\]  
 However, \(d_1\) is not a distance on \(\mathcal{L}^1(X)\), since 
 \[
     d_1(f,g) = 0 \Longrightarrow f=g \quad \mbox{a.e on }X
-\tag*{(Pseudo-distance)}\]
+\tag*{(pseudo-distance)}\]
 To overcome this problem, we introduce an equivalent relation in \(\mathcal{L}^1(X)\): we say that 
 \[
     f ~ g \Longleftrightarrow f = g \quad \mbox{a.e. on }X
