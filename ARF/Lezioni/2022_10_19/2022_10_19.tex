@@ -109,7 +109,8 @@ To prove the theorem we need the
         \begin{array}{l}
             E \in \mathcal{M} \\
             \mu(E) < \delta
-        \end{array} \Longrightarrow 
+        \end{array} 
+        \Longrightarrow \int_E \abs{f} \, d\mu < \epsilon
     \]
 \end{theorem}
 \begin{proof}
@@ -117,12 +118,56 @@ To prove the theorem we need the
     \[
         \bigcup_{n=1}^{\infty} F_n = \left\{ \abs{f} < \infty \right\} =: F
     \]
-    \(f \in L^1 \Longrightarrow \abs{f}\)
+    \(f \in L^1 \Longrightarrow \abs{f}\) is finite a.e.: \(\mu(X \setminus F) =0\).
+    Therefore:
+    \[
+        \int_X \abs{f} \, d\mu = \int_{X \setminus F} \abs{f} \, d\mu + \int_F \abs{f} \, d\mu 
+        = \lim_{n \to\infty} \int_{F_n} \abs{f} \, d\mu
+    \]
+    \[
+        \lim_{n\to\infty} \int_X \abs{f} \left(\- \chi_{F_n} \right) \, d\mu =0
+    \]
+    \(\forall \; \epsilon >0 \exists \; \bar{n} \in \mathbb{N}\) s.t. 
+    \[
+        n > \bar{n} \Rightarrow \abs{\int_X \abs{f} \chi_{F_n^C} \, d\mu} < \frac{\epsilon}{2}
+    \]
+    Now, fix \(\epsilon >0 \), and take \(n > \bar{n}(\epsilon)\). If \(E \in \mathcal{M}\), then
+    \[
+        \int_E \abs{f} \, d\mu = \int_{E \cap F_n} \abs{f} \, d\mu + \int_{E \cap F_n^C} \abs{f} \, d\mu
+        \leq n \int_E 1 \, d\mu + \int_{F_n^C} \abs{f} \, d\mu 
+    \]
+    If we suppose that \(\mu(E) < \frac{\epsilon}{2n} =: \delta(\epsilon)\), we deduce that
+    \[
+        n \int_E 1 \, d\mu = n \mu(E) < \frac{\epsilon}{2}
+    \]
+    Also, since \(n > \bar{n}\)
+    \[
+        \int_{F_n^C} \abs{f} \, d\mu < \frac{\epsilon}{2}
+    \]
+    \[
+        \Rightarrow \int_E \abs{f} \, d\mu < \epsilon \]
 \end{proof}
 \begin{proof}[Regularity of integral functions]
     Let \(\epsilon > 0\), and \(\delta = \delta(\epsilon) > 0\) be the value given by the absolute continuity of \(\int \abs{f} \, d\mu\). 
     Take 
     \[
-        E = \bigcup_{k=1}
+        E = \bigcup_{k=1}^n \left[ a_k, b_k \right] \qquad E \subseteq \left[a, b\right]
     \]
+    If \(\lambda(E) < \delta\), then
+    \[
+        \sum_{k=1}^n \abs{F(b_k) - F(a_k)} = \sum_{k=1}^n \abs{\int_{a_k}^{b_k} f(t)\, dt} 
+        \leq \sum_{k=1}^n \int_{a_k}^{b_k} \abs{f(t)}\, dt
+        = \int_E \abs{f} \, d\lambda < \epsilon
+    \]
+    by absolute continuity of \(\int\) 
 \end{proof}
+\begin{remark}
+    \(\sqrt(x)\) is AC\((\left[0, 1\right])\), but is not Lip\((\left[0, 1\right])\).
+    \[
+        \sqrt{x} = \int_0^x \frac{1}{2\sqrt{t}} \, dt
+    \]
+    \(\Rightarrow \sqrt{x}\) is the \(\int\) function of a \(L^1\) function \\
+    \(\Rightarrow \sqrt{x} \in \text{AC}(\left[0, 1\right])\)
+\end{remark}
+
+To sum up: the \(\int \) function of a 
