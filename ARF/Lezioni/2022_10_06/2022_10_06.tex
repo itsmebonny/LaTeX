@@ -140,11 +140,22 @@ We define
     \]
     \item \underline{Convergence in \(L^1(X)\)}: \(f_n \to f\) in \(L^1(X)\) if 
     \[
-        \int_X \underbrace{\abs{f_n - f}}_{\stackbelow{}{d_1(f_n, f)}}
+        \int_X \stackbelow{\abs{f_n - f}}{d_1(f_n, f)} \, d\mu \overset{n\to \infty}{\to} 0
     \]
-    \item \underline{Convergence in measure/probability}
+    \item \underline{Convergence in measure/probability}: \(f_n \to f\) in measure if \(\forall \, \alpha 0\)
+    \[
+        \lim_{n\to \infty} \mu\left(\left\{ \abs{f_n - f} \geq \alpha \right\}\right) = 0
+    \]
 \end{itemize}
-cose cose parlavo con ila 
+\underline{Basic facts}: uniformly convergence \(\underset{\displaystyle\not\Leftarrow}{\Rightarrow}\) pointwise \(\underset{\displaystyle\not\Leftarrow}{\Rightarrow}\) a.e. convergence.
+
+\underline{Ex:} \(f_n (x) = \exp{-nx}, x \in [0,1]\)
+\[
+    f(x) = 0, \quad g(x) = \begin{cases}
+        0 & x \in (0, 1]\\ 1 & x = 0
+    \end{cases}
+\]
+Then \(f_n \to g\) pointwise, \(g = f\) a.e. \(\Longrightarrow f_n \to f\) a.e. on \([0,1]\). But \(f(0) \neq g(0) \Longrightarrow f_n \to f\) pointwise. 
 \begin{theorem}[Egorov]
     Let \(\mu(X) < +\infty\), and suppose that \(f_n \to f\) a.e. on \(X\). Then, \(\forall \; \epsilon > 0, \exists X_{\epsilon} \subset X\), measurable, s.t. 
     \[
