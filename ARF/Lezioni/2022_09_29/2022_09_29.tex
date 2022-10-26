@@ -7,8 +7,8 @@
     Note that, \(\forall \; E \in \mathcal{L}(\real) \exists \; \mbox{ a } G_{\delta}-\mbox{set } A\) and an \(F_{\delta}-\mbox{set } B\) s.t.
     \[
         \begin{array}{l}
-            A \supset E \mbox{ and } \lambda(A \backslash E) = 0 \\
-            B \subset E \mbox{ and } \lambda(E \backslash B) = 0
+            A \supset E \mbox{ and } \lambda(A \setminus E) = 0 \\
+            B \subset E \mbox{ and } \lambda(E \setminus B) = 0
         \end{array}
     \]
 \end{remark}
@@ -84,11 +84,11 @@ With this convention, \(+ \) and \( \cdot\) of measurable functions are measurab
         \item In the definition we have already used the convention \(\mu(D_n \cap E = +\infty) \quad \mbox{ for some }n\)
         \item \(E \in \mathcal{M} \Longrightarrow \chi_E\) is a simple function
         \[
-            \chi_E(x) = 1 \cdot \chi_E + 0 \cdot \chi_{X\backslash E}(x)
+            \chi_E(x) = 1 \cdot \chi_E + 0 \cdot \chi_{X\setminus E}(x)
         \] 
         In this case 
         \[
-            \int_X \chi_E \, d\mu = 1\cdot \mu(E) + 0 \cdot \mu(X\backslash E) = \mu(E)
+            \int_X \chi_E \, d\mu = 1\cdot \mu(E) + 0 \cdot \mu(X\setminus E) = \mu(E)
         \]
         \item \(s\chi_E = \sum_{n=1}^m a_n\chi_{D_n \cap E} \Longrightarrow \int_E s\, d\mu = \int_X s\chi_E \, d\mu\)
     \end{itemize}

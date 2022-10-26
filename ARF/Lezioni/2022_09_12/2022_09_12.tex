@@ -99,7 +99,7 @@ A subfamily of \(E_i\) that is still a covering is called a \textbf{subcovering}
     \[
         \chi_E (x):= \begin{cases}
             1 & \mbox{if } x \in E \\
-            0 & \mbox{if } x \in X\backslash E
+            0 & \mbox{if } x \in X\setminus E
         \end{cases}
     \]
     is called \textbf{characteristic function} of \(E\)
@@ -179,7 +179,7 @@ in this case if \(n\) is even, \(E_n = \left\lbrace \mbox{even numbers} \right\r
     A family \(\mathcal{M} \subseteq \mathcal{P}(X)\) is called a \textbf{\(\mathbf{\sigma}\)-algebra} if 
     \begin{enumerate}
         \item \(X \in \mathcal{M}\)
-        \item \(E \in \mathcal{M} \Longrightarrow E^C = X\backslash E \in \mathcal{M}\)
+        \item \(E \in \mathcal{M} \Longrightarrow E^C = X\setminus E \in \mathcal{M}\)
         \item If \(E = \bigcup_{n \in \mathbb{N}}\) and \(E_n \in \mathcal{M} \; \forall \, n\), then \(E \in \mathcal{M}\)
     \end{enumerate}
 \end{definition}
@@ -204,7 +204,7 @@ Some \textbf{basic properties} of a measurable space \((X, \mathcal{M})\):
     \]
     \end{enumerate}
 \begin{itemize}
-    \item \(E, F \in \mathcal{M} \Longrightarrow E \backslash F \in \mathcal{M} = E \backslash F = E \cap F^C \in \mathcal{M}\)
+    \item \(E, F \in \mathcal{M} \Longrightarrow E \setminus F \in \mathcal{M} = E \setminus F = E \cap F^C \in \mathcal{M}\)
     \item If \(\Omega \subset X\), then the \textbf{restriction} of \(\mathcal{M}\) to \(\Omega\), written as \[\mathcal{M}\vert_{\Omega} := \left\lbrace F \subseteq \Omega: F = E \cap \Omega, \mbox{ with } E \in \mathcal{M} \right\rbrace\] is a \(\sigalg\) on \(\Omega\)
 \end{itemize}
 \begin{theorem}

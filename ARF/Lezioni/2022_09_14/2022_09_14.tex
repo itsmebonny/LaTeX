@@ -27,7 +27,7 @@ Then:
     \]
     \item the \textbf{excision property}
     \[
-        \forall \; E, f \in \mathcal{M}, \mbox{ with } E \subset F \mbox{ and } \mu(E) < +\infty \Longrightarrow \mu(F\backslash E) = \mu(F) - \mu(E)
+        \forall \; E, f \in \mathcal{M}, \mbox{ with } E \subset F \mbox{ and } \mu(E) < +\infty \Longrightarrow \mu(F\setminus E) = \mu(F) - \mu(E)
     \]
     \item \textbf{monotonicity}
     \[
@@ -42,8 +42,8 @@ Then:
         \[
             \mu(E \cup F) = \mu\left(\bigcup_{n} E_n\right) = \sum_n \mu(E_n) = \mu(E) + \mu(F) + \underbrace{\mu(E_k)}_{= \mu(\emptyset)}
         \] 
-        \item \(E \subset F\), so \(F = E \cup (F \backslash E)\) and this is disjoint \(\overset{(i)}{\Longrightarrow} \mu(F) = \mu(E) + \mu(F\backslash E)\), and since \(\mu(E) < \infty\), the property follows.
-        \item \(E \subset F \Longrightarrow \mu(F) = \mu(E) + \underbrace{\mu(F\backslash E)}_{\geq 0} \geq \mu(E)\)
+        \item \(E \subset F\), so \(F = E \cup (F \setminus E)\) and this is disjoint \(\overset{(i)}{\Longrightarrow} \mu(F) = \mu(E) + \mu(F\setminus E)\), and since \(\mu(E) < \infty\), the property follows.
+        \item \(E \subset F \Longrightarrow \mu(F) = \mu(E) + \underbrace{\mu(F\setminus E)}_{\geq 0} \geq \mu(E)\)
         \item 
      \end{enumerate}
     \end{proof}
@@ -90,21 +90,21 @@ Then:
 \end{enumerate}
 \begin{proof}
     \begin{enumerate}
-        \item if \(\exists \; i\) s.t. \(\mu(E_i) = +\infty\), then is trivial. Assume then that every \(E_i\) has a finite measure, so that \(E = \bigcup_{i=1}^{\infty} E_i = \bigcup_{i=0}^{\infty}(E_{i+1}\backslash E_i)\) with \(E_0 = \emptyset\).
+        \item if \(\exists \; i\) s.t. \(\mu(E_i) = +\infty\), then is trivial. Assume then that every \(E_i\) has a finite measure, so that \(E = \bigcup_{i=1}^{\infty} E_i = \bigcup_{i=0}^{\infty}(E_{i+1}\setminus E_i)\) with \(E_0 = \emptyset\).
         
-        So, by \(\sigma\)-additivity \[\mu(E) = \mu\left(\bigcup_{i=0}^{\infty}(E_{i+1}\backslash E_i)\right) = \]
+        So, by \(\sigma\)-additivity \[\mu(E) = \mu\left(\bigcup_{i=0}^{\infty}(E_{i+1}\setminus E_i)\right) = \]
         \[
-            = \sum_{i = 0}^{\infty} \mu(E_{i + 1} \backslash E_i) \overset{(excision)}{=} \sum_{i=0}^{\infty}\left(\mu(E_{i+1} - \mu(E_i))\right) = 
+            = \sum_{i = 0}^{\infty} \mu(E_{i + 1} \setminus E_i) \overset{(excision)}{=} \sum_{i=0}^{\infty}\left(\mu(E_{i+1} - \mu(E_i))\right) = 
         \]
         \[
             \overset{(telescopic \; series)}{=} \lim_n \mu(E_n) - \underbrace{\mu(E_0)}_{= 0} = \lim_n \mu(E_n)
         \]
-        \item For simplicity, suppose \(\tau = 1\), and define \(F_k = E_i\backslash E_k\) 
+        \item For simplicity, suppose \(\tau = 1\), and define \(F_k = E_i\setminus E_k\) 
         \[
             \left\lbrace E_k \right\rbrace \searrow \Longrightarrow \left\lbrace F_k \right\rbrace \nearrow
         \]
         \[
-            \mu(E_i) = \mu(E_k) + \mu(F_k) \mbox{ and } \bigcup_k F_k = E_i \backslash (\bigcap_k E_k)
+            \mu(E_i) = \mu(E_k) + \mu(F_k) \mbox{ and } \bigcup_k F_k = E_i \setminus (\bigcap_k E_k)
         \]
         \[
             \mu(E_i) = \mu(\bigcup_k F_k) + \underbrace{\mu(\bigcap_k E_k)}_{\mu(E)} =
@@ -123,9 +123,9 @@ Counterexample: given \((\mathcal{N}, \mathcal{P}(\mathbb{N}), \mu_C)\) measure 
 \((X, \mathcal{M}, \mu)\) is a measure space. \(\forall \left\lbrace E_n \right\rbrace \subseteq \mathcal{M}\) (not necessarily disjoint): \(\mu\left(\bigcup_n E_n\right) \leq \sum_n \mu(E_n)\)
 \end{theorem}
 \begin{proof}
-    \(E_1, E_2 \in \mathcal{M}\) and also \(E_1 \cup E_2 = E_1 \cup (E_2 \backslash E_1)\) disjoint sets.
+    \(E_1, E_2 \in \mathcal{M}\) and also \(E_1 \cup E_2 = E_1 \cup (E_2 \setminus E_1)\) disjoint sets.
     \[
-        \mu(E_1 \cup E_2) = \mu(\underbrace{E_2 \backslash E_1}_{\subseteq E_2}) \overset{(monotonicity)}{\leq} \mu(E_1) + \mu(E_2)
+        \mu(E_1 \cup E_2) = \mu(\underbrace{E_2 \setminus E_1}_{\subseteq E_2}) \overset{(monotonicity)}{\leq} \mu(E_1) + \mu(E_2)
     \]
     that means that we have the subadditivity for finitely many sets.
     \[
@@ -176,15 +176,15 @@ It can be phrased as: \begin{quote}
 
     A measure space may not be complete. However, let 
     \[
-        \overline{\mathcal{M}} := \left\lbrace E \subseteq X : \exists\; F, G \in \mathcal{M} \mbox{ with } F\subseteq E \subseteq G \mbox{ and } \mu(G\backslash F) = 0\right\rbrace
+        \overline{\mathcal{M}} := \left\lbrace E \subseteq X : \exists\; F, G \in \mathcal{M} \mbox{ with } F\subseteq E \subseteq G \mbox{ and } \mu(G\setminus F) = 0\right\rbrace
     \]
     Clearly \(\mathcal{M} \subseteq \overline{\mathcal{M}}\). For \(E \in \overline{\mathcal{M}}\), take \(F\) and \(G\) as above and let \(\bar{\mu}(E) = \bar{\mu}(F)\) then \(\bar{\mu}\vert_{\mathcal{M}} = \mu\), and moreover:
 \end{definition}
 \begin{theorem}
-    \(\measurespace\) is a complete measure space. Let's observe that \(\bar{\mu}\) is well defined: let \(E \subseteq X\) and \(F_1,F_2, G_1, G_2\) s.t. \(F_i \subset E \subset G_i \quad i = 1,2\). Then \(\mu(G_i\backslash F_i) = 0\). Now we have to check that \(\mu(F_1) = \mu(F_2)\). 
+    \(\measurespace\) is a complete measure space. Let's observe that \(\bar{\mu}\) is well defined: let \(E \subseteq X\) and \(F_1,F_2, G_1, G_2\) s.t. \(F_i \subset E \subset G_i \quad i = 1,2\). Then \(\mu(G_i\setminus F_i) = 0\). Now we have to check that \(\mu(F_1) = \mu(F_2)\). 
 
     Since \[
-        F_1 \backslash F_2 \subseteq E\backslash F_2 \subseteq G_2 \backslash F_2
+        F_1 \setminus F_2 \subseteq E\setminus F_2 \subseteq G_2 \setminus F_2
     \] 
-    and \(G_2 \backslash F_2\) has \(0\) measure \(\Longrightarrow \mu(F_1 \backslash F_2) = 0\). Then \(F_1 = (F_1 \backslash F_2) \cup (F_1 \cap F_2) \Longrightarrow \mu(F_1) = \mu(F_1 \cap F_2).\) In the same way, \(\mu(F_2) = \mu(F_1 \cap F_2)\)
+    and \(G_2 \setminus F_2\) has \(0\) measure \(\Longrightarrow \mu(F_1 \setminus F_2) = 0\). Then \(F_1 = (F_1 \setminus F_2) \cup (F_1 \cap F_2) \Longrightarrow \mu(F_1) = \mu(F_1 \cap F_2).\) In the same way, \(\mu(F_2) = \mu(F_1 \cap F_2)\)
 \end{theorem}

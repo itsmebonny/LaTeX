@@ -89,19 +89,19 @@ The relation between \(\boreal\) and \(\mathcal{L}(\real)\) is clarified by
         \item \(E \in \mathcal{L}(\real)\)
         \item \(\forall \; \epsilon > 0 \exists \; A \supset E\), \(A \mbox{ open}\) s.t.
         \[
-            \lambda \left(A \backslash E\right) < \epsilon
+            \lambda \left(A \setminus E\right) < \epsilon
         \]
         \item \(\exists \; G \supset E\), \(G \mbox{ of class } G_{\delta}\), s.t. 
         \[
-            \lambda(G\backslash E) = 0
+            \lambda(G\setminus E) = 0
         \]
         \item \(\exists \; C \subset E\), \(C \mbox{ closed}\), s.t. 
         \[
-            \lambda(E\backslash C) = 0
+            \lambda(E\setminus C) = 0
         \]
         \item \(\exists \; F \subset E\), \(F \mbox{ of class } F_{\delta}\), s.t. 
         \[
-            \lambda(E\backslash F) = 0
+            \lambda(E\setminus F) = 0
         \]
     \end{enumerate}
 \end{theorem}
@@ -119,17 +119,17 @@ The relation between \(\boreal\) and \(\mathcal{L}(\real)\) is clarified by
         \]
         Then, by excision
         \[
-            \lambda(A \backslash E) = \lambda(A) - \lambda(E) \leq \epsilon
+            \lambda(A \setminus E) = \lambda(A) - \lambda(E) \leq \epsilon
         \]
-        \item[(2)]\( \Rightarrow (3)\) Define, for every \(K \in \mathbb{N}\), an open set \(A_k\) s.t. \(A_k \supset E\) and \(\lambda(A_k \backslash E) < \frac{1}{k}\). Let \(A = \bigcap_k A_k\). This is a \(G_{\delta}\) set, it contains \(E\) (since each \(A_k\) contains \(E\)) and 
+        \item[(2)]\( \Rightarrow (3)\) Define, for every \(K \in \mathbb{N}\), an open set \(A_k\) s.t. \(A_k \supset E\) and \(\lambda(A_k \setminus E) < \frac{1}{k}\). Let \(A = \bigcap_k A_k\). This is a \(G_{\delta}\) set, it contains \(E\) (since each \(A_k\) contains \(E\)) and 
         \[
-            \lambda(A \backslash E) \underset{(A \subset A_k \; \forall \; k)}{\leq} \lambda(A_k \backslash E) < \frac{1}{k} \Longrightarrow \lambda(A \backslash E) = 0 \quad \forall \; k
+            \lambda(A \setminus E) \underset{(A \subset A_k \; \forall \; k)}{\leq} \lambda(A_k \setminus E) < \frac{1}{k} \Longrightarrow \lambda(A \setminus E) = 0 \quad \forall \; k
         \]
-        \item[(3)]\( \Rightarrow (1)\)] If \(E \subset \real\) and \(\exists\; G \supset E\), with \(G\) of class \(G_{\delta},\) s.t. \(\lambda(G \backslash E) = 0\), then
+        \item[(3)]\( \Rightarrow (1)\)] If \(E \subset \real\) and \(\exists\; G \supset E\), with \(G\) of class \(G_{\delta},\) s.t. \(\lambda(G \setminus E) = 0\), then
         \[
-            E = G \backslash(G \backslash E) \mbox{ is measurable}
+            E = G \setminus(G \setminus E) \mbox{ is measurable}
         \]
-        since \(G\) is a Borel set and \((G \backslash E)\) has \(0\) measure, then both are in \(\mathcal{L}\)
+        since \(G\) is a Borel set and \((G \setminus E)\) has \(0\) measure, then both are in \(\mathcal{L}\)
     \end{itemize}
 \end{proof}
 \begin{remark}
