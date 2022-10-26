@@ -169,15 +169,18 @@ a.e. \(\not\Longrightarrow\) uniform, but not all is lost...
     \]
     and \(f_n \to f\) uniformly on \(X_{\epsilon}\)
 \end{theorem}
+\underline{Ex}: in an example \(f_n \to 0\) a.e., \(f_n \to 0\) uniformly on \([0,1]\), but \(f_n \to 0\) uniformly on \([\epsilon, 1]\).
+
+Regarding a.e. convergence and in measure convergence there is the following theorem
 \begin{theorem}
     If \(\mu(X) < +\infty\) and \(f_n \to f\) a.e. on \(X\) \(\Longrightarrow f_n \to f\) is measure on \(X\)
 \end{theorem}
 \begin{proof}
     Let \(\alpha > 0\). We want to show that \(\forall \; \epsilon > 0\) \(\exists \bar{n} \in \mathbb{N}\) s.t. 
     \[
-        n > \bar{n} \Longrightarrow \mu(\left\lbrace \right\rbrace)
+        n > \bar{n} \Longrightarrow \mu(\left\lbrace \abs{f_n -f} \geq \alpha\right\rbrace) <\epsilon
     \]
-    altre cosette 
+    \(f_n \to f\) a.e. on \(X\), \(\mu(X) < +\infty\) \(\overset{\text{Egorov}}{\Longrightarrow} \exists \; X_{\epsilon} \subseteq X\) s.t. \(\mu(X \setminus X_{\epsilon}) < \epsilon\) and \(f_n \to f\) uniformly on \(X_{\epsilon}\) \(\Longleftrightarrow \sup_{X_{\epsilon}} \abs{f_n - f} \overset{n\to \infty}{\to} 0\)
 \end{proof}
 \begin{remark}
     \(\mu(X) < +\infty\) is essential
