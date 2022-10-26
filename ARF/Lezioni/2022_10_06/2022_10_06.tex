@@ -147,7 +147,7 @@ We define
         \lim_{n\to \infty} \mu\left(\left\{ \abs{f_n - f} \geq \alpha \right\}\right) = 0
     \]
 \end{itemize}
-\underline{Basic facts}: uniformly convergence \(\underset{\displaystyle\not\Leftarrow}{\Rightarrow}\) pointwise \(\underset{\displaystyle\not\Leftarrow}{\Rightarrow}\) a.e. convergence.
+\underline{Basic facts}: uniformly convergence \(\underset{\displaystyle\nLeftarrow}{\Rightarrow}\) pointwise \(\underset{\displaystyle\nLeftarrow}{\Rightarrow}\) a.e. convergence.
 
 \underline{Ex:} \(f_n (x) = \exp{-nx}, x \in [0,1]\)
 \[
@@ -157,11 +157,11 @@ We define
 \]
 Then \(f_n \to g\) pointwise, \(g = f\) a.e. \(\Longrightarrow f_n \to f\) a.e. on \([0,1]\). But \(f(0) \neq g(0) \Longrightarrow f_n \to f\) pointwise. 
 
-\(f_n \not\to g\) uniformly on \([0,1]\) \(\bigg\lvert \begin{array}{l}
+\(f_n \nrightarrow g\) uniformly on \([0,1]\) \(\bigg\lvert \begin{array}{l}
     f_n \in \mathcal{C}([0,1]) \\ f_n \to g \Longrightarrow g \in \mathcal{C}([0,1])
 \end{array}\)
 
-a.e. \(\not\Longrightarrow\) uniform, but not all is lost...
+a.e. \(\nRightarrow\) uniform, but not all is lost...
 \begin{theorem}[Egorov]
     Let \(\mu(X) < +\infty\), and suppose that \(f_n \to f\) a.e. on \(X\). Then, \(\forall \; \epsilon > 0, \exists X_{\epsilon} \subset X\), measurable, s.t. 
     \[
@@ -180,7 +180,19 @@ Regarding a.e. convergence and in measure convergence there is the following the
     \[
         n > \bar{n} \Longrightarrow \mu(\left\lbrace \abs{f_n -f} \geq \alpha\right\rbrace) <\epsilon
     \]
-    \(f_n \to f\) a.e. on \(X\), \(\mu(X) < +\infty\) \(\overset{\text{Egorov}}{\Longrightarrow} \exists \; X_{\epsilon} \subseteq X\) s.t. \(\mu(X \setminus X_{\epsilon}) < \epsilon\) and \(f_n \to f\) uniformly on \(X_{\epsilon}\) \(\Longleftrightarrow \sup_{X_{\epsilon}} \abs{f_n - f} \overset{n\to \infty}{\to} 0\)
+    \(f_n \to f\) a.e. on \(X\), \(\mu(X) < +\infty\) \(\overset{\text{Egorov}}{\Longrightarrow} \exists \; X_{\epsilon} \subseteq X\) s.t. \(\mu(X \setminus X_{\epsilon}) < \epsilon\) and \(f_n \to f\) uniformly on \(X_{\epsilon}\) \(\Longleftrightarrow \sup_{X_{\epsilon}} \abs{f_n - f} \overset{n\to \infty}{\to} 0\).
+
+    In particular, this means that \(\exists \; \bar{n} \in \mathbb{N}\) s.t. \(n > \bar{n} \Longrightarrow \abs{f_n -f} < \alpha\) on \(X_{\epsilon}\).
+
+    Therefore 
+    \[
+        \left\{ \abs{f_n -f} \geq \alpha \right\} \cap  X_{\epsilon} = \emptyset \Longrightarrow \left\{ \abs{f_n -f} \geq \alpha \right\} \subseteq X \setminus X_{\epsilon} \qquad \text{for } n> \bar{n} 
+    \]
+    By monotonicity of \(\mu\), we deduce that
+    \[
+        \mu\left(\left\{ \abs{f_n -f} \geq \alpha \right\}\right) \leq \mu(X \setminus X_{\epsilon}) < \epsilon \quad \mbox{for }n> \bar{n}
+    \]
+    Namely, \(f_n \to f\) in measure.
 \end{proof}
 \begin{remark}
     \(\mu(X) < +\infty\) is essential
