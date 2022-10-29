@@ -44,7 +44,9 @@ Well known fact: if \(\left(X, d\right)\) is a metric space, then \(E\) is compa
     \[
         \norm{x-u} = \norm{ \frac{y-z}{\norm{y-z}} - u }
         = \norm{ \frac{y-z -\norm{y-z}u }{\norm{y-z}} }
-        = \frac{1}{\norm{y-z}} \norm{y-(z + \norm{y-z}u)}
+        = \frac{1}{\norm{y-z}} \norm{y-(z + \norm{y-z}u)} =
+    \]
+    \[
         = \frac{1}{\norm{y-z}} \norm{y-w}
         \geq \frac{1}{\norm{y-z}} \text{dist}(y, E)
         \overset{1}{\geq} \frac{1-\epsilon}{d} d = 1 - \epsilon
