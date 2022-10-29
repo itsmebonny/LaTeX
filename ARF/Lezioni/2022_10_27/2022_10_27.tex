@@ -1,1 +1,95 @@
 \section{Lesson 27/10/2022}
+
+\(\left(X, d\right)\) metric space.
+\begin{definition}
+    \(E \subset X\) is compact if for any open covering \(\{A_i\}_{i \in I}\) has a finite subcover.
+\end{definition}
+
+\begin{definition}
+    \(E \subset X\) is sequentially compact if \(\forall \; \{x_n\} \subset E \) there exists \(\{x_{n_k}\}\) subsequence convergent to some limit \(x \in E\)
+\end{definition}
+
+Well known fact: if \(\left(X, d\right)\) is a metric space, then \(E\) is compact \(\iff E \) is sequentially compact.
+
+\begin{theorem}[Riesz]
+    \(X\) normed space, dim\(X = \infty\) \(\iff \bar{B}_1(0)\) is not compact. 
+\end{theorem}
+
+\begin{lemma}
+    \(X\) normed space, \(E \subsetneq X\) closed subspace. Then \(\forall \; \epsilon \in \left(0, 1\right) \ \exists \; x \in X \) s.t. 
+    \[
+        \norm{x}=1 \text{ and } \text{dist}(x, E) = \inf_{y \in E} \norm{x-y} \geq 1- \epsilon\]
+\end{lemma}
+
+\begin{remark}
+    \begin{itemize}
+        \item \(E \in X\) closed. Then dist\((x, E)=0 \iff x \in E\)
+        \item By definition of infimum, if \(d =\) dist\((x, E)\), then \(\forall \rho >0 \ \exists \; z \in E\) s.t. 
+        \[
+            \norm{x-z} < (1+\rho) d
+        \]
+    \end{itemize}
+\end{remark}
+
+\begin{proof}
+    Let \(y \in X \setminus E\), and \(d := \) dist\((y, E) >0\), since \(E\) is closed. 
+    
+    \(\forall \; \rho > 0 \ \exists z \in E \) s.t.
+    \[
+        \norm{y-z} \leq (1+\rho)d = \frac{d}{1-\epsilon} \tag{1}
+    \]
+    since we choose \(\rho\) s.t. \(1+\rho = \frac{1}{1-\epsilon}\). Now we set \(x = \frac{y-z}{\norm{y-z}}\).
+
+    Clearly \(\norm{x}=1\). Moreover, \(\forall \; u \in E\), we have that
+    \[
+        \norm{x-u} = \norm{ \frac{y-z}{\norm{y-z}} - u }
+        = \norm{ \frac{y-z -\norm{y-z}u }{\norm{y-z}} }
+        = \frac{1}{\norm{y-z}} \norm{y-(z + \norm{y-z}u)}
+        = \frac{1}{\norm{y-z}} \norm{y-w}
+        \geq \frac{1}{\norm{y-z}} \text{dist}(y, E)
+        \overset{1}{\geq} \frac{1-\epsilon}{d} d = 1 - \epsilon
+    \]
+    Since this is true \(\forall \; u \in E\), we deduce that
+    \[
+        \text{dist}(x, E) \geq 1-\epsilon
+    \]
+\end{proof}
+
+\subsection*{Compactness on \(\mathcal{C}^0(\left[a, b\right])\)}
+\begin{definition}
+    \(\{f_n\}\) sequence in \(\mathcal{C}^0(\left[a, b\right])\). We say that \(\{f_n\}\) is uniformly equicontinuous in \([a, b]\) if \(\forall \; \epsilon >0 \exists \delta >0 \) depending only on \(\epsilon \) s.t. 
+    \[
+        |t-\tau| < \delta \Rightarrow \| f_n(t) - f_n(\tau) \| < \epsilon \qquad \forall \; n
+    \]
+\end{definition}
+
+\begin{remark}
+    With respect to the uniform continuity, in this case \(\delta\) does not depend on \(f\). \(\delta\) is the same for all the \(f_n\)s
+\end{remark}
+
+\begin{theorem}
+    \(\{f_n\} \subseteq \mathcal{C}^0(\left[a, b\right])\). Suppose that:
+    \begin{itemize}
+        \item \(\{f_n\}\) is uniformly equicontinuous
+        \item \(\{f_n\}\) is bounded: \(\exists \; M>0\) s.t. \(\norm{f_n}_\infty <M \qquad \forall \; n\)
+    \end{itemize}
+    Then \(\exists\) a subsequence \(\{f_{n_k}\}\) and \(f \in \mathcal{C}^0(\left[a, b\right])\) s.t. \(f_{n_k} \rightarrow f \) uniformly.
+\end{theorem}
+
+Lebesgue spaces. \\
+\((X, \mathcal{M}, \mu)\) measure space, \(p \in \left[1, \infty\right]\). We defined \(L^1(X)\) and \(L^\infty(X)\). In a similar way, we define \(L^p(X)\) \(\forall \; p \in \left[1, \infty\right]\)
+\[
+    \mathcal{L}^p (X, \mathcal{M}, \mu) := \{ f: X \rightarrow \barreal \text{ measurable s.t. } \int_X |f|^p \, d\mu < \infty\}
+\]
+On \(\mathcal{L}^p\) we introduce the equivalent relation
+\[
+    f tilde g \text{ in } \mathcal{L}^p \iff f=g \text{ a.e. on } X 
+\]
+and define 
+\[
+    {L}^p (X, \mathcal{M}, \mu) := \frac{\mathcal{L}^p (X, \mathcal{M}, \mu)}{tilde}
+\]
+
+
+
+.... page 7
