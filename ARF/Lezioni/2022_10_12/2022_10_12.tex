@@ -1,7 +1,19 @@
 \section{Lesson 12/10/2022}
-Typewriter sequence che però aveva iniziato la lezione scorsa
-
 \begin{remark}
+    Convergence in measure \(\Longrightarrow\) a.e convergence?
+
+    No, not even if \(\mu(X) < +\infty\).
+
+    Consider \(\chi_{n,k} = \chi_{[\frac{k-1}{n}, \frac{k}{n}]}\) with \(n \in \mathbb{N}, k = 1, \ldots, n\)
+    \[
+        \begin{array}{ccc}
+            \chi_{1,1}(x) = \chi_{[0, 1]}(x) & & \\
+            \chi_{2,1}(x) = \chi_{[0, \frac{1}{2}]}(x) & \chi_{2,2}(x) = \chi_{[\frac{1}{2}, 1]}(x) & \\
+            \chi_{3,1}(x) = \chi_{[0, \frac{1}{3}]}(x) & \chi_{3,2}(x) = \chi_{[\frac{1}{3}, \frac{2}{3}]}(x) &\chi_{3,3}(x) = \chi_{[\frac{2}{3}, 1]}(x) \\
+        \end{array}
+    \]
+    For \(n\) fixed and \(k\) variable, we move the \(\chi\) from the left to right. When the \(\chi\) reaches \(1\), we switch \(n\), and \(\chi\) reappear from the left, being thinner. We can order the elements of \(\chi_{n,k}\) in a sequence, letting
+    \(f_p = \chi_{n,k}\) for \(p=1+2+\ldots+(n-1)+k\). We will prove that \(\left\{ f_p \right\}\) converges in measure, but not a.e.
     \( f_p \nrightarrow 0 \) a.e. on \(\left[ 0, 1\right]\). \\ 
     But consider \( \{ f_{p(n,1)}: n \in \mathbb{N} \} \). 
     This is a subsequence and, by definition \( f_{p(n, 1)}(x) = \chi_{n, 1}(x)= \chi_{\left[0, \frac{0}{n} \right]}(x) \). 

@@ -1,1 +1,100 @@
 \section{Lesson 26/10/2022}
+\((X, \norm{\cdot}) \to (X, d) \to \) open sets, closed sets, bounded sets....
+
+In \(\real^n\) we are used to work with \(\norm{\cdot}_2\), but we could have many different norms.
+\begin{definition}
+    Let \(\normdot\) and \(\normdot_2\) be two norms on the same vector space \(X\). We say that these norms are \textbf{equivalent} if \(\exists \; m, M >0\) s.t. 
+    \[
+        m\norm{x} \leq \norm{x} \leq M\norm{x} \quad \forall\; x \in X
+    \]
+\end{definition}
+It can be proved that if two norms are equivalent they lead to different metric spaces, but to the same open sets, closed sets, convergent sequences, compact sets \dots
+\begin{theorem}
+    If \(X\) is any finite dimension vector space, then all the norms on \(X\) are equivalent.
+\end{theorem}
+\begin{remark}
+    This is why in \(\real^n\) usually one does not specify the choice of the norm. One choose the Euclidean norm, since it comes from a scalar product. (ref. Hilbert spaces)
+\end{remark}
+\underline{Preliminary fact}: The set \(S_1 = \left\{ s \in \real^n : \norm{x}_1  = 1\right\}\) is compact in \((\real^n, d)\)
+\begin{proof}
+    We show that any norm is equivalent to \(\normdot_1\)
+    \[
+        x = \sum_{i=1}^n x_i e_i \qquad \left\{ e_i \right\}_{i= 1,\ldots, n} \mbox{ canonical basis}
+    \]
+    Let's introduce the norm star 
+    \[
+        \norm{x}_* = \norm{\sum_{i=1}^n x_i e_i}_* < \sum_{i=1}^n \norm{x_i e_i}_* = \sum_{i=1}^n \abs{x_i} \norm{e_i}_* \leq \left(\max_{1 \leq i \leq n} \norm{e_i}_*\right)
+    \]
+    We proved that \(\exists \; M> 0\) s.t.
+    \[
+        \norm{x}_* \leq M \norm{x}_1 \quad \forall \; x \in X
+    \]
+    Note that this proves that \(\phi(x) = \norm{x}_*\) is continuous in (\(X, d\)) indeed 
+    \[
+        x_n \to x \Leftrightarrow d_1(x_n, x) \to 0
+    \]
+    then 
+    \[
+        \abs{\phi(x_n) - \phi(x)} = \abs{\norm{x_n}_* -\norm{x}} \leq \norm{x_n - x}_* \leq M\norm{x_n - x}_1 \to 0
+    \]
+    Therefore, by the Weierstrass theorem, \(\exists\) a minimum point \(x_0 \in S_1\) s.t. 
+    \[
+        \phi(x) \geq \phi(x_n) = m \quad \forall\; x \in S_1
+    \]
+    (recall that \(S_1\) is compact)
+    \[
+        \norm{x}_* \geq m \quad \forall \; x \in S_1
+    \]
+    We claim that \(m>0\). If \(m=0\) then \(\norm{x}_* = 0 \Rightarrow x_0  = 0\) that is impossible.
+
+    Thus \(m>0\). Let now \(y \in \real^n, y \neq 0\). Then 
+    \[
+        \frac{y}{\norm{y}_1} \in S_1 \Rightarrow \norm{\frac{y}{\norm{y}_1}}_* \geq m \Rightarrow \frac{1}{\norm{y}_1} \norm{y}_* \geq m \Rightarrow \norm{y}_*m\geq m \norm{y}_1 \quad \forall \; y \in \real^n 
+    \]
+\end{proof}
+If \(\dim X = +\infty\), then there are many non-equivalent norms.
+
+\underline{Ex}: In \(\mathcal{C}^0([a,b])\), we can define \(\normdot_{\infty}\) and \(\norm{f}_1 = \int_a^b\abs{f(t)} \, dt\).
+
+This is a norm in \(\mathcal{C}^0\)
+
+
+\subsubsection*{Separability}
+\((X, d)\) metric space. 
+\begin{definition}
+    We say that \(X\) is separable if \(\exists \; A \in X\) which is dense (\(\bar{A} = X\)) and countable 
+\end{definition}
+In \(\real^n\), \(\mathbb{Q}^n\) which is dense and countable. In \(\infty-\dim\) we can have separable spaces or not. 
+
+For instance, \((L^{\infty}, \normdot_{\infty})\) is not separable. Instead \((\mathcal{C}^0([a,b]), \normdot_{\infty})\) is a separable space. 
+
+\begin{proof}[Sketch of the proof]We will use the \textbf{Stone-Weierstrass theorem}.
+
+The set of polynomials is dense on \(\mathcal{C}^0([a,b])\) is an uncountable set. However it can be proved that the set of polynomials with coefficients in \(\mathbb{Q}\) is dense in the set of all polynomials
+
+Moreover this set is countable. Then, by Stone-Weierstrass this is a countable dense set in \(\mathcal{C}^0([a,b])\)
+\end{proof}
+\begin{remark}
+    One can show that \(\mathcal{C}^0(K)\) is separable whenever \(K\) is a compact set of a metric space \((X,d)\)
+\end{remark}
+\subsubsection*{Compactness}
+In finite dimension (in \(\real^n\)), one has that
+\[
+    E \subset X \mbox{ is compact } \Leftrightarrow E \mbox{ is closed and bounded}
+\]
+If \(\dim X = \infty\), then only `\(\Rightarrow\)' is true. In finite dimension, we know that the closed unit ball is compact
+\[
+    \bar{B}_1(0) = \left\{ x \in \real^n : \norm{x} \leq 1\right\}
+\]
+What happens now if \((X, \normdot)\) is on \(\infty-\dim\) normed space?
+\begin{theorem}[Riesz's theorem]
+    \(X\) normed space, \(\dim X = +\infty\) \(\Rightarrow \bar{B}_1(0)\) is not compact
+\end{theorem}
+\begin{remark}
+    It is well known that if \(E \in \real^n\) is compact, then \(\forall \; \left\{ x_n \right\} \in E \) \(\exists \; \left\{ x_{n_k} \right\}\) subsequence s.t. \(x_{n_k} \to x \in E\).  
+    This proposition is much harder to prove in \(\infty-\dim\).
+\end{remark}
+The proof of the Riesz's theorem is based on the Riesz's \textbf{quasi-orthogonality lemma}.
+\begin{lemma}
+    Let \(X\) be a normed space, \(E \subsetneq X\) a closed subspace. Then \(\forall \; \epsilon \in [0,1]\)
+\end{lemma}
