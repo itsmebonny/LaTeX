@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1667066118 "/home/ilaria/Latex/Appunti/LaTeX/ARF/ARF.tex" "ARF.pdf" "ARF" 1667066118
+["pdflatex"] 1667132273 "/home/ilaria/Latex/Appunti/LaTeX/ARF/ARF.tex" "ARF.pdf" "ARF" 1667132273
   "/etc/texmf/web2c/texmf.cnf" 1666700267 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/ilaria/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0700.600pk" 1665585989 8244 5938686f65e384c9a6e9c2b7e1598b73 ""
   "/home/ilaria/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0800.600pk" 1665585989 9268 a5bc46dc236030c8e6bb56cd3ba8051c ""
@@ -135,8 +135,8 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1666708823 128028 f533b797fba58d231669ea19e894e23e ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1666708826 1405654 27e8e90f5689869add474b606d59435d ""
-  "ARF.aux" 1667066118 2305 dca8554bf7c93c7b09637df800d98d2b "pdflatex"
-  "ARF.out" 1667066118 1844 7124c10d383bc7dfc767c822f14591bb "pdflatex"
+  "ARF.aux" 1667132273 2305 34ecfb941b45d86f3a892e112b69b7b2 "pdflatex"
+  "ARF.out" 1667132273 1844 7124c10d383bc7dfc767c822f14591bb "pdflatex"
   "ARF.tex" 1667066116 2893 df49af956c7f1fb172a4e3cc95ea3724 ""
   "Lezioni/2022_09_12/2022_09_12.tex" 1666773338 11603 11e445c6f0502ca7694c50dfa1cd0789 ""
   "Lezioni/2022_09_14/2022_09_14.tex" 1666773338 10522 ed06597ff973bef2a8922cd7447320d8 ""
@@ -151,7 +151,7 @@
   "Lezioni/2022_10_19/2022_10_19.tex" 1667066116 9919 a4dfa375a178fb0bcce268a04925d3df ""
   "Lezioni/2022_10_20/2022_10_20.tex" 1667066116 2951 004783368e1c4bdb5e6762e6b97eea94 ""
   "Lezioni/2022_10_26/2022_10_26.tex" 1667066116 4988 5435b9baf034ed547bcbb1dff896dcfe ""
-  "Lezioni/2022_10_27/2022_10_27.tex" 1667060208 3772 c5724c243ff3af2a153fd08b593d6655 ""
+  "Lezioni/2022_10_27/2022_10_27.tex" 1667132271 9260 f90107e64da1721854b6e6e4cbc7f619 ""
   (generated)
   "ARF.aux"
   "ARF.log"

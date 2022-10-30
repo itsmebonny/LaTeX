@@ -6,22 +6,24 @@
 \end{definition}
 
 \begin{definition}
-    \(E \subset X\) is sequentially compact if \(\forall \; \{x_n\} \subset E \) there exists \(\{x_{n_k}\}\) subsequence convergent to some limit \(x \in E\)
+    \(E \subset X\) is sequentially compact if \(\forall \; \{x_n\} \subset E \) 
+    there exists \(\{x_{n_k}\}\) subsequence convergent to some limit \(x \in E\)
 \end{definition}
 
 Well known fact: if \(\left(X, d\right)\) is a metric space, then \(E\) is compact \(\iff E \) is sequentially compact.
 
-\begin{theorem}[Riesz]
+\begin{theorem}[Riesz Theorem]
     \(X\) normed space, dim\(X = \infty\) \(\iff \bar{B}_1(0)\) is not compact. 
 \end{theorem}
 
-\begin{lemma}
+\begin{lemma}[Riesz quasi orthogonality Lemma]
     \(X\) normed space, \(E \subsetneq X\) closed subspace. Then \(\forall \; \epsilon \in \left(0, 1\right) \ \exists \; x \in X \) s.t. 
     \[
         \norm{x}=1 \text{ and } \text{dist}(x, E) = \inf_{y \in E} \norm{x-y} \geq 1- \epsilon\]
 \end{lemma}
 
 \begin{remark}
+
     \begin{itemize}
         \item \(E \in X\) closed. Then dist\((x, E)=0 \iff x \in E\)
         \item By definition of infimum, if \(d =\) dist\((x, E)\), then \(\forall \rho >0 \ \exists \; z \in E\) s.t. 
@@ -49,7 +51,7 @@ Well known fact: if \(\left(X, d\right)\) is a metric space, then \(E\) is compa
     \[
         = \frac{1}{\norm{y-z}} \norm{y-w}
         \geq \frac{1}{\norm{y-z}} \text{dist}(y, E)
-        \overset{1}{\geq} \frac{1-\epsilon}{d} d = 1 - \epsilon
+        \overset{(1)}{\geq} \frac{1-\epsilon}{d} d = 1 - \epsilon
     \]
     Since this is true \(\forall \; u \in E\), we deduce that
     \[
@@ -59,14 +61,15 @@ Well known fact: if \(\left(X, d\right)\) is a metric space, then \(E\) is compa
 
 \subsection*{Compactness on \(\mathcal{C}^0(\left[a, b\right])\)}
 \begin{definition}
-    \(\{f_n\}\) sequence in \(\mathcal{C}^0(\left[a, b\right])\). We say that \(\{f_n\}\) is uniformly equicontinuous in \([a, b]\) if \(\forall \; \epsilon >0 \exists \delta >0 \) depending only on \(\epsilon \) s.t. 
+    \(\{f_n\}\) sequence in \(\mathcal{C}^0(\left[a, b\right])\). 
+    We say that \(\{f_n\}\) is uniformly equicontinuous in \([a, b]\) if \(\forall \; \epsilon >0 \; \exists \; \delta >0 \) depending only on \(\epsilon \) s.t. 
     \[
         |t-\tau| < \delta \Rightarrow \| f_n(t) - f_n(\tau) \| < \epsilon \qquad \forall \; n
     \]
 \end{definition}
 
 \begin{remark}
-    With respect to the uniform continuity, in this case \(\delta\) does not depend on \(f\). \(\delta\) is the same for all the \(f_n\)s
+    With respect to the uniform continuity, in this case \(\delta\) does not depend on \(f\). \(\delta\) is the same for all the \(f_n\) s
 \end{remark}
 
 \begin{theorem}
@@ -79,19 +82,168 @@ Well known fact: if \(\left(X, d\right)\) is a metric space, then \(E\) is compa
 \end{theorem}
 
 Lebesgue spaces. \\
-\((X, \mathcal{M}, \mu)\) measure space, \(p \in \left[1, \infty\right]\). We defined \(L^1(X)\) and \(L^\infty(X)\). In a similar way, we define \(L^p(X)\) \(\forall \; p \in \left[1, \infty\right]\)
+\((X, \mathcal{M}, \mu)\) measure space, \(p \in \left[1, \infty\right]\). We defined \(L^1(X)\) and \(L^\infty(X)\). 
+In a similar way, we define \(L^p(X)\) \(\forall \; p \in \left[1, \infty\right]\)
 \[
     \mathcal{L}^p (X, \mathcal{M}, \mu) := \{ f: X \rightarrow \barreal \text{ measurable s.t. } \int_X |f|^p \, d\mu < \infty\}
 \]
 On \(\mathcal{L}^p\) we introduce the equivalent relation
 \[
-    f tilde g \text{ in } \mathcal{L}^p \iff f=g \text{ a.e. on } X 
+    f \sim g \text{ in } \mathcal{L}^p \iff f=g \text{ a.e. on } X 
 \]
 and define 
 \[
-    {L}^p (X, \mathcal{M}, \mu) := \frac{\mathcal{L}^p (X, \mathcal{M}, \mu)}{tilde}
+    {L}^p (X, \mathcal{M}, \mu) := \frac{\mathcal{L}^p (X, \mathcal{M}, \mu)}{\sim}
+\]
+We want to show that this is a normed space with
+\[
+    \norm{f}_p := 
+    \begin{cases}
+        \left( \int_X |f|^p \, d\mu \right)^{\frac{1}{p}}  & p \in [1, \infty) \\
+        \esssup_X |f| & p = \infty
+    \end{cases}
 \]
 
+The fact that \(L^p\) is a vector space is easy to prove. The only non trivial part is that \(f, g \in L^p \Rightarrow f+g \in L^p\).
+
+This comes directly from the 
+\begin{lemma}
+    \(p \in [1, \infty), \ a, b \geq 0\). Then 
+    \[
+        \left(a+b\right)^p \leq 2^{p-1} \left(a^p+b^p\right) 
+    \]
+\end{lemma}
+
+\(f, g \in L^p, \ p \in [1, \infty)\)
+\[
+    \int_X |f+g|^p \, d\mu \leq \int_X (|f|+|g|)^p \, d\mu 
+    \leq 2^{p-1} \int_X (|f|^p+|g|^p) \, d\mu
+\]
+\[
+    = 2^{p-1} \int_X |f|^p \, d\mu + 2^{p-1} \int_X |g|^p \, d\mu < \infty
+\]
+\(L^p\) is a vector space, \(\forall \; p \in [1, \infty)\).
 
 
-.... page 7
+\(f, g \in L^\infty\). Then a.e. 
+\[
+    \Rightarrow |f+g| \leq |f|+|g| \leq \norm{f}_\infty + \norm{g}_\infty < \infty
+    \Rightarrow f+g \in L^\infty
+\]
+\(L^\infty\) is a vector space. 
+
+\begin{remark}
+    \(l^p := L^p (\mathbb{N}, \mathcal{P}(\mathbb{N}), \mu_c )\). \(l^p\) is a particular case of \(L^p\)
+    \[
+    \begin{array}{ll}
+        l^p = \{ x = \left(x^{(k)}\right)_{k \in \mathbb{N}} : \sum_{k=1}^\infty |x^{(k)}|^p < \infty \} 
+        & \norm{x}_p = \left( \sum_{k=1}^\infty |x^{(k)}|^p \right)^{\frac{1}{p}} \quad p \in [1, \infty)
+        \\ l^\infty = \{ x = \left(x^{(k)}\right)_{k \in \mathbb{N}} : \sup_{k \in \mathbb{N}} |x^{(k)}| < \infty \} 
+        & \norm{x}_\infty = \sup_{k \in \mathbb{N}} |x^{(k)}|
+    \end{array}
+    \]
+\end{remark}
+
+Now we prove that \(\norm{.}_p\) is actually a norm in \(L^p\). 
+We will concentrate on \(p < \infty\) (\(p = \infty\) is the easy case) 
+
+Properties 1 and 2 of the norm are immediate to check:
+\begin{enumerate}
+    \item \(\norm{f}_p = 0 \iff \int_X |f|^p \, d\mu =0 \iff f=0 \text{ a.e. on } X \iff f=0 \in L^p\)
+    \item Obvious, by linearity
+    \item About triangle inequality? We need some preliminaries
+\end{enumerate}
+
+\begin{theorem}[Young's Inequality]
+    Let \(p \in (1, \infty)\), \(a, b \geq 0\). We say that \(q\) is the conjugate exponent of p if 
+    \[
+        \frac{1}{p} + \frac{1}{q} = 1 \iff q = \frac{p}{p-1}
+    \]
+    Then 
+    \[
+        ab \leq \frac{a^p}{p} + \frac{b^q}{q}
+    \]
+\end{theorem}
+\begin{remark}
+    \(p \in (1, \infty) \Rightarrow q \in (1, \infty)\). Moreover, we say that \(1\) and \(\infty\) are conjugate
+\end{remark}
+\begin{proof}
+    \(\phi(x)= e^{x}\) is convex: 
+    \[
+        \phi((1-t)x + ty) \leq (1-t)\phi(x) + t \phi(y) \qquad \forall x, y \in \real \quad \forall \; t \in [0, 1]
+    \]
+
+    If \(a=0\) or \(b=0\), then the thesis holds. \\
+    If \(a, b >0\)
+    \[
+        ab = e^{\log{a}} e^{\log{b}}
+        = e^{\log{a}^{\frac{p}{p}}} e^{\log{b}^{\frac{q}{q}}}
+        = e^{\frac{1}{p}\log{a}^p} e^{\frac{1}{q}\log{b}^q}
+    \]
+    Since \(\phi \) is convex
+    \[
+        \frac{1}{p} e^{\log{a}^p} + \frac{1}{q} e^{\log{b}^q} = \frac{1}{p} a^p + \frac{1}{q} b^q
+    \]
+    \(x = \log{a^p}\), \(y= \log{b^q}\) \(\qquad 1-t = \frac{1}{p}\), \(t=\frac{1}{q}\)
+\end{proof}
+
+\begin{theorem}
+    \(\left(X, \mathcal{M}, \mu \right)\) measure space. \(f, g\) measurable functions. \(p, q \in [1, \infty]\) conjugate exponents.
+
+    Then 
+    \[
+        \norm{fg}_1 \leq \norm{f}_p \norm{g}_q
+    \]
+\end{theorem}
+\begin{proof}
+    Case \(p, q \in (1, \infty)\). Obvious if \(\norm{f}_p \norm{g}_q = \infty\). \\
+    If \(\norm{f}_p \norm{g}_q = 0 \Rightarrow\)  either \(f=0\) a.e. on \(X\) or \(g=0\) a.e. on X
+    \(\Rightarrow fg=0\) a.e. on \(X\) \(\Rightarrow \norm{fg}_1 =0\). Let then \(\norm{f}_p\), \(\norm{g}_p \in (0, \infty)\). \\
+    For \(x \in X\), we set 
+    \[
+        a := \frac{|f(x)|}{\norm{f}_p} \text{, } b := \frac{|g(x)|}{\norm{g}_q} 
+    \]
+    and use Young:
+    \[
+        \frac{|f(x)g(x)|}{\norm{f}_p \norm{g}_q} 
+        \leq \frac{1}{p} \frac{|f(x)|^p}{\norm{f}_p^p} + \frac{1}{q} \frac{|g(x)|^q}{\norm{g}_q^q}
+    \]
+    \(\forall \; x \in X \). By integrating, we obtain
+    \[
+        \frac{1}{\norm{f}_p \norm{g}_q} \int_X |fg| \, d\mu \leq 
+        \frac{1}{p \norm{f}_p^p} \int_X |f|^p \, d\mu + \frac{1}{q \norm{g}_q^q} \int_X |g|^q \, d\mu 
+        = \frac{1}{p} + \frac{1}{q} = 1
+    \]
+    \[
+        \Rightarrow \norm{fg} \leq \norm{f}_p \norm{g}_q
+    \]
+    Case \(p=1\), \(q= \infty\). Exercise 
+\end{proof}
+\begin{theorem}[Minkowski Inequality]
+    \(f, g \in L^p(X, \mathcal{M}, \mu)\), \(p \in [1, \infty]\). Then 
+    \[
+        \norm{f+g}_p \leq \norm{f}_p + \norm{g}_p
+    \] 
+\end{theorem}
+\begin{proof}
+    \(p \in (1, \infty)\)
+    \[
+        \norm{f+g}_p^p = \int_X |f+g|^p \, d\mu = \int_X |f+g| |f+g|^{p-1} \, d\mu
+    \]
+    \[    
+        \leq \int_X \left( |f|+|g| \right) |f+g|^{p-1} \, d\mu
+        = \int_X |f| |f+g|^{p-1} \, d\mu + \int_X |g| |f+g|^{p-1} \, d\mu 
+    \]
+    Using Holder with \(p\), \(q = \frac{p}{p-1}\)
+    \[
+        \leq \norm{f}_p \left( \int_X \left( |f+g|^{p-1} \right)^{\frac{p}{p-1}} \, d\mu \right) ^ {\frac{p-1}{p}}
+        + \norm{g}_p \left( \int_X \left( |f+g|^{p-1} \right)^{\frac{p}{p-1}} \, d\mu \right) ^ {\frac{p-1}{p}}
+    \]
+    \[
+        = \norm{f}_p \norm{f+g}^{p-1}_p + \norm{g}_p \norm{f+g}_p^{p-1}
+    \]
+    We divide left hand side and right hand side by \(\norm{f+g}_p^{p-1}\):
+    \[
+        \norm{f+g}_p \leq \norm{f}_p + \norm{g}_p
+    \]
+\end{proof}
