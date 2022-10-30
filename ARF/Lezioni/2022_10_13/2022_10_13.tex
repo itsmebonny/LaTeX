@@ -18,28 +18,30 @@ Goal: obtain a formula of iterated integral like the one in Analysis 2.
 \]
 \begin{proposition}
     If \(f\) is measurable \(\Rightarrow\) \(f_{\bar{x}}\) is \((\mathcal{N}, \boreal)\)-measurable and \(f_{\bar{y}}\) is \((\mathcal{M}, \mathcal{B}(\barreal))\)-measurable.
-    Then we can conclude
-    \( \phi : X \to \barreal \)
+    Then we can consider
     \[
-        \phi(x) = \int_Y f_x d\nu = \int_Y f(x,y) d\nu(y)
-    \]
-    and \(\psi : Y \to \barreal\)
-    \[
+        \begin{array}{ll}    
+        \phi : X \to \barreal & 
+        \phi(x) = \int_Y f_x d\nu = \int_Y f(x,y) \underbrace{d\nu(y)}_{dy} \\
+        \psi : Y \to \barreal &
         \psi(y) = \int_X f_y d\mu = \int_X f(x,y) d\mu(x)
+    \end{array}
     \]
 \end{proposition}
-\underline{Questions:} what is the solution of \(\iint_{X \times Y}\)
+\underline{Questions:} what is the solution of \(\iint_{X \times Y}\), \(\phi\) and \(\psi\)?
 
 \begin{theorem}[Tonelli's theorem]
     \((X, \mathcal{M}, \mu)\) and \((Y, \mathcal{N}, \nu)\) complete measure spaces and \(\sigma\)-finite. \\
     Suppose that \(f\) is \((\mathcal{M} \otimes \mathcal{N}, \mathcal{B}(\barreal))\)-measurable and that \(f > 0\) a.e. on \(X \times Y\). Then \(\psi\) and \(\phi\) are measurable and
     \[
-        \iint_{X \times Y} f d\mu \otimes d\nu = \int_X \phi(x) \, d\mu(x) = \int_Y \psi(y) \, d\nu(y)
+        \iint_{X \times Y} f d\mu \otimes d\nu = \int_X \phi(x) \, d\mu(x) = \int_Y \psi(y) \, d\nu(y) \tag*{Integration formula}
     \]
     Equally holds also if one of the integrals is \(\infty\).
     \[
-        \int_X \phi(x) \, d\mu(x) = \int_X \left(\int_Y f(x, y) \, d\nu(y) \right) \, d\mu(x) 
-        \int_Y \psi(y) \, d\nu(y) = \int_Y \psi(y) \, d\nu(y)  
+        \begin{array}{l}
+            \int_X \phi(x) \, d\mu(x) = \int_X \left(\int_Y f(x, y) \, d\nu(y) \right) \, d\mu(x) \\
+            \int_Y \psi(y) \, d\nu(y) = \int_Y \left(\int_X f(x, y) \, d\mu(x) \right) \, d\nu(y)      
+    \end{array}  
     \]
 \end{theorem}
 \begin{remark}
@@ -48,19 +50,27 @@ Goal: obtain a formula of iterated integral like the one in Analysis 2.
 \end{remark}
 \begin{theorem}[Fubini's theorem]
     \((X, \mathcal{M}, \mu)\) and \((Y, \mathcal{N}, \nu)\) complete measure spaces and \(\sigma\)-finite.
-    If \(f \in L^1(X \times Y)\), then \(\psi\) and \(\phi\) defined above are measurable, and cose holds, and all the integrals are finite.
+    If \(f \in L^1(X \times Y)\), then \(\psi\) and \(\phi\) defined above are measurable, the integration formula holds, and all the integrals are finite.
 \end{theorem}
-\underline{Question}: how to check if \(f\in L^1(X \times Y)\)? Typically, to check cosette
-
+\underline{Question}: how to check if \(f\in L^1(X \times Y)\)? Typically, to check that \(f \in L^1(X \times Y)\) one uses Tonelli: 
+\[
+    f \in L^1(X \times Y) \Leftrightarrow \iint_{X \times Y} \abs{f} \, d\mu \otimes d\nu
+\]
+We use Tonelli to check that this is finite. 
 If \(\iint_{X \times Y} \vert f \vert d\mu \otimes d\nu < \infty\) then we can apply Fubini for \(\iint_{X \times Y} f d\mu \otimes d\nu\)
 \begin{remark}
     the proof of Fubini's and Tonelli's theorems is based for the iterated integrals for characteristic functions.
-    (Note that \((\mu \otimes \nu)(E) = \int_X ()\) e altre cosette)
+    Note that 
+    \[(\mu \otimes \nu)(E) = \begin{array}{l}
+        \int_X \phi(x) \, d\mu(x) = \int_X \left(\int_Y f(x, y) \, d\nu(y) \right) \, d\mu(x) \\
+        \int_Y \psi(y) \, d\nu(y) = \int_Y \left(\int_X f(x, y) \, d\mu(x) \right) \, d\nu(y)
+    \end{array}
+    \]
 \end{remark}
 \begin{remark}
     Sometimes double integrals are very useful to compute single integrals.
 \end{remark}
-Ex: \(\int_{-\infty}^{+\infty}\exp{-x^2} = \sqrt{\pi}\)
+Ex: \(\int_{-\infty}^{+\infty}e^{-x^2} = \sqrt{\pi}\)
 
 
 
