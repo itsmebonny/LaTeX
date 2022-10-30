@@ -12,14 +12,38 @@
             \chi_{3,1}(x) = \chi_{[0, \frac{1}{3}]}(x) & \chi_{3,2}(x) = \chi_{[\frac{1}{3}, \frac{2}{3}]}(x) &\chi_{3,3}(x) = \chi_{[\frac{2}{3}, 1]}(x) \\
         \end{array}
     \]
-    For \(n\) fixed and \(k\) variable, we move the \(\chi\) from the left to right. When the \(\chi\) reaches \(1\), we switch \(n\), and \(\chi\) reappear from the left, being thinner. We can order the elements of \(\chi_{n,k}\) in a sequence, letting
-    \(f_p = \chi_{n,k}\) for \(p=1+2+\ldots+(n-1)+k\). We will prove that \(\left\{ f_p \right\}\) converges in measure, but not a.e.
-    \( f_p \nrightarrow 0 \) a.e. on \(\left[ 0, 1\right]\). \\ 
-    But consider \( \{ f_{p(n,1)}: n \in \mathbb{N} \} \). 
-    This is a subsequence and, by definition \( f_{p(n, 1)}(x) = \chi_{n, 1}(x)= \chi_{\left[0, \frac{0}{n} \right]}(x) \). 
-    For this subsequence, we have \( f_{p(n,1)}(x) \rightarrow 0 \) as \( n \to\infty \; \forall x \in (0, 1] \), then a.e. on \(\left[0, 1\right]\)
+    For \(n\) fixed and \(k\) variable, we move the \(\chi\) from the left to right. When the \(\chi\) reaches \(1\), we switch \(n\), and \(\chi\) reappear from the left, being thinner. 
+    \[
+        \begin{array}{cc}
+            \int_{[0,1]} \chi_{n,k} \, d\lambda = \frac{1}{n} & \int_{[0,1]} \chi_{n+1, k} \, d\lambda = \frac{1}{n+1}
+        \end{array}
+    \]
+    We can order the elements of \(\chi_{n,k}\) in a sequence, letting
+    \(f_p = \chi_{n,k}\) for \(p=1+2+\ldots+(n-1)+k\). We will prove that \(\left\{ f_p \right\}\) converges in measure, but not a.e. 
+
+    This is the \textbf{typewriter sequence} (\(p(n,k)\)). For every \(x \in [0,1]\) there are \(\infty\) many indexes s.t. \(f_p(x) = 1\) and \(\infty\) many indexes s.t. \(f_p(x) = 0\), meaning that \(\nexists \; \lim_{p\to \infty} f_p(x)\)
+    \( f_p \nrightarrow 0 \) a.e. on \(\left[ 0, 1\right]\).
+
+    But we do have convergence in measure to \(0\): \(\alpha \in (0,1)\)
+    \[
+        \lambda\left(\left\{ \abs{f_{p(n,k)}} \geq \alpha \right\}\right) = \lambda \left(\left[ \frac{k-1}{n}, \frac{k}{n} \right]\right) = \frac{1}{n} \to 0 \mbox{ as } \begin{array}{l}
+            n\to \infty \\
+            \Updownarrow \\
+            p \to \infty        
+        \end{array}
+    \]
 \end{remark}
-This is not random!
+\begin{remark}
+    So, \(f_p \nrightarrow 0\) a.e. on \([0,1]\). But consider \( \{ f_{p(n,1)}: n \in \mathbb{N} \} \). 
+    This is a subsequence and, by definition 
+    \[ 
+        f_{p(n, 1)}(x) = \chi_{n, 1}(x)= \chi_{\left[0, \frac{0}{n} \right]}(x) 
+    \] 
+    For this subsequence, we have \( f_{p(n,1)}(x) \rightarrow 0 \) as \( n \to\infty \; \forall x \in (0, 1] \), then a.e. on \(\left[0, 1\right]\)
+    
+    This is not random!
+
+\end{remark}
 
 \begin{proposition}
     If \(\mu(X) < \infty \) and \(f_n \rightarrow f \) in measure, then \(\exists\) a subsequence \(\{f_{n_k} \}\) s.t. \(f_{n_k} \to f \) a.e. on \(X\).
@@ -31,7 +55,7 @@ Now we analize the relation between convergence in \(L^1(X)\) and the other conv
 \end{theorem}
 \begin{proof}
     By contradiction. Suppose that \(f_n \nrightarrow f \) in measure on X: 
-    \( \exists \bar{\alpha} > 0 \) s.t. 
+    \( \exists \; \bar{\alpha} > 0 \) s.t. 
     \[ 
         \limsup_{n\to\infty} \mu(\{ |f_n-f| \geq \bar{\alpha} \}) > 0 
     \]
@@ -40,12 +64,15 @@ Now we analize the relation between convergence in \(L^1(X)\) and the other conv
         \mu(\{ |f_{n_k}-f| \geq \bar{\alpha} \}) > \bar{\epsilon} 
     \]
     Consider then 
-    \[
+    \[  
+        \begin{array}{l}
         d_1(f_{n_k}, f) 
         = \int_X |f_{n_k} - f| \, d\mu  
+        \overset{\text{monot. } \int}{\geq} \int_{\left\{|f_{n_k}-f|\geq \bar{\alpha}  \right\}} \abs{f_{n_k} -f} \, d\mu  \geq\\
         \geq \int_{\left\{|f_{n_k}-f|\geq \bar{\alpha}  \right\}} 1 \, d\mu 
-        = \bar{\alpha} \mu (\{|f_{n_k } - f| \geq \bar{\alpha}\}) 
-        > \bar{\alpha} \bar{\epsilon}
+        = \bar{\alpha} \; \mu (\{|f_{n_k } - f| \geq \bar{\alpha}\}) 
+        > \bar{\alpha} \; \bar{\epsilon}    
+        \end{array}
     \]
     But, by assumption, \(d_1(f_n, f) \rightarrow 0\)
     \[ 
@@ -55,11 +82,11 @@ Now we analize the relation between convergence in \(L^1(X)\) and the other conv
 \end{proof}
 
 \begin{remark}
-    the convergence in measure doesn't imply the convergence in \(L^1\). \\ For example, consider 
+    The convergence in measure doesn't imply the convergence in \(L^1\). \\ For example, consider 
     \[ 
         f_n (x) = n \chi_{\left[0, \frac{1}{n} \right]}(x) 
     \]
-    \( \mu \left( \left\{ |f_n| \geq \alpha \right\}\right) \to 0 \) for every \(\alpha\) \\
+    \( \underbrace{\mu \left( \left\{ |f_n| \geq \alpha \right\}\right)}_{= \frac{1}{n}} \to 0 \) for every \(\alpha\) \\
     On the other hand 
     \[ 
         \int _{\left[0, 1\right]} n \chi_{\left[0, \frac{1}{n} \right]} \, d\lambda 
@@ -83,24 +110,24 @@ It is also possible to show a reverse DOM: \\
 If \(f_n \to f \) in \(L^1(X)\), then \(\exists\) a subsequence \(\left\{f_{n_k}\right\}\) and \(w \in L^1(X)\) s.t. 
 \begin{enumerate}
     \item \(f_{n_k} \rightarrow f\) a.e. on X
-    \item \(\| f_{n_k} \| \leq w(x) \) for a.e. x \(\in X\)
+    \item \( \abs{f_{n_k}(x)} \leq w(x) \) for a.e. \(x \in X\)
 \end{enumerate}
 
 \subsection*{Derivatives of measures}
-\(\left(X, \mathcal{M}, \mu \right)\) measure space. 
-\(\oldphi : X \to \left[0, \infty \right]\) measurable. 
+\(\left(X, \mathcal{M}, \mu \right)\) measure space,
+\(\oldphi : X \to \left[0, \infty \right]\) measurable.  
+
 We learned that \(\nu: \mathcal{M} \to \left[0, \infty \right]\) by 
 \[
-    \nu(E)= \int_E \oldphi \, d\mu
+    \nu(E)= \int_E \oldphi \, d\mu \mbox{ is a measure on }(X, \mathcal{M})
 \] 
-is a measure on \(X, \mathcal{M}\).
 
 If the equation above holds, then we say that \(\oldphi \) is the Radon Nykodym derivative of \(\nu\) with respect to \(\mu\) and we write 
 \[
     \oldphi = \frac{d\nu}{d\mu}
 \]
 \begin{definition}
-    \(\mu, \nu  \) measures on \(\left(x, \mathcal{M}\right)\). 
+    \(\mu, \nu  \) measures on \(\left(X, \mathcal{M}\right)\). 
     We say that \(\nu\) is absolutely continuous with respect to \(\mu\), \(\nu << \mu \) if 
     \[
         \mu(E) = 0 \Rightarrow \nu(E)=0
@@ -130,25 +157,27 @@ If the equation above holds, then we say that \(\oldphi \) is the Radon Nykodym 
 \end{theorem}
 
 \begin{remark}
-    if \(\mu\) is not sigma finite the theorem may fail. \\
-    In \(\left(\left[0, 1\right], \mathcal{L}\left(\left[0, 1\right]\right)\right)\) consider the counting measure \(\mu = \mu_c\) and the lebesque measure \(\nu= \lambda\)
+    If \(\mu\) is not sigma finite the theorem may fail. \\
+    In \(\left(\left[0, 1\right], \mathcal{L}\left(\left[0, 1\right]\right)\right)\) consider the counting measure \(\mu = \mu_C\) and the Lebesgue measure \(\nu= \lambda\)
     \(\nu << \mu\) since \(\mu(E)= 0 \iff E= \emptyset \Rightarrow \lambda(E) = \nu(E)=0\) \\
-    But we can check that \( \nexists \; \oldphi : \left[0, 1\right] \rightarrow \left[0, \infty \right]\) measurable s.t. \(\lambda(E)= \int_E \oldphi \, d\mu_c\)
+    But we can check that \( \nexists \; \oldphi : \left[0, 1\right] \rightarrow \left[0, \infty \right]\) measurable s.t. \(\lambda(E)= \int_E \oldphi \, d\mu_C\)
 \end{remark}
 
 Check by contradiction: assume that \(\oldphi \) does exist, and take \(x_0 \in \left[0, 1\right]\)
 \[ 
-    0 = \lambda (\left\{x_0\right\}) = \int_{\left\{x_0\right\}} \oldphi \, d\mu_c = \oldphi (x_0) \; \mu_c (\left\{x_0\right\}) = \oldphi (x_0)
+    0 = \lambda (\left\{x_0\right\}) = \int_{\left\{x_0\right\}} \oldphi \, d\mu_C = \oldphi (x_0) \; \overbrace{\mu_C (\left\{x_0\right\})}^{=1}= \oldphi (x_0)
 \]
-\(\Rightarrow \oldphi (x_0) = 0 \; \forall x_0 \in \left[0, 1\right]\). \\ But then \(1 = \lambda(\left[0, 1\right]) = \int_{\left[0, 1\right]} 0 \, d\mu_c = 0\). Contradiction \\
-Note that \(\mu_c (\left[0, 1\right]) = \infty \) and \(\left( \left[0,1\right], \mathcal{L}(\left[0, 1\right]), \mu_c\right)\) is not \(\sigma\)-finite (\(\left[0,1\right]\) is uncountable)
+\(\Rightarrow \oldphi (x_0) = 0 \; \forall \; x_0 \in \left[0, 1\right]\).
+
+But then \(1 = \lambda(\left[0, 1\right]) = \int_{\left[0, 1\right]} 0 \, d\mu_C = 0\). Contradiction \\
+Note that \(\mu_C (\left[0, 1\right]) = \infty \) and \(\left( \left[0,1\right], \mathcal{L}(\left[0, 1\right]), \mu_C\right)\) is not \(\sigma\)-finite (\(\left[0,1\right]\) is uncountable)
 
 
 \subsection*{Product Measure}
 \( (X, \mathcal{M}, \mu), (Y, \mathcal{N}, \nu) \) measure spaces.
 The goal is to define a measure space on \(X \times Y\)
 \begin{definition}
-    we call measurable rectangle in \(X \times Y\) a set of type \(A \times B\) where \(A \in \mathcal{M}, B \in \mathcal{N}\)
+    We call \textbf{measurable rectangle} in \(X \times Y\) a set of type \(A \times B\) where \(A \in \mathcal{M}, B \in \mathcal{N}\)
     \[  R = \{ A \times B \subset X\times Y \text{ s.t. } A \in \mathcal{M}, B \in \mathcal{N}\}\]
     We define the product \(\sigma\)-algebra \(\mathcal{M} \otimes \mathcal{N}\) as \(\sigma_0(R)\). \\
     This is a \(\sigma\)-algebra in \(X \times Y\)
@@ -194,12 +223,24 @@ Using the fact that \(\mu \) and \(\nu\) are measures, and that \(\int\) of non 
     is a measure, the product measure.
 \end{theorem}
 
-\begin{remark}
-    On the complection of product measure spaces: \\
-    \(\left(X, \mathcal{M}, \mu \right), \left(Y, \mathcal{N}, \nu \right)\) complete measures spaces. In general it is not true that \((X \times Y, \mathcal{M} \otimes \mathcal{N})\)
-    ...
+\begin{remark}[On the complection of product measure spaces] 
+    \(\left(X, \mathcal{M}, \mu \right), \left(Y, \mathcal{N}, \nu \right)\) complete measures spaces. 
+    
+    In general it is not true that \((X \times Y, \mathcal{M} \otimes \mathcal{N}, \mu \otimes \nu)\) is complete.
 \end{remark}
+\underline{Example}: \(X = Y = \real\), \(\mathcal{M} = \mathcal{N} = \mathcal{L}(\real), \mu = \nu = \lambda\).
 
+Given \(A \mbox{ non meas. set }, A \subseteq [0,1], B = \left\{ y_0 \right\}, E = A \times B\). 
+If \(E\) were measurable, then its sections must be measurable. But \(E_{y_0} = A\) which is not measurable.
+
+However, \(E\) is negligible:
+\[
+    E \subseteq [0,1] \times \left\{ y_0 \right\}, \mbox{ and } \left(\lambda \otimes \lambda\right)\left([0,1] \times \left\{ y_0 \right\}\right) = 0
+\]
+Then \((\lambda \otimes \lambda)\) is not complete 
+\[
+    \Rightarrow (\real^2, \mathcal{L}(\real) \otimes \mathcal{L}(\real), \lambda \otimes \lambda) \neq (\real^2, \mathcal{L}(\real^2), \lambda_2)
+\]
 \begin{theorem}
     Let \(\lambda_n\) be the Lebesgue measure in \(\mathbb{R}^n\). 
     If \(n= K+m\), then \(\left(\mathbb{R}^n, \mathcal{L}(\mathbb{R}^n), \lambda_n \right)\) is the complection of \( ( \real^k \times \real^m, \mathcal{L}(\real^k) \otimes \mathcal{L}(\real^m),\lambda_k \otimes \lambda_m )\)
