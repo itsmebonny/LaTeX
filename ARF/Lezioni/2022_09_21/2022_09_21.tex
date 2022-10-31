@@ -20,7 +20,7 @@
 \[
     \lambda := \lambda^* \vert_{\mathcal{L}(\real)}
 \tag*{(Lebesgue measure on \(\real\))}\]
-Then, \((\real, \mathcal{L}(\real), \lambda)\) is a complete measure space. In particular, \(\lambda^*(A) = 0 \Longrightarrow A \in \mathcal{L}(\real)\) and \(\lambda(A) = 0\).
+Then, \((\real, \mathcal{L}(\real), \lambda)\) is a complete measure space. In particular, \(\lambda^*(A) = 0 \Rightarrow A \in \mathcal{L}(\real)\) and \(\lambda(A) = 0\).
 \begin{remark}[CC-Criterion for measurability]
     To check that \(A\) is \(\lambda^*\)-measurable, it is sufficient to check that 
     \[
@@ -31,8 +31,8 @@ Then, \((\real, \mathcal{L}(\real), \lambda)\) is a complete measure space. In p
     Any countable set is measurable, with \(0\) Lebesgue measure.
 \end{proposition}
 \begin{proof}
-    Let \(a \in \real\), \[\left\lbrace a \right\rbrace \subseteq (a-\epsilon, a+\epsilon), \forall \; \epsilon > 0 \overset{\mbox{by def.}}{\Longrightarrow} \lambda^*(\left\lbrace a \right\rbrace) \leq 2\epsilon \overset{\mbox{lim}}{\Longrightarrow} \lambda^*(\left\lbrace a \right\rbrace) = 0\]
-    \(\left\lbrace a \right\rbrace\) is measurable with \(\lambda(\left\lbrace a \right\rbrace) = 0, \forall \; a \in \real\). Now if a set \(A\) is countable, \(A = \left\lbrace a_n \right\rbrace_{n \in \mathbb{N}} = \bigcup_n \left\lbrace a_n \right\rbrace\) (disjoint) \(\Longrightarrow \lambda(A) \underset{\sigma-add}{=} \sum_n \lambda(\left\lbrace a_n \right\rbrace) = 0\)
+    Let \(a \in \real\), \[\left\lbrace a \right\rbrace \subseteq (a-\epsilon, a+\epsilon), \forall \; \epsilon > 0 \overset{\mbox{by def.}}{\Rightarrow} \lambda^*(\left\lbrace a \right\rbrace) \leq 2\epsilon \overset{\mbox{lim}}{\Rightarrow} \lambda^*(\left\lbrace a \right\rbrace) = 0\]
+    \(\left\lbrace a \right\rbrace\) is measurable with \(\lambda(\left\lbrace a \right\rbrace) = 0, \forall \; a \in \real\). Now if a set \(A\) is countable, \(A = \left\lbrace a_n \right\rbrace_{n \in \mathbb{N}} = \bigcup_n \left\lbrace a_n \right\rbrace\) (disjoint) \(\Rightarrow \lambda(A) \underset{\sigma-add}{=} \sum_n \lambda(\left\lbrace a_n \right\rbrace) = 0\)
 \end{proof}
 \begin{remark}
     \(\lambda(\mathbb{Q} = 0)\). \(\mathbb{Q}\) is dense on \(\real\), \(\bar{\mathbb{Q}} = \real\). In general, measure theoretical info and topological info cannot be compared.
@@ -105,7 +105,7 @@ The relation between \(\boreal\) and \(\mathcal{L}(\real)\) is clarified by
         \]
     \end{enumerate}
 \end{theorem}
-\underline{\textbf{Consequence:}} \(E \in \mathcal{L}(\real) \Longrightarrow E = F \cup N\), where \(F\) is of class \(F_{\delta}\), and \(\lambda(N) = 0\).
+\underline{\textbf{Consequence:}} \(E \in \mathcal{L}(\real) \Rightarrow E = F \cup N\), where \(F\) is of class \(F_{\delta}\), and \(\lambda(N) = 0\).
 \begin{proof}[Partial proof]
     For simplicity, we will consider only sets with finite measure.
     \begin{itemize}
@@ -123,7 +123,7 @@ The relation between \(\boreal\) and \(\mathcal{L}(\real)\) is clarified by
         \]
         \item[(2)]\( \Rightarrow (3)\) Define, for every \(K \in \mathbb{N}\), an open set \(A_k\) s.t. \(A_k \supset E\) and \(\lambda(A_k \setminus E) < \frac{1}{k}\). Let \(A = \bigcap_k A_k\). This is a \(G_{\delta}\) set, it contains \(E\) (since each \(A_k\) contains \(E\)) and 
         \[
-            \lambda(A \setminus E) \underset{(A \subset A_k \; \forall \; k)}{\leq} \lambda(A_k \setminus E) < \frac{1}{k} \Longrightarrow \lambda(A \setminus E) = 0 \quad \forall \; k
+            \lambda(A \setminus E) \underset{(A \subset A_k \; \forall \; k)}{\leq} \lambda(A_k \setminus E) < \frac{1}{k} \Rightarrow \lambda(A \setminus E) = 0 \quad \forall \; k
         \]
         \item[(3)]\( \Rightarrow (1)\)] If \(E \subset \real\) and \(\exists\; G \supset E\), with \(G\) of class \(G_{\delta},\) s.t. \(\lambda(G \setminus E) = 0\), then
         \[

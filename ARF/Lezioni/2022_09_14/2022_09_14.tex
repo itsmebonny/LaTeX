@@ -22,28 +22,28 @@ Then:
 \begin{enumerate}
     \item \(\mu\) is \textbf{finitely additive}: 
     \[
-        \forall \; E,F \in \mathcal{M}, \mbox{ with } E \cap F \not = \emptyset \Longrightarrow
+        \forall \; E,F \in \mathcal{M}, \mbox{ with } E \cap F \not = \emptyset \Rightarrow
     \mu(E \cup F) = \mu(E) + \mu(F)
     \]
     \item the \textbf{excision property}
     \[
-        \forall \; E, f \in \mathcal{M}, \mbox{ with } E \subset F \mbox{ and } \mu(E) < +\infty \Longrightarrow \mu(F\setminus E) = \mu(F) - \mu(E)
+        \forall \; E, f \in \mathcal{M}, \mbox{ with } E \subset F \mbox{ and } \mu(E) < +\infty \Rightarrow \mu(F\setminus E) = \mu(F) - \mu(E)
     \]
     \item \textbf{monotonicity}
     \[
-        \forall \; E, F \in \mathcal{M}, \mbox{ with } E \subset F \Longrightarrow \mu(E) \leq \mu(F)
+        \forall \; E, F \in \mathcal{M}, \mbox{ with } E \subset F \Rightarrow \mu(E) \leq \mu(F)
     \]
     \item if \(\Omega \in \mathcal{M}\) then \((\Omega, \mathcal{M}\vert_{\Omega}, \mu\vert_{\mathcal{M}\vert_{\Omega}})\) is a measure space
 \end{enumerate}
 \begin{proof}
      \begin{enumerate}
         \item \(E_1 = E, E_2 = F, E_3 = \ldots = E_n = \ldots = \emptyset\) 
-        This is a disjoint sequence \(\Longrightarrow\) by \(\sigma\)-additivity. 
+        This is a disjoint sequence \(\Rightarrow\) by \(\sigma\)-additivity. 
         \[
             \mu(E \cup F) = \mu\left(\bigcup_{n} E_n\right) = \sum_n \mu(E_n) = \mu(E) + \mu(F) + \underbrace{\mu(E_k)}_{= \mu(\emptyset)}
         \] 
-        \item \(E \subset F\), so \(F = E \cup (F \setminus E)\) and this is disjoint \(\overset{(i)}{\Longrightarrow} \mu(F) = \mu(E) + \mu(F\setminus E)\), and since \(\mu(E) < \infty\), the property follows.
-        \item \(E \subset F \Longrightarrow \mu(F) = \mu(E) + \underbrace{\mu(F\setminus E)}_{\geq 0} \geq \mu(E)\)
+        \item \(E \subset F\), so \(F = E \cup (F \setminus E)\) and this is disjoint \(\overset{(i)}{\Rightarrow} \mu(F) = \mu(E) + \mu(F\setminus E)\), and since \(\mu(E) < \infty\), the property follows.
+        \item \(E \subset F \Rightarrow \mu(F) = \mu(E) + \underbrace{\mu(F\setminus E)}_{\geq 0} \geq \mu(E)\)
         \item 
      \end{enumerate}
     \end{proof}
@@ -101,7 +101,7 @@ Then:
         \]
         \item For simplicity, suppose \(\tau = 1\), and define \(F_k = E_i\setminus E_k\) 
         \[
-            \left\lbrace E_k \right\rbrace \searrow \Longrightarrow \left\lbrace F_k \right\rbrace \nearrow
+            \left\lbrace E_k \right\rbrace \searrow \Rightarrow \left\lbrace F_k \right\rbrace \nearrow
         \]
         \[
             \mu(E_i) = \mu(E_k) + \mu(F_k) \mbox{ and } \bigcup_k F_k = E_i \setminus (\bigcap_k E_k)
@@ -118,7 +118,7 @@ Then:
         \]
     \end{enumerate}
 \end{proof}
-Counterexample: given \((\mathcal{N}, \mathcal{P}(\mathbb{N}), \mu_C)\) measure space. Let \(E_n = \left\lbrace n, n+1, n+2, \ldots\right\rbrace\). In this case \(\mu_C (E_n) = +\infty, E_{n+1} \subseteq E_n \forall \; n\), but \(\bigcap_n E_n = \emptyset \Longrightarrow \mu\left(\bigcap_n E_n\right) = 0 \)
+Counterexample: given \((\mathcal{N}, \mathcal{P}(\mathbb{N}), \mu_C)\) measure space. Let \(E_n = \left\lbrace n, n+1, n+2, \ldots\right\rbrace\). In this case \(\mu_C (E_n) = +\infty, E_{n+1} \subseteq E_n \forall \; n\), but \(\bigcap_n E_n = \emptyset \Rightarrow \mu\left(\bigcap_n E_n\right) = 0 \)
 \begin{theorem}[\(\sigma\)-subadditivity of the measure]
 \((X, \mathcal{M}, \mu)\) is a measure space. \(\forall \left\lbrace E_n \right\rbrace \subseteq \mathcal{M}\) (not necessarily disjoint): \(\mu\left(\bigcup_n E_n\right) \leq \sum_n \mu(E_n)\)
 \end{theorem}
@@ -141,11 +141,11 @@ Counterexample: given \((\mathcal{N}, \mathcal{P}(\mathbb{N}), \mu_C)\) measure 
             \leq \lim_k \sum_{n=1}^k \mu(E_n) = \sum_{n = 1}^{\infty} \mu(E_n)
         \]
 \end{proof}
-Exercise: \((X, \mathcal{M})\) measurable space. \(\mu : \mathcal{M} \to [0, +\infty]\) s.t. \(\mu\) is finitely additive, \(\sigma\)-subadditive and \(\mu(\emptyset) = 0\) \(\Longrightarrow\) \(\mu\) is \(\sigma\)-additive, and hence is a measure.  
+Exercise: \((X, \mathcal{M})\) measurable space. \(\mu : \mathcal{M} \to [0, +\infty]\) s.t. \(\mu\) is finitely additive, \(\sigma\)-subadditive and \(\mu(\emptyset) = 0\) \(\Rightarrow\) \(\mu\) is \(\sigma\)-additive, and hence is a measure.  
 
 Exercise: the Borel-Cantelli lemma states that, given \((X, \mathcal{M}, \mu)\) and \(\left\lbrace E_n \right\rbrace \subseteq \mathcal{M}\). Then
 \[
-    \sum_{n=0}^{\infty} \mu(E_n) < \infty \Longrightarrow \mu(\limsup_n E_n) = 0
+    \sum_{n=0}^{\infty} \mu(E_n) < \infty \Rightarrow \mu(\limsup_n E_n) = 0
 \]
 It can be phrased as: \begin{quote}
     If the series of the probability of the events \(E_n\) is convergent, then the probability that \(\infty\)-many events occur is \(0\)
@@ -186,5 +186,5 @@ It can be phrased as: \begin{quote}
     Since \[
         F_1 \setminus F_2 \subseteq E\setminus F_2 \subseteq G_2 \setminus F_2
     \] 
-    and \(G_2 \setminus F_2\) has \(0\) measure \(\Longrightarrow \mu(F_1 \setminus F_2) = 0\). Then \(F_1 = (F_1 \setminus F_2) \cup (F_1 \cap F_2) \Longrightarrow \mu(F_1) = \mu(F_1 \cap F_2).\) In the same way, \(\mu(F_2) = \mu(F_1 \cap F_2)\)
+    and \(G_2 \setminus F_2\) has \(0\) measure \(\Rightarrow \mu(F_1 \setminus F_2) = 0\). Then \(F_1 = (F_1 \setminus F_2) \cup (F_1 \cap F_2) \Rightarrow \mu(F_1) = \mu(F_1 \cap F_2).\) In the same way, \(\mu(F_2) = \mu(F_1 \cap F_2)\)
 \end{theorem}

@@ -38,10 +38,10 @@ What happens if \(f \in L^1([a, b])\)?
 \begin{remark}
     In the definition of Lebesgue point, the pointwise values of \(f\) are relevant 
     \[
-        f = g \in L^1 \Longleftrightarrow f = g \text{ a.e.}
+        f = g \in L^1 \Leftrightarrow f = g \text{ a.e.}
     \]
     Then the Lebesgue point of \(f\) could be different from the one of \(g\).  
-    This is not a big problem if \(f = g\) a.e. on \([a,b] \Longrightarrow f = g \in [a,b]\setminus N\) where \(\lambda(N) = 0\); \(x\) is a Lebesgue point for \(f\), \(\forall \; x \in \left[a, b\right] \setminus M, \ \lambda(M)=0\) \\
+    This is not a big problem if \(f = g\) a.e. on \([a,b] \Rightarrow f = g \in [a,b]\setminus N\) where \(\lambda(N) = 0\); \(x\) is a Lebesgue point for \(f\), \(\forall \; x \in \left[a, b\right] \setminus M, \ \lambda(M)=0\) \\
     \(\Rightarrow x \) is a Lebesgue point for \(g\), \(\ \forall x \in \left[a, b\right] \setminus (M \cup N)\) \\
     \(\left[a, b\right] \setminus (M \cup N)\) is a set of full measure of Lebesgue points for \(f\) and \(g\).
 \end{remark}
@@ -81,7 +81,7 @@ Then \(f\) is differentiable a.e. on \([a,b]\) and \(F'(x) = f(x) \text{ a.e. in
 \end{remark}
 
 \begin{itemize}
-    \item If \(f\) is Lipschitz on \([a,b] \Longrightarrow f \in \text{AC}([a,b])\) 
+    \item If \(f\) is Lipschitz on \([a,b] \Rightarrow f \in \text{AC}([a,b])\) 
 \end{itemize}
 Recall that \(f \in \mbox{Lip}([a,b])\) if \(\exists \; L > 0\) s.t. 
 \[
@@ -93,7 +93,7 @@ Recall that \(f \in \mbox{Lip}([a,b])\) if \(\exists \; L > 0\) s.t.
 \]
 If we take \(\delta = \delta(\epsilon) = \frac{\epsilon}{L}\), then 
 \[
-    \sum_{k=1}^n (b_x, a_x) < \delta \Longrightarrow \sum_{k=1}^n \abs{f(b_k)-f(a_k) } \leq L \sum_{k=1}^n (b_k-a_k)
+    \sum_{k=1}^n (b_x, a_x) < \delta \Rightarrow \sum_{k=1}^n \abs{f(b_k)-f(a_k) } \leq L \sum_{k=1}^n (b_k-a_k)
 \]
 \qed
 \[
@@ -110,7 +110,7 @@ To prove the theorem we need the
             E \in \mathcal{M} \\
             \mu(E) < \delta
         \end{array} 
-        \Longrightarrow \int_E \abs{f} \, d\mu < \epsilon
+        \Rightarrow \int_E \abs{f} \, d\mu < \epsilon
     \]
 \end{theorem}
 \begin{proof}
@@ -118,7 +118,7 @@ To prove the theorem we need the
     \[
         \bigcup_{n=1}^{\infty} F_n = \left\{ \abs{f} < \infty \right\} =: F
     \]
-    \(f \in L^1 \Longrightarrow \abs{f}\) is finite a.e.: \(\mu(X \setminus F) =0\).
+    \(f \in L^1 \Rightarrow \abs{f}\) is finite a.e.: \(\mu(X \setminus F) =0\).
     Therefore:
     \[
         \int_X \abs{f} \, d\mu = \int_{X \setminus F} \abs{f} \, d\mu + \int_F \abs{f} \, d\mu 

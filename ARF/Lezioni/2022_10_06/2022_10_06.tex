@@ -2,7 +2,7 @@
 Let \(f \not \in R(I)\). Is it true that \(\exists \; g \in R(I)\) s.t. \(g = f\) a.e. on \(I\)? No.
 
 For instance, consider \(T_{\mathcal{E}}\), the generalized Cantor set (\(\lambda(T_{\mathcal{E}}) = 0\)) and then consider \(\chi_{T_{\mathcal{E}}}\). \\
-In general, \(\chi_{A}\) is discontinuous on \(\delta A\).  But \(T_{\mathcal{E}}\) has no interior parts \(\Longrightarrow T_{\mathcal{E}} = \delta T_{\mathcal{E}}\) \(\Longrightarrow \chi_{T_{\mathcal{E}}}\) is discontinuous on \(T_{\mathcal{E}}\), which has positive measure
+In general, \(\chi_{A}\) is discontinuous on \(\delta A\).  But \(T_{\mathcal{E}}\) has no interior parts \(\Rightarrow T_{\mathcal{E}} = \delta T_{\mathcal{E}}\) \(\Rightarrow \chi_{T_{\mathcal{E}}}\) is discontinuous on \(T_{\mathcal{E}}\), which has positive measure
 \(\Rightarrow \) by the last theorem, \(\chi_{T_\epsilon}\) is not \(R(I)\)
 
 Clearly 
@@ -11,7 +11,7 @@ Clearly
 \]
 so \(\chi_{T_{\mathcal{E}}} \in \mathcal{L}^1([0,1])\).  
 
-If \(g = \chi_{T_{\mathcal{E}}}\) a.e., then \(g\) is discontinuous at almost every part of \(T_{\mathcal{E}} \Longrightarrow\) \(g\) is discontinuous on a set of positive measure \(\Longrightarrow g \not \in R(I)\). 
+If \(g = \chi_{T_{\mathcal{E}}}\) a.e., then \(g\) is discontinuous at almost every part of \(T_{\mathcal{E}} \Rightarrow\) \(g\) is discontinuous on a set of positive measure \(\Rightarrow g \not \in R(I)\). 
 So, the Lebesgue integral is a true extension of the Riemann one.
 
 Regarding generalized integrals we have
@@ -23,8 +23,8 @@ Regarding generalized integrals we have
     \]
     Then, \(f\) is \(([a,b], \mathcal{L}([a,b]))\)-measurable. Moreover
     \begin{enumerate}
-        \item \(f \geq 0\) on \([a,b] \Longrightarrow f \in \mathcal{L}^1([a,b])\)
-        \item \(\vert f \vert \in R^g([a,b]) \Longrightarrow f \in \mathcal{L}^1 ([a,b])\)
+        \item \(f \geq 0\) on \([a,b] \Rightarrow f \in \mathcal{L}^1([a,b])\)
+        \item \(\vert f \vert \in R^g([a,b]) \Rightarrow f \in \mathcal{L}^1 ([a,b])\)
     \end{enumerate}
     and in both cases
     \[
@@ -35,7 +35,7 @@ Regarding generalized integrals we have
 
 Ex:
 \(f(x) = \frac{\sin x}{x},  x \in [1, \infty]\)
-\[\int_1^{\infty} \vert f(x) \vert dx = +\infty \Longrightarrow f \not \in \mathcal{L}^1([1, +\infty])\].
+\[\int_1^{\infty} \vert f(x) \vert dx = +\infty \Rightarrow f \not \in \mathcal{L}^1([1, +\infty])\].
 But on the other hand
 \[
     \int_1^{\infty} \frac{\sin x}{x} dx = \lim_{\omega \to \infty} \int_1^{\omega} \frac{\sin x}{x} dx = \frac{\pi}{2}
@@ -72,11 +72,11 @@ It is immediate to check that
 \]  
 However, \(d_1\) is not a distance on \(\mathcal{L}^1(X)\), since 
 \[
-    d_1(f,g) = 0 \Longrightarrow f=g \quad \mbox{a.e on }X
+    d_1(f,g) = 0 \Rightarrow f=g \quad \mbox{a.e on }X
 \tag*{(pseudo-distance)}\]
 To overcome this problem, we introduce an equivalent relation in \(\mathcal{L}^1(X)\): we say that 
 \[
-    f \sim g \Longleftrightarrow f = g \quad \mbox{a.e. on }X
+    f \sim g \Leftrightarrow f = g \quad \mbox{a.e. on }X
 \]
 If \(f \in \mathcal{L}^1(X)\), we can consider the equivalence class
 \[
@@ -106,7 +106,7 @@ Ex:
 0 & x < 0 \\
 \end{cases}
 \] 
-For \(M > 1\), \(\lambda(\left\lbrace x \in \mathbb{R} : \vert f(x) \vert > M\right\rbrace) = \lambda(\left\lbrace 0 \right\rbrace) = 0 \Longrightarrow f\mbox{ is essentially bounded}\).
+For \(M > 1\), \(\lambda(\left\lbrace x \in \mathbb{R} : \vert f(x) \vert > M\right\rbrace) = \lambda(\left\lbrace 0 \right\rbrace) = 0 \Rightarrow f\mbox{ is essentially bounded}\).
 
 
 If \(f\) is essentially bounded, it is well defined the \textbf{essential supremum} of \(f\).
@@ -155,10 +155,10 @@ We define
         0 & x \in (0, 1]\\ 1 & x = 0
     \end{cases}
 \]
-Then \(f_n \to g\) pointwise, \(g = f\) a.e. \(\Longrightarrow f_n \to f\) a.e. on \([0,1]\). But \(f(0) \neq g(0) \Longrightarrow f_n \to f\) pointwise. 
+Then \(f_n \to g\) pointwise, \(g = f\) a.e. \(\Rightarrow f_n \to f\) a.e. on \([0,1]\). But \(f(0) \neq g(0) \Rightarrow f_n \to f\) pointwise. 
 
 \(f_n \nrightarrow g\) uniformly on \([0,1]\) \(\bigg\lvert \begin{array}{l}
-    f_n \in \mathcal{C}([0,1]) \\ f_n \to g \Longrightarrow g \in \mathcal{C}([0,1])
+    f_n \in \mathcal{C}([0,1]) \\ f_n \to g \Rightarrow g \in \mathcal{C}([0,1])
 \end{array}\)
 
 a.e. \(\nRightarrow\) uniform, but not all is lost...
@@ -173,20 +173,20 @@ a.e. \(\nRightarrow\) uniform, but not all is lost...
 
 Regarding a.e. convergence and in measure convergence there is the following theorem
 \begin{theorem}
-    If \(\mu(X) < +\infty\) and \(f_n \to f\) a.e. on \(X\) \(\Longrightarrow f_n \to f\) is measure on \(X\)
+    If \(\mu(X) < +\infty\) and \(f_n \to f\) a.e. on \(X\) \(\Rightarrow f_n \to f\) is measure on \(X\)
 \end{theorem}
 \begin{proof}
     Let \(\alpha > 0\). We want to show that \(\forall \; \epsilon > 0\) \(\exists \bar{n} \in \mathbb{N}\) s.t. 
     \[
-        n > \bar{n} \Longrightarrow \mu(\left\lbrace \abs{f_n -f} \geq \alpha\right\rbrace) <\epsilon
+        n > \bar{n} \Rightarrow \mu(\left\lbrace \abs{f_n -f} \geq \alpha\right\rbrace) <\epsilon
     \]
-    \(f_n \to f\) a.e. on \(X\), \(\mu(X) < +\infty\) \(\overset{\text{Egorov}}{\Longrightarrow} \exists \; X_{\epsilon} \subseteq X\) s.t. \(\mu(X \setminus X_{\epsilon}) < \epsilon\) and \(f_n \to f\) uniformly on \(X_{\epsilon}\) \(\Longleftrightarrow \sup_{X_{\epsilon}} \abs{f_n - f} \overset{n\to \infty}{\to} 0\).
+    \(f_n \to f\) a.e. on \(X\), \(\mu(X) < +\infty\) \(\overset{\text{Egorov}}{\Rightarrow} \exists \; X_{\epsilon} \subseteq X\) s.t. \(\mu(X \setminus X_{\epsilon}) < \epsilon\) and \(f_n \to f\) uniformly on \(X_{\epsilon}\) \(\Leftrightarrow \sup_{X_{\epsilon}} \abs{f_n - f} \overset{n\to \infty}{\to} 0\).
 
-    In particular, this means that \(\exists \; \bar{n} \in \mathbb{N}\) s.t. \(n > \bar{n} \Longrightarrow \abs{f_n -f} < \alpha\) on \(X_{\epsilon}\).
+    In particular, this means that \(\exists \; \bar{n} \in \mathbb{N}\) s.t. \(n > \bar{n} \Rightarrow \abs{f_n -f} < \alpha\) on \(X_{\epsilon}\).
 
     Therefore 
     \[
-        \left\{ \abs{f_n -f} \geq \alpha \right\} \cap  X_{\epsilon} = \emptyset \Longrightarrow \left\{ \abs{f_n -f} \geq \alpha \right\} \subseteq X \setminus X_{\epsilon} \qquad \text{for } n> \bar{n} 
+        \left\{ \abs{f_n -f} \geq \alpha \right\} \cap  X_{\epsilon} = \emptyset \Rightarrow \left\{ \abs{f_n -f} \geq \alpha \right\} \subseteq X \setminus X_{\epsilon} \qquad \text{for } n> \bar{n} 
     \]
     By monotonicity of \(\mu\), we deduce that
     \[

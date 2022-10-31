@@ -65,13 +65,13 @@ Examples:
     We can define:
     \[
     \begin{array}{ccc}
-        x \in \limsup_n E_n & \Longleftrightarrow & x \in \bigcap_{k = 1}^{\infty} \left(\bigcup_{n = k}^{\infty} E_n\right) \\
-        & \Longleftrightarrow & \forall k \in \mathbb{N} \, : \; \bigcup_{n = k}^{\infty} E_n \\
-        & \Longleftrightarrow &  \forall k \in \mathbb{N} \; \exists n_k \geq k \, s.t. \, x \in E_{n_k}
+        x \in \limsup_n E_n & \Leftrightarrow & x \in \bigcap_{k = 1}^{\infty} \left(\bigcup_{n = k}^{\infty} E_n\right) \\
+        & \Leftrightarrow & \forall k \in \mathbb{N} \, : \; \bigcup_{n = k}^{\infty} E_n \\
+        & \Leftrightarrow &  \forall k \in \mathbb{N} \; \exists n_k \geq k \, s.t. \, x \in E_{n_k}
         
     \end{array}
 \]
-So \(x \in \limsup_n E_n \; \Longrightarrow\) \(\begin{array}[t]{l}
+So \(x \in \limsup_n E_n \; \Rightarrow\) \(\begin{array}[t]{l}
     \exists m_1 = n_1 \, s.t. \, x \in E_{n_1} \\
     \exists m_2 := n_{m_1 + 1} \geq m_1 + 1 \, s.t. \, x \in E_{n_2} \\
     \vdots \\
@@ -82,8 +82,8 @@ So \(x \in \limsup_n E_n \; \Longrightarrow\) \(\begin{array}[t]{l}
 \)
 
 On the other hand, assume that \(x \in E_n\) for \(\infty\)-many indexes.
-We claim that \(\forall k \in \mathbb{N} \, \exists n_k \geq k \, s.t. \, x \in E_{n_k} \, \Longleftrightarrow \, x \in \limsup_n E_n\). 
-If that claim is not true, then \(\exists \bar{k} \, s.t. \, x \not \in E_n \, \forall n > \bar{k} \Longrightarrow x\) belongs at most to \(E_1, \ldots, E_{\bar{k}}\), a contradiction. 
+We claim that \(\forall k \in \mathbb{N} \, \exists n_k \geq k \, s.t. \, x \in E_{n_k} \, \Leftrightarrow \, x \in \limsup_n E_n\). 
+If that claim is not true, then \(\exists \bar{k} \, s.t. \, x \not \in E_n \, \forall n > \bar{k} \Rightarrow x\) belongs at most to \(E_1, \ldots, E_{\bar{k}}\), a contradiction. 
 \qed
 \end{definition}
 
@@ -112,10 +112,10 @@ Let \(E_1, E_2\) be sets:
     \chi_{E_1 \cup E_2} = \chi_{E_1} + \chi_{E_2} - \chi_{E_1 \cap E_2} 
 \]
 \[
-    \left\lbrace E_n \right\rbrace \subseteq \mathcal{P}(X), \mbox{ disjoint}, E = \bigcup_{n = 1}^{\infty} E_n \Longrightarrow \mathcal{X_E} = \sum_{n = 1}^{\infty} \chi_{E_n}
+    \left\lbrace E_n \right\rbrace \subseteq \mathcal{P}(X), \mbox{ disjoint}, E = \bigcup_{n = 1}^{\infty} E_n \Rightarrow \mathcal{X_E} = \sum_{n = 1}^{\infty} \chi_{E_n}
 \]
 \[
-    \left\lbrace E_n \right\rbrace \subseteq \mathcal{P}, P = \liminf_n E_n, Q = \limsup_n E_n \Longrightarrow \chi_P = \liminf \chi_{E_n}, \chi_Q = \limsup_n \chi_{E_n}
+    \left\lbrace E_n \right\rbrace \subseteq \mathcal{P}, P = \liminf_n E_n, Q = \limsup_n E_n \Rightarrow \chi_P = \liminf \chi_{E_n}, \chi_Q = \limsup_n \chi_{E_n}
 \]
 Recall that \(\limsup_n a_n = \lim_{k \to \infty} \sup_{n \geq k} a_n\) and \(\liminf_n a_n = \lim_{k \to \infty} \inf_{n \geq k} a_n\)
 
@@ -123,8 +123,8 @@ Recall that \(\limsup_n a_n = \lim_{k \to \infty} \sup_{n \geq k} a_n\) and \(\l
 Let's also check that \(\chi_Q = \limsup_n \chi_{E_n}\)
 \[
     \begin{array}{ccc}   
-    x \in \limsup_n E_n & \Longleftrightarrow & \chi_Q(x) = 1 \\
-    & \Longleftrightarrow & \forall \, k \in \mathbb{N} \, \exists \, n_k \geq k \; s.t. \; x \in E_{n_k}
+    x \in \limsup_n E_n & \Leftrightarrow & \chi_Q(x) = 1 \\
+    & \Leftrightarrow & \forall \, k \in \mathbb{N} \, \exists \, n_k \geq k \; s.t. \; x \in E_{n_k}
     \end{array}
     \]
 If we fix \(k\) then 
@@ -134,10 +134,10 @@ If we fix \(k\) then
         \lim_{k \to \infty} \sup_{n \geq k} \chi_{E_n}(x) = \limsup_n \chi_{E_n}(x) = 1
     \end{array}
 \]
-    Let now \(x \not \in \limsup E_n \Longleftrightarrow \chi_Q(x) = 0\).
-    Then \(x\) belongs at most to finitely many \(E_n\) \(\Longrightarrow \exists \, \bar{k}\; s.t. \; x \not \in E_n, \forall n \geq \bar{k}\)
+    Let now \(x \not \in \limsup E_n \Leftrightarrow \chi_Q(x) = 0\).
+    Then \(x\) belongs at most to finitely many \(E_n\) \(\Rightarrow \exists \, \bar{k}\; s.t. \; x \not \in E_n, \forall n \geq \bar{k}\)
     
-    If \(k \geq \bar{k}\), then \(\sup_{n \geq k} \chi_{E_n} (x) = 0 \Longrightarrow \lim_{k \to \infty} \sup_{n \geq k} \chi_{E_n}(x) = \limsup_n \chi_{E_n} (x) = 0\)
+    If \(k \geq \bar{k}\), then \(\sup_{n \geq k} \chi_{E_n} (x) = 0 \Rightarrow \lim_{k \to \infty} \sup_{n \geq k} \chi_{E_n}(x) = \limsup_n \chi_{E_n} (x) = 0\)
 
     \subsubsection*{Relations}
     Given \(X, Y\) sets, is called a \textbf{relation} of \(X\) and \(Y\) a subset of \(X \times Y\)
@@ -145,7 +145,7 @@ If we fix \(k\) then
         R \subseteq X + Y \quad R = \left\lbrace (x,y) \, : \, x \in X, y \in Y \right\rbrace
     \]
     \[
-        (x,y) \in R \Longleftrightarrow xRy
+        (x,y) \in R \Leftrightarrow xRy
     \]
     \[
         X = \left\lbrace 0,1,2,3 \right\rbrace \quad R = \left\lbrace (0,1), (1,2), (2,1) \right\rbrace \mbox{ is a relation in } X
@@ -157,8 +157,8 @@ If we fix \(k\) then
     \(R\) on \(X\) is an \textbf{equivalence relation} if 
     \begin{enumerate}
         \item \(xRx\) \(\forall \; x \in X\) (\(R\) is \textbf{reflexive})
-        \item \(xRy \Longrightarrow yRx\) (\(R\) is \textbf{symmetric})
-        \item \(xRy, yRz \Longrightarrow xRz\) (\(R\) is \textbf{transitive})
+        \item \(xRy \Rightarrow yRx\) (\(R\) is \textbf{symmetric})
+        \item \(xRy, yRz \Rightarrow xRz\) (\(R\) is \textbf{transitive})
     \end{enumerate}
     If \(R\) is an equivalence relation, the set 
     \(
@@ -179,7 +179,7 @@ in this case if \(n\) is even, \(E_n = \left\lbrace \mbox{even numbers} \right\r
     A family \(\mathcal{M} \subseteq \mathcal{P}(X)\) is called a \textbf{\(\mathbf{\sigma}\)-algebra} if 
     \begin{enumerate}
         \item \(X \in \mathcal{M}\)
-        \item \(E \in \mathcal{M} \Longrightarrow E^C = X\setminus E \in \mathcal{M}\)
+        \item \(E \in \mathcal{M} \Rightarrow E^C = X\setminus E \in \mathcal{M}\)
         \item If \(E = \bigcup_{n \in \mathbb{N}}\) and \(E_n \in \mathcal{M} \; \forall \, n\), then \(E \in \mathcal{M}\)
     \end{enumerate}
 \end{definition}
@@ -204,7 +204,7 @@ Some \textbf{basic properties} of a measurable space \((X, \mathcal{M})\):
     \]
     \end{enumerate}
 \begin{itemize}
-    \item \(E, F \in \mathcal{M} \Longrightarrow E \setminus F \in \mathcal{M} = E \setminus F = E \cap F^C \in \mathcal{M}\)
+    \item \(E, F \in \mathcal{M} \Rightarrow E \setminus F \in \mathcal{M} = E \setminus F = E \cap F^C \in \mathcal{M}\)
     \item If \(\Omega \subset X\), then the \textbf{restriction} of \(\mathcal{M}\) to \(\Omega\), written as \[\mathcal{M}\vert_{\Omega} := \left\lbrace F \subseteq \Omega: F = E \cap \Omega, \mbox{ with } E \in \mathcal{M} \right\rbrace\] is a \(\sigalg\) on \(\Omega\)
 \end{itemize}
 \begin{theorem}

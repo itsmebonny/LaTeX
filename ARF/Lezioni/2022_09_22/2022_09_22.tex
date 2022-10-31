@@ -3,7 +3,7 @@ To check if a function is measurable or not, it is often sed the following propo
 \begin{proposition}
     \((X, \mathcal{M}), (Y, \mathcal{N})\) measurable spaces. Let \(\mathcal{F} \subseteq \mathcal{P}(Y)\) be s.t. \(\mathcal{N} = \sigma_0(\mathcal{F})\). Then
     \[
-        f: X \to Y \mbox{ is } (\mathcal{M}, \mathcal{N})-\mbox{measurable} \Longleftrightarrow f^{-1}(E) \in \mathcal{M} \mbox{ for every } E \in \mathcal{F}
+        f: X \to Y \mbox{ is } (\mathcal{M}, \mathcal{N})-\mbox{measurable} \Leftrightarrow f^{-1}(E) \in \mathcal{M} \mbox{ for every } E \in \mathcal{F}
     \]
 \end{proposition}
 
@@ -12,10 +12,10 @@ We will mainly focus on 2 situations:
     \item  \(((X, \mathcal{M}))\) is a measurable space obtained by means of an outer measure. \\
     Ex: \((\mathbb{R}^n, \mathcal{L}(\mathbb{R}^n))\), \((Y, d_y)\) metric space \(\to (Y, \mathcal{B}(Y))\). 
 
-    If \(X \to Y\) is (Lebesgue) measurable \(\Longleftrightarrow\) \((\mathcal{M}, \mathcal{B}(Y))\) is measurable
+    If \(X \to Y\) is (Lebesgue) measurable \(\Leftrightarrow\) \((\mathcal{M}, \mathcal{B}(Y))\) is measurable
 
     \item \((X, d_X), (Y, d_Y)\) are metric spaces \(\longrightarrow (X, \mathcal{B}(X)), (Y, \mathcal{B}(Y))\) \\
-    \(f: X \to Y\) is Borel measurable \(\Longleftrightarrow (\mathcal{M}(X), \mathcal{B}(Y)) \)-measurable.
+    \(f: X \to Y\) is Borel measurable \(\Leftrightarrow (\mathcal{M}(X), \mathcal{B}(Y)) \)-measurable.
 \end{enumerate}
 \begin{remark}
      \(f\) is Lebesgue measurable if the continuity of the Borel set is a Lebesgue-measurable set.
@@ -30,16 +30,16 @@ We will mainly focus on 2 situations:
 \begin{proof}
     The proof is divided in:
     \begin{enumerate}
-        \item \(f\) is continuous \(\Longleftrightarrow f^{-1}(A)\) is open \(\forall \; A \subset Y\)
-        open \(\Longrightarrow\) \(f^{-1}(A) \in \mathcal{B}(Y) \; \forall \; A \subset Y\) open
+        \item \(f\) is continuous \(\Leftrightarrow f^{-1}(A)\) is open \(\forall \; A \subset Y\)
+        open \(\Rightarrow\) \(f^{-1}(A) \in \mathcal{B}(Y) \; \forall \; A \subset Y\) open
         Since \(\mathcal{B}(Y) = \sigma_0 \; (\mbox{open sets})\) by proposition \((1)\) this implies that \(f\) is Borel measurable
-        \item \(f\) is continuous \(\overset{(1)}{\Longrightarrow}\) \(f\) is Borel measurable.
+        \item \(f\) is continuous \(\overset{(1)}{\Rightarrow}\) \(f\) is Borel measurable.
         \(f^{-1}(A) \in \mathcal{B}(\real^n) \subseteq \mathcal{L}(\real^n) \forall \; A \in \mathcal{B}(Y)\). Namely \(f\) is Lebesgue measurable
     \end{enumerate}
 \end{proof}
 \begin{proposition}
     \((X, \mathcal{M})\) measurable space, \((X, d_Y), (Y, d_Y)\) metric spaces. 
-    If \(f: X \to Y\) is \((\mathcal{M}, \mathcal{B}(Y))\)-measurable and \(g : Y \to Z\) is continuous \(\Longrightarrow\) \(g \circ f : x \to Z\) is \((\mathcal{M}, \mathcal{B}(Y))\)-measurable
+    If \(f: X \to Y\) is \((\mathcal{M}, \mathcal{B}(Y))\)-measurable and \(g : Y \to Z\) is continuous \(\Rightarrow\) \(g \circ f : x \to Z\) is \((\mathcal{M}, \mathcal{B}(Y))\)-measurable
 \end{proposition}
 \begin{proposition}
     \((X, \mathcal{M})\) measurable space , \(u,v : X \to  \real\) measurable functions.
@@ -166,9 +166,9 @@ Moreover if f is bounded then \(s_n \to f\) uniformly on \(X\) as \(n \to \infty
     Then any \(x \in X\) stays in \(f^{-1}([a_j, b_j))\) for some \(j\) 
     \[
         \begin{array}{l}
-            \Longrightarrow \stackbelow{a_j}{s_n(x)} \leq f(x) < b_j \\
-            \Longrightarrow 0 \leq f(x)-s_n(x) < b_j - a_j = \frac{1}{2^n} \\
-            \Longrightarrow \sup_{x \in X} \abs{f(x)- s_n{x}} < \frac{1}{2^n} \to 0 \mbox{ as } n \to \infty
+            \Rightarrow \stackbelow{a_j}{s_n(x)} \leq f(x) < b_j \\
+            \Rightarrow 0 \leq f(x)-s_n(x) < b_j - a_j = \frac{1}{2^n} \\
+            \Rightarrow \sup_{x \in X} \abs{f(x)- s_n{x}} < \frac{1}{2^n} \to 0 \mbox{ as } n \to \infty
         \end{array}
     \]
     Namely, \(s_n \to f\) uniformly on X.
