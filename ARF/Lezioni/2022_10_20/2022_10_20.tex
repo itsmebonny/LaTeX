@@ -189,3 +189,44 @@ Normed spaces and Banach spaces
 \begin{remark}
     Normed space \(\underset{\displaystyle\nleftarrow}{\rightarrow}\) metric space
 \end{remark}
+\underline{Examples}:
+
+\begin{itemize}
+    \item \(\real^N, \norm{x}_p := (\sum_{i = 1}^N \abs{x_i}^p)^{\frac{1}{p}}\) \(\forall p \in [1, +\infty)\)
+    \[
+        \norm{x}_{\infty} := \max_{i = 1, \ldots, N} \abs{x_i}
+    \]
+    \item \(\mathcal{C}^0([a,b])\) \[\norm{f}_{\infty} := \max_{x \in [a,b]} \abs{f(x)}\]
+    \item \(L^1(X, \mathcal{M}, \mu)\) \[\norm{f}_1 := \int_X \abs{f} \, d\mu\] This is a norm in \(L^1\), but not on \(\mathcal{L}^1\) \((\int_x \abs{f} \, d\mu = 0 \Rightarrow f = 0 \mbox{ a.e.})\)
+    \item \(L^{\infty}(X, \mathcal{M}, \mu)\) \[\norm{f}_{\infty} := \underset{[a,b]}{\esssup} \abs{f}\]
+\end{itemize}
+\((X, \normdot)\) normed space \(\to\) \((X, d)\) metric space \(\to\) convergent sequences on \(X\): \(\left\{ x_n \right\} \subset X\) is convergent in \(X\) iff 
+\[
+    d(x_n, x) \to 0 \Leftrightarrow \norm{x_n -x} \to 0 \mbox{ as } n \to \infty
+\]
+\underline{Ex}: \(x_n \to x\) in \(X\), then \(\norm{x_n} \to \norm{x}\) (the norm is a continuous function on \(X\))
+\begin{definition}
+    \(\left\{ x_n \right\}\) is a \textbf{Cauchy sequence} in \((X, \normdot)\) if \(\forall \; \epsilon > 0\) \(\exists \; \bar{n} \in \mathbb{N}\) s.t. 
+    \[
+        n,m > \bar{n} \Rightarrow \norm{n_n-x_m} < \epsilon
+    \]
+\end{definition}
+\begin{definition}
+    \((X, \normdot)\) is called a \textbf{Banach space} if \((X, d)\) is complete, namely if any Cauchy sequence in \((X, d)\) is convergent.
+\end{definition}
+If \((X, \normdot)\) is a normed space, we can speak about series in \(X\). Let \(\left\{ x_n \right\} \subset X\) and \(s_n = x_0 + x_1 + \ldots + x_n\), then \(\sum_{n=0}^{+\infty} x_n = \left\{ s_n \right\}\). 
+
+Then \(\sum x_n\) is convergent if \(\left\{ s_n \right\}\) is convergent. If \(\sum x_n\) is convergent, we write 
+\[
+    s = \sum_{n = 0}^{+\infty} x_n \Leftrightarrow s_n \to s
+\]
+For numerical series
+\[
+    \sum_{n=1}^{\infty} \abs{a_n} < +\infty \Rightarrow \sum a_n \mbox{ is convergent}
+\]
+In general, in normed spaces 
+\[
+    \sum_{n=1}^{\infty} \norm{x_n} < +\infty \nRightarrow \sum_{n=1}^{\infty} x_n \mbox{ is convergent}
+\]
+\subsubsection*{Characterization}
+\((X, \normdot)\) is a Banach space \(\Leftrightarrow\) every series s.t. \(\sum \norm{x_n} < +\infty\) is also s.t. \(\sum x_n\) is convergent
