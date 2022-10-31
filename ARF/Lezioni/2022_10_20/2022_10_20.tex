@@ -1,4 +1,5 @@
 \section{Lesson 20/10/2022}
+\underline{Goal}: The \(2^{nd}\) fundamental theorem of calculus. Given \(G \in \mbox{AC}([a,b])\). Then \(G\) is differentiable a.e. on \([a,b]\), \(G' \in L^1([a,b])\), and (FC) holds.
 Example and comments:
 \begin{itemize}
     \item If \(f\) is bounded and monotone \(\Longrightarrow\) \(f \in \mbox{BV}\)
@@ -6,32 +7,92 @@ Example and comments:
         V_a^b (f) = \abs{f(b) - f(a)}
     \]
     Note that \(f\) may not be continuous
-    cases
+    \[
+        f(x) = \begin{cases}
+            1 & x \geq 0 \\
+            0 & x < 0
+        \end{cases}
+        \Rightarrow f \in \mbox{BV}([-1,1])
+    \]
     \item \(f \in \mbox{BV}([a,b]) \Longrightarrow f\) is bounded. Indeed
     \[
-        \sup_{x \in [a,b]} \abs{f(x)} \leq \abs{f(x)} + V_a^b(f)
+        \sup_{x \in [a,b]} \abs{f(x)} \leq \abs{f(x)} + V_a^b(f) \overset{f \in \text{BV}}{<} +\infty
     \]
-    \item \(f\) is continuous on \([a,b]\) \(\nRightarrow f \in \mbox{BV}([a,b])\)
+    \item \(f\) is continuous on \([a,b]\), or even if  \(f\) is differentiable everywhere in \([a,b]\) \(\nRightarrow f \in \mbox{BV}([a,b])\)
+    \[
+        f(x) = \begin{cases}
+            x^2\cos{\frac{2\pi}{x^2}} & x \in (0,1] \\
+            0 & x = 0
+        \end{cases}
+    \]
+    It is continuous in \([0,1]\), but \(f \notin \mbox{BV}([0,1])\)
     \item \(f \in \mbox{BV}([a,b]) \cap \mbox{UC}([a,b])  \nRightarrow f \in \mbox{AC}([a,b])\)
-    Given \(v\) a Vitali-Cantor function. \(v\) is bounded and monotone \(\Longrightarrow v \in \mbox{BV}([0,1])\) and \(v \in \mbox{UC}([0,1])\). But \(v \not \in \mbox{AC}([0,1])\)
+    \[\begin{array}{l}
+        v \mbox{ a Vitali-Cantor function} \\ v \mbox{ is bounded and monotone} \\ 
+        v \in \mbox{UC}([0,1]) \\ 
+        
+    \end{array}
+    \Longrightarrow v \in \mbox{BV}([0,1]) 
+    \]
+    But \(v \not \in \mbox{AC}([0,1])\)
+    \item If \(f \in \mbox{BV}([a,b]) \Rightarrow f\) is differentiable a.e. on \([a,b]\), and \(f' \in L^1([a,b])\)
 \end{itemize}
-We can now come back to the proof of Lemma 1
-\begin{proof}
-    \underline{Preliminary result}: \(A \in \real\) open. Then \(A = \bigcup_{n=1}^{\infty}(a_n, b_n)\)
-    any open set of \(\real\) is....
-    \underline{Preliminary result}: \(f \in \mbox{AC}([a,b]) \Longleftrightarrow \forall \; \epsilon > 0 \exists \; \delta > 0\)
-    \dots
-    \dots
-    We can start with the proof
-\end{proof}
+We can now come back to the proof of Lemma 1 of the last lesson.
 
-Take this \(\delta\). By regularity of \(\lambda\), \(\exists \; A \) open set of \(\left[a, b\right]\)s.t. \(A \supset E\) and \(\lambda(A) < \delta\). 
-
-....
-
-But then 
+\underline{Preliminary result}: \(A \in \real\) open. Then 
 \[
-    \mu (E) \leq \mu(A) = \sum_n \mu (I_n) \text{ since } \mu \text{ is a measure}
+    A = \bigcup_{n=1}^{\infty}(a_n, b_n) \mbox{ disjoint}
+\]
+    any open set of \(\real\) is the (at most) countable union of open disjoint intervals.
+
+\underline{Preliminary result (equivalent definition for AC)}: \(f \in \mbox{AC}([a,b]) \Leftrightarrow \forall \; \epsilon > 0 \exists \; \delta > 0\) depending on \(\epsilon\) s.t. 
+\[
+    \forall \; \bigcup_{n=1}^{\infty} [a_n, b_n], \quad [a_n, b_n] \mbox{ have disjoint interiors}
+\]
+\[
+    \sum_{n=1}^{\infty} (b_n -a_n) < \delta \Rightarrow \sum_{n=1}^{\infty} \abs{f(b_n) - f(a_n)} < \epsilon
+\]
+\begin{proof}
+    We defined \(\lambda\) starting from two properties
+    \begin{itemize}
+        \item invariance under translations
+        \item \(\lambda((x,y)) = y - x\) \(\forall \; a \leq < y \leq b\)
+    \end{itemize}
+    Now, \(G\) is monotone, say \(G\) increasing (if \(G \searrow\), take \(-G\)). We can repeat the construction of \(\lambda\) in order to obtain a measure \(\mu\) s.t. 
+    \begin{itemize}
+        \item \(\mu\) is invariant under translations
+        \item \(\mu((x,y)) = \underbrace{G(y) - G(x)}_{\geq 0}\) \(\forall \; a \leq x < y \leq b\) (for \(\lambda\), take \(G(t) = t\))
+    \end{itemize}
+It can be proved that we obtain a measure on \((\real, \mathcal{L}(\real))\), complete.
+
+On \((\real, \mathcal{L}(\real))\) we have two measures: \(\lambda \mbox{ and } \mu\).
+
+\underline{Idea}: We take these measures on \(([a,b], \mathcal{L}([a,b]))\), and we want to show that \(\exists \; \frac{d\mu}{d\Lambda}\) (Radon-Nikodym)
+
+We can check the hypothesis of the Radon-Nikodym theorem:
+\begin{itemize}
+    \item \(\lambda\) is \(\sigma\)-finite: \(\lambda([a,b]) = b-a < +\infty\)
+    \item \(\mu << \lambda\): \(E \in \mathcal{L}([a,b])\), \(\lambda(E) = 0 \Rightarrow \mu(E) = 0\)
+\end{itemize}
+Assume \(\lambda(E) = 0\). \(G\) is \(\mbox{AC}([a,b])\): then \(\forall \; \epsilon > 0\) \(\exists \; \delta = \delta(\epsilon) > 0\) s.t. 
+\[
+    \forall \; \bigcup_{n=1}^{\infty} [a_n, b_n], \quad [a_n, b_n] \mbox{ have disjoint interiors}
+\]
+\[
+    \lambda\left(\bigcup_{n=1}^{\infty} [a_n, b_n]\right) < \delta \Rightarrow \sum_{n=1}^{\infty} \abs{G(b_n) - G(a_n)} < \epsilon
+\]
+Take this \(\delta\). By regularity of \(\lambda\), \(\exists \; A \) open set of \(\left[a, b\right]\)s.t. \(A \supset E\) and \(\lambda(A) < \delta\)
+\[
+    A \mbox{ is open} \Rightarrow A = \left( \bigcup_{n=1}^{\infty} I_n \symbolfootnotemark[2]{\mbox{open intervals } = (x, y)} \right), \mbox{ disjoint}
+    \symbolfootnotetext[2]{open intervals = \((x_n, y_n)\)}
+\] 
+it is a countable union of open intervals (maybe two of them contains \(a\) or \(b\))
+\[
+    \lambda(A) < \delta \Leftrightarrow \sum_{n=1}^{\infty} (y_n - x_n) < \delta
+\]
+But then, since \(\mu\) is a measure it is countably additive
+\[
+    \mu (E) \leq \mu(A) = \sum_n \mu (I_n) = \sum_n G(y_n) - G(x_n) \underset{\begin{array}{c} \downarrow \\ \text{\tiny{by the choice of }} \delta \\ \text{\tiny{and the fact that }} \\G \in \text{AC}\end{array}}{<} \epsilon
 \]
 
 We proved that 
@@ -46,34 +107,85 @@ Since \(G\) is bounded, then \(\oldphi \in L^1(\left[a, b\right])\)
 \[
     G(x)=G(a) + \int_a^x \oldphi(t) \, dt
 \]
-By the first foundamental theorem of calculus, this is differentiable a.e. 
+By the first fundamental theorem of calculus, this is differentiable a.e. 
 \[
-    G'(x) = \oldphi(x) \text{ a.e. on } \left[a, b\right]
+    \Rightarrow G'(x) = \oldphi(x) \text{ a.e. on } \left[a, b\right]
 \]
 \[
-    G'(x) = cose
+    \Rightarrow G'(x) = G(a) + \int_a^x G'(t) \, dt
 \]
+\end{proof}
+Now we want to get rid of the additional assumption (monotonicity).
 
-Now we want to get rid of the additional assumption (monotonicity)
-
+\underline{Preliminary result}: \(f \in \mbox{BV}([a,b])\). Then
+\[
+    \phi(x) = V_a^x(f), \quad \forall \, x \in [a,b] 
+\]
+is an increasing function.
 \begin{proof}
-    of the second fundamental theorem of calculus in the general case.
-    Idea:  \(G \in AC\) 
-    we want to write \(G= G_1 + G_2\) where \(G_1 \nearrow \) and \(G_2 \searrow\), both AC. \\
+    By \(a \leq x < y \leq b\). Then
+    \[
+        V_a^y (f) = V_a^x (f) + \underbrace{V_x^y(f)}_{\geq 0} \geq V_a^x(f)
+    \]
+\end{proof}
+\underline{Preliminary result}: If \(G \in \mbox{AC}([a,b])\), then \(G \in \mbox{BV}([a,b])\), and moreover 
+\[
+    \phi(x) = V_a^x(G) \mbox{ is in AC}([a,b])
+\]
+\begin{proof}[Proof of the second fundamental theorem of calculus in the general case]\(G \in \mbox{AC}([a,b])\)
+
+
+    We want to write \(G= G_1 + G_2\) where \(G_1 \nearrow \) and \(G_2 \searrow\), both AC. 
+
     Then the second fundamental theorem holds for \(G_1 \) and \(G_2\) so it holds for \(G\) by linearity of the integral. 
-    \dots
-    Clearly, \(G_1+G_2 = G\), \(G_1, G_2\) are AC, by preliminary result n4.
-    \dots
+    
+    We pose:
+    \[
+        G_1(x) = \frac{G(x) + V_a^x(G)}{2}
+    \]
+    \[
+        G_2(x) = \frac{G(x) - V_a^x(G)}{2}
+    \]
+    Clearly, \(G_1+G_2 = G\), \(G_1, G_2\) are AC, by the last preliminary result.
+
+    \underline{\(G_1 \nearrow\)}: Let \(a \leq x < y \leq b\)
+    \[
+        \abs{G(y) - G(x)} \leq V_x^y(G)
+    \]
     Therefore, 
     \[
-        G_1 (y) - G_1(x) = \frac{1}{2} \left(G(y) - G(x) + V_a^y(G) + V_a^x(G)\right) \geq - \abs{G(y) - G(x)} \geq - V_x^y(G)
+        G_1 (y) - G_1(x) = \frac{1}{2} (\underbrace{G(y) - G(x)}_{\begin{array}{l}\geq - \abs{G(y) - G(x)} \\ \geq - V_x^y(G)\end{array}} + V_a^y(G) + V_a^x(G))  \geq \frac{1}{2}(-V_x^y(G) + V_x^y(G)) = 0
     \]
+    
+       
+    
     So \(G_1\) is decreasing. In an analogue way, we can prove that \(G_2\) is decreasing.
 \end{proof}
 
 \section*{Functional analysis}
 Normed spaces and Banach spaces
 \begin{definition}
-    Given \(X\) vector space, a norm on \(X\) is a function \(\norm{\cdot}\)
+    Given \(X\) vector space, a norm on \(X\) is a function \(\norm{\cdot} : X \to [0, \infty)\) s.t.
+    \begin{itemize}
+        \item \(\norm{x} = 0 \Leftrightarrow x = 0\)
+        \item \(\forall \; \alpha \in \real, \forall \; x \in X\) : 
+        \[
+            \norm{\alpha x} = \abs{\alpha}\norm{x} \text{ (positive homogeneity)} \tag*{(positive homogeneity)}
+        \]
+        \item \(\forall \; x,y \in X\): 
+        \[
+            \norm{x+y} \leq \norm{x} + \norm{y} \tag*{(triangle inequality)}
+        \]
+    \end{itemize}
+    Then, \((X, \normdot)\) is called a \textbf{normed space}
 \end{definition}
-
+\underline{Ex}: \(\abs{\norm{x} - \norm{y}} \leq \norm{x - y}\) \(\forall \; x,y \in X\)
+\begin{proposition}
+    \((X, \normdot)\) normed space. Then \((X, d)\) is a metric space for 
+    \[
+        d(x,y) = \norm{x - y}
+    \]
+\end{proposition}
+\begin{remark}
+    Normed space \(\underset{\displaystyle\nleftarrow}{\rightarrow}\) metric space
+\end{remark}
