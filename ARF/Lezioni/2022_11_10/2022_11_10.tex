@@ -1,1 +1,139 @@
 \section{Lesson 10/11/2022}
+\underline{Quick recap about the `delirium' on the separability}
+
+The thing that you need to know \(\to L^p(\real, \mathcal{L}(\real), \lambda)\).
+\begin{enumerate}
+    \item \(L^p\)
+\end{enumerate}
+What happens for \(L^{\infty}(\real, \mathcal{L}(\real), \lambda)\)? 
+
+\(\mathcal{C}(\real)\) is on \(L^\infty\).
+
+By the simple approximation theorem, we have that simple functions are dense in \(L^\infty\).
+\begin{theorem}
+    \(L^{\infty}(\real, \mathcal{L}(\real), \lambda)\) is not separable.
+\end{theorem}
+\begin{proof}
+    \(\{\chi_{[-\alpha, \alpha]}: \alpha >0\} \subseteq L^{\infty}(\real, \mathcal{L}(\real), \lambda)\)
+    \(\chi_\alpha = \chi_{[-\alpha, \alpha]}\)
+
+    This is an uncountable family of functions. \(\norm{\chi_\alpha - \chi_{\alpha'}}\) \(\forall \; \alpha \neq \alpha'\)
+
+    ...
+
+    In particular, \(B_{\frac{1}{2}}(\chi_\alpha) \cap B_{\frac{1}{2}}(\chi_{\alpha '}) = \emptyset \) \(\forall \; \alpha \neq \alpha'\)
+
+    Assume by contradiction that \(L^\infty(\real)\) is separable: \(\exists Z \subset L^\infty\) which is countable and dense. In particular, \(\forall \; f \subset L^\infty\) \(\exists \; g \in Z\) s.t. 
+    \[
+        \norm{g-f }_\infty < \frac{1}{2}
+    \]
+    Therefore, ...
+
+    \[
+        \Rightarrow \alpha \neq \alpha' \text{, we have } g_\alpha \neq g_{\alpha'}
+    \]
+    ....
+\end{proof}
+
+\begin{remark}
+    The same is true if \((\real, \mathcal{L}(\real), \lambda)\) is swapped with \((X, \mathcal{L}(X), \lambda)\), \(X\) is open or closed on \(\real\) or \(\real^n\)
+\end{remark}
+\subsection*{Linear operators}
+\((X, \normdot_X)\), \((Y, \normdot_Y)\) normed spaces.
+\begin{definition}
+    \(T : D(T) \subseteq X \to Y\) is a \textbf{linear operator} if 
+    \[
+        T(...) = \alpha_1 T(x_1) + \alpha_2 T(x_2) \forall \; x_1, x_2, \in D(T) \quad \forall \; \alpha_1, \alpha_2 \in \real
+    \]
+    \(D(T)\) is a ... linear subspace
+\end{definition}
+\begin{definition}
+    A linear operator \(T : D(T) \subseteq X \to Y\) is bounded if \(D(T) = X\) and \(\exists \; M >0\) s.t. 
+    \[
+        \norm{T_X}_Y \leq M \abs{x}_X \forall \; x \in X
+    \]
+    Recall that \(T\) is continuous in ... iff 
+    \[
+        \forall \; \left\{ x_n \right\} \subset X
+    \]
+\end{definition}
+\underline{Ex}:
+\begin{itemize}
+    \item \(L: \real^n \to \real\)  is a linear functional . Then \(\exists \; y \in \real^n\) s.t. 
+    \[
+        qualcosa
+    \]
+    In particular, then \(L\) is continuous on \(\real^n\) and 
+    \[
+        \abs{L_X} < \abs{<y,x>} \overset{\text{\tiny{Cauchy-Schwarz}}}{\leq}
+    \]
+    \item Linear operators in \(\infty\)-dim may not be defined everywhere, and many may not be continuous.
+    
+    Consider 
+    \[
+        \begin{array}{cc}
+            cose & cose \\
+        \end{array}
+    \]
+    This is not continuous or bounded. For example, take \(f_n(x) = \frac{1}{n} \sin{2\pi n x}\)
+    In this case \(f_n \to 0 \nRightarrow \frac{d}{dx} f_n \to 0\), then \(\frac{d}{dx}\) is not bounded as well.
+    \item Let \((X, \normdot_X)\) be a normed space. If \(\dim X = 0\), is it possible to find linear functionals which are not bounded? Yes.
+\end{itemize}
+\begin{definition}
+    A subset \(\left\{ qualcosa \right\}\) is called \textbf{Hamel basis} of \(X\) if 
+    \[
+        dawdwa
+    \]
+    and if every \(x \in X\) can be written in a unique way as 
+    \[
+        x = \sum_{k=1}^n x_k e_{i_k}, dwdqw
+    \]
+\end{definition}
+Every \(x\) can be written uniquely as a finite linear combination of element of the basis.
+If \(\dim X = \infty\) is not immediate that the Hamel basis exists. This can be proved using the axiom of choice. (Zorn's lemma). 
+
+Any normed space has a Hamel basis \(\dim X = \infty \Rightarrow \) has \(\infty\) many elements.
+
+cose
+
+We define \(L:X \to \real\) in the following way 
+\[
+    qualcosa array
+\]
+Then, for \(x \in X\) we set
+\[
+d<s    
+\]
+ 
+\(L\) is linear by contradiction, and it is not bounded.
+
+\[
+    \begin{array}{c}
+        cose \\
+    \end{array}
+\]
+\begin{remark}
+    In practice, Hamel basis are 
+\end{remark}
+For linear operators, boundedness and continuity are equivalent.
+\begin{theorem}
+    \(T:X \to Y\) linear map. Then the following are equivalent
+    \begin{enumerate}
+        \item \(T\) is continuous in \(0 \in X\)
+        \item \(T\) is continuous everywhere in \(X\)
+        \item \(T\) is bounded
+    \end{enumerate}
+\end{theorem}
+\begin{remark}
+    \(T\) linear \(\Rightarrow T_0 = 0\). Indeed
+    \[
+        T_0 = T(0x) =  0
+    \]
+\end{remark}
+\begin{proof}
+    
+    \begin{itemize}
+        \item \((2) \Rightarrow (1)\) obvious.
+        \item \((1) \Rightarrow (3)\) Suppose by contradiction that \(T\) is not bounded. TANTE COSE
+    \end{itemize}
+\end{proof}
