@@ -1,13 +1,24 @@
 \section{Lesson 10/11/2022}
 \underline{Quick recap about the `delirium' on the separability}
 
-The thing that you need to know \(\to L^p(\real, \mathcal{L}(\real), \lambda)\).
+The thing that you need to know, in \(\to L^p(\real, \mathcal{L}(\real), \lambda)\), are:
 \begin{enumerate}
-    \item \(L^p\)
+    \item \(L^p\) is separable \(\forall\; p \in [1, \infty)\)
+    \item \(\tilde{S}(\real)\) is dense in \(L^p(\real)\) \(\forall \; p \in [1, \infty)\), 
+    namely \(\forall p \in L^p (\real)\) and \(\forall \; \epsilon >0 \) \(\exists \; s \in \tilde{S}(\real)\) s.t. 
+    \[
+        \norm{f-s}_p < \epsilon
+    \]
+    \item \(\mathcal{C}_C^0 (\real)\) is dense in \(L^p\), namely \(\forall p \in L^p (\real)\) and \(\forall \; \epsilon >0 \) \(\exists \; g \in \mathcal{C}_C^0(\real)\) s.t. 
+    \[
+        \norm{f-g}_p < \epsilon
+    \]
 \end{enumerate}
+Everything remains true if you replace \(\real\) with \(X\) open or closed, or with \(X \in L(\real^n)\), and consider \((X, L(X), \lambda)\).
+
 What happens for \(L^{\infty}(\real, \mathcal{L}(\real), \lambda)\)? 
 
-\(\mathcal{C}(\real)\) is on \(L^\infty\).
+\(\mathcal{C}(\real)\) is not dense in \(L^\infty\).
 
 By the simple approximation theorem, we have that simple functions are dense in \(L^\infty\).
 \begin{theorem}
@@ -27,46 +38,50 @@ By the simple approximation theorem, we have that simple functions are dense in 
     \[
         \norm{g-f }_\infty < \frac{1}{2}
     \]
-    Therefore, ...
+    Therefore, \(\forall \; \alpha\) \(\exists g_\alpha \in B_{\frac{1}{2}}(\chi_\alpha) \cap Z\). 
+    But \( B_{\frac{1}{2}(\chi_\alpha) \cap B_\{\frac{1}{2}(\chi_{\alpha'})} = \emptyset \)
 
     \[
         \Rightarrow \alpha \neq \alpha' \text{, we have } g_\alpha \neq g_{\alpha'}
     \]
-    ....
+    \(Z \supseteq \{ g_\alpha : \alpha >0 \}\), which is uncountable. This is not possible, since \(Z\) is countable.
 \end{proof}
 
 \begin{remark}
     The same is true if \((\real, \mathcal{L}(\real), \lambda)\) is swapped with \((X, \mathcal{L}(X), \lambda)\), \(X\) is open or closed on \(\real\) or \(\real^n\)
 \end{remark}
+
 \subsection*{Linear operators}
 \((X, \normdot_X)\), \((Y, \normdot_Y)\) normed spaces.
 \begin{definition}
-    \(T : D(T) \subseteq X \to Y\) is a \textbf{linear operator} if 
+    \(T : D(T) \subseteq X \to Y\) is a \textbf{linear operator} (or map) if 
     \[
-        T(...) = \alpha_1 T(x_1) + \alpha_2 T(x_2) \forall \; x_1, x_2, \in D(T) \quad \forall \; \alpha_1, \alpha_2 \in \real
+        T(\alpha_1 x_1 + \alpha_2 x_2) = \alpha_1 T(x_1) + \alpha_2 T(x_2) \quad \forall \; x_1, x_2, \in D(T) \quad \forall \; \alpha_1, \alpha_2 \in \real
     \]
-    \(D(T)\) is a ... linear subspace
+    \(D(T)\) is a linear subspace of \(X\), and is called the domain of T. When \(D(T) = X\) and \(Y = \real\), \(T\) is called linear functional.
 \end{definition}
 \begin{definition}
     A linear operator \(T : D(T) \subseteq X \to Y\) is bounded if \(D(T) = X\) and \(\exists \; M >0\) s.t. 
     \[
         \norm{T_X}_Y \leq M \abs{x}_X \forall \; x \in X
     \]
-    Recall that \(T\) is continuous in ... iff 
+    Recall that \(T\) is continuous in \(x_0 \in X\) iff 
     \[
-        \forall \; \left\{ x_n \right\} \subset X
+        \forall \; \left\{ x_n \right\} \subset X, x_n \overset{X}{\to} x_0 \Rightarrow Tx_n \overset{Y}{\to} Tx_0
     \]
 \end{definition}
 \underline{Ex}:
 \begin{itemize}
     \item \(L: \real^n \to \real\)  is a linear functional . Then \(\exists \; y \in \real^n\) s.t. 
     \[
-        qualcosa
+        Lx = <y, x> = (y, x) = y \dot x
     \]
-    In particular, then \(L\) is continuous on \(\real^n\) and 
+    In particular, then \(L\) is continuous on \(\real^n\) and bounded:
     \[
-        \abs{L_X} < \abs{<y,x>} \overset{\text{\tiny{Cauchy-Schwarz}}}{\leq}
+        \abs{L_X} < \abs{<y,x>} \overset{\text{\tiny{Cauchy-Schwarz}}}{\leq} \norm{y} \norm{x} \qquad \forall\; x \in \real^n
     \]
+    So \(L\) is bounded with \(M=\norm{y}\).
+
     \item Linear operators in \(\infty\)-dim may not be defined everywhere, and many may not be continuous.
     
     Consider 
