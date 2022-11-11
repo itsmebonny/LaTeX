@@ -1,1 +1,36 @@
 \section{Lesson 09/11/2022}
+We introduced \(L^p(X, \mathcal{M}, \mu)\), and we proved that this is a normed space with 
+\[
+    \norm{f}_p := \begin{cases}
+        \left( \int_X \abs{f}^p \; d\mu \right)^{\frac{1}{p}} & \text{if } p\in [1, +\infty) \\
+        \underset{X}{\esssup}\abs{f} & \text{if } p = +\infty
+    \end{cases}
+\]
+\underline{Inclusion of \(L^p\) spaces}
+\begin{theorem}
+    Suppose that \(\mu(X) < +\infty\). Then 
+    \[
+        1 \leq p \leq q \leq \infty \Rightarrow L^q(X) \subseteq L^p(X)
+    \]
+    Meaning that any \(f \in L^q\) is also in \(L^p\). More precisely, \(\exists \; C > 0\) depending on \(\mu(X), p, q\) s.t.
+    \[
+        \norm{f}_p \leq \norm{f}_q \quad f \in L^q(X)
+    \]
+\end{theorem}
+\begin{proof}
+    If \(q = +\infty\)
+    
+    \(f \in L^\infty(X)\): then \(\abs{f(x)} \leq \underset{X}{\esssup}\abs{f} = \norm{f}_\infty\) for a.e. \(x \in X\), say \(\forall \; x \in X \setminus A\), with \(\mu(A) = 0\). Then 
+    \[
+        \int_X \abs{f}^p \, d\mu = \int_{X\setminus A} \abs{f}^p \, d\mu \leq \norm{f}_{\infty}^p \int_{X\setminus A} 1 \,d\mu = \norm{f}_\infty^p \underbrace{\mu(X)}_{= \mu(X\setminus A)}
+    \]
+    If \(q < +\infty\)
+
+    Then \(\frac{q}{p} > 1\), and we can use Hölder\(\left(\frac{q}{p},\left( \frac{q}{p} \right)' \right)\), where \(\left( \frac{q}{p} \right)' = \frac{\frac{q}{p}}{\frac{q}{p}-1} = \frac{q}{q-p}\)
+    \[
+        \norm{f}_p^p = \int_X \abs{f}^p \, d\mu \overset{\text{\tiny{Hölder}}}{\leq} \left( \int_X \left( \abs{f}^{\not p} \right)^{\frac{q}{\not p}} \, d\mu\right)^{\frac{p}{q}}\cdot \left( \int_X 1 \, d\mu \right)^{\frac{q-p}{p}} = \left( \int_X \abs{f}^{q} \, d\mu\right)^{\frac{p}{q}}\cdot \left( \mu(X)\right)^{\frac{q-p}{p}}
+    \]
+    \[
+        \Rightarrow \norm{f}_p \leq \mu(X)?{\frac{q-p}{qp}} \norm{f}_q
+    \]
+\end{proof}
