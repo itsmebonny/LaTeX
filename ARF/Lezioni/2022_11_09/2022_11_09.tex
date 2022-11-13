@@ -6,7 +6,7 @@ We introduced \(L^p(X, \mathcal{M}, \mu)\), and we proved that this is a normed 
         \underset{X}{\esssup}\abs{f} & \text{if } p = +\infty
     \end{cases}
 \]
-\underline{Inclusion of \(L^p\) spaces}
+\subsection*{Inclusion of \(L^p\) spaces}
 \begin{theorem}
     Suppose that \(\mu(X) < +\infty\). Then 
     \[
@@ -33,4 +33,82 @@ We introduced \(L^p(X, \mathcal{M}, \mu)\), and we proved that this is a normed 
     \[
         \Rightarrow \norm{f}_p \leq \mu(X)?{\frac{q-p}{qp}} \norm{f}_q
     \]
+\end{proof}
+
+The assumption \(\mu(X)< \infty\) is essential. For example, in \(X = [1, \infty]\)
+\[
+    \frac{1}{x} \in L^2([1, \infty]) \iff \int_1^\infty \frac{dx}{x^2} < \infty
+\]
+\[
+    \frac{1}{x} \notin L^1 ([1, \infty]) \iff \int_1^\infty \frac{dx}{x} = \infty
+\]
+
+In particular, the previous theorem is false for \(l^p\)-spaces
+\[
+    l^p = L^p(\natural, \mathcal{P}(\natural), \mu_C)
+\]
+\[
+    1 \leq p \leq q \leq \infty \Rightarrow l^p \subseteq l^q \text{, and } \exists \; C>0 \text{ s.t. } \norm{x}_q \leq C \norm{x}_p \quad \forall\; x \in l^p
+\]
+Without assumptions on \(\mu(X)\), in general one has the interpolation inequality.
+\begin{theorem}
+    \((X, \mathcal{M}, \mu)\) measure space. 
+    Let \(1 \leq p \leq q \leq \infty\). If \(f \in L^p(X) \cap L^q(X)\), then 
+    \[
+        f \in L^r(X) \quad \forall \; r \in (p, q)
+    \]
+    and moreover 
+    \[
+        \norm{f}_r \leq \norm{f}_p^\alpha \norm{f}_q^{1-\alpha}
+    \]
+    where \(\alpha\) is such that \(\frac{1}{r}=\frac{\alpha}{p} + \frac{1-\alpha}{q}\)
+\end{theorem}
+\begin{proof}
+    For exercise. Use Holder
+\end{proof}
+
+\subsection*{Completeness and Separability}
+\begin{theorem}
+    For \(1 \leq p \leq \infty\), \(L^p(X, \mathcal{M}, \mu)\) is a Banach space (with reference to \(\normdot_p\))
+\end{theorem}
+\begin{proof}
+    \item \(p < \infty\)
+    By using the characterization of completeness with the series, we want to show that 
+    if \(\{f_n\} \subseteq L^p(X)\), and \(\sum_{k=1}^\infty\norm{f_k}_p < \infty \Rightarrow \sum_{k=1}^\infty f_k \) is convergent in \(L^p\), 
+    namely \(s_n = \sum_{k=1}^n f_k\) has a limit in \(L^p\): \(\norm{s_n -s}_p \to 0 \) as \(n \to \infty\). 
+
+    Let then \(\{f_n\} \subseteq L^p(X)\) s.t. 
+    \[
+        \sum_{k=1}^\infty \norm{f_k}_p = M < \infty 
+    \]
+    Define 
+    \[
+        g_n(x) = \sum_{k=1}^n \abs{f_k(x)}
+    \]
+    By Minkowski, \(\norm{g_n}_p \leq \sum_{k=1}^n \norm{f_k}_p \leq M < \infty\). 
+    Moreover, for every \(x \in X\) fixed, \(\{g_n(x)\}\) is increasing \(\Rightarrow g_n(x) \to g(x)\) as \(n \to \infty\), \(\forall\; x \in X\)
+    \[
+        \int_X \abs{g}^p \, d\mu \overset{\text{\tiny{Monot conv}}}{=} \lim_n \int_X \abs{g_n}^p \leq M^p < \infty \Rightarrow g \in L^p(X)
+    \]
+    \(\Rightarrow \abs{g}^p \) is finite a.e.:
+    \[
+        \sum_{k=1}^\infty \abs{f_k(x)} < \infty \text{  for a.e. } x \in X
+    \]
+    \[
+        \Rightarrow \sum_{k=1}^\infty f_k(x) \text{ is convergent a.e. to a limit } s(x)
+    \]
+    Thus, we proved that \(s_n(x) = \sum_{k=1}^n f_k(x) \to s(x)\) a.e. in \(X\). Namely \(\abs{s_n - s }^p \to 0\) a.e. in \(X\). To find a dominating function for \(\abs{s_n -s}^p\), we start by observing that
+    \[
+        \abs{s_n(x)} = \abs{\sum_{k=1}^n f_k(x)} \leq \sum_{k=1}^n \abs{f_k(x)} = g_n(x) \leq g(x) \text{ for a.e. } x \in X
+    \]
+    Therefore
+    \[
+        \abs{s_n -s }^p \leq 2^{p-1}(\abs{s_n}^p + \abs{s}^p) \leq 2^{p-1} (g^p + g^p ) = 2^p g^p \in L^1(X)
+    \]
+    By the dominated convergence theorem
+    \[
+        \int_X \abs{s_n -s }^p \, d\mu \to 0 \iff \norm{s_n -s}_p \to 0
+    \]
+    Thus \(L^p\) is complete.
+    \item \(p=\infty\) exercise
 \end{proof}
