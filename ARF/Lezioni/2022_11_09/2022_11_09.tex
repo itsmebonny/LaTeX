@@ -115,8 +115,24 @@ Without assumptions on \(\mu(X)\), in general one has the interpolation inequali
 
 To speak about separability, we give a 
 \begin{definition}
-    \(g: \Omega \subset \real ^n \to \real\). The support of \(g\) is
+    \(g: \Omega \subset \real^n \to \real\). The support of \(g\) is
     \[
-      o  
+      \mbox{supp}\, g = \bar{\left\{ x \in \Omega : g(x) \neq 0 \right\}}
+    \]
+    Also 
+    \[
+        \mathcal{C}^0_C = \left\{ f \in \mathcal{C}^0\left( \Omega \right) : \mbox{supp} \, f \mbox{ is compact in } \Omega\right\} = \mathcal{C}^0_O(\Omega) = \mathcal{C}_C(\Omega)
     \]
 \end{definition}
+\begin{theorem}
+    \(\Omega \in \mathcal{L}(\real), \lambda(\real) < +\infty\). Let also \(f : \real \to \real\) measurable, s.t. \(f\equiv 0\) in \(\Omega^C\).
+
+    Then \(\forall \; \epsilon > 0 \exists \; g \in \mathcal{C}^0_C(\real)\) s.t.
+    \[
+        \lambda \left( \left\{ x \in \real : g(x) \neq f(x) \right\} \right) < \epsilon
+    \]
+    and
+    \[
+        \sup_{\real} \abs{g} \leq \sup_\real \abs{f}
+    \]
+\end{theorem}
