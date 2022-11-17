@@ -151,10 +151,10 @@ Since \(\real\) is a Banach space, the dual space \(X^*\) is a Banach space with
 \end{proposition}
 
 \begin{remark}
-    we are saying that \(\mathcal{L}^{p'}\) can be identifiedwith a subspace of the dual space \(()\mathcal{L}^p)^*\) and this identification is an isometry.
+    we are saying that \(L^{p'}\) can be identified with a subspace of the dual space \((L^p)^*\) and this identification is an isometry.
 \end{remark}
 
-Question: are there functional in \((\mathcal{L}^p)^*\)?
+Question: are there functional in \((L^p)^*\)?
 
 \begin{proof}
     (of the proposition)
@@ -173,11 +173,9 @@ Question: are there functional in \((\mathcal{L}^p)^*\)?
         \[
             \abs{L_g f} \leq \norm{g}_{p'} \norm{f}_p \quad \forall \; f \in L^p(\Omega)
         \]
-        Oh no ho fatto un sacco di L sbagliate
+        This shows that \(L_g\) is bounded, with norm  \(\norm{L_g}_* \leq \norm{g}_{p'}\) (remember that \(\norm{T}_\mathcal{L} = \inf \{ M>0: \norm{Tx} _Y \leq M \norm{x}_X \quad \forall x \in X\} \))
 
-        This shows that \(L_g\) is bounded, with norm  \(\norm{L_g}_* \leq \norm{g}_{p'}\) (remember that \(\norm{T}_mathcal{L} = \inf \{ M>0: \norm{Tx} _Y \leq M \norm{x}_X \quad \forall x \in X\} \))
-
-        We want to show that \(\norm{L_g}_* = \norm{g}_{p'}\). If \(\norm{L_g}_* < \norm{g}_{p'}\), then \(\exists M < \norm{g}_{p'}\) s.t. 
+        We want to show that \(\norm{L_g}_* = \norm{g}_{p'}\). If \(\norm{L_g}_* < \norm{g}_{p'}\), then \(\exists \; M < \norm{g}_{p'}\) s.t. 
         \[
             \abs{L_g f } \leq M \norm{f}_p \quad \forall \; f \in L^p
         \]
@@ -209,20 +207,20 @@ Question: are there functional in \((\mathcal{L}^p)^*\)?
 \begin{definition}
     \(X\) vector space. A map \(p: X \to \real\) is called sublinear functional if 
     \begin{itemize}
-        \item \(p(\alpha x) = \alpha p(x) \) \(\forall \; x \in X\), \(\alpha >0\)
-        \item \(p(x+y) \leq p(x) + p(y)\) \(\forall x, y \in X\)  
+        \item \(p(\alpha x) = \alpha p(x) \qquad \forall \; x \in X\), \(\alpha >0\)
+        \item \(p(x+y) \leq p(x) + p(y) \qquad \forall x, y \in X\)  
     \end{itemize}
 \end{definition}
 
 \begin{theorem}[Hahn Banach]
-    \(X\) real vector space, \(p:X \to \real\) sublinear functional. 
-    \(Y\) subspace of \(X\) and suppose that \(\exists f: Y \to \real \) linear on \(Y\) s.t. 
+    \(X\) real vector space, \(p: X \to \real\) sublinear functional. 
+    \(Y\) subspace of \(X\) and suppose that \(\exists \; f: Y \to \real \) linear on \(Y\) s.t. 
     \[
         f(y) \leq p(y) \quad \forall \, y \in Y
     \]
-    Then \(exists\) a linear functional \(F: X \to \real \) s.t. 
+    Then \(\exists\) a linear functional \(F: X \to \real \) s.t. 
     \[
-        F(y) = f(y) \forall \; y \in Y \tag*{\(F\) is anm extension of \(f\)}
+        F(y) = f(y) \quad \forall \; y \in Y \tag*{\(F\) is an extension of \(f\)}
     \]
     Moreover,
     \[
