@@ -9,11 +9,19 @@
 
 \usepackage{amsthm}
 
+
+\usepackage{subcaption}
+
 \usepackage{tabularx}
 \usepackage{graphicx}
 \usepackage{physics}
 \usepackage{textcomp}
 
+
+\graphicspath{ {./Images/} }
+
+
+\newcommand{\code}[1]{\texttt{#1}}
 
 \numberwithin{equation}{section}
 
@@ -29,5 +37,27 @@ In this report we intend to describe the steps we made during the \(1^{\text{st}
 \section*{Dataset}
 The dataset we were given consists in \(3452\) photos of various species of plants. Inside the main folder there are \(8\) subdirectories. In every directory there are photos of the same plant. Aside from two directories, every species has about the same number of images. The first thing we noticed is the small size of the dataset, with less then \(4000\)photos there are some limits on what we can do, Every image has a size of \(96 \times 96\) pixels, with \(3\) color channels. We opted for a 90\%/10\% split for the test and validation set.
 \section*{Creating the Neural Network}
-Since we were dealing with images, we opted for a Convolutional Neural Network (CNN), because we thought it was the best suited model for this kind of problem. We omitted trying a model without data augmentation because at the first run it became clear that it would only lead to overfitting, a perfect accuracy with only a \(\approx 0.30\) validation accuracy.
+Since we were dealing with images, we opted for a Convolutional Neural Network (CNN), because we thought it was the best suited model for this kind of problem. We omitted trying a model without data augmentation because at the first run it became clear that it would only lead to overfitting, a perfect accuracy with only a \(\approx 0.70\) validation accuracy. 
+\begin{figure}
+      \begin{subfigure}{0.5\textwidth}
+
+      \includegraphics[scale=0.5]{model_noaug_acc.png}  
+      \end{subfigure}
+      \begin{subfigure}{0.4\textwidth}
+            \includegraphics[scale=0.15]{model_noaug.png}
+      \end{subfigure}
+\end{figure}
+
+Then, we tried to use data augmentation. Looking into Keras' documentation, we found that, inside the \code{layers} class, there were some layers specifically crafted to process images. In this way we avoided modifying the \code{model.py} file, which was a source of errors in our submissions. Using this layers we created a \code{Sequential} model which contained our image preprocessing layers. Here's an example of the model, which we added as a layer inside every model we created after:
+\begin{verbatim}
+    
+data_augmentation = tf.keras.Sequential([
+      layers.RandomCrop(80, 80),
+      layers.RandomFlip("horizontal_and_vertical"),
+      layers.RandomRotation((-0.2, 0.2)),
+      layers.Resizing(96,96, interpolation='bicubic'),
+      layers.Rescaling(1./127.5, offset=-1)])
+  
+\end{verbatim}
+We started by adding this simple preprocessing layer to our first model and we already saw improvements to the model. Then, trying with different learning rates and batch sizes, we quickly realized that we needed to update our architecture, so we started adding layers, making two convolutions before adding a pooling layer, but what really improved our CNN was the insertion of \code{SeparableConv2D} layers. 
 \end{document}
