@@ -156,6 +156,7 @@ To speak about separability, we give a
 \begin{theorem}
     \(\bar{\mathcal{S}}(\real)\) is dense in \(L^p\), \(\forall \; p \in (1, +\infty)\)
 \end{theorem}
+Ma posso chiederti perchè hai deciso di scrivere s di r barrato e non tilde s di r?
 \begin{proof}
     \(f \in L^p(\real), f \geq 0\) a.e. in \(\real\).
 
@@ -164,6 +165,62 @@ To speak about separability, we give a
     By the simple approximation theorem, \(\exists \; \left\{ s_n \right\}\) of simple functions s.t. \(\left\{ s_n(x) \right\}\) is increasing, for every \(x\), and \(s_n \to f\) pointwise in \(\real\).
 
     Since \(\abs{s_n}^p \leq f^p \Rightarrow s_n \in L^p\) for every n \(\Rightarrow \left\{ s_n \right\} \subseteq \bar{\mathcal{S}}(\real)\). Moreover
-
-
+    \[
+        \abs{s_n -f}^p \to 0 \qquad \text{a.e. in } \real
+    \]
+    \[
+        \abs{s_n -f }^p \leq 2^{p-1} (\abs{s_n}^p + \abs{f}^p) \leq 2^p \abs{f}^p \in L^1
+    \]
+    \(\Rightarrow \) by dominated convergence
+    \[
+        \int_\real \abs{s_n - f }^p \, d\lambda \to 0 \text{ , namely } \norm{s_n -f}_p \to 0
+    \]
+    If \(f\) is sign changing, then \(f = f^+ - f^-\)  and argue as before on \(f^+\) and \(f^-\)
 \end{proof}
+
+\begin{theorem}
+    \( \forall p \in [1, \infty)\), the space \(L^p(\real)\) is separable. 
+\end{theorem}
+\begin{proof}
+    \underline{sketch}
+    \begin{itemize}
+        \item Step 1: \(\mathcal{C}_C^0(\real) \) is dense in \(L^p(\real )\), \(\forall \; \ \leq p \leq \infty\).
+        
+        Take \(s \in \tilde{\mathcal{S}}(\real)\). Then, by Lusin theorem, \(\exists \{f_n\} \subseteq \mathcal{C}_C^0(\real)\) s.t. \(\norm{f_n -s }_p \to 0\).
+        Then, since any \(f \in L^p\) can be approximated by simple integrable functions, we have that \(f\) can be approximated by functions in \(\mathcal{C}_C^0(\real)\).
+
+        \item Step 2: 
+        
+        By Stone Weierstrass, the set of polinomials \(\mathcal{P}(\real)\) is dense in \(\mathcal{C}_C^0(\real)\) with the \(\normdot_\infty\) norm. 
+        Since we work with functions with compact support, this implies that \(\mathcal{P}(\real)\) is dense in \(\mathcal{C}_C^0(\real)\) also with respect to \(\normdot_p\)
+        \[
+            \int_{-M}^M \abs{f - p_n }^p \, d\lambda \leq \norm{f - p_n }^p_\infty 2M \to 0
+        \] 
+        if \(\norm{f - p_n}_\infty \to 0\), \(\Rightarrow \mathcal{P}(\real)\) is dense in \(L^p(\real)\).
+
+        \(\tilde{\mathcal{P}}(\real) = \{\) polynomials with rational coefficients \(\}\). 
+        This is countable, and is dense in \((\mathcal{P}(\real)), \normdot_p\). \(\Rightarrow \) is dense in \(L^p\) 
+    \end{itemize}
+\end{proof}
+
+What about \(L^\infty(\real)\)? In this case \(\mathcal{C}(\real)\) are not dense in \(L^\infty(\real)\).
+For example, consider 
+\[
+    f(x) =
+    \begin{cases}
+        1 \quad x \geq 0
+        \\ 0 \quad x<0
+    \end{cases}
+\] 
+If \(g \in L^\infty\) s.t. \(\norm{g-f}_\infty < \frac{1}{3}\), then \(g\) cannot be continuous. Assume by contradiction that \(\exists \; g \in \mathcal{C}(\real)\) s.t. \(\norm{g-f}_\infty < \frac{1}{3}\). Then
+\[
+    \esssup _\real \abs{g(x)- f(x)} < \frac{1}{3}
+\]
+In particular, \(g(x) < \frac{1}{3}\) \(\forall \; x<0\)
+\[
+    \Rightarrow \lim_{x \to 0^-} g(x) \leq \frac{1}{3}
+\]
+On the other hand, \(g(x) > \frac{2}{3} \quad \forall \; x >0\)
+\[
+    \Rightarrow g(0)=\lim_{x \to 0^+} g(x) \geq \frac{2}{3}
+\]
