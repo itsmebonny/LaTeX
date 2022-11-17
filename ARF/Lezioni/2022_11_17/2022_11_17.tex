@@ -1,1 +1,231 @@
 \section{Lesson 17/11/2022}
+Let \(X, Y\) be normed spaces.
+\begin{definition}
+    \(T: X \to Y\) is called \textbf{open map} if \(\forall \; A \subset X \mbox{ open }\)the set \(T(A)\subset Y\) is open.
+\end{definition}
+\begin{remark}
+    Recall that \(T\) is continuous on \(X\) if \(T^{-1}(O)\) is open on \(X\), \(\forall \; O \mbox{ open in } Y\).
+\end{remark}
+\underline{Ex}: \(f(x) : \mbox{ constant}\) is continuous, but not open. \(f((a,b)) = \left\{ \mbox{const} \right\}\)
+\begin{theorem}[Open map theorem]
+    \(X, Y\) Banach spaces. \(T \in \mathcal{L}(X,Y)\) is surjective. Then \(T\) is an open map.
+\end{theorem}
+\begin{corollary}
+    \(X,Y\) Banach spaces, \(T \in \mathcal{L}(X,Y)\) is bijective. Then \(T\) is an isomprphism: \(T^{-1} \in \mathcal{L}(X,Y)\)
+\end{corollary}
+\begin{proof}
+    \begin{itemize}
+        \item \(T : Y \to X\) is linear. (Exercise. Hint: Use \(T^{-1} \circ T = \))
+        \item We want now to check that \(T^{-1}\) is continuous on \(Y\): \((T^{-1})^{-1}(O)\) is open in \(Y\), \(\forall \; O\) open in \(X\). We know that \(T\) is an open map thanks to the open map theorem.
+        \[
+            (T^{-1})^{-1}(O) = \left\{ y \in Y, T^{-1}(y) \in O \right\} = \left\{ y \in Y, T^{-1}(y) = x, \mbox{ for some } x \in O \right\} =
+        \]
+        \[
+            = \left\{ y \in Y, y = Tx, \mbox{ for some } x \in O\right\} = T(O) \mbox{ is open}
+        \]
+        manca un pezzo
+    \end{itemize}
+\end{proof}
+\begin{corollary}
+    \(X\) vector space, \(\normdot, \normdot_*\) norms on \(X\). Assume \((X, \normdot), (X, \normdot_*)\) are Banach spaces. 
+    Assume that \(\exists \; C_1 > 0\) s.t. 
+    \[
+        \norm{x}_* \leq C_1\norm{x} \quad \forall ; x \in X
+    \]
+    Then \(\normdot\) and \(\normdot_*\) are equivalent, namely \(\exists \; C_2 > 0\) s.t. 
+    \[
+        \norm{x} \leq C_2 \norm{x}_*
+    \]
+\end{corollary}
+\begin{proof}
+    Consider
+    \[
+        \begin{array}{ll}
+            I : (X, \normdot) & \to (X, \normdot_*) \\
+            x & \mapsto x
+        \end{array}
+    \]
+    By assumption, \(I\) is bounded: \(\exists \; C_1 > 0\) s.t. 
+    \[
+        \norm{Ix}_* = \norm{x}_* \leq C_2 \norm{x}
+    \]
+    \(I\) is bijective.
+
+    Thus, by the corollary before
+    \[
+        I^{-1} = I \in 
+    \]
+    cose
+\end{proof}
+\begin{definition}
+    \(T : D(T) \subset X \to Y\) linear operator. We say that \(T\) is \textbf{closed} if \(\forall \; \left\{ x_n \right\} \subset D(t)\). 
+    \[
+        \mbox{ ci devo pensare }
+    \]
+
+\end{definition}
+\underline{Ex}: \(X = Y = \mathcal{C}^0([0,1])\) with the supremum norm.
+\[
+    T = \frac{d}{dx}
+\]
+\(T\) is not continuous. But it is closed: it can be proved that if \(\left\{ f_n \right\} \subset \mathcal{C}^1([0,1])\) is s.t.
+\[
+    \mbox{ oh no di nuovo soave ti odio}
+\] 
+\underline{Ex}: \(X = Y = \mathcal{L}(X,Y) \Rightarrow T \mbox{ is closed}\)
+\begin{remark}
+    \(T\) is a closed operator \(\Leftrightarrow\) the graph of \(T\)
+    \[
+        \mbox{graph}(T) = \left\{ (x, Tx): x \in X \right\} \mbox{ is closed}
+    \]
+\end{remark}
+\begin{theorem}[Closed graph theorem]
+    \(X, Y\) Banach spaces. \(T : X \to Y\) linear closed operator (\(D(T) = X\)). Then \(T \in \mathcal{L}(X,Y)\).
+\end{theorem}
+\begin{remark}
+    In general it is easier to prove that an operator is closed, rather than it it continuous.
+\end{remark}
+\begin{proof}
+    Define on \(X\) the graph-norm of \(T\)
+    \[
+        \norm{x}_* = \norm{x}_X + \norm{Tx}_Y
+    \]
+    Then is a norm on \(X\). If \(\left\{ x_n \right\} \in X\) is a Cauchy sequence for \(\normdot_*\), then \(\left\{ x_n \right\}\) is a Cauchy sequence in \((X, \normdot_X)\) and \(\left\{ Tx_n \right\}\) is a Cauchy sequence on \((Y, \normdot_Y)\)
+    \[
+        \mbox{ e tre }
+    \]
+    Thus 
+    \[
+        \norm{x_n - x}_X + \norm{Tx_n - Tx} \to 0
+    \]
+    This proves that \((X, \normdot_*)\) is a Banach space. Also, we know that 
+    \[
+        \norm{x}_X \leq \norm{x}_X + \norm{Tx}_Y = \norm{x}_*
+    \]
+    By the last corollary of the open map theorem, \(\exists \; C_2\) s.t. 
+    \[
+        \norm{x}_* \leq C_2 \norm{x_X}
+    \]
+    \[
+        \norm{Tx}_Y \leq \norm{x}_* \leq C_2 \norm{x}_X \quad \forall \; x \in X
+    \]
+    This means that \(T\) is bounded.
+\end{proof}
+\subsection*{Dual spaces}
+\(X\) normed space: 
+\[
+    X^* = \mathcal{L}(X, \real) \mbox{ is called \textbf{dual space of } X}
+\]
+\(X\) normed space, \(Y\) Banach space \(\Rightarrow \mathcal{L}(X, Y)\) is a Banach space with \(\normdot_{\mathcal{L}}\).
+
+Since \(\real\) is a Banach space, the dual space \(X^*\) is a Banach space with 
+\[
+    \norm{L}_* = \sup_{\norm{x}_X \leq 1} \abs{Lx}
+\]
+\underline{Ex}: 
+\begin{itemize}
+    \item In \(\real^n\), only linear functional is separated by a scalar product:
+        \[
+            L : \real^n \to \real \mbox{ is linear } \Rightarrow \exists ! \; y \in \real^n \mbox{ s.t. } Lx = <y,x>
+        \]
+        It can be proved that 
+        \[
+            L \subset (\real^n)^* \mapsto y \in \real^n
+        \]
+        is an isometric isomorphism 
+        \[
+            (\real^n)^* \approxeq 
+        \]
+        Then \(X^*\) is very complicated.
+    \item mille cose 
+\end{itemize}
+
+\dots
+
+\begin{proposition}
+    If \(p \in [1, \infty]\) then \(L_g \in (L^p(X)^*)\). Moreover, 
+    \begin{itemize}
+        \item if \(p > 1\), then \(\norm{L_g}_* = \norm{g}_{p'}\)
+        \item if \(p=1\) then \(\norm{L_g}_* = \norm{g}_{\infty}\) under additional assumption (they are satisfied in \((X, \mathcal{L}(X), \lambda)\))
+    \end{itemize}
+\end{proposition}
+
+\begin{remark}
+    we are saying that \(\mathcal{L}^{p'}\) can be identifiedwith a subspace of the dual space \(()\mathcal{L}^p)^*\) and this identification is an isometry.
+\end{remark}
+
+Question: are there functional in \((\mathcal{L}^p)^*\)?
+
+\begin{proof}
+    (of the proposition)
+    \begin{itemize}
+        \item Case \(p=\infty\) ex
+        \item Case \(p=1\) but difficult it's ok if you don't do it
+        \item Case \(p \in (1, \infty)\)
+        
+        \(L_g\) is clearly linear, by linearity of \(\int\), indeed:
+        \(\forall \; \alpha \; \beta \in \real\), \(f_1 \; f_2 \in L^p(X)\). Then
+        \[
+            ...
+        \]
+        We want to show now that \(L_g \) is bounded. 
+        We proved in (*) that 
+        \[
+            \abs{L_g f} \leq \norm{g}_{p'} \norm{f}_p \quad \forall \; f \in L^p(\Omega)
+        \]
+        Oh no ho fatto un sacco di L sbagliate
+
+        This shows that \(L_g\) is bounded, with norm  \(\norm{L_g}_* \leq \norm{g}_{p'}\) (remember that \(\norm{T}_mathcal{L} = \inf \{ M>0: \norm{Tx} _Y \leq M \norm{x}_X \quad \forall x \in X\} \))
+
+        We want to show that \(\norm{L_g}_* = \norm{g}_{p'}\). If \(\norm{L_g}_* < \norm{g}_{p'}\), then \(\exists M < \norm{g}_{p'}\) s.t. 
+        \[
+            \abs{L_g f } \leq M \norm{f}_p \quad \forall \; f \in L^p
+        \]
+        We rule out this possibility by choosing an explicit \(\tilde{f} \in L^p \) s.t.
+        \[
+            \abs{L_g \tilde{f} } = \norm{g}_{p'} \norm{\tilde{f}}_*
+        \]
+        We take 
+        \[
+            .
+        \]
+        Now, 
+        \[
+            \norm{\tilde{f}}_p^p = \int_X \abs{\tilde{f}}^p \, d\mu = \int_X \frac{\abs{g}^{p(p'-1)}}{\norm{g}_p^{p(p'-1)}} \, d\mu = (*)
+        \]
+        \((p')' = p \Rightarrow p=\frac{p'}{p'-1} \Rightarrow p(p'-1) = p'\)
+        \[
+            (*) = \frac{1}{\norm{g}_{p'}^{p'}} \int_X \abs{g}^{p'} \, d\mu = \frac{\norm{g}_{p'}^{p'}}{\norm{g}_{p'}^{p'}} = 1
+        \]    
+        \[
+            \abs{L_g \tilde{f}} = \abs{\int_X} \frac{\abs{g}}{\norm{g}_{p'-1}^{p'}} .....
+            = \frac{1}{\norm{g}_{p'-1}^{p'}} \norm{g}_{p'}^{p'} = \norm{g}_{p'} = \norm{g}_{p'}\norm{\tilde{f}}_p
+        \]
+    \end{itemize}
+\end{proof}
+
+\subsubsection*{Hahn Banach}
+
+\begin{definition}
+    \(X\) vector space. A map \(p: X \to \real\) is called sublinear functional if 
+    \begin{itemize}
+        \item \(p(\alpha x) = \alpha p(x) \) \(\forall \; x \in X\), \(\alpha >0\)
+        \item \(p(x+y) \leq p(x) + p(y)\) \(\forall x, y \in X\)  
+    \end{itemize}
+\end{definition}
+
+\begin{theorem}[Hahn Banach]
+    \(X\) real vector space, \(p:X \to \real\) sublinear functional. 
+    \(Y\) subspace of \(X\) and suppose that \(\exists f: Y \to \real \) linear on \(Y\) s.t. 
+    \[
+        f(y) \leq p(y) \quad \forall \, y \in Y
+    \]
+    Then \(exists\) a linear functional \(F: X \to \real \) s.t. 
+    \[
+        F(y) = f(y) \forall \; y \in Y \tag*{\(F\) is anm extension of \(f\)}
+    \]
+    Moreover,
+    \[
+        F(x) \leq p(x) \quad \forall \; x \in X
+    \] 
+\end{theorem}
