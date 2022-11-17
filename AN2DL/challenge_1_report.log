@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.9.15)  17 NOV 2022 08:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.9.15)  17 NOV 2022 16:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -261,24 +261,45 @@ Package: amsthm 2020/05/29 v2.20.6
 \thm@postskip=\skip58
 \thm@headsep=\skip59
 \dth@everypar=\toks29
+) (/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2020/10/07 v1.3j Sub-captions (AR)
+ (/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2020/10/26 v3.5g Customizing captions (AR)
+ (/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
+\captionmargin=\dimen170
+\captionmargin@=\dimen171
+\captionwidth=\dimen172
+\caption@tempdima=\dimen173
+\caption@indent=\dimen174
+\caption@parindent=\dimen175
+\caption@hangindent=\dimen176
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count288
+\c@continuedfloat=\count289
+Package caption Info: hyperref package is loaded.
+)
+\c@subfigure=\count290
+\c@subtable=\count291
 ) (/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty
 Package: tabularx 2020/01/15 v2.11c `tabularx' package (DPC)
  (/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
 Package: array 2021/10/04 v2.5f Tabular extension package (FMi)
-\col@sep=\dimen170
+\col@sep=\dimen177
 \ar@mcellbox=\box53
-\extrarowheight=\dimen171
+\extrarowheight=\dimen178
 \NC@list=\toks30
 \extratabsurround=\skip60
 \backup@length=\skip61
 \ar@cellbox=\box54
 )
-\TX@col@width=\dimen172
-\TX@old@table=\dimen173
-\TX@old@col=\dimen174
-\TX@target=\dimen175
-\TX@delta=\dimen176
-\TX@cols=\count288
+\TX@col@width=\dimen179
+\TX@old@table=\dimen180
+\TX@old@col=\dimen181
+\TX@target=\dimen182
+\TX@delta=\dimen183
+\TX@cols=\count292
 \TX@ftn=\toks31
 ) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
@@ -293,15 +314,15 @@ Package graphics Info: Driver file: pdftex.def on input line 107.
  (/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
 File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
 ))
-\Gin@req@height=\dimen177
-\Gin@req@width=\dimen178
+\Gin@req@height=\dimen184
+\Gin@req@width=\dimen185
 ) (/usr/share/texlive/texmf-dist/tex/latex/physics/physics.sty
 Package: physics 
  (/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty (/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
 Package: expl3 2022-01-21 L3 programming layer (loader) 
  (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count289
+\l__color_backend_stack_int=\count293
 \l__pdf_internal_box=\box55
 ))
 Package: xparse 2022-01-12 L3 Experimental document command parser
@@ -310,25 +331,25 @@ Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
 ) (./challenge_1_report.aux)
 \openout1 = `challenge_1_report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 24.
-LaTeX Font Info:    ... okay on input line 24.
-Package hyperref Info: Link coloring OFF on input line 24.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+Package hyperref Info: Link coloring OFF on input line 32.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
  (/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty
@@ -336,11 +357,11 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count290
+\c@section@level=\count294
 )
-LaTeX Info: Redefining \ref on input line 24.
-LaTeX Info: Redefining \pageref on input line 24.
-LaTeX Info: Redefining \nameref on input line 24.
+LaTeX Info: Redefining \ref on input line 32.
+LaTeX Info: Redefining \pageref on input line 32.
+LaTeX Info: Redefining \nameref on input line 32.
  (./challenge_1_report.out) (./challenge_1_report.out)
 \@outlinefile=\write3
 \openout3 = `challenge_1_report.out'.
@@ -380,18 +401,20 @@ LaTeX Info: Redefining \nameref on input line 24.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count291
-\scratchdimen=\dimen179
+\scratchcounter=\count295
+\scratchdimen=\dimen186
 \scratchbox=\box56
-\nofMPsegments=\count292
-\nofMParguments=\count293
+\nofMPsegments=\count296
+\nofMParguments=\count297
 \everyMPshowfont=\toks32
-\MPscratchCnt=\count294
-\MPscratchDim=\dimen180
-\MPnumerator=\count295
-\makeMPintoPDFobject=\count296
+\MPscratchCnt=\count298
+\MPscratchDim=\dimen187
+\MPnumerator=\count299
+\makeMPintoPDFobject=\count300
 \everyMPtoPDFconversion=\toks33
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -399,32 +422,43 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-LaTeX Font Info:    Trying to load font information for U+msa on input line 28.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 36.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 28.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 36.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
+)
+<./Images//model_noaug_acc.png, id=4, 438.63875pt x 313.17pt>
+File: ./Images//model_noaug_acc.png Graphic file (type png)
+<use ./Images//model_noaug_acc.png>
+Package pdftex.def Info: ./Images//model_noaug_acc.png  used on input line 44.
+(pdftex.def)             Requested size: 219.31883pt x 156.58461pt.
+<./Images//model_noaug.png, id=6, 550.055pt x 939.51pt>
+File: ./Images//model_noaug.png Graphic file (type png)
+<use ./Images//model_noaug.png>
+Package pdftex.def Info: ./Images//model_noaug.png  used on input line 47.
+(pdftex.def)             Requested size: 82.50468pt x 140.92041pt.
+ [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./challenge_1_report.aux)
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./Images//model_noaug_acc.png> <./Images//model_noaug.png>] [2] (./challenge_1_report.aux)
 Package rerunfilecheck Info: File `challenge_1_report.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 11458 strings out of 478287
- 176600 string characters out of 5849289
- 473976 words of memory out of 5000000
- 29487 multiletter control sequences out of 15000+600000
- 485105 words of font info for 86 fonts, out of 8000000 for 9000
+ 12788 strings out of 478287
+ 203009 string characters out of 5849289
+ 496496 words of memory out of 5000000
+ 30801 multiletter control sequences out of 15000+600000
+ 485274 words of font info for 87 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,6n,77p,624b,326s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on challenge_1_report.pdf (1 page, 67463 bytes).
+ 68i,10n,77p,624b,473s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on challenge_1_report.pdf (2 pages, 141084 bytes).
 PDF statistics:
- 45 PDF objects out of 1000 (max. 8388607)
- 29 compressed objects within 1 object stream
- 4 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 59 PDF objects out of 1000 (max. 8388607)
+ 37 compressed objects within 1 object stream
+ 6 named destinations out of 1000 (max. 500000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
