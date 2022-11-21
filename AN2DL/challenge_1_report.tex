@@ -30,8 +30,9 @@
 
 
 \begin{document}
-\title{\(1^{st}\) Challenge AN2DL}
-\author{Andrea Bonifacio}
+\title{\vspace{-3cm}\(1^{st}\) Challenge AN2DL}
+\author{CorrectHorseBatteryStaple}
+\date{}
 \maketitle
 In this report we intend to describe the steps we made during the \(1^{\text{st}}\) challenge of the AN2DL Course. It will be covered the structure of the dataset, the first steps we made, what we did right, what we did wrong and how we decided to finally tackle the problem.
 \section*{Dataset}
@@ -67,5 +68,11 @@ It's worth noting that also many of the pretrained architectures present inside 
 
 After this approach we decided to follow the transfer learning method, in which we pass our dataset inside a Neural Network pretrained on bigger datasets. Inside the library there are quite a few options. We decided to try two pretrained nets: Xception and VGG16. 
 
-The idea behind transfer learning and, subsequently, fine tuning is to give the dataset to a pretrained net, which has a precise set of weights, and then unfreeze the last layers such that the net can be trained a little on the dataset. In this way it is possible to reach incredible accuracies. In our case, we tried a few different configurations, but the basic structure was always a model in which there was an input layer, followed by our data augmentation layer, then the pretrained model, a \code{Dense} layer and the output. Using Xception and fine tuning, we were able to reach an accuracy on the validation set of \(\approx 90\%\). This one was by far out best model and it performed well also on Codalab with a score of \(87\%\).w
+The idea behind transfer learning and, subsequently, fine tuning is to give the dataset to a pretrained net, which has a precise set of weights, and then unfreeze the last layers such that the net can be trained a little on the dataset. In this way it is possible to reach incredible accuracies. In our case, we tried a few different configurations, but the basic structure was always a model in which there was an input layer, followed by our data augmentation layer, then the pretrained model, a \code{Dense} layer and the output. Using Xception and fine tuning, we were able to reach an accuracy on the validation set of \(\approx 90\%\). This one was by far out best model and it performed well also on Codalab with a score of \(87\%\). We tried to change various parameters inside our fine tuned model, like the number of trainable layers, learning rate and all the things we could have changed. But we couldn't find an idea to break the \(90\%\) ceiling, so we accepted this result, which we still consider a good result.
+\section*{What we did right}
+In this two section we try to understand how we worked, how many of the things we did were bringing us in the right direction and how many brought us to an halt. One of the main things that really helped us, was to look at the documentation available online (mainly Keras and Tensorflow's website). This really lead us to a little more deep understanding of how the library worked and it became clearer the way in which what we saw in the lessons and what we did in the labs were connected. Looking at the documentation helped us to find also alternative methods to approach problems. Creating a data augmentation layer enabled us to transfer this simple snippet of code to various notebooks without having to worry about compatibilty issues. 
+
+Also, having a look at the architecture of the pretrained nets available prompted us to look more into the functioning of separable convolutions. We were already aware that we couldn't reach the best results without transfer learning and fine tuning, but we still decided to spend some time crafting a net capable of reaching good results (\(\geq 80\%\))
+\section*{What we did wrong}
+
 \end{document}
