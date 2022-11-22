@@ -1,7 +1,7 @@
 \section{Lesson 16/11/2022}
 Let \(T\) be a linear operator from \(X\) to \(Y\).
 \begin{definition}
-    The Kernel of \(T\) is the set 
+    The \textbf{kernel} of \(T\) is the set 
     \[
         \ker(T) = \{ x \in X: Tx =0\} \subset X
     \]
@@ -10,12 +10,12 @@ Let \(T\) be a linear operator from \(X\) to \(Y\).
 
 This is a vector subspace of \(X\). 
 
-\(T\) is injective \(\iff \ker (T) = \{0\}\). If \(T\) is continuous, \(\ker(T)\) is closed 
+\(T\) is injective \(\Leftrightarrow \ker (T) = \{0\}\). If \(T\) is continuous, \(\ker(T)\) is closed 
 \[
     \ker(T) = T^{-1} (\{0\})
 \]
 \begin{definition}
-    \(X\), \(Y\) normed spaces. \(X\) and \(Y\) are isomorphic if \(\exists T \in \mathcal{L}(X, Y)\) bijective, and such that \(T^{-1} \in \mathcal{L}(X, Y)\)
+    \(X\), \(Y\) normed spaces. \(X\) and \(Y\) are isomorphic if \(\exists \; T \in \mathcal{L}(X, Y)\) bijective, and such that \(T^{-1} \in \mathcal{L}(X, Y)\)
 \end{definition}
 \begin{definition}
     \(T \in \mathcal{L}(X, Y)\) is an isometry if
@@ -26,23 +26,23 @@ This is a vector subspace of \(X\).
 \begin{definition}
     If \(X \subseteq Y\) is a vector subspace, and \(\left(X, \normdot_X\right)\) and \(\left(Y, \normdot_Y\right)\) are normed space, then we can consider 
     \[
-        \begin{array}{cr}
-            J: X \to Y & \text{(inclusion map)}
-            \\ x \mapsto x
+        \begin{array}{rcr}
+            J: & X \to Y & \text{(inclusion map)}
+            \\ & x \mapsto x
         \end{array}
     \] 
-    If \(J \in \mathcal{L}(X, Y)\) (namely, if \(\exists M>0 \) s.t. \(\norm{x}_Y \leq M \norm{x}_X\) \(\forall \; x \in X\)), 
+    If \(J \in \mathcal{L}(X, Y)\) (namely, if \(\exists \; M>0 \) s.t. \(\norm{x}_Y \leq M \norm{x}_X\) \(\forall \; x \in X\)), 
     then we say that \(J\) is an embedding of \(X\) into \(Y\), and we write \(X \hookrightarrow Y\)
 \end{definition}
 
-Ex: \(\mu(X) < \infty \), \(1 \leq p < q \leq \infty\)
+\underline{Ex}: \(\mu(X) < \infty \), \(1 \leq p < q \leq \infty\)
 \[
-    L^q(X) \hookrightarrow L^p(X) \tag*{inclusion of \(L^p\) spaces}
+    L^q(X) \hookrightarrow L^p(X) \tag*{(inclusion of \(L^p\) spaces)}
 \]
 
 \subsection*{Some fundamentals theorems on linear operators}
 \begin{definition}
-    \((X, d)\) metric space. \(A \subset X\). \(x \in X \) is an adherence point of \(A\) if \(\forall \; r>0: B_r(x) \cap A \neq \emptyset\)
+    \((X, d)\) metric space. \(A \subset X\). \(x \in X \) is an \textbf{adherence point} of \(A\) if \(\forall \; r>0: B_r(x) \cap A \neq \emptyset\)
     \[
         \bar{A} = \{ x \in X: x \text{ is an adherence point of } A \} = A \cup \partial A
     \]
@@ -62,9 +62,9 @@ Ex: \(\interior{\bar{\{x\}}} = \interior{\{x\}} = \emptyset\)
 
 \(\mathbb{Z} \subset \real\): \(\interior{\bar{\mathbb{Z}}}=\interior{\mathbb{Z}} = \emptyset\)
 
-\(\mathbb{Q} \) is nowhere dense: \(\interior{\bar{\mathbb{Q}}} = \interior{\mathbb{Q}} = \real \)
+\(\mathbb{Q} \) is not nowhere dense: \(\interior{(\bar{\mathbb{Q}})} = \interior{(\mathbb{R})} = \real \)
 \begin{definition}
-    \(A \subset X\) is called of first category (or meager set) in \(X\) if \(A\) is the (at most) countable union of nowhere dense sets. 
+    \(A \subset X\) is called \textbf{of first category} (or \textbf{meager set}) in \(X\) if \(A\) is the (at most) countable union of nowhere dense sets. 
 \end{definition}
 
 Ex: \(\mathbb{Q}\) is of first category in \(\real\): countable union of nowhere dense sets
@@ -83,22 +83,66 @@ Ex: \(\mathbb{Q}\) is of first category in \(\real\): countable union of nowhere
 \end{theorem}
 
 
-Preliminaries:
+\noindent\underline{Preliminaries}:
 \begin{itemize}
-    \item \(A \subset X\) is dense \(\iff \forall \; W \subset X\), \(W\) open, \(W \neq \emptyset\), we have that \(A \cap W \neq \emptyset\)
-    \item \(A\) is nowhere dense \(\iff \left(\bar{A}\right)^c\) is open and dense
+    \item \(A \subset X\) is dense \(\Leftrightarrow \forall \; W \subset X\), \(W\) open, \(W \neq \emptyset\), we have that \(A \cap W \neq \emptyset\)
+    \item \(A\) is nowhere dense \(\Leftrightarrow \left(\bar{A}\right)^C\) is open and dense
 \end{itemize}
 
-\begin{proof}
+\begin{proof} Here's the proof of the two parts of the theorem:
     \begin{itemize}
-        \item Thanks to preliminary 1, we show that \(\forall W \subset X\) open and non empty we have \((\cap_n U_n) \cap W \neq \emptyset\)
+        \item[(a)] Thanks to the first preliminary, we show that \(\forall W \subset X\) open and non empty we have \((\cap_n U_n) \cap W \neq \emptyset\)
         
-        \(U_0\) is open and dense: then, by the first preliminary, \(U_0 \cap W \neq \emptyset \Rightarrow \) it contains an open ball. 
+        \[
+            \begin{array}{rl}
+                U_0 \text{ is open and dense:} & \overset{1^{st}\text{\tiny{prel.}}}{\Rightarrow} \underbrace{U_0 \cap W}_{\text{is open}} \neq \emptyset \\
+                & \Rightarrow \text{it contains an open ball} \\
+                & \Rightarrow (U_0 \cap W) \supset B_{r_0}(x_0) \mbox{ for some } x_0 \in X \mbox{ and } r_0 > 0
+        \end{array}
+        \] 
+        For \(n>0\), we choose \(x_n \in X\) and \(r_n > 0\) inductively in the following way: we have 
+        \[
+            U_n \cap B_{r_{n-1}}(x_{n-1}) \neq \emptyset 
+        \tag*{(\(1^{st}\) prel. \(+ U_n\) is dense)}\]
+        \[
+            \Rightarrow \overline{B_{r_n}(x_n)} \subset \underset{\begin{array}{l}\text{\small{all these balls}} \\ \text{\small{are included in}} \\
+            \displaystyle{B_{r_0}(x_0)}\end{array}}{(U_n \cap B_{r_{n-1}}(x_{n-1}))}
+        \]
+        with \(x_n \in X\) and \(0 < r_n < \frac{1}{2^n}\)
 
-        Mancano tante cose
+        By the condition on \(r_n\), we see that 
+        \[
+            x_n, x_m \in B_{r_N}(x_N) \quad \forall \; n,m > N
+        \]
+        \(\Rightarrow \left\{ x_n \right\}\) is a Cauchy sequence in \(X\)
+        \[
+            d(x_n, x_m) \leq \frac{1}{2^N} \quad \forall \; n,m > N
+        \]
+        \(X\) is complete: \(x_n \overset{d}{\rightarrow} x \in X\)
+        Since 
+        \[
+            \begin{array}{lr}
+                x_n \in B_{r_N}(x_N) & \forall \; n > N \\
+                \Rightarrow x = \lim_n x_n \in \overline{B_{r_N}(x_N)} \subset (U_n \cap B_{r_0}(x_0)) \subset (U_N \cap W) & \forall \; n \in \mathbb{N} \\
+                \Rightarrow x_n \in \bigcap_n (U_n \cap W) = \left(\bigcap_n U_n\right) \cap W
+            \end{array}
+        \]
+        This means that \(\bigcap_n U_n\) is dense.
+        \item[(b)] It follows from (a):
+        
+        If \(\left\{ E_n \right\}\) is a sequence of nowhere dense sets in \(X\), then, by the second preliminary \(\left\{ (E_n)^C \right\}\) is a sequence of open and dense sets. By (a) 
+        \[
+            \begin{array}{l}
+                \bigcap_n (\overline{E_n})^C \neq \emptyset \\
+                \Rightarrow \bigcup_n E_n \subset \bigcup_n \overline{E_n} = X \setminus \overset{= \emptyset}{\left(\bigcap_n (\overline{E_n})^C\right)} \neq X \\
+
+            \end{array} 
+        \]
     \end{itemize}
 \end{proof}
+\underline{Ex}: \((X, \normdot)\) \(\infty-\dim\) Banach space. \(\left\{ e_i \right\}_{i \in I}\) Hamel basis. 
 
+Then \(I\) is uncountable.
 \begin{theorem}[Banach Steinhaus]
     \(X\) Banach space, \(Y\) normed space, \(\mathcal{F} \subseteq \mathcal{L}(X, Y)\) family.
     Suppose that \(\mathcal{F}\) is pointwise bounded: 

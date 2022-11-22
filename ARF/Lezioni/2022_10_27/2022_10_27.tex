@@ -10,10 +10,10 @@
     there exists \(\{x_{n_k}\}\) subsequence convergent to some limit \(x \in E\)
 \end{definition}
 
-Well known fact: if \(\left(X, d\right)\) is a metric space, then \(E\) is compact \(\iff E \) is sequentially compact.
+Well known fact: if \(\left(X, d\right)\) is a metric space, then \(E\) is compact \(\Leftrightarrow E \) is sequentially compact.
 
 \begin{theorem}[Riesz Theorem]
-    \(X\) normed space, dim\(X = \infty\) \(\iff \bar{B}_1(0)\) is not compact. 
+    \(X\) normed space, dim\(X = \infty\) \(\Leftrightarrow \bar{B}_1(0)\) is not compact. 
 \end{theorem}
 
 \begin{lemma}[Riesz quasi orthogonality Lemma]
@@ -25,7 +25,7 @@ Well known fact: if \(\left(X, d\right)\) is a metric space, then \(E\) is compa
 \begin{remark}
 
     \begin{itemize}
-        \item \(E \in X\) closed. Then dist\((x, E)=0 \iff x \in E\)
+        \item \(E \in X\) closed. Then dist\((x, E)=0 \Leftrightarrow x \in E\)
         \item By definition of infimum, if \(d =\) dist\((x, E)\), then \(\forall \rho >0 \ \exists \; z \in E\) s.t. 
         \[
             \norm{x-z} < (1+\rho) d
@@ -89,7 +89,7 @@ In a similar way, we define \(L^p(X)\) \(\forall \; p \in \left[1, \infty\right]
 \]
 On \(\mathcal{L}^p\) we introduce the equivalent relation
 \[
-    f \sim g \text{ in } \mathcal{L}^p \iff f=g \text{ a.e. on } X 
+    f \sim g \text{ in } \mathcal{L}^p \Leftrightarrow f=g \text{ a.e. on } X 
 \]
 and define 
 \[
@@ -149,7 +149,7 @@ We will concentrate on \(p < \infty\) (\(p = \infty\) is the easy case)
 
 Properties 1 and 2 of the norm are immediate to check:
 \begin{enumerate}
-    \item \(\norm{f}_p = 0 \iff \int_X |f|^p \, d\mu =0 \iff f=0 \text{ a.e. on } X \iff f=0 \in L^p\)
+    \item \(\norm{f}_p = 0 \Leftrightarrow \int_X |f|^p \, d\mu =0 \Leftrightarrow f=0 \text{ a.e. on } X \Leftrightarrow f=0 \in L^p\)
     \item Obvious, by linearity
     \item About triangle inequality? We need some preliminaries
 \end{enumerate}
@@ -157,7 +157,7 @@ Properties 1 and 2 of the norm are immediate to check:
 \begin{theorem}[Young's Inequality]
     Let \(p \in (1, \infty)\), \(a, b \geq 0\). We say that \(q\) is the conjugate exponent of p if 
     \[
-        \frac{1}{p} + \frac{1}{q} = 1 \iff q = \frac{p}{p-1}
+        \frac{1}{p} + \frac{1}{q} = 1 \Leftrightarrow q = \frac{p}{p-1}
     \]
     Then 
     \[
