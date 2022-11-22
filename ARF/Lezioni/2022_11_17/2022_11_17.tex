@@ -15,7 +15,7 @@ Let \(X, Y\) be normed spaces.
 \end{corollary}
 \begin{proof}
     \begin{itemize}
-        \item \(T : Y \to X\) is linear. (Exercise. Hint: Use \(T^{-1} \circ T = \))
+        \item \(T : Y \to X\) is linear. (Exercise. Hint: Use \(T^{-1} \circ T = \text{Id} + \) linearity of \(T\))
         \item We want now to check that \(T^{-1}\) is continuous on \(Y\): \((T^{-1})^{-1}(O)\) is open in \(Y\), \(\forall \; O\) open in \(X\). We know that \(T\) is an open map thanks to the open map theorem.
         \[
             (T^{-1})^{-1}(O) = \left\{ y \in Y, T^{-1}(y) \in O \right\} = \left\{ y \in Y, T^{-1}(y) = x, \mbox{ for some } x \in O \right\} =
@@ -23,7 +23,7 @@ Let \(X, Y\) be normed spaces.
         \[
             = \left\{ y \in Y, y = Tx, \mbox{ for some } x \in O\right\} = T(O) \mbox{ is open}
         \]
-        manca un pezzo
+    Since \(T\) is an open map, \(\forall \; O \subset X\), open.
     \end{itemize}
 \end{proof}
 \begin{corollary}
@@ -40,9 +40,9 @@ Let \(X, Y\) be normed spaces.
 \begin{proof}
     Consider
     \[
-        \begin{array}{ll}
-            I : (X, \normdot) & \to (X, \normdot_*) \\
-            x & \mapsto x
+        \begin{array}{lrl}
+            I :& (X, \normdot) & \to (X, \normdot_*) \\
+            &x & \mapsto x
         \end{array}
     \]
     By assumption, \(I\) is bounded: \(\exists \; C_1 > 0\) s.t. 
@@ -53,14 +53,20 @@ Let \(X, Y\) be normed spaces.
 
     Thus, by the corollary before
     \[
-        I^{-1} = I \in 
+        I^{-1} = I \in \mathcal{L}((X, \normdot_*), (X, \normdot))
     \]
-    cose
+    namely \(\exists \; C_2 > 0\) s.t. 
+    \[
+        \stackbelow{\norm{Ix}}{\norm{x}} \leq C_2 \norm{x}_*
+    \]
 \end{proof}
 \begin{definition}
     \(T : D(T) \subset X \to Y\) linear operator. We say that \(T\) is \textbf{closed} if \(\forall \; \left\{ x_n \right\} \subset D(t)\). 
     \[
-        \mbox{ ci devo pensare }
+        \begin{rcases*}
+            x_n \to x & \mbox{in } X \\
+            Tx_n \to y & \mbox{in } Y
+        \end{rcases*} \Rightarrow x \in D(T) \mbox{ and } Tx = y
     \]
 
 \end{definition}
@@ -70,9 +76,12 @@ Let \(X, Y\) be normed spaces.
 \]
 \(T\) is not continuous. But it is closed: it can be proved that if \(\left\{ f_n \right\} \subset \mathcal{C}^1([0,1])\) is s.t.
 \[
-    \mbox{ oh no di nuovo soave ti odio}
+    \begin{rcases*}
+        f_n \to f & \mbox{uniformly} \\
+        f_n' \to g & \mbox{uniformly}
+    \end{rcases*} \Rightarrow f \mbox{ is } \mathcal{C}^1([0,1]) \mbox{ and } f' = g
 \] 
-\underline{Ex}: \(X = Y = \mathcal{L}(X,Y) \Rightarrow T \mbox{ is closed}\)
+\underline{Ex}: \(T \in \mathcal{L}(X,Y) \Rightarrow T \mbox{ is closed}\)
 \begin{remark}
     \(T\) is a closed operator \(\Leftrightarrow\) the graph of \(T\)
     \[
@@ -80,7 +89,11 @@ Let \(X, Y\) be normed spaces.
     \]
 \end{remark}
 \begin{theorem}[Closed graph theorem]
-    \(X, Y\) Banach spaces. \(T : X \to Y\) linear closed operator (\(D(T) = X\)). Then \(T \in \mathcal{L}(X,Y)\).
+    \(X, Y\) Banach spaces. 
+    
+    \(T : X \to Y\) linear closed operator (\(D(T) = X\)). 
+    
+    Then \(T \in \mathcal{L}(X,Y)\).
 \end{theorem}
 \begin{remark}
     In general it is easier to prove that an operator is closed, rather than it it continuous.
@@ -92,7 +105,10 @@ Let \(X, Y\) be normed spaces.
     \]
     Then is a norm on \(X\). If \(\left\{ x_n \right\} \in X\) is a Cauchy sequence for \(\normdot_*\), then \(\left\{ x_n \right\}\) is a Cauchy sequence in \((X, \normdot_X)\) and \(\left\{ Tx_n \right\}\) is a Cauchy sequence on \((Y, \normdot_Y)\)
     \[
-        \mbox{ e tre }
+        \Rightarrow \begin{rcases*}
+            x_n \to x & \mbox{in } X \\
+            Tx_n \to y & \mbox{in } Y
+        \end{rcases*} \mbox{ since } T \mbox{ is closed, we deduce that } y = Tx
     \]
     Thus 
     \[
@@ -114,7 +130,7 @@ Let \(X, Y\) be normed spaces.
 \subsection*{Dual spaces}
 \(X\) normed space: 
 \[
-    X^* = \mathcal{L}(X, \real) \mbox{ is called \textbf{dual space of } X}
+    X^* = \mathcal{L}(X, \real) \mbox{ is called \textbf{dual space of} }X
 \]
 \(X\) normed space, \(Y\) Banach space \(\Rightarrow \mathcal{L}(X, Y)\) is a Banach space with \(\normdot_{\mathcal{L}}\).
 
