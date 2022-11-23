@@ -1,7 +1,7 @@
 \section{Lesson 15/09/2022}
 The elements of \(\overline{\mathcal{M}}\) are sets of the type \(E \cup N\), with \(E \in \mathcal{M}\) and \(\bar{\mu}(N) = 0\).
 \subsubsection*{Outer measure}
-We wish to define a measure \(\lambda\) ``on \(\mathcal{R}\)'' with the following properties:
+We wish to define a measure \(\lambda\) ``on \(\real\)'' with the following properties:
 \begin{enumerate}
     \item \(\lambda((a,b)) = b-a\)
     \item \(\lambda(E + t)\symbolfootnotemark[2]{\(\left\lbrace x \in \mathbb{R} : x=y+t, \mbox{ with } y \in E\right\rbrace\)}  \; = \lambda(E)\) for every measurable set \(E \subset \mathbb{R}\) and \(t \in \mathbb{R}\)
@@ -9,9 +9,9 @@ We wish to define a measure \(\lambda\) ``on \(\mathcal{R}\)'' with the followin
 It would be nice to define such a measure on \(\mathcal{P}(\mathbb{R})\). In such case, note that \(\lambda(\left\lbrace x \right\rbrace) = 0\), \(\forall \; x \in \mathbb{R}\)
 But then 
 \begin{theorem}[Ulam]
-    The only measure on \(\mathcal{P}(\mathbb{R})\) s.t. \(\lambda(\left\lbrace x \right\rbrace) = 0 \quad \forall \; x\) is the trivial measure. Thus, a measure satisfying the two properties of the outer measure cannot be defined on \(\mathcal{P}(\mathcal{R})\)
+    The only measure on \(\mathcal{P}(\mathbb{R})\) s.t. \(\lambda(\left\lbrace x \right\rbrace) = 0 \quad \forall \; x\) is the trivial measure. Thus, a measure satisfying the two properties of the outer measure cannot be defined on \(\mathcal{P}(\real)\)
 \end{theorem}
-We'll learn in what follows how to create a measure space on \(\mathcal{R}\), with a \(\sigalg\) including all the Borel sets, and a measure satisfying properties of the outer measure. This is the so called \textbf{Lebesgue measure}.
+We'll learn in what follows how to create a measure space on \(\real\), with a \(\sigalg\) including all the Borel sets, and a measure satisfying properties of the outer measure. This is the so called \textbf{Lebesgue measure}.
 \begin{definition}
     Given a set \(X\). An \textbf{outer measure} is a function \(\mu^* : \mathcal{P}(\mathbb{R}) \to [0, +\infty]\) s.t. 
     \begin{itemize}
@@ -20,7 +20,7 @@ We'll learn in what follows how to create a measure space on \(\mathcal{R}\), wi
         \item \(\mu^*(\bigcup_{n=1}^{\infty} E_n) \leq \sum_{n=1}^{\infty} \mu^*(E_n)\) (\(\sigma\)-subadditivity)
     \end{itemize}
 \end{definition}
-The common way to define an outer measure is to start with a family of elementary sets \(\mathcal{E}\) on which a notion of measure is defined (e.g. intervals on \(\mathcal{R}\), rectangles on \(\mathcal{R}^2, \ldots\)) and then to approximate arbitrary sets from outside by \textbf{countable} unions of members of \(\mathcal{E}\).
+The common way to define an outer measure is to start with a family of elementary sets \(\mathcal{E}\) on which a notion of measure is defined (e.g. intervals on \(\real\), rectangles on \(\real^2, \ldots\)) and then to approximate arbitrary sets from outside by \textbf{countable} unions of members of \(\mathcal{E}\).
 \begin{proposition}
     Let \(\mathcal{E} \subset \mathcal{P}(\mathbb{R})\) and \(\rho : \mathcal{E} \to [0, +\infty]\) be such that \(\emptyset \in \mathcal{E}, X \in \mathcal{E}\) and \(\rho(\emptyset) = 0\). For any \(A \in \mathcal{P}(X)\), let 
     \[\mu^*(A) := \inf \left\lbrace \sum_{n=1}^{\infty} \rho (E_n) : E_n \in \mathcal{E} \mbox{ and } A \subset \bigcup_{n=1}^{\infty} E_n \right\rbrace\]
