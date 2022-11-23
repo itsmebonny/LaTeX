@@ -1,1 +1,150 @@
 \section{Lecture 23/11/2022}
+\begin{theorem}[Hahn-Banach regarding continuous extension]
+    \(X\) (real) normed space. \(Y\) subspace of \(X\), \(f \in Y^*\)
+
+    Then \(\exists \; F \in X^* = \mathcal{L}(X, \real)\) s.t. 
+    \[
+        F(y) = f(y) \quad \forall \; y \in Y
+    \]
+    \[
+        \norm{F}_{X^*} = \norm{f}_{Y^*}
+    \]
+\end{theorem}
+\begin{proof}
+    Define \(p:X \to \real\), \(p(x) = \norm{f}_{Y^*} \norm{x}_X\) \(\forall \; x \in X\). Then \(p\) is sublinear (from the properties of \(\normdot_X\)).
+
+    Moreover, \(f(y) \leq \abs{f(y)} \leq \norm{f}_{Y^*}\norm{y}_X = p(y)\) \(\forall \; y \in Y\). Then, by Hahn-Banach theorem (general version), \(\exists \; F : X \to \real\) s.t. \(F\) is an extension of \(f\) and \(F(x) \leq p(x) \forall \; x \in X\).
+
+    Now, if \(F(x) \geq 0\)
+    \[
+        \abs{F(x)} = F(x) \leq p(x) = \norm{f}_{Y^*}\norm{x}_X
+    \]
+    If \(F(x) < 0\)
+    \[
+        \abs{F(x)} = -F(x) = F(-x) \leq p(-x) = \norm{f}_{Y^*}\norm{-x}_X = \norm{f}_{Y^*}\norm{x}_X
+    \]
+    \(\forall \; x \in X\)
+    \[
+        \abs{F(x)} \leq \norm{f}_{Y^*}\norm{x}_X
+    \]
+    namely, \(F \in X^*\) (it is bounded), and 
+    \[
+        \norm{F}_{X^*} \leq \norm{f}_{Y^*}
+    \]
+
+Also, \(\norm{F}_{X^*} \geq \norm{f}_{Y^*}\) since \(F\) extends \(f\):
+\[
+    \norm{F}_{X^*} = \sup_{\norm{x}_X < 1} \abs{F(x)} > \sup_{\norm{y}_Y < 1}\abs{F(y)}
+\]
+\end{proof}
+\underline{Consequence 1}
+\begin{theorem}
+    \(L^\infty (X)\) `strictly contains' \(L^1(X)\)
+\end{theorem}
+
+cose 
+
+For simplicity, we consider \((X, \mathcal{M}, \mu) = ([-1, 1], \mathcal{L}([-1,1]), \lambda)\). Let \(Y\) be the subspace of \(L^\infty([-1,1])\) of the bounded continuous functions \(\mathcal{C}^0([-1,1])\). On \(Y\) we define 
+\[
+    \Lambda f = f(0) \quad \forall \; f \in Y
+\]
+We can do it since \(f \in \mathcal{C}^0([-1,1])\) (for elements in \(L^\infty\) we cannot speak about pointwise values!). 
+
+\(\Lambda\) is linear:
+\[
+    \Lambda(\alpha f + \beta g) = \alpha \Lambda f + \beta \Lambda g
+\]
+Moreover, \(\Lambda\) is in \(Y^*\):
+\[
+    \abs{\Lambda f} = \abs{f(0)} < \max_{[-1,1]} \abs{f} = \norm{f}_{\infty}
+\]
+This proves that \(\Lambda \in Y^*\), \(\norm{\Lambda}_{Y^*} \leq 1\). By Hahn-Banach, \(\exists \; L \in (L^\infty(X))^*\) whixh is an extension of \(\Lambda\), and is s.t. 
+\[
+    \norm{L}_{(L^\infty)^*}
+\]
+pezzi
+
+By contradiction, 
+\[
+    \sup f_n \subseteq \left[-\frac{1}{2n}, \frac{1}{2n}\right] \Rightarrow f_n(x) \to 0
+\]
+Therefore, if \(g \in L^1([-1,1])\) is s.t. 
+\[
+    \int_{-1}^1 f_n g \, d\lambda = L f_n
+\]
+cose 
+
+
+But on the other side 
+\begin{itemize}
+    \item \(f_n(x)g(x) \to 0\) a.e. in \([-1,1]\)
+    \item \(\abs{f_n(x) g(x)} \leq g(x) \in L^1([-1,1])\)
+    \[
+        \overset{\mbox{DOM}}{\Rightarrow} \int_{-1}^1 f_n g \, d\lambda \to 0
+    \]
+\end{itemize}
+In conclusion, there is no \(g \in L^!([-1,1])\) s.t. 
+\[
+    \int_{-1}^1 f g \, d\lambda = L f
+\]
+\underline{Other consequences of the Hahn-Banach theorem}
+\begin{corollary}
+    \(X\) (real) normed space, \(x_0 \in X \setminus \left\{ 0 \right\}\).
+    Then \(\exists \; L_{x_0} \in X^*\) s.t. 
+    \[
+        \norm{L_{x_0}}_{X^*} = 1 \mbox{ and } L_{x_0}(x_0) = \norm{x_0}
+    \]
+\end{corollary}
+\begin{proof}
+    Take \(Y = \left\{ \lambda x_0 : \lambda \right\}\) cose 
+    
+
+    This is linear and continuous on \(Y\) \(\Rightarrow\) by Hahn-Banach (continuous extension) \(\exists \; \tilde{L_0} \in X^*\) s.t. \(\tilde{L_0}\) extends \(L_0\) and 
+    \[
+        cose
+    \]
+
+\end{proof}
+\begin{corollary}
+    If \(x,y \in X\) and \(Lx = Ly\) \(\forall \; L \in X^* \Rightarrow x = y\)
+\end{corollary}
+\begin{proof}
+    Assume \(x-y \neq 0\). Then, by the previous corollary, \(\exists \; L \in X^*\) s.t. 
+    \[
+        \norm{L}_{X^*} \mbox{ and } L(x-y) = \norm{x-y}_X \Rightarrow Lx -Ly ...
+    \]
+\end{proof}
+\begin{corollary}
+    \(X\) normed space, \(Y\) closed subspace of \(X\), \(x_0 \in X \setminus Y\). 
+
+    Then \(\exists \; L \in X^*\) s.t. \(L\vert_Y = 0\) and \(L_{x_0} \neq 0\)
+\end{corollary}
+\subsection*{Reflexive spaces}
+\(X\) Banach space, \(X^*\) dual space.
+\underline{Notation}: \(L \in X^*: Lx = L(x) = <L,x> = \underset{X^*}{<}L,x\underset{X}{>}\)
+
+\((X^*)^*\) dual space of \(X^*\) is called the \textbf{bidual} of \(X\), denoted by \(X^*\)
+\[
+    X^{**} = \mathcal{L}(X^*, \real)
+\]
+We can describe many elements of \(X^{**}\) in the following way: for \(x \in X\), define 
+\[
+    \begin{array}{ll}
+        \Lambda: & X^* \to \real \\
+        & L \mapsto Lx
+    \end{array}
+\]
+(\(\Lambda_x\) evaluates functionals pezzi)
+
+Moreover, it is bounded 
+\[
+    \abs{\Lambda_x(L)} = \abs{Lx} \leq \norm{L}_{X^*}\norm{x}_X
+\]
+Moreover, 
+\[
+    \abs{\Lambda_x}_{\mathcal{L}(X^*, \real)} = \sup_{L \neq 0} \frac{\abs{\Lambda_x L}}{\norm{L}_X^*}
+\]
+We claim that \(\norm{\Lambda_x}_{\mathcal{L}} = \norm{x}_X\). Indeed, by the first corollary of Hahn-Banach, given any \(x \in X\setminus \left\{ 0 \right\} \exists \; Lx \in X^*\) un sacco di cose
+\[
+    cose qua
+\]
