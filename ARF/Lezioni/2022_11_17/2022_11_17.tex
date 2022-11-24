@@ -1,7 +1,7 @@
 \section{Lecture 17/11/2022}
 Let \(X, Y\) be normed spaces.
 \begin{definition}
-    \(T: X \to Y\) is called \textbf{open map} if, \(\forall \; A \subset X \mbox{ open }\),the set \(T(A)\subset Y\) is open.
+    \(T: X \to Y\) is called \textbf{open map} if, \(\forall \; A \subset X \mbox{ open}\), the set \(T(A)\subset Y\) is open.
 \end{definition}
 \begin{remark}
     Recall that \(T\) is continuous on \(X\) if \(T^{-1}(O)\) is open on \(X\), \(\forall \; O \mbox{ open in } Y\).
@@ -11,7 +11,7 @@ Let \(X, Y\) be normed spaces.
     \(X, Y\) Banach spaces. \(T \in \mathcal{L}(X,Y)\) is surjective. Then \(T\) is an open map.
 \end{theorem}
 \begin{corollary}
-    \(X,Y\) Banach spaces, \(T \in \mathcal{L}(X,Y)\) is bijective. Then \(T\) is an isomprphism: \(T^{-1} \in \mathcal{L}(X,Y)\)
+    \(X,Y\) Banach spaces, \(T \in \mathcal{L}(X,Y)\) is bijective. Then \(T\) is an isomorphism: \(T^{-1} \in \mathcal{L}(X,Y)\)
 \end{corollary}
 \begin{proof}
     \begin{itemize}
@@ -30,7 +30,7 @@ Let \(X, Y\) be normed spaces.
     \(X\) vector space, \(\normdot, \normdot_*\) norms on \(X\). Assume \((X, \normdot), (X, \normdot_*)\) are Banach spaces. 
     Assume that \(\exists \; C_1 > 0\) s.t. 
     \[
-        \norm{x}_* \leq C_1\norm{x} \quad \forall ; x \in X
+        \norm{x}_* \leq C_1\norm{x} \quad \forall \; x \in X
     \]
     Then \(\normdot\) and \(\normdot_*\) are equivalent, namely \(\exists \; C_2 > 0\) s.t. 
     \[
@@ -83,9 +83,9 @@ Let \(X, Y\) be normed spaces.
 \] 
 \underline{Ex}: \(T \in \mathcal{L}(X,Y) \Rightarrow T \mbox{ is closed}\)
 \begin{remark}
-    \(T\) is a closed operator \(\Leftrightarrow\) the graph of \(T\)
+    \(T\) is a closed operator \(\Leftrightarrow\) the graph of \(T\) is closed.
     \[
-        \mbox{graph}(T) = \left\{ (x, Tx): x \in X \right\} \mbox{ is closed}
+        \mbox{graph}(T) = \left\{ (x, Tx): x \in X \right\}
     \]
 \end{remark}
 \begin{theorem}[Closed graph theorem]
@@ -146,17 +146,36 @@ Since \(\real\) is a Banach space, the dual space \(X^*\) is a Banach space with
         \]
         It can be proved that 
         \[
-            L \subset (\real^n)^* \mapsto y \in \real^n
+            L \in (\real^n)^* \mapsto y \in \real^n
         \]
         is an isometric isomorphism 
         \[
-            (\real^n)^* \approxeq 
+            (\real^n)^* \approxeq \real^n
         \]
         Then \(X^*\) is very complicated.
-    \item mille cose 
+    \item Dual of \(L^p\)?
+    
+    \(\left(X, \mathcal{M}, \mu\right)\) measure space. \(p \in \left[1, \infty\right]\), \(p'\) conjugate exponent.
+    \[
+        \frac{1}{p} + \frac{1}{p'} = 1 \iff 
+        \begin{cases}
+            \begin{array}{ll}
+                p' = \frac{p}{p-1} & p \in (1, \infty) \\
+                p' = \infty & p = 1 \\
+                p'=1 & p = \infty
+            \end{array}     
+        \end{cases}
+    \]
+    For \(g \in L^{p'}(X)\), define \(L_g : L^p(X) \to \real\) by
+    \[
+        l_g f := \int_X fg \, d\mu \qquad \forall \; f \in L^p(\Omega)
+    \]
+    This is well defined, by the Holder inequality:
+    \[
+        \abs{\int_X fg \, d\mu } \leq \int_X \abs{fg} \, d\mu = \norm{fg}_1 \leq \norm{g}_{p'} \norm{f}_p \tag*{*} 
+    \]
+    If \(g \in L^{p'}\), this shows that \(L_g f \in \real \quad \forall \; f \in L^p\)
 \end{itemize}
-
-\dots
 
 \begin{proposition}
     If \(p \in [1, \infty]\) then \(L_g \in (L^p(X)^*)\). Moreover, 
@@ -182,7 +201,7 @@ Question: are there functional in \((L^p)^*\)?
         \(L_g\) is clearly linear, by linearity of \(\int\), indeed:
         \(\forall \; \alpha \; \beta \in \real\), \(f_1 \; f_2 \in L^p(X)\). Then
         \[
-            ...
+            L_g(\alpha f_1 + \beta f_2) = \int_X g (\alpha f_1 + \beta f_2) \, d\mu = \alpha \int_X g f_1 \, d\mu + \beta \int_X g f_2 \, d\mu = \alpha L_g f_1 + \beta L_g f_2
         \]
         We want to show now that \(L_g \) is bounded. 
         We proved in (*) that 
@@ -197,11 +216,11 @@ Question: are there functional in \((L^p)^*\)?
         \]
         We rule out this possibility by choosing an explicit \(\tilde{f} \in L^p \) s.t.
         \[
-            \abs{L_g \tilde{f} } = \norm{g}_{p'} \norm{\tilde{f}}_*
+            \abs{L_g \tilde{f} } = \norm{g}_{p'} \norm{\tilde{f}}_p
         \]
         We take 
         \[
-            .
+            \tilde{f} = \frac{\abs{g}^{p'-1}}{\norm{g}_{p'}^{p'-1}} \frac{g}{\abs{g}}
         \]
         Now, 
         \[
@@ -212,9 +231,13 @@ Question: are there functional in \((L^p)^*\)?
             (*) = \frac{1}{\norm{g}_{p'}^{p'}} \int_X \abs{g}^{p'} \, d\mu = \frac{\norm{g}_{p'}^{p'}}{\norm{g}_{p'}^{p'}} = 1
         \]    
         \[
-            \abs{L_g \tilde{f}} = \abs{\int_X} \frac{\abs{g}}{\norm{g}_{p'-1}^{p'}} .....
-            = \frac{1}{\norm{g}_{p'-1}^{p'}} \norm{g}_{p'}^{p'} = \norm{g}_{p'} = \norm{g}_{p'}\norm{\tilde{f}}_p
-        \]
+            \begin{array}{l}
+            \abs{L_g \tilde{f}} = \abs{\int_X \frac{\abs{g}^{p'-1}}{\norm{g}_{p'}^{p'-1}} \abs{g} \, d\mu}
+            = \abs{\int_X \frac{\abs{g}^{p'}}{\norm{g}_{p'}^{p'-1}} \, d\mu }
+            = \frac{1}{\norm{g}_{p'-1}^{p'}} \norm{g}_{p'}^{p'} 
+            = \norm{g}_{p'} = \norm{g}_{p'}\norm{\tilde{f}}_p
+        \end{array}
+            \]
     \end{itemize}
 \end{proof}
 
