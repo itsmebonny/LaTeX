@@ -1,20 +1,22 @@
 \section{Lecture 23/11/2022}
 
 \begin{theorem}[Hahn-Banach regarding continuous extension]
-    \(X\) (real) normed space. \(Y\) subspace of \(X\), \(f \in Y^*\)
+    \(X\) (real) normed space. \(Y\) subspace of \(X\), \(f \in Y^* = \mathcal{L}(Y, \real)\)
 
     Then \(\exists \; F \in X^* = \mathcal{L}(X, \real)\) s.t. 
     \[
-        F(y) = f(y) \quad \forall \; y \in Y
-    \]
-    \[
-        \norm{F}_{X^*} = \norm{f}_{Y^*}
+        \begin{array}{lr}
+            
+            F(y) = f(y) & \forall \; y \in Y \\
+
+            \norm{F}_{X^*} = \norm{f}_{Y^*}   & \\
+        \end{array}
     \]
 \end{theorem}
 \begin{proof}
     Define \(p:X \to \real\), \(p(x) = \norm{f}_{Y^*} \norm{x}_X\) \(\forall \; x \in X\). Then \(p\) is sublinear (from the properties of \(\normdot_X\)).
 
-    Moreover, \(f(y) \leq \abs{f(y)} \leq \norm{f}_{Y^*}\norm{y}_X = p(y)\) \(\forall \; y \in Y\). Then, by Hahn-Banach theorem (general version), \(\exists \; F : X \to \real\) s.t. \(F\) is an extension of \(f\) and \(F(x) \leq p(x) \forall \; x \in X\).
+    Moreover, \(f(y) \leq \abs{f(y)} \leq \norm{f}_{Y^*}\norm{y}_X = p(y)\) \(\forall \; y \in Y\). Then, by Hahn-Banach theorem (general version), \(\exists \; F : X \to \real\) s.t. \(F\) is an extension of \(f\) and \(F(x) \leq p(x) \; \forall \; x \in X\).
 
     Now, if \(F(x) \geq 0\)
     \[
@@ -33,17 +35,22 @@
         \norm{F}_{X^*} \leq \norm{f}_{Y^*}
     \]
 
-Also, \(\norm{F}_{X^*} \geq \norm{f}_{Y^*}\) since \(F\) extends \(f\):
-\[
-    \norm{F}_{X^*} = \sup_{\norm{x}_X < 1} \abs{F(x)} > \sup_{\norm{y}_Y < 1}\abs{F(y)}
-\]
+    Also, \(\norm{F}_{X^*} \geq \norm{f}_{Y^*}\) since \(F\) extends \(f\):
+    \[
+        \norm{F}_{X^*} = \sup_{\norm{x}_X \leq 1} \abs{F(x)} \geq \sup_{\norm{y}_Y \leq 1}\abs{F(y)} 
+        = \sup_{\norm{y}_X \leq 1, y \in Y} \abs{f(y)} = \norm{f}_{Y^*}
+    \]
 \end{proof}
 \underline{Consequence 1}
 \begin{theorem}
-    \(L^\infty (X)\) `strictly contains' \(L^1(X)\)
+    \((L^\infty (X))^*\) `strictly contains' \(L^1(X)\)
 \end{theorem}
 
-cose 
+\begin{proof}
+    We must show that \(\exists \; L \in (L^\infty(X))^*\) s.t. \(\nexists \; g \in L^1(X)\) s.t. 
+    \[
+        Lf = \int_X fg \, d\mu \quad \forall f \in L^\infty(X)
+    \]
 
 For simplicity, we consider \((X, \mathcal{M}, \mu) = ([-1, 1], \mathcal{L}([-1,1]), \lambda)\). Let \(Y\) be the subspace of \(L^\infty([-1,1])\) of the bounded continuous functions \(\mathcal{C}^0([-1,1])\). On \(Y\) we define 
 \[
@@ -59,12 +66,23 @@ Moreover, \(\Lambda\) is in \(Y^*\):
 \[
     \abs{\Lambda f} = \abs{f(0)} < \max_{[-1,1]} \abs{f} = \norm{f}_{\infty}
 \]
-This proves that \(\Lambda \in Y^*\), \(\norm{\Lambda}_{Y^*} \leq 1\). By Hahn-Banach, \(\exists \; L \in (L^\infty(X))^*\) whixh is an extension of \(\Lambda\), and is s.t. 
+This proves that \(\Lambda \in Y^*\), \(\norm{\Lambda}_{Y^*} \leq 1\). By Hahn-Banach, \(\exists \; L \in (L^\infty(X))^*\) which is an extension of \(\Lambda\), and is s.t. 
 \[
     \norm{L}_{(L^\infty)^*}
 \]
-pezzi
-
+Can we have 
+\[
+    Lf=\int_{-1}^1 fg \, d\mu \quad \mbox{for some } g \in L^1(X)\mbox{?}
+\]
+Suppose by contradiction that this is true, take 
+\[
+    f_n \in \mathcal{C}^0([-1,1])
+\]
+defined in this way:
+\[
+    f_n(x) = \phi(nx)
+\]
+where \(\phi\) is continuous, \(\mbox{supp}\, \phi \subseteq \left[ \frac{-1}{2}, \frac{1}{2} \right], \phi(0) = 1\)
 By contradiction, 
 \[
     \sup f_n \subseteq \left[-\frac{1}{2n}, \frac{1}{2n}\right] \Rightarrow f_n(x) \to 0
@@ -88,6 +106,7 @@ In conclusion, there is no \(g \in L^!([-1,1])\) s.t.
 \[
     \int_{-1}^1 f g \, d\lambda = L f
 \]
+\end{proof}
 \underline{Other consequences of the Hahn-Banach theorem}
 \begin{corollary}
     \(X\) (real) normed space, \(x_0 \in X \setminus \left\{ 0 \right\}\).
