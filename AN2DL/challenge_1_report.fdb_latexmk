@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1669043275 "/home/bonni/Documents/LaTeX/AN2DL/challenge_1_report.tex" "challenge_1_report.pdf" "challenge_1_report" 1669043276
+["pdflatex"] 1669475993 "/home/bonni/Documents/LaTeX/AN2DL/challenge_1_report.tex" "challenge_1_report.pdf" "challenge_1_report" 1669475994
   "/etc/texmf/web2c/texmf.cnf" 1663235487 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/bonni/Documents/LaTeX/AN2DL/challenge_1_report.tex" 1669043275 8207 f3fcd81c20d13e598a44395a3f34afcb ""
+  "/home/bonni/Documents/LaTeX/AN2DL/challenge_1_report.tex" 1669475992 9758 7cbbc49f3bcbb18fe9afa36de4fd064e ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm" 1246382020 1124 14ccf5552bc7f77ca02a8a402bea8bfb ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy7.tfm" 1246382020 1120 7f9f170e8aa57527ad6c49feafd45d54 ""
@@ -115,9 +115,9 @@
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1663245305 2799600 82c7499e2bbeaef077fd78ca2cedfab0 ""
   "Images//model_noaug.png" 1668697560 31669 d2078f9b339c3e67458fcf332c42344b ""
   "Images//model_noaug_acc.png" 1668697718 46055 a30ee8821d5b811109a450a9805861a3 ""
-  "challenge_1_report.aux" 1669043276 686 470fdebd29f279999e89f3533b8c7bc8 "pdflatex"
-  "challenge_1_report.out" 1669043276 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "challenge_1_report.tex" 1669043275 8207 f3fcd81c20d13e598a44395a3f34afcb ""
+  "challenge_1_report.aux" 1669475993 686 470fdebd29f279999e89f3533b8c7bc8 "pdflatex"
+  "challenge_1_report.out" 1669475993 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "challenge_1_report.tex" 1669475992 9758 7cbbc49f3bcbb18fe9afa36de4fd064e ""
   (generated)
   "challenge_1_report.aux"
   "challenge_1_report.log"
