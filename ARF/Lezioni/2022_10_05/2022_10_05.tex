@@ -77,7 +77,7 @@ Ex: \(f, g : X \to [0, +\infty]\). Then
     \]
 \end{theorem}
 \begin{proof}
-    \underline{\(\nu\) is a measure}:  
+    \noindent\underline{\(\nu\) is a measure}:  
 
     \(\nu(\emptyset) = 0\), since \(\mu(\emptyset) = 0\). 
     Now, let \(E = \bigcup_{n=1}^{\infty} E_k\), \(\left\{ E_k \right\}\) disjoint. Then 
@@ -87,7 +87,7 @@ Ex: \(f, g : X \to [0, +\infty]\). Then
     \]
     We have proven \(\sigma\) additivity, so \(\nu\) is a measure.
 
-    \underline{(*) holds}:
+    \noindent\underline{(*) holds}:
     Let \(E \in \mathcal{M}\). Then
     \[
         \int_X \chi_E \, d\nu = \int_E 1 \, d\nu = \nu(E) = \int_E = \int_E \oldphi \, d\mu = \int_X \oldphi \chi_E \, d\mu
@@ -223,7 +223,7 @@ The most relevant theorem for convergence is the following
     If \(\mu(X) < +\infty\), and \(\exists M > 0\) s.t. \(\abs{f_n} \leq M\) a.e. on \(X, \forall \; n\), then we can take \(g = M\) as dominating function.
 \end{remark}
 
-\underline{Comments on the relation between Riemann and Lebesgue integrals}
+\noindent\underline{Comments on the relation between Riemann and Lebesgue integrals}
 
 Let \(f : I \subset \real \to \real\), \(I\) interval, be bounded. Assume also that \(I\) is closed and bounded.
 \begin{theorem}
@@ -239,4 +239,4 @@ Let \(f : I \subset \real \to \real\), \(I\) interval, be bounded. Assume also t
 \begin{theorem}
     \(f \in R(I) \Leftrightarrow f\) is continuous on \(x\), for a.e. \(x \in I\).
 \end{theorem}
-\underline{Ex}: \(\chi_{\mathbb{Q}}\) on \([0,1]\) is not Riemann integrable, because it is discontinuous at any point. Note that, instead, \(\chi_{\mathbb{Q}} = 0\) a.e. on \([0,1]\) \(\Rightarrow \int_{[0,1]} \chi_{\mathbb{Q}} \, d\lambda = 0\)
+\noindent\underline{Ex}: \(\chi_{\mathbb{Q}}\) on \([0,1]\) is not Riemann integrable, because it is discontinuous at any point. Note that, instead, \(\chi_{\mathbb{Q}} = 0\) a.e. on \([0,1]\) \(\Rightarrow \int_{[0,1]} \chi_{\mathbb{Q}} \, d\lambda = 0\)

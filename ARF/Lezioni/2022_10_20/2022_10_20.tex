@@ -1,5 +1,5 @@
 \section{Lecture 20/10/2022}
-\underline{Goal}: The \(2^{nd}\) fundamental theorem of calculus. Given \(G \in \mbox{AC}([a,b])\). Then \(G\) is differentiable a.e. on \([a,b]\), \(G' \in L^1([a,b])\), and (FC) holds.
+\noindent\underline{Goal}: The \(2^{nd}\) fundamental theorem of calculus. Given \(G \in \mbox{AC}([a,b])\). Then \(G\) is differentiable a.e. on \([a,b]\), \(G' \in L^1([a,b])\), and (FC) holds.
 Example and comments:
 \begin{itemize}
     \item If \(f\) is bounded and monotone \(\Rightarrow\) \(f \in \mbox{BV}\)
@@ -39,13 +39,13 @@ Example and comments:
 \end{itemize}
 We can now come back to the proof of Lemma 1 of the last lesson.
 
-\underline{Preliminary result}: \(A \in \real\) open. Then 
+\noindent\underline{Preliminary result}: \(A \in \real\) open. Then 
 \[
     A = \bigcup_{n=1}^{\infty}(a_n, b_n) \mbox{ disjoint}
 \]
     any open set of \(\real\) is the (at most) countable union of open disjoint intervals.
 
-\underline{Preliminary result (equivalent definition for AC)}: \(f \in \mbox{AC}([a,b]) \Leftrightarrow \forall \; \epsilon > 0 \exists \; \delta > 0\) depending on \(\epsilon\) s.t. 
+\noindent\underline{Preliminary result (equivalent definition for AC)}: \(f \in \mbox{AC}([a,b]) \Leftrightarrow \forall \; \epsilon > 0 \exists \; \delta > 0\) depending on \(\epsilon\) s.t. 
 \[
     \forall \; \bigcup_{n=1}^{\infty} [a_n, b_n], \quad [a_n, b_n] \mbox{ have disjoint interiors}
 \]
@@ -67,7 +67,7 @@ It can be proved that we obtain a measure on \((\real, \mathcal{L}(\real))\), co
 
 On \((\real, \mathcal{L}(\real))\) we have two measures: \(\lambda \mbox{ and } \mu\).
 
-\underline{Idea}: We take these measures on \(([a,b], \mathcal{L}([a,b]))\), and we want to show that \(\exists \; \frac{d\mu}{d\Lambda}\) (Radon-Nikodym)
+\noindent\underline{Idea}: We take these measures on \(([a,b], \mathcal{L}([a,b]))\), and we want to show that \(\exists \; \frac{d\mu}{d\Lambda}\) (Radon-Nikodym)
 
 We can check the hypothesis of the Radon-Nikodym theorem:
 \begin{itemize}
@@ -117,7 +117,7 @@ By the first fundamental theorem of calculus, this is differentiable a.e.
 \end{proof}
 Now we want to get rid of the additional assumption (monotonicity).
 
-\underline{Preliminary result}: \(f \in \mbox{BV}([a,b])\). Then
+\noindent\underline{Preliminary result}: \(f \in \mbox{BV}([a,b])\). Then
 \[
     \phi(x) = V_a^x(f), \quad \forall \, x \in [a,b] 
 \]
@@ -128,7 +128,7 @@ is an increasing function.
         V_a^y (f) = V_a^x (f) + \underbrace{V_x^y(f)}_{\geq 0} \geq V_a^x(f)
     \]
 \end{proof}
-\underline{Preliminary result}: If \(G \in \mbox{AC}([a,b])\), then \(G \in \mbox{BV}([a,b])\), and moreover 
+\noindent\underline{Preliminary result}: If \(G \in \mbox{AC}([a,b])\), then \(G \in \mbox{BV}([a,b])\), and moreover 
 \[
     \phi(x) = V_a^x(G) \mbox{ is in AC}([a,b])
 \]
@@ -148,7 +148,7 @@ is an increasing function.
     \]
     Clearly, \(G_1+G_2 = G\), \(G_1, G_2\) are AC, by the last preliminary result.
 
-    \underline{\(G_1 \nearrow\)}: Let \(a \leq x < y \leq b\)
+    \noindent\underline{\(G_1 \nearrow\)}: Let \(a \leq x < y \leq b\)
     \[
         \abs{G(y) - G(x)} \leq V_x^y(G)
     \]
@@ -179,7 +179,7 @@ Normed spaces and Banach spaces
     \end{itemize}
     Then, \((X, \normdot)\) is called a \textbf{normed space}
 \end{definition}
-\underline{Ex}: \(\abs{\norm{x} - \norm{y}} \leq \norm{x - y}\) \(\forall \; x,y \in X\)
+\noindent\underline{Ex}: \(\abs{\norm{x} - \norm{y}} \leq \norm{x - y}\) \(\forall \; x,y \in X\)
 \begin{proposition}
     \((X, \normdot)\) normed space. Then \((X, d)\) is a metric space for 
     \[
@@ -189,7 +189,7 @@ Normed spaces and Banach spaces
 \begin{remark}
     Normed space \(\underset{\displaystyle\nleftarrow}{\rightarrow}\) metric space
 \end{remark}
-\underline{Examples}:
+\noindent\underline{Examples}:
 
 \begin{itemize}
     \item \(\real^N, \norm{x}_p := (\sum_{i = 1}^N \abs{x_i}^p)^{\frac{1}{p}}\) \(\forall p \in [1, +\infty)\)
@@ -204,7 +204,7 @@ Normed spaces and Banach spaces
 \[
     d(x_n, x) \to 0 \Leftrightarrow \norm{x_n -x} \to 0 \mbox{ as } n \to \infty
 \]
-\underline{Ex}: \(x_n \to x\) in \(X\), then \(\norm{x_n} \to \norm{x}\) (the norm is a continuous function on \(X\))
+\noindent\underline{Ex}: \(x_n \to x\) in \(X\), then \(\norm{x_n} \to \norm{x}\) (the norm is a continuous function on \(X\))
 \begin{definition}
     \(\left\{ x_n \right\}\) is a \textbf{Cauchy sequence} in \((X, \normdot)\) if \(\forall \; \epsilon > 0\) \(\exists \; \bar{n} \in \mathbb{N}\) s.t. 
     \[
