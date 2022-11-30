@@ -82,7 +82,10 @@ defined in this way:
 \[
     f_n(x) = \phi(nx)
 \]
-where \(\phi\) is continuous, \(\mbox{supp}\, \phi \subseteq \left[ \frac{-1}{2}, \frac{1}{2} \right], \phi(0) = 1\)
+where \(\phi\) is continuous, \(\mbox{supp}\, \phi \subseteq \left[ \frac{-1}{2} \frac{1}{2} \right]\) 
+\[
+    \phi(0) = 1, \phi(nx) = 0 \quad \forall \; x \mbox{ s.t. } \abs{nx} > \frac{1}{2} \Leftrightarrow \abs{x} > \frac{1}{2n}  
+\]
 By contradiction, 
 \[
     \sup f_n \subseteq \left[-\frac{1}{2n}, \frac{1}{2n}\right] \Rightarrow f_n(x) \to 0
@@ -91,20 +94,22 @@ Therefore, if \(g \in L^1([-1,1])\) is s.t.
 \[
     \int_{-1}^1 f_n g \, d\lambda = L f_n
 \]
-cose 
-
-
+Then, on one side 
+\[
+    \int_{-1}^1 f_n g \, d\mu = L f_n = f_n (0) = 1 \quad \forall \; n
+\tag*{(1)}\]
 But on the other side 
 \begin{itemize}
     \item \(f_n(x)g(x) \to 0\) a.e. in \([-1,1]\)
     \item \(\abs{f_n(x) g(x)} \leq g(x) \in L^1([-1,1])\)
     \[
         \overset{\mbox{DOM}}{\Rightarrow} \int_{-1}^1 f_n g \, d\lambda \to 0
-    \]
+    \tag*{(2)}\]
 \end{itemize}
+But \((1)\) and \((2)\) are in contradiction.
 In conclusion, there is no \(g \in L^!([-1,1])\) s.t. 
 \[
-    \int_{-1}^1 f g \, d\lambda = L f
+    \int_{-1}^1 f g \, d\lambda = L f \quad \forall \; f \in L^\infty ([-1,1])
 \]
 \end{proof}
 \underline{Other consequences of the Hahn-Banach theorem}
@@ -119,19 +124,26 @@ In conclusion, there is no \(g \in L^!([-1,1])\) s.t.
     Take \(Y = \left\{ \lambda x_0 : \lambda \right\}\) cose 
     
 
-    This is linear and continuous on \(Y\) \(\Rightarrow\) by Hahn-Banach (continuous extension) \(\exists \; \tilde{L_0} \in X^*\) s.t. \(\tilde{L_0}\) extends \(L_0\) and 
+    This is linear and continuous on \(Y\) \(\Rightarrow\) by Hahn-Banach (continuous extension) \(\exists \; \tilde{L}_0 \in X^*\) s.t. \(\tilde{L}_0\) extends \(L_0\) and 
     \[
-        cose
+        \norm{\tilde{L}_0}_{X^*} = \norm{L_0}_{Y^*} = \sup_{\begin{array}{c}\lambda x_0 \in Y \\ \norm{\lambda x_0} = 1\end{array}}\abs{L_0(\lambda x_0)}= \sup \abs{\lambda \norm{x_0}_X} = 1
     \]
-
+    Thus \(\tilde{L}_0\) is precisely the desired functional.
+    \[
+        \tilde{L}_0 (x_0) = L_0 = \norm{x_0}_X
+    \]
+    and 
+    \[
+        \norm{\tilde{L}_0}_{X^*} = 1
+    \]
 \end{proof}
-\begin{corollary}
-    If \(x,y \in X\) and \(Lx = Ly\) \(\forall \; L \in X^* \Rightarrow x = y\)
+\begin{corollary}[The bounded linear functionals separate points]
+    If \(x,y \in X\) and \(Lx = Ly\) \(\forall \; L \in X^* \Rightarrow x = y\) (if \(x \neq y, \exists \; L \in X^*\) s.t. \(Lx \neq Ly\))
 \end{corollary}
 \begin{proof}
     Assume \(x-y \neq 0\). Then, by the previous corollary, \(\exists \; L \in X^*\) s.t. 
     \[
-        \norm{L}_{X^*} \mbox{ and } L(x-y) = \norm{x-y}_X \Rightarrow Lx -Ly ...
+        \norm{L}_{X^*} \mbox{ and } L(x-y) = \norm{x-y}_X \Rightarrow Lx -Ly = L(x-y) = \norm{x-y}_X \neq 0
     \]
 \end{proof}
 \begin{corollary}
@@ -141,7 +153,8 @@ In conclusion, there is no \(g \in L^!([-1,1])\) s.t.
 \end{corollary}
 \subsection*{Reflexive spaces}
 \(X\) Banach space, \(X^*\) dual space.
-\underline{Notation}: \(L \in X^*: Lx = L(x) = <L,x> = \underset{X^*}{<}L,x\underset{X}{>}\)
+
+\noindent \underline{Notation}: \(L \in X^*: Lx = L(x) = <L,x> = \underset{X^*}{<}L,x\underset{X}{>}\)
 
 \((X^*)^*\) dual space of \(X^*\) is called the \textbf{bidual} of \(X\), denoted by \(X^*\)
 \[
@@ -151,20 +164,84 @@ We can describe many elements of \(X^{**}\) in the following way: for \(x \in X\
 \[
     \begin{array}{ll}
         \Lambda: & X^* \to \real \\
-        & L \mapsto Lx
+        & L \mapsto Lx = \underset{X^*}{<}L,x\underset{X}{>}
     \end{array}
 \]
-(\(\Lambda_x\) evaluates functionals pezzi)
+(\(\Lambda_x\) evaluates functionals in \(X^*\) in the point \(x\)).
 
+\(\Lambda_x\) is linear:
+\[
+    \Lambda_x (\alpha L_1 + \beta L_2) = (\alpha L_1 + \beta L_2)(x) = \alpha L_1 x + \beta L_2 x = \alpha \Lambda_x L_1 + \beta \Lambda_x L_2
+\]
 Moreover, it is bounded 
 \[
-    \abs{\Lambda_x(L)} = \abs{Lx} \leq \norm{L}_{X^*}\norm{x}_X
+    \abs{\Lambda_x(L)} = \abs{Lx} \underset{L \in X^*}{\leq} \norm{L}_{X^*}\norm{x}_X \quad \forall \; L \in X^*
 \]
 Moreover, 
 \[
-    \abs{\Lambda_x}_{\mathcal{L}(X^*, \real)} = \sup_{L \neq 0} \frac{\abs{\Lambda_x L}}{\norm{L}_X^*}
+    \norm{\Lambda_x}_{\mathcal{L}(X^*, \real)} = \sup_{L \neq 0} \frac{\abs{\Lambda_x L}}{\norm{L}_X^*}
 \]
-We claim that \(\norm{\Lambda_x}_{\mathcal{L}} = \norm{x}_X\). Indeed, by the first corollary of Hahn-Banach, given any \(x \in X\setminus \left\{ 0 \right\} \exists \; Lx \in X^*\) un sacco di cose
+We claim that \(\norm{\Lambda_x}_{\mathcal{L}} = \norm{x}_X\). Indeed, by the first corollary of Hahn-Banach, given any \(x \in X\setminus \left\{ 0 \right\} \exists \; Lx \in X^*\) 
 \[
-    cose qua
+    \exists \; L_x \in X^* \mbox{ s.t } \abs{L_x x} = \norm{x}_X, \mbox{ and } \norm{L_x}_{X^*} = 1 
 \]
+\[
+    \Rightarrow \sup_{L \neq 0} \frac{\abs{\Lambda_x L}}{\norm{L}_{X^*}} = \sup_{L \neq 0} \frac{\abs{Lx}}{\norm{L}_{X^*}} \geq \frac{\abs{L_x x}}{\norm{L_x}_{X^*}} = \norm{x}_X 
+\]
+\[
+    \Rightarrow \norm{\Lambda_x}_{X^{**}} = \norm{x}_X
+\]
+\begin{theorem}
+    \(\exists\) a map 
+    \[
+        \begin{array}{lc}
+            \tau : & X \to X^{**} \\
+            & x \mapsto \Lambda_x
+        \end{array}
+    \tag*{(Canonical Map)}\]
+    which is linear, continuous and an isometry. Namely, the canonical map is an isometric isomorphism from \(X\) into \(\tau(X) \subseteq X^{**}\)
+\end{theorem}
+\noindent\underline{Question}: are there other elements in \(X^{**}\)?
+\begin{definition}
+    If the canonical map is surjective, then we say that \(X\) is \textbf{reflexive}, \(X \approxeq X^{**}\). Otherwise, \(\tau(X)\) will be a strict close subspace of \(X\).
+\end{definition}
+\begin{remark}
+    \(X\) reflexive \(\nLeftarrow\) \(X\) and \(X^{**}\) are isometrically isomorphic.
+\end{remark}
+\begin{theorem}
+    \(X\) reflexive space. Then every closed subspace of \(X\) is reflexive.
+\end{theorem}
+\begin{theorem}
+    \(X\) Banach. 
+    \[
+        X \mbox{ reflexive } \Leftrightarrow X^* \mbox{ reflexive }
+    \]
+\end{theorem}
+\begin{theorem}
+    \(X\) Banach.
+    \begin{itemize}
+        \item If \(X^*\) is separable \(\Rightarrow X\) is separable
+        \item If \(X\) is separable and reflexive \(\Rightarrow X^*\) is separable
+    \end{itemize}
+\end{theorem}
+To show that a space is reflexive, it is convenient to introduce the following notion.
+\begin{definition}
+    \(X\) Banach space. \(X\) is called \textbf{uniformly convex} if \(\forall \; \epsilon > 0 \; \exists \; \delta > 0 \) s.t. 
+    \[
+        \forall \; x, y \in X \mbox{ with } \norm{x} \leq 1, \norm{y} \leq 1, \norm{x-y} > \epsilon
+    \]
+    then we have 
+    \[
+        \norm{\frac{x+y}{2}} < 1-\delta
+    \]
+    This is a quantitative version of the strict convexity.
+\end{definition}
+\begin{definition}
+    \(C \subset X\) is convex  \(\Leftrightarrow \forall \; x,y \in C : \frac{x+y}{2} \in C\)
+
+    \noindent \(C \subset X\) is \textbf{strictly convex} \(\Leftrightarrow \forall \; x,y \in C : \frac{x+y}{2} \in \interior{C}\)
+\end{definition}
+Roughly speaking, \(X\) is uniformly convex if \(\overline{B_1(0)}\) is strictly convex in a quantitative way.
+\begin{theorem}[Milman-Pettis]
+    Every uniformly convex Banach space is reflexive.
+\end{theorem}
