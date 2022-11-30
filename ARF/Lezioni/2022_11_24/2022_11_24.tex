@@ -1,1 +1,43 @@
 \section{Lecture 24/11/2022}
+\noindent\underline{Recap on reflexivity}:
+
+\noindent\(X\) Banach space. \(X^{**} = (X^*)^*\) is the \textbf{bidual space}, \(\mathcal{L}(X^*, \real)\)
+\[
+    \forall \; x \in X \; \exists \; \Lambda_x : X^* \to \real \mbox{ defined by } \Lambda_x(L) = Lx \quad \forall \; L \in X^*
+\]
+We proved that \(\Lambda_x \in X^{**}\). Thus we can define the \textbf{canonical map}:
+\[
+        \begin{array}{lc}
+            \tau : & X \to X^{**} \\
+            & x \mapsto \Lambda_x
+        \end{array}
+    \tag*{(Canonical Map)}
+\]
+We stated that \(\tau\) is an isometric isomorphism from \(X\) into \(\tau(X)\). This is true but for our purpose it's even too much, and it's difficult to prove in details. However, we can prove a slightly weaker result 
+\begin{theorem}
+    \(\tau\) is linear, continuous, and is an isometry
+    \[
+        \norm{\tau(x)}_{X^{**}} = \norm{x}_X \quad \forall \; x \in X
+    \]
+    Moreover, \(\tau\) is injective. If \(\tau\) is also surjective, it is an isometric isomorphism between \(X\) and \(X^{**}\)
+\end{theorem}
+\begin{proof}
+    There are two parts:
+    \begin{itemize}
+        \item \(\tau\) is linear and continuous: exercise. 
+        
+        \noindent \(\tau\) is an isometry: \(\norm{\tau(x)}_{X^{**}} = \norm{\Lambda_x}_{X^{**}} = \norm{x}_X\)
+
+        \noindent \(\tau\) is injective: \(x\neq y \Rightarrow \tau(x) \neq \tau(y)\)? 
+
+        \noindent \(x \neq y \Rightarrow\) by the second corollary to Hahn-Banach \(\exists\; L \in X^*\) s.t. \(Lx \neq Ly\).
+        \[
+            \underset{X^{**}}{<}\tau(x), L \underset{X^*}{>} = \Lambda_x(L) = Lx \neq Ly = \Lambda_y(L) = \underset{X^{**}}{<}\tau(x), L \underset{X^*}{>}
+        \]
+        Then, \(\tau(x) \neq \tau(y)\) and \(\tau\) is injective.
+        \item Let now \(\tau\) be surjective. Then \(\tau \in \mathcal{L}(x, X^{**})\) and is bijective \(\Rightarrow\) by a corollary of the open map theorem, \(\tau^{-1} \in \mathcal{L}(X^{**}, X)\)
+    \end{itemize}
+\end{proof}
+\begin{definition}
+    
+\end{definition}
