@@ -39,5 +39,98 @@ We stated that \(\tau\) is an isometric isomorphism from \(X\) into \(\tau(X)\).
     \end{itemize}
 \end{proof}
 \begin{definition}
-    
+    \(X\) is reflexive if \(\tau\) is surjective. In this case, \(\tau\) is an isometric isomorphism between \(X\) and \(X^{**}\)
 \end{definition}
+
+We formally mentioned that
+\begin{theorem}
+    If \((X, \normdot)\) is uniformly convex \(\Rightarrow\) \((X, \normdot)\) is reflexive.
+\end{theorem}
+
+\begin{remark}
+    \begin{proposition}
+        If \((X, \normdot)\) is uniformly convex \(\Rightarrow\) \(\overline{B_1(0)}\) is strictly convex 
+    
+    \end{proposition}
+    \begin{proof}
+        Is it true that if \(x, y \in \overline{B_1(0)}\), then \(\frac{x+y}{2} \in B_1(0)\)? Since \((X, \normdot)\) is uniformly convex, we know that \((\norm{x-y}=: \overline{\epsilon}>0)\)
+        \[
+            \forall \; \overline{\epsilon}>0 \quad \exists \; \overline{\delta} >0 \text{ s.t. } \norm{x} \leq 1 \; \norm{y} \leq \; \norm{x-y} > \frac{\overline{\epsilon}}{2} \Rightarrow \norm{\frac{x+y}{2}} < 1-\overline{delta} 
+        \]
+        In particular, 
+        \[
+            \frac{x+y}{2} < 1-\overline{\delta} < 1 \Rightarrow \frac{x+y}{2} \in B_1(0)
+        \] 
+    \end{proof}
+    Consequence: \((\real^2, \normdot_1)\) and \((\real^2, \normdot_\infty)\) are not uniformly convex.
+\end{remark}
+
+\begin{proposition}
+    \((\real^2, \normdot_2)\) is uniformly convex
+\end{proposition}
+\begin{proof}
+    Suppose by contradiction that this is false:
+    \( \exists \; \overline{\epsilon} >0 \) and \( \{x_n\}, \{y_n\} \subset \overline{B_1(0)} \) s.t. 
+    \[
+        \norm{x_n - y_n} > \overline{\epsilon} \text{, but } \norm{\frac{x_n + y_n}{2}} \geq 1 \tag{*}
+    \]
+    \(\overline{B_1(0)}\) is compact (since we are in \(\real^2\)) \(\Rightarrow\) UTS \(x_n \to \overline{x} \), \(y_n \to \overline{y}\) as \(n \to\infty\). Taking the limit in (*), we deduce that \(\overline{x}\), \(\overline{y} \in \overline{B_1(0)}\)
+    \[
+        \norm{\overline{x}- \overline{y}} \geq \overline{\epsilon} \text{ , and } \norm{\frac{\overline{x}+\overline{y}}{2}} \geq 1
+    \]
+    This is not possible, since \(\overline{B_1(0)}\) is strictly convex.
+\end{proof}
+
+\begin{theorem}
+    \((X, \mathcal{M}, \mu)\) complete measure space. Then \(L^{p}(X)\) is reflexive \(\forall \; p \in (1, \infty)\)
+\end{theorem}
+\begin{proof}
+    \((L^p(X), \normdot_p)\) is uniformly convex \(\forall \; p \in (1, \infty)\) (Clarkson inequalities)
+\end{proof}
+\(L^1(X) and L^\infty(X)\) are not uniformly convex, and not reflexive.
+
+\subsection*{Dual space of \(L^p\)}
+
+\begin{theorem}[Riesz representation theorem]
+    \((X, \mathcal{M}, \mu)\) complete measure space, \(p \in (1, \infty)\). Then 
+    \[
+        \forall\; L \in (L^p(X))^* \quad \exists! \; g \in L^{p'}(X)
+    \]
+    with \(p' \) conjugate exponent s.t. \(L=L_g\), namely
+    \[
+        Lf = \int_X fg \, d\mu \qquad \forall\; f \in L^p(X)
+    \]
+    Moreover \(\norm{L_g}_{(L^p)^*} = \norm{g}_{p'}\)
+    
+    Thus: \(T: g \in L^{p'} \mapsto L_g \in (L^p)^*\) is an isometric isomorphism.
+\end{theorem}
+\begin{proof}
+    \(1 < p < \infty\). Consider \(T: L^{p'} \to (L^p)^*\) with \(g \mapsto Tg: <Tg, f> = \int_X fg \, d\mu\) (namely \(Tg = L_g\)). We already know that
+    \[
+        \norm{Tg}_* = \norm{L_g}_* = \norm{g}_{p'}
+    \]
+    \(T\) is injective: for exercise.
+
+    \(T\) is surjective. Indeed, let \(F:= T(L^{p'}) \subseteq (L^p)^*\) subspace. Since \(T\) is an isometry and \(L^{p'}\) is complete, it can be shown that \(T(L^{p'})\) is also complete \(\Rightarrow T(L^{p'})\) is closed.
+
+    If by contradiction \(F \neq (L^p)^*\), then we can apply corollary 3 to Hahn Banach \((X = (L^p)^*), Y=F, x_0 = \lambda\):
+    \[
+        \exists h \in (L^p)^{**} \text{ s.t. } <h, \lambda> \neq 0 \text{ and } h|_F = 0: <h, Tg> =0 \quad \forall g \in L^{p'} \tag*{1} 
+    \]
+    But \(L^p \) is reflexive \((1 <p < \infty)\), then \(h \in L^p \setminus \{0\}\):
+    \[
+        <h, Tg> = (Tg)h = \int_X hg \, d\mu
+    \]
+    Therefore, (1) tells us that
+    \[
+        \int_X hg \, d\mu =0 \quad \forall \; g \in L^{p'}(X)
+    \]
+    Take \(g = \abs{h}^{p-2}h\). Therefore
+    \[
+        0 = \int_X hg \, d\mu = \int_X h \abs{h}^{p-2} h \, d\mu = \int_X \abs{h}^p \, d\mu \Rightarrow h=0 \in L^p
+    \]
+    which is the desired contradiction.
+
+    \(T\) is an isomorphism: for exercise.
+\end{proof}
+
