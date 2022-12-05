@@ -134,3 +134,121 @@ We formally mentioned that
     \(T\) is an isomorphism: for exercise.
 \end{proof}
 
+\[
+    (L^p)^* = L^{p'}
+\]
+
+\begin{remark}
+    \(p=1\). one can prove the
+\end{remark}
+\begin{theorem}
+    \((X; \mathcal{M}, \mu)\) complete measure space, \(\sigma\)-finite.
+    Then \(\forall\; L \in (L^1(X))^* \quad \exists! g \in L^\infty(X)\) s.t. \(L=L_g\):
+    \[
+        Lf = \int_X fg \, d\mu \quad \forall f \in L^1(X)
+    \]
+    Moreover, the map \(L \in (L^1)^* \mapsto g \in L^\infty\) is an isometric isomorphism.
+\end{theorem}
+
+Recall that \((X, \mathcal{M}, \mu)\) is finite if \(\mu(X) < \infty\).
+
+\begin{definition}
+    \((X, \mathcal{M}, \mu)\) is \(\sigma\)-finite if either \(\mu(X) < \infty\), or \(X = \sum_{n=1}^\infty X_n\), where \(\mu(X_n) < \infty\)
+\end{definition}
+
+\subsection*{Weak Convergence}
+
+We know that \(\overline{B_1(0)}\) is never compact in \(\infty\) dimension. This is a problem is in proving convergence of sequences. a way to approach this issue consists in weakening the notion of convergence.
+\begin{definition}
+    \(X\) Banach space. \(\{x_n\} \subset X\) sequence, \(x \in X\). We say that \(x_n\) tends to \(x\) weakly (in \(X\)) as \(n \to \infty\), \(x_n \rightharpoonup x\) in \(X\), if 
+    \[
+        L x_n \to Lx \qquad \forall \; L \in X^*
+    \]
+\end{definition}
+\begin{remark}
+    Assume that \(x_n \to x\) in \(X\), namely \(\norm{x_n -x}_X \to 0\). If \(f:X \to \real\) is continuous, then
+    \[
+        \lim_{n \to \infty} f(x_n) = f(x)
+    \]
+    In particular, this is true if \(f = L \in X^*\):
+    \[
+        \begin{array}{lrc}
+            x_n \to x \in X \Rightarrow & L x_n \to Lx & \forall\; L \in X^* \\
+            & x_n \rightharpoonup x \in X & \\
+            x_n \to x \in X \Rightarrow & x_n \rightharpoonup x \text{ weakly } \in X & \\
+            \nLeftarrow && 
+        \end{array}
+    \]
+\end{remark}
+\begin{remark}
+    We will be interested in weak convergence in \(L^p\). If \(p \in [1, \infty)\), then \(f_n \rightharpoonup f\) weakly in \(L^p(X) \iff \int_X f_n g d, d\mu \to \int_X fg \, d\mu\) \(\forall \; g \in L^{p'}\)
+
+    Similarily, in \(l^p = L^P(\natural, \mathcal{P}(\natural), \mu_c)\), \(x_n \rightharpoonup x \) weakly in \(l^p\) \(\iff \sum_{k=1}^\infty x_n^{(k)} y^{(k)} \to \sum_{k=1}^\infty x^{(k)} y^{(k)}\) \(\forall \; y \in l^{p'}\)
+\end{remark}
+
+\begin{proposition}
+    The weak limit is unique (if it exists)
+\end{proposition}
+\begin{proof}
+    By contradiction, suppose that \(\exists \{ x_n\} \subset X\) s.t. \(x_n \rightharpoonup x_1\), \(x_n \rightharpoonup x_2\) weakly in \(X\), \(x_1 \neq x_2\). Then
+    \[
+        \begin{array}{lc}
+            Lx_n \to Lx_1 & \forall\; L \in X^* \\
+            Lx_n \to L x_2 & \forall\; L \in X^* \\
+            \Rightarrow Lx_1 = Lx_2 & \forall\; L \in X^*
+    \end{array} 
+    \] 
+    By Hahn Banach (corollary 2), this implies \(x_1 = x_2\), a contradiction.
+\end{proof}
+
+\begin{proposition}
+    If \(x_n \rightharpoonup x\) weakly in \(X\), then \(\{x_n\}\) is bounded, and 
+    \[
+        \norm{x} \leq \liminf_{n \to \infty} \norm{x_n} \tag*{weak lower semi continuity of \(\normdot\)}
+    \]
+\end{proposition}
+\begin{proof}
+    \begin{itemize}
+        \item \(\{x_n\}\) is bounded
+        
+        \(x_n \rightharpoonup x\) weakly \(\Rightarrow \{L x_n\}\) is bounded in \(\real\), \(\forall \; L \in X^*\). Consider \(\Lambda_n \in X^{**}\) def by 
+        \[
+            \Lambda_n L = L x_n \quad \forall\; L \in X^{*}
+        \]
+        \(\forall\; L \in X^* \exists\; M_L >0 \) s.t.
+        \[
+            \abs{\Lambda_n L} = \abs{L x_n } \leq M_L \qquad \forall\; n \tag*{PB}
+        \]
+        (pointwise boundedness of \(\{\Lambda_n \} \subset X^{**}\))
+        \[
+            \Lambda_n: X^{*}= \mathcal{L}(X, \real) \to \real    
+        \]
+        By Banach Steinhaus, \(\{\Lambda_n\}\) is uniformly bounded:
+        \[
+            \sup_n \norm{ \Lambda_n}_{\mathcal{L}(X^*, \real)} \leq M
+        \]
+        Moreover, by Hahn Banach, \(\forall \; n \in \natural \quad \exists L_n \in X^*\) s.t. \(\norm{L_n}_* = 1 \) and \(L_n x_n = \norm{x_n}\). Therefore
+        \[
+            \norm{x_n} = \abs{L_n x_n} = \abs{\Lambda_n L_n} \leq \norm{\Lambda_n}_\mathcal{L} \norm{L_n}_* \leq M \quad \forall n \in \natural
+        \] 
+        \item \(x_n \rightharpoonup x\) weakly. 
+        
+        By corollary 1 of Hahn Banach, \(\exists L_x \in x^*\) s.t. \(\norm{L_x}_* = 1\) and \(L_x x = \norm{x}\). Then
+        \[
+            \norm{x} = \abs{L_x x} = \lim_n \abs{L_x x_n} = \liminf_n \abs{L_x x_n} \leq \liminf_n \norm{L_x}_* \norm{x_n }_X = \liminf_n \norm{x_n }_X
+        \]    
+    \end{itemize}
+\end{proof}
+
+\begin{proposition}
+    \(x_n \rightharpoonup x \) in \(X\) weakly, and \(L_n \to L\) (strongly) in \(X^*\). Then
+    \[
+        L_n X_n \to Lx \quad \text{ in } \real
+    \]
+\end{proposition}
+\begin{proposition}
+    \(X, Y\) Banach, \(T \in \mathcal{L}(X, Y)\)
+    \[
+        x_n \rightharpoonup x \text{ weakly } \Rightarrow Tx_n \rightharpoonup Tx \text{ weakly }
+    \]
+\end{proposition}
