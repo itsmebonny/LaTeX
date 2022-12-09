@@ -29,5 +29,41 @@ With the same philosopy we introduce:
     \]
 \end{definition}
 \begin{remark}
-    Observe
+    Observe thar a sequence \(\{L_n\} \) tends weakly to \(L\) in \(X^*\) if 
+    \[
+        \Lambda L_n \to \Lambda L \quad \forall \Lambda \in X^{**}
+    \]
 \end{remark}
+We know that \(\exists \tau:X \to X^{**}\) canonical map s.t. 
+    \[
+        \underset{X^{**}}{<}\tau(x), L \underset{X^*}{>} = Lx \quad \forall \; L \in X^*
+    \]
+    Thus \(L_n \rightharpoonup L\) weakly in \(X^*\) \(\rightarrow\) \(<\tau(x), L_n> \to <\tau(x), L>\) \(\forall x \in X:\) namely
+    \[
+        L_n x \to Lx \qquad \forall \; x \in X
+    \]
+    namely \(L_n \overset{*}{\rightharpoonup}\) weakly* in \(X^*\). In general the converse is false. However
+    \begin{proposition}
+        If \(X\) is reflexive, then \(L_n \rightharpoonup L\) weakly in \(X^* \iff L_n \overset{*}{\rightharpoonup}\) weakly* in \(X^*\)
+    \end{proposition}
+    \begin{proof}
+        If \(X\) is reflexive, every element \(\Lambda\) of \(X^{**}\) is of type \(\Lambda = \tau(x)\) for some \(x\)
+    \end{proof}
+    \begin{proposition}
+        \(X\) banach space, \(X^*\) dual space, \(L_n \overset{*}{\rightharpoonup} L\) in \(X^*\). Then
+        \begin{itemize}
+            \item The weak * limit is unique
+            \item \(\{L_n\}\) is bounded
+            \item \(\norm{L}_{X^*} \leq \liminf _{n \to \infty} \norm{L_n}_{X^*}\)
+            \item If in addition \(x_n \to x\) strongly in \(X\) \(\Rightarrow\) \(L_nx_n \to Lx\) 
+        \end{itemize}
+    \end{proposition}
+
+    \begin{theorem}[Banach Alaoglu]
+        \(X \) separable Banach space. Then every bounded sequence in \(X^*\) has a weakly* convergent subsequence. (bounded sets in \(X^* \) sequentially compact for the weak* convergence)
+    \end{theorem}
+
+    \begin{proof}
+        sparati
+    \end{proof}
+
