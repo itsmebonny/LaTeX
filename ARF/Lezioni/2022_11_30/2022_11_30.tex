@@ -67,3 +67,18 @@ We know that \(\exists \tau:X \to X^{**}\) canonical map s.t.
         sparati
     \end{proof}
 
+    \begin{theorem}[Variant of BA for reflexive spaces]
+        \(X\) reflexive and Banach. Then every bounded sequence in \(X\) has a weakly convergent subsequence
+    \end{theorem}
+
+    \begin{proof}
+        For simplicity, we assume that \(X\) is separable (not necessary). \(X \) separable and reflexive \(\Rightarrow X^*\) is separable. \(\tau:X \to X^{**}\) canonical map: it is an isometric isometry.
+
+        \(\{x_n\}\) bounded sequence in \(X \iff \{ \tau(x_n) \}\) is bounded in \(X^{**} = (X^*)^*\)
+        
+        \(\Rightarrow \) by Banach Alaoglu, \(\exists \{x_{n_k}\}\) s.t. \(\tau(x_{n_k}) \overset{*}{\rightharpoonup} \Lambda \) in \(X^{**}\):
+        \[
+            \underset{X^{**}}{<}\tau(x_{n_k}), L \underset{X^*}{>} \to \underset{X^{**}}{<}\Lambda, L \underset{X^*}{>}
+        \]
+    \end{proof}
+
