@@ -35,50 +35,128 @@ With the same philosopy we introduce:
     \]
 \end{remark}
 We know that \(\exists \tau:X \to X^{**}\) canonical map s.t. 
+\[
+    \underset{X^{**}}{<}\tau(x), L \underset{X^*}{>} = Lx \quad \forall \; L \in X^*
+\]
+Thus \(L_n \rightharpoonup L\) weakly in \(X^*\) \(\rightarrow\) \(<\tau(x), L_n> \to <\tau(x), L>\) \(\forall x \in X:\) namely
+\[
+    L_n x \to Lx \qquad \forall \; x \in X
+\]
+namely \(L_n \overset{*}{\rightharpoonup}\) weakly* in \(X^*\). In general the converse is false. However
+\begin{proposition}
+    If \(X\) is reflexive, then \(L_n \rightharpoonup L\) weakly in \(X^* \iff L_n \overset{*}{\rightharpoonup}\) weakly* in \(X^*\)
+\end{proposition}
+\begin{proof}
+    If \(X\) is reflexive, every element \(\Lambda\) of \(X^{**}\) is of type \(\Lambda = \tau(x)\) for some \(x\)
+\end{proof}
+\begin{proposition}
+    \(X\) banach space, \(X^*\) dual space, \(L_n \overset{*}{\rightharpoonup} L\) in \(X^*\). Then
+    \begin{itemize}
+        \item The weak * limit is unique
+        \item \(\{L_n\}\) is bounded
+        \item \(\norm{L}_{X^*} \leq \liminf _{n \to \infty} \norm{L_n}_{X^*}\)
+        \item If in addition \(x_n \to x\) strongly in \(X\) \(\Rightarrow\) \(L_nx_n \to Lx\) 
+    \end{itemize}
+\end{proposition}
+
+\begin{theorem}[Banach Alaoglu]
+    \(X \) separable Banach space. Then every bounded sequence in \(X^*\) has a weakly* convergent subsequence. (bounded sets in \(X^* \) sequentially compact for the weak* convergence)
+\end{theorem}
+
+\begin{proof}
+    \(\{L_n\}\) bounded sequence in \(X^*\), nammely
     \[
-        \underset{X^{**}}{<}\tau(x), L \underset{X^*}{>} = Lx \quad \forall \; L \in X^*
+        \sup_{n} 
     \]
-    Thus \(L_n \rightharpoonup L\) weakly in \(X^*\) \(\rightarrow\) \(<\tau(x), L_n> \to <\tau(x), L>\) \(\forall x \in X:\) namely
-    \[
-        L_n x \to Lx \qquad \forall \; x \in X
-    \]
-    namely \(L_n \overset{*}{\rightharpoonup}\) weakly* in \(X^*\). In general the converse is false. However
-    \begin{proposition}
-        If \(X\) is reflexive, then \(L_n \rightharpoonup L\) weakly in \(X^* \iff L_n \overset{*}{\rightharpoonup}\) weakly* in \(X^*\)
-    \end{proposition}
-    \begin{proof}
-        If \(X\) is reflexive, every element \(\Lambda\) of \(X^{**}\) is of type \(\Lambda = \tau(x)\) for some \(x\)
-    \end{proof}
-    \begin{proposition}
-        \(X\) banach space, \(X^*\) dual space, \(L_n \overset{*}{\rightharpoonup} L\) in \(X^*\). Then
-        \begin{itemize}
-            \item The weak * limit is unique
-            \item \(\{L_n\}\) is bounded
-            \item \(\norm{L}_{X^*} \leq \liminf _{n \to \infty} \norm{L_n}_{X^*}\)
-            \item If in addition \(x_n \to x\) strongly in \(X\) \(\Rightarrow\) \(L_nx_n \to Lx\) 
-        \end{itemize}
-    \end{proposition}
+\end{proof}
 
-    \begin{theorem}[Banach Alaoglu]
-        \(X \) separable Banach space. Then every bounded sequence in \(X^*\) has a weakly* convergent subsequence. (bounded sets in \(X^* \) sequentially compact for the weak* convergence)
-    \end{theorem}
+\begin{theorem}[Variant of BA for reflexive spaces]
+    \(X\) reflexive and Banach. Then every bounded sequence in \(X\) has a weakly convergent subsequence
+\end{theorem}
 
-    \begin{proof}
-        sparati
-    \end{proof}
+\begin{proof}
+    For simplicity, we assume that \(X\) is separable (not necessary). \(X \) separable and reflexive \(\Rightarrow X^*\) is separable. \(\tau:X \to X^{**}\) canonical map: it is an isometric isometry.
 
-    \begin{theorem}[Variant of BA for reflexive spaces]
-        \(X\) reflexive and Banach. Then every bounded sequence in \(X\) has a weakly convergent subsequence
-    \end{theorem}
-
-    \begin{proof}
-        For simplicity, we assume that \(X\) is separable (not necessary). \(X \) separable and reflexive \(\Rightarrow X^*\) is separable. \(\tau:X \to X^{**}\) canonical map: it is an isometric isometry.
-
-        \(\{x_n\}\) bounded sequence in \(X \iff \{ \tau(x_n) \}\) is bounded in \(X^{**} = (X^*)^*\)
+    \(\{x_n\}\) bounded sequence in \(X \iff \{ \tau(x_n) \}\) is bounded in \(X^{**} = (X^*)^*\)
         
-        \(\Rightarrow \) by Banach Alaoglu, \(\exists \{x_{n_k}\}\) s.t. \(\tau(x_{n_k}) \overset{*}{\rightharpoonup} \Lambda \) in \(X^{**}\):
-        \[
-            \underset{X^{**}}{<}\tau(x_{n_k}), L \underset{X^*}{>} \to \underset{X^{**}}{<}\Lambda, L \underset{X^*}{>}
-        \]
-    \end{proof}
+    \(\Rightarrow \) by Banach Alaoglu, \(\exists \{x_{n_k}\}\) s.t. \(\tau(x_{n_k}) \overset{*}{\rightharpoonup} \Lambda \) in \(X^{**}\):
+    \[
+        \underset{X^{**}}{<}\tau(x_{n_k}), L \underset{X^*}{>} \to \underset{X^{**}}{<}\Lambda, L \underset{X^*}{>} \quad K \to \infty
+    \]
+    \(\forall\; L \in X^*.\) Since \(X\) is reflexive, \(\forall \Lambda \in X^{**} \) \(\exists ! \; x \in X\) s.t. \(\Lambda = \tau (x)\). Therefore, 
+    \[
+        L x_{n_k} = \underset{X^{**}}{<}\tau(x_{n_k}), L \underset{X^*}{>} \to \underset{X^{**}}{<}\Lambda, L \underset{X^*}{>} = Lx
+    \]
+    \(\forall\; L \in X^*\). We proved that 
+    \[
+        \lim_{k \to \infty} L x_{n_k} = Lx \qquad \forall\; L \in X^*
+    \]
+    namely \(x_{n_k} \rightharpoonup x\) in \(X\)
+\end{proof}
 
+\subsection*{Compact Operators}
+\(X, Y\) Banach spaces. 
+\begin{definition}
+    A linear operator \(K:X \to Y\) is said to be compact if \(\forall E \subseteq X\) bounded, the set \(K(E)\) is relatively compact, namely \(\overline{K(E)}\) is compact. 
+
+    Equivalently, \(K\) is compact if \(\forall \; \{x_n\} \subset X \) bounded, the sequence \(\{K(x_n)\}\) has a strongly convergent subsequence. 
+\end{definition}
+\begin{proposition}
+    \(K:X \to Y\) linear and compact. Then \(K \in \mathbb{L}(X, Y)\)
+\end{proposition}
+\begin{proof}
+    Define \(B:=\overline{B_1(0)}\) in \(X\). If \(K\) is compact 
+    \(\Rightarrow K(B) \) is relatively compact 
+    \(\Rightarrow \overline{K(B)}\) is compact 
+    \(\Rightarrow \overline{K(B)}\) is bounded
+    \(\Rightarrow K(B)\) is bounded: \(\exists \; M>0 \) s.t. 
+    \[
+        \norm{Kx}_Y \leq M \qquad \forall \; x \in \overline{B_1(0)} = B
+    \]
+    \[
+        \Rightarrow \stackbelow{\underbrace{\sup_{\norm{x} \leq 1} \norm{Kx}_Y}}{\norm{K}_{\mathbb{L}(X, Y)}} \leq M
+    \]
+\end{proof}
+
+\begin{definition}
+    \(T \in \mathbb{L}(X, Y)\) has finite rank if 
+    \[
+        \underset{\dim (T(X))}{\text{is the image of }T= \{y \in Y: y = Tx\} \text{ for some} x \in X} < \infty
+    \]
+\end{definition}
+\(T(X) \subset Y\) is a subspace.
+\begin{proposition}
+    \(T \in \mathcal{L}(X, Y)\) has finite rank \(\Rightarrow T\) is compact.
+\end{proposition}
+\begin{proof}
+    \(X \subset X \) bounded. Since \(T \in \mathcal{L}(X, Y)\), then \(T(A)\) is bounded. \(T(A) \subset T(X) \approx \real^n\), since \(T\) has finite rank. 
+    
+    Thus \(T(A)\) is a bounded set of \(\real^n\) \(\Rightarrow T(A) \) is relatively compact. 
+\end{proof}
+
+\begin{definition}
+    We denote by \(\mathcal{K}(X, Y)\) the class of linear compact operators from \(X \) to \(Y\). This is a linear subspace.
+
+    If \(Y=X\), we write \(\mathcal{K}(X)\)
+\end{definition}
+\begin{proposition}
+    \(X, Y\) Banach spaces, \(T:X \to Y\) linear and compact, \(Y\) in \(\infty\) dim. Then \(T\) cannot be surjective.
+\end{proposition}
+\begin{proof}
+    Recall that \(C\) compact set, \(S \subset C\) closed \(\Rightarrow S\) is compact (in any metric space)
+
+    Assume by contradiction that \(K\) is surjective. By the OMT, \(T\) is an open map. Take \(\emptyset \neq A \subset X\), open and bounded. \(T(A)\) is relatively compact (since \(T\) is compact), and is open (since \(T\) is an open map) and \(\neq \emptyset\)
+    \(\Rightarrow T(A) \supset B_r(y_0)\), for some \(y_0 \in Y \) and \(r>0\). Thus \(\overline{T(A)} \supset \overline{B_r(y_0)} \Rightarrow \overline{B_R(y_0)} \) is compact in \(Y\). This contradicts the Riesz theorem, since in \(\infty\) dimension balls are never compact. 
+\end{proof}
+
+\begin{proposition}
+    \(X\), \(Y\), \(Z\) Banach spaces. \(T \in \mathcal{L}(X, Y)\), \(S \in \mathcal{K}(Y, Z)\) (or \(T \in \mathcal{K}(X, Y)\), \(S \in \mathcal{L}(Y, Z)\)). Then \(S \circ T\) is compact.
+\end{proposition}
+\begin{theorem}
+    \(\mathcal{K}(X, Y) \) is a closed subspace of \(\mathcal{L}(X, Y)\). \(\Rightarrow (\mathcal{K}(X, Y), \normdot_{\mathcal{K}(X, Y)})\) is a Banach space.
+\end{theorem}
+Consequence: if we want to check that \(T \in \mathcal{L}(X, Y)\) is compact, we can prove that \(\exists\; \{T_n\} \subseteq \mathcal{K}(X, Y)\) s.t. 
+\[
+    \norm{T_n - T}_{\mathcal{L}} \to 0
+\]
+Since \(\mathcal{K}(X, Y)\), it follows that \(T\) is compact.
