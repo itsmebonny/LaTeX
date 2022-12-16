@@ -1,1 +1,91 @@
 \section{Lecture 01/12/2022}
+
+\subsection*{Hilbert Spaces}
+
+\begin{definition}
+    \(H\) vector space on \(\real\). A function \(p:H \times H \to \real\) is called scalar (or inner) product if it is positive definite, symmetric, and bilinear; namely if 
+    \begin{enumerate}
+        \item \(p(x, x) \geq 0\) \(\forall \; x \in H\) and \(p(x, x) = 0 \Rightarrow x=0\)
+        \item \(p(x, y) = p(y, x)\) \(\forall \; x, y \in H\)
+        \item \(p(\alpha x_1 + \beta x_2, y) = \alpha p (x_1, y) + \beta p(x_2, y)\) \(\forall \; \alpha, \beta \in \real\), \(x_1, x_2, y \in H\)
+    \end{enumerate}
+\end{definition}
+
+Notation: \(p(x, y) = <x, y> = (x, y) = x \dot y\)
+
+\begin{definition}
+    A vector space \(H\) with a scalar product is called a pre Hilbertian space.
+\end{definition}
+
+\begin{proposition}
+    \((H, <.,.>)\) pre Hilbertian space.
+    \begin{itemize}
+        \item Cauchy Schwarz inequality \[
+            \abs{<x, y>} \leq \sqrt{<x, x>} \sqrt{<y, y>} \quad \forall \; x, y \in H
+        \]
+        \item \(\sqrt{<x, x>} =: \norm{x}\) is a norm on \(H\)
+    \end{itemize}
+\end{proposition}
+
+\((H, <.,.>)\) pre Hilbert \(\to (H, \normdot)\) normed space \(\to (H, d)\) metric space where \(d(x, y) = \norm{x-y}\)
+
+\begin{definition}
+    We say that \(H, <.,.>\) is a Hilbert space if \((H, \normdot)\) is a Banach space. (namely, if \((H, d)\) is a complete metric space)
+\end{definition}
+
+Examples:
+\begin{itemize}
+    \item \(\real^n\), \(<x, y> = \sum_{i=1}^n x_i y_i\)
+    \item \(L^2(X, \mathcal{M}, \mu)\) \((X, \mathcal{M}, \mu)\) complete measure space. \(<f, g> = \int_X fg \, d\mu\). \(\norm{f} = (\int_X f^2 \, d\mu)^\frac{1}{2} = \norm{f}_2\). \((L^2(X), \normdot_2)\) is a Banach space \(\Rightarrow (L^2(X), <.,.>)\) is a Hilbert space.
+    \item \(l^2\) is a Hilbert space. \(<x, y> = \sum_{k=1}^\infty x^{(k)} y^{(k)}\), \(x = (x^{(k)})\), \(y = (y^{(k)})\)
+    \item \((\mathcal{C}^0([a, b]), <.,.> )\) is a pre Hilbertian space. \((\mathcal{C}^0([a, b]), \normdot_2 )\) is not a Banach space. 
+\end{itemize}
+
+\begin{definition}
+    \(x, y\) are orthogonal if \(<x, y>=0\). We write \(x \perp y\)
+\end{definition}
+\begin{remark}
+    Hilbert spaces are particular cases of Banach spaces. The converse is not true. In any Hilbert space, the norm induced by \(<.,.>\) must satisfy the parallelogram rule
+    \[
+        \norm{x+y}^2 + \norm{x-y}^2 = 2\norm{x}^2 + 2\norm{y}^2 \quad \forall \; x, y \in H \tag*{PR}
+    \]
+\end{remark}
+
+\begin{proposition}
+    \(H\) Banach space with respect to \(\normdot\). If \(\normdot\) satisfies (PR), then \(H\) is a Hilbert space with scalar product 
+    \[
+        <x, y> := \frac{1}{2} [\norm{x+y}^2 - \norm{x}^2 - \norm{y}^2], \quad <x,x> = \norm{x}^2
+    \]
+\end{proposition}
+
+Consequence: we can check that a Banach space is not a Hilbert space by showing that (PR) does not hold.
+Ex: \((L^p, \normdot_p)\) is not a Hilbert space \(\forall\; p \neq 2\). The same for \((\mathcal{C}^0([a, b]), \normdot_\infty )\)
+
+\subsection*{Orthogonal projection}
+
+Recall:
+\begin{definition}
+    \(C \subset H \) is convex if \(\forall\; x, y \in C: \, \frac{x+y}{2} \in C\)
+\end{definition}
+\begin{definition}
+    \(S \subset H\), \(f \in H\). \[ dist (f, S) = \inf_{g \in S} \norm{f-g}\]
+\end{definition}
+
+\begin{theorem}[projection on closed convex sets]
+    \(H\) Hilbert space. Let \(S \subseteq H\) non empty, closed, convex. Then \(\forall \; f \in H \exists! \; h \in S\) s.t. 
+    \[
+        \norm{f-h} = dist (f, S) = \min_{g \in S} \norm{f-g} \tag*{1}
+    \]
+    Moreover, \(h\) is characterized by the variational inequality:
+    \[
+        <f-h, g-h> \leq 0 \quad \forall \; g \in S \tag*{*}
+    \]
+    namely \(h\) is the projection of \(f \) on \(S\) (\(f\) satisfies (1)) \(\iff (*) holds\)
+\end{theorem}
+\begin{remark}
+    \(h\) satisfies 1: \(h\) is the projection of \(f\) on \(S\), \(h = P_S f\)
+\end{remark}
+\begin{proof}
+    Only of the existence of \(h\). \\
+    \(S \subset H\). \(dist(f, S) >0\) \((f \notin S )\). 
+\end{proof}
