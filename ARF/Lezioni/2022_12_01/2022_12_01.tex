@@ -89,5 +89,145 @@ Recall:
 \end{remark}
 \begin{proof}
     Only of the existence of \(h\). \\
-    \(S \subset H\). \(dist(f, S) >0\) \((f \notin S )\). 
+    \(S \subset H\). \(dist(f, S) >0\) \((f \notin S )\). \(\exists \{v_n\} \subset S\) s.t. 
+    \[
+        \norm{v_n -f} \to d := dist(f, S)    
+    \] 
+    We show that \(\{v_n\}\) is a Cauchy sequence. Let \(m, n\), then \(\frac{v_m + v_n}{2} \in S\), since \(S\) is convex. Then 
+    \[
+        \norm{f - \frac{v_m + v_n}{2}} \geq d \Rightarrow \norm{2f - (v_m + v_n)} \geq 2d \tag*{2}
+    \]
+    By the (PR), 
+    \[
+        \norm{v_m - v_n}^2 
+        = \norm{v_m \pm f - v_n}^2 
+        \overset{PR with x=f-v_n, x=v_m-f}{=} \norm{x+y}^2
+        = 2\norm{x}^2 + 2 \norm{y}^2 - \norm{x-y}^2 =
+    \]
+    \[
+        = 2 \norm{f-v_n}^2 + 2 \norm{v_m - f }^2 - \norm{2f - (v_m + v_n)}^2
+        \overset{(2)}{\leq} 2 \norm{f - v_n}^2 + 2 \norm{v_m - f}^2 - 4d^2 \leq (*)
+    \]
+    Up to now, we only used that \(v_n , v_m \in S\). Since \(\norm{v_n -f }^2 \to d^2\) as \(n \to \infty\), \(\forall\; \epsilon>0 \) \(\exists \; \overline{n}\) s.t. \(n, m > \overline{n}\)
+    \[
+        \begin{array}{ll}
+            \Rightarrow \norm{v_n - f}^2 < (d+\epsilon)^2 & \norm{v_m - f}^2 < (d+\epsilon)^2
+        \end{array}
+    \]
+    Coming back to \((*)< 4((d+\epsilon)^2 -d^2)\), provided that \(n, m > \overline{n}\). Since \(\epsilon\) was arbitrarily chosen, the right hand side can be made arbitrary small (it tends to 0 if \(\epsilon \to 0\)). 
+    We proved that we can make \(\norm{v_n - v_m}^2\) arbitrarily small, provided that \(n, m\) are sufficiently large.
+    Namely \(\{v_n\}\) is Cauchy. Since \((H, \normdot)\) is Banach, \(\exists \; v \in H\) s.t. \(v_n \to v\). \(v \in S\), since \(S\) is closed. And, by continuity, 
+    \[
+        \norm{f-v} = lim_n \norm{f - v_n} = d
+    \]
+    So \(v\) is the desired \(h\).
+    
+    About uniqueness. \\
+    Let \(\overline{v}\) and \(v'\) 2 elements in \(S\) such that
+    \[
+        \norm{f- \overline{v}} = \norm{f - v'} = d
+    \]
+    Then, exactly as before, 
+    \[
+        \norm{\overline{v} - v'}^2 = 2(\norm{\overline{v} - f}^2 + \norm{v' -f}^2) - \norm{2f - (\overline{v}+v')}^2 \leq 2 (d^2+d^2)-4d^2 = 0
+    \]
+    \(\Rightarrow \overline{v} = v'\)
 \end{proof}
+
+\begin{remark}
+    A particular case: \(S\) closed subspace (it is always convex). In this case, the variational inequality becomes an equality:
+    \[
+        h = P_S f \iff <f-h, g> = 0 \quad  \forall \; g \in S
+    \]
+\end{remark}
+
+\(H\) Hilbert space. 
+\begin{definition}
+    \(S \subset H\) subset. We define the orthogonal complement of \(S\) as 
+    \[
+        S^\perp = \{ x \in H: <x, y> = 0 \quad \forall\; y \in S\}
+    \]
+\end{definition}
+Ex: \(S^\perp \) is always a closed subspace of \(H\)
+Ex: if \(S\) is a subspace, then \(S \cap S^\perp = \{0\}\)
+
+\begin{definition}
+    \(V, W\) subspace of \(H\), orthogonal one to each other:
+    \[
+        \forall \; v \in V, \quad w \in W: v \perp w
+    \]
+    We can define the orthogonal sum of \(V\) and \(W\) as 
+    \[
+        V \oplus W = \{ v+w : v \in V, w \in W \}
+    \]
+\end{definition}
+Ex: if \(x \in V \oplus W \Rightarrow \exists! \; (v, w) \in V \times W\) s.t. \(x=v+w\)
+
+\begin{theorem}
+    \(H\) Hilbert space. Let \(V \subseteq H\) be a closed subspace. Then 
+    \[
+        H = V \oplus V^\perp
+    \]
+\end{theorem}
+
+\begin{definition}
+    From the theorem, given any \(x \in H\) we can define
+    \[
+        \begin{array}{rl}
+            P_v: & H \to V \\
+            & x = v + w \mapsto v \\ \tag*{orthogonal projections}
+            P_{v^\perp} : & H \to V^\perp \\
+            & x \mapsto w
+        \end{array}
+    \]
+\end{definition}
+Ex: \(P_v \) and \(P_{v^\perp}\) are linear bounded operators, with norms 1.
+
+
+\subsection*{Dual space of a Hilbert space}
+Observe that, if \(y \in H\), then we can define \(\Lambda_y : H \to \real\) as
+\[
+    \Lambda_y x = <y, x>
+\]
+It is linear (\(<.,.> \) is bilinear), and it is bounded: 
+\[
+    \abs{\Lambda_y x}= \abs{<y, x>} \leq \norm{y} \norm{x} \quad \forall\; x, y
+\]
+\(\Rightarrow \Lambda_y\) is bounded, with \(\norm{\Lambda_y}_* \leq \norm{y}\)
+Moreover, 
+\[
+    \Lambda_y (\frac{y}{\norm{y}}) = <y, \frac{y}{\norm{y}}> = \norm{y}
+\]
+\[
+    \Rightarrow \norm{\Lambda_y}_* = \sup_{\norm{x} \leq 1} \abs{\Lambda_y x} \geq \abs{\Lambda_y (\frac{y}{\norm{y}})} = \norm{y}
+\]
+Thus \( \norm{\Lambda_y}_* = \norm{y}\), and the map 
+\[
+    \begin{array}{rl}
+        i: & H \to H^* \\
+        & y \mapsto \Lambda_y    
+    \end{array}
+\]
+is an isometry from \(H\) into \(i(H) \subset {H^*}\).
+
+Are there other elements in \(H^*\)?
+
+\begin{theorem}[Riesz Representation Theorem]
+    \(\forall \; \Lambda \in H^* \) \(\exists! y \in H\) s.t. \(\Lambda = \Lambda_y\), namely
+    \[
+        \Lambda x = <y, x> \qquad \forall x \in H
+    \]
+    Moreover, the map \(i\) is an isometric isomorphism. We can identify \(H^*\) with \(H\)
+\end{theorem}
+\begin{corollary}
+    Any Hilbert space is reflexive. 
+\end{corollary}
+\begin{remark}
+    Any Hilbert space is uniformly convex.
+\end{remark}
+
+\begin{itemize}
+    \item Riesz in \(L^p\): \(L^p \) is uniformly convex \(\Rightarrow L^p\) is reflexive. We used this fact to prove Riesz in \(L^p\)
+    \item Riesz in Hilbert: direct proof of \(H^* = H \Rightarrow H\) is reflexive.
+\end{itemize}
+Both strategies can be adopted in both contexts.
