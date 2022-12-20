@@ -66,8 +66,50 @@ namely \(L_n \overset{*}{\rightharpoonup}\) weakly* in \(X^*\). In general the c
 \begin{proof}
     \(\{L_n\}\) bounded sequence in \(X^*\), nammely
     \[
-        \sup_{n} 
+        \sup_{n} \norm{L_n}_{X^*} = M < \infty
     \]
+    Since \(X\) is separable, \(\exists \; \{x_k\}_{k \in \natural}\) dense in \(X\). 
+    Now, consider \(\{L_n x_1\}:\) it is bounded in \(\real\):
+    \[
+        \abs{L_n x_1} \leq \norm{L_n}_{X^*} \norm{x_1}_X \leq M \norm{x_1}_X < \infty
+    \]
+    \(\Rightarrow \exists \; \{L_{n_j}\}\) s.t. \(L_{n_j} x_1 \to l_j\) in \(\real\). Now, consider \(\{L_{n_j} x_2\}\): it is bounded,
+    \[
+        \abs{L_{n_j}x_2} \leq \norm{L_{n_j}}_{X^*} \norm{x_2}_X \leq M \norm{x_2}_X < \infty
+    \]
+    \(\Rightarrow \exists\; \{L_{n_{ij}}\}\) subsequence of \(\{L_{n_j}\}\) s.t. \( L_{n_{ij}} x_2 \to l_2\) in \(\real\)
+    We can iterate the process. \(\forall \; k \quad \{L_n^k\}\) is a subsequence of \(\{L_n^{k-1}\}\). \(\Rightarrow \{L_n^k\}\) is a subsequence of \(\{L_n^j\}\) \(\forall i < k\). In particular, 
+    \[
+        L_n^k x_j \to l_j \quad \forall \; j \leq k
+    \]
+    We pick up \(T_n = L_n^n\) (diagonal selection). By construction, \(\forall m \in \natural\) fixed, \(\{T_n: n \geq m\}\) is a subsequence of \(\{L_n^m: n \geq m\}\) 
+    \[
+        \Rightarrow T_n x_m \to l_m \quad \text{ as } n \to \infty
+    \]
+    We want to show now that \(T_n x \to l_x\) \(\forall x \in X\), and that \(l_x = Tx\) is such that \(T \in X^*\). Since \(\{x_k\}\) is dense, \(\forall \; x \in X\) and \( \forall\; \epsilon >0\) \(\exists\; k \in \natural \) s.t. 
+    \[
+        \norm{x-x_k}_X < \frac{\epsilon}{2M}
+    \]
+    Thus
+    \[
+        \abs{T_n x - T_m x} \leq \abs{T_n x - T_n x_k} + \abs{T_n x_k - T_m x_k} + \abs{T_m x_k - T_m x}
+        \leq \norm{T_n}_{X^*} \norm{x -x_k}_X + \abs{T_n x_k - T_m x_k} + \norm{T_m}_{X^*} \norm{x -x_k}_X
+        \leq M \frac{\epsilon}{2M} + \abs{T_n x_k - T_m x_k} + M \frac{\epsilon}{2M} 
+        < \epsilon + \abs{T_n x_k - T_m x_k} < 2 \epsilon
+    \]
+    \(\forall \; n, m > \overline{n}\), since \(\{T_n x_k\}\) is convergent and so a Cauchy sequence.
+
+    This means that \(\{T_n x\}\) is a Cauchy sequence in \(\real\)
+    \[
+        T_n x \to l_x \text{ in } \real \quad \forall x \in \real
+    \]
+    It only remains to show that \(l_x = Tx\) for some \(T \in X^*\). This is a consequence of a corollary of Banach Steinhaus.
+
+    To sum up: \(\{L_n\}\) bounded in \(X^*\)
+    \[
+        \Rightarrow \exists \; \{T_n\} \text{ subsequence s.t. } T_n x \to Tx
+    \]
+    for every \(x \in X\), namely \(T_n \overset{*}{\rightharpoonup} T\) in \(X^*\)
 \end{proof}
 
 \begin{theorem}[Variant of BA for reflexive spaces]
