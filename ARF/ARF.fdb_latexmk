@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1670238278 "/home/bonni/Documents/LaTeX/ARF/ARF.tex" "ARF.pdf" "ARF" 1670238279
+["pdflatex"] 1670244433 "/home/bonni/Documents/LaTeX/ARF/ARF.tex" "ARF.pdf" "ARF" 1670244435
   "/etc/texmf/web2c/texmf.cnf" 1663235487 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/bonni/Documents/LaTeX/ARF/ARF.tex" 1670238272 3292 b33326e115f574953c06f47f297f8ee7 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -137,8 +137,8 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1663245285 4379155 98693266ff65f58d9f98aff394de12d2 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1663245305 2799600 82c7499e2bbeaef077fd78ca2cedfab0 ""
-  "ARF.aux" 1670238279 3263 3c4531832fb8cc21383a03975b21975f "pdflatex"
-  "ARF.out" 1670238279 3018 131a4309403ff674c0fae81149280b91 "pdflatex"
+  "ARF.aux" 1670244435 3263 032fa0a8217369f68910978f7759f0b6 "pdflatex"
+  "ARF.out" 1670244435 3018 dbe8b1f4e294bf1e58361c79c8b47977 "pdflatex"
   "ARF.tex" 1670238272 3292 b33326e115f574953c06f47f297f8ee7 ""
   "Lezioni/2022_09_12/2022_09_12.tex" 1669210258 11508 64a4385e96e8a5125c155e941f2d3926 ""
   "Lezioni/2022_09_14/2022_09_14.tex" 1669803045 10492 ce0ec83ea12373c740784890ea1129d1 ""
@@ -159,8 +159,8 @@
   "Lezioni/2022_11_16/2022_11_16.tex" 1669803115 9324 d7aa76636e5182592827ed5a9b689b61 ""
   "Lezioni/2022_11_17/2022_11_17.tex" 1669803126 10524 cf472fb1ee46aae5c2237634f111262b ""
   "Lezioni/2022_11_23/2022_11_23.tex" 1669803129 9380 5fcd09cc014de069f3ad96d17b902712 ""
-  "Lezioni/2022_11_24/2022_11_24.tex" 1670238276 11261 51f9531ea3713e43bb3df4c03bab4059 ""
-  "Lezioni/2022_11_30/2022_11_30.tex" 1670238216 29 7dd0217c4363ec4b78e8b08ab1349330 ""
+  "Lezioni/2022_11_24/2022_11_24.tex" 1670244431 11261 f95f6d64216426f06f5f9b9340c3164e ""
+  "Lezioni/2022_11_30/2022_11_30.tex" 1670244431 395 a79ec2c562f7fbfb955fa1b4f8461d0d ""
   "Lezioni/2022_12_01/2022_12_01.tex" 1670238214 28 9eccb7add001182bc669acc775de8ff8 ""
   (generated)
   "ARF.aux"
