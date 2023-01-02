@@ -144,7 +144,7 @@ namely \(L_n \overset{*}{\rightharpoonup}\) weakly* in \(X^*\). In general the c
     Equivalently, \(K\) is compact if \(\forall \; \{x_n\} \subset X \) bounded, the sequence \(\{K(x_n)\}\) has a strongly convergent subsequence. 
 \end{definition}
 \begin{proposition}
-    \(K:X \to Y\) linear and compact. Then \(K \in \mathbb{L}(X, Y)\)
+    \(K:X \to Y\) linear and compact. Then \(K \in \mathcal{L}(X, Y)\)
 \end{proposition}
 \begin{proof}
     Define \(B:=\overline{B_1(0)}\) in \(X\). If \(K\) is compact 
@@ -156,12 +156,12 @@ namely \(L_n \overset{*}{\rightharpoonup}\) weakly* in \(X^*\). In general the c
         \norm{Kx}_Y \leq M \qquad \forall \; x \in \overline{B_1(0)} = B
     \]
     \[
-        \Rightarrow \stackbelow{\underbrace{\sup_{\norm{x} \leq 1} \norm{Kx}_Y}}{\norm{K}_{\mathbb{L}(X, Y)}} \leq M
+        \Rightarrow \stackbelow{\underbrace{\sup_{\norm{x} \leq 1} \norm{Kx}_Y}}{\norm{K}_{\mathcal{L}(X, Y)}} \leq M
     \]
 \end{proof}
 
 \begin{definition}
-    \(T \in \mathbb{L}(X, Y)\) has finite rank if 
+    \(T \in \mathcal{L}(X, Y)\) has finite rank if 
     \[
         \underset{\dim (T(X))}{\text{is the image of }T= \{y \in Y: y = Tx\} \text{ for some} x \in X} < \infty
     \]
@@ -187,8 +187,20 @@ namely \(L_n \overset{*}{\rightharpoonup}\) weakly* in \(X^*\). In general the c
 \begin{proof}
     Recall that \(C\) compact set, \(S \subset C\) closed \(\Rightarrow S\) is compact (in any metric space)
 
-    Assume by contradiction that \(K\) is surjective. By the OMT, \(T\) is an open map. Take \(\emptyset \neq A \subset X\), open and bounded. \(T(A)\) is relatively compact (since \(T\) is compact), and is open (since \(T\) is an open map) and \(\neq \emptyset\)
-    \(\Rightarrow T(A) \supset B_r(y_0)\), for some \(y_0 \in Y \) and \(r>0\). Thus \(\overline{T(A)} \supset \overline{B_r(y_0)} \Rightarrow \overline{B_R(y_0)} \) is compact in \(Y\). This contradicts the Riesz theorem, since in \(\infty\) dimension balls are never compact. 
+    Assume by contradiction that \(K\) is surjective. By the OMT, \(T\) is an open map. Take 
+    \[
+        \emptyset \neq A \subset X
+    \]
+    open and bounded. \(T(A)\) is relatively compact (since \(T\) is compact), and is open (since \(T\) is an open map) 
+    and \(\neq \emptyset\)
+    \[
+        \Rightarrow T(A) \supset B_r(y_0)
+    \]
+    for some \(y_0 \in Y \) and \(r>0\). Thus 
+    \[
+        \overline{T(A)} \supset \overline{B_r(y_0)} \Rightarrow \overline{B_R(y_0)} 
+    \] 
+    is compact in \(Y\). This contradicts the Riesz theorem, since in \(\infty\) dimension balls are never compact. 
 \end{proof}
 
 \begin{proposition}
