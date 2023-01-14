@@ -92,8 +92,12 @@ namely \(L_n \overset{*}{\rightharpoonup}\) weakly* in \(X^*\). In general the c
     \]
     Thus
     \[
-        \abs{T_n x - T_m x} \leq \abs{T_n x - T_n x_k} + \abs{T_n x_k - T_m x_k} + \abs{T_m x_k - T_m x}
-        \leq \norm{T_n}_{X^*} \norm{x -x_k}_X + \abs{T_n x_k - T_m x_k} + \norm{T_m}_{X^*} \norm{x -x_k}_X
+        \abs{T_n x - T_m x} \leq \abs{T_n x - T_n x_k} + \abs{T_n x_k - T_m x_k} + \abs{T_m x_k - T_m x} \leq 
+    \]
+    \[
+    \leq \norm{T_n}_{X^*} \norm{x -x_k}_X + \abs{T_n x_k - T_m x_k} + \norm{T_m}_{X^*} \norm{x -x_k}_X \leq
+    \]
+    \[
         \leq M \frac{\epsilon}{2M} + \abs{T_n x_k - T_m x_k} + M \frac{\epsilon}{2M} 
         < \epsilon + \abs{T_n x_k - T_m x_k} < 2 \epsilon
     \]
