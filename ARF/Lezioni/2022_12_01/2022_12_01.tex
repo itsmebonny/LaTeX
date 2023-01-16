@@ -11,14 +11,14 @@
     \end{enumerate}
 \end{definition}
 
-Notation: \(p(x, y) = <x, y> = (x, y) = x \dot y\)
+Notation: \(p(x, y) = \langle x, y \rangle = (x, y) = x \cdot y\)
 
 \begin{definition}
     A vector space \(H\) with a scalar product is called a pre Hilbertian space.
 \end{definition}
 
 \begin{proposition}
-    \((H, <.,.>)\) pre Hilbertian space.
+    \((H, \scalardot \) pre Hilbertian space.
     \begin{itemize}
         \item Cauchy Schwarz inequality \[
             \abs{<x, y>} \leq \sqrt{<x, x>} \sqrt{<y, y>} \quad \forall \; x, y \in H
@@ -27,10 +27,10 @@ Notation: \(p(x, y) = <x, y> = (x, y) = x \dot y\)
     \end{itemize}
 \end{proposition}
 
-\((H, <.,.>)\) pre Hilbert \(\to (H, \normdot)\) normed space \(\to (H, d)\) metric space where \(d(x, y) = \norm{x-y}\)
+\((H, \scalardot \) pre Hilbert \(\to (H, \normdot)\) normed space \(\to (H, d)\) metric space where \(d(x, y) = \norm{x-y}\)
 
 \begin{definition}
-    We say that \(H, <.,.>\) is a Hilbert space if \((H, \normdot)\) is a Banach space. (namely, if \((H, d)\) is a complete metric space)
+    We say that \(H, \scalardot\) is a Hilbert space if \((H, \normdot)\) is a Banach space. (namely, if \((H, d)\) is a complete metric space)
 \end{definition}
 
 Examples:
@@ -38,16 +38,16 @@ Examples:
     \item \(\real^n\), \(<x, y> = \sum_{i=1}^n x_i y_i\)
     \item \(L^2(X, \mathcal{M}, \mu)\) \((X, \mathcal{M}, \mu)\) complete measure space. 
     
-    \(<f, g> = \int_X fg \, d\mu\). \(\norm{f} = (\int_X f^2 \, d\mu)^\frac{1}{2} = \norm{f}_2\). \((L^2(X), \normdot_2)\) is a Banach space \(\Rightarrow (L^2(X), <.,.>)\) is a Hilbert space.
+    \(<f, g> = \int_X fg \, d\mu\). \(\norm{f} = (\int_X f^2 \, d\mu)^\frac{1}{2} = \norm{f}_2\). \((L^2(X), \normdot_2)\) is a Banach space \(\Rightarrow (L^2(X), \scalardot)\) is a Hilbert space.
     \item \(l^2\) is a Hilbert space. \(<x, y> = \sum_{k=1}^\infty x^{(k)} y^{(k)}\), \(x = (x^{(k)})\), \(y = (y^{(k)})\)
-    \item \((\mathcal{C}^0([a, b]), <.,.> )\) is a pre Hilbertian space. \((\mathcal{C}^0([a, b]), \normdot_2 )\) is not a Banach space. 
+    \item \((\mathcal{C}^0([a, b]), \scalardot )\) is a pre Hilbertian space. \((\mathcal{C}^0([a, b]), \normdot_2 )\) is not a Banach space. 
 \end{itemize}
 
 \begin{definition}
-    \(x, y\) are orthogonal if \(<x, y>=0\). We write \(x \perp y\)
+    \(x, y\) are orthogonal if \(\langle x, y \rangle=0\). We write \(x \perp y\)
 \end{definition}
 \begin{remark}
-    Hilbert spaces are particular cases of Banach spaces. The converse is not true. In any Hilbert space, the norm induced by \(<.,.>\) must satisfy the parallelogram rule
+    Hilbert spaces are particular cases of Banach spaces. The converse is not true. In any Hilbert space, the norm induced by \(\scalardot\) must satisfy the parallelogram rule
     \[
         \norm{x+y}^2 + \norm{x-y}^2 = 2\norm{x}^2 + 2\norm{y}^2 \quad \forall \; x, y \in H \tag*{PR}
     \]
@@ -56,7 +56,7 @@ Examples:
 \begin{proposition}
     \(H\) Banach space with respect to \(\normdot\). If \(\normdot\) satisfies (PR), then \(H\) is a Hilbert space with scalar product 
     \[
-        <x, y> := \frac{1}{2} [\norm{x+y}^2 - \norm{x}^2 - \norm{y}^2], \quad <x,x> = \norm{x}^2
+        \langle x, y \rangle := \frac{1}{2} [\norm{x+y}^2 - \norm{x}^2 - \norm{y}^2], \quad \langle x,x \rangle = \norm{x}^2
     \]
 \end{proposition}
 
@@ -74,13 +74,13 @@ Recall:
 \end{definition}
 
 \begin{theorem}[projection on closed convex sets]
-    \(H\) Hilbert space. Let \(S \subseteq H\) non empty, closed, convex. Then \(\forall \; f \in H \exists! \; h \in S\) s.t. 
+    \(H\) Hilbert space. Let \(S \subseteq H\) non empty, closed, convex. Then \(\forall \; f \in H \quad \exists! \; h \in S\) s.t. 
     \[
         \norm{f-h} = dist (f, S) = \min_{g \in S} \norm{f-g} \tag*{1}
     \]
     Moreover, \(h\) is characterized by the variational inequality:
     \[
-        <f-h, g-h> \leq 0 \quad \forall \; g \in S \tag*{*}
+        \langle f-h, g-h \rangle \leq 0 \quad \forall \; g \in S \tag*{*}
     \]
     namely \(h\) is the projection of \(f \) on \(S\) (\(f\) satisfies (1)) \(\iff (*) holds\)
 \end{theorem}
@@ -97,11 +97,11 @@ Recall:
     \[
         \norm{f - \frac{v_m + v_n}{2}} \geq d \Rightarrow \norm{2f - (v_m + v_n)} \geq 2d \tag*{2}
     \]
-    By the (PR), 
+    By the (PR), with with \(x=f-v_n\), \(x=v_m-f\)
     \[
         \norm{v_m - v_n}^2 
         = \norm{v_m \pm f - v_n}^2 
-        \overset{PR with x=f-v_n, x=v_m-f}{=} \norm{x+y}^2
+        \overset{PR }{=} \norm{x+y}^2
         = 2\norm{x}^2 + 2 \norm{y}^2 - \norm{x-y}^2 =
     \]
     \[
@@ -116,6 +116,7 @@ Recall:
     \]
     Coming back to \((*)< 4((d+\epsilon)^2 -d^2)\), provided that \(n, m > \overline{n}\). Since \(\epsilon\) was arbitrarily chosen, the right hand side can be made arbitrary small (it tends to 0 if \(\epsilon \to 0\)). 
     We proved that we can make \(\norm{v_n - v_m}^2\) arbitrarily small, provided that \(n, m\) are sufficiently large.
+    
     Namely \(\{v_n\}\) is Cauchy. Since \((H, \normdot)\) is Banach, \(\exists \; v \in H\) s.t. \(v_n \to v\). \(v \in S\), since \(S\) is closed. And, by continuity, 
     \[
         \norm{f-v} = lim_n \norm{f - v_n} = d
@@ -137,7 +138,7 @@ Recall:
 \begin{remark}
     A particular case: \(S\) closed subspace (it is always convex). In this case, the variational inequality becomes an equality:
     \[
-        h = P_S f \iff <f-h, g> = 0 \quad  \forall \; g \in S
+        h = P_S f \iff \langle f-h, g\rangle = 0 \quad  \forall \; g \in S
     \]
 \end{remark}
 

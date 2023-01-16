@@ -5,7 +5,7 @@ Observe that, if \(y \in H\), then we can define \(\Lambda_y : H \to \real\) as
 \[
     \Lambda_y x = \langle y, x\rangle  
 \]
-It is linear (\(\langle .,.\rangle   \) is bilinear), and it is bounded: 
+It is linear (\(\scalardot   \) is bilinear), and it is bounded: 
 \[
     \abs{\Lambda_y x}= \abs{\langle y, x\rangle  } \leq \norm{y} \norm{x} \quad \forall\; x, y
 \]
@@ -30,7 +30,7 @@ is an isometry from \(H\) into \(i(H) \subset {H^*}\).
 Are there other elements in \(H^*\)?
 
 \begin{theorem}[Riesz Representation Theorem]
-    \(\forall \; \Lambda \in H^* \) \(\exists! y \in H\) s.t. \(\Lambda = \Lambda_y\), namely
+    \(\forall \; \Lambda \in H^* \) \(\exists! \; y \in H\) s.t. \(\Lambda = \Lambda_y\), namely
     \[
         \Lambda x = \langle y, x\rangle   \qquad \forall x \in H
     \]
@@ -52,7 +52,7 @@ Both strategies can be adopted in both contexts.
 
 \begin{proof}
     \begin{itemize}
-        \item We show that \(\forall\; \Lambda \in H^* \) \(\exists\; y in H\) s.t. \(\Lambda = \Lambda_y\)
+        \item We show that \(\forall\; \Lambda \in H^* \) \(\exists\; y \in H\) s.t. \(\Lambda = \Lambda_y\)
         
         If \(\Lambda = 0 \Rightarrow \Lambda = \Lambda_0\) \((\Lambda_0 x = \langle 0, x\rangle   = 0)\)
 
@@ -68,7 +68,7 @@ Both strategies can be adopted in both contexts.
         \[
             \langle z, x - \frac{\Lambda x}{\Lambda z} z\rangle   = 0 \qquad \forall\; x \in H
         \] 
-        \(\langle .,.\rangle  \) is bilinear: the left hand side is 
+        \(\scalardot  \) is bilinear: the left hand side is 
         \[
             \langle z, x\rangle   - \frac{\Lambda x}{\Lambda z} \norm{z}^2 \Rightarrow \langle z, x\rangle   = \frac{\Lambda x}{\Lambda z} 
         \]
@@ -94,7 +94,7 @@ Consequence: \(H\) Hilbert space.
 \]
 Sometimes weak convergence + something else \(\Rightarrow\) strong convergence. For instance
 \begin{proposition}
-    \(H\) Hilbert. If \(x_n \rightharpoonup x\) weakly in \(H\), and \(\norm{x_n} to \norm{x}\) \(\Rightarrow x_n \to x\) in \(H\), namely \(\norm{x_n - x} to 0\)
+    \(H\) Hilbert. If \(x_n \rightharpoonup x\) weakly in \(H\), and \(\norm{x_n} \to \norm{x}\) \(\Rightarrow x_n \to x\) in \(H\), namely \(\norm{x_n - x} \to 0\)
 \end{proposition}
 \begin{proof}
     \[
@@ -272,7 +272,7 @@ but we don't have a.e. convergence.
 \end{proof}
 
 Consequence: \(I \subset \real\) interval (\(I= \real\) is fine). \(\{f_n\} \subseteq L^p(I)\), \(p \in (1, \infty)\). 
-\(\{f_n\}\) bounded in \(L^p\): \(\exists C\rangle  0\) s.t \(\norm{f_n}_{L^p} \leq C\), \(\forall n\). Then:
+\(\{f_n\}\) bounded in \(L^p\): \(\exists C>  0\) s.t \(\norm{f_n}_{L^p} \leq C\), \(\forall n\). Then:
 
 \begin{itemize}
     \item If 
@@ -297,7 +297,7 @@ Some useful facts on bounded operators in Hilbert Spaces.
     \]
 \end{proposition}
 \begin{definition}
-    \(T \) is called symmetric (or self adjoint) if 
+    \(T \) is called \textbf{symmetric} (or self adjoint) if 
     \[
         \langle Tx, y\rangle   = \langle x, Ty\rangle   \qquad \forall x, y \in H
     \]
@@ -319,19 +319,19 @@ Example: \(K \in L^2([0, 1]x[0, 1])\). Let \(T: L^2([0, 1]) \to L^2([0, 1])\) be
 In what follows, \(E\) is a Banach space and \(T \in \mathcal{L}(E)\).
 
 \begin{definition}
-    The resolvent of \(T\) is 
+    The \textbf{resolvent} of \(T\) is 
     \[
         \rho(T) = \{ \lambda \in \real: T - \lambda I \text{ is bijective from } E \text{ to } E\}
     \]
 \end{definition}
 \begin{definition}
-    The spectrum of \(T\) is    
+    The \textbf{spectrum} of \(T\) is    
     \[
         \sigma(T) = \real \setminus \rho(T)
     \]
 \end{definition}
 \begin{definition}
-    \(\lambda\) is an eigenvalue of \(T\), \(\lambda \in EV(T) \), if 
+    \(\lambda\) is an \textbf{eigenvalue} of \(T\), \(\lambda \in EV(T) \), if 
     \[
         \ker(T- \lambda I) \neq \emptyset
     \]
@@ -364,7 +364,7 @@ Ex: in \(l^2\), consider the left shift:
 \[
     T_l(x^{(0)}, x^{(1)}, x^{(2)},... x^{(n)},...) = (x^{(1)}, x^{(2)}, x^{(3)},... x^{(n+1)},...)
 \]
-\(T_l \in \mathcal{l^2}\), \(\norm{T_l}=1\). \(EV(T_l)=?\). We have to solve
+\(T_l \in \mathcal{L}(l^2)\), \(\norm{T_l}=1\). \(EV(T_l)=?\). We have to solve
 \[
     T_l x = \lambda x \qquad \text{ for some } \lambda \in \real, x \in l^2 \setminus \{0\}
 \]

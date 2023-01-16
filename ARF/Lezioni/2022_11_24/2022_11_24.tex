@@ -32,7 +32,7 @@ We stated that \(\tau\) is an isometric isomorphism from \(X\) into \(\tau(X)\).
 
         \noindent \(x \neq y \Rightarrow\) by the second corollary to Hahn-Banach \(\exists\; L \in X^*\) s.t. \(Lx \neq Ly\).
         \[
-            \underset{X^{**}}{<}\tau(x), L \underset{X^*}{>} = \Lambda_x(L) = Lx \neq Ly = \Lambda_y(L) = \underset{X^{**}}{<}\tau(x), L \underset{X^*}{>}
+            \underset{X^{**}}{\langle}\tau(x), L \underset{X^*}{\rangle} = \Lambda_x(L) = Lx \neq Ly = \Lambda_y(L) = \underset{X^{**}}{\langle}\tau(x), L \underset{X^*}{\rangle}
         \]
         Then, \(\tau(x) \neq \tau(y)\) and \(\tau\) is injective.
         \item Let now \(\tau\) be surjective. Then \(\tau \in \mathcal{L}(x, X^{**})\) and is bijective \(\Rightarrow\) by a corollary of the open map theorem, \(\tau^{-1} \in \mathcal{L}(X^{**}, X)\)
@@ -102,7 +102,7 @@ We formally mentioned that
     Thus: \(T: g \in L^{p'} \mapsto L_g \in (L^p)^*\) is an isometric isomorphism.
 \end{theorem}
 \begin{proof}
-    \(1 < p < \infty\). Consider \(T: L^{p'} \to (L^p)^*\) with \(g \mapsto Tg: <Tg, f> = \int_X fg \, d\mu\) (namely \(Tg = L_g\)). We already know that
+    \(1 < p < \infty\). Consider \(T: L^{p'} \to (L^p)^*\) with \(g \mapsto Tg: \langle Tg, f \rangle = \int_X fg \, d\mu\) (namely \(Tg = L_g\)). We already know that
     \[
         \norm{Tg}_* = \norm{L_g}_* = \norm{g}_{p'}
     \]
@@ -112,11 +112,11 @@ We formally mentioned that
 
     If by contradiction \(F \neq (L^p)^*\), then we can apply corollary 3 to Hahn Banach \((X = (L^p)^*), Y=F, x_0 = \lambda\):
     \[
-        \exists h \in (L^p)^{**} \text{ s.t. } <h, \lambda> \neq 0 \text{ and } h|_F = 0: <h, Tg> =0 \quad \forall g \in L^{p'} \tag*{1} 
+        \exists h \in (L^p)^{**} \text{ s.t. } \langle h, \lambda \rangle \neq 0 \text{ and } h|_F = 0: \langle h, Tg \rangle =0 \quad \forall g \in L^{p'} \tag*{1} 
     \]
     But \(L^p \) is reflexive \((1 <p < \infty)\), then \(h \in L^p \setminus \{0\}\):
     \[
-        <h, Tg> = (Tg)h = \int_X hg \, d\mu
+        \langle h, Tg \rangle = (Tg)h = \int_X hg \, d\mu
     \]
     Therefore, (1) tells us that
     \[
@@ -140,7 +140,7 @@ We formally mentioned that
 \end{remark}
 \begin{theorem}
     \((X; \mathcal{M}, \mu)\) complete measure space, \(\sigma\)-finite.
-    Then \(\forall\; L \in (L^1(X))^* \quad \exists! g \in L^\infty(X)\) s.t. \(L=L_g\):
+    Then \(\forall\; L \in (L^1(X))^* \quad \exists! \; g \in L^\infty(X)\) s.t. \(L=L_g\):
     \[
         Lf = \int_X fg \, d\mu \quad \forall f \in L^1(X)
     \]
