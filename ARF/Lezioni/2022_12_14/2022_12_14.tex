@@ -3,17 +3,17 @@
 \subsection*{Dual space of a Hilbert space}
 Observe that, if \(y \in H\), then we can define \(\Lambda_y : H \to \real\) as
 \[
-    \Lambda_y x = <y, x>
+    \Lambda_y x = \langle y, x\rangle  
 \]
-It is linear (\(<.,.> \) is bilinear), and it is bounded: 
+It is linear (\(\langle .,.\rangle   \) is bilinear), and it is bounded: 
 \[
-    \abs{\Lambda_y x}= \abs{<y, x>} \leq \norm{y} \norm{x} \quad \forall\; x, y
+    \abs{\Lambda_y x}= \abs{\langle y, x\rangle  } \leq \norm{y} \norm{x} \quad \forall\; x, y
 \]
 \(\Rightarrow \Lambda_y\) is bounded, with \(\norm{\Lambda_y}_* \leq \norm{y}\)
 
 Moreover, 
 \[
-    \Lambda_y (\frac{y}{\norm{y}}) = <y, \frac{y}{\norm{y}}> = \norm{y}
+    \Lambda_y (\frac{y}{\norm{y}}) = \langle y, \frac{y}{\norm{y}}\rangle   = \norm{y}
 \]
 \[
     \Rightarrow \norm{\Lambda_y}_* = \sup_{\norm{x} \leq 1} \abs{\Lambda_y x} \geq \abs{\Lambda_y (\frac{y}{\norm{y}})} = \norm{y}
@@ -32,7 +32,7 @@ Are there other elements in \(H^*\)?
 \begin{theorem}[Riesz Representation Theorem]
     \(\forall \; \Lambda \in H^* \) \(\exists! y \in H\) s.t. \(\Lambda = \Lambda_y\), namely
     \[
-        \Lambda x = <y, x> \qquad \forall x \in H
+        \Lambda x = \langle y, x\rangle   \qquad \forall x \in H
     \]
     Moreover, the map \(i\) is an isometric isomorphism. We can identify \(H^*\) with \(H\)
 \end{theorem}
@@ -54,7 +54,7 @@ Both strategies can be adopted in both contexts.
     \begin{itemize}
         \item We show that \(\forall\; \Lambda \in H^* \) \(\exists\; y in H\) s.t. \(\Lambda = \Lambda_y\)
         
-        If \(\Lambda = 0 \Rightarrow \Lambda = \Lambda_0\) \((\Lambda_0 x = <0, x> = 0)\)
+        If \(\Lambda = 0 \Rightarrow \Lambda = \Lambda_0\) \((\Lambda_0 x = \langle 0, x\rangle   = 0)\)
 
         Suppose \(\Lambda \neq 0. \) \(\ker(\Lambda) = \Lambda^{-1}(\{0\}) \) is a closed (since \(\Lambda\) is continuous) subspace, \(\neq H\). \(\Rightarrow\) we consider \(\ker(\Lambda)^\perp \neq \{0\}\). Let
         \[
@@ -66,22 +66,22 @@ Both strategies can be adopted in both contexts.
         \]
         Indeed, \(\Lambda \left( \frac{\Lambda x}{\Lambda z} z \right) \overset{linearity}{=} \Lambda x - \frac{\Lambda x}{\Lambda z} \Lambda z = 0\). Then, since \(z\) is orthogonal to any element of \(\ker(\Lambda)\), 
         \[
-            <z, x - \frac{\Lambda x}{\Lambda z} z> = 0 \qquad \forall\; x \in H
+            \langle z, x - \frac{\Lambda x}{\Lambda z} z\rangle   = 0 \qquad \forall\; x \in H
         \] 
-        \(<.,.>\) is bilinear: the left hand side is 
+        \(\langle .,.\rangle  \) is bilinear: the left hand side is 
         \[
-            <z, x> - \frac{\Lambda x}{\Lambda z} \norm{z}^2 \Rightarrow <z, x> = \frac{\Lambda x}{\Lambda z} 
+            \langle z, x\rangle   - \frac{\Lambda x}{\Lambda z} \norm{z}^2 \Rightarrow \langle z, x\rangle   = \frac{\Lambda x}{\Lambda z} 
         \]
         \[
-            \Lambda x = <(\Lambda z)z, x> \qquad \forall \; x \in H
+            \Lambda x = \langle (\Lambda z)z, x\rangle   \qquad \forall \; x \in H
         \]
         So the thesis is proved for \(y = (\Lambda z)z\).
 
         \item The uniqueness of \(y\) is easy.
         \[
-            <x, y_1> = <x, y_2> \quad \forall \; x \in H
+            \langle x, y_1\rangle   = \langle x, y_2\rangle   \quad \forall \; x \in H
         \]
-        Then \(<x, y_1-y_2> = 0\) \(\forall; x \in H\). We choose \(x = y_1 -y_2\):
+        Then \(\langle x, y_1-y_2\rangle   = 0\) \(\forall; x \in H\). We choose \(x = y_1 -y_2\):
         \[
             \norm{y_1 - y_2}^2 = 0 \Rightarrow y_1 = y_2
         \]
@@ -90,7 +90,7 @@ Both strategies can be adopted in both contexts.
 
 Consequence: \(H\) Hilbert space.
 \[
-    x_n \rightharpoonup x \text{ weakly in } H \iff <x_n, y> \to <x, y> \quad \forall\; y \in H
+    x_n \rightharpoonup x \text{ weakly in } H \iff \langle x_n, y\rangle   \to \langle x, y\rangle   \quad \forall\; y \in H
 \]
 Sometimes weak convergence + something else \(\Rightarrow\) strong convergence. For instance
 \begin{proposition}
@@ -98,9 +98,9 @@ Sometimes weak convergence + something else \(\Rightarrow\) strong convergence. 
 \end{proposition}
 \begin{proof}
     \[
-        \norm{x_n - x }^2 = \norm{x_n}^2 - 2 <x_n, x> + \norm{x}^2 = (*)
+        \norm{x_n - x }^2 = \norm{x_n}^2 - 2 \langle x_n, x\rangle   + \norm{x}^2 = (*)
     \]
-    \(<x_n, x> \to <x, x> = \norm{x}^2 \) by weak convergence.
+    \(\langle x_n, x\rangle   \to \langle x, x\rangle   = \norm{x}^2 \) by weak convergence.
     \[
         (*) = \norm{x}^2 - 2 \norm{x}^2 + \norm{x}^2 = 0
     \]
@@ -120,13 +120,13 @@ s.t.
         0 & k \neq j   
     \end{cases}
 \]
-There elements are \(\perp\): \(<e_i, e_j> = 0\) \(\forall\; i \neq j\). \(\norm{e_i}=1\) \(\forall\; i\).
+There elements are \(\perp\): \(\langle e_i, e_j\rangle   = 0\) \(\forall\; i \neq j\). \(\norm{e_i}=1\) \(\forall\; i\).
 
 Moreover, \(e_1, ..., e_n\) are a basis, namely \(\forall\; v \in \real^n\) \(\exists! \;\) expression
 \[
-    v = \sum_{i=1}^n v_i e_i = \sum_{i=1}^n <v, e_i> e_i
+    v = \sum_{i=1}^n v_i e_i = \sum_{i=1}^n \langle v, e_i\rangle   e_i
 \]
-In particular, \(v=0 \iff <v, e_i>= 0\) \(\forall\; i\). Do we have an analogue in Hilbert spaces?
+In particular, \(v=0 \iff \langle v, e_i\rangle  = 0\) \(\forall\; i\). Do we have an analogue in Hilbert spaces?
 
 \begin{definition}
     \(S \subset H\) is called orthonormal if 
@@ -138,7 +138,7 @@ In particular, \(v=0 \iff <v, e_i>= 0\) \(\forall\; i\). Do we have an analogue 
 \begin{definition}
     An orthonormal set is an Hilbert Basis (or is complete) if \(S^\perp = \{0\}\), namely if 
     \[
-        <u, x> = 0 \quad \forall x \in S \Rightarrow u=0
+        \langle u, x\rangle   = 0 \quad \forall x \in S \Rightarrow u=0
     \]
 \end{definition}
 \begin{theorem}
@@ -181,40 +181,40 @@ The usefulness of Hilbert basis stays in the fact that they allow us to reason c
 \begin{theorem}[Bessel inequality]
     \(H\) separable Hilbert space. \(\{u_n\}_{n \in \natural}\) orthonormal set. Then \(\forall \; x \in H\):
     \[
-        \sum_{n=1}^\infty \abs{<x, u_n>} \leq \norm{x}^2
+        \sum_{n=1}^\infty \abs{\langle x, u_n\rangle  } \leq \norm{x}^2
     \]
 \end{theorem}
 \begin{theorem}[Generalized Fourier Series]
     \(H\) separable Hilbert space, \(\{u_n\}\) Hilbert basis.
     Then any \(x \in H\) can be written in a unique way as 
     \[
-        x = \sum_{n=1}^\infty <x, u_n> u_n \qquad <x, u_n> \text{ Fourier coefficient of }x
+        x = \sum_{n=1}^\infty \langle x, u_n\rangle   u_n \qquad \langle x, u_n\rangle   \text{ Fourier coefficient of }x
     \]
     Moreover, \(\forall\; y \in H\) we have
     \[
-        <x, y> = \sum_{n=1}^\infty <x, u_n> <x, u_m>
+        \langle x, y\rangle   = \sum_{n=1}^\infty \langle x, u_n\rangle   \langle x, u_m\rangle  
     \]
     and 
     \[
-        \norm{x}^2 = \sum_{n=1}^\infty (<x, u_n>)^2 \tag*{Parseval identity}
+        \norm{x}^2 = \sum_{n=1}^\infty (\langle x, u_n\rangle  )^2 \tag*{Parseval identity}
     \]
 \end{theorem}
 \begin{theorem}
     \(H\) separable Hilbert space. Then \(H\) is isomorphic to \(l^2\) as Hilbert space: namely \(\exists\) an isomorphism \(\phi: H \to l^2\) s.t.
     \[
-        <x, y>_H = <\phi(x), \phi(y)>_{l^2} \qquad \forall x, y \in H
+        \langle x, y\rangle  _H = \langle \phi(x), \phi(y)\rangle  _{l^2} \qquad \forall x, y \in H
     \]
 \end{theorem}
 \begin{proof}
     \(\exists\) a countable Hilbert basis, and \(\forall\; x \in H\)
     \[
-        x = \sum_{n=1}^\infty <x, u_n> u_n
+        x = \sum_{n=1}^\infty \langle x, u_n\rangle   u_n
     \]
     Then the desired isomorphism is
     \[
         \begin{array}{rl}
             \phi: & H \to l^2 \\
-            & x \to \sum_{n=1}^\infty <x, u_n> e_n
+            & x \to \sum_{n=1}^\infty \langle x, u_n\rangle   e_n
         \end{array}
     \]
 \end{proof}
@@ -228,11 +228,11 @@ The usefulness of Hilbert basis stays in the fact that they allow us to reason c
     \]
     On the other hand, we know that \(\forall \; x \in H\)
     \[
-        \norm{x}^2 = \sum_{n=1}^\infty \abs{<x, u_n>}^2 < \infty
+        \norm{x}^2 = \sum_{n=1}^\infty \abs{\langle x, u_n\rangle  }^2 \langle  \infty
     \]
     It is then necessary that
     \[
-        <x, u_n> \to 0 \text{ as } n \to \infty \qquad \forall\; x \in H
+        \langle x, u_n\rangle   \to 0 \text{ as } n \to \infty \qquad \forall\; x \in H
     \]
     By Riesz, this means that \(u_n \rightharpoonup 0\) in \(H\)
 \end{proof}
@@ -272,7 +272,7 @@ but we don't have a.e. convergence.
 \end{proof}
 
 Consequence: \(I \subset \real\) interval (\(I= \real\) is fine). \(\{f_n\} \subseteq L^p(I)\), \(p \in (1, \infty)\). 
-\(\{f_n\}\) bounded in \(L^p\): \(\exists C>0\) s.t \(\norm{f_n}_{L^p} \leq C\), \(\forall n\). Then:
+\(\{f_n\}\) bounded in \(L^p\): \(\exists C\rangle  0\) s.t \(\norm{f_n}_{L^p} \leq C\), \(\forall n\). Then:
 
 \begin{itemize}
     \item If 
@@ -293,19 +293,19 @@ Some useful facts on bounded operators in Hilbert Spaces.
 \begin{proposition}
     If \(T \in \mathcal{L}(H)\), then
     \[
-        \norm{T}_{\mathcal{L}(H)} = \sup_{\norm{x}=\norm{y}=1} \abs{<Tx, y>}
+        \norm{T}_{\mathcal{L}(H)} = \sup_{\norm{x}=\norm{y}=1} \abs{\langle Tx, y\rangle  }
     \]
 \end{proposition}
 \begin{definition}
     \(T \) is called symmetric (or self adjoint) if 
     \[
-        <Tx, y> = <x, Ty> \qquad \forall x, y \in H
+        \langle Tx, y\rangle   = \langle x, Ty\rangle   \qquad \forall x, y \in H
     \]
 \end{definition}
 \begin{proposition}
     Let \(T \in \mathcal{L}(H)\) be symmetric. Then 
     \[
-        \norm{T}_{\mathcal{L}(H)} = \sup_{\norm{x}= 1} \abs{<Tx, x>}
+        \norm{T}_{\mathcal{L}(H)} = \sup_{\norm{x}= 1} \abs{\langle Tx, x\rangle  }
     \]
 \end{proposition}
 

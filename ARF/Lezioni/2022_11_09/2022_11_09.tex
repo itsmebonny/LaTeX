@@ -143,28 +143,28 @@ To speak about separability, we give a
     \]
     We consider
     \[
-        \bar{\mathcal{S}}(\real) = \left\{ s \mbox{ simple in } \real \mbox{ s.t. } \lambda(\left( \left\{ s \neq 0 \right\} \right) < +\infty) \right\}
+        \tilde{\mathcal{S}}(\real) = \left\{ s \mbox{ simple in } \real \mbox{ s.t. } \lambda(\left( \left\{ s \neq 0 \right\} \right) < +\infty) \right\}
     \]
     What does it mean for a simple function to be in \(L^p(\real)\)? 
     \[
         \int_{\real} \abs{s}^p \, d\mu = \sum_{k=1}^n a_k^p \lambda(E_k) < +\infty
     \tag*{\(1 \leq p \leq +\infty\)}\]
-    iff \(s \equiv 0\) outside a set of finite measure \(\Leftrightarrow s \in \bar{\mathcal{S}}(\real)\).
+    iff \(s \equiv 0\) outside a set of finite measure \(\Leftrightarrow s \in \tilde{\mathcal{S}}(\real)\).
 
-    \(\bar{\mathcal{S}}(\real)\) is the set of integrable simple functions.
+    \(\tilde{\mathcal{S}}(\real)\) is the set of integrable simple functions.
 \end{definition}
 \begin{theorem}
-    \(\bar{\mathcal{S}}(\real)\) is dense in \(L^p\), \(\forall \; p \in (1, +\infty)\)
+    \(\tilde{\mathcal{S}}(\real)\) is dense in \(L^p\), \(\forall \; p \in (1, +\infty)\)
 \end{theorem}
-Ma posso chiederti perchè hai deciso di scrivere s di r barrato e non tilde s di r?
+
 \begin{proof}
     \(f \in L^p(\real), f \geq 0\) a.e. in \(\real\).
 
-    We want to show that \(\exists \; \left\{ s_n \right\} \subseteq \bar{\mathcal{S}}(\real)\) s.t. \(\norm{s_n - f}_p \to 0\).
+    We want to show that \(\exists \; \left\{ s_n \right\} \subseteq \tilde{\mathcal{S}}(\real)\) s.t. \(\norm{s_n - f}_p \to 0\).
 
     By the simple approximation theorem, \(\exists \; \left\{ s_n \right\}\) of simple functions s.t. \(\left\{ s_n(x) \right\}\) is increasing, for every \(x\), and \(s_n \to f\) pointwise in \(\real\).
 
-    Since \(\abs{s_n}^p \leq f^p \Rightarrow s_n \in L^p\) for every n \(\Rightarrow \left\{ s_n \right\} \subseteq \bar{\mathcal{S}}(\real)\). Moreover
+    Since \(\abs{s_n}^p \leq f^p \Rightarrow s_n \in L^p\) for every n \(\Rightarrow \left\{ s_n \right\} \subseteq \tilde{\mathcal{S}}(\real)\). Moreover
     \[
         \abs{s_n -f}^p \to 0 \qquad \text{a.e. in } \real
     \]
