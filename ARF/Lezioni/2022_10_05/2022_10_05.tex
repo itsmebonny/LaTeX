@@ -73,7 +73,7 @@ Ex: \(f, g : X \to [0, +\infty]\). Then
     Given \((X, \mathcal{M}, \mu)\) measurable space, \(\oldphi : X \to [0, +\infty]\). Define \(\nu(E) = \int_E \oldphi \, d\mu\), with \(E \in \mathcal{M}\). 
     \(\nu : \mathcal{M} \to [0, +\infty]\) is a measure. Moreover, let \(f:X \to [0, +\infty]\) measurable
     \[
-        \int_X f \, d\nu = \int_X f\oldphi \, d\nu \tag*{*}
+        \int_X f \, d\nu = \int_X f\oldphi \, d\mu \tag*{*}
     \]
 \end{theorem}
 \begin{proof}
@@ -103,7 +103,7 @@ Ex: \(f, g : X \to [0, +\infty]\). Then
 \begin{remark}
     \(X, \mathcal{M}, \mu\) complete measure space. Then, by the vanishing lemma, it is not difficult to deduce that 
     \[
-        f=g \text{ a.e. on } X \Leftrightarrow \int_E d \, d\mu = \int_E g \, d\mu \qquad \forall\; E \in \mathcal{M}
+        f=g \text{ a.e. on } X \Leftrightarrow \int_E f \, d\mu = \int_E g \, d\mu \qquad \forall\; E \in \mathcal{M}
     \]
     The \(\int\) does not see differences of sets with 0 measure. As a consequence, in all the theorems, it is sufficient to assume that the assumptions are satisfid a.e. 
 \end{remark}

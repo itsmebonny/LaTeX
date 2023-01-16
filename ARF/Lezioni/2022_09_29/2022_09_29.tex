@@ -4,7 +4,7 @@
 
     \((\real, \boreal, \lambda)\) is not complete. In fact, \((\real, \mathcal{L}(\real), \lambda)\) is the completion of \((\real, \boreal, \lambda)\).
 
-    Note that, \(\forall \; E \in \mathcal{L}(\real) \exists \; \mbox{ a } G_{\delta}-\mbox{set } A\) and an \(F_{\delta}-\mbox{set } B\) s.t.
+    Note that, \(\forall \; E \in \mathcal{L}(\real) \; \exists \, \mbox{ a } G_{\delta}-\mbox{set } A\) and an \(F_{\delta}-\mbox{set } B\) s.t.
     \[
         \begin{array}{l}
             A \supset E \mbox{ and } \lambda(A \setminus E) = 0 \\
@@ -12,12 +12,14 @@
         \end{array}
     \]
 \end{remark}
-\((X, \mathcal{M}, \mu)\) complete measure space. \\
-Let \(P(x)\) be a proposition depending on \(x \in X\). We say that \(P(x)\) is true \((\mu-)\) almost everywhere if 
+\((X, \mathcal{M}, \mu)\) complete measure space. 
+\begin{definition}
+    Let \(P(x)\) be a proposition depending on \(x \in X\). We say that \(P(x)\) is true \((\mu-)\) almost everywhere if 
 \[
     \mu\left(\left\{ x \in X : P(x) \mbox{ is false}\right\}\right) = 0
 \]
-\(P(x)\) is true \(\underset{(\mu-\text{a.e.})}{\mbox{a.e.}}\) on \(X\).
+\(P(x)\) is true \(\underset{(\mu-\text{a.e.})}{\mbox{a.e.}}\) on \(X\).    
+\end{definition}
 
 \noindent\underline{Ex}: \((\real, \mathcal{L}(\real), \lambda)\), \(f(x) = x^2\).  
 Then \(f(x) > 0\) a.e. on \(\real\) (for a.e. \(x\)):
@@ -96,7 +98,7 @@ With this convention, \(+ \) and \( \cdot\) of measurable functions are measurab
 \begin{definition}
     \(f:X \to [0, +\infty]\) measurable, \(E \in \mathcal{M}\). The \textbf{Lebesgue integral} of \(f\) on \(E\), with respect to (w.r.t.) \(\mu\), is 
     \[
-        \int_E f \, d\mu = \sup \left\{ \int_E d\mu \vert \begin{array}{l}s\text{ is simple} \\ 0 \leq s \leq f \end{array}\right\}
+        \int_E f \, d\mu = \sup \left\{ \int_E s \, d\mu \; \bigg\lvert \begin{array}{l}s\text{ is simple} \\ 0 \leq s \leq f \end{array}\right\}
     \]
 \end{definition}
 
@@ -112,7 +114,7 @@ Let \(f, g : X \to \left[0, \infty\right]\) measurable. \(E, F \in \mathcal{M}, 
     \item \(\mu(E)=0 \Rightarrow \int_E f \, d\mu = 0\)
     \item \(f \leq g \) on \(E \Rightarrow \int_E f \, d\mu \leq \int_E g \, d\mu \)
     \item \(E \subset F \Rightarrow \int_E f \, d\mu \leq \int_F f \, d\mu\)
-    \item \(\alpha \geq o \Rightarrow \int_E \alpha f \, d\mu = \alpha \int_E d \, d\mu\)
+    \item \(\alpha \geq 0 \Rightarrow \int_E \alpha f \, d\mu = \alpha \int_E d \, d\mu\)
 \end{enumerate}
 
 \begin{remark}
@@ -158,10 +160,11 @@ Let \(f, g : X \to \left[0, \infty\right]\) measurable. \(E, F \in \mathcal{M}, 
 \end{theorem}
 \begin{proof}
     \( \Leftarrow \) easy \\
-    \( \Rightarrow \) Consider \( E \cap \{f >0\} = \bigcup_{n=1}^\infty \underbrace{\left(E_n \{ f \geq \frac{1}{n} \} \right)}_{=:E_n} \) \\
+    \( \Rightarrow \) Consider \( E \cap \{f >0\} = \bigcup_{n=1}^\infty \underbrace{\left(E_n \{ f \geq \frac{1}{n} \} \right)}_{=:E_n} \) 
+    
     Then \(\{E_n\}\) is an increasing sequence. By Chebyshev 
     \[
-        \mu (E_n) \leq \frac{1}{\frac{1}{n}} \int_E f \, d\mu =0 \; \forall n \Rightarrow \mu(E_n)=0 \quad \forall \; n 
+        \mu (E_n) \leq \frac{1}{\frac{1}{n}} \int_E f \, d\mu =0 \quad \forall \; n \Rightarrow \mu(E_n)=0 \quad \forall \; n 
     \]
     \(\mu(E) \cup \{f>0\} \overset{\text{continuity}}{=} \lim_n \mu (E_n)=0\), namely \(f=0\) a.e. on \(E\)
 \end{proof}
