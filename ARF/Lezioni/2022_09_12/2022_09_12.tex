@@ -61,7 +61,7 @@ Examples:
         \item \(\left( \liminf_n E_n\right)^C = \limsup_n E_n^C\) 
     \end{itemize}
 \end{proposition}
-\begin{definition}
+\begin{proof}
     We can define:
     \[
     \begin{array}{ccc}
@@ -84,8 +84,7 @@ So \(x \in \limsup_n E_n \; \Rightarrow\) \(\begin{array}[t]{l}
 On the other hand, assume that \(x \in E_n\) for \(\infty\)-many indexes.
 We claim that \(\forall k \in \mathbb{N} \, \exists n_k \geq k \, s.t. \, x \in E_{n_k} \, \Leftrightarrow \, x \in \limsup_n E_n\). 
 If that claim is not true, then \(\exists \bar{k} \, s.t. \, x \not \in E_n \, \forall n > \bar{k} \Rightarrow x\) belongs at most to \(E_1, \ldots, E_{\bar{k}}\), a contradiction. 
-\qed
-\end{definition}
+\end{proof}
 
 \begin{definition}
     \(\left\lbrace E_i \right\rbrace_{i \in I}\) is a \textbf{covering} of \(X\) if 
@@ -122,7 +121,7 @@ Recall that \(\limsup_n a_n = \lim_{k \to \infty} \sup_{n \geq k} a_n\) and \(\l
 
 Let's also check that \(\chi_Q = \limsup_n \chi_{E_n}\)
 \[
-    \begin{array}{ccc}   
+    \begin{array}{ccl}   
     x \in \limsup_n E_n & \Leftrightarrow & \chi_Q(x) = 1 \\
     & \Leftrightarrow & \forall \, k \in \mathbb{N} \, \exists \, n_k \geq k \; s.t. \; x \in E_{n_k}
     \end{array}
@@ -180,7 +179,7 @@ in this case if \(n\) is even, \(E_n = \left\lbrace \mbox{even numbers} \right\r
     \begin{enumerate}
         \item \(X \in \mathcal{M}\)
         \item \(E \in \mathcal{M} \Rightarrow E^C = X\setminus E \in \mathcal{M}\)
-        \item If \(E = \bigcup_{n \in \mathbb{N}}\) and \(E_n \in \mathcal{M} \; \forall \, n\), then \(E \in \mathcal{M}\)
+        \item If \(E = \bigcup_{n \in \mathbb{N}}E_n\) and \(E_n \in \mathcal{M} \; \forall \, n\), then \(E \in \mathcal{M}\)
     \end{enumerate}
 \end{definition}
 If \(\mathcal{M}\) is a \(\sigalg\), \((X, \mathcal{M})\) is called \textbf{measurable space} and the sets in \(\mathcal{M}\) are called \textbf{measurable}.  
