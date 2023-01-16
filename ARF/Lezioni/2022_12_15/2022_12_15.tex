@@ -10,43 +10,43 @@ Recall: \(T \in \mathcal{K}(H)\), \(u_n \rightharpoonup u\) weakly \(\Rightarrow
 \begin{proof}
     \(d \neq 0\) (otherwise \(T=0\)). We know that
     \[
-        d = \sup_{\norm{u}=1} \abs{<Tu, u>}
+        d = \sup_{\norm{u}=1} \abs{\langle Tu, u\rangle}
     \]
     Take a maximizing sequence for \(d\):
     \[
-        \exists \{u_n\} \subset H \text{ s.t. } \norm{u_n}=1 \qquad \abs{<Tu_n, u_n>} \to d    
+        \exists \{u_n\} \subset H \text{ s.t. } \norm{u_n}=1 \qquad \abs{\langle Tu_n, u_n\rangle} \to d    
     \]
     \(\{u_n\}\) is bounded \(\Rightarrow\) by Banach Alaoglu in reflexive spaces (any Hilbert space is reflexive) we can extract \(\{u_{n_k}\}\) s.t. \(u_{n_k} \rightharpoonup u\) weakly in \(H\), for some \(u\).
 
     By weak strong continuity, \(T u_{n_k} \to Tu\) strongly in \(H\). From this, we deduce that 
     \[
-        \abs{ <T u_{n_k}, u_{n_k}> - <Tu, u> \to 0} \qquad \text{ as } K \to \infty    
+        \abs{ \langle T u_{n_k}, u_{n_k}\rangle - \langle Tu, u\rangle \to 0} \qquad \text{ as } K \to \infty    
     \]
     We know
     \[
-        \abs{<Tu_{n_k}, u_{n_k}} \leq \abs{<T u_{n_k} - Tu, u_{n_k}>} + \abs{ <Tu, u_{n_k} - u>} \to 0
+        \abs{ \langle Tu_{n_k}, u_{n_k}\rangle} \leq \abs{\langle T u_{n_k} - Tu, u_{n_k}\rangle} + \abs{ \langle Tu, u_{n_k} - u\rangle} \to 0
     \]
-    and also that \(\abs{<T u_{n_k}, u_{n_k}>} \to d\)
+    and also that \(\abs{\langle T u_{n_k}, u_{n_k}\rangle} \to d\)
     \[
-        \Rightarrow \abs{<Tu, u>} = d
+        \Rightarrow \abs{\langle Tu, u\rangle} = d
     \]
     and hence \(u \neq 0\)
 
     \begin{itemize}
-        \item Suppose that \(<Tu, u> = d\). Then
+        \item Suppose that \(\langle Tu, u\rangle = d\). Then
         \[
-            \norm{Tu- du}^2 = \norm{Tu}^2 - 2d <Tu, u> + d^2 \norm{u}^2 \leq d^2 - 2d^2 + d^2 = 0
+            \norm{Tu- du}^2 = \norm{Tu}^2 - 2d \langle Tu, u\rangle + d^2 \norm{u}^2 \leq d^2 - 2d^2 + d^2 = 0
         \]
         \[
             \Rightarrow \norm{Tu - du} = 0 \Rightarrow Tu = du
         \]
         and \(d\) is an eigenvalue.
-        \item \(<Tu, u> = -d\). Then one can prove that \(-d\) is an eigenvalue.
+        \item \(\langle Tu, u\rangle = -d\). Then one can prove that \(-d\) is an eigenvalue.
     \end{itemize}
 \end{proof}
 
 \begin{proposition}
-    \(\lambda \neq 0\) is an eigenvalue of a compact operator \(T \in \mathcal{K}(E)\), \(E \) Banach. Let \(V_\lambda\) be the eigenspace of \(\lambda\). Then \(\dim V_\lambda < \infty\)
+    \(\lambda \neq 0\) is an eigenvalue of a compact operator \(T \in \mathcal{K}(E)\), \(E \) Banach. Let \(V_\lambda\) be the eigenspace of \(\lambda\). Then \(\dim V_\lambda \langle \infty\)
 \end{proposition}
 \begin{proof}
     Recall that \(I: F \to F \), with \(F \infty\) dimensional. Banach space, cannot be compact. Assume by contradiction that \(V_\lambda\) has \(\infty\) dim. Consider
@@ -68,10 +68,10 @@ Recall: \(T \in \mathcal{K}(H)\), \(u_n \rightharpoonup u\) weakly \(\Rightarrow
         \end{array}
     \]
     \[
-        \lambda_1 <u_1, u_2 > = <Tu_1, u_2> = <u_1, T u_2> = \lambda_2 <u_1, u_2>
+        \lambda_1 \langle u_1, u_2 \rangle = \langle Tu_1, u_2\rangle = \langle u_1, T u_2\rangle = \lambda_2 \langle u_1, u_2\rangle
     \]
     \[
-        \Rightarrow (\lambda_1 - \lambda_2) <u_1, u_2> = 0 \Rightarrow <u_1, u_2> = 0
+        \Rightarrow (\lambda_1 - \lambda_2) \langle u_1, u_2\rangle = 0 \Rightarrow \langle u_1, u_2\rangle = 0
     \]
 \end{proof}
 
@@ -102,16 +102,16 @@ Recall: \(T \in \mathcal{K}(H)\), \(u_n \rightharpoonup u\) weakly \(\Rightarrow
         \[
             T = T - 0 I \text{ is not bijective: } 0 \notin \rho(T)
         \]
-        \item From proposition 1, \(\exists \) an eigenvalue \(\lambda\) with \(\abs{\lambda_0} = \norm{T}_{\mathcal{L}(H)}\). Let \(V_0\) be the associated eigenspace. By proposition \(2\), \(\dim V_0 = N_0 < \infty\).
+        \item From proposition 1, \(\exists \) an eigenvalue \(\lambda\) with \(\abs{\lambda_0} = \norm{T}_{\mathcal{L}(H)}\). Let \(V_0\) be the associated eigenspace. By proposition \(2\), \(\dim V_0 = N_0 \langle \infty\).
         
         Let \(\{w_1^0, ..., w_{N_0}^0\}\) be an orthonormal basis for \(V_0\). Consider now \(H_1 = V_0^\perp\), so that \(H = V_0 \oplus H_1\). We claim that \(T|_{H_1} \in \mathcal{K}(H_1)\) symmetric. 
 
         \(T|_{H_1}\) is compact and symmetric, by assumption. We have to check that \(T|_{H_1}: H_1 \to H_1\)
         \[
-            u \in H_1 \iff <u, w> = 0 \quad \forall\; w \in V_0
+            u \in H_1 \iff \langle u, w\rangle = 0 \quad \forall\; w \in V_0
         \]
         \[
-            <Tu, w> = <u, Tw> = <u, \lambda_0 w> = \lambda_0 <u, w>
+            \langle Tu, w\rangle = \langle u, Tw\rangle = \langle u, \lambda_0 w\rangle = \lambda_0 \langle u, w\rangle
         \]
         \(\forall\; w \in V_0\), namely \(Tu \in H_1\), \(\forall\; u \in H_1\). 
         \[
@@ -125,16 +125,16 @@ Recall: \(T \in \mathcal{K}(H)\), \(u_n \rightharpoonup u\) weakly \(\Rightarrow
                 \norm{u} = 1 \\
                 u \in H_1    
             \end{array}}
-            \abs{<Tu, u>}
+            \abs{\langle Tu, u\rangle}
         \]
-        Clearly, \(\abs{\lambda_1} \leq \abs{\lambda_0} = \sup \abs{<Tu, u>}\).
+        Clearly, \(\abs{\lambda_1} \leq \abs{\lambda_0} = \sup \abs{\langle Tu, u\rangle}\).
         We have an eigenspace \(V_1 \) for \(\lambda_1\), with dimension \(N_1\), and an orthonormal basis \(\{w_1^1, ..., w_{N_1}^1\}\) for \(V_1\). We iterate the process. 
         Either after a finite number of steps we have
         \[
             \lambda_N = \sup{\begin{array}{l}
                 \norm{u} = 1 \\
                 u \in H_1    
-            \end{array}} \abs{<Tu, u>} = 0
+            \end{array}} \abs{\langle Tu, u\rangle} = 0
         \]
         Or \(\{\lambda_n\}\) forms a sequence, s.t. \(\abs{\lambda_n}\) is decreasing.
 
@@ -148,7 +148,7 @@ Recall: \(T \in \mathcal{K}(H)\), \(u_n \rightharpoonup u\) weakly \(\Rightarrow
         \]
         is an orthonormal basis of \(H\), made of eigenvectors.
 
-        Case 2: at first, we show that \(\lambda_n \to 0\). If not, \(\abs{\lambda_n} \to \eta >0\). 
+        Case 2: at first, we show that \(\lambda_n \to 0\). If not, \(\abs{\lambda_n} \to \eta > 0\). 
         Consider then \(\{\frac{w_n}{\lambda_n}\}\), where \(w_n\) is an eigenfunction of \(\lambda\) with \(\norm{w_n}=1\). Then \(\{\frac{w_n}{\lambda_n}\}\) is bounded, and
         \[
             T(\frac{w_n}{\lambda_n}) = \frac{1}{\lambda_n} T w_n = \frac{1}{\lambda_n} \lambda_n w_n = w_n
@@ -158,7 +158,7 @@ Recall: \(T \in \mathcal{K}(H)\), \(u_n \rightharpoonup u\) weakly \(\Rightarrow
         \[
             \norm{w_i - w_j}^2 = 2 \quad \forall\; i \neq j
         \]
-        \(\norm{w_i}^2 + \norm{w_j}^2 -2<w_i, w_j>\) \(\Rightarrow \lambda_n \to 0\).
+        \(\norm{w_i}^2 + \norm{w_j}^2 -2\langle w_i, w_j\rangle\) \(\Rightarrow \lambda_n \to 0\).
 
         It remains to show that \(x \in V_i^\perp\), \(\forall\; i\), then \(x \in \ker T\). To this end
         \[
@@ -201,33 +201,33 @@ Recall: \(T \in \mathcal{K}(H)\), \(u_n \rightharpoonup u\) weakly \(\Rightarrow
 \begin{proof}
     By the Spectral Theorem, \(\forall \; x \in H\), we can write 
     \[
-        x = \sum_{n=1}^\infty <x, u_n> u_n
+        x = \sum_{n=1}^\infty \langle x, u_n\rangle u_n
     \] 
     where \(\{u_n \}\) is a Hilbert basis of eigenvectors of \(T\). Also, we have 
     \[
-        Tx = \sum_{n=1}^\infty \lambda_n <x, u_n> u_n
+        Tx = \sum_{n=1}^\infty \lambda_n \langle x, u_n\rangle u_n
     \]
     and 
     \[
-        y = \sum_{n=1}^\infty <y, u_n> u_n
+        y = \sum_{n=1}^\infty \langle y, u_n\rangle u_n
     \]
     Then, the equation \(x - Tx = y\) becomes
     \[
-        \sum_{n=1}^\infty (1- \lambda_n) <x, u_n> u_n = \sum_{n=1}^\infty <y, u_n > u_n
+        \sum_{n=1}^\infty (1- \lambda_n) \langle x, u_n\rangle u_n = \sum_{n=1}^\infty \langle y, u_n \rangle u_n
     \]
     \[
-        \Rightarrow (1 - \lambda_n) <x, u_n> = <y, u_n> \quad \forall\; n
+        \Rightarrow (1 - \lambda_n) \langle x, u_n\rangle = \langle y, u_n\rangle \quad \forall\; n
     \]
     If \(\lambda_n \neq 1\) \(\forall \; n\), then we take 
     \[
-        <x, u_n> = \frac{<y, u_n >}{1 - \lambda_n} \quad \forall\; n
+        \langle x, u_n\rangle = \frac{\langle y, u_n \rangle}{1 - \lambda_n} \quad \forall\; n
     \]
     \[
-        x = \sum_{n=1}^\infty \frac{<y, u_n>}{1 - \lambda_n} u_n
+        x = \sum_{n=1}^\infty \frac{\langle y, u_n\rangle}{1 - \lambda_n} u_n
     \]
-    is the solution. If instead \(\lambda_n = 1\) for some \(n\), then there are no solution if \(y\) is such that \(<y, u_n> \neq 0\):
+    is the solution. If instead \(\lambda_n = 1\) for some \(n\), then there are no solution if \(y\) is such that \(\langle y, u_n\rangle \neq 0\):
     \[
-        (1 - \lambda_n) <x, u_n> = <y, u_n>
+        (1 - \lambda_n) \langle x, u_n\rangle = \langle y, u_n\rangle
     \]
-    For \(y\) s.t. \(<y, u_n> = 0\), we have \(\infty\) many solutions.
+    For \(y\) s.t. \(\langle y, u_n\rangle = 0\), we have \(\infty\) many solutions.
 \end{proof}
