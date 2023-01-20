@@ -90,7 +90,7 @@ Both strategies can be adopted in both contexts.
 
 Consequence: \(H\) Hilbert space.
 \[
-    x_n \rightharpoonup x \text{ weakly in } H \iff \langle x_n, y\rangle   \to \langle x, y\rangle   \quad \forall\; y \in H
+    x_n \rightharpoonup x \text{ weakly in } H \Leftrightarrow \langle x_n, y\rangle   \to \langle x, y\rangle   \quad \forall\; y \in H
 \]
 Sometimes weak convergence + something else \(\Rightarrow\) strong convergence. For instance
 \begin{proposition}
@@ -126,7 +126,7 @@ Moreover, \(e_1, ..., e_n\) are a basis, namely \(\forall\; v \in \real^n\) \(\e
 \[
     v = \sum_{i=1}^n v_i e_i = \sum_{i=1}^n \langle v, e_i\rangle   e_i
 \]
-In particular, \(v=0 \iff \langle v, e_i\rangle  = 0\) \(\forall\; i\). Do we have an analogue in Hilbert spaces?
+In particular, \(v=0 \Leftrightarrow \langle v, e_i\rangle  = 0\) \(\forall\; i\). Do we have an analogue in Hilbert spaces?
 
 \begin{definition}
     \(S \subset H\) is called orthonormal if 
@@ -144,7 +144,7 @@ In particular, \(v=0 \iff \langle v, e_i\rangle  = 0\) \(\forall\; i\). Do we ha
 \begin{theorem}
     \(H\) Hilbert space, \(H \neq \{0\}\). Then \(H\) has an Hilbert basis.
 
-\noindent Moreover, \(H\) is a separable Hilbert space \(\iff \) it has a finite and countable Hilbert basis.
+\noindent Moreover, \(H\) is a separable Hilbert space \(\Leftrightarrow \) it has a finite and countable Hilbert basis.
 \end{theorem}
 
 Example:
@@ -313,7 +313,7 @@ Example: \(K \in L^2([0, 1]x[0, 1])\). Let \(T: L^2([0, 1]) \to L^2([0, 1])\) be
 \[
     (Tf)(t) = \int_0^1 K(s, t) f(s) \,ds
 \]
-\(T \in \mathcal{L}(L^2([0, 1]))\). It is symmetric \(\iff K(s, t) = K(t, s)\) \(\forall \; s, t\)
+\(T \in \mathcal{L}(L^2([0, 1]))\). It is symmetric \(\Leftrightarrow K(s, t) = K(t, s)\) \(\forall \; s, t\)
 
 \subsection*{Spectral Theory}
 In what follows, \(E\) is a Banach space and \(T \in \mathcal{L}(E)\).
@@ -347,7 +347,7 @@ In what follows, \(E\) is a Banach space and \(T \in \mathcal{L}(E)\).
 \begin{remark}
     In finite dimension, linear operators can be represented by matrices.
 
-    \(A \; n \times n\) matrix. We know that \(x \mapsto Ax\) is bijective \(\iff \) it is injective \(\iff \) det\(A \neq 0\). In particular, in finite dimension \(\sigma(A) = EV(A)\). This is false in \(\infty \) dimension.
+    \(A \; n \times n\) matrix. We know that \(x \mapsto Ax\) is bijective \(\Leftrightarrow \) it is injective \(\Leftrightarrow \) det\(A \neq 0\). In particular, in finite dimension \(\sigma(A) = EV(A)\). This is false in \(\infty \) dimension.
 \end{remark}
 
 Basic fact:
@@ -374,7 +374,7 @@ Ex: in \(l^2\), consider the left shift:
 \]
 is a solution of \(T_l x = \lambda x\).
 \[
-    x \in l^2 \iff \sum_{n=0}^\infty (\lambda^n)^2 < \infty \iff \sum_{n=0}^\infty (\lambda^2)^n < \infty \iff \abs{\lambda} < 1
+    x \in l^2 \Leftrightarrow \sum_{n=0}^\infty (\lambda^n)^2 < \infty \Leftrightarrow \sum_{n=0}^\infty (\lambda^2)^n < \infty \Leftrightarrow \abs{\lambda} < 1
 \]
 Any \(\lambda \in (-1, 1)\) is an e.v. of \(T_l\). Moreover, \(\sigma(T_l)\) is a compact set which is included in \([-1, 1]\) and contains \(EV(T_l) =(-1, 1)\)
 \[
