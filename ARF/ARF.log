@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.10.25)  17 JAN 2023 17:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.10.25)  20 JAN 2023 12:25
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -416,23 +416,23 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 94.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./Lezioni/2022_09_12/2022_09_12.tex [2] [3] [4] [5]) (./Lezioni/2022_09_14/2022_09_14.tex [6] [7] [8] [9]) (./Lezioni/2022_09_15/2022_09_15.tex [10] [11]) (./Lezioni/2022_09_21/2022_09_21.tex [12] [13] [14]) (./Lezioni/2022_09_22/2022_09_22.tex [15] [16] [17]) (./Lezioni/2022_09_29/2022_09_29.tex [18] [19] [20] [21]) (./Lezioni/2022_10_05/2022_10_05.tex [22] [23] [24] [25]) (./Lezioni/2022_10_06/2022_10_06.tex [26] [27] [28] [29]) (./Lezioni/2022_10_12/2022_10_12.tex [30] [31] [32]) (./Lezioni/2022_10_13/2022_10_13.tex [33] [34]) (./Lezioni/2022_10_19/2022_10_19.tex [35] [36] [37] [38]) (./Lezioni/2022_10_20/2022_10_20.tex [39] [40] [41] [42]) (./Lezioni/2022_10_26/2022_10_26.tex [43] [44] [45]) (./Lezioni/2022_10_27/2022_10_27.tex [46] [47] [48]) (./Lezioni/2022_11_09/2022_11_09.tex [49] [50] [51] [52]) (./Lezioni/2022_11_10/2022_11_10.tex [53] [54] [55] [56]) (./Lezioni/2022_11_16/2022_11_16.tex [57] [58] [59]) (./Lezioni/2022_11_17/2022_11_17.tex [60] [61] [62] [63]) (./Lezioni/2022_11_23/2022_11_23.tex [64] [65] [66] [67]) (./Lezioni/2022_11_24/2022_11_24.tex [68] [69] [70] [71]) (./Lezioni/2022_11_30/2022_11_30.tex [72] [73] [74] [75]) (./Lezioni/2022_12_01/2022_12_01.tex [76] [77] [78]) (./Lezioni/2022_12_14/2022_12_14.tex [79] [80] [81] [82] [83] [84]) (./Lezioni/2022_12_15/2022_12_15.tex [85] [86] [87] [88]) [89] (./ARF.aux)
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./Lezioni/2022_09_12/2022_09_12.tex [2] [3] [4] [5]) (./Lezioni/2022_09_14/2022_09_14.tex [6] [7] [8] [9]) (./Lezioni/2022_09_15/2022_09_15.tex [10] [11]) (./Lezioni/2022_09_21/2022_09_21.tex [12] [13] [14]) (./Lezioni/2022_09_22/2022_09_22.tex [15] [16] [17]) (./Lezioni/2022_09_29/2022_09_29.tex [18] [19] [20] [21]) (./Lezioni/2022_10_05/2022_10_05.tex [22] [23] [24] [25]) (./Lezioni/2022_10_06/2022_10_06.tex [26] [27] [28] [29]) (./Lezioni/2022_10_12/2022_10_12.tex [30] [31] [32]) (./Lezioni/2022_10_13/2022_10_13.tex [33] [34]) (./Lezioni/2022_10_19/2022_10_19.tex [35] [36] [37] [38]) (./Lezioni/2022_10_20/2022_10_20.tex [39] [40] [41] [42]) (./Lezioni/2022_10_26/2022_10_26.tex [43] [44] [45]) (./Lezioni/2022_10_27/2022_10_27.tex [46] [47] [48]) (./Lezioni/2022_11_09/2022_11_09.tex [49] [50] [51] [52]) (./Lezioni/2022_11_10/2022_11_10.tex [53] [54] [55] [56]) (./Lezioni/2022_11_16/2022_11_16.tex [57] [58] [59]) (./Lezioni/2022_11_17/2022_11_17.tex [60] [61] [62] [63] [64]) (./Lezioni/2022_11_23/2022_11_23.tex [65] [66] [67] [68]) (./Lezioni/2022_11_24/2022_11_24.tex [69] [70] [71] [72]) (./Lezioni/2022_11_30/2022_11_30.tex [73] [74] [75] [76]) (./Lezioni/2022_12_01/2022_12_01.tex [77] [78] [79]) (./Lezioni/2022_12_14/2022_12_14.tex [80] [81] [82] [83] [84] [85]) (./Lezioni/2022_12_15/2022_12_15.tex [86] [87] [88]) [89] [90] (./ARF.aux)
 Package rerunfilecheck Info: File `ARF.out' has not changed.
 (rerunfilecheck)             Checksum: 1A1334F4F6F3846D28BA55C7FC097717;3294.
  ) 
 Here is how much of TeX's memory you used:
- 12294 strings out of 480247
- 188496 string characters out of 5896150
- 482804 words of memory out of 5000000
- 29416 multiletter control sequences out of 15000+600000
+ 12300 strings out of 480247
+ 188554 string characters out of 5896150
+ 481804 words of memory out of 5000000
+ 29418 multiletter control sequences out of 15000+600000
  486518 words of font info for 90 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  68i,15n,77p,711b,491s stack positions out of 5000i,500n,10000p,200000b,80000s
  </home/ilaria/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0700.600pk> </home/ilaria/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm0800.600pk> </home/ilaria/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1200.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on ARF.pdf (89 pages, 560839 bytes).
+Output written on ARF.pdf (90 pages, 561081 bytes).
 PDF statistics:
- 1157 PDF objects out of 1200 (max. 8388607)
- 1010 compressed objects within 11 object streams
- 552 named destinations out of 1000 (max. 500000)
+ 1165 PDF objects out of 1200 (max. 8388607)
+ 1017 compressed objects within 11 object streams
+ 556 named destinations out of 1000 (max. 500000)
  193 words of extra memory for PDF output out of 10000 (max. 10000000)
 

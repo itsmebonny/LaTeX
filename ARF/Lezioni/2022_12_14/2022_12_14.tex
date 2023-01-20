@@ -13,7 +13,7 @@ It is linear (\(\scalardot   \) is bilinear), and it is bounded:
 
 Moreover, 
 \[
-    \Lambda_y (\frac{y}{\norm{y}}) = \langle y, \frac{y}{\norm{y}}\rangle   = \norm{y}
+    \Lambda_y \left(\frac{y}{\norm{y}}\right) = \langle y, \frac{y}{\norm{y}}\rangle   = \norm{y}
 \]
 \[
     \Rightarrow \norm{\Lambda_y}_* = \sup_{\norm{x} \leq 1} \abs{\Lambda_y x} \geq \abs{\Lambda_y (\frac{y}{\norm{y}})} = \norm{y}
@@ -81,7 +81,7 @@ Both strategies can be adopted in both contexts.
         \[
             \langle x, y_1\rangle   = \langle x, y_2\rangle   \quad \forall \; x \in H
         \]
-        Then \(\langle x, y_1-y_2\rangle   = 0\) \(\forall; x \in H\). We choose \(x = y_1 -y_2\):
+        Then \(\langle x, y_1-y_2\rangle   = 0\) \(\forall \; x \in H\). We choose \(x = y_1 -y_2\):
         \[
             \norm{y_1 - y_2}^2 = 0 \Rightarrow y_1 = y_2
         \]
@@ -136,7 +136,7 @@ In particular, \(v=0 \iff \langle v, e_i\rangle  = 0\) \(\forall\; i\). Do we ha
     \end{itemize}
 \end{definition}
 \begin{definition}
-    An orthonormal set is an Hilbert Basis (or is complete) if \(S^\perp = \{0\}\), namely if 
+    An orthonormal set is an Hilbert Basis (or is \textbf{complete}) if \(S^\perp = \{0\}\), namely if 
     \[
         \langle u, x\rangle   = 0 \quad \forall x \in S \Rightarrow u=0
     \]
@@ -144,7 +144,7 @@ In particular, \(v=0 \iff \langle v, e_i\rangle  = 0\) \(\forall\; i\). Do we ha
 \begin{theorem}
     \(H\) Hilbert space, \(H \neq \{0\}\). Then \(H\) has an Hilbert basis.
 
-    Moreover, \(H\) is a separable Hilbert space \(\iff \) it has a finite and countable Hilbert basis.
+\noindent Moreover, \(H\) is a separable Hilbert space \(\iff \) it has a finite and countable Hilbert basis.
 \end{theorem}
 
 Example:
@@ -171,9 +171,9 @@ Example:
 \begin{remark}
     Hamel basis \(\neq\) Hilbert basis.
 
-    \(X \infty\) dimensional \(\Rightarrow\) any Hamel basis of \(X\) is uncountable.
+    \(X \; \infty-\) dimensional \(\Rightarrow\) any Hamel basis of \(X\) is uncountable.
 
-    \(H \infty\) dimensional and separable \(\Rightarrow\) any Hilbert basis is countable
+    \(H \; \infty-\) dimensional and separable \(\Rightarrow\) any Hilbert basis is countable
 \end{remark}
 
 The usefulness of Hilbert basis stays in the fact that they allow us to reason component by component.
@@ -181,7 +181,7 @@ The usefulness of Hilbert basis stays in the fact that they allow us to reason c
 \begin{theorem}[Bessel inequality]
     \(H\) separable Hilbert space. \(\{u_n\}_{n \in \natural}\) orthonormal set. Then \(\forall \; x \in H\):
     \[
-        \sum_{n=1}^\infty \abs{\langle x, u_n\rangle  } \leq \norm{x}^2
+        \sum_{n=1}^\infty \abs{\langle x, u_n\rangle }^2 \leq \norm{x}^2
     \]
 \end{theorem}
 \begin{theorem}[Generalized Fourier Series]
@@ -228,7 +228,7 @@ The usefulness of Hilbert basis stays in the fact that they allow us to reason c
     \]
     On the other hand, we know that \(\forall \; x \in H\)
     \[
-        \norm{x}^2 = \sum_{n=1}^\infty \abs{\langle x, u_n\rangle  }^2 \langle  \infty
+        \norm{x}^2 = \sum_{n=1}^\infty \abs{\langle x, u_n\rangle  }^2 < \infty
     \]
     It is then necessary that
     \[
@@ -237,7 +237,7 @@ The usefulness of Hilbert basis stays in the fact that they allow us to reason c
     By Riesz, this means that \(u_n \rightharpoonup 0\) in \(H\)
 \end{proof}
 
-Ex: \(H = L^2([-\pi, \pi])\). Then the previous corollary tells that (Riemann - Lebesque lemma)
+Ex: \(H = L^2([-\pi, \pi])\). Then the previous corollary tells that (Riemann - Lebesgue lemma)
 \[
     \int_{-\pi}^\pi f(x) \sin (nx) \, dx \to 0 \text{ as } n \to \infty
 \]                
@@ -253,7 +253,7 @@ The same is true in \(L^p\), \(p \neq 2\). Even in this case
 but we don't have a.e. convergence.
 
 \begin{proposition}
-    \(p \in [1, \infty)\). Suppose that \(f_n \to f\) weakly in \(L^p(X)\), and that \(f_n \to g\) a.e. in \(X\). Then \(f=g\) a.e.
+    \(p \in [1, \infty)\). Suppose that \(f_n \rightharpoonup f\) in \(L^p(X)\), and that \(f_n \to g\) a.e. in \(X\). Then \(f=g\) a.e.
 \end{proposition}
 
 \begin{proposition}
@@ -272,7 +272,7 @@ but we don't have a.e. convergence.
 \end{proof}
 
 Consequence: \(I \subset \real\) interval (\(I= \real\) is fine). \(\{f_n\} \subseteq L^p(I)\), \(p \in (1, \infty)\). 
-\(\{f_n\}\) bounded in \(L^p\): \(\exists \; C>  0\) s.t \(\norm{f_n}_{L^p} \leq C\), \(\forall n\). Then:
+\(\{f_n\}\) bounded in \(L^p\): \(\exists \; C>  0\) s.t \(\norm{f_n}_{L^p} \leq C\), \(\forall \; n\). Then:
 
 \begin{itemize}
     \item If 
@@ -345,12 +345,12 @@ In what follows, \(E\) is a Banach space and \(T \in \mathcal{L}(E)\).
     \(EV(T) \subset \sigma(T)\)
 \end{remark}
 \begin{remark}
-    In finite dimension, linear operators can be represented by matrixes.
+    In finite dimension, linear operators can be represented by matrices.
 
     \(A \; n \times n\) matrix. We know that \(x \mapsto Ax\) is bijective \(\iff \) it is injective \(\iff \) det\(A \neq 0\). In particular, in finite dimension \(\sigma(A) = EV(A)\). This is false in \(\infty \) dimension.
 \end{remark}
 
-Basic fact
+Basic fact:
 \begin{theorem}
     \(E\) Banach, \(T \in \mathcal{L}(E)\). Then \(\sigma(T) \subset \real\) is compact, and 
     \[
