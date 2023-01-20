@@ -31,7 +31,7 @@ We introduced \(L^p(X, \mathcal{M}, \mu)\), and we proved that this is a normed 
         \norm{f}_p^p = \int_X \abs{f}^p \, d\mu \overset{\text{\tiny{Hölder}}}{\leq} \left( \int_X \left( \abs{f}^{\not p} \right)^{\frac{q}{\not p}} \, d\mu\right)^{\frac{p}{q}}\cdot \left( \int_X 1 \, d\mu \right)^{\frac{q-p}{p}} = \left( \int_X \abs{f}^{q} \, d\mu\right)^{\frac{p}{q}}\cdot \left( \mu(X)\right)^{\frac{q-p}{p}}
     \]
     \[
-        \Rightarrow \norm{f}_p \leq \mu(X)?{\frac{q-p}{qp}} \norm{f}_q
+        \Rightarrow \norm{f}_p \leq \mu(X)^{\frac{q-p}{qp}} \norm{f}_q
     \]
 \end{proof}
 
@@ -117,17 +117,17 @@ To speak about separability, we give a
 \begin{definition}
     \(g: \Omega \subset \real^n \to \real\). The support of \(g\) is
     \[
-      \mbox{supp}\, g = \bar{\left\{ x \in \Omega : g(x) \neq 0 \right\}}
+      \mbox{supp}\, g = \overline{\left\{ x \in \Omega : g(x) \neq 0 \right\}}
     \]
     Also 
     \[
         \mathcal{C}^0_C = \left\{ f \in \mathcal{C}^0\left( \Omega \right) : \mbox{supp} \, f \mbox{ is compact in } \Omega\right\} = \mathcal{C}^0_O(\Omega) = \mathcal{C}_C(\Omega)
     \]
 \end{definition}
-\begin{theorem}
+\begin{theorem}[Lusin Theorem]
     \(\Omega \in \mathcal{L}(\real), \lambda(\real) < +\infty\). Let also \(f : \real \to \real\) measurable, s.t. \(f\equiv 0\) in \(\Omega^C\).
 
-    Then \(\forall \; \epsilon > 0 \exists \; g \in \mathcal{C}^0_C(\real)\) s.t.
+    Then \(\forall \; \epsilon > 0 \; \exists \; g \in \mathcal{C}^0_C(\real)\) s.t.
     \[
         \lambda \left( \left\{ x \in \real : g(x) \neq f(x) \right\} \right) < \epsilon
     \]
@@ -184,9 +184,9 @@ To speak about separability, we give a
 \begin{proof}
     \noindent\underline{sketch}
     \begin{itemize}
-        \item Step 1: \(\mathcal{C}_C^0(\real) \) is dense in \(L^p(\real )\), \(\forall \; \ \leq p \leq \infty\).
+        \item Step 1: \(\mathcal{C}_C^0(\real) \) is dense in \(L^p(\real )\), \(\forall \; \leq p \leq \infty\).
         
-        Take \(s \in \tilde{\mathcal{S}}(\real)\). Then, by Lusin theorem, \(\exists \{f_n\} \subseteq \mathcal{C}_C^0(\real)\) s.t. \(\norm{f_n -s }_p \to 0\).
+        Take \(s \in \tilde{\mathcal{S}}(\real)\). Then, by Lusin theorem, \(\exists \; \{f_n\} \subseteq \mathcal{C}_C^0(\real)\) s.t. \(\norm{f_n -s }_p \to 0\).
         Then, since any \(f \in L^p\) can be approximated by simple integrable functions, we have that \(f\) can be approximated by functions in \(\mathcal{C}_C^0(\real)\).
 
         \item Step 2: 
@@ -198,8 +198,8 @@ To speak about separability, we give a
         \] 
         if \(\norm{f - p_n}_\infty \to 0\), \(\Rightarrow \mathcal{P}(\real)\) is dense in \(L^p(\real)\).
 
-        \(\tilde{\mathcal{P}}(\real) = \{\) polynomials with rational coefficients \(\}\). 
-        This is countable, and is dense in \((\mathcal{P}(\real)), \normdot_p\). \(\Rightarrow \) is dense in \(L^p\) 
+        \(\tilde{\mathcal{P}}(\real) = \{\)polynomials with rational coefficients\(\}\). 
+        This is countable, and is dense in \((\mathcal{P}(\real), \normdot_p)\). \(\Rightarrow \) is dense in \(L^p\) 
     \end{itemize}
 \end{proof}
 

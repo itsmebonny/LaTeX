@@ -1,5 +1,8 @@
 \section{Lecture 20/10/2022}
-\noindent\underline{Goal}: The \(2^{nd}\) fundamental theorem of calculus. Given \(G \in \mbox{AC}([a,b])\). Then \(G\) is differentiable a.e. on \([a,b]\), \(G' \in L^1([a,b])\), and (FC) holds.
+\begin{theorem}[The \(2^{nd}\) fundamental theorem of calculus.]
+    Given \(G \in \mbox{AC}([a,b])\). Then \(G\) is differentiable a.e. on \([a,b]\), \(G' \in L^1([a,b])\), and (FC) holds.
+\end{theorem}
+
 Example and comments:
 \begin{itemize}
     \item If \(f\) is bounded and monotone \(\Rightarrow\) \(f \in \mbox{BV}\)
@@ -92,9 +95,9 @@ it is a countable union of open intervals (maybe two of them contains \(a\) or \
 \]
 But then, since \(\mu\) is a measure it is countably additive
 \[
-    \mu (E) \leq \mu(A) = \sum_n \mu (I_n) = \sum_n G(y_n) - G(x_n) \underset{\begin{array}{c} \downarrow \\ \text{\tiny{by the choice of }} \delta \\ \text{\tiny{and the fact that }} \\G \in \text{AC}\end{array}}{<} \epsilon
+    \mu (E) \leq \mu(A) = \sum_n \mu (I_n) = \sum_n G(y_n) - G(x_n) < \epsilon
 \]
-
+by the choice of \(\delta \) and the fact that \(G \in\) AC.
 We proved that 
 \[
     \lambda(E) = 0 \Rightarrow \forall \; \epsilon >0 : \, \mu(E) < \epsilon \Rightarrow \mu(E) =0

@@ -14,7 +14,7 @@ Recall: \(T \in \mathcal{K}(H)\), \(u_n \rightharpoonup u\) weakly \(\Rightarrow
     \]
     Take a maximizing sequence for \(d\):
     \[
-        \exists \{u_n\} \subset H \text{ s.t. } \norm{u_n}=1 \qquad \abs{\langle Tu_n, u_n\rangle} \to d    
+        \exists \; \{u_n\} \subset H \text{ s.t. } \norm{u_n}=1 \qquad \abs{\langle Tu_n, u_n\rangle} \to d    
     \]
     \(\{u_n\}\) is bounded \(\Rightarrow\) by Banach Alaoglu in reflexive spaces (any Hilbert space is reflexive) we can extract \(\{u_{n_k}\}\) s.t. \(u_{n_k} \rightharpoonup u\) weakly in \(H\), for some \(u\).
 
@@ -49,11 +49,11 @@ Recall: \(T \in \mathcal{K}(H)\), \(u_n \rightharpoonup u\) weakly \(\Rightarrow
     \(\lambda \neq 0\) is an eigenvalue of a compact operator \(T \in \mathcal{K}(E)\), \(E \) Banach. Let \(V_\lambda\) be the eigenspace of \(\lambda\). Then \(\dim V_\lambda < \infty\)
 \end{proposition}
 \begin{proof}
-    Recall that \(I: F \to F \), with \(F \infty\) dimensional. Banach space, cannot be compact. Assume by contradiction that \(V_\lambda\) has \(\infty\) dim. Consider
+    Recall that \(I: F \to F \), with \(F  \; \infty\) dimensional. Banach space, cannot be compact. Assume by contradiction that \(V_\lambda\) has \(\infty\) dim. Consider
     \[
         \frac{1}{\lambda} T |_{V_\lambda}: V_\lambda \to V_\lambda 
     \]
-    is the identity \(\frac{1}{\lambda} T u = \frac{1}{\lambda} \times \lambda u = u\) \(\forall\; u \in V_\lambda\) 
+    is the identity \(\frac{1}{\lambda} T u = \frac{1}{\lambda} \cdot \lambda u = u\) \(\forall\; u \in V_\lambda\). 
     So \(\frac{1}{\lambda} T |_{V_\lambda}\) cannot be compact. On the other hand, \(\frac{1}{\lambda} T |_{V_\lambda}\) is compact by assumption.
 \end{proof}
 
@@ -190,7 +190,7 @@ Recall: \(T \in \mathcal{K}(H)\), \(u_n \rightharpoonup u\) weakly \(\Rightarrow
 
 \begin{remark}
     \begin{itemize}
-        \item Rouché Capelli: \(Ax = y\). \(A\) matrix. Either \(\det A \neq 0\), and then \(\forall\; y \in \real^n \exists!\; \) solution; or \(Ax = y\) can have \(0\) or \(\infty \) many solution.
+        \item Rouché Capelli: \(Ax = y\). \(A\) matrix. Either \(\det A \neq 0\), and then \(\forall\; y \in \real^n \quad \exists!\; \) solution; or \(Ax = y\) can have \(0\) or \(\infty \) many solution.
         \item \(T\) symmetric is not necessary, and the corollary also holds in Banach spaces. 
         \item The corollary is very useful to treat integral equations:
         \[

@@ -84,7 +84,7 @@ We formally mentioned that
 \begin{proof}
     \((L^p(X), \normdot_p)\) is uniformly convex \(\forall \; p \in (1, \infty)\) (Clarkson inequalities)
 \end{proof}
-\(L^1(X) and L^\infty(X)\) are not uniformly convex, and not reflexive.
+\(L^1(X) \text{ and } L^\infty(X)\) are not uniformly convex, and not reflexive.
 
 \subsection*{Dual space of \(L^p\)}
 
@@ -136,7 +136,7 @@ We formally mentioned that
 \]
 
 \begin{remark}
-    \(p=1\). one can prove the
+    \(p=1\). One can prove the:
 \end{remark}
 \begin{theorem}
     \((X; \mathcal{M}, \mu)\) complete measure space, \(\sigma\)-finite.
@@ -155,9 +155,9 @@ Recall that \((X, \mathcal{M}, \mu)\) is finite if \(\mu(X) < \infty\).
 
 \subsection*{Weak Convergence}
 
-We know that \(\overline{B_1(0)}\) is never compact in \(\infty\) dimension. This is a problem is in proving convergence of sequences. a way to approach this issue consists in weakening the notion of convergence.
+We know that \(\overline{B_1(0)}\) is never compact in \(\infty\) dimension. This is a problem is in proving convergence of sequences. A way to approach this issue consists in weakening the notion of convergence.
 \begin{definition}
-    \(X\) Banach space. \(\{x_n\} \subset X\) sequence, \(x \in X\). We say that \(x_n\) tends to \(x\) weakly (in \(X\)) as \(n \to \infty\), \(x_n \rightharpoonup x\) in \(X\), if 
+    \(X\) Banach space. \(\{x_n\} \subset X\) sequence, \(x \in X\). We say that \(x_n\) tends to \(x\) \textbf{weakly} (in \(X\)) as \(n \to \infty\), \(x_n \rightharpoonup x\) in \(X\), if 
     \[
         L x_n \to Lx \qquad \forall \; L \in X^*
     \]
@@ -178,9 +178,16 @@ We know that \(\overline{B_1(0)}\) is never compact in \(\infty\) dimension. Thi
     \]
 \end{remark}
 \begin{remark}
-    We will be interested in weak convergence in \(L^p\). If \(p \in [1, \infty)\), then \(f_n \rightharpoonup f\) weakly in \(L^p(X) \iff \int_X f_n g d, d\mu \to \int_X fg \, d\mu\) \(\forall \; g \in L^{p'}\)
-
-    Similarily, in \(l^p = L^P(\natural, \mathcal{P}(\natural), \mu_c)\), \(x_n \rightharpoonup x \) weakly in \(l^p\) \(\iff \sum_{k=1}^\infty x_n^{(k)} y^{(k)} \to \sum_{k=1}^\infty x^{(k)} y^{(k)}\) \(\forall \; y \in l^{p'}\)
+    We will be interested in weak convergence in \(L^p\). 
+    
+    \noindent If \(p \in [1, \infty)\), then 
+    \[
+        f_n \rightharpoonup f \text{ weakly in } L^p(X) \iff \int_X f_n g \, d\mu \to \int_X fg \, d\mu \quad \forall \; g \in L^{p'}
+    \]
+    \noindent Similarily, in \(l^p = L^P(\natural, \mathcal{P}(\natural), \mu_c)\)
+    \[
+        x_n \rightharpoonup x \text{ weakly in } l^p \iff \sum_{k=1}^\infty x_n^{(k)} y^{(k)} \to \sum_{k=1}^\infty x^{(k)} y^{(k)} \quad \forall \; y \in l^{p'}
+    \]
 \end{remark}
 
 \begin{proposition}
@@ -240,7 +247,7 @@ We know that \(\overline{B_1(0)}\) is never compact in \(\infty\) dimension. Thi
 \begin{proposition}
     \(x_n \rightharpoonup x \) in \(X\) weakly, and \(L_n \to L\) (strongly) in \(X^*\). Then
     \[
-        L_n X_n \to Lx \quad \text{ in } \real
+        L_n x_n \to Lx \quad \text{ in } \real
     \]
 \end{proposition}
 \begin{proposition}

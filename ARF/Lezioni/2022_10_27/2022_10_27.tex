@@ -13,7 +13,7 @@
 Well known fact: if \(\left(X, d\right)\) is a metric space, then \(E\) is compact \(\Leftrightarrow E \) is sequentially compact.
 
 \begin{theorem}[Riesz Theorem]
-    \(X\) normed space, dim\(X = \infty\) \(\Leftrightarrow \bar{B}_1(0)\) is not compact. 
+    \(X\) normed space, dim\(X = \infty\) \(\Leftrightarrow \overline{B_1(0)}\) is not compact. 
 \end{theorem}
 
 \begin{lemma}[Riesz quasi orthogonality Lemma]
@@ -23,10 +23,10 @@ Well known fact: if \(\left(X, d\right)\) is a metric space, then \(E\) is compa
 \end{lemma}
 
 \begin{remark}
-
+    Also:
     \begin{itemize}
         \item \(E \in X\) closed. Then dist\((x, E)=0 \Leftrightarrow x \in E\)
-        \item By definition of infimum, if \(d =\) dist\((x, E)\), then \(\forall \rho >0 \ \exists \; z \in E\) s.t. 
+        \item By definition of infimum, if \(d =\) dist\((x, E)\), then \(\forall \; \rho >0 \ \exists \; z \in E\) s.t. 
         \[
             \norm{x-z} < (1+\rho) d
         \]
@@ -36,7 +36,7 @@ Well known fact: if \(\left(X, d\right)\) is a metric space, then \(E\) is compa
 \begin{proof}
     Let \(y \in X \setminus E\), and \(d := \) dist\((y, E) >0\), since \(E\) is closed. 
     
-    \(\forall \; \rho > 0 \ \exists z \in E \) s.t.
+    \(\forall \; \rho > 0 \ \exists \; z \in E \) s.t.
     \[
         \norm{y-z} \leq (1+\rho)d = \frac{d}{1-\epsilon} \tag{1}
     \]
@@ -59,10 +59,10 @@ Well known fact: if \(\left(X, d\right)\) is a metric space, then \(E\) is compa
     \]
 \end{proof}
 
-\subsection*{Compactness on \(\mathcal{C}^0(\left[a, b\right])\)}
+\subsubsection*{Compactness on \(\mathcal{C}^0(\left[a, b\right])\)}
 \begin{definition}
     \(\{f_n\}\) sequence in \(\mathcal{C}^0(\left[a, b\right])\). 
-    We say that \(\{f_n\}\) is uniformly equicontinuous in \([a, b]\) if \(\forall \; \epsilon >0 \; \exists \; \delta >0 \) depending only on \(\epsilon \) s.t. 
+    We say that \(\{f_n\}\) is \textbf{uniformly equicontinuous} in \([a, b]\) if \(\forall \; \epsilon >0 \; \exists \; \delta >0 \) depending only on \(\epsilon \) s.t. 
     \[
         |t-\tau| < \delta \Rightarrow \| f_n(t) - f_n(\tau) \| < \epsilon \qquad \forall \; n
     \]
@@ -72,16 +72,16 @@ Well known fact: if \(\left(X, d\right)\) is a metric space, then \(E\) is compa
     With respect to the uniform continuity, in this case \(\delta\) does not depend on \(f\). \(\delta\) is the same for all the \(f_n\) s
 \end{remark}
 
-\begin{theorem}
+\begin{theorem}[Ascolì Arzelà]
     \(\{f_n\} \subseteq \mathcal{C}^0(\left[a, b\right])\). Suppose that:
     \begin{itemize}
-        \item \(\{f_n\}\) is uniformly equicontinuous
-        \item \(\{f_n\}\) is bounded: \(\exists \; M>0\) s.t. \(\norm{f_n}_\infty <M \qquad \forall \; n\)
+        \item \(\{f_n\}\) is uniformly equi-continuous
+        \item \(\{f_n\}\) is equi-bounded: \(\exists \; M>0\) s.t. \(\norm{f_n}_\infty <M \qquad \forall \; n\)
     \end{itemize}
     Then \(\exists\) a subsequence \(\{f_{n_k}\}\) and \(f \in \mathcal{C}^0(\left[a, b\right])\) s.t. \(f_{n_k} \rightarrow f \) uniformly.
 \end{theorem}
 
-Lebesgue spaces. \\
+\subsection*{Lebesgue spaces} 
 \((X, \mathcal{M}, \mu)\) measure space, \(p \in \left[1, \infty\right]\). We defined \(L^1(X)\) and \(L^\infty(X)\). 
 In a similar way, we define \(L^p(X)\) \(\forall \; p \in \left[1, \infty\right]\)
 \[
@@ -187,7 +187,7 @@ Properties 1 and 2 of the norm are immediate to check:
     \(x = \log{a^p}\), \(y= \log{b^q}\) \(\qquad 1-t = \frac{1}{p}\), \(t=\frac{1}{q}\)
 \end{proof}
 
-\begin{theorem}
+\begin{theorem}[Holder's Inequality]
     \(\left(X, \mathcal{M}, \mu \right)\) measure space. \(f, g\) measurable functions. \(p, q \in [1, \infty]\) conjugate exponents.
 
     Then 

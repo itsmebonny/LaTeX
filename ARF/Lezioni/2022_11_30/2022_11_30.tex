@@ -23,13 +23,13 @@ With the same philosophy we introduce:
     \(X \) Banach \(\Rightarrow X^* \) is Banach as well.
 \end{definition}
 \begin{definition}
-    A sequence \(\{L_n \} \subset X^*\) is weakly\(^*\) convergent to \(L \in  X^*\), namely \(L_n \overset{*}{\rightharpoonup} L\) in \(X^*\), if 
+    A sequence \(\{L_n \} \subset X^*\) is \textbf{weakly\(^*\)} convergent to \(L \in  X^*\), namely \(L_n {\rightharpoonup}^* L\) in \(X^*\), if 
     \[
         L_n x \to Lx \in \real \quad \forall\; x \in X
     \]
 \end{definition}
 \begin{remark}
-    Observe thar a sequence \(\{L_n\} \) tends weakly to \(L\) in \(X^*\) if 
+    Observe that a sequence \(\{L_n\} \) tends weakly to \(L\) in \(X^*\) if 
     \[
         \Lambda L_n \to \Lambda L \quad \forall \Lambda \in X^{**}
     \]
@@ -42,15 +42,15 @@ Thus \(L_n \rightharpoonup L\) weakly in \(X^*\) \(\rightarrow\) \(\langle \tau(
 \[
     L_n x \to Lx \qquad \forall \; x \in X
 \]
-namely \(L_n \overset{*}{\rightharpoonup}\) weakly* in \(X^*\). In general the converse is false. However
+namely \(L_n\rightharpoonup^*\) weakly* in \(X^*\). In general the converse is false. However
 \begin{proposition}
-    If \(X\) is reflexive, then \(L_n \rightharpoonup L\) weakly in \(X^* \iff L_n \overset{*}{\rightharpoonup}\) weakly* in \(X^*\)
+    If \(X\) is reflexive, then \(L_n \rightharpoonup L\) weakly in \(X^* \iff L_n \rightharpoonup^* L\) weakly* in \(X^*\)
 \end{proposition}
 \begin{proof}
     If \(X\) is reflexive, every element \(\Lambda\) of \(X^{**}\) is of type \(\Lambda = \tau(x)\) for some \(x\)
 \end{proof}
 \begin{proposition}
-    \(X\) banach space, \(X^*\) dual space, \(L_n \overset{*}{\rightharpoonup} L\) in \(X^*\). Then
+    \(X\) banach space, \(X^*\) dual space, \(L_n\rightharpoonup^* L\) in \(X^*\). Then
     \begin{itemize}
         \item The weak * limit is unique
         \item \(\{L_n\}\) is bounded
@@ -113,7 +113,7 @@ namely \(L_n \overset{*}{\rightharpoonup}\) weakly* in \(X^*\). In general the c
     \[
         \Rightarrow \exists \; \{T_n\} \text{ subsequence s.t. } T_n x \to Tx
     \]
-    for every \(x \in X\), namely \(T_n \overset{*}{\rightharpoonup} T\) in \(X^*\)
+    for every \(x \in X\), namely \(T_n\rightharpoonup^* T\) in \(X^*\)
 \end{proof}
 
 \begin{theorem}[Variant of BA for reflexive spaces]
@@ -125,7 +125,7 @@ namely \(L_n \overset{*}{\rightharpoonup}\) weakly* in \(X^*\). In general the c
 
     \(\{x_n\}\) bounded sequence in \(X \iff \{ \tau(x_n) \}\) is bounded in \(X^{**} = (X^*)^*\)
         
-    \(\Rightarrow \) by Banach Alaoglu, \(\exists \{x_{n_k}\}\) s.t. \(\tau(x_{n_k}) \overset{*}{\rightharpoonup} \Lambda \) in \(X^{**}\):
+    \(\Rightarrow \) by Banach Alaoglu, \(\exists \{x_{n_k}\}\) s.t. \(\tau(x_{n_k})\rightharpoonup^* \Lambda \) in \(X^{**}\):
     \[
         \underset{X^{**}}{\langle}\tau(x_{n_k}), L \underset{X^*}{\rangle} \to \underset{X^{**}}{\langle}\Lambda, L \underset{X^*}{\rangle} \quad K \to \infty
     \]
