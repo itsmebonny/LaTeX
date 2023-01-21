@@ -15,7 +15,7 @@ Recall that:
 \end{itemize}
 
 \begin{remark}
-    In \(\real^n\) (or any finite dimensional Banach space) \(x_n \rightharpoonup x\) weakly \(\iff x_n \to x\) strongly (ex.)
+    In \(\real^n\) (or any finite dimensional Banach space) \(x_n \rightharpoonup x\) weakly \(\Leftrightarrow x_n \to x\) strongly (ex.)
 \end{remark}
 
 With the same philosophy we introduce: 
@@ -23,13 +23,13 @@ With the same philosophy we introduce:
     \(X \) Banach \(\Rightarrow X^* \) is Banach as well.
 \end{definition}
 \begin{definition}
-    A sequence \(\{L_n \} \subset X^*\) is weakly\(^*\) convergent to \(L \in  X^*\), namely \(L_n \overset{*}{\rightharpoonup} L\) in \(X^*\), if 
+    A sequence \(\{L_n \} \subset X^*\) is \textbf{weakly\(^*\)} convergent to \(L \in  X^*\), namely \(L_n {\rightharpoonup}^* L\) in \(X^*\), if 
     \[
         L_n x \to Lx \in \real \quad \forall\; x \in X
     \]
 \end{definition}
 \begin{remark}
-    Observe thar a sequence \(\{L_n\} \) tends weakly to \(L\) in \(X^*\) if 
+    Observe that a sequence \(\{L_n\} \) tends weakly to \(L\) in \(X^*\) if 
     \[
         \Lambda L_n \to \Lambda L \quad \forall \Lambda \in X^{**}
     \]
@@ -42,15 +42,15 @@ Thus \(L_n \rightharpoonup L\) weakly in \(X^*\) \(\rightarrow\) \(\langle \tau(
 \[
     L_n x \to Lx \qquad \forall \; x \in X
 \]
-namely \(L_n \overset{*}{\rightharpoonup}\) weakly* in \(X^*\). In general the converse is false. However
+namely \(L_n\rightharpoonup^*\) weakly* in \(X^*\). In general the converse is false. However
 \begin{proposition}
-    If \(X\) is reflexive, then \(L_n \rightharpoonup L\) weakly in \(X^* \iff L_n \overset{*}{\rightharpoonup}\) weakly* in \(X^*\)
+    If \(X\) is reflexive, then \(L_n \rightharpoonup L\) weakly in \(X^* \Leftrightarrow L_n \rightharpoonup^* L\) weakly* in \(X^*\)
 \end{proposition}
 \begin{proof}
     If \(X\) is reflexive, every element \(\Lambda\) of \(X^{**}\) is of type \(\Lambda = \tau(x)\) for some \(x\)
 \end{proof}
 \begin{proposition}
-    \(X\) banach space, \(X^*\) dual space, \(L_n \overset{*}{\rightharpoonup} L\) in \(X^*\). Then
+    \(X\) banach space, \(X^*\) dual space, \(L_n\rightharpoonup^* L\) in \(X^*\). Then
     \begin{itemize}
         \item The weak * limit is unique
         \item \(\{L_n\}\) is bounded
@@ -113,7 +113,7 @@ namely \(L_n \overset{*}{\rightharpoonup}\) weakly* in \(X^*\). In general the c
     \[
         \Rightarrow \exists \; \{T_n\} \text{ subsequence s.t. } T_n x \to Tx
     \]
-    for every \(x \in X\), namely \(T_n \overset{*}{\rightharpoonup} T\) in \(X^*\)
+    for every \(x \in X\), namely \(T_n\rightharpoonup^* T\) in \(X^*\)
 \end{proof}
 
 \begin{theorem}[Variant of BA for reflexive spaces]
@@ -123,13 +123,13 @@ namely \(L_n \overset{*}{\rightharpoonup}\) weakly* in \(X^*\). In general the c
 \begin{proof}
     For simplicity, we assume that \(X\) is separable (not necessary). \(X \) separable and reflexive \(\Rightarrow X^*\) is separable. \(\tau:X \to X^{**}\) canonical map: it is an isometric isometry.
 
-    \(\{x_n\}\) bounded sequence in \(X \iff \{ \tau(x_n) \}\) is bounded in \(X^{**} = (X^*)^*\)
+    \(\{x_n\}\) bounded sequence in \(X \Leftrightarrow \{ \tau(x_n) \}\) is bounded in \(X^{**} = (X^*)^*\)
         
-    \(\Rightarrow \) by Banach Alaoglu, \(\exists \{x_{n_k}\}\) s.t. \(\tau(x_{n_k}) \overset{*}{\rightharpoonup} \Lambda \) in \(X^{**}\):
+    \(\Rightarrow \) by Banach Alaoglu, \(\exists \; \{x_{n_k}\}\) s.t. \(\tau(x_{n_k})\rightharpoonup^* \Lambda \) in \(X^{**}\):
     \[
         \underset{X^{**}}{\langle}\tau(x_{n_k}), L \underset{X^*}{\rangle} \to \underset{X^{**}}{\langle}\Lambda, L \underset{X^*}{\rangle} \quad K \to \infty
     \]
-    \(\forall\; L \in X^*.\) Since \(X\) is reflexive, \(\forall \Lambda \in X^{**} \) \(\exists ! \; x \in X\) s.t. \(\Lambda = \tau (x)\). Therefore, 
+    \(\forall\; L \in X^*.\) Since \(X\) is reflexive, \(\forall \; \Lambda \in X^{**} \) \(\exists ! \; x \in X\) s.t. \(\Lambda = \tau (x)\). Therefore, 
     \[
         L x_{n_k} = \underset{X^{**}}{\langle}\tau(x_{n_k}), L \underset{X^*}{\rangle} \to \underset{X^{**}}{\langle}\Lambda, L \underset{X^*}{\rangle} = Lx
     \]
@@ -143,7 +143,7 @@ namely \(L_n \overset{*}{\rightharpoonup}\) weakly* in \(X^*\). In general the c
 \subsection*{Compact Operators}
 \(X, Y\) Banach spaces. 
 \begin{definition}
-    A linear operator \(K:X \to Y\) is said to be compact if \(\forall E \subseteq X\) bounded, the set \(K(E)\) is relatively compact, namely \(\overline{K(E)}\) is compact. 
+    A linear operator \(K:X \to Y\) is said to be compact if \(\forall \; E \subseteq X\) bounded, the set \(K(E)\) is relatively compact, namely \(\overline{K(E)}\) is compact. 
 
     Equivalently, \(K\) is compact if \(\forall \; \{x_n\} \subset X \) bounded, the sequence \(\{K(x_n)\}\) has a strongly convergent subsequence. 
 \end{definition}
@@ -167,7 +167,7 @@ namely \(L_n \overset{*}{\rightharpoonup}\) weakly* in \(X^*\). In general the c
 \begin{definition}
     \(T \in \mathcal{L}(X, Y)\) has finite rank if 
     \[
-        \underset{\dim (T(X))}{\text{is the image of }T= \{y \in Y: y = Tx\} \text{ for some} x \in X} < \infty
+        \underset{\dim (T(X))}{\text{ the image of }T= \{y \in Y: y = Tx\} \text{ for some } x \in X} < \infty
     \]
 \end{definition}
 \(T(X) \subset Y\) is a subspace.

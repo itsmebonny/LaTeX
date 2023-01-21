@@ -7,10 +7,9 @@ Let \(T\) be a linear operator from \(X\) to \(Y\).
     \]
 
 \end{definition}
-
 This is a vector subspace of \(X\). 
 
-\(T\) is injective \(\Leftrightarrow \ker (T) = \{0\}\). If \(T\) is continuous, \(\ker(T)\) is closed 
+\noindent \(T\) is injective \(\Leftrightarrow \ker (T) = \{0\}\). If \(T\) is continuous, \(\ker(T)\) is closed 
 \[
     \ker(T) = T^{-1} (\{0\})
 \]
@@ -48,11 +47,11 @@ This is a vector subspace of \(X\).
     \]
 \end{definition}
 \begin{definition}
-    \(A \subset X\) is dense in \(X\) if \(\bar{A} = X\).
+    \(A \subset X\) is \textbf{dense} in \(X\) if \(\bar{A} = X\).
 \end{definition}
 For example, \(\mathbb{Q}\) is dense in \(\real\), and \((a, b)\) is dense in \([a, b]\).
 \begin{definition}
-    \(A \subset X\) is nowhere dense if the interior of the closure of \(A\) is empty, namely
+    \(A \subset X\) is \textbf{nowhere dense} if the interior of the closure of \(A\) is empty, namely
     \[
        \text{int} (\bar{A}) = \interior{\bar{A}} = \emptyset  
     \]
@@ -91,7 +90,7 @@ Ex: \(\mathbb{Q}\) is of first category in \(\real\): countable union of nowhere
 
 \begin{proof} Here's the proof of the two parts of the theorem:
     \begin{itemize}
-        \item[(a)] Thanks to the first preliminary, we show that \(\forall W \subset X\) open and non empty we have \((\cap_n U_n) \cap W \neq \emptyset\)
+        \item[(a)] Thanks to the first preliminary, we show that \(\forall \; W \subset X\) open and non empty we have \((\cap_n U_n) \cap W \neq \emptyset\)
         
         \[
             \begin{array}{rl}
@@ -103,7 +102,7 @@ Ex: \(\mathbb{Q}\) is of first category in \(\real\): countable union of nowhere
         For \(n>0\), we choose \(x_n \in X\) and \(r_n > 0\) inductively in the following way: we have 
         \[
             U_n \cap B_{r_{n-1}}(x_{n-1}) \neq \emptyset 
-        \tag*{(\(1^{st}\) prel. \(+ U_n\) is dense)}\]
+        \tag*{(\(1^{st}\) prel. \(+ \, U_n\) is dense)}\]
         \[
             \Rightarrow \overline{B_{r_n}(x_n)} \subset \underset{\begin{array}{l}\text{\small{all these balls}} \\ \text{\small{are included in}} \\
             \displaystyle{B_{r_0}(x_0)}\end{array}}{(U_n \cap B_{r_{n-1}}(x_{n-1}))}
@@ -165,9 +164,12 @@ Then \(I\) is uncountable.
     By (PB), every \(x \in X\) stays in some \(C_n\): \(X = \cup_{n=1}^\infty C_n\). 
     Since \(X\) is Banach, by the Baire theorem it is necessary that \(\exists \; n_0 \in \natural\) s.t. \(\interior{C_{n_0}} \neq \emptyset \Rightarrow\) a ball \(\overline{B_r(x_0)} \subset C_{n_0}\): then
     \[
-        n_0 \geq \norm{T(x_0 + rz)}_Y \overset{\text{\tiny{linearity}}}{=} \norm{Tx_0 + rTz}_Y \overset{\text{\tiny{triangle ineq}}}{\leq} r\norm{Tz}_Y - \norm{Tx_0}_Y \quad \forall \; T \in \mathcal{F} \; \forall \; z \in \bar{B_1(0)}
+        \norm{T(x_0+rz)}_Y \leq n_0 \quad \forall \; z \in \overline{B_1(0)}
     \]
-    To sum up: \(\forall \; T \in \mathcal{F} \), \(\forall \; z \in \bar{B_1(0)}\) we have 
+    \[
+        \norm{T(x_0 + rz)}_Y \overset{\text{\tiny{linearity}}}{=} \norm{Tx_0 + rTz}_Y \overset{\text{\tiny{triangle ineq}}}{\leq} r\norm{Tz}_Y - \norm{Tx_0}_Y \quad \forall \; T \in \mathcal{F} \; 
+    \]
+    To sum up: \(\forall \; T \in \mathcal{F} \), \(\forall \; z \in \overline{B_1(0)}\) we have 
     \[
         r \norm{Tz}_Y - \norm{Tx_0}_Y \leq n_0 \Rightarrow \norm{Tz}_Y \leq \frac{1}{r}(n_0 + M_{x_0})
     \]

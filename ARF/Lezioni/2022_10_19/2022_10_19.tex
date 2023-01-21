@@ -62,10 +62,10 @@ Then \(f\) is differentiable a.e. on \([a,b]\) and \(F'(x) = f(x) \text{ a.e. in
     Given \(f : I \to \real\) is called \textbf{absolutely continuous} in \(I\), \(f \in AC(I)\), if \(\forall \; \epsilon >0 \; \exists \; \delta >0\)  
     s.t. 
     \[
-        \bigcup_{k=1}^n [a_x, b_x] \in I \text{ with disjoint interiors}
+        \bigcup_{k=1}^n [a_k, b_k] \in I \text{ with disjoint interiors}
     \] 
     \[
-        \lambda(\bigcup_{k=1}^n [a_x, b_x]) = \sum_{k=1}^n (b_x -a_x) < \delta
+        \lambda(\bigcup_{k=1}^n [a_k, b_k]) = \sum_{k=1}^n (b_k -a_k) < \delta
     \]
     \[
         \Rightarrow \sum_{k=1}^n \abs{f(b_k)-f(a_k)} < \epsilon
@@ -114,7 +114,7 @@ To prove the theorem we need the
     \]
 \end{theorem}
 \begin{proof}
-    We fix \(\epsilon > 0\). Let \(F_n := \left\{ \abs{f} < n \right\}\), \(n \in \mathbb{N}\). Also \(F_n \in \mathcal{M} \forall \; n\), \(F_n \subseteq F_{n+1}\) and 
+    We fix \(\epsilon > 0\). Let \(F_n := \left\{ \abs{f} < n \right\}\), \(n \in \mathbb{N}\). Also \(F_n \in \mathcal{M}\; \forall \; n\), \(F_n \subseteq F_{n+1}\) and 
     \[
         \bigcup_{n=1}^{\infty} F_n = \left\{ \abs{f} < \infty \right\} =: F
     \]
@@ -226,4 +226,4 @@ For step 2, is it useful to give the
         = \sup \lbrace \sum_{k=1}^n \abs{f(x_k)-f(x_{k-1})}:n \in \mathbb{N}, a=x_0 < x_1 < \dots <x_n = b \rbrace
     \]
 \end{definition}
-If \(V_a^b(f) < \infty\), we say that \(f\) is a function with bounded variation, \(f \in \) BV \(([a, b])\)
+If \(V_a^b(f) < \infty\), we say that \(f\) is a function with \textbf{bounded variation}, \(f \in \) BV \(([a, b])\)

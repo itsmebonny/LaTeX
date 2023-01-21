@@ -28,23 +28,23 @@ By the simple approximation theorem, we have that simple functions are dense in 
     \(\{\chi_{[-\alpha, \alpha]}: \alpha >0\} \subseteq L^{\infty}(\real, \mathcal{L}(\real), \lambda)\)
     \(\chi_\alpha = \chi_{[-\alpha, \alpha]}\)
 
-    This is an uncountable family of functions. \(\norm{\chi_\alpha - \chi_{\alpha'}}\) \(\forall \; \alpha \neq \alpha'\)
+    This is an uncountable family of functions. \(\norm{\chi_\alpha - \chi_{\alpha'}}_{\infty}=1\) \(\forall \; \alpha \neq \alpha'\), indeed
 
     \[
         \abs{\chi_\alpha(x) - \chi_{\alpha'}(x)} =
         \begin{cases}
-            0 & if x \in [-\alpha, \alpha] \cup (\alpha', \infty) \cup (-\infty, -\alpha')\\
-            1 & if x \in (\alpha, \alpha'] \cup [-\alpha', \alpha)    
+            0 & \text{if} x \in [-\alpha, \alpha] \cup (\alpha', \infty) \cup (-\infty, -\alpha')\\
+            1 & \text{if} x \in (\alpha, \alpha'] \cup [-\alpha', \alpha)    
         \end{cases}
     \]
 
     In particular, \(B_{\frac{1}{2}}(\chi_\alpha) \cap B_{\frac{1}{2}}(\chi_{\alpha '}) = \emptyset \) \(\forall \; \alpha \neq \alpha'\)
 
-    Assume by contradiction that \(L^\infty(\real)\) is separable: \(\exists Z \subset L^\infty\) which is countable and dense. In particular, \(\forall \; f \subset L^\infty\) \(\exists \; g \in Z\) s.t. 
+    Assume by contradiction that \(L^\infty(\real)\) is separable: \(\exists \; Z \subset L^\infty\) which is countable and dense. In particular, \(\forall \; f \subset L^\infty\) \(\exists \; g \in Z\) s.t. 
     \[
         \norm{g-f }_\infty < \frac{1}{2}
     \]
-    Therefore, \(\forall \; \alpha\) \(\exists g_\alpha \in B_{\frac{1}{2}}(\chi_\alpha) \cap Z\). 
+    Therefore, \(\forall \; \alpha\), \(\exists \;g_\alpha \in B_{\frac{1}{2}}(\chi_\alpha) \cap Z\). 
     But \( B_{\frac{1}{2}(\chi_\alpha) \cap B_\{\frac{1}{2}(\chi_{\alpha'})} = \emptyset \)
 
     \[
@@ -80,11 +80,11 @@ By the simple approximation theorem, we have that simple functions are dense in 
 \begin{itemize}
     \item \(L: \real^n \to \real\)  is a linear functional . Then \(\exists \; y \in \real^n\) s.t. 
     \[
-        Lx = <y, x> = (y, x) = y \cdot x
+        Lx = \langle y, x \rangle = (y, x) = y \cdot x
     \]
     In particular, then \(L\) is continuous on \(\real^n\) and bounded:
     \[
-        \abs{L_X} < \abs{<y,x>} \overset{\text{\tiny{Cauchy-Schwarz}}}{\leq} \norm{y} \norm{x} \qquad \forall\; x \in \real^n
+        \abs{L_X} < \abs{\langle y,x \rangle} \overset{\text{\tiny{Cauchy-Schwarz}}}{\leq} \norm{y} \norm{x} \qquad \forall\; x \in \real^n
     \]
     So \(L\) is bounded with \(M=\norm{y}\).
 
@@ -106,7 +106,7 @@ By the simple approximation theorem, we have that simple functions are dense in 
 \begin{definition}
     A subset \(\left\{ e_i \right\}_{i \in I}\) is called \textbf{Hamel basis} of \(X\) if 
     \[
-        \norm{e_i}_X = 1 \ \forall  \; i
+        \norm{e_i}_X = 1 \quad \forall  \; i
     \]
     and if every \(x \in X\) can be written in a unique way as 
     \[
@@ -118,9 +118,9 @@ If \(\dim X = \infty\) is not immediate that the Hamel basis exists. This can be
 
 Any normed space has a Hamel basis \(\dim X = \infty \Rightarrow \{e_i\}_{i \in I}\) has \(\infty\) many elements.
 
-Let then \((X, \normdot_X)\) be \(\infty \dim\), with Hamel basis \(\{e_i \}_{i \in I}\). \(I\) is infinite \(\Rightarrow I \supseteq \mathbb{N}\).
+\noindent Let then \((X, \normdot_X)\) be \(\infty -\dim\), with Hamel basis \(\{e_i \}_{i \in I}\). \(I\) is infinite \(\Rightarrow I \supseteq \mathbb{N}\).
 
-We define \(L:X \to \real\) in the following way 
+\noindent We define \(L:X \to \real\) in the following way 
 \[
     \begin{array}{ccccc}
         L e_0 = 0 & L e_1 = 1 & \dots & L e_n = n & \dots \\
@@ -131,13 +131,11 @@ Then, for \(x \in X\) we set
 \[
     Lx = L \left( \sum_{k=1}^n x_k e_{i_k} \right) = \sum_{k=1}^n x_k L e_{i_k}
 \]
- 
 \(L\) is linear by contradiction, and it is not bounded:
-
 \[
     \begin{array}{c}
         \abs{L e_n} = n \to \infty \quad \norm{e_n }_X = 1 \; \forall\, n \\
-        \frac{\abs{L e_n}}{\norm{e_n}_X} \to \infty \Rightarrow L \text{ L is not bounded}
+        \frac{\abs{L e_n}}{\norm{e_n}_X} \to \infty \Rightarrow L \text{ is not bounded}
     \end{array}
 \]
 \begin{remark}
@@ -165,7 +163,7 @@ For linear operators, boundedness and continuity are equivalent.
         \item \((2) \Rightarrow (1)\) obvious.
         \item \((1) \Rightarrow (3)\) Suppose by contradiction that \(T\) is not bounded. 
         
-        Then \(\exists \{ x_n \} \subset X \), \(x_n \neq 0\), s.t. 
+        Then \(\exists \; \{ x_n \} \subset X \), \(x_n \neq 0\), s.t. 
         \[
             \frac{\norm{T x_n}_Y}{\norm{x_n}_X} \geq n \quad \forall\; n
         \]
@@ -180,8 +178,11 @@ For linear operators, boundedness and continuity are equivalent.
             \norm{T z_n}_Y = \norm{T\left(\frac{x_n}{n \norm{x_n}_X}\right)} = \frac{1}{n \norm{x_n}_X} \norm{T x_n}_Y \geq 1 \ \forall\; n
         \]
         Contradiction.
-        \item \((2) \Rightarrow (2)\) 
-        We observe that \(\norm{Tx_1 - Tx_2}_Y = \norm{T(x_1 - x_2)}_Y \leq M \norm{x_1 - x_2}_X \) \(\forall \; x_1\) \(x_2 \in X\)
+        \item \((3) \Rightarrow (2)\) 
+        We observe that 
+        \[
+            \norm{Tx_1 - Tx_2}_Y = \norm{T(x_1 - x_2)}_Y \leq M \norm{x_1 - x_2}_X  \quad \forall \; x_1 \, x_2 \in X
+        \]
         Then, let \(x \in X \) and let \(x_n \to x\) in \(X\): \(\norm{x_n - x}_X \to 0\). But then
         \[
             \norm{T x_n - Tx}_Y \leq M \norm{x_n - x}_X \to 0
@@ -191,11 +192,9 @@ For linear operators, boundedness and continuity are equivalent.
 \end{proof}
 
 \begin{definition}
-    The set of linear operators \(T : X \to Y\) which are also bounded (continuous) is denoted by \(\mathcal{L}(X, Y)\)
-
-    If \(Y=X\), one simply writes \(\mathcal{L}(X)\)
+    The set of linear operators \(T : X \to Y\) which are also bounded (continuous) is denoted by \(\mathcal{L}(X, Y)\).    If \(Y=X\), one simply writes \(\mathcal{L}(X)\)
 \end{definition}
-This is a vector space. \( \forall T, S \in \mathcal{L}(X, Y) \), \(\forall\; \alpha, \beta \in \real:\)
+This is a vector space. \( \forall\; T,\, S \in \mathcal{L}(X, Y) \), \(\forall\; \alpha, \beta \in \real:\)
 \[
      (\alpha T + \beta S)(x) = \alpha Tx + \beta Sx \qquad \in \mathcal{L}(X, Y)
 \]
@@ -213,11 +212,11 @@ Also,
     \(X\) normed space, \(Y\) Banach space. Then \((\mathcal{L}(X, Y), \normdot_{\mathcal{L}(X, Y)})\) is a Banach space.
 \end{theorem}
 \begin{proof}
-    Let \(\{T_n\}\) be a Cauchy sequence in \(\mathcal{L}(X, Y)\). We want to show that \(\exists T \in \mathcal{L}(X, Y) \) s.t.
+    Let \(\{T_n\}\) be a Cauchy sequence in \(\mathcal{L}(X, Y)\). We want to show that \(\exists \; T \in \mathcal{L}(X, Y) \) s.t.
     \[
         \norm{T_n - T}_\mathcal{L} \to 0
     \]
-    \(\{T_n\}\) cauchy: \(\forall \; \epsilon >0 \) \(\exists \bar{n} \in \mathbb{N}\) s.t. 
+    \(\{T_n\}\) cauchy: \(\forall \; \epsilon >0 \) \(\exists \; \bar{n} \in \mathbb{N}\) s.t. 
     \[
         n, m > \bar{n} \Rightarrow \norm{T_n - T_m }_\mathcal{L} < \epsilon
     \]

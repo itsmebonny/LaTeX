@@ -3,7 +3,7 @@
 \subsection*{Hilbert Spaces}
 
 \begin{definition}
-    \(H\) vector space on \(\real\). A function \(p:H \times H \to \real\) is called scalar (or inner) product if it is positive definite, symmetric, and bilinear; namely if 
+    \(H\) vector space on \(\real\). A function \(p:H \times H \to \real\) is called \textbf{scalar (or inner) product} if it is positive definite, symmetric, and bilinear; namely if 
     \begin{enumerate}
         \item \(p(x, x) \geq 0\) \(\forall \; x \in H\) and \(p(x, x) = 0 \Rightarrow x=0\)
         \item \(p(x, y) = p(y, x)\) \(\forall \; x, y \in H\)
@@ -18,28 +18,28 @@ Notation: \(p(x, y) = \langle x, y \rangle = (x, y) = x \cdot y\)
 \end{definition}
 
 \begin{proposition}
-    \((H, \scalardot \) pre Hilbertian space.
+    \((H, \scalardot )\) pre Hilbertian space.
     \begin{itemize}
         \item Cauchy Schwarz inequality \[
-            \abs{<x, y>} \leq \sqrt{<x, x>} \sqrt{<y, y>} \quad \forall \; x, y \in H
+            \abs{\langle x, y\rangle} \leq \sqrt{\langle x, x\rangle} \sqrt{\langle y, y\rangle } \quad \forall \; x, y \in H
         \]
-        \item \(\sqrt{<x, x>} =: \norm{x}\) is a norm on \(H\)
+        \item \(\sqrt{\langle x, x \rangle} =: \norm{x}\) is a norm on \(H\)
     \end{itemize}
 \end{proposition}
 
 \((H, \scalardot \) pre Hilbert \(\to (H, \normdot)\) normed space \(\to (H, d)\) metric space where \(d(x, y) = \norm{x-y}\)
 
 \begin{definition}
-    We say that \(H, \scalardot\) is a Hilbert space if \((H, \normdot)\) is a Banach space. (namely, if \((H, d)\) is a complete metric space)
+    We say that \((H, \scalardot)\) is a Hilbert space if \((H, \normdot)\) is a Banach space. (namely, if \((H, d)\) is a complete metric space)
 \end{definition}
 
 Examples:
 \begin{itemize}
-    \item \(\real^n\), \(<x, y> = \sum_{i=1}^n x_i y_i\)
+    \item \(\real^n\), \(\langle x, y\rangle = \sum_{i=1}^n x_i y_i\)
     \item \(L^2(X, \mathcal{M}, \mu)\) \((X, \mathcal{M}, \mu)\) complete measure space. 
     
-    \(<f, g> = \int_X fg \, d\mu\). \(\norm{f} = (\int_X f^2 \, d\mu)^\frac{1}{2} = \norm{f}_2\). \((L^2(X), \normdot_2)\) is a Banach space \(\Rightarrow (L^2(X), \scalardot)\) is a Hilbert space.
-    \item \(l^2\) is a Hilbert space. \(<x, y> = \sum_{k=1}^\infty x^{(k)} y^{(k)}\), \(x = (x^{(k)})\), \(y = (y^{(k)})\)
+    \(\langle f, g\rangle = \int_X fg \, d\mu\). \(\norm{f} = (\int_X f^2 \, d\mu)^\frac{1}{2} = \norm{f}_2\). \((L^2(X), \normdot_2)\) is a Banach space \(\Rightarrow (L^2(X), \scalardot)\) is a Hilbert space.
+    \item \(l^2\) is a Hilbert space. \(\langle x, y\rangle = \sum_{k=1}^\infty x^{(k)} y^{(k)}\), \(x = (x^{(k)})\), \(y = (y^{(k)})\)
     \item \((\mathcal{C}^0([a, b]), \scalardot )\) is a pre Hilbertian space. \((\mathcal{C}^0([a, b]), \normdot_2 )\) is not a Banach space. 
 \end{itemize}
 
@@ -82,14 +82,14 @@ Recall:
     \[
         \langle f-h, g-h \rangle \leq 0 \quad \forall \; g \in S \tag*{*}
     \]
-    namely \(h\) is the projection of \(f \) on \(S\) (\(f\) satisfies (1)) \(\iff (*) holds\)
+    namely \(h\) is the projection of \(f \) on \(S\) (\(f\) satisfies (1)) \(\Leftrightarrow (*) \) holds
 \end{theorem}
 \begin{remark}
     \(h\) satisfies 1: \(h\) is the projection of \(f\) on \(S\), \(h = P_S f\)
 \end{remark}
 \begin{proof}
     Only of the existence of \(h\). \\
-    \(S \subset H\). \(dist(f, S) >0\) \((f \notin S )\). \(\exists \{v_n\} \subset S\) s.t. 
+    \(S \subset H\). \(dist(f, S) >0\) \((f \notin S )\). \(\exists \; \{v_n\} \subset S\) s.t. 
     \[
         \norm{v_n -f} \to d := dist(f, S)    
     \] 
@@ -119,7 +119,7 @@ Recall:
     
     Namely \(\{v_n\}\) is Cauchy. Since \((H, \normdot)\) is Banach, \(\exists \; v \in H\) s.t. \(v_n \to v\). \(v \in S\), since \(S\) is closed. And, by continuity, 
     \[
-        \norm{f-v} = lim_n \norm{f - v_n} = d
+        \norm{f-v} = \lim_n \norm{f - v_n} = d
     \]
     So \(v\) is the desired \(h\).
     
@@ -138,15 +138,15 @@ Recall:
 \begin{remark}
     A particular case: \(S\) closed subspace (it is always convex). In this case, the variational inequality becomes an equality:
     \[
-        h = P_S f \iff \langle f-h, g\rangle = 0 \quad  \forall \; g \in S
+        h = P_S f \Leftrightarrow \langle f-h, g\rangle = 0 \quad  \forall \; g \in S
     \]
 \end{remark}
 
 \(H\) Hilbert space. 
 \begin{definition}
-    \(S \subset H\) subset. We define the orthogonal complement of \(S\) as 
+    \(S \subset H\) subset. We define the \textbf{orthogonal complement} of \(S\) as 
     \[
-        S^\perp = \{ x \in H: <x, y> = 0 \quad \forall\; y \in S\}
+        S^\perp = \{ x \in H:  \langle x, y\rangle = 0 \quad \forall\; y \in S\}
     \]
 \end{definition}
 Ex: \(S^\perp \) is always a closed subspace of \(H\)
@@ -157,7 +157,7 @@ Ex: if \(S\) is a subspace, then \(S \cap S^\perp = \{0\}\)
     \[
         \forall \; v \in V, \quad w \in W: v \perp w
     \]
-    We can define the orthogonal sum of \(V\) and \(W\) as 
+    We can define the \textbf{orthogonal sum} of \(V\) and \(W\) as 
     \[
         V \oplus W = \{ v+w : v \in V, w \in W \}
     \]

@@ -112,7 +112,7 @@ Let \(X, Y\) be normed spaces.
     \]
     Thus 
     \[
-        \norm{x_n - x}_X + \norm{Tx_n - Tx} \to 0
+        \norm{x_n - x}_X + \norm{Tx_n - Tx}_Y \to 0
     \]
     This proves that \((X, \normdot_*)\) is a Banach space. Also, we know that 
     \[
@@ -142,7 +142,7 @@ Since \(\real\) is a Banach space, the dual space \(X^*\) is a Banach space with
 \begin{itemize}
     \item In \(\real^n\), only linear functional is separated by a scalar product:
         \[
-            L : \real^n \to \real \mbox{ is linear } \Rightarrow \exists ! \; y \in \real^n \mbox{ s.t. } Lx = <y,x>
+            L : \real^n \to \real \mbox{ is linear } \Rightarrow \exists ! \; y \in \real^n \mbox{ s.t. } Lx = \langle y,x \rangle
         \]
         It can be proved that 
         \[
@@ -157,7 +157,7 @@ Since \(\real\) is a Banach space, the dual space \(X^*\) is a Banach space with
     
     \(\left(X, \mathcal{M}, \mu\right)\) measure space. \(p \in \left[1, \infty\right]\), \(p'\) conjugate exponent.
     \[
-        \frac{1}{p} + \frac{1}{p'} = 1 \iff 
+        \frac{1}{p} + \frac{1}{p'} = 1 \Leftrightarrow 
         \begin{cases}
             \begin{array}{ll}
                 p' = \frac{p}{p-1} & p \in (1, \infty) \\
@@ -168,7 +168,7 @@ Since \(\real\) is a Banach space, the dual space \(X^*\) is a Banach space with
     \]
     For \(g \in L^{p'}(X)\), define \(L_g : L^p(X) \to \real\) by
     \[
-        l_g f := \int_X fg \, d\mu \qquad \forall \; f \in L^p(\Omega)
+        L_g f := \int_X fg \, d\mu \qquad \forall \; f \in L^p(\Omega)
     \]
     This is well defined, by the Holder inequality:
     \[

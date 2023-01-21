@@ -69,7 +69,7 @@ This is a norm in \(\mathcal{C}^0\), but these norms are not equivalent.
 \subsection*{Separability}
 \((X, d)\) metric space. 
 \begin{definition}
-    We say that \(X\) is separable if \(\exists \; A \in X\) which is dense (\(\bar{A} = X\)) and countable 
+    We say that \(X\) is separable if \(\exists \; A \subset X\) which is dense (\(\bar{A} = X\)) and countable 
 \end{definition}
 In \(\real^n\), \(\mathbb{Q}^n\) which is dense and countable. In \(\infty-\dim\) we can have separable spaces or not. 
 
@@ -98,7 +98,7 @@ If \(\dim X = \infty\), then only `\(\Rightarrow\)' is true. In finite dimension
 \]
 What happens now if \((X, \normdot)\) is on \(\infty-\dim\) normed space?
 \begin{theorem}[Riesz's theorem]
-    \(X\) normed space, \(\dim X = +\infty\) \(\Rightarrow \bar{B}_1(0)\) is not compact
+    \(X\) normed space, \(\dim X = +\infty\) \(\Rightarrow \overline{B_1(0)}\) is not compact
 \end{theorem}
 \begin{remark}
     It is well known that if \(E \in \real^n\) is compact, then \(\forall \; \left\{ x_n \right\} \in E \) \(\exists \; \left\{ x_{n_k} \right\}\) subsequence s.t. \(x_{n_k} \to x \in E\).  
@@ -113,7 +113,7 @@ The proof of the Riesz's theorem is based on the Riesz's \textbf{quasi-orthogona
     \]
 \end{lemma}
 \begin{proof}
-    Of the Riesz's Theorem. Assume that \(\bar{B}_1(0)\) is compact, and \(X \) has infinite dimension. 
+    Of the Riesz's theorem. Assume that \(\overline{B_1(0)}\) is compact, and \(X \) has infinite dimension. 
 
     \(\exists\) a sequence \(\{E_n\}\) of finite dimensional subspaces (hence closed) of \(X\) s.t. 
     \[
@@ -132,7 +132,7 @@ The proof of the Riesz's theorem is based on the Riesz's \textbf{quasi-orthogona
         \norm{u_n-u_m} \geq \frac{1}{2} \qquad \forall\; n \neq m
     \]
     \(\Rightarrow\) this sequence cannot have any convergent subsequence. 
-    But then \(\bar{B}_1(0) \supseteq \{u_n\}\), this implies that \(\bar{B}_1(0)\) is not compact.
+    But then \(\overline{B_1(0)} \supseteq \{u_n\}\), this implies that \(\overline{B_1(0)}\) is not compact.
     Contradiction.
 
     (In any \(\left(X, \normdot\right)\) normed space, if \(E\) is compact, 
