@@ -80,10 +80,10 @@ Ex: \(f, g : X \to [0, +\infty]\). Then
     \noindent\underline{\(\nu\) is a measure}:  
 
     \(\nu(\emptyset) = 0\), since \(\mu(\emptyset) = 0\). 
-    Now, let \(E = \bigcup_{n=1}^{\infty} E_k\), \(\left\{ E_k \right\}\) disjoint. Then 
+    Now, let \(E = \bigcup_{k=1}^{\infty} E_k\), \(\left\{ E_k \right\}\) disjoint. Then 
     \[
         \nu(E) = \int_X \oldphi\chi_{E} \, d\mu = \int_X \oldphi\sum_n \chi_{E_n} \, d\mu \underset{\begin{array}{l} \text{\scriptsize{monot. conv.}} \\ 
-            \text{\scriptsize{for }}\textstyle\sum\end{array}}{=}  \sum_n \int_X \oldphi \chi_{E_n} \, d\mu = \sum_n \int_X \oldphi \, d\mu = \sum_n \nu(E_n) 
+            \text{\scriptsize{for }}\textstyle\sum\end{array}}{=}  \sum_n \int_X \oldphi \chi_{E_n} \, d\mu = \sum_n \int_{E_n} \oldphi \, d\mu = \sum_n \nu(E_n) 
     \]
     We have proven \(\sigma\) additivity, so \(\nu\) is a measure.
 
