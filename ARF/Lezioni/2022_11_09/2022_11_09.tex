@@ -14,7 +14,7 @@ We introduced \(L^p(X, \mathcal{M}, \mu)\), and we proved that this is a normed 
     \]
     Meaning that any \(f \in L^q\) is also in \(L^p\). More precisely, \(\exists \; C > 0\) depending on \(\mu(X), p, q\) s.t.
     \[
-        \norm{f}_p \leq \norm{f}_q \quad f \in L^q(X)
+        \norm{f}_p \leq C \norm{f}_q \quad f \in L^q(X)
     \]
 \end{theorem}
 \begin{proof}
@@ -72,7 +72,8 @@ Without assumptions on \(\mu(X)\), in general one has the interpolation inequali
     For \(1 \leq p \leq \infty\), \(L^p(X, \mathcal{M}, \mu)\) is a Banach space (with reference to \(\normdot_p\))
 \end{theorem}
 \begin{proof}
-    \item \(p < \infty\)
+    \item \(p < \infty\).
+    
     By using the characterization of completeness with the series, we want to show that 
     if \(\{f_n\} \subseteq L^p(X)\), and \(\sum_{k=1}^\infty\norm{f_k}_p < \infty \Rightarrow \sum_{k=1}^\infty f_k \) is convergent in \(L^p\), 
     namely \(s_n = \sum_{k=1}^n f_k\) has a limit in \(L^p\): \(\norm{s_n -s}_p \to 0 \) as \(n \to \infty\). 

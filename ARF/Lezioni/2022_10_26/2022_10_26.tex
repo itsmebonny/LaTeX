@@ -17,7 +17,7 @@ It can be proved that if two norms are equivalent they lead to different metric 
 \end{remark}
 \noindent\underline{Preliminary fact}: The set \(S_1 = \left\{ s \in \real^n : \norm{x}_1  = 1\right\}\) is compact in \((\real^n, d)\)
 \begin{proof}
-    We show that any norm is equivalent to \(\normdot_1\)
+    We show that any norm is equivalent to \(\normdot_1 = \sum_{i=1}^n \abs{x_i}\)
     \[
         x = \sum_{i=1}^n x_i e_i \qquad \left\{ e_i \right\}_{i= 1,\ldots, n} \mbox{ canonical basis}
     \]
@@ -56,7 +56,7 @@ It can be proved that if two norms are equivalent they lead to different metric 
         \frac{y}{\norm{y}_1} \in S_1 
         \Rightarrow \norm{\frac{y}{\norm{y}_1}}_* \geq m 
         \Rightarrow \frac{1}{\norm{y}_1} \norm{y}_* \geq m 
-        \Rightarrow \norm{y}_*m\geq m \norm{y}_1 \quad \forall \; y \in \real^n 
+        \Rightarrow \norm{y}_* \geq m \norm{y}_1 \quad \forall \; y \in \real^n 
     \]
 \end{proof}
 If \(\dim X = +\infty\), then there are many non-equivalent norms.
