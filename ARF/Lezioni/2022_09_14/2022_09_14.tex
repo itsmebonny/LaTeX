@@ -126,21 +126,17 @@ Counterexample: given \((\mathbb{N}, \mathcal{P}(\mathbb{N}), \mu_C)\) measure s
 \begin{proof}
     \(E_1, E_2 \in \mathcal{M}\) and also \(E_1 \cup E_2 = E_1 \cup (E_2 \setminus E_1)\) disjoint sets.
     \[
-        \mu(E_1 \cup E_2) = \mu(\underbrace{E_2 \setminus E_1}_{\subseteq E_2}) \overset{(monotonicity)}{\leq} \mu(E_1) + \mu(E_2)
+        \mu(E_1 \cup E_2) = \mu(E_1) + \mu(\underbrace{E_2 \setminus E_1}_{\subseteq E_2}) \overset{(monotonicity)}{\leq} \mu(E_1) + \mu(E_2)
     \]
     that means that we have the subadditivity for finitely many sets.
+
+    \noindent Given \(
+        A = \bigcup_{n=1}^{\infty} E_n, A_k = \bigcup_{n = 1}^{k} E_n,
+        \left\lbrace A_k \right\rbrace \nearrow, \; A_{k+1} \supseteq A_k, \; \lim_k A_k = A:
+    \)
     \[
-        A = \bigcup_{n=1}^{\infty} E_n, \quad A_k = \bigcup_{n = 1}^{k} E_n
-    \]
-    \[
-        \left\lbrace A_k \right\rbrace \nearrow, \; A_{k+1} \supseteq A_k, \; \lim_k A_k = A
-    \]
-    \[
-        \mu\left(\bigcup_{n = 1}^{\infty} E_n\right) \overset{(continuity)}{=} \lim_k \mu(A_k) = \lim_k \mu \left(\bigcup_{n=1}^{k} E_n\right) \leq
-        \]
-        \[
-            \leq \lim_k \sum_{n=1}^k \mu(E_n) = \sum_{n = 1}^{\infty} \mu(E_n)
-        \]
+        \mu\left(\bigcup_{n = 1}^{\infty} E_n\right) \overset{(continuity)}{=} \lim_k \mu(A_k) = \lim_k \mu \left(\bigcup_{n=1}^{k} E_n\right) \leq \lim_k \sum_{n=1}^k \mu(E_n) = \sum_{n = 1}^{\infty} \mu(E_n)
+\]
 \end{proof}
 Exercise: \((X, \mathcal{M})\) measurable space. \(\mu : \mathcal{M} \to [0, +\infty]\) s.t. \(\mu\) is finitely additive, \(\sigma\)-subadditive and \(\mu(\emptyset) = 0\) \(\Rightarrow\) \(\mu\) is \(\sigma\)-additive, and hence is a measure.  
 
