@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.9.15)  2 FEB 2023 14:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2022.9.15)  1 FEB 2023 19:22
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/home/bonni/Documents/LaTeX/ARF/ARF.tex
-(/home/bonni/Documents/LaTeX/ARF/ARF.tex
+**/home/bonni/Documents/LaTeX/SDA/ExamQuestion.tex
+(/home/bonni/Documents/LaTeX/SDA/ExamQuestion.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2022-01-21> (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
@@ -315,8 +315,8 @@ Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
 \c@remark=\count293
 \c@lemma=\count294
 \c@definition=\count295
- (./ARF.aux)
-\openout1 = `ARF.aux'.
+ (./ExamQuestion.aux)
+\openout1 = `ExamQuestion.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 89.
 LaTeX Font Info:    ... okay on input line 89.
@@ -349,9 +349,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 89.
 LaTeX Info: Redefining \pageref on input line 89.
 LaTeX Info: Redefining \nameref on input line 89.
- (./ARF.out) (./ARF.out)
+ (./ExamQuestion.out) (./ExamQuestion.out)
 \@outlinefile=\write3
-\openout3 = `ARF.out'.
+\openout3 = `ExamQuestion.out'.
 
 
 *geometry* driver: auto-detecting
@@ -416,23 +416,28 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 94.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./Lezioni/2022_09_12/2022_09_12.tex [2] [3] [4] [5]) (./Lezioni/2022_09_14/2022_09_14.tex [6] [7] [8]) (./Lezioni/2022_09_15/2022_09_15.tex [9] [10] [11]) (./Lezioni/2022_09_21/2022_09_21.tex [12] [13] [14]) (./Lezioni/2022_09_22/2022_09_22.tex [15] [16] [17]) (./Lezioni/2022_09_29/2022_09_29.tex [18] [19] [20] [21]) (./Lezioni/2022_10_05/2022_10_05.tex [22] [23] [24] [25]) (./Lezioni/2022_10_06/2022_10_06.tex [26] [27] [28] [29]) (./Lezioni/2022_10_12/2022_10_12.tex [30] [31] [32]) (./Lezioni/2022_10_13/2022_10_13.tex [33] [34]) (./Lezioni/2022_10_19/2022_10_19.tex [35] [36] [37] [38]) (./Lezioni/2022_10_20/2022_10_20.tex [39] [40] [41] [42]) (./Lezioni/2022_10_26/2022_10_26.tex [43] [44] [45]) (./Lezioni/2022_10_27/2022_10_27.tex [46] [47] [48]) (./Lezioni/2022_11_09/2022_11_09.tex [49] [50] [51] [52]) (./Lezioni/2022_11_10/2022_11_10.tex [53] [54] [55] [56]) (./Lezioni/2022_11_16/2022_11_16.tex [57] [58] [59]) (./Lezioni/2022_11_17/2022_11_17.tex [60] [61] [62] [63] [64]) (./Lezioni/2022_11_23/2022_11_23.tex [65] [66] [67] [68]) (./Lezioni/2022_11_24/2022_11_24.tex [69] [70] [71] [72]) (./Lezioni/2022_11_30/2022_11_30.tex [73] [74] [75] [76]) (./Lezioni/2022_12_01/2022_12_01.tex [77] [78] [79]) (./Lezioni/2022_12_14/2022_12_14.tex [80] [81] [82] [83] [84] [85]) (./Lezioni/2022_12_15/2022_12_15.tex [86] [87] [88]) [89] [90] (./ARF.aux)
-Package rerunfilecheck Info: File `ARF.out' has not changed.
-(rerunfilecheck)             Checksum: 1A1334F4F6F3846D28BA55C7FC097717;3294.
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+Overfull \hbox (0.84087pt too wide) in paragraph at lines 95--95
+[]\OT1/cmr/bx/n/17.28 Which are the four ap-proaches to tame ve-loc-ity? Com-
+ []
+
+[2] (./ExamQuestion.aux)
+Package rerunfilecheck Info: File `ExamQuestion.out' has not changed.
+(rerunfilecheck)             Checksum: 2AA5D2EF527FE71F8DFC70272D97ADE1;487.
  ) 
 Here is how much of TeX's memory you used:
- 12300 strings out of 478287
- 188539 string characters out of 5849289
- 486847 words of memory out of 5000000
- 29671 multiletter control sequences out of 15000+600000
- 486518 words of font info for 90 fonts, out of 8000000 for 9000
+ 11490 strings out of 478287
+ 176831 string characters out of 5849289
+ 469897 words of memory out of 5000000
+ 29531 multiletter control sequences out of 15000+600000
+ 476159 words of font info for 53 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 68i,15n,77p,706b,515s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0700.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on ARF.pdf (90 pages, 588099 bytes).
+ 68i,6n,77p,566b,325s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb>
+Output written on ExamQuestion.pdf (2 pages, 48455 bytes).
 PDF statistics:
- 1164 PDF objects out of 1200 (max. 8388607)
- 1015 compressed objects within 11 object streams
- 556 named destinations out of 1000 (max. 500000)
- 193 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 43 PDF objects out of 1000 (max. 8388607)
+ 30 compressed objects within 1 object stream
+ 4 named destinations out of 1000 (max. 500000)
+ 9 words of extra memory for PDF output out of 10000 (max. 10000000)
 
