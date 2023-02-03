@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1675344996 "/home/bonni/Documents/LaTeX/ARF/ARF.tex" "ARF.pdf" "ARF" 1675344998
+["pdflatex"] 1675420125 "/home/bonni/Documents/LaTeX/ARF/ARF.tex" "ARF.pdf" "ARF" 1675420127
   "/etc/texmf/web2c/texmf.cnf" 1663235487 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/bonni/Documents/LaTeX/ARF/ARF.tex" 1673866057 3425 0ed0391517db9edfe4df0d43d0520bb9 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -137,12 +137,12 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1663245285 4379155 98693266ff65f58d9f98aff394de12d2 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1663245305 2799600 82c7499e2bbeaef077fd78ca2cedfab0 ""
-  "ARF.aux" 1675344998 3498 acefa8a9f9411e8f461a6138aaeea116 "pdflatex"
-  "ARF.out" 1675344998 3294 1a1334f4f6f3846d28ba55c7fc097717 "pdflatex"
+  "ARF.aux" 1675420127 3498 acefa8a9f9411e8f461a6138aaeea116 "pdflatex"
+  "ARF.out" 1675420127 3294 1a1334f4f6f3846d28ba55c7fc097717 "pdflatex"
   "ARF.tex" 1673866057 3425 0ed0391517db9edfe4df0d43d0520bb9 ""
   "Lezioni/2022_09_12/2022_09_12.tex" 1675074956 11514 c46636be3cd9b9189046d6e2b2d81aae ""
   "Lezioni/2022_09_14/2022_09_14.tex" 1675344996 10464 88b6b71117ff253bf2d96b401b38fd22 ""
-  "Lezioni/2022_09_15/2022_09_15.tex" 1674299193 7820 65ea2e083a94d29321bd4490ea694fca ""
+  "Lezioni/2022_09_15/2022_09_15.tex" 1675420125 7820 28e6a384e7c4e2c46eda3d0f59fd561d ""
   "Lezioni/2022_09_21/2022_09_21.tex" 1673882370 9832 8f0156fb30f272f26aaf5d82bef031d3 ""
   "Lezioni/2022_09_22/2022_09_22.tex" 1674834832 9150 93cca0380d66ddd11a401f54230e8610 ""
   "Lezioni/2022_09_29/2022_09_29.tex" 1674299193 10767 5178a31350602a16abd69a2a3874fd72 ""

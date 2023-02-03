@@ -92,10 +92,18 @@
 \date{\today}
 \maketitle
 \newpage
-\section{Which are the four approaches to tame velocity? Compare and contrast two of them.}
+\section{Which are the three approaches to tame velocity? Compare and contrast two of them.}
 \begin{itemize}
-    \item Data Stream Management Sistems (DSMS): work with data streams, like unbounded sequences of time-varying data elements, similar to a continuous flow of information. These data are then analyzed with queries over streams that are observed through windows.
-    \item Time Series Database: sequence of data elements, like readings from a temperature sensor.
-    \item Event-Based Systems: systems that emit and consume events. Made of components
+    \item Data Stream Management Sistems (DSMS): work with data streams, like unbounded sequences of time-varying data elements, similar to a continuous flow of information. These data are then analyzed with queries over streams that are observed through windows. It has an absolute notion of time, and recency matters.
+    \item Complex Event Processing.
+    \item Event-Based Systems: systems that emit and consume events, which are immutale entities that represent the smallest possible piece of information that gets managed by the system. The event gets consumed by the system asynchronously, decoupling the emission and consumption process. 
 \end{itemize}
+\section{Which are the three time-models we introduced? List them all before comparing and contrasting two of them}
+The three time models are 
+\begin{itemize}
+  \item Stream only time model.
+  \item Absolute time model.
+  \item Interval based time model.
+\end{itemize}
+In a stream only time model, the time is scanned by the arrival of data items
 \end{document}
