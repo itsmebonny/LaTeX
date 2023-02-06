@@ -31,7 +31,7 @@ We will mainly focus on 2 situations:
     The proof is divided in:
     \begin{enumerate}
         \item \(f\) is continuous \(\Leftrightarrow f^{-1}(A)\) is open \(\forall \; A \subset Y\)
-        open \(\Rightarrow\) \(f^{-1}(A) \in \mathcal{B}(Y) \; \forall \; A \subset Y\) open
+        open \(\Rightarrow\) \(f^{-1}(A) \in \mathcal{B}(Y) \; \forall \; A \subset Y\) open.
         Since \(\mathcal{B}(Y) = \sigma_0 \; (\mbox{open sets})\) by proposition \((1)\) this implies that \(f\) is Borel measurable
         \item \(f\) is continuous \(\overset{(1)}{\Rightarrow}\) \(f\) is Borel measurable.
         \(f^{-1}(A) \in \mathcal{B}(\real^n) \subseteq \mathcal{L}(\real^n) \forall \; A \in \mathcal{B}(Y)\). Namely \(f\) is Lebesgue measurable
@@ -147,16 +147,19 @@ If we write \(g_n(x) = \sup_{k \geq n} f_k(x)\), then
 Moreover if f is bounded then \(s_n \to f\) uniformly on \(X\) as \(n \to \infty\)
 \end{theorem}
 
-\begin{proof}[proof - for f bounded]
-    Fix \(n \in \mathbb{N}\) and divide \([0,n)\) in \(n \cdot 2^n\) intervals called \(I_j = [a_j,b_j)\) with length \(\frac{1}{2^n}\)
+\begin{proof}[Proof - For \(f\) bounded]
+    Fix \(n \in \mathbb{N}\) and divide \([0,n)\) in \(n \cdot 2^n\) intervals called \(I_j = [a_j,b_j)\) with length \(\frac{1}{2^n}\).
 
-    Let \(E_0 = f^{-1}([n, +\infty)), E_j = f^{-1}([a_j, b_j))\) for \(j = 1, \ldots, n\cdot 2^n\)
-    
-    We let \(\begin{array}{cc}
+\noindent
+    Let \(E_0 = f^{-1}([n, +\infty)), E_j = f^{-1}([a_j, b_j))\) for \(j = 1, \ldots, n\cdot 2^n\). We let 
+    \[
+    \begin{array}{cc}
         s_n(x) = a_j & \mbox{for } x \in E_j \\
         s_n(x) = n & \mbox{for } x \in E_0
-    \end{array}\)
+    \end{array}
+    \]
 
+    \noindent
     Namely we define the simple function \(s_n\) as
     \[
     s_n (x) = n\chi_{E_0}(X) + \sum_{j =1}^{n \cdot 2^n} a_j \chi_{E_j}(x)    
