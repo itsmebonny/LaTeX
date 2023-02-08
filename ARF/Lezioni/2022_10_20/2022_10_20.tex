@@ -59,7 +59,7 @@ We can now come back to the proof of Lemma 1 of the last lesson.
     We defined \(\lambda\) starting from two properties
     \begin{itemize}
         \item invariance under translations
-        \item \(\lambda((x,y)) = y - x\) \(\forall \; a \leq < y \leq b\)
+        \item \(\lambda((x,y)) = y - x \quad \forall \; a \leq  y \leq b\)
     \end{itemize}
     Now, \(G\) is monotone, say \(G\) increasing (if \(G \searrow\), take \(-G\)). We can repeat the construction of \(\lambda\) in order to obtain a measure \(\mu\) s.t. 
     \begin{itemize}
@@ -195,8 +195,9 @@ Normed spaces and Banach spaces
 \noindent\underline{Examples}:
 
 \begin{itemize}
-    \item \(\real^N, \norm{x}_p := (\sum_{i = 1}^N \abs{x_i}^p)^{\frac{1}{p}}\) \(\forall p \in [1, +\infty)\)
+    \item \(\real^N\)
     \[
+        \norm{x}_p := (\sum_{i = 1}^N \abs{x_i}^p)^{\frac{1}{p}} \; \; \forall p \in [1, +\infty) \quad
         \norm{x}_{\infty} := \max_{i = 1, \ldots, N} \abs{x_i}
     \]
     \item \(\mathcal{C}^0([a,b])\) \[\norm{f}_{\infty} := \max_{x \in [a,b]} \abs{f(x)}\]
