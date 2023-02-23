@@ -1,0 +1,108 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hhline}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{bm}
+\usepackage[margin=2cm]{geometry}
+
+\usepackage{amsthm}
+
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{physics}
+\usepackage{textcomp}
+\setlength\parindent{0pt}
+
+\newlength\mylength
+\setlength\mylength{0.1cm}
+\newcolumntype{Y}{>{\Centering\arraybackslash}X}
+
+\AtBeginEnvironment{array}{\everymath{\displaystyle}}
+\newtheoremstyle{break}
+  {\partopsep}{\topsep}%  
+  {\normalfont}{}
+  {\bfseries}{}%
+  {\newline}{}%
+  \theoremstyle{break}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{lemma}{Lemma}[section]
+\renewcommand*{\proofname}{\textbf{Proof}}
+\renewcommand\qedsymbol{$\bigstar$}
+\renewcommand*{\grad}{\nabla}
+\renewcommand*{\div}{\text{div}}
+\newtheorem{definition}{Definition}[section]
+\renewcommand\labelenumi{(\theenumi)}
+\newcommand{\vect}[1]{\textbf{#1}}
+
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+\let\oldepsilon\epsilon
+\let\epsilon\varepsilon
+\let\oldphi\phi
+\let\phi\varphi
+
+\newcommand*{\txt}[1]{\text{#1}}
+
+\newcommand{\ind}{\perp\!\!\!\!\perp} 
+\newcommand{\measurespace}{(X, \mathcal{M}, \mu)}
+\newcommand{\sigalg}{\sigma\mbox{-algebra}}
+\newcommand{\boreal}{\mathcal{B}(\mathbb{R})}
+\renewcommand{\real}{\mathbb{R}}
+\renewcommand{\natural}{\mathbb{N}}
+\newcommand{\barreal}{\overline{\mathbb{R}}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\xdownarrow}[1]{%
+  {\left\downarrow\vbox to #1{}\right.\kern-\nulldelimiterspace}
+}
+\newcommand{\xuparrow}[1]{%
+  {\left\uparrow\vbox to #1{}\right.\kern-\nulldelimiterspace}
+}
+\newcommand{\arrvline}{\hfil\kern\arraycolsep\vline\kern-\arraycolsep\hfilneg}
+\newcommand{\esssup}{\text{ess}\, \text{sup}}
+\newcommand{\normdot}{\norm{\cdot}}
+\newcommand{\scalardot}{\langle \cdot,\cdot \rangle}
+\newcommand{\scalarproduct}[2]{\langle #1,#2 \rangle}
+
+\newcommand{\interior}[1]{%
+ {\kern0pt#1}^{\mathrm{o}}%
+}
+\def\stackbelow#1#2{\underset{\displaystyle\overset{\displaystyle\shortparallel}{#2}}{#1}}
+\def\stackbelowlittle#1#2{\underset{\textstyle\overset{\textstyle\shortparallel}{#2}}{#1}}
+
+
+
+\long\def\symbolfootnotemark[#1]#2{\begingroup%
+\def\thefootnote{\fnsymbol{footnote}}\footnotetext[#1]{#2}\footnotemark[#1]\endgroup}
+
+\long\def\symbolfootnotetext[#1]#2{\begingroup%
+\def\thefootnote{\fnsymbol{footnote}}\footnotetext[#1]{#2}\endgroup}
+
+
+\numberwithin{equation}{section}
+
+
+
+
+
+\begin{document}
+\title{Advanced Partial Differential Equations}
+\author{Andrea Bonifacio}
+\date{\today}
+\maketitle
+\newpage
+\section{Sobolev Spaces in \texorpdfstring{\(\real, \real^n\)}{R, Rn}}
+\subsection{Sobolev space}
+\(\mathcal{C}^k\) spaces are Banach, but not Hilbert spaces. So how can one apply Lax-Milgram?
+\begin{equation}
+    \begin{cases}
+        -u''+u = f & f \in \mathcal{C}^0([a,b]) \\
+        u(a) = u(b) = 0 
+    \end{cases}
+\end{equation}
+
+\end{document}

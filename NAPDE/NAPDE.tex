@@ -1,0 +1,213 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hhline}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{bm}
+\usepackage[margin=2cm]{geometry}
+
+\usepackage{amsthm}
+
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{physics}
+\usepackage{textcomp}
+\setlength\parindent{0pt}
+
+\newlength\mylength
+\setlength\mylength{0.1cm}
+\newcolumntype{Y}{>{\Centering\arraybackslash}X}
+
+\AtBeginEnvironment{array}{\everymath{\displaystyle}}
+\newtheoremstyle{break}
+  {\partopsep}{\topsep}%  
+  {\normalfont}{}
+  {\bfseries}{}%
+  {\newline}{}%
+  \theoremstyle{break}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{lemma}{Lemma}[section]
+\renewcommand*{\proofname}{\textbf{Proof}}
+\renewcommand\qedsymbol{$\bigstar$}
+\renewcommand*{\grad}{\nabla}
+\renewcommand*{\div}{\text{div}}
+\newtheorem{definition}{Definition}[section]
+\renewcommand\labelenumi{(\theenumi)}
+\newcommand{\vect}[1]{\textbf{#1}}
+
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+\let\oldepsilon\epsilon
+\let\epsilon\varepsilon
+\let\oldphi\phi
+\let\phi\varphi
+
+\newcommand*{\txt}[1]{\text{#1}}
+
+\newcommand{\ind}{\perp\!\!\!\!\perp} 
+\newcommand{\measurespace}{(X, \mathcal{M}, \mu)}
+\newcommand{\sigalg}{\sigma\mbox{-algebra}}
+\newcommand{\boreal}{\mathcal{B}(\mathbb{R})}
+\renewcommand{\real}{\mathbb{R}}
+\renewcommand{\natural}{\mathbb{N}}
+\newcommand{\barreal}{\overline{\mathbb{R}}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\xdownarrow}[1]{%
+  {\left\downarrow\vbox to #1{}\right.\kern-\nulldelimiterspace}
+}
+\newcommand{\xuparrow}[1]{%
+  {\left\uparrow\vbox to #1{}\right.\kern-\nulldelimiterspace}
+}
+\newcommand{\arrvline}{\hfil\kern\arraycolsep\vline\kern-\arraycolsep\hfilneg}
+\newcommand{\esssup}{\text{ess}\, \text{sup}}
+\newcommand{\normdot}{\norm{\cdot}}
+\newcommand{\scalardot}{\langle \cdot,\cdot \rangle}
+\newcommand{\scalarproduct}[2]{\langle #1,#2 \rangle}
+
+\newcommand{\interior}[1]{%
+ {\kern0pt#1}^{\mathrm{o}}%
+}
+\def\stackbelow#1#2{\underset{\displaystyle\overset{\displaystyle\shortparallel}{#2}}{#1}}
+\def\stackbelowlittle#1#2{\underset{\textstyle\overset{\textstyle\shortparallel}{#2}}{#1}}
+
+
+
+\long\def\symbolfootnotemark[#1]#2{\begingroup%
+\def\thefootnote{\fnsymbol{footnote}}\footnotetext[#1]{#2}\footnotemark[#1]\endgroup}
+
+\long\def\symbolfootnotetext[#1]#2{\begingroup%
+\def\thefootnote{\fnsymbol{footnote}}\footnotetext[#1]{#2}\endgroup}
+
+
+\numberwithin{equation}{section}
+
+
+
+
+
+\begin{document}
+\title{Numerical Analysis for Partial Differential Equations}
+\author{Andrea Bonifacio}
+\date{\today}
+\maketitle
+\newpage
+\section{Boundary Value Problems}
+Let's consider a problem 
+\begin{equation}
+    \begin{cases}
+        \mathcal{L}u = f & \text{in }\Omega \\
+        + \text{B.C.} & \text{on }\partial\Omega
+    \end{cases}
+\end{equation}
+\begin{itemize}
+    \item \(\Omega\): open bounded domain in \(\real^d\), with \(d = 2,3\)
+    \item \(\partial\Omega\): boundary of \(\Omega\)
+    \item \(f\): given 
+    \item B.C. accordingly to \(\mathcal{L}\)
+    \item \(\mathcal{L}\): \(2^{\text{nd}}\) order operator, like:
+    \begin{enumerate}
+        \item \(\mathcal{L}u = -\div(\mu\grad u) +\vect{b}\cdot\grad u + \sigma u\) {\hspace*{\fill} (non-conservative form)}
+        \item \(\mathcal{L}u = -\div(\mu \grad u) + \div(\vect{b}u) + \sigma u\) {\hspace*{\fill} (conservative form)}
+    \end{enumerate}
+    \begin{itemize}
+        \item \(\mu \in L^\infty(\Omega), \quad \mu(\vect{x})\geq \mu_0 > 0\) {\hspace*{\fill} uniformly bounded from below}
+        \item \(\vect{b} \in (L^\infty(\Omega))^d\) {\hspace*{\fill} transport term}
+        \item \(\sigma \in L^2(\Omega)\) {\hspace*{\fill} reaction term}
+        \item \(f \in L^2(\Omega)\) {\hspace*{\fill} can be less regular}
+    \end{itemize}
+\end{itemize}
+
+%\subsection*{Example}
+%Advection Diffusion Reaction Problem: 
+%\begin{equation*}
+%    \begin{cases}
+%        Lu = \overbrace{-\div (\mu\grad u)}^{\txt{diffusion}} + \overbrace{\vect{b} \cdot \grad u}^{\txt{advection}} + \overbrace{\sigma u}^{\txt{reaction}} = f & \txt{in }\Omega \\
+%        u = 0 & \txt{on }\Gamma_D\\
+%        \mu \grad u \cdot \vect{n} = g & \txt{on }\Gamma_N 
+%    \end{cases}
+%    \qquad\qquad
+%    \begin{array}{l}
+%        g \in L^2(\Gamma_N) \\
+%        \partial\Omega = \Gamma_D \cup \Gamma_N \\
+%        \interior{\Gamma_D} \cap \interior{\Gamma_N} = \emptyset
+%    \end{array}
+%\end{equation*}
+\subsection*{General elliptic problems}
+Consider 
+\begin{equation}
+    \begin{cases}
+        -\div(\mu \grad u)+ \vect{b}\cdot \grad u + \sigma u = f& \text{in } \Omega \\
+        u = 0 & \txt{on }\Gamma_D \\
+        \mu \grad u \cdot \vect{n} = g & \txt{on } \Gamma_N
+    \end{cases}
+    \qquad\qquad
+    \begin{array}{l}
+        g \in L^2(\Gamma_N) \\
+        \partial\Omega = \Gamma_D \cup \Gamma_N \\
+        \interior{\Gamma_D} \cap \interior{\Gamma_N} = \emptyset
+    \end{array}
+\end{equation}
+Suppose that \(f \in L^2(\Omega)\) and \(\mu, \sigma \in L^\infty(\Omega)\). Also suppose that \(\exists \; \mu_0 > 0 \txt{ s.t. } \mu(\vect{x}) \geq \mu_0\), and \(\sigma(\vect{x}) \geq 0\) a.e. on \(\Omega\).  
+Then, given a test function \(v\), we multiply the equation by \(v\), and integrate on the domain \(\Omega\)
+\begin{equation*}
+    \int_\Omega \left[-\div(\mu \grad u)+ \vect{b}\cdot \grad u + \sigma u\right] v \,  = \int_\Omega f v 
+\end{equation*}
+By applying Green's formula 
+\begin{equation*}
+    \underbrace{\int_\Omega \mu\grad u \cdot \grad v  + \int_\Omega \vect{b} \cdot \grad u v + \int_\Omega \sigma u v}_{=: a(u,v)} = \int_\Omega f v +\underbrace{\int_{\Gamma_D} \mu \grad u \cdot \vect{n} v}_{= 0 \txt{ if } v\vert_{\Gamma_D} = 0} + \int_{\Gamma_N} \underbrace{\mu \grad u \cdot \vect{n}}_{= g} v 
+\end{equation*}
+So the weak formulation of the problem is 
+\begin{equation}
+    \begin{cases}
+        \txt{Find } u \in V & V = \left\{v \in H^1(\Omega), v\vert_{\Gamma_D} = 0\right\} =: H^1_{\Gamma_D}(\Omega)\\
+        a(u,v) = \scalarproduct{F}{v} & \forall \; v \in V \label{Weak Formulation of Boundary Value Problems}
+    \end{cases}
+\end{equation}
+where \(a: V \times V \to \real\) is a bilinear form and \(F:V \to \real\) is a linear form s.t. \(\scalarproduct{F}{v} \equiv F(v) = \int_\Omega fv + \int_{\Gamma_N} gv\).
+\begin{theorem}[Lax-Milgram]
+    Assume that 
+    \begin{itemize}
+        \item \(V\) Hilbert space with \(\normdot\) and inner product \((\cdot, \cdot)\)
+        \item \(F \in V^*: \abs*{F(v)} \leq \norm*{F}_{V^*}\norm*{v} \; \forall \; v \in V\)
+        \item \(a\) continuous: \(\exists \; M > 0: \abs{a(u,v)} \leq M \norm*{u}\norm*{v} \; \forall \; u,v \in V\)
+        \item \(a\) coercive: \(\exists \; \alpha > 0: a(v,v) \geq \alpha\norm*{v}^2 \; \forall \; v \in V\)
+    \end{itemize}
+    Then, there exists a unique solution \(u\) of \ref*{Weak Formulation of Boundary Value Problems}
+\end{theorem}
+Moreover 
+\[
+    \alpha \norm*{u}^2 \leq a(u,u) = F(u) \leq \norm*{F}_{V^*} \norm*{u}
+\]
+where \(\alpha\) is the coercivity costant. Hence
+\[
+    \norm*{u} \leq \frac{\norm*{F}_{V^*}}{\alpha} \to \txt{stabilitty/continuous dependence on data}
+\]
+But what if some of the assumptions of Lax-Milgram (in particular coercivity) are not satisfied?
+
+We need a slightly more general problem to formulate Nečas theorem:
+\begin{equation}
+    \begin{cases}
+        \txt{Find } u \in V \\
+        a(u,w) = \scalarproduct{F}{w} & \forall w \in W \label{Generalized weak formulation}
+    \end{cases}
+\end{equation}
+They belong to different spaces: W for the test function, V the solutions
+\begin{theorem}
+    Assume that \(F \in W^*\). Consider the following conditions:
+    \begin{itemize}
+        \item \(a\) continuous: \(\exists \; M > 0: \abs*{a(u,w)} \leq M \norm*{u}_V \norm*{w}_W \; \forall \; u \in V, w \in W\)
+        \item \(\inf-\sup\) condition: \(\exists \; \alpha > 0: \forall \; v \in V \quad \sup_{w \in W \setminus \left\{0\right\}} \frac{a(v,m)}{\norm*{w}_W} \geq \alpha \norm*{v}_V\)
+        \item \(\forall \; w \in W, w \neq 0, \exists \; v \in V : a(v,w) \neq 0\)
+    \end{itemize}
+    These conditions are necessary and sufficient for the existence and uniqueness of a solution of \ref*{Generalized weak formulation}, for any \(F \in W^*\). Moreover 
+    \[
+        \norm*{u}_V \leq \frac{1}{\alpha}\norm*{F}_{W^*}
+    \]
+\end{theorem}
+
+\end{document}
+
