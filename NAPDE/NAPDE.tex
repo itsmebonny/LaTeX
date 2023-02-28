@@ -67,7 +67,7 @@
 \newcommand{\normdot}{\norm{\cdot}}
 \newcommand{\scalardot}{\langle \cdot,\cdot \rangle}
 \newcommand{\scalarproduct}[2]{\langle #1,#2 \rangle}
-
+\newcommand*{\limited}[1]{\vert_{#1}}
 \newcommand{\interior}[1]{%
  {\kern0pt#1}^{\mathrm{o}}%
 }
@@ -184,19 +184,19 @@ Moreover
 \]
 where \(\alpha\) is the coercivity costant. Hence
 \[
-    \norm*{u} \leq \frac{\norm*{F}_{V^*}}{\alpha} \to \txt{stabilitty/continuous dependence on data}
+    \norm*{u} \leq \frac{\norm*{F}_{V^*}}{\alpha} \to \txt{stability/continuous dependence on data}
 \]
 But what if some of the assumptions of Lax-Milgram (in particular coercivity) are not satisfied?
 
 We need a slightly more general problem to formulate Nečas theorem:
 \begin{equation}
     \begin{cases}
-        \txt{Find } u \in V \\
+        \txt{find } u \in V \\
         a(u,w) = \scalarproduct{F}{w} & \forall w \in W \label{Generalized weak formulation}
     \end{cases}
 \end{equation}
 They belong to different spaces: W for the test function, V the solutions
-\begin{theorem}
+\begin{theorem}[Nečas]
     Assume that \(F \in W^*\). Consider the following conditions:
     \begin{itemize}
         \item \(a\) continuous: \(\exists \; M > 0: \abs*{a(u,w)} \leq M \norm*{u}_V \norm*{w}_W \; \forall \; u \in V, w \in W\)
@@ -208,6 +208,48 @@ They belong to different spaces: W for the test function, V the solutions
         \norm*{u}_V \leq \frac{1}{\alpha}\norm*{F}_{W^*}
     \]
 \end{theorem}
+When \(W=V\) Lax-Milgram provides necessary and sufficient conditions for existence and uniqueness of solutions.
 
+Going back to 
+\begin{equation*}
+    \begin{cases}
+        \mathcal{L}u = f & \text{in }\Omega \\
+        + \text{B.C.} & \text{on }\partial\Omega
+    \end{cases}
+\end{equation*}
+What could be our choice of \(V\)? Given that
+\[
+    u\in V : a(u,v) = F(v) \quad \forall \; v \in V
+\]
+and 
+\[
+    a(u,v) = \int_\Omega \mu \underbrace{\grad u \grad v}_{\grad u, \grad v \in L^2} + \int_\Omega b \underbrace{\grad u v}_{\in L^1} + \int_\Omega \sigma \underbrace{u v}_{\in L^1}
+\]
+We want to choose \(v\) in order to have all of these integrable \[\Rightarrow V = \left\{v \in L^2(\Omega), \grad u \in \left[L^2(\Omega)\right]^d, v\vert_{\Gamma_D} = 0\right\} = V_{\Gamma_D}\].
+
+Knowing that a Sobolev space 
+\[
+    H^1 = \left\{v \in L^2(\Omega), \grad u \in \left[L^2(\Omega)\right]^d\right\}
+\]
+we can say \(V_{\Gamma_D} = \left\{v \in H^1(\Omega): v\limited{\Gamma_D}= 0\right\}\), and if \(\Gamma_D = \partial\Omega\), then \(V_{\Gamma_D} = H^1_0\)
+\subsection{Approximation}
+Recall for a moment the weak formulation of a generic elliptic problem 
+\begin{equation}
+    \begin{cases}
+        \txt{Find } u \in V \\
+        a(u,v) = \scalarproduct{F}{v} & \forall \; v \in V \label{Weak Formulation of Boundary Value Problems - 2}
+    \end{cases}
+\end{equation}
+with \(V\) being an appropriate Hilbert space, subset of \(H^1(), a(\cdot,\cdot)\) being a continuous and coercive bilinear forrm from \(V \times V \to \real\), \(F(\cdot)\) being a continuous linear functional from \(V \to \real\).
+
+Let \(V_h \subset V\) be a family of spaces that depends on a parameter \(h > 0\), such that \(\dim V_h = N_h < \infty\).
+We can rewrite the weak formulation 
+\begin{equation}
+    \begin{cases}
+        \txt{Find } u_h \in V_h\\
+        a(u_h,v_h) = \scalarproduct{F}{v_h} & \forall \; v_h \in V_h \label{Weak Formulation of Boundary Value Problems - Approx}
+    \end{cases}
+\end{equation}
+and is called a \textbf{Galerkin problem}. Denoting with \(\left\{\phi_j, j = 1,2,\ldots,N_h\right\}\) a basis of \(V_h\), it is sufficient that the \eqref{Weak Formulation of Boundary Value Problems - Approx} is verified for each function of the basis. 
 \end{document}
 
