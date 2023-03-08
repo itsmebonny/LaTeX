@@ -205,4 +205,35 @@ We denote by \(A\) the matrix made by \(a_{ij} = a(\phi_j, \phi_i)\) and \(\vect
 \begin{corollary}
     The solution of the Galerkin problem \eqref{Galerkin Problem Formula} exists and is unique.
 \end{corollary}
-To prove this we can prove that the solution to \eqref{Linear system Galerkin} exists and is unique.
+To prove this we can prove that the solution to \eqref{Linear system Galerkin} exists and is unique. The matrix \(A\) is invertible as the unique solution of \(A\vect{u} = \vect{0}\) is the null solution, meaning that \(A\) is definite positive.
+\subsection*{Stability}
+\begin{corollary}
+    The Galerkin method is stable, uniformly with respect to \(h\), by virtue of the following upper bound for the solution
+    \[
+        \norm{u_h}_V \leq \frac{1}{\alpha}\norm{F}_{V^*}
+    \]
+\end{corollary}
+The stability of the method guarantees that the norm \(\norm{u_h}_V\) of the discrete solution remains bounded for \(h \to 0\). Equivalently it guarantees that \(\norm{u_h-w_h}_V \leq \frac{1}{\alpha}\norm{F-G}_{V^*}\) with \(u_h\) and \(w_h\) being numerical solution corresponding to different data \(F\) and \(G\).
+\subsection*{Convergence}
+\begin{lemma}[Galerkin orthogonality]
+    The solution \(u_h\) of the Galerkin method satisfies 
+    \begin{equation}
+        a(u-u_h, v_h) = 0 \quad \forall \; v_h \in V_h \label{Galerkin orthogonality}
+    \end{equation}
+\end{lemma}
+\begin{proof}
+    Since \(V_h \subset V\), the exact solution \(u\) satisfies the weak problem \eqref{Weak Formulation of Boundary Value Problems - 2} for each element \(v = v_h \in V_h\), hence we have 
+    \begin{equation}
+        a(u, v_h) = F(v_h) \forall \; v_h \in V_h \label{Application of exact solution}
+    \end{equation}
+    By subtracting side by side \eqref{Galerkin Problem Formula} from \eqref{Application of exact solution}, we obtain 
+    \[
+        a(u,v_h)-a(u_h, v_h) = 0 \forall \; v_h \in V_h
+    \]
+    from which the claim follows.
+\end{proof}
+Also this can be generalized in the cases in which \(a(\cdot, \cdot)\) is not symmetrcic. Consider the value taken by the bilinear form when both its arguments are \(u-u_h\). If \(v_h\) is an arbitrary element of \(V_h\) we obtain 
+\[
+    a(u-u_h, u-u_h) = a(u-u_h, u-v_h) + a(u-u_h, v_h-u_h)
+\]
+The last term is null by \eqref{Galerkin orthogonality}
