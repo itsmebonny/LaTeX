@@ -236,4 +236,19 @@ Also this can be generalized in the cases in which \(a(\cdot, \cdot)\) is not sy
 \[
     a(u-u_h, u-u_h) = a(u-u_h, u-v_h) + a(u-u_h, v_h-u_h)
 \]
-The last term is null by \eqref{Galerkin orthogonality}
+The last term is null by \eqref{Galerkin orthogonality}. Moreover 
+\[
+    \abs*{a(u-u_h, u-v_h)} \leq M \norm{u-u_h}_V\norm{u-v_h}_V
+\]
+having exploited the continuity of the bilinear form. Also by the coercivity 
+\[
+    a(u-u_h, u-u_h) \geq \alpha \norm{u-u_h}^2_V
+\]
+hence 
+\[
+    \norm{u-u_h}_V \leq \frac{M}{\alpha} \norm{u-v_h}_V \quad \forall\; v_h \in V_h
+\]
+Such inequality holds for all functions \(v_h \in V_h\) and therefore we find 
+\begin{equation}
+   \underbrace{ \norm{u-u_h}_V}_{\text{Galerkin error}} \leq \frac{M}{\alpha} \underbrace{\inf_{w_h \in V_h} \norm{u - w_h}_V}_{\text{Best Approximation Error}} \label{Ceà Lemma}
+\end{equation}
