@@ -261,7 +261,7 @@ In that case the Galerkin method is convergent and it can be written that
     \lim_{h\to 0} \norm{u-u_h}_V = 0 \Leftrightarrow \text{convergence}
 \]
 Thie space \(V_h\) must be chosen carefully to satisfy the saturation property \eqref{Saturation Property}.
-\subsection{Finite Element Method}
+\subsection{Finite Element Method \(1D\)}
 Let us suppose that \(\Omega\) is an interval \((a,b)\). How to create an approximation of the space \(H^1(a,b)\) that depend on a parameter \(h\). Consider a partition \(\mathcal{T}_h\) in \(N+1\) subintervals \(K_j = x_{j-1}, x_j\), having width \(h_j = x_j - x_{j-1}\) with 
 \begin{equation}
     a = x_0 < x_1 < \ldots < x_{N-1} < x_N = b \label{Partition of an interval}
@@ -272,4 +272,25 @@ Since the functions of \(H^1(a,b)\) are continuous on \([a,b]\), it is possible 
 \begin{equation}
     X_h^r = \left\{v_h \in C^0\left(\overline{\Omega}\right) : v_h \vert_{K_j} \in \mathbb{P}_r \;\; \forall \; K_j \in \mathcal{T}_h\right\}, \quad r= 1,2,\ldots \label{Family of spaces FEM}
 \end{equation}
-having denoted by \(\mathbb{P}_r\) the space of polynomials with degree lower or equal to \(r\) in the variable \(x\). All these spaces are subspaces of \(H^1(a,b)\) as they are constituted by differentiable functions except for at most a finite number of points (the vertices of the partition). 
+having denoted by \(\mathbb{P}_r\) the space of polynomials with degree lower or equal to \(r\) in the variable \(x\). All these spaces are subspaces of \(H^1(a,b)\) as they are constituted by differentiable functions except for at most a finite number of points (the vertices of the partition). It is convenient to sekect a basis for the \(X^r_h\) space that is \textit{Lagrangian}.
+\subsubsection*{The space \(X^1_h\)}
+The space is constituted by the functions of the partition \eqref{Partition of an interval}. Since only a straight line can pass through different points, the degrees of freedom (DOF, the number of values we need to assign to the basis to define the functions)  of the functions will be equal to the number \(N+2\) of vertices of the partition. It follows naturally that \(\left\lbrace\phi_i\right\rbrace, i = 0, 1, \ldots, N, N+1\).
+In this case the basis functions are characterized by the following properties 
+\[
+    \phi_i \in X^1_h \text{ s.t } \phi_i(x_j) = \delta_{ij}, \quad i, j = 0, 1, \ldots, N, N+1
+\]
+where \(\delta_{ij}\) is the Kronecker delta. So we have our basis function that have value \(1\) in the node \(x_j\) and \(0\) elsewhere.
+
+The formula for the basis function is then given by 
+\begin{equation}
+    \phi_i(x) = \begin{cases}
+        \frac{x-x_{i-1}}{x_i - x_{i-1}} & \text{for }x_{i-1} \leq x \leq x_i \\
+        \frac{x-x_{i+1}}{x_{i+1} - x_i} & \text{for }x_i \leq x \leq x_{i+1} \\
+        0 & \text{otherwise}
+    \end{cases}
+\end{equation}
+\subsection{Finite Element Method \(2D\)}
+Now we can extend the FEM for multi-dimensional problems. For simplicity we will consider \(\Omega \subset \real^2\) with polygonal shapes \(\mathcal{T}_h\). In this case the partition is called a triangulation. We can define the discretized domain 
+\[
+    \Omega_h = \text{int}\left(\bigcup_{K \in \mathcal{T}_h} K\right)
+\]
