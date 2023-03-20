@@ -261,13 +261,26 @@ In that case the Galerkin method is convergent and it can be written that
     \lim_{h\to 0} \norm{u-u_h}_V = 0 \Leftrightarrow \text{convergence}
 \]
 Thie space \(V_h\) must be chosen carefully to satisfy the saturation property \eqref{Saturation Property}.
-\subsection{Finite Element Method \(1D\)}
-Let us suppose that \(\Omega\) is an interval \((a,b)\). How to create an approximation of the space \(H^1(a,b)\) that depend on a parameter \(h\). Consider a partition \(\mathcal{T}_h\) in \(N+1\) subintervals \(K_j = x_{j-1}, x_j\), having width \(h_j = x_j - x_{j-1}\) with 
-\begin{equation}
-    a = x_0 < x_1 < \ldots < x_{N-1} < x_N = b \label{Partition of an interval}
-\end{equation}
-and set \(h = \max_j h_j\). 
+\subsection{Finite Element Method}
+\subsubsection*{Partitions}
+\begin{itemize}
+    \item[\textbf{1D}]
+    Let us suppose that \(\Omega\) is an interval \((a,b)\). How to create an approximation of the space \(H^1(a,b)\) that depend on a parameter \(h\). Consider a partition \(\mathcal{T}_h\) in \(N+1\) subintervals \(K_j = x_{j-1}, x_j\), having width \(h_j = x_j - x_{j-1}\) with 
+    \begin{equation}
+        a = x_0 < x_1 < \ldots < x_{N-1} < x_N = b \label{Partition of an interval}
+    \end{equation}
+    and set \(h = \max_j h_j\). 
+    \item[\textbf{2D}] Now we can extend the FEM for multi-dimensional problems. For simplicity we will consider \(\Omega \subset \real^2\) with polygonal shapes \(\mathcal{T}_h\). In this case the partition is called a triangulation. We can define the discretized domain 
+    \[
+        \Omega_h = \text{int}\left(\bigcup_{K \in \mathcal{T}_h} K\right)
+    \]
+    in a way that the internal part of the union of the triangles \(\mathcal{T}_h\). Having set \(\text{diam}(K) = \max_{x,y \in K} \abs{x-y} = h_k\). Also, given \(\rho_K\) the measure of the diameter of the circle inscribed in the triangle \(K\), must be satisfied the condition that, for a suitable \(\delta > 0\) 
+    \begin{equation}
+        \frac{h_k}{\rho_k} \leq \delta \quad \forall \; K \in \mathcal{T}_h \label{Regularity of K}
+    \end{equation}
+    The condition \eqref{Regularity of K} excludes very deformed triangles.
 
+\end{itemize}
 Since the functions of \(H^1(a,b)\) are continuous on \([a,b]\), it is possible to create the family of spaces 
 \begin{equation}
     X_h^r = \left\{v_h \in C^0\left(\overline{\Omega}\right) : v_h \vert_{K_j} \in \mathbb{P}_r \;\; \forall \; K_j \in \mathcal{T}_h\right\}, \quad r= 1,2,\ldots \label{Family of spaces FEM}
@@ -289,8 +302,22 @@ The formula for the basis function is then given by
         0 & \text{otherwise}
     \end{cases}
 \end{equation}
-\subsection{Finite Element Method \(2D\)}
-Now we can extend the FEM for multi-dimensional problems. For simplicity we will consider \(\Omega \subset \real^2\) with polygonal shapes \(\mathcal{T}_h\). In this case the partition is called a triangulation. We can define the discretized domain 
-\[
-    \Omega_h = \text{int}\left(\bigcup_{K \in \mathcal{T}_h} K\right)
-\]
+
+
+\begin{definition}[Seminorms]
+    A seminorm is defined as 
+    \[
+        \abs{f}_k = \abs{f}_H^k (\Omega) = \sqrt{\sum_{\abs{\alpha} = k} \int_\Omega \left(D^\alpha f\right)^2 \, d\Omega}
+    \]
+    In particular 
+    \[
+        \begin{array}{lrl}
+            \text{1D:} & \abs{u}_{H^1(a,b)} & = \left(\norm{u_x}^2_{L^2(a,b)}\right)^{\frac{1}{2}} = \norm{u_x}^2_{L^2(a,b)} \\
+            &  \abs{u}_{H^2(a,b)} & = \norm{u_{xx}}^2_{L^2(a,b)} \\
+            \text{2D:} & \abs{u}_{H^1(a,b)} & = \left(\norm{u_x}^2_{L^2(a,b)} + \norm{u_y}^2_{L^2(a,b)}\right)^{\frac{1}{2}} \\
+            & \abs{u}_{H^1(a,b)} & = \left(\norm{u_{xx}}^2_{L^2(a,b)} + \norm{u_{xy}}^2_{L^2(a,b)} + \norm{u_{yx}}^2_{L^2(a,b)} +\norm{u_{yy}}^2_{L^2(a,b)}\right)^{\frac{1}{2}} \\
+        \end{array}
+    \]
+    Always true that \(\abs{u}_{H^q} \leq \norm{u}_{H^q}\)
+\end{definition}
+
