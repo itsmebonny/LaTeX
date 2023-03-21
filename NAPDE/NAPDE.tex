@@ -13,13 +13,16 @@
 \usepackage{graphicx}
 \usepackage{physics}
 \usepackage{textcomp}
+
+\usepackage{mdframed}
+\usepackage{xcolor}
+
+
 \setlength\parindent{0pt}
 
 \newlength\mylength
 \setlength\mylength{0.1cm}
 \newcolumntype{Y}{>{\Centering\arraybackslash}X}
-
-\AtBeginEnvironment{array}{\everymath{\displaystyle}}
 \newtheoremstyle{break}
   {\partopsep}{\topsep}%  
   {\normalfont}{}
@@ -71,6 +74,9 @@
 \newcommand{\interior}[1]{%
  {\kern0pt#1}^{\mathrm{o}}%
 }
+\newmdenv[backgroundcolor=blue!20]{background}
+
+
 \def\stackbelow#1#2{\underset{\displaystyle\overset{\displaystyle\shortparallel}{#2}}{#1}}
 \def\stackbelowlittle#1#2{\underset{\textstyle\overset{\textstyle\shortparallel}{#2}}{#1}}
 

@@ -1,4 +1,3 @@
-
 \section{Boundary Value Problems}
 \subsection{Weak Formulation}
 Let's consider a problem 
@@ -45,16 +44,11 @@ Let's consider a problem
 Consider 
 \begin{equation}
     \begin{cases}
-        -\div(\mu \grad u)+ \vect{b}\cdot \grad u + \sigma u = f& \text{in } \Omega \\
-        u = 0 & \txt{on }\Gamma_D \\
-        \mu \grad u \cdot \vect{n} = g & \txt{on } \Gamma_N
+        -\div(\mu \grad u)+ \vect{b}\cdot \grad u + \sigma u = f& \text{in } \Omega \quad g \in L^2(\Gamma_N) \\
+        u = 0 & \txt{on }\Gamma_D \quad \partial\Omega = \Gamma_D \cup \Gamma_N \\
+
+        \mu \grad u \cdot \vect{n} = g & \txt{on } \Gamma_N \quad \interior{\Gamma_D} \cap \interior{\Gamma_N} = \emptyset
     \end{cases}
-    \qquad\qquad
-    \begin{array}{l}
-        g \in L^2(\Gamma_N) \\
-        \partial\Omega = \Gamma_D \cup \Gamma_N \\
-        \interior{\Gamma_D} \cap \interior{\Gamma_N} = \emptyset
-    \end{array}
 \end{equation}
 Suppose that \(f \in L^2(\Omega)\) and \(\mu, \sigma \in L^\infty(\Omega)\). Also suppose that \(\exists \; \mu_0 > 0 \txt{ s.t. } \mu(\vect{x}) \geq \mu_0\), and \(\sigma(\vect{x}) \geq 0\) a.e. on \(\Omega\).  
 Then, given a test function \(v\), we multiply the equation by \(v\), and integrate on the domain \(\Omega\)
@@ -73,7 +67,7 @@ So the weak formulation of the problem is
     \end{cases}
 \end{equation}
 where \(a: V \times V \to \real\) is a bilinear form and \(F:V \to \real\) is a linear form s.t. \(\scalarproduct{F}{v} \equiv F(v) = \int_\Omega fv + \int_{\Gamma_N} gv\).
-\begin{theorem}[Lax-Milgram]
+\begin{background}\begin{theorem}[Lax-Milgram]
     Assume that 
     \begin{itemize}
         \item \(V\) Hilbert space with \(\normdot\) and inner product \((\cdot, \cdot)\)
@@ -82,7 +76,7 @@ where \(a: V \times V \to \real\) is a bilinear form and \(F:V \to \real\) is a 
         \item \(a\) coercive: \(\exists \; \alpha > 0: a(v,v) \geq \alpha\norm*{v}^2 \; \forall \; v \in V\)
     \end{itemize}
     Then, there exists a unique solution \(u\) of \ref*{Weak Formulation of Boundary Value Problems}
-\end{theorem}
+\end{theorem}\end{background}
 Moreover 
 \[
     \alpha \norm*{u}^2 \leq a(u,u) = F(u) \leq \norm*{F}_{V^*} \norm*{u}
@@ -101,7 +95,7 @@ We need a slightly more general problem to formulate Nečas theorem:
     \end{cases}
 \end{equation}
 They belong to different spaces: W for the test function, V the solutions
-\begin{theorem}[Nečas]
+\begin{background}\begin{theorem}[Nečas]
     Assume that \(F \in W^*\). Consider the following conditions:
     \begin{itemize}
         \item \(a\) continuous: \(\exists \; M > 0: \abs*{a(u,w)} \leq M \norm*{u}_V \norm*{w}_W \; \forall \; u \in V, w \in W\)
@@ -113,6 +107,7 @@ They belong to different spaces: W for the test function, V the solutions
         \norm*{u}_V \leq \frac{1}{\alpha}\norm*{F}_{W^*}
     \]
 \end{theorem}
+\end{background}
 When \(W=V\) Lax-Milgram provides necessary and sufficient conditions for existence and uniqueness of solutions.
 
 Going back to 
@@ -173,7 +168,8 @@ We denote by \(A\) the matrix made by \(a_{ij} = a(\phi_j, \phi_i)\) and \(\vect
     A\vect{u} = \vect{f}
     \label{Linear system Galerkin}
 \end{equation}
-\begin{theorem}
+\begin{background}
+    \begin{theorem}
     The stiffness matrix \(A\) associated to the Galerkin discretization of an elliptic problem, whose bilinear form is coercive is positive definite.
 \end{theorem}
 \begin{proof}
@@ -190,21 +186,25 @@ We denote by \(A\) the matrix made by \(a_{ij} = a(\phi_j, \phi_i)\) and \(\vect
         \vect{v} = (v_i) \in \real^{N_h} \longrightarrow v_h(x) = \sum_{j=1}^{N_h} v_j\phi_j \in V_h
     \]
     defines a bijection between \(V_h\) and \(\real^{N_h}\). Given a generic vector \(\vect{v} = (v_i)\) of \(\real^{N_h}\), thanks to the bilinearity and coercivity of \(a\) we obtain 
-    \[
-        \begin{array}{rl}
+    
+        \begin{align*}
         \vect{v}^T A \vect{v} & = \sum_{j=1}^{N_h}\sum_{i=1}^{N_h} v_i ai_j v_j \\
         & = \sum_{j=1}^{N_h}\sum_{i=1}^{N_h} v_ia(\phi_j, \phi_i)v_j\\
         & = \sum_{j=1}^{N_h}\sum_{i=1}^{N_h} a(v_j\phi_j, v_i \phi_i)\\
         & = a\left(\sum_{j=1}^{N_h}v_j\phi_j\sum_{i=1}^{N_h}v_i\phi_i\right)\\
         & = a(v_h,v_h) \geq \alpha \norm*{v_h}_V^2 \geq 0
-        \end{array}
-    \]
+        \end{align*}
+
     Moreover, if \(\vect{v}^T A \vect{v} = 0\), then \(\norm{v_h}_V^2 = 0\).
 \end{proof}
+\end{background}
+
 \subsubsection*{Existence and uniqueness}
-\begin{corollary}
+\begin{background}
+    \begin{corollary}
     The solution of the Galerkin problem \eqref{Galerkin Problem Formula} exists and is unique.
 \end{corollary}
+\end{background}
 To prove this we can prove that the solution to \eqref{Linear system Galerkin} exists and is unique. The matrix \(A\) is invertible as the unique solution of \(A\vect{u} = \vect{0}\) is the null solution, meaning that \(A\) is definite positive.
 \subsection*{Stability}
 \begin{corollary}
@@ -215,12 +215,14 @@ To prove this we can prove that the solution to \eqref{Linear system Galerkin} e
 \end{corollary}
 The stability of the method guarantees that the norm \(\norm{u_h}_V\) of the discrete solution remains bounded for \(h \to 0\). Equivalently it guarantees that \(\norm{u_h-w_h}_V \leq \frac{1}{\alpha}\norm{F-G}_{V^*}\) with \(u_h\) and \(w_h\) being numerical solution corresponding to different data \(F\) and \(G\).
 \subsection*{Convergence}
-\begin{lemma}[Galerkin orthogonality]
+\begin{background}
+    \begin{lemma}[Galerkin orthogonality]
     The solution \(u_h\) of the Galerkin method satisfies 
     \begin{equation}
         a(u-u_h, v_h) = 0 \quad \forall \; v_h \in V_h \label{Galerkin orthogonality}
     \end{equation}
 \end{lemma}
+
 \begin{proof}
     Since \(V_h \subset V\), the exact solution \(u\) satisfies the weak problem \eqref{Weak Formulation of Boundary Value Problems - 2} for each element \(v = v_h \in V_h\), hence we have 
     \begin{equation}
@@ -232,6 +234,8 @@ The stability of the method guarantees that the norm \(\norm{u_h}_V\) of the dis
     \]
     from which the claim follows.
 \end{proof}
+\end{background}
+
 Also this can be generalized in the cases in which \(a(\cdot, \cdot)\) is not symmetrcic. Consider the value taken by the bilinear form when both its arguments are \(u-u_h\). If \(v_h\) is an arbitrary element of \(V_h\) we obtain 
 \[
     a(u-u_h, u-u_h) = a(u-u_h, u-v_h) + a(u-u_h, v_h-u_h)
@@ -281,11 +285,46 @@ Thie space \(V_h\) must be chosen carefully to satisfy the saturation property \
     The condition \eqref{Regularity of K} excludes very deformed triangles.
 
 \end{itemize}
+\begin{background}
+\begin{definition}[Seminorms]
+    A seminorm is defined as 
+    \[
+        \abs{f}_k = \abs{f}_H^k (\Omega) = \sqrt{\sum_{\abs{\alpha} = k} \int_\Omega \left(D^\alpha f\right)^2 \, d\Omega}
+    \]
+    In particular 
+
+        \begin{align*}
+            \text{1D:}\quad  \abs{u}_{H^1(a,b)} & = \left(\norm{u_x}^2_{L^2(a,b)}\right)^{\frac{1}{2}} = \norm{u_x}^2_{L^2(a,b)} \\
+              \abs{u}_{H^2(a,b)} & = \norm{u_{xx}}^2_{L^2(a,b)} \\
+            \text{2D:}\quad  \abs{u}_{H^1(a,b)} & = \left(\norm{u_x}^2_{L^2(a,b)} + \norm{u_y}^2_{L^2(a,b)}\right)^{\frac{1}{2}} \\
+             \abs{u}_{H^1(a,b)} & = \left(\norm{u_{xx}}^2_{L^2(a,b)} + \norm{u_{xy}}^2_{L^2(a,b)} + \norm{u_{yx}}^2_{L^2(a,b)} +\norm{u_{yy}}^2_{L^2(a,b)}\right)^{\frac{1}{2}} \\
+        \end{align*}
+    Always true that \(\abs{u}_{H^q} \leq \norm{u}_{H^q}\)
+\end{definition}
+\end{background}
+The problem is always: 
+\begin{align}
+    \begin{split} 
+        \text{find } u_h \in \;&V_h : a(u_h, v_h) = F(v_h) \quad \forall \; v_h \in V_h \\
+        &\downarrow\\
+        &V_h = \left\lbrace v_h \in X^r_h : v_h\vert_{\Gamma_D} = 0\right\rbrace \; \; r \geq 1 \label{Galerkin weak formulation}
+    \end{split}   
+\end{align}
+
 Since the functions of \(H^1(a,b)\) are continuous on \([a,b]\), it is possible to create the family of spaces 
 \begin{equation}
     X_h^r = \left\{v_h \in C^0\left(\overline{\Omega}\right) : v_h \vert_{K_j} \in \mathbb{P}_r \;\; \forall \; K_j \in \mathcal{T}_h\right\}, \quad r= 1,2,\ldots \label{Family of spaces FEM}
 \end{equation}
 having denoted by \(\mathbb{P}_r\) the space of polynomials with degree lower or equal to \(r\) in the variable \(x\). All these spaces are subspaces of \(H^1(a,b)\) as they are constituted by differentiable functions except for at most a finite number of points (the vertices of the partition). It is convenient to sekect a basis for the \(X^r_h\) space that is \textit{Lagrangian}.
+
+    \begin{align*}
+        \mathbb{P}^r:\quad &\text{1D} \quad &p(x) =& \sum_{k=0}^r a_k x^k &\text{intervals} \\
+        \\
+                      &\text{2D}  \quad &p(x_1, x_2) =& \sum_{\mathclap{\substack{k,m=0 \\ k + m \leq r}}}^r a_{km} x_1^k x_2^m  &\text{triangles} \\
+         \\
+                      &\text{3D} \quad &p(x_1, x_2, x_3) =& \sum_{\mathclap{\substack{k,m,n=0 \\ k + m + n  \leq r}}}^r a_{kmn} x_1^k x_2^m x_3^n &\text{tetrahedra}
+    \end{align*}
+
 \subsubsection*{The space \(X^1_h\)}
 The space is constituted by the functions of the partition \eqref{Partition of an interval}. Since only a straight line can pass through different points, the degrees of freedom (DOF, the number of values we need to assign to the basis to define the functions)  of the functions will be equal to the number \(N+2\) of vertices of the partition. It follows naturally that \(\left\lbrace\phi_i\right\rbrace, i = 0, 1, \ldots, N, N+1\).
 In this case the basis functions are characterized by the following properties 
@@ -302,22 +341,36 @@ The formula for the basis function is then given by
         0 & \text{otherwise}
     \end{cases}
 \end{equation}
-
-
-\begin{definition}[Seminorms]
-    A seminorm is defined as 
-    \[
-        \abs{f}_k = \abs{f}_H^k (\Omega) = \sqrt{\sum_{\abs{\alpha} = k} \int_\Omega \left(D^\alpha f\right)^2 \, d\Omega}
-    \]
-    In particular 
-    \[
-        \begin{array}{lrl}
-            \text{1D:} & \abs{u}_{H^1(a,b)} & = \left(\norm{u_x}^2_{L^2(a,b)}\right)^{\frac{1}{2}} = \norm{u_x}^2_{L^2(a,b)} \\
-            &  \abs{u}_{H^2(a,b)} & = \norm{u_{xx}}^2_{L^2(a,b)} \\
-            \text{2D:} & \abs{u}_{H^1(a,b)} & = \left(\norm{u_x}^2_{L^2(a,b)} + \norm{u_y}^2_{L^2(a,b)}\right)^{\frac{1}{2}} \\
-            & \abs{u}_{H^1(a,b)} & = \left(\norm{u_{xx}}^2_{L^2(a,b)} + \norm{u_{xy}}^2_{L^2(a,b)} + \norm{u_{yx}}^2_{L^2(a,b)} +\norm{u_{yy}}^2_{L^2(a,b)}\right)^{\frac{1}{2}} \\
-        \end{array}
-    \]
-    Always true that \(\abs{u}_{H^q} \leq \norm{u}_{H^q}\)
-\end{definition}
-
+\subsubsection*{The space \(X^2_h\)}
+In this case polynomials are of degree 2, so the points necessary to evaluate them are \(3\). The chosen points for every element of the partition \(\mathcal{T}_h\). The nodes from the interval goes from \(a = x_0\) to \(b = x_{2N + 2}\), so that midpoints are the nodes with odd indices. As the previous case the basis is Lagrangian
+\[
+    \phi_i \in X^2_h \text{ s.t } \phi_i(x_j) = \delta_{ij}, \quad i, j = 0, 1, \ldots, 2N+2
+\]
+\subsubsection*{The space \(V_h\)}
+This space is generated by 
+\[
+    V_h = \left\{v_h \in X^r_h : v_h(a) = v_h(b) = 0 \right\}
+\]
+Having defined a basis \(\left\lbrace\phi_j(\vect{x})\right\rbrace_{j=1}^{N_h}\) for the space \(V_h\), each \(v_h\) can be expanded as a linear combination of elements of the basis, suitably weighted by coefficients \(\left\{v_j\right\}_{j=1}^{N_h}\)
+\[
+    v_h(\vect{x}) = \sum_{j=1}^{N_h} v_j \phi_j(\vect{x})
+\]
+A basis is called Lagrangian if it satisfies the following properties
+\[
+    \phi_i(\vect{x}_j) = \delta_{ij} \quad \forall \; 1 \leq i,j \leq N_h
+\]
+and then the following property holds:
+\[
+    v_h(\vect{x}_j) = v_j \quad \forall \; 1 \leq i,j \leq N_h
+\]
+The solution of the Finite Element Method, \(u_h\) can be written as 
+\begin{equation}
+    u_h(\vect{x}) = \sum_{j=1}^{N_h} u_j\phi_j (\vect{x}) \label{Solution of Galerkin FEM}
+\end{equation}
+In \eqref{Galerkin weak formulation} take \(v_h = \phi_j\) \(\forall \; j = 1,\ldots, N_h \) such that \(a(u_h,\phi_i) = F(\phi_i)\) \(\forall \; i = 1,\ldots,N_h\). Then use \eqref{Solution of Galerkin FEM} to obtain 
+\begin{align*}
+    &a\left( \sum_{j=1}^{N_h} u_j\phi_j (\vect{x}), \phi_i \right) = \underbrace{F(\phi_i)}_{F_i} \\ 
+    &\Rightarrow \sum_{j=1}^{N_h} \underbrace{a(\phi_j, \phi_i)}_{\mathclap{\substack{a_{ij} \text{ elements}\\ \text{of } A}}} u_j (\vect{x}) = F_i \quad i = 1, \ldots, N_h \\
+    &\Rightarrow A\,\vect{u} = \vect{F}
+\end{align*}
+Which is a linear system of dimension \(N_h \times N_h\) with \(\vect{F}\) the right hand side (RHS), \(A\) the stiffness matrix and \(\vect{u}\) a vector of unknown nodal values of the solution \(u_h\).
