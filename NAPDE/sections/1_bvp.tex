@@ -25,21 +25,7 @@ Let's consider a problem
     \end{itemize}
 \end{itemize}
 
-%\subsection*{Example}
-%Advection Diffusion Reaction Problem: 
-%\begin{equation*}
-%    \begin{cases}
-%        Lu = \overbrace{-\div (\mu\grad u)}^{\txt{diffusion}} + \overbrace{\vect{b} \cdot \grad u}^{\txt{advection}} + \overbrace{\sigma u}^{\txt{reaction}} = f & \txt{in }\Omega \\
-%        u = 0 & \txt{on }\Gamma_D\\
-%        \mu \grad u \cdot \vect{n} = g & \txt{on }\Gamma_N 
-%    \end{cases}
-%    \qquad\qquad
-%    \begin{array}{l}
-%        g \in L^2(\Gamma_N) \\
-%        \partial\Omega = \Gamma_D \cup \Gamma_N \\
-%        \interior{\Gamma_D} \cap \interior{\Gamma_N} = \emptyset
-%    \end{array}
-%\end{equation*}
+
 \subsection*{General elliptic problems}
 Consider 
 \begin{equation}
@@ -106,6 +92,7 @@ They belong to different spaces: W for the test function, V the solutions
     \[
         \norm*{u}_V \leq \frac{1}{\alpha}\norm*{F}_{W^*}
     \]
+\label{Nečas}
 \end{theorem}
 \end{background}
 When \(W=V\) Lax-Milgram provides necessary and sufficient conditions for existence and uniqueness of solutions.
@@ -236,7 +223,7 @@ The stability of the method guarantees that the norm \(\norm{u_h}_V\) of the dis
 \end{proof}
 \end{background}
 
-Also this can be generalized in the cases in which \(a(\cdot, \cdot)\) is not symmetrcic. Consider the value taken by the bilinear form when both its arguments are \(u-u_h\). If \(v_h\) is an arbitrary element of \(V_h\) we obtain 
+Also this can be generalized in the cases in which \(a(\cdot, \cdot)\) is not symmetric. Consider the value taken by the bilinear form when both its arguments are \(u-u_h\). If \(v_h\) is an arbitrary element of \(V_h\) we obtain 
 \[
     a(u-u_h, u-u_h) = a(u-u_h, u-v_h) + a(u-u_h, v_h-u_h)
 \]
@@ -374,3 +361,37 @@ In \eqref{Galerkin weak formulation} take \(v_h = \phi_j\) \(\forall \; j = 1,\l
     &\Rightarrow A\,\vect{u} = \vect{F}
 \end{align*}
 Which is a linear system of dimension \(N_h \times N_h\) with \(\vect{F}\) the right hand side (RHS), \(A\) the stiffness matrix and \(\vect{u}\) a vector of unknown nodal values of the solution \(u_h\).
+\subsection{Advection Diffusion Reaction Problem}
+\begin{equation*}
+   \begin{cases}
+       Lu = \underbrace{-\div (\mu\grad u)}_{\txt{diffusion}} + \underbrace{\vect{b} \cdot \grad u}_{\txt{advection}} + \underbrace{\sigma u}_{\txt{reaction}} = f & \txt{in }\Omega \\
+       \txt{BC }& \txt{on }\partial\Omega\\
+   \end{cases}
+\end{equation*}
+Lax-Milgram tells us that if \(\sigma - \frac{1}{2}\div\vect{b} \geq \gamma > 0\) then \(\exists!\) a solution to the problem. But what if these conditions are not satisfied? We can use Nečas theorem (\eqref{Nečas}) with equivalent assumptions:
+\begin{itemize}
+    \item Weak coercivity (Gårding inequality): 
+    \[
+        \exists \; \alpha, \lambda : a(v,v) \geq \alpha \norm{v}^2-\norm{v}_{L^2(\Omega)}^2 \quad \forall \; v \in V
+    \]
+    \item Uniqueness condition (typically proven by maximum principle):
+    \[
+        (a(u,v) = 0 \; \forall \; v \in V) \Rightarrow u = 0
+    \]
+\end{itemize}
+If \(A\) is spd (symmetric positive defined) then \(K_2(A) = \frac{\lambda_{max}(A)}{\lambda_{min}(A)}\)
+\begin{background}
+    \begin{proposition}
+        If \(a(\cdot,\cdot)\) is symmetric and coercive, then \(A\) is spd.
+    \end{proposition}
+
+    \begin{proof}
+        Symmetry: \(A_{ij} = a(\phi_j,\phi_i) = a(\phi_i,\phi_j) = A_{ji}\)
+
+        \(\forall \; \vect{v} \in \real^{N_h}\):
+        \begin{align*}
+            \vect{v}^TA\vect{v} & = \sum_{i,j}A_{ij}v_iv_j = \sum_{i,j}a(\phi_j, \phi_i)v_i v_j \\
+            & = a(\sum)
+        \end{align*}
+    \end{proof}
+\end{background}
