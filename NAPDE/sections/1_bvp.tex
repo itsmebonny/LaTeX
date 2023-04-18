@@ -391,7 +391,109 @@ If \(A\) is spd (symmetric positive defined) then \(K_2(A) = \frac{\lambda_{max}
         \(\forall \; \vect{v} \in \real^{N_h}\):
         \begin{align*}
             \vect{v}^TA\vect{v} & = \sum_{i,j}A_{ij}v_iv_j = \sum_{i,j}a(\phi_j, \phi_i)v_i v_j \\
-            & = a(\sum)
+            & = a(\sum_j v_j \phi_j, \sum_i v_i \phi_i) = a(v_h, v_h) \geq \alpha\norm{v_h}^2 > 0
         \end{align*}
+    if (\(v_h \neq 0 \Leftrightarrow \vect{v} \neq \vect{0}\)). Hence \(A\) is positive defined.
     \end{proof}
 \end{background}
+\begin{definition}
+    If \(A\) is spd, we define the \textit{A-norm} of \(\vect{v}\) as 
+    \begin{align*}
+        \norm{v}_A :=& (A\vect{v}, \vect{v})^{\frac{1}{2}}\\
+        =& \left(\sum_{i,j}a_{ij} v_i v_j\right)^{\frac{1}{2}}
+    \end{align*}
+\end{definition}
+Since \(A\) is positive defined \(\Rightarrow \text{Re}(\lambda_k(A)) \Rightarrow \lambda_k(A) \neq 0\). Then, by symmetry of \(A\) \(\Rightarrow \lambda_k(A) \in \real\). Combining the two we have that \(A\) sdp \(\Rightarrow \lambda_k (A) > 0 \Rightarrow \exists! \txt{ solution of } A\vect{u} = \vect{f}\)
+\begin{definition}
+    If \(A\) is sdp, then \(K_2(A) = \frac{\lambda_{\txt{max}}}{\lambda_{\txt{min}}}\) is called \textbf{spectral condition number}
+\end{definition}
+If \(K_2(A) \gg 1 \Rightarrow A\) is ill-conditioned \(\Rightarrow\) solving \(A\vect{u} = \vect{f}\) is hard.
+
+We can also prove that \(\exists \; C_1, C_2 > 0 : \forall \lambda_h\) eigenvalue of \(A\): 
+\[
+    \alpha C_1 h^d \leq \lambda_h \leq M C_2 h^{d-2} \qquad d = 1, 2, 3
+\]
+whence 
+\[
+    \frac{\lambda_{\txt{max}}(A)}{\lambda_{\txt{min}}(A)} \leq \frac{MC_2}{\alpha C_1} h^{-2}
+\]
+Then
+\[
+    K_2(A) = \mathcal{O}(h^{-2})
+\]
+If we use the conjugate gradient method to solve \(A\vect{u} = \vect{f}\), then:
+\[
+    \norm{\vect{u}^{(k)} - \vect{u}}_A \leq 2\left(\frac{\sqrt{K_2(A)}+1}{\sqrt{K_2(A)}-1}\right)^k \norm{\vect{u}^{(k)} - \vect{u}}_A
+\]
+Same with gradient method, with \(K_2(A)\) instead of \(\sqrt{K_2(A)} \Rightarrow\) need for preconditioners.
+\subsection{Interpolant estimates}
+\begin{equation}
+    \norm{u-u_h}_V \leq \frac{M}{\alpha} \inf_{v_h \in V_h} \norm{u-v_h} \underset{\txt{saturation}}{\longrightarrow} 0 \Leftrightarrow \txt{convergence} 
+\end{equation}
+But how fast it saturates? 
+
+Note: \(\inf_{v_h \in V_h} \norm{u-v_h}_V \leq \norm{u-\bar{u}_h}_V\) \(\forall \; \bar{u}_h\) suitable chosen in \(V_h\) and \(\bar{u}_h\) is a smart guy chosen in a smart way (close enough to \(u\)). 
+
+In \(1\)D the finite element interpolant can be defined as \(\prod_{h}^{r} u(x_k) = u(x_k)\) \(\forall \; x_k\) node. Then \(\bar{u}_h = \prod_{h}^r u \in V_h\). 
+
+How good is \(\bar{u}_h\)? 
+\[
+    \prod_{h}^{r} u(x) = \sum_{j=1}^{N_h} u(x_j)\phi_j(x)
+\]
+which is a good approximation.
+\subsection*{Interpolant error estimates}
+Then, for \(m=0,1\) \(\exists \; C = C(r,m,\hat{k})\) s.t.
+\begin{equation}
+    \seminorm{v-\prod_{h}^{r}v}{H^m(\Omega)} \leq C\left(\sum_{K \in \mathcal{T}_h}h_K^{2(r+1-m)}\seminorm{v}{H^{r+1}(K)}^2\right)^{\frac{1}{2}} \label{some_estimate_bvp}
+\end{equation}
+    
+
+where \(h_K = \txt{diam}(K)\) and \(h_K \leq h\) \(\forall \; K\) this yields:
+\begin{equation}
+    \seminorm{v-\prod_{h}^{r}v}{H^m(\Omega)} \leq C h^{r+1-m}\seminorm{v}{H^{r+1}(K)} \quad \forall \; v \in H^{r+1}(\Omega), m = 0,1 \label{some_other_estimate_bvp}
+\end{equation}
+Recall also that 
+\begin{align*}
+    \norm{u-u_h} &= \norm{u-u_h}_{H^1(\Omega)} \\
+    &\leq \frac{M}{\alpha} \inf_{v_h \in V_h} \norm{u-v_h} \\
+    &\leq \frac{M}{\alpha} \norm{u-\prod_h^r u}_{H^1(\Omega)}
+\end{align*}
+Using \eqref{some_estimate_bvp} we obtain
+\begin{equation}
+    \norm{u-u_h} \leq C\frac{M}{\alpha}\left(\sum_{K \in \mathcal{T}_h}h_K^{2r}\seminorm{v}{H^{r+1}(K)}^2\right)^{\frac{1}{2}} \label{first_estimate_H1_bvp}
+\end{equation}
+Then, by using \eqref{some_other_estimate_bvp}:
+\begin{equation}
+    \norm{u-u_h} \leq C \frac{M}{\alpha} h^r \seminorm{u}{H^{r+1}(\Omega)} \label{second_estimate_H1_bvp}
+\end{equation}
+
+\begin{definition}
+    Consider a bilinear form \(a: V \times V \to \real\). The \textit{adjoint} form \(a^*\) is defined as \(a^*:V \times V \to \real\)
+    \[
+        a^*(v,w) = a(w,v) \quad \forall \; v,w \in V
+    \]
+\end{definition}
+Now let's consider the adjoint problem 
+\begin{equation}
+    \begin{cases}
+        \txt{Find } \phi = \phi(g) \in V & \forall \; g \in L^2(\Omega)\\ 
+        a^*(\phi,v) = (g,v) = \int_{\Omega} g v & \forall \; v \in V
+    \end{cases}
+    \label{Adjoint_problem_bvp}
+\end{equation}
+Assuming that \(\phi \in H^2(\Omega) \cap V\) (elliptic regularity). Consider now, for example, \(\mathcal{L} = -\Delta\). Then the solution of 
+\begin{equation*}
+    \begin{cases}
+        -\Delta \phi = g & \txt{in } \Omega \\
+        u = 0 & \txt{on } \partial \Omega
+    \end{cases}
+\end{equation*}
+satisfies \(\phi \in H^2(\Omega)\). Moreover
+\[
+    \exists \; C_1 > 0 : \norm{\phi(g)}_{H^2(\Omega)} \leq C_1 \norm{g}_{L^2(\Omega)} 
+\]
+Take now \(g = e_h = u-u_h\) in \eqref{Adjoint_problem_bvp}. Then
+\begin{align*}
+    \norm{e_h}^2_{L^2(\Omega)} &= a^*(\phi, e_h) = a(e_h, \phi) \\ 
+    &= a(e_h, \phi-\phi_h) {\hfill \txt{(Galerkin orthogonality)}}
+\end{align*}
