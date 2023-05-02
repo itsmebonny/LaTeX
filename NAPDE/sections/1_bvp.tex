@@ -489,11 +489,28 @@ Assuming that \(\phi \in H^2(\Omega) \cap V\) (elliptic regularity). Consider no
     \end{cases}
 \end{equation*}
 satisfies \(\phi \in H^2(\Omega)\). Moreover
-\[
-    \exists \; C_1 > 0 : \norm{\phi(g)}_{H^2(\Omega)} \leq C_1 \norm{g}_{L^2(\Omega)} 
-\]
+\begin{equation}
+    \exists \; C_1 > 0 : \norm{\phi(g)}_{H^2(\Omega)} \leq C_1 \norm{g}_{L^2(\Omega)}  \label{L2_norm_bvp}
+\end{equation}
+    
 Take now \(g = e_h = u-u_h\) in \eqref{Adjoint_problem_bvp}. Then
 \begin{align*}
     \norm{e_h}^2_{L^2(\Omega)} &= a^*(\phi, e_h) = a(e_h, \phi) \\ 
-    &= a(e_h, \phi-\phi_h) {\hfill \txt{(Galerkin orthogonality)}}
+    &= a(e_h, \phi-\phi_h) \tag{\txt{Galerkin orthogonality}} \\
+    &\leq M\norm{e_h}_{H^1(\Omega)}\norm{\phi-\phi_h}_{H^1(\Omega)}
 \end{align*}
+Take then \(\phi_h = \prod_{h}^{1}\phi\):
+\begin{align*}
+    \norm{e_h}^2_{L^2(\Omega)} &\leq M\norm{e_h}_{H^1(\Omega)}\norm{\phi - {\textstyle \prod_{h}^{1}}\phi}_{H^1(\Omega)} \\
+    &\leq M\honenorm{e_h}C_2 h\seminorm{\phi}{H^2(\Omega)} \tag{for \eqref{some_other_estimate_bvp} with m=r=1} \\
+    &\leq M \honenorm{e_h} C_2 h C_1 \ltwonorm{e_h} \tag{for \eqref{L2_norm_bvp}}
+\end{align*}
+Whence: 
+\begin{align*}
+    \ltwonorm{e_h} &\leq C_1 C_2 h h \honenorm{e_h} \\
+    &\leq M C_1 C_2 h C_3 h^r \seminorm{u}{H^{r+1}(\Omega)} \tag{for \eqref{second_estimate_H1_bvp}}
+\end{align*}
+So 
+\begin{equation}
+    \ltwonorm{e_h} \leq \overline{C} h^{r+1} \seminorm{u}{H^{r+1}(\Omega)}
+\end{equation}

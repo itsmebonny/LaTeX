@@ -1,0 +1,70 @@
+\section{Spectral Element Method}
+\subsection{Introduction}
+The problem with the Finite Element Method is that the rate of convergence is limited by the degree of the polynomials used. An alternative can be the Spectral Element Method, for which the convergence rate is limited by the regularity of the solution. 
+\subsection{Legendre polynomials}
+The Legendre polynomials \(\{L_k(x) \in \mathbb{P}_k, k = 0, 1, \ldots\}\) are the eigenfunctions of the singular Sturm-Liouville problem:
+\[
+    ((1-x^2)L'_k(x))' + k(k+1)L_k(x) = 0 \quad -1 < x < 1
+\]
+So they satisfy the recurrence relation
+\begin{equation}
+    \begin{split}
+        &L_0(x) = 1, \ L_1(x) = x, \txt{ and for } k \geq 1 \\
+        &L_{k+1}(x) = \frac{2k+1}{k+1}xL_k(x) - \frac{k}{k+1}L_{k-1}(x)
+    \end{split}
+    \label{legendre_polynomials}
+\end{equation}
+Given a weight function \(w(x) \equiv 1\), they are mutually orthogonal with respect to it on the interval \((-1, 1)\)
+\[
+    \int_{-1}^1 L_k(x)L_m(x) \; dx = \begin{cases}
+        \frac{2}{2k+1} & \txt{if } k = m \\
+        0 & \txt{if } k \neq m
+    \end{cases}
+\]
+The expansion of \(u \in L^2(-1,1)\) in terms of \(L_k\) is 
+\[
+    u(x) = \sum_{k=0}^{\infty} \hat{u}_k L_(x)
+\]
+Given that \((f,g) = \int_{-1}^1 fg \, dx\) we know that:
+\[
+    (u,L_m) = \sum_{k=0} \hat{u}_k (L_k, L_m) \underset{\txt{orth.}}{=} \hat{u}_m\frac{2}{2m+1} \Rightarrow \hat{u}_k = \frac{2k+1}{2} \int_{-1}^1 u L_k \, dx
+\]
+The truncated Legendre series of \(u\) is the \(L^2-\txt{projection of } u \txt{ over } \mathbb{P}_N\) is 
+\begin{equation}
+    P_Nu = \sum_{k=0}^{N} \hat{u}_k L_k
+\end{equation}
+Given any \(u \in H^s(-1,1)\) with \(s \in N\), the projection error \((u-P_Nu)\) satisfies the estimates 
+\begin{align*}
+    \norm{u-P_Nu}_{L^2(-1,1)} &\leq CN^{-s} \norm{u}_{H^s(-1,1)} & \forall \; s \geq 0 \\
+    \norm{u-P_Nu}_{L^2(-1,1)} &\leq CN^{-s} \seminorm{u}{H^s(-1,1)} & \forall \; s \leq N+1 \\
+\end{align*}
+There is also a ``modified'' Legendre basis for function that vanish at \(\pm 1\). This is because the Legendre basis is not suited to impose Dirichlet B.C.
+\begin{align}
+    \psi_0(x) = \frac{1}{2} (L_0(x) - L_1(x)) = \frac{1-x}{2} \\ 
+    \psi_N(x) = \frac{1}{2} (L_0(x) + L_1(x)) = \frac{1+x}{2} \\ 
+    \psi_{k-1}(x) = \frac{1}{\sqrt{2(2k-1)}} (L_{k-2}(x) - L_k(x))\\ 
+    \txt{for } k = 2, \ldots, N \ -1 < x < 1 \\ 
+\end{align}
+
+\subsection{Spectral Galerkin formulation}
+Given \(\Omega = (-1, 1), \mu, b, \sigma > 0\) const., \(f: \Omega \to \real\). Look for \(u:\Omega to \real\) s.t. 
+\[
+    \begin{cases}
+        -(\mu u')'+(bu)' + \sigma u = f & \txt{in } \Omega \\
+        u(-1) = 0 \\
+        u(1) = 0
+    \end{cases}
+\]
+Set \(V  = H^1_0(\Omega)\), then the weak form of the differential problem reads: 
+\[
+    \txt{find } u \in V \txt{ s.t } a(u,v) = (f,v)_{L^2(\Omega)} \quad \forall \; v \in V, \ f \in L^2(\Omega)
+\]
+where 
+\begin{align*}
+    & a(u,v) = \int_{\Omega} (\mu u' - bu)v'\, dx + \int_{\Omega} \sigma uv \, dx \\
+    & (f,v)_{L^"(\Omega)} = \int_{\Omega} f v \, dx
+\end{align*}
+Now set \(V_N = \mathbb{P}^0_N\) 
+\begin{equation}
+    \txt{find } u_N \in V_N: a(u_N, v_N) = (f, v_N)_{L^2(\Omega)}
+\end{equation}
