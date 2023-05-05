@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1683027253 "/home/bonni/Documents/LaTeX/NAPDE/NAPDE.tex" "NAPDE.pdf" "NAPDE" 1683027254
+["pdflatex"] 1683298228 "/home/bonni/Documents/LaTeX/NAPDE/NAPDE.tex" "NAPDE.pdf" "NAPDE" 1683298229
   "/etc/texmf/web2c/texmf.cnf" 1663235487 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/bonni/Documents/LaTeX/NAPDE/NAPDE.tex" 1683019563 3005 4e9b9a81032b670cc56ee8d4dbc330c5 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -130,13 +130,13 @@
   "/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1636152094 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb" 1663245268 136101 f533469f523533d38317ab5729d00c8a ""
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
-  "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1663245285 4379155 98693266ff65f58d9f98aff394de12d2 ""
-  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1663245305 2799600 82c7499e2bbeaef077fd78ca2cedfab0 ""
-  "NAPDE.aux" 1683027254 3783 75e19018c9afd256d83b799812795924 "pdflatex"
-  "NAPDE.out" 1683027254 1655 205583437467dcd039d9ac5aa3ff1975 "pdflatex"
+  "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1683288490 4379155 98693266ff65f58d9f98aff394de12d2 ""
+  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1683288530 2799656 66c921ca166ab01ae14356c32e2b598c ""
+  "NAPDE.aux" 1683298229 4026 25b8cbeedbd253b8bd4f60a7f72a40b2 "pdflatex"
+  "NAPDE.out" 1683298229 1897 d43cb8e4e2264d5d39cec3d84fe36528 "pdflatex"
   "NAPDE.tex" 1683019563 3005 4e9b9a81032b670cc56ee8d4dbc330c5 ""
   "sections/1_bvp.tex" 1681826912 26955 01c159bb49e04d852273cb8e00ee760f ""
-  "sections/2_SEM.tex" 1683027251 3166 9e8d6f1caabb2ded96aa25868141c98b ""
+  "sections/2_SEM.tex" 1683298228 7827 eb68c660b7ab667bbed67e39ecc49409 ""
   (generated)
   "NAPDE.aux"
   "NAPDE.log"

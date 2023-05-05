@@ -66,5 +66,98 @@ where
 \end{align*}
 Now set \(V_N = \mathbb{P}^0_N\) 
 \begin{equation}
-    \txt{find } u_N \in V_N: a(u_N, v_N) = (f, v_N)_{L^2(\Omega)}
+    \txt{find } u_N \in V_N: a(u_N, v_N) = (f, v_N)_{L^2(\Omega)} \label{weak_spec_galerkin_formulation}
 \end{equation}
+Now expand \(u_N(x) = \sum_{k=1}^{N-1} \tilde{u}_k \psi_k(x)\) and chose \(v_N = \psi_i(x)\) for any \(i = 1, \ldots, N-1\).
+The discretization of the problem reads:
+\[
+    \txt{find } u = \left[\tilde{u}\right]_{k=1}^{N-1} : \sum_{k=1}^{N-1} a(\phi_k, \psi_i)\tilde{u}_k = (f, \psi_i)_{L^2(\Omega)} \quad \txt{for any } i = 1, \ldots, N-1
+\]
+Given \(u_N \in V_N\) the solution of the problem, then if \(u \in H^{s+1}(\Omega)\) with \(s \geq 0\), thanks to Ceà Lemma, holds that:
+\[
+    \honenorm{u-u_N} \leq C(s)\left(\frac{1}{N}\right)^s\norm{u}_{H^{s+1}(\Omega)}
+\]
+So \(u_N\) converges with spectral accuracy with respect to \(N\).
+But doing so we would have two full matrices, the stiffness one and the mass one  \(M_{ij} = (\psi_j \psi_i)_{L^2(-1,1)}\) are quite expensive to compute or invert.
+
+To solve this we can use a Lagrange nodal basis instead of a modal one, by using the Legendre-Gauss-Lobatto quadrature formulas.
+In this case we need a Legendre polynomial \(L_N(x)\).
+
+Given a \(L_N(x)\) polynomial, we can put one node at each end of the domain, so \(x_0 = -1, x_N =  1\) and \(x_j = \txt{ zeros of }L'
+_N\) with \(j =  1, \ldots, N-1\). We also need a set of weights \(w_j = \frac{2}{N(N+1)} \frac{1}{[L_N(x_j)]^2}\) with \(j = 0, \ldots, N\).
+
+With this set of nodes and weights it's possible to obtain the following interpolatory quadrature formula
+\[
+    \int_{-1}^1 f(x) \, dx \approx \sum_{j=0}^{N} f(x_j)*w_j
+\]
+The degree of exactness of this method is \(2N-1\), meaning that 
+\[
+    \int_{-1}^1 f(x)\,dx = \sum_{j=0}^{N} f(x_j)w_j \quad \forall \; f \in \mathbb{P}_{2N-1}
+\]
+Some useful operation with LGL nodes
+\begin{itemize}
+    \item Discrete inner product in \(L^2(-1,1)\):
+    \[
+        (u,v)_N = \sum_{j=0}^{N} u(x_j)v(x_j)w_j 
+    \]
+    with degree of exactness \(2N-1\) 
+    \[
+        (u,v)_{L^2(\Omega)} = (u,v)_N \quad \txt{only if } u, v \in \mathbb{P}_{2N-1}
+    \]
+    \item Discrete norm in \(L^2(-1,1)\)
+    \[
+        \norm{u}_N = (u,u)_N^{\frac{1}{2}}
+    \]
+    with the following norm equivalence: \(\exists \; c_1, c_2 > 0\) s.t.
+    \[
+        c_1 \norm{v_N}_{L^2(-1,1)} \leq \norm{v_N}_N \leq c_2 \norm{v_N}_{L^2(-1,1)} \quad \forall \; v_N \in \mathbb{P}_N
+    \]
+\end{itemize}
+Given \(\left\{\phi_0, \ldots, \phi_N\right\}\) characteristics Lagrange polynomials in \(\mathbb{P}_N\) w.r.t the LGL nodes. then
+\[
+    \phi_j = \frac{1}{n(n+1)} \frac{(1-x^2)}{(x_j-x)}\frac{L'_N(x)}{L_N(x_j)} \quad \txt{for } j = 0, \ldots, N
+\]
+Also true that \(\phi_j(x_k) = \delta_{kj}\) and \(\left\{\phi_j\right\}\) are orthogonal w.r.t. the discrete inner product \((\cdot,\cdot)_N\), meaning that the mass matrix \(M\) is diagonal. Given \(\left\{w_i\right\}\) the set of weights, then 
+\[
+    M_{ij} = (\phi_j, \phi_i)_N = \delta_{ij}w_i  \quad i,j  = 0, \ldots, N
+\]
+\subsection{Galerkin with Numerical Integration}
+We can now define the spectral Galerkin method with numerical integration (GNI), by setting \(a_N(u_N, v_N) = (\mu u'_N-b u_n, v'_N)_N+(\sigma u_n, v_n)_N\), and the problem as
+\[
+    \txt{find } u_N^{\txt{GNI}} \in V_N : a_N(u_N^{\txt{GNI}},v_N)=(f, v_N)_N \quad \forall \; v_N \in V_N
+\]
+Then, by the same expansion w.r.t. the Lagrange basis: \(u_N^{\txt{GNI}}(x) =  \sum_{i=0}^{N}u_N^{\txt{GNI}}(x_i)\phi_i(x)\) and choose \(v_N(x) = \phi_i(x)\) for any \(i = 1, \ldots, N-1\).  
+
+The GNI discretization of the weak problem reads:
+\[
+    \txt{look for } u^{\txt{GNI}} = \left[u_N^{\txt{GNI}}(x_j)\right]_{j=0}^N : \begin{cases}
+        u_N^{\txt{GNI}}(x_0) = u_N^{\txt{GNI}}(x_N) \\
+        \sum_{j=0}^{N} a_N(\phi_j, \phi_i)u_N^{\txt{GNI}} (x_j) = (f, \phi_i)_N & \forall \; i = 1, \ldots, N-1
+    \end{cases} 
+\]
+
+Now let's have a closer look to the \(\left\{\phi_j\right\}\):
+\[
+    \phi_j \in \mathbb{P}_N : \phi_j(x_i) = \delta_{ij} = \begin{cases}
+        1 & \txt{if } i = j \\
+        0 & \txt{otherwise}
+    \end{cases}   
+\]
+Given the discrete inner product \((u,v)_N = \sum_{j=0}^N u(x_j)v(x_j)w_j\) we can write:
+\begin{align*}
+    (\phi_k, \phi_m)_N &= \sum_{j=0}^{N} \underbrace{\phi_k(x_j)}_{\delta_{kj}} \underbrace{\phi_m(x_j)}_{\delta_{mj}} w_j \quad 0 \leq k,m \leq N \\
+    &= \sum_{k=0}^{N} = \begin{cases}
+        w_m & \txt{if } k = m \\
+        0 & \txt{otherwise}
+    \end{cases}
+\end{align*}
+so \(\left\{\phi_k\right\}\) is orthogonal under the discrete inner product.
+
+The GNI solution is 
+\[
+    u_N(x) = \sum_{i=0}^{N} \alpha_i\phi_i(x) \quad \left\{\alpha_i\right\} \txt{ unknown coefficients}
+\]
+Set now \(x = x_j\) with LGL nodes:
+\[
+    u_N(x_j) = \sum_{i=0}^{N} \alpha_i \underbrace{\phi_i(x_j)}_{\delta{ij}} = \alpha_j
+\]
