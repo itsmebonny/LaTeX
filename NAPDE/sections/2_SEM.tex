@@ -307,5 +307,27 @@ with \(M\) being the continuity constant of \(a(\cdot, \cdot)\)
         &= \left[F_h(\sigma_h)-F(\sigma_h)\right] + a(u, \sigma_h) - a_h(w_h, \sigma_h) \tag*{(by \eqref{another_weak_formulation})} \\
         &= \left[F_h(\sigma_h) - F(\sigma_h)\right] + a(u-w_h, \sigma_h) + \left[a(w_h, \sigma_h) - a_h(w_h, \sigma_h)\right]
     \end{align*}
-    If \(\sigma_h \neq 0\)
+    If \(\sigma_h \neq 0\), we can divide everything by \(\alpha^*\norm{\sigma_h}_V\)
+    \begin{align*}
+        \norm*{\sigma_h}_V &\leq \frac{1}{\alpha^*} \left\{\frac{\abs*{F_h(\sigma) - F(\sigma_h)}}{\norm*{\sigma_h}_V} + \frac{\abs*{a(u-w_h,\sigma_h)}}{\norm*{\sigma_h}_v} + \frac{\abs*{a(w_h, \sigma_h) - a_h(w_h, \sigma_h)}}{\norm*{\sigma_h}_V}\right\} \\
+        &\leq \frac{1}{\alpha^*} \left\{M\norm*{u-w_h}_V + \sup_{\mathclap{v_h \in V_h \backslash \left\{0\right\}}} \frac{\abs*{a(w_h, v_h) - a_h(w_h, v_h)}}{\norm*{v_h}_V} + \sup_{\mathclap{v_h \in V_h \backslash \left\{0\right\}}}\frac{\abs*{F_h(\sigma_h)-F(\sigma_h)}}{\norm*{v_h}_V}\right\}
+    \end{align*}
+    Clearly, if \(\sigma_h = 0\), the inequality still holds.
+
+    We can now estimate the error between \(u\) and \(u_h\). Since \(u-u_h = (u-w_h) - \sigma_h\) we obtain
+    \begin{align*}
+        \norm*{u-u_h} &\leq  \norm*{u-w_h}_V + \norm*{\sigma_h}_V \\
+        &\leq \norm*{u-w_h}_V + \frac{1}{\alpha^*} \bigg\{M\norm*{u-w_h}_V + \sup_{\mathclap{v_h \in V_h \backslash \left\{0\right\}}} \frac{\abs*{a(w_h, v_h) - a_h(w_h, v_h)}}{\norm*{v_h}_V}  \\
+        & \quad + \sup_{\mathclap{v_h \in V_h \backslash \left\{0\right\}}} \frac{\abs*{F_h(\sigma_h)-F(\sigma_h)}}{\norm*{v_h}_V}\bigg\} \\
+        &= \left(1+\frac{M}{\alpha^*}\right)\norm*{u-w_h}_V + \frac{1}{\alpha^*} \sup_{v_h \in V_h \backslash \left\{0\right\}} \frac{\abs*{a(w_h, v_h) - a_h(w_h, v_h)}}{\norm*{v_h}_V} \\
+        &\quad + \sup_{v_h \in V_h \backslash \left\{0\right\}}\frac{\abs*{F_h(\sigma_h)-F(\sigma_h)}}{\norm*{v_h}_V}
+    \end{align*}
+    If this inequality holds \(\forall \; w_h \in V_h\), then it holds when taking the infimum.
 \end{proof}
+Now we should try to apply Strang's lemma to GNI method in one dimension, to verify its convergence. Obviously, we will have \(V_N\) instead of \(V_h\) and everything that follows from there.
+
+First of all, the error of the GLL numerical integration formula 
+\[
+    E(g, v_N) = (g, v_N) - (g, v_N)_N
+\]
+with \(g\) and \(v_N\) being a generic continuous function and a generic polynomial of \(\mathbb{Q}_N\) respectively. Introducing the interpolation polynomial
