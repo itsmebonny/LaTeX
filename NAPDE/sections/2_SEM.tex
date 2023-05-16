@@ -47,7 +47,7 @@ There is also a ``modified'' Legendre basis for function that vanish at \(\pm 1\
 \end{align}
 
 \subsection{Spectral Galerkin formulation}
-Given \(\Omega = (-1, 1), \mu, b, \sigma > 0\) const., \(f: \Omega \to \real\). Look for \(u:\Omega to \real\) s.t. 
+Given \(\Omega = (-1, 1), \mu, b, \sigma > 0\) const., \(f: \Omega \to \real\). Look for \(u:\Omega \to \real\) s.t. 
 \[
     \begin{cases}
         -(\mu u')'+(bu)' + \sigma u = f & \txt{in } \Omega \\
@@ -161,3 +161,151 @@ Set now \(x = x_j\) with LGL nodes:
 \[
     u_N(x_j) = \sum_{i=0}^{N} \alpha_i \underbrace{\phi_i(x_j)}_{\delta{ij}} = \alpha_j
 \]
+So, given \(u_n^{\txt{GNI}}(x_j)\) the nodal values, we obtain the nodal expansion:
+\[
+    u_N^{\txt{GNI}}(x) = \sum_{j=0}^{N} u_N^{\txt{GNI}} (x_j)\phi_j(x)
+\]
+\subsection*{Algebraic form of Spectral GNI}
+Now it's about solving the following linear system 
+\[
+    A^{\txt{GNI}}\vect{u}^{\txt{GNI}} = \vect{f}^{\txt{GNI}}
+\]
+with \(A_{ij}^{\txt{GNI}} = a_N(\phi_j, \phi_i)\) for \(i = 1,\ldots, N-1, j = 0, \ldots, N\) and \(\vect{f}^{\txt{GNI}} = (f,\phi_i)_N\) for \(i = 1, \ldots, N-1\):
+\[
+    A^{\txt{GNI}} = \left[\begin{matrix*}
+        1 & 0 & \cdots & 0 & 0 \\
+        \vdots & \ddots & & &\vdots\\
+        \vdots & & a_N(\phi_j, \phi_i) & & \vdots \\
+        \vdots & & & \ddots & \vdots \\
+        0 & 0 & \cdots & 0 & 1
+    \end{matrix*}\right], \quad \vect{f}^{\txt{GNI}} = \left[\begin{matrix*}
+        0 \\ \vdots \\ f_i^{\txt{GNI}} \\ \vdots \\ 0
+    \end{matrix*}\right]
+\]
+Given that \(a(u,v) = \int_{-1}^1 \mu u' v' - \int_{-1}^1 bu v' + \int_{-1}^1 \sigma u v\) and \((f,v) = \int_{-1}^1 fv\). We estabilished that \(a_n(u,v) = (\mu u', v')_N - (bu,v')_N + (\sigma u, v)_N\) and that \((f,v)_N = (f,v)_N\), so we obtain 
+\[
+    A_{ij}^{\txt{GNI}} = a_N(\phi_j, \phi_i) = \underbrace{\left(\mu \phi_j', \phi_i'\right)_N}_{\txt{A}} - \underbrace{\left(b\phi_j, \phi_i'\right)_N}_{\txt{B}}+\underbrace{\left(\sigma \phi_j, \phi_i\right)_N}_{\txt{C}}
+\]
+Assuming \(\mu, b, \sigma \in \real\) we have that 
+\begin{align*}
+    C&: \sigma(\phi_j, \phi_i)_N = \sigma \delta_{ij} w_i = \begin{cases}
+        \sigma w_i & i = j \\
+        0 & i\neq j
+    \end{cases} &\rightarrow &\quad M = \sigma \underbrace{\left[\begin{matrix}
+        w_0 & 0 & 0 \\ 
+        0 & \ddots & 0 \\
+        0 & 0 & w_N
+    \end{matrix}\right]}_{\txt{diagonal weight matrix}} \\
+    B&: - b(\phi_j, \phi_i')_N = -b\sum_{k=0}^{N} \underbrace{\phi_j(x_k)}_{\delta_{jk}}\underbrace{\phi_i'(x_k)}_{D_{ki}\neq 0} w_k &\rightarrow& \quad \txt{full matrix} \\ 
+    A&: \mu(\phi_j', \phi_i')_N = \mu\sum_{k=0}^{N} \underbrace{\phi_j'(x_k)}_{D_{kj}}\underbrace{\phi_i'(x_k)}_{D_{ki}} w_k &\rightarrow& \quad \txt{full matrix}
+\end{align*}
+where \(D = (D_{ki}) = \phi_k'(x_i)\) is the differentiation matrix that can be computed only once. The computation of \((f,\phi_i)_N\) can be made this way 
+\[
+    (f, \phi_i)_N = \sum_m w_m f(x_m)\underbrace{\phi_i(x_m)}_{\delta_{im}} = w_i f(x_i) 
+\]
+In conclusion the GNI method is still as full as the spectral one, but much easier to compute thanks to the nodal expansion.
+\subsection*{Accuracy}
+We can define the Global Lagrange polynomial of degree \(N\) that interpolates \(u\) at LGL nodes as:
+\[
+    I_nu(x) = \sum_{j=0}^{N}u(x_j)\phi_j(x)
+\]
+And the interpolation error, for any \(u \in H^{s+1}(-1, 1)\) with \(s \geq 0 \), the interpolation error \(u - I_N u\) satisfies the estimate:
+\[
+    \norm{u-I_Nu}_{H^k(-1,1)} \leq C(s)\left(\frac{1}{N}\right)^{s+1-k}\norm{u}_{H^{s+1}(-1,1)} \quad \txt{for }k = 0,1
+\]
+One important feature of LGL nodes is that they are not uniformly spaced (otherwise there could be problems), so that 
+\[
+    I_nu(x_k) = u(x_k) \quad 0 \leq k \leq N
+\]
+It's also possible to estimate the \(L^2\) norm of the error as:
+\[
+    \norm*{u - I_N u}_{L^2(-1,1)} \leq C(s) \left(\frac{1}{N}\right)^{s+1} \norm{u}_{H^{s+1}(-1,1)} \quad s \geq 1
+\]
+\begin{theorem}[Quadrature error]
+    \(\exists \; c > 0 : \forall \; f \in H^q(-1,1)\), with \(q \geq 1\), \(\forall \; v_N \in \mathbb{P}_N\) it holds 
+    \[
+        \abs*{\int_{-1}^1 f v_N \, dx - (f, v_N)_N} \geq c \left(\frac{1}{N}\right)^q \norm{f}_{H^q(-1,1)} \norm{v_N}_{L^2(-1,1)}
+    \]
+\end{theorem}
+Let now \(u_N^{\txt{GNI}} \in V_N\) be the solution of
+\[
+     a_N(u_N^{\txt{GNI}}, v_N) = (f, v_N)_N \quad \forall \; v_N \in V_N
+\]
+If \(u \in H^{s+1}(\Omega)\) and \(f \in H^{s}(\Omega)\) with \(s \geq 0\), then:
+\[
+    \norm{u-u_N^{\txt{GNI}}}_{H^1(\Omega)} \leq C(s) \left(\frac{1}{N}\right)^s \left(\norm*{u}_{H^{s+1}(\Omega)}+\norm*{f}_{H^s(\Omega)}\right)
+\]
+So \(u_N^{\txt{GNI}}\) converges with spectral accuracy w.r.t. to \(N\) to the exact solution when the latter is smooth.
+
+\subsubsection*{General ideas}
+The idea proposed until now are the following:
+\[
+    \begin{array}{lccc}
+        \txt{(WP)} & V \txt{ Hilbert} & a \txt{ bilinear form} & F \txt{ functional} \\ 
+        \txt{(SG)} & V_h \txt{ instead of } V & \txt{same }a &  \txt{same } F \\ 
+        \txt{(GNI)} & V_N & a_N  & F_N\\ 
+    \end{array}
+\]
+\begin{itemize}
+    \item For the Galerkin method one can use Ceà Lemma 
+    \begin{align*}
+        \honenorm{u-u_N} &\leq \underbrace{\inf_{v_N \in V_N}\honenorm{u-v_N}}_{\txt{distance of } V \txt{ from }V_N} \\
+        &\leq \honenorm{u-I_nu}
+    \end{align*}
+    \item For the Galerkin with Numerical Integration we need something more:
+    \begin{align*}
+        \honenorm{u-u_N} \leq\quad & \txt{``distance'' of } V \txt{ from }V_N \\
+        &+ \txt{``distance'' of } a(\cdot,\cdot) \txt{ from }a_N(\cdot,\cdot) \\
+        &+ \txt{``distance'' of } F(\cdot) \txt{ from }F_N(\cdot)
+    \end{align*}
+\end{itemize}
+\subsection{Strang Lemma}
+\begin{lemma}[Strang lemma]
+Consider the problem
+\begin{equation}
+    \txt{find } u \in V: a(u,v) = F(v) \quad \forall \; v \in V
+    \label{another_weak_formulation}
+\end{equation}
+and its approximation 
+\begin{equation}
+    \txt{find } u_h \in V_h: a_h(u_h,v_h) = F_h(v_h) \quad \forall \; v_h \in V_h
+    \label{another_weak_approximation}
+\end{equation}
+with \(\left\{V_h\right\}\) being a family of subspaces of \(V\). Suppose that \(a_h(\cdot,\cdot)\) is continuous on \(V_h \times V_h\) and uniformly coercive on \(V_h\) meaning that:
+\[
+    \exists \; \alpha^* > 0 \txt{ independent of }h : a_h(v_h, v_h) \geq \alpha^* \norm*{v_h}^2_V \quad \forall \; v_h \in V_h
+\]
+Also suppose that \(F_h\) is linear and bounded on \(V_h\). Then:
+\begin{itemize}
+    \item exist a unique solution \(u_h\) to the problem.
+    \item such solution depends continuously on the data, i.e. we have 
+    \[
+        \norm{u_h}_V \leq \frac{1}{\alpha^*} \sup_{v_h \in V_h \backslash \left\{0\right\}} \frac{F_h(v_h)}{\norm*{v_h}_V}
+    \]
+    \item  finally, the following a priori error estimate holds 
+    \begin{align*}
+        \norm*{u-u_h}_V \quad \leq & \inf_{w_h \in V_h} \bigg\{\left(1+\frac{M}{\alpha^*}\right) \norm*{u-w_h}_V \\
+        &+ \frac{1}{\alpha^*} \sup_{v_h \in V_h \backslash \left\{0\right\}} \frac{\abs*{a(w_h, v_h) - a_h(w_h, v_h)}}{\norm*{v_h}_V} \bigg\} \\
+        &+ \frac{1}{\alpha^*} \sup_{v_h \in V_h \backslash \left\{0\right\}} \frac{\abs*{F(v_h)-F_h(v_h)}}{\norm*{v_h}_V} 
+    \end{align*}
+\end{itemize}
+with \(M\) being the continuity constant of \(a(\cdot, \cdot)\)
+\end{lemma}
+\begin{proof}
+    The assumption of Lax-Milgram are satisfied for \eqref{another_weak_approximation}, so the solution exists and is unique. Moreover
+    \[
+        \norm*{u_h}_V \leq \frac{1}{\alpha^*} \norm*{F_h}_{V'_h} 
+    \]
+    with \(\norm{F_h}_{V'_h} = \sup_{v_h \in V_h \backslash \left\{0\right\}} \frac{F_h(v_h)}{\norm{v_h}_V}\) being the norm of the dual space \(V'_h\).
+
+    Now the only thing missing is the error inequality. Let \(w_h\) be any function of the subspace \(V_h\). Setting \(\sigma_h = u_h -w_h \in V_h\), we have:
+    \begin{align*}
+        \alpha^* \norm*{\sigma_h}^2_V &\leq a_h(\sigma_h, \sigma_h) \tag*{(by coercivity of \(a_h\))} \\
+        &= a_h(u_h, \sigma_h) - a_h(w_h, \sigma_h) \\
+        &= F_h(\sigma_h) - a_h(w_h, \sigma_h) \tag*{(by \eqref{another_weak_approximation})}
+        &= F_h(\sigma_h) - F(\sigma_h) + F(\sigma_h) - a_h(w_h, \sigma_h) \\
+        &= \left[F_h(\sigma_h)-F(\sigma_h)\right] + a(u, \sigma_h) - a_h(w_h, \sigma_h) \tag*{(by \eqref{another_weak_formulation})}
+        &= \left[F_h(\sigma_h) - F(\sigma_h)\right] + a(u-w_h, \sigma_h) + \left[a(w_h, \sigma_h) - a_h(w_h, \sigma_h)\right]
+    \end{align*}
+    If \(\sigma_h \neq 0\)
+\end{proof}
