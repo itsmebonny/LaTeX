@@ -326,8 +326,90 @@ with \(M\) being the continuity constant of \(a(\cdot, \cdot)\)
 \end{proof}
 Now we should try to apply Strang's lemma to GNI method in one dimension, to verify its convergence. Obviously, we will have \(V_N\) instead of \(V_h\) and everything that follows from there.
 
-First of all, the error of the GLL numerical integration formula 
+First of all, the error of the LGL numerical integration formula 
 \[
     E(g, v_N) = (g, v_N) - (g, v_N)_N
 \]
-with \(g\) and \(v_N\) being a generic continuous function and a generic polynomial of \(\mathbb{Q}_N\) respectively. Introducing the interpolation polynomial
+with \(g\) and \(v_N\) being a generic continuous function and a generic polynomial of \(\mathbb{Q}_N\) respectively. Introducing the interpolation polynomial \(I_Ng\), we obtain:
+\begin{align*}
+    E(g, v_n) &= (g, v_N) - (I_Ng, v_N) \\
+    &= (g, v_N) - (I_{N-1}g, v_N) + \underbrace{(\overbrace{I_{N-1}g}^{\in \mathbb{Q}_{N-1}}, \overbrace{v_N}^{\in \mathbb{Q}_N})}_{\in \mathbb{Q}_{2N-1}} \\
+    &= (g, v_N) - (I_{N-1}g, v_N) +(I_{N-1}g, v_N)_N - (I_{N}g, v_N)_N \\
+    &= (g - I_{N-1}g, v_N) + (I_{N-1}g - I_N g, v_N)_N
+\end{align*}
+The first summand of the right-hand side can be bounded from above using Cauchy-Schwartz:
+\[
+    \abs*{(g-I_{N-1}g, v_N)} \leq \norm*{g-I_{N-1}g}_{L^2(-1,1)}\norm*{v_N}_{L^2(-1,1)}
+\]
+For the second term, it's a bit more difficult, we need to introduce two new lemmas
+\begin{lemma}
+    The discrete scalar product \((\cdot, \cdot)_N\) is a scalar product on \(\mathbb{Q}_N\) and, as such, it satisfies the Cauchy-Schwartz inequality
+    \[
+        \abs*{(\phi, \psi)_N} \leq \norm*{\phi}_N \norm*{\psi}_N
+    \]
+    where the discrete norm is defined as 
+    \[
+        \norm*{\phi}_N = \sqrt{(\phi, \phi)_N} \quad \forall \; \phi \in \mathbb{Q}_N
+    \]
+\end{lemma}
+\begin{lemma}
+    The ``continuous'' norm of \(L^"(-1,1)\) and the ``discrete'' norm \(\norm*{\cdot}_N\) verify the inequalities
+    \[
+        \norm*{v_N}_{L^2(-1,1)} \leq \norm*{v_N}_N \leq \sqrt{3}\norm*{v_N}_{L^2(-1,1)}
+    \]
+    hence they are uniformly equivalent on \(\mathbb{Q}_N\)
+\end{lemma}
+By using these two lemmas we are able to obtain 
+\begin{equation*}
+    \begin{split}
+        &\abs*{(I_{N-1}g - I_Ng, v_N)_N} \leq \norm*{I_{N-1}g - I_Ng}_N \norm*{v_N}_N  \\
+        &\leq 3 \left[\norm*{I_{N-1}g-g}_{L^2(-1,1)} + \norm*{I_{N}g-g}_{L^2(-1,1)}\right] \norm*{v_N}_{L^2(-1,1)}
+    \end{split}
+\end{equation*}
+Putting all together we obtain the upper bound 
+\[
+    \abs*{E(g,v_N)} \leq \left[4\norm*{I_{N-1}g-g}_{L^2(-1,1)} + 3 \norm*{I_{N-1}g-g}_{L^2(-1,1)} \right] \norm*{v_N}_{L^2(-1,1)}
+\]
+Using then the interpolation estimate 
+\[
+    \norm*{f- I_Nf}_{H^k(-1,1)} \leq C(s)\left(\frac{1}{N}\right)^{s-k} \norm*{f}_{H^s(-1,1)} \quad s \geq 1, k = 0,1
+\]
+we can bound \(\abs*{E(g,v_N)}\) even more
+\[
+    \abs*{E(g,v_N)} \leq C(s)\left[\left(\frac{1}{N-1}\right)^s + \left(\frac{1}{N}\right)^s\right] \norm*{g}_{H^s(-1,1)} \norm*{v_N}_{L^2(-1,1)}
+\]
+assuming that \(g \in H^s(-1,1)\).
+
+Then, since for each \(N\geq 2 \txt{ we have that }\frac{1}{N-1} \leq \frac{2}{N}\), the error for the LGL integration can be written as 
+\[
+    \abs*{E(g,v_N)} \leq C(s)\left(\frac{1}{N}\right)^s \norm*{g}_{H^s(-1,1)} \norm*{v_N}_{L^2(-1,1)}
+\]
+
+\subsection{GNI as Collocation method}
+Let us introduce a problem 
+\[
+    \begin{cases}
+        Lu = -(\mu u')' + (bu)' + \sigma u =  f & -1 < x < 1 \\
+        u(-1) = u(1) = 0
+    \end{cases}
+\]
+that has the usual weak formulation 
+\[
+    \txt{find } u \in V = H^1_0(-1,1): a(u,v) = F(v), \forall \; v \in V
+\]
+The GNI formulation follows 
+\[
+    \begin{cases}
+        \txt{find } u_N \in V_N = \mathbb{P}^0_N = \left\{v_N  \in \mathbb{P}_N : v_N(\pm 1) = 0\right\} \\
+        a_N(u_N, v_N) = F_N(v_N) \quad \forall v_N \in V_N
+    \end{cases}
+\]
+Note that, thanks to the exactness of LGL quadrature formula 
+\begin{align*}
+    a_N(u_N, v_N) &\overset{(\txt{def. of }I_N)}{=} (I_N\underbrace{(\mu u'_N - bu_N)}_{\in \mathbb{P}_N}, \underbrace{v'_N}_{\in \mathbb{P}_{N-1}})_N + (\sigma u_N, v_N)_N \\
+    &\overset{(\txt{exactness})}{=} (I_N(\mu u' - b u), v_N) + (\sigma u_N, v_N)_N \\
+    &\overset{(\txt{int. by parts})}{=} -(\underbrace{I_N(\mu u' - b u)'}_{\in \mathbb{P}_{N-1}}, \underbrace{v_N}_{\in \mathbb{P}_N}) + (\sigma u_N, v_N)_N \\
+    &\overset{(\txt{exactness})}{=} (\underbrace{-(I_N(\mu u' - b u_N))' + \sigma u_N}_{= L_Nu_N}, v_N)_N
+\end{align*}
+So it's obvious that \((\txt{GNI}) \iff (L_Nu_N, v_N)_N = F_N(v_N) \ \forall \; v_N \in V_N\), so it's a collocation method.
+
