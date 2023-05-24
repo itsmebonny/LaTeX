@@ -62,7 +62,7 @@ Set \(V  = H^1_0(\Omega)\), then the weak form of the differential problem reads
 where 
 \begin{align*}
     & a(u,v) = \int_{\Omega} (\mu u' - bu)v'\, dx + \int_{\Omega} \sigma uv \, dx \\
-    & (f,v)_{L^"(\Omega)} = \int_{\Omega} f v \, dx
+    & (f,v)_{L^2(\Omega)} = \int_{\Omega} f v \, dx
 \end{align*}
 Now set \(V_N = \mathbb{P}^0_N\) 
 \begin{equation}
@@ -412,4 +412,85 @@ Note that, thanks to the exactness of LGL quadrature formula
     &\overset{(\txt{exactness})}{=} (\underbrace{-(I_N(\mu u' - b u_N))' + \sigma u_N}_{= L_Nu_N}, v_N)_N
 \end{align*}
 So it's obvious that \((\txt{GNI}) \iff (L_Nu_N, v_N)_N = F_N(v_N) \ \forall \; v_N \in V_N\), so it's a collocation method.
+\subsection{1D Spectral Elements}
+Let \(p \geq 1\) integer and \(\mathbb{P}_p\) the space of polynomials of degree \(\leq p\). We can divide the domain \(\Omega = \bigcup_{n=1}^{N_e} I_k\) with \(I_k\) disjoint elements s.t. \(I_k = F_k ((-1,1))\) and 
+\[
+    F_k : \xi \mapsto x = \frac{b_k -a_k}{2}\xi + \frac{b_k+a_k}{2}
+\]
+with \(N_p = p\cdot N_e +1\) the total number of nodes in \(\Omega\). 
+Then we use the Lagrange basis functions \(\left\{ \phi_i\right\}_{i=1}^{N_p}\) w.r.t. the LGL nodes.
 
+Now set \(X_\delta = \left\{ v \in \mathcal{C}^0 : v\vert_{I_k} \in \mathbb{P}_p, \forall \; I_k \right\}\) with \(h_k = meas(I_k)\), mesh size \(h =  max_k h_k\) and polynomial degree \(p\) we can define \(\delta = (h,p)\) and 
+\[
+    v_\delta(x) = \sum_{i=1}^{N_p} v_\delta (x_i)\phi_i(x) \quad \forall \; v_\delta \in X_\delta
+\]
+Let now \((\hat{\xi}_j, \hat{w}_j) \txt{ for } j = 0, \ldots, p\) be the LGL nodes and respective weights in \(\hat{\Omega} = (-1,1)\).
+We can define the local LGL quadrature as
+\[
+    \int_{I_k} u(x)v(x) \, dx \approx (u,v)_{\delta, I_k} = \sum_{j=0}^{p} u(\xi_j)v(\xi_j)w_j
+\]
+with \(\xi_j = \frac{b_k - a_k}{2}\hat{\xi}_j + \frac{b_k + a_k}{2}\) and \(w_j = \frac{b_k -a_k}{2}\hat{w}_j\).
+Meanwhile we can pass this quadrature to the whole domain, obtaining the composite LGL quadrature:
+\[
+    \int_\Omega u(x)v(x)\, dx \approx (u,v)_{\delta, \Omega} = \sum_{k=1}^{N_e} (u,v)_{\delta, I_k}
+\]
+with its relative error \(\exists \; c > 0 : \forall \; f \in H^r(\Omega), r\geq 1, p \geq 1 : \forall \; v_\delta \in X_\delta \):
+\[
+    \abs*{\int_{\Omega} fv_\delta \, dx - (f, v_\delta)_{\delta, \Omega}} \leq c h^{\min(p,r)}\left( \frac{1}{p} \right)^r \norm*{f}_{H^r(\Omega)}\norm{v_\delta}_{L^2(\Omega)}
+\]
+and its interpolation error as: \(\exists \; c > 0 : \forall \in H^{s+1}(\Omega), s \geq 1\)
+\[
+    \norm*{v - \prod_{\delta}^{LGL}v}_{H^k(\Omega)} \leq Ch^{\min(p+1, s+1)-k}\left( \frac{1}{p} \right)^{s+1-k}\norm*{v}_{H^{s+1}(\Omega)}
+\] 
+\subsection{Spectral Element Method with Numerical Integration}
+Let's go back to the problem 
+\[
+    \begin{cases}
+        -(\mu u')' - (bu)' + \sigma u = f & \txt{in }  \Omega \\
+        u(a) = u(b) = 0
+    \end{cases}
+\]
+Given \(V = H^1_0(\Omega)\), the weak formulation reads
+\[
+    \txt{find }u \in V : a(u,v) = (f,v)_{L^2(\Omega)} \quad \forall \; v \in V, f \in L^2(\Omega)
+\]
+with 
+\begin{flalign*}
+    &a(u,v) = \int_\Omega (\mu u' - bu)v' \, dx + \int_\Omega \sigma uv \, dx \\
+    &(f,v)_{L^2(\Omega)} = \int_\Omega fv \, dx 
+\end{flalign*}
+Now set \(a_\delta(\phi_j, \phi_i) = (\mu \phi'_j- b\phi_j, \phi_i)_{\delta, \Omega} + (\sigma \phi_j, \phi_i)_{\delta, \Omega}\) to get the SEM-GNI formulation:
+\begin{equation}
+    \txt{find }u_\delta^{\txt{GNI}} \in V_\delta : a_\delta(u_\delta^{\txt{GNI}}, v_\delta) = (f,v_\delta)_{\delta, \Omega} \quad \forall v_\delta \in V_\delta
+\end{equation}
+Now expand \(u_\delta^{\txt{GNI}}\) w.r.t the Lagrange basis \(u_\delta^{\txt{GNI}}(x) = \sum_{i=1}^{N_p}u\delta^{\txt{GNI}}(x_i)\phi_i(x)\) adn choose \(v_\delta(x) = \phi_i(x)\) for any \(i = 1, \ldots, N_p\). We can now write the SEM-GNI discretization of the weak formulation:
+\[
+    \begin{cases}
+        \txt{find } u^{\txt{GNI}} = \left[ u_\delta^{\txt{GNI}}(x_j) \right]_{j=1}^{N_p} \\
+        u_\delta^{\txt{GNI}}(x_1) = u_\delta^{\txt{GNI}}(x_{N_p}) = 0 \\
+        \sum_{j=1}^{N_p} a_\delta(\phi_j, \phi_i)u_\delta^{\txt{GNI}}(x_j) = (f, \phi_i)_{\delta, \Omega} & \forall \; i = 1, \ldots, N_p
+    \end{cases}
+\]
+or, in algebraic form \(A^{\txt{GNI}}u^{\txt{GNI}} = f^{\txt{GNI}}\) with \(A_{ij}^{\txt{GNI}} = a_\delta(\phi_j,\phi_i)\) and \(f_i^{\txt{GNI}} = (f,\phi_i)_{\delta, \Omega}\).
+
+Now, for the error analysis, we will apply the Strang lemma, so:
+\begin{align*}
+    \norm*{u- u _\delta^{\txt{GNI}}}_V \leq \ & \norm*{u-u_\delta}_V \\
+    & + \frac{1}{\mu^*} \sup_{v_\delta \in V_\delta \backslash\left\{ 0 \right\}} \frac{\abs{a(u_\delta, v_\delta) - a_\delta(u_\delta, v_\delta)}}{\norm*{v_\delta}_V} \\
+    & + \frac{1}{\mu^*} \sup_{v_\delta \in V_\delta \backslash\left\{ 0 \right\}} \frac{\abs*{f,v_\delta}_{L^2(\Omega) - (f,v_\delta)_{\delta,\Omega}}}{\norm*{v_\delta}_V}
+\end{align*}
+where \(\mu^*\) is the coercivity constant of \(a_\delta\): \(a_\delta(v_\delta, v_\delta) \geq \mu^*\norm*{v_\delta}^"_V\) and \(u_\delta\) the SEM-GNI solution.
+Thus for any \(u \in H^{s+1}(\Omega)\) and \(f \in H^r(\Omega)\) 
+\[
+    \norm*{u-u_\delta^{\txt{GNI}}}_{H^1(\Omega)} \leq C\left[ h^{\min(p,s)}\left( \frac{1}{p} \right)^s \norm*{u}_{H^{s+1}(\Omega)} + h^{\min(p,r)}\left( \frac{1}{p} \right)^r \norm*{f}_{H^{r}(\Omega)}  \right]
+\]
+So \(u_\delta^{\txt{GNI}}\) converges with spectral accuracy w.r.t. \(p\) and algebraic accuracy w.r.t. \(h\) to the exact solution.
+\subsection{Convergence rate of SEM-GNI}
+When \(s,r\) are large \((s, r > p)\):
+\[
+    \norm*{u-u_\delta}_{H^1{\Omega}} \leq C \left[ h^p \left(\frac{1}{p}\right)^s \norm*{u}_{H^{s+1}(\Omega)} + h^p \left(\frac{1}{p}\right)^r \norm*{f}_{H^{r}(\Omega)}  \right]
+\]
+when \(s\) is small \((s \leq p)\):
+\[
+    \norm*{u-u_\delta}_{H^1(\Omega)} \leq C\left( \frac{h}{p} \right)^s \norm*{u}_{H^{s+1}(\Omega)}
+\]

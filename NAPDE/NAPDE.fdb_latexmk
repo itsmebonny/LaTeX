@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1684338342 "/home/bonni/Documents/LaTeX/NAPDE/NAPDE.tex" "NAPDE.pdf" "NAPDE" 1684338343
+["pdflatex"] 1684943035 "/home/bonni/Documents/LaTeX/NAPDE/NAPDE.tex" "NAPDE.pdf" "NAPDE" 1684943036
   "/etc/texmf/web2c/texmf.cnf" 1663235487 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/bonni/Documents/LaTeX/NAPDE/NAPDE.tex" 1683019563 3005 4e9b9a81032b670cc56ee8d4dbc330c5 ""
+  "/home/bonni/Documents/LaTeX/NAPDE/NAPDE.tex" 1684938436 3161 65116bff4e1bb9705e4c8a09adfa9d19 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1200.tfm" 1136768653 1536 74b7293ec3713bb7fdca8dd1bd1f469c ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm" 1246382020 1124 14ccf5552bc7f77ca02a8a402bea8bfb ""
@@ -132,11 +132,12 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1683288490 4379155 98693266ff65f58d9f98aff394de12d2 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1683288530 2799656 66c921ca166ab01ae14356c32e2b598c ""
-  "NAPDE.aux" 1684338342 4437 c38bea5a8bd8b70f7362af1e04a26e81 "pdflatex"
-  "NAPDE.out" 1684338343 2210 60b075ef78e0be58c0aa0138e931eb0d "pdflatex"
-  "NAPDE.tex" 1683019563 3005 4e9b9a81032b670cc56ee8d4dbc330c5 ""
-  "sections/1_bvp.tex" 1683886907 26955 01c159bb49e04d852273cb8e00ee760f ""
-  "sections/2_SEM.tex" 1684338340 21637 73956e7fdaf18949e1ff5583763cb3fc ""
+  "NAPDE.aux" 1684943036 5510 3bfc1a026dff219eac3a57bcb0abca10 "pdflatex"
+  "NAPDE.out" 1684943036 3195 71d0cf7075d65ebcd56bff1bf1ca4875 "pdflatex"
+  "NAPDE.tex" 1684938436 3161 65116bff4e1bb9705e4c8a09adfa9d19 ""
+  "sections/1_bvp.tex" 1684850761 26965 8245108e4345d4f85fb29b102a9a1426 ""
+  "sections/2_SEM.tex" 1684933826 26821 8e5221ecd9ef0a5bcc5889387475e863 ""
+  "sections/3_DG-FEM.tex" 1684943034 4394 625953b1d7bce263766bf073bab0537e ""
   (generated)
   "NAPDE.aux"
   "NAPDE.log"

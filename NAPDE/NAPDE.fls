@@ -842,6 +842,10 @@ INPUT ./sections/2_SEM.tex
 INPUT sections/2_SEM.tex
 INPUT ./sections/2_SEM.tex
 INPUT sections/2_SEM.tex
+INPUT ./sections/3_DG-FEM.tex
+INPUT sections/3_DG-FEM.tex
+INPUT ./sections/3_DG-FEM.tex
+INPUT sections/3_DG-FEM.tex
 INPUT NAPDE.aux
 INPUT ./NAPDE.out
 INPUT ./NAPDE.out

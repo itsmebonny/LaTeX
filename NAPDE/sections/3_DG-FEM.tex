@@ -1,0 +1,90 @@
+\section{Discontinuous Galerkin methods}
+The idea behind DG methods is to seek the soltion in a discrete space made of polynomials that are completely discontinuous across the elemnts of the mesh.
+\[
+    V_h \subsetneq V
+\]
+\subsection{1D case}
+Let us consider a Poisson problem 
+\[
+    \begin{cases}
+        -u'' = f & a < x < b \\
+        u(a) = u(b) = 0
+    \end{cases}
+\]
+The aim is to use discontinuous piecewise polynomials, so that between every interval \(I_k\) from one node to another we obtain
+\[
+    \int_{a}^b -u''v = \int_a^b fv \Rightarrow - \sum_{k=0}^{N-1} \int_{I_k} u''v = \sum_{k=0}^{N-1} \int_{I_k} fv
+\]
+We must know integrate by parts, but our test functions are discontinuous at the nodes, so we must acknowledge it. Let's call \(x_k^-\) and \(x_k^+\) the left and right side of the \(x_k\) node. Then we can:
+\begin{equation}
+    -\sum_{k=0}^{N-1} \int_{I_k} u''v = \sum_{k=0}^{N-1} \left[ \int_{I_k}u'v' - \left( u'v\vert_{x_{k+1}^-} - u'v\vert_{x_k^+} \right) \right] \label{integration_by_parts_dg}
+\end{equation}
+    \begin{align}
+    \sum_{k=0}^{N-1} (u'v\vert_{x_{k+1}^-} - u'v\vert_{x_k^+}) &= u'(x_1^-)v(x_1^-) - u'(x_0^+)v(x_0^+) \nonumber\\
+    & + u'(x_2^-)v(x_2^-) - u'(x_1^+)v(x_1^+) \nonumber\\
+    & + \ldots \\
+    & + u'(x_N^-)v(x_N^-) - u'(x_{N-1}^+)v(x_{N-1}^+) \nonumber\\
+    & = \sum_{k=0}^{N} \jump{u'(x_k)v(x_k)} \nonumber \label{step_for_jump_dg}
+\end{align}
+where we have defined the jump function
+\begin{align}
+    \jump{\phi(x_0)} &:= -\phi(x^+_0) & \nonumber\\
+    \jump{\phi(x_k)} &:= \phi(x_k^-) -\phi(x^+_k) & x_k :\txt{ interior node} \\
+    \jump{\phi(x_{\!N})} &:= \phi(x^-_N) &\nonumber \label{jump_function}
+\end{align}
+By using \eqref{integration_by_parts_dg} and \eqref{step_for_jump_dg} we obtain 
+\begin{equation}
+    \sum_{k=0}^{N-1} \int_{I_k} u'v' - \sum_{k=0}^{N} \jump{u'(x_k)v(x_k)} = \sum_{k=0}^{N-1} \int_{I_k} fv \label{almost_bilinear_dg}
+\end{equation}
+Now define the average operator 
+\begin{align}
+    \average{\phi(x_0)} &:= \phi(x^+_0) & \nonumber\\
+    \average{\phi(x_k)} &:= \frac{1}{2}\phi(x_k^-) +\phi(x^+_k) & x_k : \txt{ interior node} \\
+    \average{\phi(x_N)} &:= \phi(x^-_N) &\nonumber \label{average_function}
+\end{align}
+This way we obtain this formula 
+\begin{equation}
+    \sum_{k=0}^{N} \jump{u'(x_k)v(x_k)} = \sum_{k=0}^{N} \average{u'(x_k)} \jump{v(x_k)} + \sum_{k=1}^{N-1} \jump{u'(x_k)}\average{v(x_k)}\label{magic_formula_dg}
+\end{equation}
+If \(u\) is the exact solution and \(u \in \mathcal{C}^1([a,b])\), then \(\jump{u'(x_k)} = 0\) for every interior node, and the second sum in \eqref{magic_formula_dg} drops.
+
+We end up with the formulation (by collecting \eqref{almost_bilinear_dg} and \eqref{magic_formula_dg})
+\begin{equation}
+    \begin{split}
+        \underbrace{\sum_{k=0}^{N-1}\int_{I_k} u'v' - \sum_{k=0}^{N} \average{u'(x_k)}\jump{v(x_k)} - \sum_{k=1}^{N-1} \jump{u'(x_k)}\average{v(x_k)}}_{\mathcal{A}(u,v)} \\
+        = \sum_{k=0}^{N-1}\int_{I_k} fv \quad \forall \; v \in V \label{dg_formulation}
+    \end{split}
+\end{equation}
+where 
+\[
+    V = H^1_{\txt{broken}}(\Omega) := \left\{ v \in L^2(\Omega) : v\vert_{I_k} \in H^1{I_k} \ \forall \; k = 0,\ldots, N-1 \right\}
+\]
+with the broken norm 
+\[
+    \norm{v}_{H^1_{\txt{broken}}(\Omega)} = \left( \sum_{k=0}^{N} \norm*{v\vert_{I_k}}_{H^1(\Omega)}^2 \right)^{\frac{1}{2}}
+\]
+Let now \(V_h \subset V\)
+\begin{equation}
+    \txt{find } u_h \in V_h : \mathcal{A}(u_h, v_h) = \sum_{k=0}^{N-1} \int_{I_k} fv_h \quad \forall \; v_h \in V_h \label{weak_not_well_posed_formulation_dg}
+\end{equation}
+\begin{remark}
+    \(V_h\) is not a subspace of \(H^1(\Omega)\)
+\end{remark}
+But \eqref{weak_not_well_posed_formulation_dg} is not well posed, so the \eqref{dg_formulation} must be modified such that:
+\begin{itemize}
+    \item drop \(3^{rd}\) term because \(\jump{u'(x_k)} = 0\)
+    \item add symmetrization term (\(=0\) if \(u\) is the exact solution) 
+    \[
+        -\sum_{k=0}^{N} \theta \average{v'(x_k)}\jump{u(x_k)}
+    \]
+    with
+    \begin{itemize}
+        \item \(\theta = 1\) SIP (Symmetric Interior Penalty)
+        \item \(\theta = -1\) NIP (Non-symmetric Interior Penalty)
+        \item \(\theta = 0\) IIP (Incomplete Interior Penalty)
+    \end{itemize}
+    \item add the stabilization term (\(=0\) if \(u\) is the exact solution)
+    \[
+        +\sum_{k=0}^{N} \gamma \jump{u(x_k)}\jump{v(x_k)}
+    \]
+\end{itemize}
