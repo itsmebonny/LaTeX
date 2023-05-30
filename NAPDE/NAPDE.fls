@@ -857,6 +857,10 @@ INPUT ./sections/3_DG-FEM.tex
 INPUT sections/3_DG-FEM.tex
 INPUT ./sections/3_DG-FEM.tex
 INPUT sections/3_DG-FEM.tex
+INPUT ./sections/4_ADR.tex
+INPUT sections/4_ADR.tex
+INPUT ./sections/4_ADR.tex
+INPUT sections/4_ADR.tex
 INPUT NAPDE.aux
 INPUT ./NAPDE.out
 INPUT ./NAPDE.out
