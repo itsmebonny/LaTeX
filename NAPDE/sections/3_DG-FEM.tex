@@ -332,7 +332,7 @@ Some key properties:
     \]
     \item Approximation. Let \(\prod_{h}^{p}u \in V_h^p\) be a suitable approximation of \(u\), then 
     \[
-        \threenorm{u-{\textstyle \prod_{h}^{p}u}}{DG} \lesssim \frac{h^{\min(p,s)}}{p^{\frac{s-1}{2}}}\norm{u}_{H^{s+1}(\triangulation)}
+        \threenorm{u-{\textstyle \prod_{h}^{p}u}}{DG} \lesssim \frac{h^{\min(p,s)}}{p^{s-\frac{1}{2}}}\norm{u}_{H^{s+1}(\triangulation)}
     \]
     If \(p \geq s\)
     \[
@@ -343,3 +343,27 @@ Some key properties:
 Recall the abstract error estimate \(\norm{u - u_h}_{DG} \lesssim \threenorm{u-\prod_{h}^{p}}{DG}\).
 
 If \(u\) is sufficiently regular then
+\[
+    \norm{u-u_h}_{DG} \lesssim \frac{h^{\min(p,s)}}{p^{s-\frac{1}{2}}}\norm{u}_{H^{s+1}(\triangulation)}
+\]
+Then, by using a duality argument, one can obtain an estimate for the \(L^2\) norm.
+
+Assuming that \(\Omega\) is such that the following elliptic regularity result holds: for any \(g \in L^2(\Omega)\), the solution \(z\) of the problem
+\[
+   \begin{cases}
+     -\Delta z = g & \txt{in }\Omega \\
+     z = 0 & \txt{on } \partial\Omega
+   \end{cases}
+\]
+satisfies \(z \in H^2(\Omega)\) and 
+\[
+    \norm{z}_{H^2(\Omega)} \lesssim \norm{g}_{L^2(\Omega)}
+\]
+If the exact solution \(u \in H^s(\Omega), s \geq 2\) and, if \(u_h\) is obtained with the SIP method, it holds 
+\[
+    \norm{u-u_h}_{L^2(\Omega)} \lesssim \frac{h^{\min(p,s)+1}}{p^{s+\frac{1}{2}}}\norm{u}_{H^{s+1}(\Omega)}
+\]
+while for NIP and IIP holds
+\[
+    \norm{u-u_h}_{L^2(\Omega)} \lesssim \frac{h^{\min(p,s)}}{p^{s-\frac{1}{2}}}\norm{u}_{H^{s+1}(\Omega)}
+\]

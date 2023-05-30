@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1685445301 "/home/bonni/Documents/LaTeX/NAPDE/NAPDE.tex" "NAPDE.pdf" "NAPDE" 1685445302
+["pdflatex"] 1685465387 "/home/bonni/Documents/LaTeX/NAPDE/NAPDE.tex" "NAPDE.pdf" "NAPDE" 1685465389
   "/etc/texmf/web2c/texmf.cnf" 1663235487 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/bonni/Documents/LaTeX/NAPDE/NAPDE.tex" 1685442839 3461 16e0ed49a1afe20450c4b18dd4f3336f ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -135,12 +135,12 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1683288490 4379155 98693266ff65f58d9f98aff394de12d2 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1683288530 2799656 66c921ca166ab01ae14356c32e2b598c ""
-  "NAPDE.aux" 1685445302 6412 0fb38c93cc4fa06ca6c6df94d03131cf "pdflatex"
-  "NAPDE.out" 1685445302 3663 10e4ee0e8bf05486b98824bb4d616173 "pdflatex"
+  "NAPDE.aux" 1685465389 6412 0fb38c93cc4fa06ca6c6df94d03131cf "pdflatex"
+  "NAPDE.out" 1685465389 3663 10e4ee0e8bf05486b98824bb4d616173 "pdflatex"
   "NAPDE.tex" 1685442839 3461 16e0ed49a1afe20450c4b18dd4f3336f ""
   "sections/1_bvp.tex" 1685442934 26955 82c7a3ed088f3048dd5c5e18f466b095 ""
   "sections/2_SEM.tex" 1685444319 26762 eb2c5e93c41a25f78aa8a2d9f8c35db4 ""
-  "sections/3_DG-FEM.tex" 1685445299 18685 a16c1fc58c5c3c46ae91c86f1461cc1f ""
+  "sections/3_DG-FEM.tex" 1685465387 19617 f26d92d60227945ea07ab806a92ddfda ""
   (generated)
   "NAPDE.aux"
   "NAPDE.log"
