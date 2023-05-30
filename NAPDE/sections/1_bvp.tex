@@ -57,19 +57,19 @@ where \(a: V \times V \to \real\) is a bilinear form and \(F:V \to \real\) is a 
     Assume that 
     \begin{itemize}
         \item \(V\) Hilbert space with \(\normdot\) and inner product \((\cdot, \cdot)\)
-        \item \(F \in V^*: \abs*{F(v)} \leq \norm*{F}_{V^*}\norm*{v} \; \forall \; v \in V\)
-        \item \(a\) continuous: \(\exists \; M > 0: \abs{a(u,v)} \leq M \norm*{u}\norm*{v} \; \forall \; u,v \in V\)
-        \item \(a\) coercive: \(\exists \; \alpha > 0: a(v,v) \geq \alpha\norm*{v}^2 \; \forall \; v \in V\)
+        \item \(F \in V^*: \abs*{F(v)} \leq \norm{F}_{V^*}\norm{v} \; \forall \; v \in V\)
+        \item \(a\) continuous: \(\exists \; M > 0: \abs{a(u,v)} \leq M \norm{u}\norm{v} \; \forall \; u,v \in V\)
+        \item \(a\) coercive: \(\exists \; \alpha > 0: a(v,v) \geq \alpha\norm{v}^2 \; \forall \; v \in V\)
     \end{itemize}
     Then, there exists a unique solution \(u\) of \ref*{Weak Formulation of Boundary Value Problems}
 \end{theorem}\end{background}
 Moreover 
 \[
-    \alpha \norm*{u}^2 \leq a(u,u) = F(u) \leq \norm*{F}_{V^*} \norm*{u}
+    \alpha \norm{u}^2 \leq a(u,u) = F(u) \leq \norm{F}_{V^*} \norm{u}
 \]
 where \(\alpha\) is the coercivity costant. Hence
 \[
-    \norm*{u} \leq \frac{\norm*{F}_{V^*}}{\alpha} \to \txt{stability/continuous dependence on data}
+    \norm{u} \leq \frac{\norm{F}_{V^*}}{\alpha} \to \txt{stability/continuous dependence on data}
 \]
 But what if some of the assumptions of Lax-Milgram (in particular coercivity) are not satisfied?
 
@@ -77,20 +77,20 @@ We need a slightly more general problem to formulate Nečas theorem:
 \begin{equation}
     \begin{cases}
         \txt{find } u \in V \\
-        a(u,w) = \scalarproduct{F}{w} & \forall w \in W \label{Generalized weak formulation}
+        a(u,w) = \scalarproduct{F}{w} & \forall \; w \in W \label{Generalized weak formulation}
     \end{cases}
 \end{equation}
 They belong to different spaces: W for the test function, V the solutions
 \begin{background}\begin{theorem}[Nečas]
     Assume that \(F \in W^*\). Consider the following conditions:
     \begin{itemize}
-        \item \(a\) continuous: \(\exists \; M > 0: \abs*{a(u,w)} \leq M \norm*{u}_V \norm*{w}_W \; \forall \; u \in V, w \in W\)
-        \item \(\inf-\sup\) condition: \(\exists \; \alpha > 0: \forall \; v \in V \quad \sup_{w \in W \setminus \left\{0\right\}} \frac{a(v,m)}{\norm*{w}_W} \geq \alpha \norm*{v}_V\)
+        \item \(a\) continuous: \(\exists \; M > 0: \abs*{a(u,w)} \leq M \norm{u}_V \norm{w}_W \; \forall \; u \in V, w \in W\)
+        \item \(\inf-\sup\) condition: \(\exists \; \alpha > 0: \forall \; v \in V \quad \sup_{w \in W \setminus \left\{0\right\}} \frac{a(v,m)}{\norm{w}_W} \geq \alpha \norm{v}_V\)
         \item \(\forall \; w \in W, w \neq 0, \exists \; v \in V : a(v,w) \neq 0\)
     \end{itemize}
     These conditions are necessary and sufficient for the existence and uniqueness of a solution of \ref*{Generalized weak formulation}, for any \(F \in W^*\). Moreover 
     \[
-        \norm*{u}_V \leq \frac{1}{\alpha}\norm*{F}_{W^*}
+        \norm{u}_V \leq \frac{1}{\alpha}\norm{F}_{W^*}
     \]
 \label{Nečas}
 \end{theorem}
@@ -179,7 +179,7 @@ We denote by \(A\) the matrix made by \(a_{ij} = a(\phi_j, \phi_i)\) and \(\vect
         & = \sum_{j=1}^{N_h}\sum_{i=1}^{N_h} v_ia(\phi_j, \phi_i)v_j\\
         & = \sum_{j=1}^{N_h}\sum_{i=1}^{N_h} a(v_j\phi_j, v_i \phi_i)\\
         & = a\left(\sum_{j=1}^{N_h}v_j\phi_j\sum_{i=1}^{N_h}v_i\phi_i\right)\\
-        & = a(v_h,v_h) \geq \alpha \norm*{v_h}_V^2 \geq 0
+        & = a(v_h,v_h) \geq \alpha \norm{v_h}_V^2 \geq 0
         \end{align*}
 
     Moreover, if \(\vect{v}^T A \vect{v} = 0\), then \(\norm{v_h}_V^2 = 0\).
@@ -237,7 +237,7 @@ having exploited the continuity of the bilinear form. Also by the coercivity
 \]
 hence 
 \[
-    \norm{u-u_h}_V \leq \frac{M}{\alpha} \norm{u-v_h}_V \quad \forall\; v_h \in V_h
+    \norm{u-u_h}_V \leq \frac{M}{\alpha} \norm{u-v_h}_V \quad \forall \; v_h \in V_h
 \]
 Such inequality holds for all functions \(v_h \in V_h\) and therefore we find 
 \begin{equation}
@@ -409,7 +409,7 @@ Since \(A\) is positive defined \(\Rightarrow \text{Re}(\lambda_k(A)) \Rightarro
 \end{definition}
 If \(K_2(A) \gg 1 \Rightarrow A\) is ill-conditioned \(\Rightarrow\) solving \(A\vect{u} = \vect{f}\) is hard.
 
-We can also prove that \(\exists \; C_1, C_2 > 0 : \forall \lambda_h\) eigenvalue of \(A\): 
+We can also prove that \(\exists \; C_1, C_2 > 0 : \forall \; \lambda_h\) eigenvalue of \(A\): 
 \[
     \alpha C_1 h^d \leq \lambda_h \leq M C_2 h^{d-2} \qquad d = 1, 2, 3
 \]

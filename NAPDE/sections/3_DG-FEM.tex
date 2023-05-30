@@ -1,5 +1,5 @@
 \section{Discontinuous Galerkin methods}
-The idea behind DG methods is to seek the soltion in a discrete space made of polynomials that are completely discontinuous across the elemnts of the mesh.
+The idea behind DG methods is to seek the soltion in a discrete space made of polynomials that are completely discontinuous across the elements of the mesh.
 \[
     V_h \subsetneq V
 \]
@@ -61,7 +61,7 @@ where
 \]
 with the broken norm 
 \[
-    \norm{v}_{H^1_{\txt{broken}}(\Omega)} = \left( \sum_{k=0}^{N} \norm*{v\vert_{I_k}}_{H^1(\Omega)}^2 \right)^{\frac{1}{2}}
+    \norm{v}_{H^1_{\txt{broken}}(\Omega)} = \left( \sum_{k=0}^{N} \norm{v\vert_{I_k}}_{H^1(\Omega)}^2 \right)^{\frac{1}{2}}
 \]
 Let now \(V_h \subset V\)
 \begin{equation}
@@ -88,3 +88,258 @@ But \eqref{weak_not_well_posed_formulation_dg} is not well posed, so the \eqref{
         +\sum_{k=0}^{N} \gamma \jump{u(x_k)}\jump{v(x_k)}
     \]
 \end{itemize}
+We can now obtain a new bilinear form
+\begin{equation}
+    \begin{split}
+        \mathcal{A}^*(u_h, v_h) = \underbrace{\sum_{k=0}^{N-1} \int_{I_k} u'_h v'_h}_{(1)} \underbrace{-\sum_{k=0}^{N} \average{u'_h(x_k)} \jump{v_h(x_k)}}_{(2)} \\
+        \underbrace{-\sum_{k=0}^{N} \theta \average{v'_h(x_k)} \jump{u_h(x_k)}}_{(3)} \underbrace{+\sum_{k=0}^{N} \gamma \jump{u_h(x_k)}\jump{v_h(x_k)}} \label{new_bilinear_form_dg} 
+    \end{split}
+\end{equation}
+\subsubsection*{Neumann BC}
+Impose Neumann BC through \(\average{u'(x_k)}\) in \((2)\). In this case we have \(\sum_{k=1}^{N-1}\) in \((2)\) and, consequently, we write \(\sum_{k=1}^{N-1}\) in \((3)\) for symmetry.
+\subsubsection*{Non-homogeneus Dirichlet BC}
+Impose Dirichlet BC as follows. In \((3)\) and \((4)\) replace \(\jump{u_h(x_0)}\) and \(\jump{u_h(x_N)}\) with the following definition:
+\begin{align*}
+    &\jump{u_h(x_0)} := \alpha - u_h(x_0^+) & \txt{if } u(a) = \alpha \\
+    &\jump{u_h(x_N)} :=  u_h(x_N^-) - \beta & \txt{if } u(b) = \beta
+\end{align*}
+In case \(\alpha =  \beta = 0\) we have homogeneus Dirichlet. 
+
+Now in \eqref{new_bilinear_form_dg} split sums as follows: 
+\begin{equation}
+    \begin{split}        
+    & \mathcal{A}^*(u_h, v_h)\\
+    & = \sum_{k=0}^{N-1} \int_{I_k} u'_h v'_h \\
+        & - \sum_{k=1}^{N-1} \average{u'_h(x_k)}\jump{v_h(x_k)} + u'_h(x_0^+)v_h(x_0^+) - u'_h(x_N^-)v_h(x_N^-) \\
+        & - \sum_{k=1}^{N-1} \theta \average{v'_h(x_k)} \jump{u_h(x_k)} - \left[\theta v'_h(x^+_0)(\alpha - u_h(x^+_0)) + \theta v'_h(x^-_N)(u_h(x^-_N) - \beta)\right] \\
+        & - \sum_{k=1}^{N-1} \gamma \jump{u_h(x_k)} \jump{v_h(x_k)} + \gamma(\alpha - u_h(x^+_0))(-v_h(x^+_0)) + \gamma (u_h(x_N^-) - \beta)v_h(x_N^-) \label{split_sum_bilinear_dg}
+    \end{split}
+\end{equation}
+Now move terms, including \(\alpha\) and \(\beta\) to the right hand side of the formulation.
+
+On the left hand side it remains 
+\begin{equation}
+    \begin{split}
+        & \tilde{\mathcal{A}} (u_h, v_h) \\
+        & = \sum_{k=0}^{N-1} \int_{I_k} u'_hv'_h \\
+        & - \sum_{k=1}^{N-1} \average{u'_h(x_k)}\jump{v_h(x_k)} + u'_h(x^+_0)v_h(x^+_0) - u'_h(x_N^-)v_h(x_N^-) \\
+        & - \sum_{k=1}^{N-1} \theta \average{v'_h(x_k)} \jump{u_h(x_k)} - \left[\theta v'_h(x^+_0)u_h(x^+_0) + \theta v'_h(x^-_N)u_h(x^-_N)\right] \\
+        & - \sum_{k=1}^{N-1} \gamma \jump{u_h(x_k)} \jump{v_h(x_k)} + \gamma u_h(x^+_0)v_h(x^+_0) + \gamma u_h(x_N^-)v_h(x_N^-) \label{split_sum_noalpha_bilinear_dg}
+    \end{split}
+\end{equation}
+On the right hand side instead
+\begin{equation}
+    \mathcal{v_h} = \sum_{k=0}^{N-1} \int_{I_k} f v_h + \theta(\alpha v'_h(x^+_0) - \beta v'_h(x_N^-)) + \gamma(\alpha v_h(x^+_0) + \beta v_h(x^-_N))
+\end{equation}
+\begin{remark}
+    Note that for \(\theta = 1\), \(\tilde{\mathcal{A}}(u_h, v_h) = \tilde{\mathcal{A}}(v_h, u_h)\), so it's symmetric.
+\end{remark}
+\subsubsection*{Non-homogeneus Dirichlet conditions}
+\begin{equation}
+    \txt{find } u_h \in V_h : \tilde{\mathcal{A}}(u_h, v_h) = \mathcal{F}(v_h) \quad \forall \; v_h \in V_h
+    \label{functional_dg}
+\end{equation}
+with \(\mathcal{F}\) depending on \(f\), \(\alpha\) and \(\beta\).
+
+Note that in \eqref{split_sum_noalpha_bilinear_dg}, if we define \(\jump{u_h(x_0)}\) and \(\jump{u_h(x_N)}\) as \(\jump{v_h(x_0)}\) and \(\jump{v_h(x_N)}\)
+\begin{equation*}
+    \begin{split}
+        -\sum_{k=1}^{N-1} \average{u'_h(x_k)} \jump{v_h(x_k)} + u'_h(x_0^+)v_h(x^+_0) - u'_h(x_N^-)v_h(x_N^-) \\
+        = -\sum_{k=0}^{N} \average{u'_h(x_k)} \jump{v_h(x_h)} \\
+         -\sum_{k=1}^{N-1} \theta \average{v'_h(x_k)} \jump{u_h(x_k)} + (\theta u_h(x_0^+)v'_h(x_0^+) - \theta u_h(x_N^-)v'_h(x_N^-)) \\
+        = - \sum_{k=0}^{N} \theta \average{v'_h(x_k)}\jump{u_h(x_k)} \\
+        + \sum_{k=1}^{N-1} \gamma \jump{u_h(x_k)} \jump{v_h(x_k)} + \gamma u_h(x_0^+)v_h(x_0^+) + \gamma u_h(x_N^-)v_h(x_N^-) \\
+        + \sum_{k=0}^{N} \gamma \jump{u_h(x_k)}\jump{v_h(x_k)}
+    \end{split}
+\end{equation*}
+\subsection{Multidimensional case}
+We can take our Poisson problem in multidimension 
+\begin{equation}
+    \begin{cases}
+        -\Delta u = f & \txt{in } \Omega \\
+        u = 0 & \txt{on }\partial\Omega
+    \end{cases}\label{Poisson_multidim_dg}
+\end{equation}
+with the triangulation \(\mathcal{T}_h\), but this time we cannot assume that the conformity constraint is present. 
+
+So we need to take a test function \(v\) (element-wise smooth), and integrate over an element \(\mathcal{K} \in \mathcal{T}_h\)
+\[
+    \int_{\mathcal{K}} -\Delta u v = \int_{\mathcal{K}} fv
+\]
+As usual, integrate by parts, and sum over all the elements \(\mathcal{K} \in \triangulation\) 
+\[
+    \sum_{\element \in \triangulation} \int_{\element}\grad u \cdot \grad v - \sum_{\element \in \triangulation} \int_{\partial\element} \grad u \cdot \vect{n}_{\element} v = \int_{\Omega} fv
+\]
+since for any \(F \in \mathcal{F}'_h\) which is the set of interior faces shared by two elements \(\element^+\) and \(\element^-\)
+\begin{align*}
+    &\average{v} = \frac{(v^+ + v^-)}{2}  & \jump{v} = v^+ \vect{n}^+ + v^- \vect{n}^-\\
+    &\average{\bm{\tau}} = \frac{(\bm{\tau}^+ + \bm{\tau}^-)}{2} & \jump{\bm{\tau}} = \bm{\tau}^+ \vect{n}^+ + \bm{\tau}^- \vect{n}^-
+\end{align*}
+while, for the set of boundary faces \(F \in \mathcal{F}^B_h\)
+\begin{align*}
+    &\average{v} = v & \jump{v} = v \vect{n} \\
+    &\average{\bm{\tau}} = \bm{\tau} & \jump{\bm{\tau}} = \bm{\tau} \cdot \vect{n}
+\end{align*}
+in this way we can obtain the following formula \(\forall \;\bm{\tau} \txt{ vector function: }
+\)
+\begin{equation}
+    \sum_{\element \in \triangulation} \int_{\partial\element} \bm{\tau} \cdot \vect{n}_{\element} v = \sum_{F \in \mathcal{F}_h}\int_F\average{\bm{\tau}} \cdot \jump{v} + \sum_{F \in \mathcal{F}'_h} \int_{F}\jump{\bm{\tau}}\average{v} \label{magic_formula_multidim_dg}
+\end{equation}
+and thanks to that we obtain 
+\[
+    -\sum_{\element \in \triangulation} \int_{\partial\element} \bm{\tau} \cdot \vect{n}_{\element} v =- \sum_{F \in \mathcal{F}_h}\int_F\average{\grad u} \cdot \jump{v} - \sum_{F \in \mathcal{F}'_h} \int_{F}\jump{\grad u}\average{v} 
+\]
+then 
+\[
+    \sum_{\element \in \triangulation} \int_{\element}\grad u \cdot \grad v - \sum_{\element \in \triangulation} \int_{\partial\element} \grad u \cdot \vect{n}_{\element} v = \int_{\Omega} fv
+\]
+so it becomes 
+\[
+    \sum_{\element \in \triangulation} \int_{\element} \grad u \grad v - \sum_{F \in \mathcal{F}_h} \int_{F} \average{\grad u} \cdot \jump{v} - \sum_{F \in \mathcal{F}'_h} \int_F \jump{\grad u} \average{v} = \int_{\Omega} fv
+\]
+but, if we assume \(u \in H^2(\Omega)\), then \(\jump{\grad u} = 0 \ \forall \; F \in \mathcal{F}'_h\). This regularity assumption is fullfilled if \(f \in L^2\) and the domain is a convex polygon, thanks to the property of elliptic regularity.
+\[
+    sum_{\element \in \triangulation} \int_{\element} \grad u \grad v - \sum_{F \in \mathcal{F}_h} \int_{F} \average{\grad u} \cdot \jump{v} \cancel{- \sum_{F \in \mathcal{F}'_h} \int_F \jump{\grad u} \average{v}} = \int_{\Omega} fv
+\]
+Now we can assume that \(\jump{u} = 0 \ \forall \; F \in \mathcal{F}_h\) (since \(u \in H^2(\Omega) \cap H^1_0(\Omega)\)) to add a symmetry term 
+\[
+    \sum_{\element \in \triangulation} \int_\element \grad u \cdot \grad v - \sum_{F \in \mathcal{F}_h} \int_F \average{\grad u} \cdot \jump{v} - \sum_{F \in \mathcal{F}'_h} \int_F \average{\grad_h v} \jump{u} = \int_\Omega fv
+\] 
+where \(\grad_h\) is the elementwise gradient (\(v\) is only piecewise smooth).
+We also add a stabilization term that controls the jumps
+\[
+    \sum_{\element \in \triangulation} \int_\element \grad u \cdot \grad v  - \sum_{F \in \mathcal{F}_h} \int_F \average{\grad u} \cdot \jump{v} - \sum_{F \in \mathcal{F}_h} \int_F \jump{u} \cdot \average{\grad_h v} + \sum_{F \in \mathcal{F}_h} \int_F \gamma \jump{u} \cdot \jump{v} = \int_\Omega fv
+\]
+where \(\gamma\) is a stabilization function.
+
+Now we can define the DG discrete space 
+\[
+    V_h^p = \left\{ v_h \in L^2(\Omega) : v_h\vert_\element \in \mathcal{P}^{p_\element}(\element) \ \forall \; \element \in \triangulation\right\} \not\subseteq H^1_0 (\Omega)
+\]
+Discretize \(u \leadsto u_h, v \leadsto v_h\) and obtain the following weak formulation
+\[
+    \txt{find } u_h \in V_h^p \txt{ s.t. } \mathcal{A}(u_h, v_h) = \int_\Omega fv \quad \forall \;v_h \in V_h^p
+\]
+where 
+\begin{equation*}
+    \begin{split}
+        \mathcal{A}(u, v) =  \sum_{\element \in \triangulation} \int_\element \grad u \cdot \grad v  - \sum_{F \in \mathcal{F}_h} \int_F \average{\grad u} \cdot \jump{v}  - \sum_{F \in \mathcal{F}_h} \int_F \jump{u} \cdot \average{\grad_h v} \\+ \sum_{F \in \mathcal{F}_h} \int_F \gamma \jump{u} \cdot \jump{v}
+    \end{split}
+\end{equation*}
+\subsubsection*{Interior Penalty DG methods}
+\[
+    \txt{find } u_h \in V_h^p \txt{ s.t. } \mathcal{A}(u_h, v_h) = \int_\Omega fv \quad \forall \;v_h \in V_h^p
+\]
+Note that \(\mathcal{A}\) depends on the triangulation and it differs from the original weak formulation in the infinite dimension problem.
+\begin{equation*}
+    \begin{split}
+        \mathcal{A}(u, v) =  \sum_{\element \in \triangulation} \int_\element \grad u \cdot \grad v  - \sum_{F \in \mathcal{F}_h} \int_F \average{\grad u} \cdot \jump{v}  - \theta \sum_{F \in \mathcal{F}_h} \int_F \jump{u} \cdot \average{\grad_h v} \\+ \sum_{F \in \mathcal{F}_h} \int_F \gamma \jump{u} \cdot \jump{v}
+    \end{split}
+\end{equation*}
+where 
+\begin{itemize}
+    \item \(\theta =  1\) Symmetric Interior Penalty (SIP)
+    \item \(\theta =  -1\) Non-symmetric Interior Penalty (NIP)
+    \item \(\theta =  0\) Incomplete Interior Penalty (IIP)
+\end{itemize}
+\subsubsection*{Dirichlet BC}
+The above formulation holds when applying homogeneus Dirichlet BC, but in the case of non-homogeneus BC, such as 
+\[
+    u = g_D \quad \txt{ on } \partial\Omega
+\]
+the right hand side must be modified as
+\[
+    \int_\Omega fv -\theta \sum_{F \in \mathcal{F}^B_h}\int_F g_D \grad_h v \cdot \vect{n} + \sum_{F \in \mathcal{F}^B_h} \int_F \gamma g_D v 
+\]
+\subsubsection*{Neumann BC}
+In the case of Neumann BC, like 
+\[
+    \grad u \cdot \vect{n} = g_N \quad \txt{ on } \partial\Omega
+\]
+the bilinear form has to be modified such as 
+\begin{equation*}
+    \begin{split}
+        \mathcal{A}(u, v) =  \sum_{\element \in \triangulation} \int_\element \grad u \cdot \grad v  - \sum_{F \in \mathcal{F}'_h} \int_F \average{\grad u} \cdot \jump{v}  - \theta \sum_{F \in \mathcal{F}'_h} \int_F \jump{u} \cdot \average{\grad_h v} \\+ \sum_{F \in \mathcal{F}'_h} \int_F \gamma \jump{u} \cdot \jump{v}
+    \end{split}
+\end{equation*}
+and the right hand side 
+\[
+    \int_\Omega fv - \sum_{F \in \mathcal{F}^B_h}\int_F g_N v
+\]
+\subsubsection*{The stabilization function \texorpdfstring{\(\gamma\)}{gamma}}
+\[
+    \sum_{F \in \mathcal{F}_h} \int_F \gamma \jump{u} \cdot \jump{v} \quad \gamma = \alpha \frac{p^2}{h}
+\]
+where 
+\[
+    p =\begin{cases}
+        \max\left\{ p_{\element^+}, p_{\element^-} \right\} & \txt{ if } F \in \mathcal{F}'_h \\
+        p_\element & \txt{ if } F \in \mathcal{F}^B_h
+    \end{cases}
+\]
+and 
+\[
+    h =\begin{cases}
+        \min\left\{ h_{\element^+}, h_{\element^-} \right\} & \txt{ if } F \in \mathcal{F}'_h \\
+        h_\element & \txt{ if } F \in \mathcal{F}^B_h
+    \end{cases}
+\]
+Since we can make some assumptions 
+\[
+    h_F \approx h_{\element^+} \approx h_{\element^-}, \ p_{\element^+} \approx p_{\element^-} \Rightarrow \gamma = \mathcal{O}\left( \frac{p^2}{h} \right)
+\]
+
+\subsection{Theoretical reminders}
+
+For an integer \(s \geq 1\) define the broken Sobolev space
+\begin{align*}
+    H^s(\triangulation) &= \left\{ v \in L^2(\Omega) : v\limited{\element} \in H^s(\element) \ \forall \;\element \in \triangulation\right\} \\
+    \norm{v}^2_{H^s(\element)} &= \sum_{\element \in \triangulation} \norm{v}^2_{H^s(\element)}
+\end{align*}
+Define also 
+\[
+    \norm{v}^2_{L^2(\mathcal{F}_h)} = \sum_{F \in \mathcal{F}_h} \norm{v}^2_{L^2(F)}
+\]
+We define then the following norms 
+\begin{align*}
+    \norm{v}^2_{DG} &= \norm{\grad_h v}^2_{L^2(\Omega)} + \norm{\gamma^{\frac{1}{2}}\jump{v}}^2_{L^2(\mathcal{F}_h)} \quad \forall \;v \in H^2(\triangulation) \\
+    \threenorm{v}{DG} &= \norm{v}_{DG}^2 + \norm{\gamma ^{\frac{1}{2}} \average{\grad_h v}}^2_{L^2(\mathcal{F}_h)} \quad \forall \;v \in H^2(\triangulation)
+\end{align*}
+where \(\grad_h v\) is the elementwise gradient:
+\[
+    (\grad_h v)\limited{\element} = \grad(v\limited{\element}) \quad\forall \; \element \in \triangulation
+\]
+Notice that \(V_h^p \subset H^2(\triangulation)\). It can be shown that 
+\begin{align*}
+    \norm{v}_{DG} &\underset{(trivial)}{\leq} \threenorm{v}{DG} \not\lesssim \norm{v}_{DG} \quad \forall \; v \in H^2(\triangulation) \\
+    \norm{v_h}_{DG} &\underset{(trivial)}{\leq} \threenorm{v_h}{DG} \underset{(on \ slides)}{\not\lesssim}\norm{v_h}_{DG} \quad \forall \; v_h \in V_h^p \\
+\end{align*}
+Some key properties:
+\begin{itemize}
+    \item Continuity on \(H^2(\triangulation) \times V^p_h\): 
+    \[
+        \abs{\mathcal{A}(v, w_h)} \lesssim \threenorm{v}{DG} \norm{w_h}_{DG} \quad  \forall \; v \in H^2(\triangulation), \ \forall \; w_h \in V_h^p
+    \]
+    Also remind that \(\abs{\mathcal{A}(v, w_h)} \not\lesssim \norm{v}_{DG} \norm{w_h}_{DG}\)
+    \item Coercivity on \(V_h^p \times V_h^p\): 
+    \[
+        \mathcal{A}(v_h, v_h) \gtrsim \norm{v_h}_{DG} \quad \forall \; v_h \in V_h^p
+    \]
+    For SIP and IIP, the penaly parameter \(\alpha\) should be large enough.
+    \item  Strong-consistency (Galerkin orthogonality):
+    \[
+        \mathcal{A}(u,v_h) = \int_\Omega f v_h \ \ \forall \; v_h \in V_h^p \Rightarrow \mathcal{A}(u-u_h, v_h) = 0 \quad \forall \; v_h \in V_h^p
+    \]
+    \item Approximation. Let \(\prod_{h}^{p}u \in V_h^p\) be a suitable approximation of \(u\), then 
+    \[
+        \threenorm{u-{\textstyle \prod_{h}^{p}u}}{DG} \lesssim \frac{h^{\min(p,s)}}{p^{\frac{s-1}{2}}}\norm{u}_{H^{s+1}(\triangulation)}
+    \]
+    If \(p \geq s\)
+    \[
+        \threenorm{u-{\textstyle \prod_{h}^{p}u}}{DG} \lesssim \left( \frac{h}{p} \right)^s p^{\frac{1}{2}}\norm{u}_{H^{s+1}(\triangulation)}
+    \]
+\end{itemize}
+\subsection{Error estimates}
+Recall the abstract error estimate \(\norm{u - u_h}_{DG} \lesssim \threenorm{u-\prod_{h}^{p}}{DG}\).
+
+If \(u\) is sufficiently regular then
