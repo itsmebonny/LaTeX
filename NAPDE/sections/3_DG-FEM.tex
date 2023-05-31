@@ -1,3 +1,4 @@
+\newpage
 \section{Discontinuous Galerkin methods}
 The idea behind DG methods is to seek the soltion in a discrete space made of polynomials that are completely discontinuous across the elements of the mesh.
 \[
@@ -129,7 +130,7 @@ On the left hand side it remains
 \end{equation}
 On the right hand side instead
 \begin{equation}
-    \mathcal{v_h} = \sum_{k=0}^{N-1} \int_{I_k} f v_h + \theta(\alpha v'_h(x^+_0) - \beta v'_h(x_N^-)) + \gamma(\alpha v_h(x^+_0) + \beta v_h(x^-_N))
+    \mathcal{F}(v_h) = \sum_{k=0}^{N-1} \int_{I_k} f v_h + \theta(\alpha v'_h(x^+_0) - \beta v'_h(x_N^-)) + \gamma(\alpha v_h(x^+_0) + \beta v_h(x^-_N))
 \end{equation}
 \begin{remark}
     Note that for \(\theta = 1\), \(\tilde{\mathcal{A}}(u_h, v_h) = \tilde{\mathcal{A}}(v_h, u_h)\), so it's symmetric.

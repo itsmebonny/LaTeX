@@ -1,2 +1,127 @@
 \newpage
 \section{Advection-Diffusion-Reaction equations}
+\subsection{Formulation of the problem}
+Consideting the problem \(\mathcal{L}u = f\) in \(\Omega\), \(u=0\) on \(\partial\Omega\) where 
+\begin{align*}
+    &\mathcal{L} u = -\div \left(\mu \grad u + \vect{b} u\right) + \sigma u & \txt{(conservative form)} \\
+    &\mathcal{L} u = -\div \left(\mu \grad u\right) + \vect{b} \cdot \grad u + \sigma u & \txt{(non-conservative form)}
+\end{align*}
+with the same assumptions as \eqref{bvp_first_page}. 
+
+The weak formulation is written as 
+\begin{equation}
+    \txt{find } u \in V = H^1_0(\Omega) : a(u,v) = F(v) \ \forall \; v \in V
+    \label{weak_formulation_adr}
+\end{equation}
+with 
+\[
+    F(v) = \int_\Omega fv
+\]
+and 
+\[
+    a(u,v) = \begin{cases}
+        \displaystyle\int_\Omega \left( \mu \grad u + \vect{b} u \right) \cdot \grad v + \int_\Omega \sigma u v & \txt{conservative form} \\
+        \\
+        \displaystyle\int_\Omega \mu \grad u \cdot \grad v + \int_\Omega \vect{b} \cdot \grad u v + \int_\Omega \sigma u v & \txt{non-conservative form}
+    \end{cases}
+\]
+Let's verify the uniqueness of the solution:
+\subsubsection*{Coercivity}
+Sufficient conditions for coercivity:
+\begin{align*}
+    &\sigma - \frac{1}{2} \div \vect{b} \geq 0 \txt{ in } \Omega & \txt{non-conservative case} \\
+    &\sigma + \frac{1}{2} \div \vect{b} \geq 0 \txt{ in } \Omega & \txt{conservative case}  
+\end{align*}
+In both cases: \(a(u,v) \geq \mu_0\norm{\grad u}^2 \rightarrow \txt{ coercivity constant } \alpha \simeq \mu_0\)
+\subsubsection*{Continuity}
+In both cases, continuity constant: \(M \simeq \norm{\mu}_{L^\infty} + \norm{\vect{b}}_{L^\infty} + \norm{\sigma}_{L^2}\)
+
+Given that the hypotheses of Lax-Milgram holds, the solution exists and is unique. We can now bring in the Galerkin formulation
+\[
+    \txt{find }u_h \in V_h : a(u_h, v_h) = (f,v_h) \quad \forall \; v_h \in V_h
+\]
+and move to the error estimate 
+\[
+    \norm{u-u_h} \underset{(\txt{Ceà})}{\leq} \frac{M}{\alpha} \inf_{v_h \in V_h} \norm{u-v_h} \underset{\substack{(\txt{interpolation} \\\txt{error estimate})}}{\leq} C \frac{M}{\alpha} h^r \abs{u}_{H^{r+1}(\Omega)}
+\]
+If it is a convection dominated flow (or reaction dominated), then \(\frac{M}{\alpha} \gg 1\), then we need to find a tradeoff between \(\frac{M}{\alpha}\) and \(h^r\). Also it is numerically prohibitive. 
+
+The Péclet number tells us if the flow is dominated by advection or diffusion if its greater or smaller than \(1\). We can define it as 
+\[
+    \mathbb{P}e = h\frac{M}{\alpha}
+\]
+Should be less than \(1\) for stability issues.
+\subsection{Stabilization methods}
+The idea now is to stabilize the Galerkin method. 
+\begin{itemize}
+    \item[1D case:] Upwind method \(\iff\) Artificial diffusion
+    \item[2D case:] Streamline diffusion: 
+    \[
+        +c(h) \int_\Omega \frac{1}{\norm{\vect{b}}} \left( \vect{b} \cdot \grad u_h \right) \left( \vect{b} \cdot \grad v_h \right)
+    \]
+    Artificial diffusion: 
+    \[
+        +c(h)\int_\Omega \grad u_h \cdot \grad v_h 
+    \]
+\end{itemize}
+Now the solution is stabilized, but is not fully consistent. So the solution is to find a way to obtain a fully consistent solution 
+\[
+    \txt{find } u_h \in V_h : a(u_h, v_h) + \mathscr{L}_h (u_h, f; v_h) = F(v_h) \quad \forall \; v_h \in V_h
+\]
+with \(\mathscr{L}_h\) suitably chosen such that
+\[
+    \mathscr{L}(u_h, f; v_h) = 0 \quad \forall \; v_h \in V_h
+\]
+so we obtain a strongly consistent approximation of the original problem.
+
+One possibility could be to use an operator proportional to the residual:
+\[
+    \mathscr{L}_h(u_h, f;v_h) = \sum_{\element \in \triangulation} \int_\element(\mathcal{L}u - f)\tau_\element \phi(v_h) \quad \forall \; v_h \in V_h  
+\]
+with \(\tau_\element\) as a scaling factor. Typically is chosen, given \(h_\element = diam(\element)\):
+\[
+    \tau_\element (\vect{x}) = \delta \frac{h_\element}{\abs{\vect{b}(\vect{x})}} \quad \forall \; \vect{x} \in \element, \element \in \triangulation
+\]
+while, for \(\phi(v_h)\) there are many possibilities. Two of them are 
+\begin{itemize}
+    \item \(\phi(v_h) = \mathcal{L}v_h \rightarrow\) GLS - Galerkin Least Squares method
+    \item \(\phi(v_h) = \mathcal{L}_{ss}v_h \rightarrow\) SUPG - Streamline Upwind Petrov-Galerkin method
+\end{itemize}
+Brief notation remark: \(\mathcal{L} = \mathcal{L}_s +\mathcal{L}_{ss}\) (symmetric + skew-symmetric part)
+Which we define as 
+\begin{align*}
+    {}_{V'}\langle\mathcal{L}_su, v \rangle_{V} &= {}_{V}\langle v, \mathcal{L}_su \rangle_{V'}  \quad \forall \; u, v \in V \\
+    {}_{V'}\langle\mathcal{L}_{ss}u, v \rangle_V &= -{}_{V}\langle v, \mathcal{L}_{ss}u \rangle_{V'} \quad \forall \; u, v \in V 
+\end{align*}
+For matrices it is \(A = A_S + A_{SS}\) 
+\[
+  A_S = \frac{1}{2} (A + A^T) \quad A_{SS} = \frac{1}{2} (A -A^T)
+\]
+Let us see an example in the non conservative form 
+\begin{align*}
+        \mathcal{L}^1 &= -\mu \Delta u + \vect{b} \cdot \grad u + \sigma u \\
+        &= \underbrace{\left[ -\mu \Delta u + \left( \sigma - \frac{1}{2} \div \vect{b} \right)u\right]}_{\mathcal{L}^1_s u} + \underbrace{\left[ \frac{1}{2} \left( \div(\vect{b}u) + \vect{b} \cdot \grad u \right) \right]}_{\mathcal{L}^1_{ss}u}
+\end{align*}
+Indeed we can see
+\begin{align*}
+    {}_{V'}\langle \mathcal{L}^1_s, v \rangle_V &= \int_\Omega \mu \grad u \cdot \grad v + \left( \sigma - \frac{1}{2} \div \vect{b} \right) u v \\
+    &= \int_\Omega \left[ -\mu \Delta v + \left( \sigma - \frac{1}{2} \div \vect{b} \right) v \right] u = {}_{V}\langle v, \mathcal{L}^1_s \rangle_{V'}
+\end{align*}
+\begin{align*}
+    {}_{V'}\langle \mathcal{L}^1_{ss}, v \rangle_V &= \frac{1}{2} \int_\Omega (\div(\vect{b}u)v+(\vect{b} \cdot \grad u)v) \\
+    &= \frac{1}{2} \int_\Omega (-(\vect{b}u) \grad v + (\vect{b}v) \cdot \grad u) \\
+    &= \frac{1}{2} \int_\Omega (-(\vect{b}\cdot \grad v)u - \div(\vect{b}v)u) = -{}_V\langle u, \mathcal{L}_{ss}^1 \rangle_{V'}
+\end{align*}
+\begin{remark}
+    If \(\div \vect{b} = 0\), which happens if \(\vect{b}\) is constant, then the conservative and non conservative forms coincide.
+\end{remark}
+\subsection{GLS method (conservative form)}
+\[
+    \txt{find }u_h \in V_h : a(u_h, v_h) + \sum_{\element \in \triangulation} \int_\Omega \mathcal{L}u_h \tau_\element \mathcal{L}v_h = \int_\Omega f v_h + \sum_{\element \in \triangulation} \int_\Omega f \tau_\element \mathcal{L}v_h \qquad \forall \; v_h \in V_h
+\]
+\begin{theorem}
+    Consider the conservative case. Suppose that 
+    \[
+        \exists \gamma_0 , \gamma_1 > 0 : 0 < \gamma_0 \leq \gamma(\vect{x}) \leq \gamma_1
+    \]
+\end{theorem}

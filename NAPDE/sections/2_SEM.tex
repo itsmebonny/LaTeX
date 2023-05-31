@@ -1,3 +1,4 @@
+\newpage
 \section{Spectral Element Method}
 \subsection{Introduction}
 The problem with the Finite Element Method is that the rate of convergence is limited by the degree of the polynomials used. An alternative can be the Spectral Element Method, for which the convergence rate is limited by the regularity of the solution. 
@@ -440,7 +441,7 @@ with its relative error \(\exists \; c > 0 : \forall \; f \in H^r(\Omega), r\geq
 \]
 and its interpolation error as: \(\exists \; c > 0 : \forall \;\in H^{s+1}(\Omega), s \geq 1\)
 \[
-    \norm{v - \prod_{\delta}^{LGL}v}_{H^k(\Omega)} \leq Ch^{\min(p+1, s+1)-k}\left( \frac{1}{p} \right)^{s+1-k}\norm{v}_{H^{s+1}(\Omega)}
+    \norm{v - {\textstyle \prod_{\delta}^{LGL}}v}_{H^k(\Omega)} \leq Ch^{\min(p+1, s+1)-k}\left( \frac{1}{p} \right)^{s+1-k}\norm{v}_{H^{s+1}(\Omega)}
 \] 
 \subsection{Spectral Element Method with Numerical Integration}
 Let's go back to the problem 
