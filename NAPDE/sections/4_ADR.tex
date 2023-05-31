@@ -132,4 +132,84 @@ Indeed we can see
 \end{theorem}
 \begin{proof}
     Take \(u_h = v_h\). We have 
+    \begin{align*}
+        a_h(u_h, u_h) &= \int_\Omega \mu\abs{\grad u_h}^2 + \underbrace{\int_\Omega \div(\vect{b}\,u_h) u_h}_{\mathclap{\substack{=-\int_\Omega \vect{b}\cdot (u_h \grad u_h) \\ = -\frac{1}{2}\int_\Omega \vect{b}\cdot \grad(u^2_h) \\ =\frac{1}{2} \int_\Omega \div \vect{b} \, u^2_h}}} +\int_\Omega \sigma u^2_h + \sum_{\element \in \triangulation} \int_\element \tau_\element (\mathcal{L}u_h)^2 \\
+        &= \int_\Omega \mu \abs{\grad u_h}^2 + \int_\Omega \underbrace{\left( \sigma + \frac{1}{2} \div \vect{b} \right)u_h^2}_{=: \gamma(\vect{x})} + \sum_{\element \in \triangulation} \int_\element \tau_\element(\mathcal{L}u_h)^2 \\
+        &=: \norm{u_h}_{GLS}^2
+    \end{align*}
+    On the other hand
+    \[
+        \abs{F_h(u_h)} \leq \abs{\int_\Omega f u_h} + \abs{{\textstyle \sum_{\element \in \triangulation}}\int_{\element} f \tau_\element \mathcal{L}u_h}
+    \]
+    where 
+    \begin{equation*}
+        \begin{split}
+            \abs{\int_\Omega f u_h} = \abs{\int_\Omega \frac{1}{\sqrt{\gamma}} f \sqrt{\gamma}u_h} \underset{\txt{\tiny{Cauchy-Schwartz}}}{\leq} \norm{\frac{1}{\sqrt{\gamma}}f}_{L^2(\Omega)} \ltwonorm{\sqrt{\gamma}u_h} \\
+            \underset{\txt{\tiny Young}}{\leq} \ltwonorm{\frac{1}{\sqrt{\gamma}}f}^2 + \frac{1}{4} \ltwonorm{\sqrt{\gamma}u_h}^2
+        \end{split}
+    \end{equation*}
+    and where 
+    \begin{equation*}
+        \begin{split}
+            \abs{\sum_{\element \in \triangulation} \int_\element f \tau_\element \mathcal{L}u_h} = \abs{\sum_{\element \in \triangulation} \int_\element \sqrt{\tau_\element} f \sqrt{\tau_\element}\mathcal{L}u_h} \\
+            \underset{\txt{\tiny Cauchy-Schwartz}}{\leq} \sum_{\element\in\triangulation}\norm{\sqrt{\tau_\element}f}_{L^2(\element)}\norm{\sqrt{\tau_\element} \mathcal{L}u_h}^2_{L^2(\element)} \\
+            \underset{\txt{\tiny Young}}{\leq} \sum_{\element\in\triangulation}\norm{\sqrt{\tau_\element}f}_{L^2(\element)}^2 +\frac{1}{4} \norm{\sqrt{\tau_\element} \mathcal{L}u_h}^2_{L^2(\element)} \\
+        \end{split}
+    \end{equation*}
+    So, \(a_h(u_h, u_h) = F_h(u_h)\) implies:
+    \begin{align*}
+        \norm{u_h}_{GLS}^2 &= \int_\Omega \mu \abs{\grad u_h}^2 + \int_\Omega \gamma u_h^2 + \sum_{\element \in \triangulation} \int_\element \tau_\element (\mathcal{L}u_h)^2 \\
+        &\leq \left[ \norm{\frac{1}{\sqrt{\gamma}}f}_{L^2(\Omega)} + \sum_{\element \in \triangulation} \norm{\sqrt{\tau_\element}f}_{L^2(\Omega)}^2 \right] \\
+        & \ + \frac{1}{4} \left[ \int_\Omega \gamma u_h^2 + \sum_{\element \in \triangulation} \tau_\element (\mathcal{L}u_h)^2 \right] \\
+        &\leq \underbrace{\left( \frac{1}{\gamma_0} +\max_{\element \in \triangulation} \tau_\element \right)}_{\mathclap{=C(\txt{if }\tau_\element \txt{ uniformly bounded w.r.t. }h)}} \ltwonorm{f}^2 +\frac{1}{4} \norm{u_h}_{GLS}^2
+    \end{align*}
+    In the end 
+    \[
+        \norm{u_h}_{GLS}^2 \leq \frac{4}{3} C \norm{f}_{L^2(\Omega)}^2
+    \]
+\end{proof}
+As we already said, a smart choice for \(\scalingfactor\) is \(\delta\frac{h_\element}{\abs{\vect{b}(\vect{x})}}\). But another possibility may be 
+\[
+    \scalingfactor(\vect{x}) = \frac{h_\element}{2\abs{\vect{b}(\vect{x})}} \xi(\peclet_\element)
+\]
+with \(\xi(\theta) = \coth(\theta)-\frac{1}{\theta}\). and \(\peclet_\element (\vect{x}) = \frac{\abs{\vect{b}(\vect{x})}}{2\mu(\vect{x})}h_\element\) is the local Péclet number. 
+Moreover, if \(\theta \to 0\), then \(\xi(\theta) = \frac{\theta}{3} + o(\theta)\), therefore when \(\peclet_\element(\vect{x}) \ll 1\), we have \(\tau_\element(\vect{x}) \to 0\) and no stabilization is needed.
+\subsection{Convergence of GLS}
+To state the convergence of GLS we need the inverse inequality, defined as
+\begin{equation}
+    \sum_{\eit} h^2_\element \int_\element \abs{\Delta v_h}^2 \, d\element \leq C_0 \ltwonorm{\grad v_h}^2 \quad \forall \; v_h \in X_h^r
+    \label{inverse_inequality_adr}
+\end{equation}
+\begin{theorem}[Convergence of GLS]
+    Assume that the space \(V_h\) satisfies the following local approximation property: for each \(v \in V \cap H^{r+1}(\Omega)\), there exists a function \(\hat{v}_h \in V_h\) s.t. 
+    \begin{equation}
+        \norm{v-v_h}_{L^2(\element)} + h_\element \norm{v-\hat{v}_h}_{H^1(\element)} + h^2_\element \abs{v-\hat{v}_h}_{H^2(\element)} \leq Ch^{r+1}_\element \abs{v}_{H^{r+1}}
+        \label{convergence_gls_adr}
+    \end{equation}
+    for each \(\eit\). Moreover, we suppose that for each \(\eit\) the local Péclet number of \(K\) satisfies 
+    \begin{equation}
+        \peclet_\element (\vect{x}) = \frac{\abs{\vect{b}(\vect{x})}h_\element}{2\mu} > 1 \quad \forall \; \vect{x} \in \element
+        \label{local_peclet_adr}
+    \end{equation}
+    that is, we are in the pre-asymptotic regime. Finally, we suppose that the inverse inequality holds and that the stabilization parameters satisfies the relation \(0 < \delta \leq 2C_0^{-1}\).
+
+    Then, as long as \(u \in H^{r+1}(\Omega)\), the following super-optimal estimate holds:
+    \begin{equation}
+        \norm{u-u_h}_{GLS} \leq Ch^{r+\frac{1}{2}} \abs{u}_{H^{r+1}(\Omega)}        
+        \label{super-estimate_adr}
+    \end{equation}
+\end{theorem}
+\begin{proof}
+    First of all, rewrite the error as 
+    \begin{equation}
+        e_h = u_h - u = \sigma_h - \eta
+        \label{error_rewrite_adr}
+    \end{equation}
+    with \(\sigma_h = u_h - \hat{u}_h, \eta = u - \hat{u}_h\), where \(\hat{u}_h\) is a function that depends on \(u\) and that satisfies property \eqref{convergence_gls_adr}. If, for instance, \(V_h = X_h^r \cap H^1_0(\Omega)\), we can choose \(\hat{u}_h = \prod_{h}^{r} u\) that is the finite element interpolant of \(u\). 
+
+    We start by estimating the norm \(\norm{\sigma_h}_{GLS}\). By exploiting the strong consistency of the GLS scheme we obtain 
+    \[
+        \norm{\sigma_h}^2_{GLS} = a_h(\sigma_h, \sigma_h) = a_h(u_h - u +\eta, \sigma_h) = a_h(\eta, \sigma_h)
+    \]
+    Now, thanks to the homogeneous Dirichlet boundary conditions it follows that, by adding and subtracting \(\sum_{\eit}(\eta, \mathcal{L}\sigma_h)\)
 \end{proof}
