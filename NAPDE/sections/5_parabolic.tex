@@ -1,0 +1,41 @@
+\newpage
+\section{Parabolic equations}
+\subsection{Introduction}
+Now we consider parabolic equations of the form
+\begin{equation}
+    \partialderivative{u}{t} + \loperator u = f \quad \vect{x} \in \Omega, t>0
+    \label{example_problem_pbl}
+\end{equation}
+where: 
+\begin{itemize}
+    \item \(\Omega\) is a domain of \(\real^d\) with \(d = 1,2,3\)
+    \item \(f = f(\vect{x}, t)\) is a given function 
+    \item \(\loperator = \loperator (\vect{x})\) is a generic elliptic operator acting on \(u = u(\vect{x}, t)\)
+\end{itemize}
+When solved for a bounded time interval, for example \(0 < t < T\), the region \(Q_T = \Omega \times (0,T)\) is called cylinder in the space \(\real^d \times \real^+\). 
+In \eqref{example_problem_pbl} must be assigned an initial condition 
+\begin{equation}
+    u(\vect{x}, 0) = u_0(\vect{x}),\quad \xvec \in \Omega
+    \label{initial_cond_pbl}
+\end{equation}
+also we'll need some BC, like 
+\begin{equation}
+    \begin{aligned}
+        u(\xvec, t) &= \phi(\xvec, t) & \xvec \in \Gamma_D \txt{ and } t > 0 \\
+        \partialderivative{u(\xvec, t)}{n} &=\psi(\xvec, t) & \xvec \in \Gamma_N \txt{ and } t > 0 
+    \end{aligned}
+    \label{BC_example_pbl}
+\end{equation}
+where \(u_0, \phi\) and \(\psi\) are given funcion and \(\left\{ \Gamma_D, \Gamma_N \right\}\) provides a boundary partition that is \(\Gamma_D \cup \Gamma_N = \boundary, \interior{\Gamma_D} \cap \interior{\Gamma_N} = \emptyset\). For obvious reasons \(\Gamma_D\) is the Dirichlet boundary, while \(\Gamma_N\) is the Neumann one.
+
+In the one dimensional case the problem becomes 
+\begin{equation}
+    \begin{aligned}
+        &\partialderivative{u}{t} - \nu \partialderivative{^2u}{x^2} = f & 0 < x <d, t> 0 \\
+        &u(x,0) = u_0(x) & 0 < x < d \\
+        & u(0,t) = u(d,t) = 0 & t>0
+    \end{aligned}
+    \label{one_dim_pbl}
+\end{equation}
+which describes the evolution of the temperature \(u(x,t)\) at point \(x\) and time \(t\) of a metal bar of length \(d\) occupying the interval \([0,d]\), whose thermal conductivity is \(\nu\) and whose endpoints are kept at a constant temperature of zero degrees. The function \(u_0\) describes the temperature in the initial state, while \(f\) represents the heat generated per unit of length by the bar. This is called the heat equation.
+\subsection{Weak formulation and approximation}
