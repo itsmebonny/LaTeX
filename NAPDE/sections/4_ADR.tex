@@ -205,11 +205,86 @@ To state the convergence of GLS we need the inverse inequality, defined as
         e_h = u_h - u = \sigma_h - \eta
         \label{error_rewrite_adr}
     \end{equation}
+    
     with \(\sigma_h = u_h - \hat{u}_h, \eta = u - \hat{u}_h\), where \(\hat{u}_h\) is a function that depends on \(u\) and that satisfies property \eqref{convergence_gls_adr}. If, for instance, \(V_h = X_h^r \cap H^1_0(\Omega)\), we can choose \(\hat{u}_h = \prod_{h}^{r} u\) that is the finite element interpolant of \(u\). 
 
     We start by estimating the norm \(\norm{\sigma_h}_{GLS}\). By exploiting the strong consistency of the GLS scheme we obtain 
     \[
         \norm{\sigma_h}^2_{GLS} = a_h(\sigma_h, \sigma_h) = a_h(u_h - u +\eta, \sigma_h) = a_h(\eta, \sigma_h)
     \]
-    Now, thanks to the homogeneous Dirichlet boundary conditions it follows that, by adding and subtracting \(\sum_{\eit}(\eta, \mathcal{L}\sigma_h)\)
+    Now, thanks to the homogeneous Dirichlet boundary conditions it follows that, by adding and subtracting \(\sum_{\eit}\left(\eta, \mathcal{L}\sigma_h\right)_\element\), suitable computations lead to:
+    \begin{align*}
+        a_h(\eta, \sigma_h) &= \mu \sigma_\Omega \grad \eta \cdot \grad \sigma_h \, d\Omega - \int_\Omega \eta \vect{b} \cdot \grad \sigma_h \, d\Omega + \int_\Omega \sigma \eta \sigma_h \, d\Omega \\
+        & \quad + \sum_\eit \delta \left( \mathcal{L}\eta, \frac{h_\element}{\abs{\vect{b}}}\mathcal{L}\sigma_h \right)_{L^2(\element)} \\
+        &= \underbrace{\mu\left( \grad \eta, \grad \sigma_h \right)_{L^2(\Omega)}}_{(I)} - \underbrace{\sum_\eit \left(\eta, \mathcal{L}\sigma_h\right)_{L^2(\Omega)}}_{(II)} + \underbrace{2\left( \gamma \eta, \sigma_h \right)_{L^2(\element)}}_{(III)} \\
+        &\quad + \underbrace{\sum_\eit \left( \eta, -\mu\Delta \sigma_h \right)_{L^2(\element)}}_{(IV)} + \underbrace{\sum_\eit \delta \left( \mathcal{L}\eta, \frac{h_\element}{\abs{\vect{b}}\mathcal{L}\sigma_h} \right)_{L^2(\element)}}_{(V)} 
+    \end{align*}
+    Now, we bound each of these terms. By using Cauchy-Schwartz and Young's inequalities we obtain 
+    \begin{align*}
+        \abs{(I)} &= \abs{\mu\left( \grad \eta, \grad \sigma_h \right)_{L^2(\element)}} \leq \frac{\mu}{4} \ltwonorm{\grad \sigma_h}^2 + \mu \ltwonorm{\grad \eta}^2 \\
+        \abs{(II)} &= \abs{\sum_eit \left( \eta, \mathcal{L}\sigma_h \right)_{L^2(\element)}} \\
+        & = \abs{\sum_\eit \left( \sqrt{\frac{\abs{\vect{b}}}{\delta h_\element}} \eta, \sqrt{\frac{\delta h_\element}{\abs{\vect{b}}}} \mathcal{L}\sigma_h \right)_{L^2(\Omega)}} \\
+        &\leq \frac{1}{4} \sum_\eit \delta \left( \frac{h_k}{\abs{\vect{b}}} \mathcal{L}\sigma_h, \mathcal{L}\sigma_h \right) \\
+        \abs{(III)} &= 2\abs{\left( \gamma \eta, \sigma_h \right)_{L^2(\Omega)}} = 2\abs{\left( \sqrt{\gamma \eta, \sqrt{\gamma}\sigma_h} \right)_{L^2(\Omega)}} \\
+        &\leq \frac{1}{2} \ltwonorm{\sqrt{\gamma}\sigma_h}^2 + 2 \ltwonorm{\sqrt{\gamma} \eta}^2
+    \end{align*}
+    Then, thanks to CS and Young, but also hypotheses \eqref{local_peclet_adr} and \eqref{inverse_inequality_adr}, we obtain 
+    \begin{align*}
+        \abs{(IV)} &= \abs{\sum_\eit \left( \eta, -\mu \Delta \sigma_h \right)_{L^2(\element)}} \\
+        &\leq \frac{1}{4} \sum_\eit \delta \mu^2 \left( \frac{h_\element}{\abs{\vect{b}}}\Delta \sigma_h, \Delta \sigma_h \right)_{L^2(\element)} + \sum_\eit \left( \frac{\abs{\vect{b}}}{\delta h_\element} \eta, \eta \right)_{L^2(\element)} \\
+        &\leq \frac{1}{8} \delta \mu \sum_\eit h^2_\element \left( \grad \sigma_h, \grad \sigma_h \right)_{L^2(\element)} + \sum_\eit \left( \frac{\abs{\vect{b}}}{\delta h_\element} \right)_{L^2(\element)} \\
+        &\leq \frac{\sigma C_0 \mu}{8} \ltwonorm{\grad \sigma_h}^2 + \sum_\eit \left( \frac{\abs{\vect{b}}}{\delta h_\element}\eta, \eta \right)_{L^2(\element)}
+    \end{align*}
+    The last one can be bounded once again thanks to CS and Young inequalities as follows 
+    \begin{align*}
+        \abs{(V)} &= \abs{\sum_\eit \delta \left( \mathcal{L}\eta, \frac{h_\element}{\vecbabs}\mathcal{L}\sigma_h \right)_{L^2(\element)}} \\
+        &\leq \frac{1}{4} \sum_\eit \delta \left( \frac{h_\element}{\vecbabs} \mathcal{L}\sigma_h, \mathcal{L}\sigma_h \right)_{L^2(\element)} + \sum_\eit \delta\left( \frac{h_\element}{\vecbabs} \mathcal{L}\eta, \mathcal{L}\eta \right)_{L^2(\element)} 
+    \end{align*}
+    So we can rewrite everything bounded as 
+    \begin{align*}
+        \norm{\sigma_h}^2_{GLS} &= a_h(\eta, \sigma_h) \leq \frac{1}{4} \norm{\sigma_h}^2_{GLS} \\
+        &\quad + \frac{1}{4} \left( \ltwonorm{\sqrt{\gamma}\sigma_h}^2 + \sum_\eit \delta \left( \frac{h_\element}{\vecbabs} \mathcal{L}\sigma_h,\mathcal{L} \sigma_h \right)_{L^2(\element)} \right) + \frac{\delta C_0 \mu}{8} \ltwonorm{\grad \sigma_h}^2 \\
+        &\quad + \underbrace{\mu\ltwonorm{\grad \eta}^2 + 2 \sum_\eit \left( \frac{\vecbabs}{\delta h_\element} \eta, \eta \right)_{L^2(\element)} + 2 \ltwonorm{\sqrt{\gamma}\eta}^2 + \sum_\eit \delta \left( \frac{h_\element}{\vecbabs} \mathcal{L}\eta, \mathcal{L}\eta \right)_{L^2(\element)}}_{\mathcal{E}(\eta)} \\
+        &\leq \frac{1}{2} \norm{\sigma_h}_{GLS}^2 + \mathcal{E}(\eta)
+    \end{align*}
+    Having exploited the assumption that \(\delta \leq 2C^{-1}_0\). We can state then
+    \[
+        \norm{\sigma_h}_{GLS}^2 \leq 2\mathcal{E}(\eta)
+    \]
+    It's time to estimate \(\mathcal{E}(\eta)\), by bounding each of it's summands separately. To do this, we will use the local approximation property \eqref{convergence_gls_adr} and the local Péclet \eqref{local_peclet_adr}. Moreover, we observe that the constant \(C\), introduced in the remainder, depends neither on \(h\) nor on \(\peclet_\element\), but can depend on other quantities such as the constant \(\gamma_1\), the reaction constant \(\sigma\) or the norm \(\norm{\vect{b}}_{L^\infty(\Omega)}\), the stabilization parameter \(\delta\).
+
+    Then we have 
+    \begin{align*}
+        \mu \ltwonorm{\grad \eta}^2 &\leq C\mu h^{2r} \abs{u}_{H^{r+1}(\Omega)}^2 \\
+        &\leq C\frac{\norm{\vect{b}}_{L^\infty(\Omega) h}}{2} h^{2r} \abs{u}^2_{H^{r+1}(\Omega)} \leq C h^{2r+1}\abs{u}_{H^{r+1}(\Omega)}^2\\
+        2\sum_\eit \left( \frac{\vecbabs}{\delta h_\element} \eta, \eta \right)_{L^2(\element)} &\leq  C\frac{\norm{\vect{b}}_{L^\infty(\Omega) h}}{2} \sum_\eit \frac{1}{h_\element} h^{2r+1}_\element \abs{u}^2_{H^{r+1}(\Omega)} \\
+        &\leq c h^{2r+1} \abs{u}^2_{H^{r+1}(\Omega)} \\
+        2 \ltwonorm{\sqrt{\gamma}\eta}^2 &\leq 2\gamma_1 \ltwonorm{\eta}^2 \leq Ch^{2r+1} \abs{u}^2_{H^{r+1}(\Omega)} 
+    \end{align*} 
+    For the fouth term we have 
+    \begin{align*}
+        \sum_\eit \delta \left( \frac{h_\element}{\vecbabs}\mathcal{L}\eta, \mathcal{L}\eta \right)_{L^2(\element)} &= \sum_\eit \norm{\sqrt{\frac{h_\element}{\vecbabs}} \mathcal{L}\eta}_{L^2(\element)}^2 \\
+        &= \sum_\eit \delta \norm{-\mu \sqrt{\frac{h_\element}{\vecbabs}} \Delta \eta + \sqrt{\frac{h_\element}{\vecbabs}} \div(\vect{b}\eta) + \sigma \sqrt{\frac{h_\element}{\vecbabs}} \eta}_{L^2(\element)}^2 \stepcounter{equation}\tag{\theequation}\label{fourth_term_adr}\\
+        &\leq C \sum_\eit \delta \Bigg(\norm{\mu \sqrt{\frac{h_\element}{\vecbabs}} \Delta \eta}_{L^2(\element)}^2 + \norm{\sqrt{\frac{h_\element}{\vecbabs}} \div(\vect{b}\eta)}^2_{L^2(\element)} \\
+        &\quad + \norm{\sigma \sqrt{\frac{h_\element}{\vecbabs}}\eta}_{L^2(\element)}^2\Bigg) 
+    \end{align*}
+    Now it is easy to prove that the second and third term of the summands can be bounded using a term or the form \(Ch^{2r+1}\abs{u}_{H^{r+1}(\Omega)}^2\), for a suitable choice of the constant \(C\). For the first term we have 
+    \begin{align*}
+        \sum_\eit \delta \norm{\mu \sqrt{\frac{h_\element}{\vecbabs}} \Delta \eta}^2_{L^2(\element)} &\leq \sum_\eit \delta \frac{h^2_\element \mu}{2} \norm{\Delta \eta}^2_{L^2(\element)} \\
+        &\leq C \delta \norm{\vect{b}}_{L^\infty(\Omega)}\sum_\eit h^3_\element \norm{\Delta}_{L^2(\element)}^2 \leq \abs{u}_{H^{r+1}(\Omega)}^2
+    \end{align*}
+    having used again \eqref{convergence_gls_adr} and \eqref{local_peclet_adr}. Now we can conclude that 
+    \[
+        \mathcal{E}(\eta) \leq C h^{2r+1}\abs{u}_{H^{r+1}(\Omega)}^2
+    \]
+    that is 
+    \begin{equation}
+        \norm{\sigma_h}_{GLS} \leq C h^{r+\frac{1}{2}}\abs{u}_{H^{r+1}(\Omega)}
+        \label{final_proof_adr}
+    \end{equation}
+    Reverting to \eqref{error_rewrite_adr}, to obtain the desired estimate for the norm \(\norm{u_h-u}_{GLS}\) we need to estimate \(\norm{\eta}_{GLS}\). But thanks to \eqref{fourth_term_adr} we obtain 
+    \[
+        \norm{\eta}_{GLS} \leq C h^{r+\frac{1}{2}}\abs{u}_{H^{r+1}(\Omega)}
+    \]
+    Combining this with \eqref{final_proof_adr} we obtain \eqref{super-estimate_adr}.
 \end{proof}

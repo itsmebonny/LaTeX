@@ -91,10 +91,13 @@
 \newcommand{\triangulation}{\mathcal{T}_h}
 
 \newcommand{\boundary}{\partial\Omega}
-\newcommand{\eit}{\element\in\triangulation}
+\newcommand{\eit}{{\element\in\triangulation}}
 \newcommand{\scalingfactor}{\tau_{\element}}
 \newcommand{\peclet}{\mathbb{P}e}
 
+\newcommand{\vecbabs}{\abs{\vect{b}}}
+\newcommand{\loperator}{\mathcal{L}}
+\newcommand{\xvec}{\vect{x}}
 
 \newmdenv[backgroundcolor=blue!20]{background}
 
@@ -113,6 +116,7 @@
 
 \numberwithin{equation}{section}
 
+\allowdisplaybreaks
 
 
 
@@ -126,4 +130,5 @@
 \input{sections/2_SEM.tex}
 \input{sections/3_DG-FEM.tex}
 \input{sections/4_ADR.tex}
+\input{sections/5_parabolic.tex}
 \end{document}

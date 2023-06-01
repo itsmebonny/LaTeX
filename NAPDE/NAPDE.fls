@@ -882,6 +882,10 @@ INPUT ./sections/4_ADR.tex
 INPUT sections/4_ADR.tex
 INPUT ./sections/4_ADR.tex
 INPUT sections/4_ADR.tex
+INPUT ./sections/5_parabolic.tex
+INPUT sections/5_parabolic.tex
+INPUT ./sections/5_parabolic.tex
+INPUT sections/5_parabolic.tex
 INPUT NAPDE.aux
 INPUT ./NAPDE.out
 INPUT ./NAPDE.out
