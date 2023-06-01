@@ -54,8 +54,8 @@ Should be less than \(1\) for stability issues.
 \subsection{Stabilization methods}
 The idea now is to stabilize the Galerkin method. 
 \begin{itemize}
-    \item[1D case:] Upwind method \(\iff\) Artificial diffusion
-    \item[2D case:] Streamline diffusion: 
+    \item 1D case: Upwind method \(\iff\) Artificial diffusion
+    \item 2D case: Streamline diffusion: 
     \[
         +c(h) \int_\Omega \frac{1}{\norm{\vect{b}}} \left( \vect{b} \cdot \grad u_h \right) \left( \vect{b} \cdot \grad v_h \right)
     \]
@@ -220,7 +220,9 @@ To state the convergence of GLS we need the inverse inequality, defined as
         &\quad + \underbrace{\sum_\eit \left( \eta, -\mu\Delta \sigma_h \right)_{L^2(\element)}}_{(IV)} + \underbrace{\sum_\eit \delta \left( \mathcal{L}\eta, \frac{h_\element}{\abs{\vect{b}}\mathcal{L}\sigma_h} \right)_{L^2(\element)}}_{(V)} 
     \end{align*}
     Now, we bound each of these terms. By using Cauchy-Schwartz and Young's inequalities we obtain 
-    \begin{align*}
+    {
+        \allowdisplaybreaks
+        \begin{align*}
         \abs{(I)} &= \abs{\mu\left( \grad \eta, \grad \sigma_h \right)_{L^2(\element)}} \leq \frac{\mu}{4} \ltwonorm{\grad \sigma_h}^2 + \mu \ltwonorm{\grad \eta}^2 \\
         \abs{(II)} &= \abs{\sum_eit \left( \eta, \mathcal{L}\sigma_h \right)_{L^2(\element)}} \\
         & = \abs{\sum_\eit \left( \sqrt{\frac{\abs{\vect{b}}}{\delta h_\element}} \eta, \sqrt{\frac{\delta h_\element}{\abs{\vect{b}}}} \mathcal{L}\sigma_h \right)_{L^2(\Omega)}} \\
@@ -228,6 +230,7 @@ To state the convergence of GLS we need the inverse inequality, defined as
         \abs{(III)} &= 2\abs{\left( \gamma \eta, \sigma_h \right)_{L^2(\Omega)}} = 2\abs{\left( \sqrt{\gamma \eta, \sqrt{\gamma}\sigma_h} \right)_{L^2(\Omega)}} \\
         &\leq \frac{1}{2} \ltwonorm{\sqrt{\gamma}\sigma_h}^2 + 2 \ltwonorm{\sqrt{\gamma} \eta}^2
     \end{align*}
+    }
     Then, thanks to CS and Young, but also hypotheses \eqref{local_peclet_adr} and \eqref{inverse_inequality_adr}, we obtain 
     \begin{align*}
         \abs{(IV)} &= \abs{\sum_\eit \left( \eta, -\mu \Delta \sigma_h \right)_{L^2(\element)}} \\

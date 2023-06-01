@@ -40,12 +40,12 @@ Given any \(u \in H^s(-1,1)\) with \(s \in N\), the projection error \((u-P_Nu)\
     \norm{u-P_Nu}_{L^2(-1,1)} &\leq CN^{-s} \seminorm{u}{H^s(-1,1)} & \forall \; s \leq N+1 \\
 \end{align*}
 There is also a ``modified'' Legendre basis for function that vanish at \(\pm 1\). This is because the Legendre basis is not suited to impose Dirichlet B.C.
-\begin{align}
+\begin{align*}
     \psi_0(x) = \frac{1}{2} (L_0(x) - L_1(x)) = \frac{1-x}{2} \\ 
     \psi_N(x) = \frac{1}{2} (L_0(x) + L_1(x)) = \frac{1+x}{2} \\ 
     \psi_{k-1}(x) = \frac{1}{\sqrt{2(2k-1)}} (L_{k-2}(x) - L_k(x))\\ 
     \txt{for } k = 2, \ldots, N \ -1 < x < 1 \\ 
-\end{align}
+\end{align*}
 
 \subsection{Spectral Galerkin formulation}
 Given \(\Omega = (-1, 1), \mu, b, \sigma > 0\) const., \(f: \Omega \to \real\). Look for \(u:\Omega \to \real\) s.t. 
@@ -123,7 +123,7 @@ Also true that \(\phi_j(x_k) = \delta_{kj}\) and \(\left\{\phi_j\right\}\) are o
     M_{ij} = (\phi_j, \phi_i)_N = \delta_{ij}w_i  \quad i,j  = 0, \ldots, N
 \]
 \subsection{Galerkin with Numerical Integration}
-We can now define the spectral Galerkin method with numerical integration (GNI), by setting \(a_N(u_N, v_N) = (\mu u'_N-b u_n, v'_N)_N+(\sigma u_n, v_n)_N\), and the problem as
+We can now define the spectral Galerkin method with numerical integration (GNI), by setting our bilinear discrete form as \(a_N(u_N, v_N) = (\mu u'_N-b u_n, v'_N)_N+(\sigma u_n, v_n)_N\), and the problem as
 \[
     \txt{find } u_N^{\txt{GNI}} \in V_N : a_N(u_N^{\txt{GNI}},v_N)=(f, v_N)_N \quad \forall \; v_N \in V_N
 \]

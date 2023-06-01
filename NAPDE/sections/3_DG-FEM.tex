@@ -93,7 +93,7 @@ We can now obtain a new bilinear form
 \begin{equation}
     \begin{split}
         \mathcal{A}^*(u_h, v_h) = \underbrace{\sum_{k=0}^{N-1} \int_{I_k} u'_h v'_h}_{(1)} \underbrace{-\sum_{k=0}^{N} \average{u'_h(x_k)} \jump{v_h(x_k)}}_{(2)} \\
-        \underbrace{-\sum_{k=0}^{N} \theta \average{v'_h(x_k)} \jump{u_h(x_k)}}_{(3)} \underbrace{+\sum_{k=0}^{N} \gamma \jump{u_h(x_k)}\jump{v_h(x_k)}} \label{new_bilinear_form_dg} 
+        \underbrace{-\sum_{k=0}^{N} \theta \average{v'_h(x_k)} \jump{u_h(x_k)}}_{(3)} \underbrace{+\sum_{k=0}^{N} \gamma \jump{u_h(x_k)}\jump{v_h(x_k)}}_{(4)} \label{new_bilinear_form_dg} 
     \end{split}
 \end{equation}
 \subsubsection*{Neumann BC}
@@ -200,7 +200,7 @@ so it becomes
 \]
 but, if we assume \(u \in H^2(\Omega)\), then \(\jump{\grad u} = 0 \ \forall \; F \in \mathcal{F}'_h\). This regularity assumption is fullfilled if \(f \in L^2\) and the domain is a convex polygon, thanks to the property of elliptic regularity.
 \[
-    sum_{\element \in \triangulation} \int_{\element} \grad u \grad v - \sum_{F \in \mathcal{F}_h} \int_{F} \average{\grad u} \cdot \jump{v} \cancel{- \sum_{F \in \mathcal{F}'_h} \int_F \jump{\grad u} \average{v}} = \int_{\Omega} fv
+    \sum_{\element \in \triangulation} \int_{\element} \grad u \grad v - \sum_{F \in \mathcal{F}_h} \int_{F} \average{\grad u} \cdot \jump{v} \cancel{- \sum_{F \in \mathcal{F}'_h} \int_F \jump{\grad u} \average{v}} = \int_{\Omega} fv
 \]
 Now we can assume that \(\jump{u} = 0 \ \forall \; F \in \mathcal{F}_h\) (since \(u \in H^2(\Omega) \cap H^1_0(\Omega)\)) to add a symmetry term 
 \[

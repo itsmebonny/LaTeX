@@ -39,3 +39,107 @@ In the one dimensional case the problem becomes
 \end{equation}
 which describes the evolution of the temperature \(u(x,t)\) at point \(x\) and time \(t\) of a metal bar of length \(d\) occupying the interval \([0,d]\), whose thermal conductivity is \(\nu\) and whose endpoints are kept at a constant temperature of zero degrees. The function \(u_0\) describes the temperature in the initial state, while \(f\) represents the heat generated per unit of length by the bar. This is called the heat equation.
 \subsection{Weak formulation and approximation}
+We proceed as usual by multiplying for each \(t>0\) the differential equation by a test function \(v = v(\xvec)\) and integrating. We set \(V = H^1_{\Gamma_D}(\Omega)\) and, for each \(t>0\), we seek \(u(t)\in V\) s.t. 
+\begin{equation}
+    \int_{\Omega} \partialderivative{u(t)}{t} v \, d\Omega + a(u(t), v) = \int_\Omega f(t)v \, d\Omega \quad \forall \; v \in V 
+    \label{weak_formulation_heat_pbl}
+\end{equation}
+where 
+\begin{itemize}
+    \item \(u(0) = u_0\)
+    \item \(a(\cdot,\cdot)\) is the bilinear form associated to the operator \(\loperator\)
+    \item we have supposed for simplicity \(\phi=0\) and \(\psi=0\)
+\end{itemize}
+\begin{definition}
+    A bilinear form \(a(\cdot, \cdot)\) is said weakly coercive if 
+    \[
+        \exists \; \lambda \geq 0, \exists \; \alpha > 0 : a(v,v) + \lambda \norm{v}^2_{L^2(\Omega)} \geq \alpha \norm{v}^2_V \quad \forall \; v \in V
+    \]
+\end{definition}
+Rationale for weak coercivity 
+\[
+    \partialderivative{u}{t} +\loperator u = f 
+\]
+now we perform a change of variable \((u = e^{\lambda t})\)
+\[
+    \partialderivative{w}{t} + \loperator w + \lambda w = e^{-lambda t} f
+\]
+so that the bilinear form 
+\[
+    \tilde{a}(w,v) := a(w,v)+\lambda(w,v)_{L^2(\Omega)} \Rightarrow \tilde{a}(w,w) := a(w,w) + \lambda \ltwonorm{w}^2
+\]
+\begin{theorem}
+    Suppose that the bilinear form \(a(\cdot,\cdot)\) is continuous and weakly coercive. Moreover, we require \(u_0 \in L^2(\Omega)\) and \(f \in L^2(Q_T)\)- Then, \eqref{weak_formulation_heat_pbl} admits a unique solution \(u \in \mathcal{C}^0 (\real^+;L^2(\Omega))\). Also, \(u \in L^2(\real^+;V)\) and \(\partialderivative{u}{t} \in L^2(\real^+; V')\).
+\end{theorem}
+\subsection{Algebraic formulation}
+Now we can use Galerkin to approximate, for each \(t > 0\), we need to find \(u_h(t) \in V_h\) s.t. 
+\begin{equation}
+    \int_\Omega \partialderivative{u_h(t)}{t} v_h \, d\Omega + a(u_h(t), v_h) = \int_\Omega f(t)v_h \, d\Omega \quad \forall \; v_h \in V_h
+\label{semi-discretization_pbl}
+\end{equation}
+with \(u_h(0) = u_{0h}\), where \(V_h \subset V\) is a suitable space of finite dimension and \(u_{0h}\) is a convenient approximation of \(u_0\) in the space \(V_h\).
+
+Now we need to discretize the temporal variable, because, as of now, we obtained a semi-discretization of the problem.
+
+We introduce a basis \(\left\{ \phi_j \right\}\) for \(V_h\) and we observe that it suffices that \eqref{semi-discretization_pbl} is verified for the basis function in order to be satisfied by all the functions in the subspace. 
+
+Moreover, since for each \(t > 0\), the solution to the Galerkin problem belongs to the subspace as well, we will have
+\[
+    u_h(\xvec, t) = \sum_{j=1}^{N_h} u_j(t)\phi_j(\xvec)
+\]
+where the coefficients \(\left\{ u_j(t) \right\}\) represent the unknown of the problem. 
+
+Denoting by \(\dot{u}_j(t)\) the temporal derivatives of \(u_j(t)\), \eqref{semi-discretization_pbl} becomes
+\[
+    \int_\Omega \sum_{j=1}^{N_h} \dot{u}_j(t) \phi_j\phi_i \, d\Omega + a\left( \sum_{j=1}^{N_h} u_j(t)\phi_j, \phi_i \right) = \int_\Omega f(t)\phi_i \, d\Omega, \quad i = 1,2,\ldots, N_h
+\]
+that is 
+\begin{equation}
+    \sum_{j=1}^{N_h} \dot{u}_j(t) \underbrace{\int_\Omega \phi_j \phi_i \, d\Omega}_{m_{ij}} + \sum_{j=1}^{N_h} u_j(t) \underbrace{a(\phi_j, \phi_i)}_{a_{ij}} = \underbrace{\int_\Omega f(t)\phi_i \, d\Omega} \quad i = 1,2,\ldots, N_h
+    \label{algebraic_formulation_pbl}
+\end{equation}
+If we define the vector of unknowns \(\vect{u} = (u_1(t), u_2(t), \ldots, u_{N_h}(t))^T\), the mass matrix \(M = [m_{ij}]\), the stiffness matrix \(A = [a_{ij}]\) and the right hand side vector \(\vect{f} = (f_1(t), f_2(t), \ldots, f_{N_h}(t))^T\), the system \eqref{algebraic_formulation_pbl} can be rewritten as 
+\[
+    M\dot{\vect{u}}(t) + A\vect{u}(t) = \vect{f}(t)
+\]
+\subsection{Time discretization}
+For the numerical solution of this ODE system we will use the \(\theta-\)method, which discretizes the temporal difference quotient and replaces the other terms with a linear combination of the value at time \(t^k\) and of the value at time \(t^{k+1}\), depending on the real parameter \(0 \leq \theta \leq 1\).
+\begin{equation}
+    M\frac{\vect{u}^{k+1} - \vect{u}^k}{\Delta t} + A[\theta \vect{u}^{k+1} + (1-\theta)\vect{u}^k] = \theta \vect{f}^{k+1} + (1-\theta)\vect{f}^k
+    \label{theta_method_pbl}
+\end{equation}
+The real positive parameter \(\Delta t = t^{k+1}-t^k\), \(k=0,1,\ldots\) denotes the discretization step.
+
+Some particular cases of \eqref{algebraic_formulation_pbl} 
+\begin{itemize}
+    \item \(\theta = 0\) wThe forward Euler method 
+    \[
+        M\frac{\vect{u}^{k+1}-\vect{u}^k}{\Delta t} + A\vect{u}^{k} = \vect{f}^k
+    \]
+    \item \(\theta = 1\) The backward Euler method 
+    \[
+        M\frac{\vect{u}^{k+1}-\vect{u}^k}{\Delta t} + A\vect{u}^{k+1} = \vect{f}^{k+1}        
+    \]
+    \item \(\theta = \frac{1}{2}\) The Crank-Nicolson (or trapezoidal) method
+    \[
+        M\frac{\vect{u}^{k+1}-\vect{u}^k}{\Delta t} + \frac{1}{2}A\left( \vect{u}^{k+1} + \vect{u}^k \right) = \frac{1}{2}\left( \vect{f}^{k+1} \vect{f}^k \right)
+    \]
+    which is of the second order in \(\Delta t\). 
+\end{itemize}
+Let us consider the two extremal cases \(\theta = 0\) and \(\theta = 1\). In the first case the system to solve is only the mass matrix \(\frac{M}{\Delta t}\), while in the other case \(\frac{M}{\timestep} + A\). \(M\) is invertible, being positively defined.
+
+In the case \(\theta = 0\) the scheme is not unconditionally stable, and in the case where \(V_h\) is a subspace of finite elements, there is the following stability condition 
+\[
+    \exists \; c > 0 : \timestep \leq ch^2 \quad \forall \; h > 0
+\]
+so \(\timestep\) cannot be chosen irrespective of \(h\).
+
+In this case, if we make \(M\) diagonal, we actually decouple the system. This operation is called lumping of the mass matrix.
+
+When \(\theta > 0\), the system will have the from \(K\vect{u}^{k+1} = \vect{g}\), where \(\vect{g}\) is the source term and \(K = \frac{M}{\timestep}\). The latter is invariant in time (the operator \(\loperator\) being independent of time), so, if the spatial mesh doesn't change, it can be factorized only once at the beginning of the process. 
+
+Then, since \(M\) is symmetric, if \(A\) is symmetric, also \(K\) will be symmetric too. Hence, we can use, for example, the Cholesky factorization \(K = HH^T\), with \(H\) being lower triangular. At each timestep, then, will be solved two triangular systems 
+\begin{align*}
+    H\vect{y} &= \vect{g} \\
+    H^T \vect{u}^{k+1} = \vect{y}
+\end{align*}
