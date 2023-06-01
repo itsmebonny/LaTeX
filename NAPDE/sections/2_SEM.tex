@@ -79,7 +79,7 @@ Given \(u_N \in V_N\) the solution of the problem, then if \(u \in H^{s+1}(\Omeg
     \honenorm{u-u_N} \leq C(s)\left(\frac{1}{N}\right)^s\norm{u}_{H^{s+1}(\Omega)}
 \]
 So \(u_N\) converges with spectral accuracy with respect to \(N\).
-But doing so we would have two full matrices, the stiffness one and the mass one  \(M_{ij} = (\psi_j \psi_i)_{L^2(-1,1)}\) are quite expensive to compute or invert.
+But doing so we would have two full matrices, the stiffness one and the mass one  \(M_{ij} = (\psi_j, \psi_i)_{L^2(-1,1)}\) are quite expensive to compute or invert.
 
 To solve this we can use a Lagrange nodal basis instead of a modal one, by using the Legendre-Gauss-Lobatto quadrature formulas.
 In this case we need a Legendre polynomial \(L_N(x)\).
