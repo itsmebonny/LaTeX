@@ -55,16 +55,16 @@ So the weak formulation of the problem is
     \end{cases}
 \end{equation}
 where \(a: V \times V \to \real\) is a bilinear form and \(F:V \to \real\) is a linear form s.t. \(\scalarproduct{F}{v} \equiv F(v) = \int_\Omega fv + \int_{\Gamma_N} gv\).
-\begin{background}\begin{theorem}[Lax-Milgram]
+\begin{theorem}[Lax-Milgram]
     Assume that 
     \begin{itemize}
         \item \(V\) Hilbert space with \(\normdot\) and inner product \((\cdot, \cdot)\)
-        \item \(F \in V^*: \abs*{F(v)} \leq \norm{F}_{V^*}\norm{v} \; \forall \; v \in V\)
+        \item \(F \in V^*: \abs{F(v)} \leq \norm{F}_{V^*}\norm{v} \; \forall \; v \in V\)
         \item \(a\) continuous: \(\exists \; M > 0: \abs{a(u,v)} \leq M \norm{u}\norm{v} \; \forall \; u,v \in V\)
         \item \(a\) coercive: \(\exists \; \alpha > 0: a(v,v) \geq \alpha\norm{v}^2 \; \forall \; v \in V\)
     \end{itemize}
     Then, there exists a unique solution \(u\) of \ref*{Weak Formulation of Boundary Value Problems}
-\end{theorem}\end{background}
+\end{theorem}
 Moreover 
 \[
     \alpha \norm{u}^2 \leq a(u,u) = F(u) \leq \norm{F}_{V^*} \norm{u}
@@ -83,10 +83,10 @@ We need a slightly more general problem to formulate Nečas theorem:
     \end{cases}
 \end{equation}
 They belong to different spaces: W for the test function, V the solutions
-\begin{background}\begin{theorem}[Nečas]
+\begin{theorem}[Nečas]
     Assume that \(F \in W^*\). Consider the following conditions:
     \begin{itemize}
-        \item \(a\) continuous: \(\exists \; M > 0: \abs*{a(u,w)} \leq M \norm{u}_V \norm{w}_W \; \forall \; u \in V, w \in W\)
+        \item \(a\) continuous: \(\exists \; M > 0: \abs{a(u,w)} \leq M \norm{u}_V \norm{w}_W \; \forall \; u \in V, w \in W\)
         \item \(\inf-\sup\) condition: \(\exists \; \alpha > 0: \forall \; v \in V \quad \sup_{w \in W \setminus \left\{0\right\}} \frac{a(v,m)}{\norm{w}_W} \geq \alpha \norm{v}_V\)
         \item \(\forall \; w \in W, w \neq 0, \exists \; v \in V : a(v,w) \neq 0\)
     \end{itemize}
@@ -96,7 +96,7 @@ They belong to different spaces: W for the test function, V the solutions
     \]
 \label{Nečas}
 \end{theorem}
-\end{background}
+
 When \(W=V\) Lax-Milgram provides necessary and sufficient conditions for existence and uniqueness of solutions.
 
 Going back to 
@@ -157,7 +157,7 @@ We denote by \(A\) the matrix made by \(a_{ij} = a(\phi_j, \phi_i)\) and \(\vect
     A\vect{u} = \vect{f}
     \label{Linear system Galerkin}
 \end{equation}
-\begin{background}
+
     \begin{theorem}
     The stiffness matrix \(A\) associated to the Galerkin discretization of an elliptic problem, whose bilinear form is coercive is positive definite.
 \end{theorem}
@@ -186,14 +186,14 @@ We denote by \(A\) the matrix made by \(a_{ij} = a(\phi_j, \phi_i)\) and \(\vect
 
     Moreover, if \(\vect{v}^T A \vect{v} = 0\), then \(\norm{v_h}_V^2 = 0\).
 \end{proof}
-\end{background}
+
 
 \subsubsection*{Existence and uniqueness}
-\begin{background}
+
     \begin{corollary}
     The solution of the Galerkin problem \eqref{Galerkin Problem Formula} exists and is unique.
 \end{corollary}
-\end{background}
+
 To prove this we can prove that the solution to \eqref{Linear system Galerkin} exists and is unique. The matrix \(A\) is invertible as the unique solution of \(A\vect{u} = \vect{0}\) is the null solution, meaning that \(A\) is definite positive.
 \subsection*{Stability}
 \begin{corollary}
@@ -204,7 +204,7 @@ To prove this we can prove that the solution to \eqref{Linear system Galerkin} e
 \end{corollary}
 The stability of the method guarantees that the norm \(\norm{u_h}_V\) of the discrete solution remains bounded for \(h \to 0\). Equivalently it guarantees that \(\norm{u_h-w_h}_V \leq \frac{1}{\alpha}\norm{F-G}_{V^*}\) with \(u_h\) and \(w_h\) being numerical solution corresponding to different data \(F\) and \(G\).
 \subsection*{Convergence}
-\begin{background}
+
     \begin{lemma}[Galerkin orthogonality]
     The solution \(u_h\) of the Galerkin method satisfies 
     \begin{equation}
@@ -223,7 +223,7 @@ The stability of the method guarantees that the norm \(\norm{u_h}_V\) of the dis
     \]
     from which the claim follows.
 \end{proof}
-\end{background}
+
 
 Also this can be generalized in the cases in which \(a(\cdot, \cdot)\) is not symmetric. Consider the value taken by the bilinear form when both its arguments are \(u-u_h\). If \(v_h\) is an arbitrary element of \(V_h\) we obtain 
 \[
@@ -231,7 +231,7 @@ Also this can be generalized in the cases in which \(a(\cdot, \cdot)\) is not sy
 \]
 The last term is null by \eqref{Galerkin orthogonality}. Moreover 
 \[
-    \abs*{a(u-u_h, u-v_h)} \leq M \norm{u-u_h}_V\norm{u-v_h}_V
+    \abs{a(u-u_h, u-v_h)} \leq M \norm{u-u_h}_V\norm{u-v_h}_V
 \]
 having exploited the continuity of the bilinear form. Also by the coercivity 
 \[
@@ -274,7 +274,7 @@ Thie space \(V_h\) must be chosen carefully to satisfy the saturation property \
     The condition \eqref{Regularity of K} excludes very deformed triangles.
 
 \end{itemize}
-\begin{background}
+
 \begin{definition}[Seminorms]
     A seminorm is defined as 
     \[
@@ -290,7 +290,7 @@ Thie space \(V_h\) must be chosen carefully to satisfy the saturation property \
         \end{align*}
     Always true that \(\abs{u}_{H^q} \leq \norm{u}_{H^q}\)
 \end{definition}
-\end{background}
+
 The problem is always: 
 \begin{align}
     \begin{split} 
@@ -382,7 +382,7 @@ Lax-Milgram tells us that if \(\sigma - \frac{1}{2}\div\vect{b} \geq \gamma > 0\
     \]
 \end{itemize}
 If \(A\) is spd (symmetric positive defined) then \(K_2(A) = \frac{\lambda_{max}(A)}{\lambda_{min}(A)}\)
-\begin{background}
+
     \begin{proposition}
         If \(a(\cdot,\cdot)\) is symmetric and coercive, then \(A\) is spd.
     \end{proposition}
@@ -397,7 +397,7 @@ If \(A\) is spd (symmetric positive defined) then \(K_2(A) = \frac{\lambda_{max}
         \end{align*}
     if (\(v_h \neq 0 \Leftrightarrow \vect{v} \neq \vect{0}\)). Hence \(A\) is positive defined.
     \end{proof}
-\end{background}
+
 \begin{definition}
     If \(A\) is spd, we define the \textit{A-norm} of \(\vect{v}\) as 
     \begin{align*}

@@ -94,7 +94,43 @@ Similarly, by multiplying the second equation of \eqref{navier_stokes_ns} by a t
 Usually, \(V\) is chosen so that the test functions vanish on the boundary portion where a Dirichlet data is prescribed on \(\uvec\)
 \begin{equation}
     V = \left[ H^1_{\Gamma_D} \right]^d = \left\{ \vvec \in [H^1(\Omega)] : \vvec\limited{\Gamma_D} = \vect{0}\right\}
+    \label{space_galerkin_ns}
 \end{equation}
 It will coincide with \(\left[ H^1_0(\Omega) \right]^d\) if \(\Gamma_D = \boundary\). If \(\Gamma_N\) has positive measure, we can choose \(Q = L^2(\Omega)\). If \(\Gamma_D = \boundary\), then the pressure space should be \(L^2_0\) to ensure uniqueness for the pressure \(p\). 
 
-Moreover, if \(t>0\), then \(\uvec(t) \in \left[ H^1(\Omega) \right]^d\), with \(\uvec(t) = \bm{\phi}(t)\) on \(\Gamma_D\)
+Moreover, if \(t>0\), then \(\uvec(t) \in \left[ H^1(\Omega) \right]^d\), with \(\uvec(t) = \bm{\phi}(t)\) on \(\Gamma_D\), \(\uvec(0) = \uvec_0\) and \(p(t) \in Q\). 
+Having chosen these functional spaces, we can note first of all that 
+\[
+    \int_\boundary \left( \nu\partialderivative{\uvec}{\normal} - p\normal \right) \cdot \vvec \, d\gamma = \int_{\Gamma_N} \bm{\psi} \cdot \vvec \, d\gamma \quad \forall \; \vvec \in V
+\]
+\begin{notation}
+    For every function \(\vvec \in \vect{H}^1(\Omega)\), we denote by 
+    \[
+        \norm{\vvec}_{\vect{H}^1(\Omega)} = \left( \sum_{k=1}^{d}\honenorm{v_k}^2 \right)^{\onehalf}
+    \]
+    its norm, and by 
+    \[
+        \seminorm{\vvec}{\vect{H}^1(\Omega)} = \left( \sum_{k=1}^{d} \seminorm{v_k}{H^1{\Omega}}^2 \right)^\onehalf
+    \]
+    its seminorm. Thanks to Poincaré's inequality, \(\seminorm{\vvec}{\vect{H}^1(\Omega)}\) is equivalent to \(\norm{\vvec}_{\vect{H}^1(\Omega)}\) for all functions belonging to \(V\), provided that the Dirichlet boundary has a positive measure.
+\end{notation}
+All the integrals involving bilinear terms are finite. To be more precise, by using the vector notation \(\vect{H}^k(\Omega) = [H^k(\Omega)], \vect{L}^p(\Omega) = [L^p(\Omega)], k \geq 1, 1\leq p > \infty\), we find 
+\begin{align}
+    &\abs{\nu \int_\Omega \grad \uvec \cdot \grad \vvec \, d\Omega} \leq \nu \seminorm{\uvec}{\vect{H}^1(\Omega)} \seminorm{\vvec}{\vect{H}^1(\Omega)} \\
+    & \abs{\int_\Omega p\div \vvec \, d\Omega} \leq \ltwonorm{p} \seminorm{\vvec}{\vect{H}^1(\Omega)} \\
+    &\abs{\int_\Omega q\grad \uvec \, d\Omega} \leq \ltwonorm{q} \seminorm{\uvec}{\vect{H}^1(\Omega)}
+\end{align}
+Also the integral involving the trilinear term is finite. Before we see how let's recall the following result: if \(d \leq 3\)
+\[
+    \forall \; \vvec in \vect{H}^1(\Omega), \txt{ then } \vvec \in \vect{L}^4(\Omega) \txt{ and } \exists \; C > 0 : \norm{\vvec}_{\vect{L}^4(\Omega)} \leq C \norm{\vvec}_{\vect{H}^1(\Omega)}.
+\]
+Then, using the following three-term Hölder inequality 
+\[
+    \abs{\int_\Omega fgh \, d\Omega} \leq \norm{f}_{L^p(\Omega)} \norm{g}_{L^q(\Omega)} \norm{h}_{L^r(\Omega)},
+\]
+valid for all \(p, q, r > 1\) such that \(p^{-1} + q^{-1} + r^{-1} = 1\), we conclude that 
+\[
+    \abs{\int_\Omega \left[ \left( \uvec \cdot \grad \right) \uvec \right] \cdot \vvec \, d\Omega} \leq \norm{\grad \uvec}_{\vect{L}^2(\Omega)} \norm{\uvec}_{\vect{L}^4(\Omega)} \norm{\uvec}_{\vect{L}^4(\Omega)} \leq C^2 \norm{\vect{u}}_{\vect{H}^1(\Omega)}\norm{\vvec}_{\vect{H}^1(\Omega)}.
+\]
+\subsection{Solution uniqueness}
+As for the solution's uniqueness, let us consider again \eqref{navier_stokes_ns}. If \(\Gamma_D = \boundary\), when only boundary conditions of Dirichlet type are imposed, the pressure merely appears in terms of its gradient. In that case if we call \((\uvec, p)\) a solution, then for any constant \(c\) the couple \((\uvec, p+c)\) is a solution too since \(\grad (p+c) = \grad p\).

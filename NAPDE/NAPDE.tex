@@ -20,6 +20,7 @@
 \usepackage[makeroom]{cancel}
 \usepackage{mathrsfs}
 
+\usepackage[many]{tcolorbox}
 
 \setlength\parindent{0pt}
 
@@ -37,12 +38,79 @@
 \newtheorem{proposition}{Proposition}[section]
 \newtheorem{remark}{Remark}[section]
 \newtheorem{lemma}{Lemma}[section]
+\newtheorem{notation}{Notation}[section]
+\newtheorem{definition}{Definition}[section]
+
+
+\tcolorboxenvironment{theorem}{
+  colback=blue!15!white,
+  boxrule=0pt,
+  boxsep=1pt,
+  left=2pt,right=2pt,top=2pt,bottom=2pt,
+  oversize=2pt,
+  before skip=\topsep,
+  after skip=\topsep,
+}
+\tcolorboxenvironment{corollary}{
+  colback=blue!15!white,
+  boxrule=0pt,
+  boxsep=1pt,
+  left=2pt,right=2pt,top=2pt,bottom=2pt,
+  oversize=2pt,
+  before skip=\topsep,
+  after skip=\topsep,
+}
+\tcolorboxenvironment{proposition}{
+  colback=blue!15!white,
+  boxrule=0pt,
+  boxsep=1pt,
+  left=2pt,right=2pt,top=2pt,bottom=2pt,
+  oversize=2pt,
+  before skip=\topsep,
+  after skip=\topsep,
+}
+\tcolorboxenvironment{lemma}{
+  colback=blue!15!white,
+  boxrule=0pt,
+  boxsep=1pt,
+  left=2pt,right=2pt,top=2pt,bottom=2pt,
+  oversize=2pt,
+  before skip=\topsep,
+  after skip=\topsep,
+}
+\tcolorboxenvironment{remark}{
+  colback=blue!15!white,
+  boxrule=0pt,
+  boxsep=1pt,
+  left=2pt,right=2pt,top=2pt,bottom=2pt,
+  oversize=2pt,
+  before skip=\topsep,
+  after skip=\topsep,
+}
+\tcolorboxenvironment{notation}{
+  colback=green!150!black!50,
+  boxrule=0pt,
+  boxsep=1pt,
+  left=2pt,right=2pt,top=2pt,bottom=2pt,
+  oversize=2pt,
+  before skip=\topsep,
+  after skip=\topsep,
+}
+\tcolorboxenvironment{definition}{
+  colback=blue!15!white,
+  boxrule=0pt,
+  boxsep=1pt,
+  left=2pt,right=2pt,top=2pt,bottom=2pt,
+  oversize=2pt,
+  before skip=\topsep,
+  after skip=\topsep,
+}
+
 \renewcommand*{\proofname}{\textbf{Proof}}
 \renewcommand\qedsymbol{$\bigstar$}
 \renewcommand*{\grad}{\nabla\mspace{1mu}}
 \renewcommand*{\div}{\text{div}\mspace{1mu}}
 \newcommand{\rot}{\text{rot}\mspace{1mu}}
-\newtheorem{definition}{Definition}[section]
 \renewcommand\labelenumi{(\theenumi)}
 \newcommand{\vect}[1]{\textbf{#1}}
 
