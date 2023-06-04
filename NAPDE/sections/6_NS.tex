@@ -1,0 +1,100 @@
+\newpage 
+\section{Navier-Stokes equations}
+\subsection{Introduction}
+Navier-Stokes equations describe the motion of a fluid with constant density \(\rho\) in a domain \(\Omega \subset \real^d\) with \(d = 2,3\). They read as follows
+\begin{equation}
+    \begin{cases}
+        \displaystyle \partialderivative{\uvec}{t} - \div \left[ \nu \left( \grad \uvec + \grad \uvec^T \right) \right] + \left( \uvec \cdot \grad \right) \uvec + \grad p = \vect{f} & \xvec \in \Omega, \ t > 0 \\
+        \div \uvec = 0 & \xvec \in \Omega, \ t > 0
+    \end{cases}
+    \label{navier_stokes_fake_ns}
+\end{equation}
+where 
+\begin{itemize}
+    \item \(\uvec\) is the fluid's velocity
+    \item \(p\) is the pressure divided by the density (which will be simply called ``pressure'')
+    \item \(\nu\) is the kinematic viscosity 
+    \item \(\vect{f} \in L^2(\real^+; [L^2(\Omega)])\) is a forcing term per unit of mass
+\end{itemize}
+The first equation represents conservation of linear momentum, while the second one the conservation of mass. In fact, the term \(\left( \uvec \cdot \grad \right)\uvec\) describes the process of convective transport, while the term \(-\div \left[ \nu \left( \grad \uvec + \grad \uvec^t \right) \right]\) describe the process of molecular diffusion.
+
+When \(\nu\) is constant, from the continuity equation we obtain 
+\[
+    \div \left[ \nu \left( \grad \uvec + \grad \uvec^T \right) \right] = \nu \left( \Delta \uvec +\grad \div u \right) = \nu\Delta \uvec
+\]
+and system \eqref{navier_stokes_fake_ns} can be rewritten as 
+\begin{equation}
+    \begin{cases}
+        \displaystyle \partialderivative{\uvec}{t} - \nu \Delta \uvec + \left( \uvec \cdot \grad \right) \uvec + \grad p = \vect{f} & \xvec \in \Omega, \ t > 0 \\
+        \div\uvec = 0 & \xvec \in \Omega, \ t > 0
+    \end{cases}
+    \label{navier_stokes_ns}
+\end{equation}
+The \eqref{navier_stokes_ns} are often called incompressible Navier-Stokes equations. More in general, when \(\div\uvec = 0\), fluids are said to be incompressible. 
+
+In order for \eqref{navier_stokes_ns} to be well posed, it is necessary to assign the initial condition 
+\begin{equation}
+    \uvec(\xvec, 0) = \uvec_0(\xvec) \quad \forall \; \xvec \in \Omega
+    \label{initial_condition_ns}
+\end{equation}
+where \(\uvec_0\) is a given divergence-free vector field. Then we would need need suitable BC
+\begin{equation}
+    \begin{cases}
+        \uvec(\xvec, t) = \bm{\phi}(\xvec, t) & \forall \; \xvec \in \Gamma_D, \ t > 0 \\
+        \displaystyle \left( \nu \partialderivative{\uvec}{\vect{n}} - p\normal  \right)\left( \xvec, t \right) = \bm{\psi}(\xvec, t) & \forall \; \xvec \in \Gamma_N, \ t > 0 
+    \end{cases}
+    \label{boundaries_ns}
+\end{equation}
+where \(\bm{\phi}\) and \(\bm{\psi}\) are given vector functions, while \(\Gamma_D\) and \(\Gamma_N\) provide a partition of the boundary, such that \(\Gamma_D \cup \Gamma_N = \boundary, \interior{\Gamma}_D \cap \interior{\Gamma}_N =\emptyset\).
+Finally, as usual \(\normal\) is the outward unit normal vector to \(\boundary\).
+
+If we denote with \(u_i, i = 1,\ldots, d\) the components of \(uvec\) w.r.t. a Cartesian frame, and, likewise, with \(f_i\) compoonents of \(\vect{f}\), we obtain, from \eqref{navier_stokes_ns}
+\[
+    \begin{cases}
+        \displaystyle \partialderivative{u_i}{t} - \nu \grad u_i + \sum_{j=1}^{d} u_j\partialderivative{u_i}{x_j} + \partialderivative{p}{x_j} = f_i & i = 1,\ldots, d \\
+        \displaystyle \sum_{j=1}^{d} \partialderivative{u_j}{x_j} = 0
+    \end{cases}
+\]
+\begin{remark}
+    The Navier-Stokes equations have been written in terms of the primitive variable \(\uvec\) and \(p\), but other sets of variables may be used too. For instance, in the two dimensional case it is common to see the vorticity \(\omega\) and the streamfunctoin \(\psi\) that are related to the velocity
+    \begin{equation*}
+        \omega =\rot\uvec = \partialderivative{u_2}{x_1} - \partialderivative{u_1}{x_2}, \quad \uvec = \left[ \begin{matrix*}
+            \partialderivative{\psi}{x_2} \\
+            -\partialderivative{\psi}{x_1}
+        \end{matrix*} \right].
+    \end{equation*}
+    The various formulations are equivalent from a mathematical standpoint, but may give rise to different numerical methods.
+\end{remark}
+\subsection{Weak formulation}
+A weak formulation of the problem can be obtained as usual, by multiplying a test function \(\vect{v}\), belonging to a suitable space \(V\), and integrate in \(\Omega\)
+\begin{equation}
+    \begin{split}
+        \int_\Omega \partialderivative{\uvec}{t} \cdot \vvec \, d\Omega - \int_\Omega \nu \Delta \uvec \cdot \vvec \, d\Omega + \int_\Omega \left[ \left( \uvec \cdot \grad \right) \uvec \right] \cdot \vvec \, d\Omega + \int_\Omega \grad p \cdot \vvec \, d\Omega \\
+        = \int_\Omega \vect{f} \cdot \vvec \, d\Omega
+    \end{split}
+\end{equation}
+Using Green's formula we find 
+\begin{align*}
+    -\int_\Omega \nu \Delta \uvec \cdot \vvec \, d\Omega &= \int_\Omega \nu \grad \uvec \cdot \grad \vvec \, d\Omega - \int_\boundary \grad p \cdot \vvec \, d\Omega \\
+    \int_\Omega \grad p \cdot \vvec \, d\Omega &= - \int_\Omega p \div \vvec \, d\Omega + \int_\boundary p \vvec \cdot \normal \, d\gamma
+\end{align*}
+Using these relations in the first of \eqref{navier_stokes_ns} we obtain 
+\begin{equation}
+    \begin{split}
+        \int_\Omega \partialderivative{\uvec}{t} \cdot \vvec \, d\Omega + \int_\Omega \nu \grad \uvec \cdot\grad \vvec \, d\Omega  + \int_\Omega \left[ \left( \uvec \cdot \grad \right) \uvec \right] \cdot \vvec \, d\Omega \\
+        - \int_\Omega p\div \vvec \, d\Omega = \int_\Omega \vect{f} \cdot \vvec \, d\Omega + \int_\boundary \left( \nu \partialderivative{\uvec}{\normal} - p\normal \right) \cdot \vvec \, d\gamma \quad \forall \; \vvec \in V
+    \end{split}
+    \label{first_weak_formulation_ns}
+\end{equation}
+Similarly, by multiplying the second equation of \eqref{navier_stokes_ns} by a test function \(q\), belonging to a suitable space \(Q\) to be specified, then integrating in \(\Omega\) it follows that 
+\begin{equation}
+    \int_\Omega q \div \uvec \, d\Omega = 0 \quad \forall \; q \in Q
+    \label{weak_formulation_div_ns}
+\end{equation}
+Usually, \(V\) is chosen so that the test functions vanish on the boundary portion where a Dirichlet data is prescribed on \(\uvec\)
+\begin{equation}
+    V = \left[ H^1_{\Gamma_D} \right]^d = \left\{ \vvec \in [H^1(\Omega)] : \vvec\limited{\Gamma_D} = \vect{0}\right\}
+\end{equation}
+It will coincide with \(\left[ H^1_0(\Omega) \right]^d\) if \(\Gamma_D = \boundary\). If \(\Gamma_N\) has positive measure, we can choose \(Q = L^2(\Omega)\). If \(\Gamma_D = \boundary\), then the pressure space should be \(L^2_0\) to ensure uniqueness for the pressure \(p\). 
+
+Moreover, if \(t>0\), then \(\uvec(t) \in \left[ H^1(\Omega) \right]^d\), with \(\uvec(t) = \bm{\phi}(t)\) on \(\Gamma_D\)

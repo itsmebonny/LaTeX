@@ -39,8 +39,9 @@
 \newtheorem{lemma}{Lemma}[section]
 \renewcommand*{\proofname}{\textbf{Proof}}
 \renewcommand\qedsymbol{$\bigstar$}
-\renewcommand*{\grad}{\nabla}
-\renewcommand*{\div}{\text{div}}
+\renewcommand*{\grad}{\nabla\mspace{1mu}}
+\renewcommand*{\div}{\text{div}\mspace{1mu}}
+\newcommand{\rot}{\text{rot}\mspace{1mu}}
 \newtheorem{definition}{Definition}[section]
 \renewcommand\labelenumi{(\theenumi)}
 \newcommand{\vect}[1]{\textbf{#1}}
@@ -100,6 +101,11 @@
 \newcommand{\tstep}{\Delta t}
 \newcommand{\onehalf}{\frac{1}{2}}
 \newcommand{\bilinear}{a(\cdot, \cdot)}
+\newcommand{\uvec}{\vect{u}}
+\newcommand{\normal}{\vect{n}}
+\newcommand{\vvec}{\vect{v}}
+
+
 \newmdenv[backgroundcolor=blue!20]{background}
 
 
@@ -131,4 +137,5 @@
 \input{sections/3_DG-FEM.tex}
 \input{sections/4_ADR.tex}
 \input{sections/5_parabolic.tex}
+\input{sections/6_NS.tex}
 \end{document}

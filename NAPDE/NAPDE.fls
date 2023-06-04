@@ -873,6 +873,10 @@ INPUT ./sections/5_parabolic.tex
 INPUT sections/5_parabolic.tex
 INPUT ./sections/5_parabolic.tex
 INPUT sections/5_parabolic.tex
+INPUT ./sections/6_NS.tex
+INPUT sections/6_NS.tex
+INPUT ./sections/6_NS.tex
+INPUT sections/6_NS.tex
 INPUT NAPDE.aux
 INPUT ./NAPDE.out
 INPUT ./NAPDE.out
