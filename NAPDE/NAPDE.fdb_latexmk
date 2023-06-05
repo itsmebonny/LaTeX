@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1685961673 "/home/bonni/Documents/LaTeX/NAPDE/NAPDE.tex" "NAPDE.pdf" "NAPDE" 1685961676
+["pdflatex"] 1685976564 "/home/bonni/Documents/LaTeX/NAPDE/NAPDE.tex" "NAPDE.pdf" "NAPDE" 1685976567
   "/etc/texmf/web2c/texmf.cnf" 1663235487 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/bonni/Documents/LaTeX/NAPDE/NAPDE.tex" 1685955957 5545 a9535998bcbefd2f48f384bb684bb4d3 ""
+  "/home/bonni/Documents/LaTeX/NAPDE/NAPDE.tex" 1685974359 5633 13c62c959e8ea31914f1c0b93744c455 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm" 1136768653 1536 02c06700a42be0f5a28664c7273f82e7 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm" 1246382020 1124 14ccf5552bc7f77ca02a8a402bea8bfb ""
@@ -220,15 +220,15 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1683288490 4379155 98693266ff65f58d9f98aff394de12d2 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1685694486 2798404 f3ec2215737410dfdf7ff0ab7626857a ""
-  "NAPDE.aux" 1685961675 14564 27696d588b214a4119bb5cd2d55cf339 "pdflatex"
-  "NAPDE.out" 1685961675 7887 c7ed385e22e2a167b679b1dd1616272f "pdflatex"
-  "NAPDE.tex" 1685955957 5545 a9535998bcbefd2f48f384bb684bb4d3 ""
+  "NAPDE.aux" 1685976566 15206 61b8580b9c4cf01ca29d39780c946fc9 "pdflatex"
+  "NAPDE.out" 1685976566 8275 492df05fa55de566dc8577232f45572b "pdflatex"
+  "NAPDE.tex" 1685974359 5633 13c62c959e8ea31914f1c0b93744c455 ""
   "sections/1_bvp.tex" 1685890319 26750 9128a7116d2de67c2aae4acd41ee0261 ""
   "sections/2_SEM.tex" 1685890319 26797 f5ad1bae7d2d6660f9a1fe5a15d4c908 ""
   "sections/3_DG-FEM.tex" 1685629937 19636 5812a1a15b5310f2478ba4ae9712707e ""
   "sections/4_ADR.tex" 1685629937 20630 9f3a105b0eea09fbee3b0672497a3255 ""
   "sections/5_parabolic.tex" 1685809787 32572 24caad77ecf027f007daa6b072d302b8 ""
-  "sections/6_NS.tex" 1685961671 19236 f3eb1fecbe501b3f2ed2a2d987f59c02 ""
+  "sections/6_NS.tex" 1685976560 25397 7704b329fd5a0ae12eddbd2d108040f4 ""
   (generated)
   "NAPDE.aux"
   "NAPDE.log"

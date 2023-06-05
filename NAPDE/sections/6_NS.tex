@@ -69,7 +69,7 @@ If we denote with \(u_i, i = 1,\ldots, d\) the components of \(uvec\) w.r.t. a C
 A weak formulation of the problem can be obtained as usual, by multiplying a test function \(\vect{v}\), belonging to a suitable space \(V\), and integrate in \(\Omega\)
 \begin{equation}
     \begin{split}
-        \int_\Omega \partialderivative{\uvec}{t} \cdot \vvec \, d\Omega - \int_\Omega \nu \Delta \uvec \cdot \vvec \, d\Omega + \int_\Omega \left[ \left( \uvec \cdot \grad \right) \uvec \right] \cdot \vvec \, d\Omega + \int_\Omega \grad p \cdot \vvec \, d\Omega \\
+        \int_\Omega \partialderivative{\uvec}{t} \cdot \vvec \, d\Omega - \int_\Omega \nu \Delta \uvec \cdot \vvec \, d\Omega + \int_\Omega \left[ \left( \uvec \cdot \grad \right) \uvec \right] \cdot \vvec \, d\Omega + \int_\Omega \grad p \cdot \vvec \, d\Omega 
         = \int_\Omega \vect{f} \cdot \vvec \, d\Omega
     \end{split}
 \end{equation}
@@ -96,7 +96,9 @@ Usually, \(V\) is chosen so that the test functions vanish on the boundary porti
     V = \left[ H^1_{\Gamma_D} \right]^d = \left\{ \vvec \in [H^1(\Omega)] : \vvec\limited{\Gamma_D} = \vect{0}\right\}
     \label{space_galerkin_ns}
 \end{equation}
-It will coincide with \(\left[ H^1_0(\Omega) \right]^d\) if \(\Gamma_D = \boundary\). If \(\Gamma_N\) has positive measure, we can choose \(Q = L^2(\Omega)\). If \(\Gamma_D = \boundary\), then the pressure space should be \(L^2_0\) to ensure uniqueness for the pressure \(p\). 
+It will coincide with \(\left[ H^1_0(\Omega) \right]^d\) if \(\Gamma_D = \boundary\). 
+
+If \(\Gamma_N\) has positive measure, we can choose \(Q = L^2(\Omega)\). If \(\Gamma_D = \boundary\), then the pressure space should be \(L^2_0\) to ensure uniqueness for the pressure \(p\). 
 
 Moreover, if \(t>0\), then \(\uvec(t) \in \left[ H^1(\Omega) \right]^d\), with \(\uvec(t) = \bm{\phi}(t)\) on \(\Gamma_D\), \(\uvec(0) = \uvec_0\) and \(p(t) \in Q\). 
 Having chosen these functional spaces, we can note first of all that 
@@ -280,4 +282,106 @@ where \(V\) and \(Q\) are the spaces \eqref{space_galerkin_ns} and \eqref{8_slid
         \mathcal{L}(\vvec, q) = \onehalf a(\vvec,\vvec) + b(\vvec,q) - (\vect{f}, \vvec)    
     \]
     or equivalently 
+    \[
+        \loperator(\uvec, p) = \min_{\vvec \in V} \max_{q \in Q} \loperator (\vvec, q)    
+    \]
 \end{theorem}
+The pressure \(q\) hence plays the role of Lagrange multiplier associated to the divergence-free constraint. 
+We need to define the Fréchet derivative. 
+\begin{definition}[Fréchet derivative]
+    Let \(F:X\to Y\) with \(X,Y\) two normed vector spaces. \(F\) is differentiable at \(x \in X\) if \(\exists \; \loperator_x: X\to Y\) linear and bounded such that 
+    \[
+        \forall \; \epsilon > 0 \ \exists \; \delta > 0 \ \norm{F(x+h) - F(x) - \loperator_x h}_Y \leq \epsilon\norm{h}_X \quad \forall \; h \in X : \norm{h}_X < \delta
+    \]
+    \(F'(x) := \loperator_x\) is called Fréchet derivative of \(F\) at point \(x\).
+\end{definition}
+By formally taking the Fréchet derivative of the Lagrangian with respect to the two variables (thanks to the symmetry of \(\bilinear\)): 
+\begin{align*}
+    &\bigg\langle\partialderivative{\loperator(\uvec, p)}{\uvec}, \vvec \bigg\rangle = a(\uvec, \vvec) +b(\vvec,p) -(\vect{f},\vvec) = 0 \quad \forall \; \vvec \in V \\
+    &\bigg\langle \partialderivative{\loperator(\uvec,p)}{p}, q\bigg\rangle = b(\uvec, q) = 0 \quad \forall \; q \in Q 
+\end{align*}
+\subsection{Galerkin approximation}
+The Galerkin approximation of problem \eqref{15_slide_ns} has the following form: 
+\begin{equation}
+    \txt{find }(\uvec_h, p_h) \in V_h\times Q_h :
+    \begin{cases}
+        a(\uvec_h,\vvec_h) + b(\vvec_h, p_h) =(\vect{f}, \vvec_h) & \forall \; \vvec_h \in V_h \\
+        b(\uvec, q_h) = 0 & \forall \; q_h \in Q_h
+    \end{cases}
+    \label{18_slide_ns}
+\end{equation}
+If, instead we consider problem \eqref{16_slide_ns}-\eqref{17_slide_ns}, we need to add \(\vect{F}(\vvec_h)\) and \(G(q_h)\). These new functionals can be obtained from \eqref{17_slide_ns} by replacing \(\vect{R}\bm{\phi}\) with the interpolant of \(\bm{\phi}\) at the nodes of \(\Gamma_D\), and replacing \(\bm{\phi}\) with its interpolant at the nodes on \(\Gamma_N\).
+
+The existence and uniqueness is guaranteed by the theorem
+\begin{theorem}
+    The Galerkin approximation \eqref{18_slide_ns} admits one and only one solution if the following conditions hold
+    \begin{itemize}
+        \item The bilinear form \(\bilinear\) is:
+        \begin{enumerate}
+            \item coercive, that is \(\exists \; \alpha > 0\) (possibly depending on \(h\)) such that:
+            \[
+                a(\vvec_h, \vvec_h) \geq \alpha \norm{\vvec_h}^2_V \quad \forall\; \vvec_h \in V_h^*,
+            \]
+            where \(V_h^* = \left\{ \vvec_h \in V : b(\vvec_h,q_h) = 0 \quad \forall \; q_h \in Q_h \right\}\)
+            \item continuous, that is \(\exists \; \gamma > 0\) such that 
+            \[
+                \abs{a(\uvec_h,\vvec_h)} \leq \gamma \norm{\uvec_h}_V \norm{\vvec_h}_V \quad \forall \; \uvec_h,\vvec_h \in V_h     
+            \]
+        \end{enumerate}
+        \item The bilinear form \(b(\cdot, \cdot)\) is continuous, that is \(\exists \; \delta > 0\) such that 
+        \[
+            \abs{b(\vvec_h, q_h)} \leq \delta \norm{\vvec_h}_V\norm{q_h}_Q \quad \forall \vvec_h \in V_h, q_h \in Q_h
+        \]
+        \item Finally, there exist a positive constant \(\beta\) (possibly depending on \(h\)) such that:
+        \begin{equation}
+            \forall \; q_h \in Q_h, \ \exists \; \vvec_h \in V_h : b(\vvec_h, q_h) \geq \beta \norm{\vvec_h}_{\vect{H}^1(\Omega)}\ltwonorm{q_h}
+            \label{19_slide_ns}
+        \end{equation}
+        Under the previous assumptions the discrete solution fullfills the following a priori estimates: 
+        \begin{align*}
+            \norm{\uvec_h}_V &\leq \frac{1}{\alpha} \norm{\vect{f}}_{V'} \\
+            \norm{p_h}_Q &\leq \frac{1}{\beta} \left( 1+\frac{\gamma}{\alpha} \right) \norm{\vect{f}}_{V'},
+        \end{align*}
+        where \(V'\) is the dual space of \(V\).
+
+        Moreover, the following convergence results hold:
+        \begin{align*}
+            \norm{\uvec - \uvec_h}_V &\leq \left( 1 +\frac{\delta}{\beta} \right) \left( 1 + \frac{\gamma}{\alpha} \right) \inf_{\vvec_h \in V_h} \norm{\uvec - \vvec_h}_V \\
+            &\quad + \frac{\delta}{\alpha} \inf_{q_h \in Q_h} \norm{p - q_h}_Q, \\
+            \norm{p-p_h}_Q &\leq \frac{\gamma}{\beta} \left( 1+\frac{\gamma}{\alpha} \right)\left(1 +\frac{\delta}{\beta} \right) \inf_{\vvec_h \in V_h} \norm{\uvec -\vvec_h}_V \\
+            &\quad + \left( 1 + \frac{\delta}{\beta} + \frac{\delta \gamma}{\alpha \beta} \right) \inf_{q_h \in Q_h} \norm{p-q_h}_Q
+        \end{align*}
+    \end{itemize}
+\end{theorem}
+It is worth noticing that condition \eqref{19_slide_ns} is equivalent to the existence of a positive constant \(\beta\) such that
+\begin{equation}
+    \inf_{\substack{q_h \in Q_h \\ q_h \neq 0}} \sup_{\substack{\vvec_h \in V_h \\ \vvec_h \neq 0}} \frac{b(\vvec_h, q_h)}{\norm{\vvec_h}_{\vect{H}^1(\Omega)}\ltwonorm{q_h}} \geq \beta
+    \label{20_slide_ns}
+\end{equation}
+Which is often called inf-sup condition. 
+\subsection{A general saddle-point problem}
+Let \(X\) and \(M\) be two Hilbert spaces endowed with norms \(\normdot_X\) and \(\normdot_M\). Denoting their dual spaces as \(X', M'\), we introduce the bilinear forms 
+\begin{itemize}
+    \item \(\bilinear : X\times X \to \real\) 
+    \item \(b(\cdot, \cdot): M\times M \to \real\)
+\end{itemize}
+that we suppose to be continuous, meaning there exist two constants \(\gamma,\delta > 0\) such that for all \(w, v \in X\) and \(\mu \in M\)
+\begin{equation}
+    \begin{aligned}
+        \abs{a(w,v)} \leq \gamma \norm{w}_X \norm{v}_X, \\
+        \abs{b(w,\mu)} \leq \norm{w}_X \norm{\mu}_M
+    \end{aligned}
+    \label{21_slide_ns}
+\end{equation}
+Consider now the following constrained problem 
+\begin{equation}
+    \txt{find } (u,\eta) \in X \times M:
+    \begin{cases}
+        a(u,v) + b(v, \eta) = \langle I, v \rangle & \forall \; v \in X, \\
+        b(u,\mu) = \langle \sigma, \mu\rangle & \forall \; \mu \in M
+    \end{cases}
+    \label{22_slide_ns}
+\end{equation}
+where \(I \in X'\) and \(\sigma \in M'\) are two assigned linear functionals, while \(\langle \cdot, \cdot \rangle\) denotes the pairing between \(X\) and \(X'\) or \(M\) and \(M'\).
+
+Formulation \eqref{22_slide_ns} is general enough to include formulation \eqref{15_slide_ns} of the Stokes problem. 
