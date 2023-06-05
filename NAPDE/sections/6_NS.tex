@@ -114,12 +114,12 @@ Having chosen these functional spaces, we can note first of all that
     \]
     its seminorm. Thanks to Poincaré's inequality, \(\seminorm{\vvec}{\vect{H}^1(\Omega)}\) is equivalent to \(\norm{\vvec}_{\vect{H}^1(\Omega)}\) for all functions belonging to \(V\), provided that the Dirichlet boundary has a positive measure.
 \end{notation}
-All the integrals involving bilinear terms are finite. To be more precise, by using the vector notation \(\vect{H}^k(\Omega) = [H^k(\Omega)], \vect{L}^p(\Omega) = [L^p(\Omega)], k \geq 1, 1\leq p > \infty\), we find 
-\begin{align}
-    &\abs{\nu \int_\Omega \grad \uvec \cdot \grad \vvec \, d\Omega} \leq \nu \seminorm{\uvec}{\vect{H}^1(\Omega)} \seminorm{\vvec}{\vect{H}^1(\Omega)} \\
-    & \abs{\int_\Omega p\div \vvec \, d\Omega} \leq \ltwonorm{p} \seminorm{\vvec}{\vect{H}^1(\Omega)} \\
-    &\abs{\int_\Omega q\grad \uvec \, d\Omega} \leq \ltwonorm{q} \seminorm{\uvec}{\vect{H}^1(\Omega)}
-\end{align}
+All the integrals involving bilinear terms are finite. To be more precise, by using the vector notation \(\vect{H}^k(\Omega) = [H^k(\Omega)]^d, \vect{L}^p(\Omega) = [L^p(\Omega)]^d, k \geq 1, 1\leq p > \infty\), we find 
+\begin{align*}
+    \abs{\nu \int_\Omega \grad \uvec \cdot \grad \vvec \, d\Omega} &\leq \nu \seminorm{\uvec}{\vect{H}^1(\Omega)} \seminorm{\vvec}{\vect{H}^1(\Omega)} \\
+    \abs{\int_\Omega p\div \vvec \, d\Omega} &\leq \ltwonorm{p} \seminorm{\vvec}{\vect{H}^1(\Omega)} \\
+    \abs{\int_\Omega q\grad \uvec \, d\Omega} &\leq \ltwonorm{q} \seminorm{\uvec}{\vect{H}^1(\Omega)}
+\end{align*}
 Also the integral involving the trilinear term is finite. Before we see how let's recall the following result: if \(d \leq 3\)
 \[
     \forall \; \vvec in \vect{H}^1(\Omega), \txt{ then } \vvec \in \vect{L}^4(\Omega) \txt{ and } \exists \; C > 0 : \norm{\vvec}_{\vect{L}^4(\Omega)} \leq C \norm{\vvec}_{\vect{H}^1(\Omega)}.
@@ -134,3 +134,150 @@ valid for all \(p, q, r > 1\) such that \(p^{-1} + q^{-1} + r^{-1} = 1\), we con
 \]
 \subsection{Solution uniqueness}
 As for the solution's uniqueness, let us consider again \eqref{navier_stokes_ns}. If \(\Gamma_D = \boundary\), when only boundary conditions of Dirichlet type are imposed, the pressure merely appears in terms of its gradient. In that case if we call \((\uvec, p)\) a solution, then for any constant \(c\) the couple \((\uvec, p+c)\) is a solution too since \(\grad (p+c) = \grad p\).
+
+To avoid that, one can fix a priori \(p\) at a given point \(\xvec_0\) of the domain \(\Omega\) such that \(p(\xvec_0) = p_0\), or, alternatively, require the pressure average to be null, \(\int_\Omega p\,d\Omega \). 
+This condition requires to prescribe a pointwise value for the pressure, but this is inconsistent with the hypotesis that \(p \in L^2 \). For this reason, the pressure space will be considered as 
+\[
+    Q = L^2_0(\Omega) = \left\{ p \in L^2(\Omega) : \int_\Omega p \, d\Omega = 0 \right\}.
+\]
+Then, we observe that if \(\Gamma_D = \boundary\), the prescribed Dirichlet data \(\bm{\phi}\) must be compatible with the incompressiblility constant 
+\[
+    \int_\Omega \bm{\phi} \cdot \normal \, d\gamma = \int_\Omega \div \uvec \, d\Omega = 0.
+\]
+If \(\Gamma_N\) is not empty, we are ok with using \(L^2(\Omega)\) for our pressure space.
+So: 
+\begin{equation}
+    Q =  L^2(\Omega) \quad \txt{ if } \Gamma_N \neq \emptyset, \quad Q = L^2_0(\Omega) \quad \txt{ if } \Gamma_N = \emptyset
+    \label{8_slide_ns}
+\end{equation}
+The weak formulation of \eqref{navier_stokes_ns}, \eqref{initial_condition_ns}, \eqref{boundaries_ns} is:
+\begin{equation}
+    \begin{split}
+        \txt{find }\uvec \in L^2(\real^+; \left[ H^1(\Omega) \right]^d) \cap \mathcal{C}^0(\real^+;\left[ L^2(\Omega) \right]^d), p \in L^2(\real^+; Q) : \\
+        \begin{cases}
+            \begin{split}
+                \displaystyle \int_\Omega \partialderivative{\uvec}{t} \cdot \vvec \, d\Omega + \nu \int_\Omega \grad \uvec \cdot \grad \vvec \, d\Omega + \int_\Omega \left[ \left( \uvec \cdot \grad \right) \uvec \right] \cdot \vvec \, d\Omega \\
+                -\int_\Omega p\div \vvec \, d\Omega = \int_\Omega \vect{f} \cdot \vvec \, d\Omega + \int_{\Gamma_N} \bm{\psi} \cdot \vvec \, d\gamma \quad \forall \; \vvec \in V
+            \end{split} \\
+            \displaystyle \int_\Omega q \div \uvec \, d\Omega = 0 \quad \forall \; q \in Q
+        \end{cases}
+    \end{split}
+    \label{9_slide_ns}
+\end{equation}
+with \(\uvec\limited{\Gamma_D} = \bm{\psi}_D\) and \(\uvec\limited{t=0} = \uvec_0\). The space \(V\) is the one in \eqref{space_galerkin_ns}, while \(Q\) the one in \eqref{8_slide_ns}.
+\subsection{The Reynolds number}
+Let us define the Reynolds number, 
+\begin{equation*}
+    Re = \frac{\abs{\vect{U}}L}{\nu}
+\end{equation*}
+where \(\vect{U}\) is a representative length of the domain \(\Omega\) (e.g. the length of the channel in which the fluid flows), \(\vect{U}\) a representative fluid velocity and \(\nu\) the kinematic viscosity. 
+
+This number measures the extent to which convection dominates over diffusion. When \(Re \ll 1\), the convective term \((\uvec \cdot \grad)\uvec\) can be omitted, reducing the equations to the so-called Stokes equation. On the other hand, for large values of \(Re\) problems may arise, concerning the uniqueness of the solution, the existence of stationary and stable solutions, the possibility of strange attractors and the transition towards turbulent flows.
+\subsection{Divergence free formulation of Navier-Stokes equations}
+By eliminating the pressure, the Navier-Stokes equations can be rewritten in a reduced form, with the sole variable \(\uvec\). Introducing the following subspaces of \(\left[ H^1(\Omega) \right]^d\):
+\begin{align*}
+    &V_{div} = \left\{ \vvec \in \honed : \div \vvec = 0 \right\} \\
+    &V_{div}^0 = \left\{ \vvec \in V_{div} : \vvec = \vect{0} \txt{ on }\Gamma_D \right\}
+\end{align*}
+If the test function \(\vvec\) belongs to the space \(V_{div}\), the term associated with the pressure gradient vanishes, whence we find the following reduced problem for the velocity
+\begin{equation}
+    \begin{split}
+    \txt{find }\uvec \in L^2(\real^+; V_{div}) \cap \mathcal{C}^0(\real^+;\left[ L^2(\Omega) \right]^d): \\
+        \int_\Omega \partialderivative{\uvec}{t} \cdot \vvec \, d\Omega + \nu \int_\Omega \grad \uvec \cdot \grad \vvec \, d\Omega + \int_\Omega \left[ \left( \uvec \cdot \grad \right)\uvec \right] \cdot \vvec \, d\Omega \\
+        = \int_\Omega \vect{f} \cdot \vvec \, d\Omega + \int_{\Gamma_N} \bm{\psi} \cdot \vvec \, d\gamma \quad \forall \; \vvec \in V_{div},
+    \end{split}
+    \label{10_slide_ns}
+\end{equation}
+with \(\uvec\limited{\Gamma_D} = \bm{\psi}_D\) and \(\uvec\limited{t=0} = \uvec_0\).
+
+Since we are dealing with a nonlinear parabolic problem, we can carry an analysis by using techniques similar to those applied in parabolic problems. Clearly a solution of \eqref{9_slide_ns} will be a suitable solution of \eqref{10_slide_ns}, while, for the converse, we have the following theorem 
+\begin{theorem}
+    Let \(\Omega \subset \real^d\) be a domain with Lipschitz-continuous boundary \(\boundary\). Let \(\uvec\) be a solution of the reduced problem \eqref{10_slide_ns}. Then exists a unique function \(p \in L^2(\real^+;Q)\) such that \((\uvec, p)\) is a solution of the full problem \eqref{9_slide_ns}
+\end{theorem}
+In practice, however, the results of this theorem, are quite unsuitable from a numerical viewpoint, since it requires the construction of the \(V_{div}\) subspaces, of the divergence-free velocity functions, etc... 
+
+Moreover, the result of the above theorem is not constructive, as it does not provide a way to build the solution pressure \(p\).
+\subsection{Stokes equations and their approximation}
+In this section we will consider the generalized Stokes problem with homogeneous Dirichlet BC 
+\begin{equation}
+    \begin{cases}
+        \sigma \uvec - \nu \Delta \uvec + \grad p = \vect{f} & \txt{in } \Omega \\
+        \div \uvec = 0 & \txt{in } \Omega \\
+        \uvec = \vect{0} & \txt{on }\boundary
+    \end{cases}
+        \label{11_slide_ns}
+\end{equation}
+for \(\sigma \geq 0\). 
+This is the motion of an incompressible viscous flow in which the convective term has been neglected, since \(Re \ll 1\).
+Moreover, one can generate a problem \eqref{11_slide_ns} also while using an implicit temporal discretization of the Navier-Stokes equations and by neglecting the convective term. 
+
+We have indeed the following scheme, where \(k\) denotes the temporal index 
+\begin{equation*}
+    \begin{cases}
+        \frac{\uvec^k - \uvec^{k-1}}{\tstep} - \nu \Delta \uvec^k + \grad p^k = \vect{f}(t^k) & \xvec \in \Omega, \ t > 0 \\
+        \div \uvec^k = 0 & \xvec \in \Omega, \ t > 0 \\
+        + B.C.
+    \end{cases}
+\end{equation*}
+Hence, at each time step \(t^k\) we need to solve the following Stokes-like system of equations 
+\begin{equation}
+    \begin{cases}
+        \sigma \uvec^k - \nu \Delta \uvec^k + \grad p^k = \bm{\tilde{\vect{f}}}^{\,k} & \txt{in } \Omega \\
+        \div \uvec^k = 0 & \txt{in }\Omega \\
+        + B.C.
+    \end{cases}
+    \label{12_slide_ns}
+\end{equation}
+where \(\sigma = (\tstep)^{-1}\) and \(\bm{\tilde{\vect{f}}}^{\,k} = \bm{\tilde{\vect{f}}}(t^k) + \frac{\uvec^{k-1}}{\tstep}\).
+The weak formulation of problem \eqref{11_slide_ns} reads: 
+\begin{equation}
+    \txt{find } \uvec \in V \txt{ and } p \in Q : 
+    \begin{cases}
+        \displaystyle \int_\Omega \left( \sigma \uvec \cdot \vvec + \nu \grad u \cdot \grad v \right) \, d\Omega - \int_\Omega p \div \vvec \, d\Omega = \int_\Omega \vect{f} \cdot \vect{v} \, d\Omega & \forall \; \vvec \in V, \\
+        \int_\Omega q \div \uvec \, d\Omega = 0 & \forall \; q \in Q,
+    \end{cases}
+    \label{13_slide_ns}
+\end{equation} 
+where \(V = \left[ H^1_0(\Omega) \right]^d\) and \(Q = L^2_0(\Omega)\). Now with the bilinear forms \(a : V \times V \to \real\) and \(b:V\times Q \to \real\):
+\begin{equation}
+    \begin{aligned}
+        &a(\uvec, \vvec) = \int_\Omega \left( \sigma \uvec \cdot \vvec + \nu \grad \uvec \cdot \grad \vvec \right) \, d\Omega, \\
+        &b(\uvec, q) = -\int_\Omega q\div\uvec \, d\Omega.
+    \end{aligned}
+    \label{14_slide_ns}
+\end{equation}
+Using these notations, problem \eqref{13_slide_ns} becomes
+\begin{equation}
+    \txt{find }(\uvec,p) \in V \times Q:
+    \begin{cases}
+        a(\uvec,\vvec) + b(\vvec, p) =  (\vect{f}, \vvec) & \forall \; \vvec \in V \\
+        b(\uvec, q) = 0 &\forall \; q \in Q
+    \end{cases}
+    \label{15_slide_ns}
+\end{equation}
+where \((\vect{f}, v) = \sum_{i=1}^{d} \int_\Omega f_iv_i \, d\Omega\).
+
+Considering non homogeneous BC like in \eqref{boundaries_ns}, the weak formulation of the Stokes problem becomes
+\begin{equation}
+    \txt{find } (\overset{\mathrm{o}}{\uvec}, p) \in V \times Q: 
+    \begin{cases}
+        a(\overset{\mathrm{o}}{\uvec}, \vvec) + b(\vvec, p) = \vect{F}(\vvec) & \forall \; \vvec in V \\
+        b(\overset{\mathrm{o}}{\uvec}, q) = G(q) &\forall \; q \in Q
+    \end{cases}
+    \label{16_slide_ns}
+\end{equation}
+where \(V\) and \(Q\) are the spaces \eqref{space_galerkin_ns} and \eqref{8_slide_ns}, respectively. Having denoted with \(\vect{R}\bm{\phi} \in \honed\) a lifting of the boundary datum \(\bm{\phi}\), we have set \(\overset{\mathrm{o}}{\uvec} = \uvec -\vect{R}\bm{\phi}\), while the new terms on the right hand side have the following expression
+\begin{equation}
+    \begin{aligned}
+        \vect{F}(\vvec) &= (\vect{f}, \vvec) + \int_{\Gamma_N} \bm{\psi}\vvec \, d\gamma - a(\vect{R}\bm{\phi}, \vvec), \\
+        G(q) &= -b(\vect{R}\bm{\phi}, q)
+    \end{aligned}
+    \label{17_slide_ns}
+\end{equation}
+\begin{theorem}
+    The couple \((\uvec, p)\) solves the problem \eqref{15_slide_ns} if and only if it is a saddle point of the Lagrangian functional 
+    \[
+        \mathcal{L}(\vvec, q) = \onehalf a(\vvec,\vvec) + b(\vvec,q) - (\vect{f}, \vvec)    
+    \]
+    or equivalently 
+\end{theorem}
