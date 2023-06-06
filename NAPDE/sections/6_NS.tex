@@ -155,7 +155,7 @@ So:
 The weak formulation of \eqref{navier_stokes_ns}, \eqref{initial_condition_ns}, \eqref{boundaries_ns} is:
 \begin{equation}
     \begin{split}
-        \txt{find }\uvec \in L^2(\real^+; \left[ H^1(\Omega) \right]^d) \cap \mathcal{C}^0(\real^+;\left[ L^2(\Omega) \right]^d), p \in L^2(\real^+; Q) : \\
+        \find\uvec \in L^2(\real^+; \left[ H^1(\Omega) \right]^d) \cap \mathcal{C}^0(\real^+;\left[ L^2(\Omega) \right]^d), p \in L^2(\real^+; Q) : \\
         \begin{cases}
             \begin{split}
                 \displaystyle \int_\Omega \partialderivative{\uvec}{t} \cdot \vvec \, d\Omega + \nu \int_\Omega \grad \uvec \cdot \grad \vvec \, d\Omega + \int_\Omega \left[ \left( \uvec \cdot \grad \right) \uvec \right] \cdot \vvec \, d\Omega \\
@@ -184,7 +184,7 @@ By eliminating the pressure, the Navier-Stokes equations can be rewritten in a r
 If the test function \(\vvec\) belongs to the space \(V_{div}\), the term associated with the pressure gradient vanishes, whence we find the following reduced problem for the velocity
 \begin{equation}
     \begin{split}
-    \txt{find }\uvec \in L^2(\real^+; V_{div}) \cap \mathcal{C}^0(\real^+;\left[ L^2(\Omega) \right]^d): \\
+    \find\uvec \in L^2(\real^+; V_{div}) \cap \mathcal{C}^0(\real^+;\left[ L^2(\Omega) \right]^d): \\
         \int_\Omega \partialderivative{\uvec}{t} \cdot \vvec \, d\Omega + \nu \int_\Omega \grad \uvec \cdot \grad \vvec \, d\Omega + \int_\Omega \left[ \left( \uvec \cdot \grad \right)\uvec \right] \cdot \vvec \, d\Omega \\
         = \int_\Omega \vect{f} \cdot \vvec \, d\Omega + \int_{\Gamma_N} \bm{\psi} \cdot \vvec \, d\gamma \quad \forall \; \vvec \in V_{div},
     \end{split}
@@ -233,7 +233,7 @@ Hence, at each time step \(t^k\) we need to solve the following Stokes-like syst
 where \(\sigma = (\tstep)^{-1}\) and \(\bm{\tilde{\vect{f}}}^{\,k} = \bm{\tilde{\vect{f}}}(t^k) + \frac{\uvec^{k-1}}{\tstep}\).
 The weak formulation of problem \eqref{11_slide_ns} reads: 
 \begin{equation}
-    \txt{find } \uvec \in V \txt{ and } p \in Q : 
+    \find \uvec \in V \txt{ and } p \in Q : 
     \begin{cases}
         \displaystyle \int_\Omega \left( \sigma \uvec \cdot \vvec + \nu \grad u \cdot \grad v \right) \, d\Omega - \int_\Omega p \div \vvec \, d\Omega = \int_\Omega \vect{f} \cdot \vect{v} \, d\Omega & \forall \; \vvec \in V, \\
         \int_\Omega q \div \uvec \, d\Omega = 0 & \forall \; q \in Q,
@@ -250,7 +250,7 @@ where \(V = \left[ H^1_0(\Omega) \right]^d\) and \(Q = L^2_0(\Omega)\). Now with
 \end{equation}
 Using these notations, problem \eqref{13_slide_ns} becomes
 \begin{equation}
-    \txt{find }(\uvec,p) \in V \times Q:
+    \find(\uvec,p) \in V \times Q:
     \begin{cases}
         a(\uvec,\vvec) + b(\vvec, p) =  (\vect{f}, \vvec) & \forall \; \vvec \in V \\
         b(\uvec, q) = 0 &\forall \; q \in Q
@@ -261,7 +261,7 @@ where \((\vect{f}, v) = \sum_{i=1}^{d} \int_\Omega f_iv_i \, d\Omega\).
 
 Considering non homogeneous BC like in \eqref{boundaries_ns}, the weak formulation of the Stokes problem becomes
 \begin{equation}
-    \txt{find } (\overset{\mathrm{o}}{\uvec}, p) \in V \times Q: 
+    \find (\overset{\mathrm{o}}{\uvec}, p) \in V \times Q: 
     \begin{cases}
         a(\overset{\mathrm{o}}{\uvec}, \vvec) + b(\vvec, p) = \vect{F}(\vvec) & \forall \; \vvec in V \\
         b(\overset{\mathrm{o}}{\uvec}, q) = G(q) &\forall \; q \in Q
@@ -303,7 +303,7 @@ By formally taking the Fréchet derivative of the Lagrangian with respect to the
 \subsection{Galerkin approximation}
 The Galerkin approximation of problem \eqref{15_slide_ns} has the following form: 
 \begin{equation}
-    \txt{find }(\uvec_h, p_h) \in V_h\times Q_h :
+    \find(\uvec_h, p_h) \in V_h\times Q_h :
     \begin{cases}
         a(\uvec_h,\vvec_h) + b(\vvec_h, p_h) =(\vect{f}, \vvec_h) & \forall \; \vvec_h \in V_h \\
         b(\uvec, q_h) = 0 & \forall \; q_h \in Q_h
@@ -375,7 +375,7 @@ that we suppose to be continuous, meaning there exist two constants \(\gamma,\de
 \end{equation}
 Consider now the following constrained problem 
 \begin{equation}
-    \txt{find } (u,\eta) \in X \times M:
+    \find (u,\eta) \in X \times M:
     \begin{cases}
         a(u,v) + b(v, \eta) = \langle I, v \rangle & \forall \; v \in X, \\
         b(u,\mu) = \langle \sigma, \mu\rangle & \forall \; \mu \in M
@@ -384,4 +384,123 @@ Consider now the following constrained problem
 \end{equation}
 where \(I \in X'\) and \(\sigma \in M'\) are two assigned linear functionals, while \(\langle \cdot, \cdot \rangle\) denotes the pairing between \(X\) and \(X'\) or \(M\) and \(M'\).
 
-Formulation \eqref{22_slide_ns} is general enough to include formulation \eqref{15_slide_ns} of the Stokes problem. 
+Formulation \eqref{22_slide_ns} is general enough to include formulation \eqref{15_slide_ns} of the Stokes problem. In order to analyze \eqref{22_slide_ns}, we introduce the affine manifold 
+\begin{equation}
+    X^\sigma = \left\{ v \in X : b(v, \mu) = \scalarproduct{\sigma}{\mu} \ \forall \; \mu \in M\right\}
+    \label{23_slide_ns}
+\end{equation}
+The space \(X^0\) denotes the kernel of \(b\), that is 
+\[
+    X^0 = \left\{ v \in X : b(v,\mu) = 0 \ \forall \; \mu \in M \right\}
+\]
+This is a closed subspace of \(X\). We can, therefore, associate \eqref{22_slide_ns} with the following reduced problem:
+\begin{equation}
+    \find u \in X^\sigma : a(u,v) =\scalarproduct{I}{v} \quad \forall \; v \in X^0
+    \label{24_slide_ns}
+\end{equation}
+If \((u,\eta)\) is a solution of \eqref{22_slide_ns}, then it is a solution to \eqref{24_slide_ns}. In the following, we will introduce suitable condititions that allow the converse to hold too. Also, if we are able to prove existence and uniqueness for \eqref{24_slide_ns}, then this would allow us to obtain a result for \eqref{22_slide_ns}. 
+\begin{theorem}[Existence, uniqueness and stability]
+    Let the bilinear form \(\bilinear\) satisfy the continuity condition \eqref{21_slide_ns} and be coercive on \(X^0\), so 
+    \begin{equation}
+        \exists \; \alpha > 0 : a(v,v) \geq \alpha \norm{v}_X^2 \quad \forall \; v \in X^0
+        \label{25_slide_ns}
+    \end{equation}
+    Suppose also that the bilinear form \(b(\cdot,\cdot)\) satisfies the same continuity condition as well as the following: there exists \(\beta^* > 0\) such that 
+    \begin{equation}
+        \forall \; \mu \in M \exists \; v \in X, \ v\neq 0 : b(v,\mu) \geq \beta^*\norm{v}_X\norm{\mu}_M.
+        \label{26_slide_ns}
+    \end{equation}
+    Then, for every \(I \in X'\) and \(\sigma \in M'\), there exists a unique solution \((u,\eta)\in X \times M\) to the saddle point problem \eqref{22_slide_ns}.
+
+    Moreover, the map \((I, \sigma) \mapsto (u, \eta)\) is an isomorphism from \(X' \times M'\) onto \(X \times M\) and the following a priori estimates hold 
+    \begin{equation}
+        \begin{aligned}
+            \norm{u}_X &\leq \frac{1}{\alpha} \left[ \norm{I}_{X'} + \frac{\alpha + \gamma}{\beta^*} \norm{\sigma}_{M'} \right], \\
+            \norm{\eta}_M &\leq \frac{1}{\beta} \left[ \left( 1+\frac{\gamma}{\alpha} \norm{I}_{X'}+ \frac{\gamma(\alpha+\gamma)}{\alpha \beta^*} \norm{\sigma}_{M'} \right) \right].
+            \label{27_slide_ns}
+        \end{aligned}
+    \end{equation}
+    \label{uniqueness_continuous}
+\end{theorem}
+\subsubsection*{Galerkin approximation}
+To introduce a Galerkin approximation of the saddle-point problem \eqref{22_slide_ns}, we consider two subspaces \(X_h \subset X\) and \(M_h \subset M\), respectively. They can be either finite element piecewise polynomial subspaces or spectral element subspaces.
+We look for a solution for the problem 
+\begin{equation}
+    \txt{given } I \in X' \txt{ and } \sigma \in M' \ \find (u_h, \eta_h) \in X_h \times M_h :
+    \begin{cases}
+        a(u_h, v_h) + b(v_h, \eta_h) = \scalarproduct{I}{v_h} & \forall \; v_h \in X_h \\
+        b(u_h, \mu_h) = \scalarproduct{\sigma}{\mu_h} & \forall \; \mu_h \in M_h
+    \end{cases}
+    \label{28_slide_ns}
+\end{equation}
+We introduce the subspace 
+\begin{equation}
+    X^\sigma_h =\left\{ v_h \in X_h : b(v_h, \mu_h) = \scalarproduct{\sigma}{\mu_h} \ \forall \; \mu_h \in M_h \right\}
+    \label{29_slide_ns}
+\end{equation}
+which allow us to introduce the following reduced formulation 
+\begin{equation}
+    \find u_h \in X_h^\sigma : a(u_h, v_h) = \scalarproduct{I}{v_h} \quad \forall \; v_h \in X_h^0
+    \label{30_slide_ns}
+\end{equation}
+Since, in general, \(M_h\) is different from \(M\) the space \eqref{29_slide_ns} is not necessarily a subspace of \(X^\sigma\). 
+
+Clearly, every solution of \((u_h, \eta_h)\) of \eqref{28_slide_ns} yields a solution \(u_h\) for the reduced problem \eqref{30_slide_ns}. Now we look for a solution that allows us to prove that the converse is true.
+\begin{theorem}[Existence, uniqueness and stability]
+    Let the bilinear form \(\bilinear\) satisfy the continuity condition \eqref{21_slide_ns} and be coercive on \(X^0\), so 
+    \begin{equation}
+        \exists \; \alpha > 0 : a(v_h,v_h) \geq \alpha_h \norm{v_h}_X^2 \quad \forall \; v_h \in X^0_h
+        \label{31_slide_ns}
+    \end{equation}
+    Suppose also that the bilinear form \(b(\cdot,\cdot)\) satisfies the same continuity condition as well as the following: there exists \(\beta_h^* > 0\) such that 
+    \begin{equation}
+        \forall \; \mu_h \in M_h \exists \; v_h \in X_h, \ v_h\neq 0 : b(v_h,\mu_h) \geq \beta_h^*\norm{v_h}_X\norm{\mu_h}_M.
+        \label{32_slide_ns}
+    \end{equation}
+    Then, for every \(I \in X'\) and \(\sigma \in M'\), there exists a unique solution \((u_h,\eta_h)\in X_h \times M_h\) to the saddle point problem \eqref{28_slide_ns}.
+
+    Moreover, the solution satisfies the following conditions:
+    \begin{align}
+        \norm{u_h}_X &\leq \frac{1}{\alpha_h} \left[ \norm{I}_{X'} + \frac{\alpha_h + \gamma}{\beta_h^*} \norm{\sigma}_{M'} \right], \label{33_slide_ns}\\
+        \norm{\eta_h}_M &\leq \frac{1}{\beta_h} \left[ \left( 1+\frac{\gamma}{\alpha_h} \norm{I}_{X'}+ \frac{\gamma(\alpha_h+\gamma)}{\alpha_h \beta_h} \norm{\sigma}_{M'} \right) \right]. \label{34_slide_ns}
+    \end{align}
+    \label{uniqueness_discrete}
+\end{theorem}
+The coercivity condition \eqref{25_slide_ns} does not necessarily guarantees \eqref{31_slide_ns}, as \(X_h^0 \not\subset X^0\), nor does the compatibility condition \eqref{26_slide_ns} in general imply the discrete compatibility condition \eqref{32_slide_ns} due to the fact that \(X_h\) is a proper subspace of \(X\). \eqref{32_slide_ns} is called inf-sup condition.
+
+\begin{theorem}
+    Let the assumptions of existence and uniqueness theorems \eqref{uniqueness_continuous} and \eqref{uniqueness_discrete} be satisfied. Then, the solutions \((u,\eta)\) and \((u_h, \eta_h)\) of problems \eqref{22_slide_ns} and \eqref{28_slide_ns}, respectively, satisfy the following error estimates: 
+    \begin{align}
+        \norm{u-u_h}_X &\leq \left( 1+\frac{\gamma}{\alpha_h} \right)\int_{v_h^* \in X_h^\sigma} \norm{u-v_h}_X + \frac{\delta}{\alpha_h} \inf_{\mu_h \in M_h} \norm{\eta - \mu_h}_M \label{35_slide_ns} \\
+            \norm{\eta - \eta_h}_M &\leq \frac{\gamma}{\beta_h} \left( 1+\frac{\gamma}{\alpha_h} \right) \inf_{v^*_h \in X_h^\sigma} \norm{u - v^*_h}_X + \left( 1 + \frac{\delta}{\beta_h} + \frac{\gamma \beta}{\alpha_h \beta_h} \right) \inf_{\mu_h \in M_h} \norm{\eta - \mu_h}_M \label{36_slide_ns}
+    \end{align}
+    where \(\gamma, \delta, \alpha_h\) and \(\beta_h\) are respectively defined by \eqref{21_slide_ns}, \eqref{31_slide_ns} and \eqref{32_slide_ns}. Also, the following estimate holds
+    \begin{equation}
+        \inf_{v^*_h \in X_h^\sigma} \norm{u - v_h}_X \leq \left( 1 + \frac{\delta}{\beta_h} \right) \inf_{v_h \in X_h} \norm{u - v_h}_X 
+        \label{37_slide_ns}
+    \end{equation}
+\end{theorem}
+The inequalities \eqref{35_slide_ns} and \eqref{36_slide_ns} yield error estimates with optimal convergence rate, provided that the constants \(\alpha_h\) and \(\beta_h\) in \eqref{31_slide_ns} and \eqref{32_slide_ns} are bounded from below by two constants \(\alpha\) and \(\beta\) indepedent of \(h\). Let us also remark that \eqref{35_slide_ns} holds even if \eqref{26_slide_ns} and \eqref{32_slide_ns} are not satisfied. 
+\subsection*{Algebraic form of Stokes problem}
+Let us investigate the structure of the algebraic system associated to the Galerkin approximation \eqref{18_slide_ns} to the Stokes problem (or, more generally, to a discrete saddle-point problem like \eqref{28_slide_ns}). Denote with 
+\[
+    \left\{ \bm{\phi}_j \in V_h \right\}, \quad \left\{ \oldphi_k \in Q_h \right\},
+\]
+the basis functions of the spaces \(V_h\) and \(Q_h\), respectively. Let us expand the discrete solutions \(\uvec_h\) and \(p_h\) w.r.t. such bases 
+\begin{equation}
+    \begin{aligned}
+        \uvec_h(\xvec) &= \sum_{j=1}^{N} u_j\bm{\phi}_j(\xvec), \\
+        p_h(\xvec) &= \sum_{k=1}^{M} p_k\olphi_k(\xvec),
+        \label{46_slide_ns}
+    \end{aligned}
+\end{equation}
+having set \(N = \dim V_h\) and \(M = \dim Q_h\).
+
+By choosing as test functions in \eqref{18_slide_ns} the same basis functions we obtain the following block linear system 
+\begin{equation}
+    \begin{cases}
+        A\vect{U} + B^T \vect{P} = \vect{F}, \\
+        B\vect{U} = \vect{0}
+    \end{cases}
+    \label{47_slide_ns}
+\end{equation}

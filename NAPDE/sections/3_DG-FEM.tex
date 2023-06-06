@@ -66,7 +66,7 @@ with the broken norm
 \]
 Let now \(V_h \subset V\)
 \begin{equation}
-    \txt{find } u_h \in V_h : \mathcal{A}(u_h, v_h) = \sum_{k=0}^{N-1} \int_{I_k} fv_h \quad \forall \; v_h \in V_h \label{weak_not_well_posed_formulation_dg}
+    \find u_h \in V_h : \mathcal{A}(u_h, v_h) = \sum_{k=0}^{N-1} \int_{I_k} fv_h \quad \forall \; v_h \in V_h \label{weak_not_well_posed_formulation_dg}
 \end{equation}
 \begin{remark}
     \(V_h\) is not a subspace of \(H^1(\Omega)\)
@@ -137,7 +137,7 @@ On the right hand side instead
 \end{remark}
 \subsubsection*{Non-homogeneus Dirichlet conditions}
 \begin{equation}
-    \txt{find } u_h \in V_h : \tilde{\mathcal{A}}(u_h, v_h) = \mathcal{F}(v_h) \quad \forall \; v_h \in V_h
+    \find u_h \in V_h : \tilde{\mathcal{A}}(u_h, v_h) = \mathcal{F}(v_h) \quad \forall \; v_h \in V_h
     \label{functional_dg}
 \end{equation}
 with \(\mathcal{F}\) depending on \(f\), \(\alpha\) and \(\beta\).
@@ -219,7 +219,7 @@ Now we can define the DG discrete space
 \]
 Discretize \(u \leadsto u_h, v \leadsto v_h\) and obtain the following weak formulation
 \[
-    \txt{find } u_h \in V_h^p \txt{ s.t. } \mathcal{A}(u_h, v_h) = \int_\Omega fv \quad \forall \;v_h \in V_h^p
+    \find u_h \in V_h^p \txt{ s.t. } \mathcal{A}(u_h, v_h) = \int_\Omega fv \quad \forall \;v_h \in V_h^p
 \]
 where 
 \begin{equation*}
@@ -229,7 +229,7 @@ where
 \end{equation*}
 \subsubsection*{Interior Penalty DG methods}
 \[
-    \txt{find } u_h \in V_h^p \txt{ s.t. } \mathcal{A}(u_h, v_h) = \int_\Omega fv \quad \forall \;v_h \in V_h^p
+    \find u_h \in V_h^p \txt{ s.t. } \mathcal{A}(u_h, v_h) = \int_\Omega fv \quad \forall \;v_h \in V_h^p
 \]
 Note that \(\mathcal{A}\) depends on the triangulation and it differs from the original weak formulation in the infinite dimension problem.
 \begin{equation*}

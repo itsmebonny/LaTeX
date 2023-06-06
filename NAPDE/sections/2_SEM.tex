@@ -58,7 +58,7 @@ Given \(\Omega = (-1, 1), \mu, b, \sigma > 0\) const., \(f: \Omega \to \real\). 
 \]
 Set \(V  = H^1_0(\Omega)\), then the weak form of the differential problem reads: 
 \[
-    \txt{find } u \in V \txt{ s.t } a(u,v) = (f,v)_{L^2(\Omega)} \quad \forall \; v \in V, \ f \in L^2(\Omega)
+    \find u \in V \txt{ s.t } a(u,v) = (f,v)_{L^2(\Omega)} \quad \forall \; v \in V, \ f \in L^2(\Omega)
 \]
 where 
 \begin{align*}
@@ -67,12 +67,12 @@ where
 \end{align*}
 Now set \(V_N = \mathbb{P}^0_N\) 
 \begin{equation}
-    \txt{find } u_N \in V_N: a(u_N, v_N) = (f, v_N)_{L^2(\Omega)} \label{weak_spec_galerkin_formulation}
+    \find u_N \in V_N: a(u_N, v_N) = (f, v_N)_{L^2(\Omega)} \label{weak_spec_galerkin_formulation}
 \end{equation}
 Now expand \(u_N(x) = \sum_{k=1}^{N-1} \tilde{u}_k \psi_k(x)\) and chose \(v_N = \psi_i(x)\) for any \(i = 1, \ldots, N-1\).
 The discretization of the problem reads:
 \[
-    \txt{find } u = \left[\tilde{u}\right]_{k=1}^{N-1} : \sum_{k=1}^{N-1} a(\phi_k, \psi_i)\tilde{u}_k = (f, \psi_i)_{L^2(\Omega)} \quad \txt{for any } i = 1, \ldots, N-1
+    \find u = \left[\tilde{u}\right]_{k=1}^{N-1} : \sum_{k=1}^{N-1} a(\phi_k, \psi_i)\tilde{u}_k = (f, \psi_i)_{L^2(\Omega)} \quad \txt{for any } i = 1, \ldots, N-1
 \]
 Given \(u_N \in V_N\) the solution of the problem, then if \(u \in H^{s+1}(\Omega)\) with \(s \geq 0\), thanks to Ceà Lemma, holds that:
 \[
@@ -125,7 +125,7 @@ Also true that \(\phi_j(x_k) = \delta_{kj}\) and \(\left\{\phi_j\right\}\) are o
 \subsection{Galerkin with Numerical Integration}
 We can now define the spectral Galerkin method with numerical integration (GNI), by setting our bilinear discrete form as \(a_N(u_N, v_N) = (\mu u'_N-b u_n, v'_N)_N+(\sigma u_n, v_n)_N\), and the problem as
 \[
-    \txt{find } u_N^{\txt{GNI}} \in V_N : a_N(u_N^{\txt{GNI}},v_N)=(f, v_N)_N \quad \forall \; v_N \in V_N
+    \find u_N^{\txt{GNI}} \in V_N : a_N(u_N^{\txt{GNI}},v_N)=(f, v_N)_N \quad \forall \; v_N \in V_N
 \]
 Then, by the same expansion w.r.t. the Lagrange basis: \(u_N^{\txt{GNI}}(x) =  \sum_{i=0}^{N}u_N^{\txt{GNI}}(x_i)\phi_i(x)\) and choose \(v_N(x) = \phi_i(x)\) for any \(i = 1, \ldots, N-1\).  
 
@@ -264,12 +264,12 @@ The idea proposed until now are the following:
 \begin{lemma}[Strang lemma]
 Consider the problem
 \begin{equation}
-    \txt{find } u \in V: a(u,v) = F(v) \quad \forall \; v \in V
+    \find u \in V: a(u,v) = F(v) \quad \forall \; v \in V
     \label{another_weak_formulation}
 \end{equation}
 and its approximation 
 \begin{equation}
-    \txt{find } u_h \in V_h: a_h(u_h,v_h) = F_h(v_h) \quad \forall \; v_h \in V_h
+    \find u_h \in V_h: a_h(u_h,v_h) = F_h(v_h) \quad \forall \; v_h \in V_h
     \label{another_weak_approximation}
 \end{equation}
 with \(\left\{V_h\right\}\) being a family of subspaces of \(V\). Suppose that \(a_h(\cdot,\cdot)\) is continuous on \(V_h \times V_h\) and uniformly coercive on \(V_h\) meaning that:
@@ -396,12 +396,12 @@ Let us introduce a problem
 \]
 that has the usual weak formulation 
 \[
-    \txt{find } u \in V = H^1_0(-1,1): a(u,v) = F(v), \forall \; v \in V
+    \find u \in V = H^1_0(-1,1): a(u,v) = F(v), \forall \; v \in V
 \]
 The GNI formulation follows 
 \[
     \begin{cases}
-        \txt{find } u_N \in V_N = \mathbb{P}^0_N = \left\{v_N  \in \mathbb{P}_N : v_N(\pm 1) = 0\right\} \\
+        \find u_N \in V_N = \mathbb{P}^0_N = \left\{v_N  \in \mathbb{P}_N : v_N(\pm 1) = 0\right\} \\
         a_N(u_N, v_N) = F_N(v_N) \quad \forall \; v_N \in V_N
     \end{cases}
 \]
@@ -453,7 +453,7 @@ Let's go back to the problem
 \]
 Given \(V = H^1_0(\Omega)\), the weak formulation reads
 \[
-    \txt{find }u \in V : a(u,v) = (f,v)_{L^2(\Omega)} \quad \forall \; v \in V, f \in L^2(\Omega)
+    \find u \in V : a(u,v) = (f,v)_{L^2(\Omega)} \quad \forall \; v \in V, f \in L^2(\Omega)
 \]
 with 
 \begin{flalign*}
@@ -462,12 +462,12 @@ with
 \end{flalign*}
 Now set \(a_\delta(\phi_j, \phi_i) = (\mu \phi'_j- b\phi_j, \phi_i)_{\delta, \Omega} + (\sigma \phi_j, \phi_i)_{\delta, \Omega}\) to get the SEM-GNI formulation:
 \begin{equation}
-    \txt{find }u_\delta^{\txt{GNI}} \in V_\delta : a_\delta(u_\delta^{\txt{GNI}}, v_\delta) = (f,v_\delta)_{\delta, \Omega} \quad \forall \; v_\delta \in V_\delta
+    \find u_\delta^{\txt{GNI}} \in V_\delta : a_\delta(u_\delta^{\txt{GNI}}, v_\delta) = (f,v_\delta)_{\delta, \Omega} \quad \forall \; v_\delta \in V_\delta
 \end{equation}
 Now expand \(u_\delta^{\txt{GNI}}\) w.r.t the Lagrange basis \(u_\delta^{\txt{GNI}}(x) = \sum_{i=1}^{N_p}u_\delta^{\txt{GNI}}(x_i)\phi_i(x)\) adn choose \(v_\delta(x) = \phi_i(x)\) for any \(i = 1, \ldots, N_p\). We can now write the SEM-GNI discretization of the weak formulation:
 \[
     \begin{cases}
-        \txt{find } u^{\txt{GNI}} = \left[ u_\delta^{\txt{GNI}}(x_j) \right]_{j=1}^{N_p} \\
+        \find u^{\txt{GNI}} = \left[ u_\delta^{\txt{GNI}}(x_j) \right]_{j=1}^{N_p} \\
         u_\delta^{\txt{GNI}}(x_1) = u_\delta^{\txt{GNI}}(x_{N_p}) = 0 \\
         \sum_{j=1}^{N_p} a_\delta(\phi_j, \phi_i)u_\delta^{\txt{GNI}}(x_j) = (f, \phi_i)_{\delta, \Omega} & \forall \; i = 1, \ldots, N_p
     \end{cases}

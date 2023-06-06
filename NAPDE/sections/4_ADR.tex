@@ -10,7 +10,7 @@ with the same assumptions as \eqref{bvp_first_page}.
 
 The weak formulation is written as 
 \begin{equation}
-    \txt{find } u \in V = H^1_0(\Omega) : a(u,v) = F(v) \ \forall \; v \in V
+    \find u \in V = H^1_0(\Omega) : a(u,v) = F(v) \ \forall \; v \in V
     \label{weak_formulation_adr}
 \end{equation}
 with 
@@ -38,7 +38,7 @@ In both cases, continuity constant: \(M \simeq \norm{\mu}_{L^\infty} + \norm{\ve
 
 Given that the hypotheses of Lax-Milgram holds, the solution exists and is unique. We can now bring in the Galerkin formulation
 \[
-    \txt{find }u_h \in V_h : a(u_h, v_h) = (f,v_h) \quad \forall \; v_h \in V_h
+    \find u_h \in V_h : a(u_h, v_h) = (f,v_h) \quad \forall \; v_h \in V_h
 \]
 and move to the error estimate 
 \[
@@ -66,7 +66,7 @@ The idea now is to stabilize the Galerkin method.
 \end{itemize}
 Now the solution is stabilized, but is not fully consistent. So the solution is to find a way to obtain a fully consistent solution 
 \[
-    \txt{find } u_h \in V_h : a(u_h, v_h) + \mathscr{L}_h (u_h, f; v_h) = F(v_h) \quad \forall \; v_h \in V_h
+    \find u_h \in V_h : a(u_h, v_h) + \mathscr{L}_h (u_h, f; v_h) = F(v_h) \quad \forall \; v_h \in V_h
 \]
 with \(\mathscr{L}_h\) suitably chosen such that
 \[
@@ -117,7 +117,7 @@ Indeed we can see
 \end{remark}
 \subsection{GLS method (conservative form)}
 \[
-    \txt{find }u_h \in V_h : a(u_h, v_h) + \sum_{\element \in \triangulation} \int_\Omega \mathcal{L}u_h \tau_\element \mathcal{L}v_h = \int_\Omega f v_h + \sum_{\element \in \triangulation} \int_\Omega f \tau_\element \mathcal{L}v_h \qquad \forall \; v_h \in V_h
+    \find u_h \in V_h : a(u_h, v_h) + \sum_{\element \in \triangulation} \int_\Omega \mathcal{L}u_h \tau_\element \mathcal{L}v_h = \int_\Omega f v_h + \sum_{\element \in \triangulation} \int_\Omega f \tau_\element \mathcal{L}v_h \qquad \forall \; v_h \in V_h
 \]
 \begin{theorem}
     Consider the conservative case. Suppose that 

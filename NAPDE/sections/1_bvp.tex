@@ -50,7 +50,7 @@ By applying Green's formula
 So the weak formulation of the problem is 
 \begin{equation}
     \begin{cases}
-        \txt{Find } u \in V & V = \left\{v \in H^1(\Omega), v\vert_{\Gamma_D} = 0\right\} =: H^1_{\Gamma_D}(\Omega)\\
+        \find u \in V & V = \left\{v \in H^1(\Omega), v\vert_{\Gamma_D} = 0\right\} =: H^1_{\Gamma_D}(\Omega)\\
         a(u,v) = \scalarproduct{F}{v} & \forall \; v \in V \label{Weak Formulation of Boundary Value Problems}
     \end{cases}
 \end{equation}
@@ -78,7 +78,7 @@ But what if some of the assumptions of Lax-Milgram (in particular coercivity) ar
 We need a slightly more general problem to formulate Nečas theorem:
 \begin{equation}
     \begin{cases}
-        \txt{find } u \in V \\
+        \find u \in V \\
         a(u,w) = \scalarproduct{F}{w} & \forall \; w \in W \label{Generalized weak formulation}
     \end{cases}
 \end{equation}
@@ -125,7 +125,7 @@ we can say \(V_{\Gamma_D} = \left\{v \in H^1(\Omega): v\limited{\Gamma_D}= 0\rig
 Recall for a moment the weak formulation of a generic elliptic problem 
 \begin{equation}
     \begin{cases}
-        \txt{Find } u \in V \\
+        \find u \in V \\
         a(u,v) = \scalarproduct{F}{v} & \forall \; v \in V \label{Weak Formulation of Boundary Value Problems - 2}
     \end{cases}
 \end{equation}
@@ -135,7 +135,7 @@ Let \(V_h \subset V\) be a family of spaces that depends on a parameter \(h > 0\
 We can rewrite the weak formulation 
 \begin{equation}
     \begin{cases}
-        \txt{Find } u_h \in V_h\\
+        \find u_h \in V_h\\
         a(u_h,v_h) = \scalarproduct{F}{v_h} & \forall \; v_h \in V_h \label{Galerkin Problem Formula}
     \end{cases}
 \end{equation}
@@ -478,7 +478,7 @@ Then, by using \eqref{some_other_estimate_bvp}:
 Now let's consider the adjoint problem 
 \begin{equation}
     \begin{cases}
-        \txt{Find } \phi = \phi(g) \in V & \forall \; g \in L^2(\Omega)\\ 
+        \find \phi = \phi(g) \in V & \forall \; g \in L^2(\Omega)\\ 
         a^*(\phi,v) = (g,v) = \int_{\Omega} g v & \forall \; v \in V
     \end{cases}
     \label{Adjoint_problem_bvp}
