@@ -504,3 +504,70 @@ By choosing as test functions in \eqref{18_slide_ns} the same basis functions we
     \end{cases}
     \label{47_slide_ns}
 \end{equation}
+where \(A \in \real^{N\times N}\) and \(B \in \real^{M \times N}\) are the matrices related respectively to the bilinear forms \(\bilinear\) and \(b(\cdot, \cdot)\), whose elements are given by 
+\begin{align*}
+    A &= [a_{ij}] = [a(\bm{\phi_j, \phi_i})], \\
+    B &= [b_{km}] = [b(\bm{\phi_m}, \oldphi_k)],
+\end{align*}
+while \(\vect{U}\) and \(\vect{P}\) are the vectors of the unknowns, 
+\begin{align*}
+    \vect{U} &= [u_j], \\
+    \vect{P} &= [p_j].
+\end{align*}
+The \((N+M) \times (N+M)\) matrix 
+\begin{equation}
+    S = \left[ \begin{matrix}
+        A & B^T \\ B & 0
+    \end{matrix} \right]
+    \label{48_slide_ns}
+\end{equation}
+is block-symmetric (as \(A\) is symmetric) and indefinite, featuring real eigenvalues with variable sign. \(S\) is non-singular if and only if is null, a property that follows from the inf-sup condition \eqref{20_slide_ns}.
+
+To prove the latter statement we proceed as follows. 
+
+Since \(A\) is non-singular, because it is associated to the coercive bilinear form \(\bilinear\), from the first of \eqref{47_slide_ns}, we can formally obtain \(\vect{U}\) as 
+\begin{equation}
+    \vect{U} = A^{-1}(\vect{F} - B^T\vect{P})
+    \label{49_slide_ns}
+\end{equation}
+Using \eqref{49_slide_ns} in the second equation of \eqref{47_slide_ns} yields
+\begin{equation}
+    R\vect{P} = BA^{-1}\vect{F}, \txt{ where } R=BA^{-1}B^T 
+    \label{50_slide_ns}
+\end{equation}
+This corresponds to having carried out a block Gaussian elimination on system \eqref{48_slide_ns}.
+In this way we obtain a reduced system for the sole unknown \(\vect{P}\), which admits a unique solution in case \(R\) is non-singular and positive definite, we want to prove that the latter condition is satisfied if and only if \(B^T\) has a null kernel, that is 
+\begin{equation}
+    \ker (B^T) = \left\{ \vect{0} \right\}
+    \label{51_slide_ns}
+\end{equation}
+where \(\ker (B^T) = \left\{ \xvec \in \real^M : B^T \xvec = \vect{0} \right\}\). 
+
+We proceed as follows: 
+\[
+    R\vect{p} = \vect{0} \Rightarrow \vect{p} = \vect{0}
+\]
+that is 
+\[
+    \scalarproduct{BA^{-1}B^T\vect{p}}{\vect{q}} = \vect{0} \ \forall \; \vect{q} \Rightarrow \vect{p} = \vect{0}
+\]
+Let us take \(\vect{q} = \vect{p}\). We require:
+\[
+    \scalarproduct{A^{-1}B^T \vect{p}}{B^T\vect{q}} = \vect{0} \Rightarrow \vect{p} = \vect{0}
+\]
+Set \(\vect{w} = B^T \vect{p}\). Since \(A\) is spd, we have that \(\scalarproduct{A^{-1}\vect{w}}{\vect{w}} = \vect{0}\), which implies \(\vect{w} = \vect{0}\). Finally
+\[
+    (\vect{w} = B^T \vect{p} = \vect{0} \Rightarrow \vect{p} = \vect{0}) \iff \ker (B^T) =  \left\{ \vect{0} \right\}
+\]
+\begin{remark}
+    Condition \eqref{51_slide_ns} is equivalent to the inf-sup condition \eqref{20_slide_ns}.
+\end{remark}
+On the other hand, since \(A\) is non-singular, from the existence and uniqueness \(\vect{P}\) we infer that there exists a unique vector \(\vect{U}\) which satisfies \eqref{49_slide_ns}. 
+
+In conclusion, system \eqref{47_slide_ns} admits a unique solution \((\vect{U}, \vect{P})\) if and only if condition \eqref{51_slide_ns}. 
+
+\begin{remark}
+    We remark that, for an arbitrary matrix, \(B^T (N\times M)\), we have \(\rank(B^T) + \dim \ker (B^T) = \min(M,N)\). 
+    
+    Then, condition \eqref{51_slide_ns} is equivalent to asking that \(B^T\) has a full rank, because \(\rank(B^T)\) is the maximum number of linearly indepedent row vectors of \(B^T\).
+\end{remark}
