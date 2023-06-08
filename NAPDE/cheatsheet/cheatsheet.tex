@@ -204,14 +204,56 @@
 
 
 \begin{document}
-\title{Numerical Analysis for Partial Differential Equations}
+\title{Reminders for NAPDE}
 \author{Andrea Bonifacio}
 \date{\today}
 \maketitle
-\input{sections/1_bvp.tex}
-\input{sections/2_SEM.tex}
-\input{sections/3_DG-FEM.tex}
-\input{sections/4_ADR.tex}
-\input{sections/5_parabolic.tex}
-\input{sections/6_NS.tex}
+\section*{Reminders on calculus}
+\[
+    \int_\Omega-\Delta u v = \int_\Omega \grad u \cdot \grad v - \underbrace{\int_{\Gamma_D}  \grad u \cdot \vect{n} v}_{= 0 \txt{ if } v\vert_{\Gamma_D} = 0}
+\]
+\[
+    \int_\Omega \div u = \int_\boundary u \cdot \vect{n} 
+\]
+\section*{Weak Formulations}
+\subsection*{Elliptic equations}
+\begin{equation*}
+    \begin{cases}
+        -\div(\mu \grad u)+ \vect{b}\cdot \grad u + \sigma u = f& \text{in } \Omega \quad g \in L^2(\Gamma_N) \\
+        u = 0 & \txt{on }\Gamma_D \quad \partial\Omega = \Gamma_D \cup \Gamma_N \\
+
+        \mu \grad u \cdot \vect{n} = g & \txt{on } \Gamma_N \quad \interior{\Gamma_D} \cap \interior{\Gamma_N} = \emptyset
+    \end{cases}
+\end{equation*}
+\[
+    \Downarrow
+\]
+\begin{equation*}
+    \underbrace{\int_\Omega \mu\grad u \cdot \grad v  + \int_\Omega \vect{b} \cdot \grad u v + \int_\Omega \sigma u v}_{=: a(u,v)} = \int_\Omega f v +\underbrace{\int_{\Gamma_D} \mu \grad u \cdot \vect{n} v}_{= 0 \txt{ if } v\vert_{\Gamma_D} = 0} + \int_{\Gamma_N} \underbrace{\mu \grad u \cdot \vect{n}}_{= g} v 
+\end{equation*}
+\[
+    \Downarrow
+\]
+\begin{equation*}
+    \begin{cases}
+        \find u \in V & V = \left\{v \in H^1(\Omega), v\vert_{\Gamma_D} = 0\right\} =: H^1_{\Gamma_D}(\Omega)\\
+        a(u,v) = \scalarproduct{F}{v} & \forall \; v \in V \label{Weak Formulation of Boundary Value Problems}
+    \end{cases}
+\end{equation*}
+\subsection*{Parabolic equations}
+\begin{equation*}
+    \begin{cases}
+        \partialderivative{u}{t} - \nu \partialderivative{^2u}{x^2} = f & 0 < x <d, t> 0 \\
+        u(x,0) = u_0(x) & 0 < x < d \\
+        u(0,t) = u(d,t) = 0 & t>0
+    \end{cases}
+    \label{one_dim_pbl}
+\end{equation*}
+\[
+    \Downarrow
+\]
+\begin{equation*}
+    \int_{\Omega} \partialderivative{u(t)}{t} v \, d\Omega + a(u(t), v) = \int_\Omega f(t)v \, d\Omega \quad \forall \; v \in V 
+    \label{weak_formulation_heat_pbl}
+\end{equation*}
 \end{document}
