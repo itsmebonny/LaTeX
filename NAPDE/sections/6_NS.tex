@@ -481,6 +481,16 @@ The coercivity condition \eqref{25_slide_ns} does not necessarily guarantees \eq
     \end{equation}
 \end{theorem}
 The inequalities \eqref{35_slide_ns} and \eqref{36_slide_ns} yield error estimates with optimal convergence rate, provided that the constants \(\alpha_h\) and \(\beta_h\) in \eqref{31_slide_ns} and \eqref{32_slide_ns} are bounded from below by two constants \(\alpha\) and \(\beta\) indepedent of \(h\). Let us also remark that \eqref{35_slide_ns} holds even if \eqref{26_slide_ns} and \eqref{32_slide_ns} are not satisfied. 
+\begin{remark}[Spurious pressure modes]
+    The compatibility condition \eqref{32_slide_ns} is essential to guarantee the uniqueness of the \(\eta_h\)-component of the solution. Indeed, if \eqref{32_slide_ns} does not hold, then
+    \[
+        \exists \; \mu_h^* \in M_h, \ \mu_h^* \neq 0 : b(v_h, \mu_h^*) = 0 \quad \forall M v_h \in X_h.
+    \]
+    Consequently, if \((u_h, \eta_h)\) is a solution to the problem \eqref{28_slide_ns}, then \((u_h, \eta_h + \tau \mu_h^*)\), for all \(\tau \in \real\), is a solution too.
+
+    Any such function \(\mu^*_h\) is called spurious mode.
+    \label{spurious_mode_ns}
+\end{remark}
 \subsection*{Algebraic form of Stokes problem}
 Let us investigate the structure of the algebraic system associated to the Galerkin approximation \eqref{18_slide_ns} to the Stokes problem (or, more generally, to a discrete saddle-point problem like \eqref{28_slide_ns}). Denote with 
 \[
@@ -571,3 +581,133 @@ In conclusion, system \eqref{47_slide_ns} admits a unique solution \((\vect{U}, 
     
     Then, condition \eqref{51_slide_ns} is equivalent to asking that \(B^T\) has a full rank, because \(\rank(B^T)\) is the maximum number of linearly indepedent row vectors of \(B^T\).
 \end{remark}
+Let us consider the remark \eqref{spurious_mode_ns}  concerning the general saddle-point problem and suppose that the inf-sup condition \eqref{20_slide_ns} does not hold. Then, 
+\begin{equation}
+    \exists \; q_h^* \in Q_h : b(\vvec_h, q^*_h) = 0 \quad \forall \; \vvec_h \in V_h.
+    \label{52_slide_ns}
+\end{equation}
+Consequently, if \((\uvec_h, p_h)\) is a solution to the Stokes problem \eqref{18_slide_ns}, then \((\uvec_h, p_h+q_h)\) is a solution too:
+\begin{equation*}
+    \begin{aligned}
+        a(\uvec_h, \vvec_h) + b(\vvec_h, p_h+q_h) &= a(\uvec,\vvec) + b(\vvec_h, p_h) + \underbrace{b(\vvec_h, q^*_h)}_{=0} \\ 
+        &= a(\uvec_h, \vvec_h) + b(\vvec_h, p_h) = (\vect{f}, \vvec_h)
+    \end{aligned}
+    \quad \forall \; \vvec_h \in V_h
+\end{equation*}
+Functions \(q_h^*\) which fail to satisfy the inf-sup condition are invisible to the Galerkin problem \eqref{18_slide_ns}.For this reason, as already observed, they are called spurious pressure modes, or parasitic modes. Their presence yields numerical instabilities. 
+
+Two strategies are generally adopted in order to guarantee well-posedness of the numerical problem:
+\begin{itemize}
+    \item choose spaces \(V_h\) and \(Q_h\) that satisfy the inf-sup condition. 
+    \item Stabilize the finite dimensional problem by eliminating spurious modes.
+\end{itemize}
+\subsection{Suitable spaces}
+Let us analyze the first type of strategy. To start with, we will consider the case of finite element spaces. To characterize \(Q_h\) and \(V_h\) it suffices to choose on every elemnt their degrees of freedom. Since the weak formulation does not require a continuous pressure, we will consider the case of a discontinuous pressure first. 
+
+As Stokes equation are of order one in \(p\) and two in \(\uvec\) it makes sense to use polynomials of degree \(k \geq 1\) for \(V_h\) and of degree \(k-1\) for \(Q_h\).  When looking for a compatible couple of spaces, the larger the velocity space \(V_h\), the more likely the inf-sup condition is satisfied. 
+
+Suitable choices of spaces that fullfill the inf sup pressure. are, for example, the couple \((\mathbb{P}_2, \mathbb{P}_0)\), (\((\mathbb{Q}_2, \mathbb{P}_0)\)) or the so-called Crouzeix Raviart elements, in which the velocity components are piecewise quadratic functions with a bubble function on each element, while the pressure components are piecewise linear discontinuous element.
+
+In the case of continuous pressure, examples of incompatible spaces could be piecewise linear elements on triangles for both velocity and pressure. More in general, not a good idea to use the same polynomial degree.
+
+The smallest degree possible for stability is the pair \((\mathbb{P}_2, \mathbb{P}_1)\), which are called Tayor-Hood elements.
+\subsubsection*{Spectral methods}
+If we use spectral methods using equal-order polynomial spaces for both velocity and pressure yields subspaces that violate the inf-sup condition. Compatible spaces can be the ones with polynomial degree \(N \geq 2\) for the velocity and \(N-2\) for the pressure, yielding the so called \((\mathbb{Q}_N, \mathbb{Q}_{N-2})\) approximation. The degrees of freedom for each velocity components are represented by the \((N+1)^2\) LGL nodes.
+
+In the case of discontinuous pressure, at least two sets of interpolation nodes can be used: either the subset represented by the \((N-1)^2\) internal nodes of the choice above, or the set \((N-1)^2\) LGL nodes. This choice stands at the base of the spectral-type approximation, such as collocation, G-NI or SEM-NI.
+\subsection{A stabilized problem}
+We have seen that finite element or spectral methods that make use of equal-degree polynomial do not fullfill the inf-sup condition and are therefore unstable. However, stabilizing them is possible by using SUPG or GLS techniques like those enconuntered in the approximation of ADR equation.
+
+Here we will limit ourselves to the case of piecewise continuous linear finite elements (\(\mathbb{P}_1, \mathbb{P}_1\)), stabilized using GLS.
+\[
+    V_h = [\overset{\mathrm{o}_1}{X}_h]^2, \ \quad Q_h = \left\{ q_h \in X_h^1 : \int_\Omega \, d\Omega = 0 \right\}.
+\]
+This choice is urged by the need of keeping the global numer of degrees of freedom as low as possible, especially when dealing with three-dimensional problem. However, as it violates the inf-sup condition, it will be unstable.
+
+So, we set \(W_h = V_h \times Q_h\), and, instead of \eqref{18_slide_ns}, we consider the problem 
+\begin{equation}
+    \find (\uvec_h, p_h) \in W_h : A_h ((\uvec_h, p_h), (\vvec_h, q_h)) = F_h (\vvec_h, q_h) \quad \forall \; (\vvec_h, q_h) \in W_h 
+    \label{53_slide_ns}
+\end{equation}
+We have set 
+
+\begin{align*}
+    &A_h : W_h \times W_h \to \real, \\
+    &A_h((\uvec_h, p_h), (\vvec_h, q_h)) = a(\uvec_h, \vvec_h) + b(\vvec_h, p_h) - b(\uvec_h, q_h) \\
+    &\qquad + \delta \sum_{\eit} h_\element^2 \int_\element \left( -\nu\Delta \uvec_h + \grad p_h \right)\left( -\nu \Delta \vvec_h + \grad q_h \right) \, d\element, \\
+    &F_h : W_h \to \real, \\
+    &F_h(\vvec_h, q_h) = (\vect{f},\vvec_h) + \delta \sum_\eit h^2_\element \int_\element \vect{f}(-\nu\Delta \vvec_h + \grad q_h) \, d\element
+\end{align*}
+and \(\delta\) is a positive parameter chosen accordingly.
+
+This is a strongly consistent approximation of problem \eqref{11_slide_ns}. As a matter of fact, the additional term is null when calculated on the exact solution thanks to \eqref{13_slide_ns}. Note that,since \(k=1, \Delta \uvec_{h\limited{\element} = \Delta \vvec_{h\limited{\element}}} = \vect{0} \forall \; \eit\) as we are using piecewise linear finite elements functions.
+
+We obtain the following stability inequality 
+\begin{equation}
+    \nu \norm{\grad\uvec_h}_{\vect{L}^2(\Omega)}^2 + \delta \sum_\eit h^2_\element \norm{\grad p_h}^2_{\vect{L}^2 (\element)} \leq C \norm{\vect{f}}^2_{\vect{L}^2(\Omega)},
+    \label{55_slide_ns}
+\end{equation}
+\(C\) being a constant that depends on \(\nu\) but not on \(h\). 
+
+By applying Strang's Lemma \eqref{strang_lemma_sem} we can now show that the solution to the generalized Galerkin problem \eqref{53_slide_ns} satisfies the following estimate 
+\[
+    \norm{\vect{u} - \vect{u}_h}_{\vect{H}^1(\Omega)} + \left( \delta \sum_\eit h^2_\element \norm{\grad p - \grad p_h}_{\vect{L}^2(\element)}^2 \right)^\onehalf \leq Ch.
+\]
+We can show that \eqref{53_slide_ns} admits the following matrix form
+\begin{equation}
+    \left[ \begin{matrix}
+        A & B^T \\
+        B & -C
+    \end{matrix} \right] \left[ \begin{matrix}
+        \vect{U} \\ \vect{P}
+    \end{matrix} \right] = \left[ \begin{matrix}
+        \vect{F} \\ \vect{G}
+    \end{matrix} \right].
+    \label{56_slide_ns}
+\end{equation}
+This system differs from \eqref{47_slide_ns} without stabilization because of the presence of the non-null block occupying the position \((2,2)\) which is associated to the stabilization term:
+\[
+    C = [c_{km}], c_{km} = \delta \sum_\eit h^2_\element \int_\element \grad \oldphi_m \cdot \grad \oldphi_k \, d\element, k,m = 1,\ldots, M
+\]
+while the components of the right hand side \(\vect{G}\) are 
+\[
+    g_k = -\delta \sum_\eit h^2_\element \int_\element \vect{f} \cdot \grad \oldphi_k \, d\element, k = 1,\ldots, M
+\]
+Note that num
+\begin{align}
+    A\vect{U} + B^T\vect{P} = \vect{F} &\Rightarrow \vect{U} = A^{-1} (\vect{F} - B^T\vect{P}),\\
+    B\vect{U} - C\vect{P} & \Rightarrow BA^{-1} \vect{F} - BA^{-1}B^T \vect{P} -C\vect{P} = \vect{G} \\
+    &\Rightarrow (BA^{-1}B^T + C)\vect{P} = BA^{-1} \vect{F} - \vect{G}.
+\end{align}
+Then, in this case, the reduced system reads 
+\[
+    R\vect{P} = BA^{-1} \vect{F} - \vect{G}.
+\]
+In contrast to \eqref{50_slide_ns}, this time the matrix \(R\) is non-singular as \(C\) is positive defined., but \(B^T\) is not full-rank.
+\subsection{Time discretization}
+We consider the following semi discretized formulation
+\begin{equation}
+    \begin{cases}
+        M\dfrac{d\uvec(t)}{dt} + A\uvec(t) + C(\uvec(t))\uvec(t) + B^T\vect{p}(t) = \vect{f}(t) ,\\
+        B\uvec(t) = \vect{0},
+        \label{58_slide_ns}
+    \end{cases}
+\end{equation}
+with \(\uvec(0) = \uvec_0\). \(C(\uvec(t))\) is in fact a matrix depending on \(\uvec(t)\), whose generic coefficient is \(c_{ij}(t) = c(\uvec(t), \phi_j, \phi_i)\).
+
+For the temporal discretization of this system let us use the \(\theta\)-method. By setting
+\begin{align*}
+    &\uvec_\theta^{n+1} = \theta \uvec^{n+1} + (1-\theta)\uvec^n, \\
+    &\pvec_\theta^{n+1} = \theta \pvec^{n+1} + (1-\theta)\pvec^n, \\
+    &\fvec_\theta^{n+1} = \theta \fvec^{n+1} + (1-\theta)\fvec^n, \\
+    &C_\theta(\uvec^{n+1,n})\uvec^{n+1,n} = \theta C(\uvec^{n+1})\uvec^{n+1} + (1-\theta)C(\uvec^{n})\uvec^{n}
+\end{align*}
+we obtain 
+\begin{equation}
+    \begin{cases}
+        M\dfrac{\uvec^{n+1}-\uvec^n}{\tstep} + A\uvec_\theta^{n+1} + C_\theta(\uvec^{n+1,n})\uvec^{n+1,n} + B^T\pvec_\theta^{n+1} = \fvec_\theta^{n+1} \\
+        B\uvec^{n+1} = \vect{0}
+    \end{cases}
+    \label{59_slide_ns}
+\end{equation}
+Since, except for the forward Euler method, the solution of this system is quite involved, a possible alternative is a semi-implicit scheme in which the linear part of the equation is advanced implicitly, while the nonlinear ones explicitly. in this way, for \(\theta \geq \onehalf\), the resulting scheme is unconditionally stable, whereas, in all other cases, it must obey a stability restriction on the timestep \(\tstep\). 

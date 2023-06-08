@@ -8,6 +8,8 @@
 \usepackage[margin=2cm]{geometry}
 
 \usepackage{amsthm}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
 
 \usepackage{tabularx}
 \usepackage{graphicx}
@@ -53,7 +55,6 @@
   after skip=\topsep,
 }
 \tcolorboxenvironment{corollary}{
-  breakable,
   colback=blue!15!white,
   boxrule=0pt,
   boxsep=1pt,
@@ -63,7 +64,6 @@
   after skip=\topsep,
 }
 \tcolorboxenvironment{proposition}{
-  breakable,
   colback=blue!15!white,
   boxrule=0pt,
   boxsep=1pt,
@@ -93,7 +93,6 @@
   after skip=\topsep,
 }
 \tcolorboxenvironment{notation}{
-  breakable,
   colback=green!150!black!50,
   boxrule=0pt,
   boxsep=1pt,
@@ -103,7 +102,6 @@
   after skip=\topsep,
 }
 \tcolorboxenvironment{definition}{
-  breakable,
   colback=yellow!70!,
   boxrule=0pt,
   boxsep=1pt,
@@ -179,6 +177,9 @@
 \newcommand{\uvec}{\vect{u}}
 \newcommand{\normal}{\vect{n}}
 \newcommand{\vvec}{\vect{v}}
+\newcommand{\pvec}{\vect{p}}
+\newcommand{\fvec}{\vect{f}}
+\newcommand{\qvec}{\vect{q}}
 \newcommand{\honed}{\left[ H^1(\Omega) \right]^d}
 \newcommand{\find}{\txt{find }}
 
