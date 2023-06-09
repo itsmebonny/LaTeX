@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1686321534 "/home/bonni/Documents/LaTeX/NAPDE/NAPDE.tex" "NAPDE.pdf" "NAPDE" 1686321536
+["pdflatex"] 1686326197 "/home/bonni/Documents/LaTeX/NAPDE/NAPDE.tex" "NAPDE.pdf" "NAPDE" 1686326200
   "/etc/texmf/web2c/texmf.cnf" 1663235487 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/bonni/Documents/LaTeX/NAPDE/NAPDE.tex" 1686321529 5789 799b4d6f25d8c89161161b6ff3c5ef0d ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -223,8 +223,8 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1683288490 4379155 98693266ff65f58d9f98aff394de12d2 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1685694486 2798404 f3ec2215737410dfdf7ff0ab7626857a ""
-  "NAPDE.aux" 1686321536 18844 0410d242f1794328c3694b338b3b76a2 "pdflatex"
-  "NAPDE.out" 1686321536 9169 e6daaa24e56e39d13ec9330c8ee4e6fd "pdflatex"
+  "NAPDE.aux" 1686326200 18844 0410d242f1794328c3694b338b3b76a2 "pdflatex"
+  "NAPDE.out" 1686326200 9169 e6daaa24e56e39d13ec9330c8ee4e6fd "pdflatex"
   "NAPDE.tex" 1686321529 5789 799b4d6f25d8c89161161b6ff3c5ef0d ""
   "sections/1_bvp.tex" 1686063304 26720 f796d218c97e28bf4be2f24e53738aa1 ""
   "sections/2_SEM.tex" 1686236944 26758 deb8e8e50fa91f6d3367d48b7bee2a86 ""
@@ -232,8 +232,8 @@
   "sections/4_ADR.tex" 1686063392 20608 ec6071c6a6a00f7a8a3e8c6bf895a2ae ""
   "sections/5_parabolic.tex" 1686221906 32573 210e67c89e7ce3c658315af72df5d959 ""
   "sections/6_NS.tex" 1686321529 54557 722416fd20a596c59153f54f05f52794 ""
-  "sections/7_hyperbolic.aux" 1686321536 1485 b8fe8e1bba0810238d9721f2f12ed833 "pdflatex"
-  "sections/7_hyperbolic.tex" 1686321529 885 372f073749d2f7796f8f9c6b37d90402 ""
+  "sections/7_hyperbolic.aux" 1686326200 1543 92d2ccef35720922a581d25447a3824b "pdflatex"
+  "sections/7_hyperbolic.tex" 1686326197 2565 8a409377645b812d4311e5d14d91050b ""
   (generated)
   "NAPDE.aux"
   "NAPDE.log"

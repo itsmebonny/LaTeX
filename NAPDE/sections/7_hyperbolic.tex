@@ -20,4 +20,33 @@ We consider the curves \(x(t)\) in the plane \((x,t)\), solutions of the followi
         x(0) = x_0,
     \end{cases}
 \end{equation*}
-for varying values of \(x_0 \in \real\). They read \(x(t) = x_0 +at\) and are called characteristic lines
+for varying values of \(x_0 \in \real\). They read \(x(t) = x_0 +at\) and are called characteristic lines. The solution of \eqref{1_hyp} along these lines remains constant, for 
+\[
+    \frac{du}{dt} = \partialderivative{u}{t} + \partialderivative{u}{x} \frac{dx}{dt} = 0.
+\]
+In the case of the more general problem
+\begin{equation}
+    \begin{dcases}
+        \partialderivative{u}{t}+a\partialderivative{u}{x} a_0u = f, & x\in \real, \ t > 0, \\
+        u(x, 0) = u_0(x), & x \in \real,
+    \end{dcases}
+    \label{2_hyp}
+\end{equation}
+where \(a,a_0\) and \(f\) are given functions of \((x,t)\), the characteristic lines \(x(t)\) are the solution of the Cauchy problem 
+\begin{equation*}
+    \begin{cases}
+        \dfrac{dx}{dt} = a(x,t), & t>0, \\
+        x(0) = x_0.
+    \end{cases}
+\end{equation*}
+In this case, solutions of \eqref{2_hyp} satisfy
+\[
+    \frac{d}{dt} u(x(t), t) = f(x(t), t) - a_0(x(t),t)u(x(t),t).
+\]
+Therefore it is possible to extract the solution \(u\) by solving an ordinary differential equation on each characteristic curve. If, for instance \(a_0 = 0\), we find 
+\[
+    u(x,t) = u_0(x-at) + \int_\Omega \int_0^t f(x-a(t-s),s) \, ds, \ t > 0.
+\]
+Let us now consider problem \eqref{1_hyp} in a bounded interval. For instance, let us \(x \in [0,1]\) and \(a > 0\). As \(u\) is constant on the characteristics, from the figure we deduce that the value of the solution at a point \(P\) coincides with the value of \(u_0\) at the foot \(P_0\) of the characteristic outgoing from \(P\). Instead, a characteristic outgoing from \(Q\) intersects \(x=0\) for \(t>0\), so \(x=0\) is an inflow point. Same thing for \(x=1\) and \(a<0\).
+
+In the case of \(u_0\) discontinuous in \(x_0\), such discontinuity would propagate along the characteristic outgoing from \(x_0\).
