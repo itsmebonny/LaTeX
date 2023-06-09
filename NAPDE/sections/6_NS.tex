@@ -711,3 +711,125 @@ we obtain
     \label{59_slide_ns}
 \end{equation}
 Since, except for the forward Euler method, the solution of this system is quite involved, a possible alternative is a semi-implicit scheme in which the linear part of the equation is advanced implicitly, while the nonlinear ones explicitly. in this way, for \(\theta \geq \onehalf\), the resulting scheme is unconditionally stable, whereas, in all other cases, it must obey a stability restriction on the timestep \(\tstep\). 
+\subsubsection*{Finite difference methods}
+We consider an explicit temporal discretization of the first equation in \eqref{58_slide_ns}, corresponding to \(\theta = 0\) in \eqref{59_slide_ns}. If all the quantities are known at \(t^n\), then we can write
+\begin{equation*}
+    \begin{cases}
+        M\uvec^{n+1} = H(\uvec^n, \pvec^n,\fvec^n) \\
+        B\uvec^{n+1} =\vect{0}
+    \end{cases}
+\end{equation*}
+with \(M\) mass matrix 
+\[
+    m_{ij} = \int_\Omega \bm{\phi}_i \bm{\phi}_j
+\]
+This system does not allow the determination of the pressure \(\pvec^{n+1}\). In particular, there is no way to enforce the divergence-free constraints on \(\uvec^{n+1}\) Howeverm if we replace \(\pvec^n\) by \(\pvec^{n+1}\) we obtain 
+\begin{equation}
+    \begin{cases}
+        \frac{1}{\tstep} M \uvec^{n+1} + B^T\pvec^{n+1} = \vect{G}, \\
+        B\uvec^{n+1} = \vect{0} ,
+    \end{cases}
+    \label{60_slide_ns}
+\end{equation}
+with \(\vect{G}\) being a suitable vector. This system corresponds to a semi-explicit discretization of \eqref{58_slide_ns}. Since \(M\) is symmetric and positive definite, if condition \eqref{51_slide_ns} is satisfied, then the reduced system \(BM^{-1}B^T \pvec^{n+1} = BM^{-1}\vect{G}\) is non-singular. Once solved, the velocity vector \(\uvec^{n+1}\) can be recovered from the first equation of \eqref{60_slide_ns}. This discretization method is temporally stable if 
+\[
+    \tstep \leq C\min\left( \frac{h^2}{\nu}, \frac{h}{\max_{\xvec\in\Omega}\abs{\uvec^n(\xvec)}} \right).
+\]
+
+Let us now consider an implicit discretization of \eqref{58_slide_ns}, for instance the backward Euler method. As already seen, this is an unconditionally stable method. Its algebraic system can be regarded as the finite element space approximation of the Navier-Stokes problem 
+\begin{equation*}
+    \begin{cases}
+        -\nu\Delta u^{n+1} + (\uvec^{n+1} \cdot \grad)\uvec^{n+1} + \grad p^{n+1} + \frac{\uvec^{n+1}}{\tstep} = \tilde{\fvec}, \\
+        \div \uvec^{n+1} = 0.
+    \end{cases}
+\end{equation*}
+The solution of such nonlinear algebraic system can be achieved by Newton-Krylov techniques, that is using a Krylov method to solve, at each timestep, a system obtained by a Newton method.
+\subsubsection*{Fractional step methods}
+Let us consider an abstract time dependent problem,
+\[
+    \partialderivative{w}{t} + \loperator w = f,
+\]
+where \(\loperator\) is a differential operator that splits into the sum of two operators \(\loperator_1\) and \(\loperator_2\) such that
+\[
+    \loperator v = \loperator_1 v + \loperator_2 v
+\]
+We perform an advancement in time only on the first operator, and then correct the solution by performing the advancement on the second operator. The idea is to separate a complex problem into smaller simpler ones, for example separating diffusion from transport.
+\subsubsection{Chorin Temam method}
+This strategy also involves two operators: \(\loperator_1(\vect{w}) = -\nu\Delta \vect{w} + (\vect{w} \cdot \grad)\vect{w}\) whereas \(\loperator_2\) is associated to the remaining terms of \eqref{navier_stokes_ns}. Thanks to this solution we can split the main difficult of the Navier-Stokes equations, the nonlinear part from the incompressiblility constraint.
+
+The corresponding scheme reads 
+\begin{enumerate}
+    \item Solve the diffusion-transport equation for the velocity \(\tilde{\uvec}^{n+1}\)
+    \begin{equation}
+        \begin{cases}
+            \dfrac{\tilde{\uvec}^{n+1}-\uvec^n}{\tstep} -\nu\Delta \tilde{\uvec}^{n+1} + (\uvec^* \cdot \grad)\uvec^{**} = \fvec^{n+1} & \txt{in }\Omega, \\
+            \tilde{\uvec}^{n+1} = \vect{0} & \txt{on }\boundary
+        \end{cases}
+        \label{63_slide_ns}
+    \end{equation}
+    \item solve the following problem for \(\uvec^{n+1}\) and \(p^{n+1}\)
+    \begin{equation}
+        \begin{cases}
+            \dfrac{\tilde{\uvec}^{n+1}-\uvec^n}{\tstep} -\nu \Delta \tilde{\uvec}^{n+1} + (\uvec^* \cdot \grad)\uvec^{**} = \fvec^{n+1} & \txt{in }\Omega, \\
+            \div \uvec^{n+1} = 0 & \txt{in } \Omega, \\
+            \uvec^{n+1} \cdot \normal = 0 & \txt{on }\boundary,
+        \end{cases}
+        \label{64_slide_ns}
+    \end{equation}
+\end{enumerate}
+where \(\uvec^*\) and \(\uvec^{**}\) can be either \(\tilde{\uvec}^{n+1}\) or \(\uvec^n\) depending on whether the nonlinear terms are treated.
+
+In such a way, in the first step the velocity is calculated as \(\tilde{\uvec}^{n+1}\) and then it is corrected in the second step to satisfy the constraints.
+
+While the first step is a classic advection-diffusion problem, the second step is a bit more tricky. First we need to apply the divergence operator to the first equation of \eqref{64_slide_ns}
+\[
+    \div\frac{\uvec^{n+1}}{\tstep} -\div \frac{\tilde{\uvec}^{n+1}}{\tstep} + \Delta p^{n+1} = 0,
+\]
+that is an elliptic boundary value problem with Neumann boundary conditions 
+\begin{equation}
+    \begin{cases}
+        -\Delta p^{n+1} = -\div \dfrac{\tilde{\uvec}^{n+1}}{\tstep} & \txt{in }\Omega, \\
+        \displaystyle\partialderivative{p^{n+1}}{n} = 0 & \txt{on }\boundary.
+    \end{cases}
+    \label{65_slide_ns}
+\end{equation}
+The Neumann condition follows from \(\uvec^{n+1}\cdot \normal = 0\) on \(\boundary\).
+
+From the solution of \eqref{65_slide_ns} we obtain \(p^{n+1}\) and \(\uvec^{n+1}\) by using the first equation on \eqref{64_slide_ns}, 
+\begin{equation}
+    \uvec^{n+1} = \tilde{\uvec}^{n+1} - \Delta t \grad p^{n+1}
+    \label{66_slide_ns}
+\end{equation}
+This is precisely the correction to operate on the velocity field in order to fullfill the divergence-free constraint. 
+
+To conclude, the full algorithm reads: 
+\begin{enumerate}
+    \item Solve the elliptic system \eqref{63_slide_ns} to obtain \(\tilde{\uvec}^{n+1}\)
+    \begin{equation}
+        \begin{cases}
+            \dfrac{\tilde{\uvec}^{n+1}-\uvec^n}{\tstep} -\nu\Delta \tilde{\uvec}^{n+1} + (\uvec^* \cdot \grad)\uvec^{**} = \fvec^{n+1} & \txt{in }\Omega, \\
+            \tilde{\uvec}^{n+1} = \vect{0} & \txt{on }\boundary
+        \end{cases}
+        \label{67_slide_ns}
+    \end{equation}
+    \item solve the scalar elliptic problem \eqref{65_slide_ns} to obtain \(p^{n+1}\)
+    \begin{equation}
+        \begin{cases}
+            -\Delta p^{n+1} = -\div \dfrac{\tilde{\uvec}^{n+1}}{\tstep} & \txt{in }\Omega, \\
+            \displaystyle\partialderivative{p^{n+1}}{n} = 0 & \txt{on }\boundary.
+        \end{cases}
+        \label{68_slide_ns}
+    \end{equation}
+    \item obtain the corrected velocity \(\uvec^{n+1}\) thanks to the correcion equation \eqref{66_slide_ns}
+    \begin{equation}
+        \uvec^{n+1} = \tilde{\uvec}^{n+1} - \Delta t \grad p^{n+1}
+        \label{69_slide_ns}
+    \end{equation}
+\end{enumerate}
+As with many explicit schemes, if we take \(\uvec^* = \uvec^{**} = \uvec^n\) we obtain a method that has a stability restriction on the timestep like 
+\[
+    \tstep \leq C \frac{h}{\max_{\xvec\in \Omega}\abs{\uvec^n(\xvec)}}.
+\]
+On the other hand, this system splits into indepedent systems of smaller size, one for each spatial component of the velocity fields.
+
+If we decided to use \(\uvec^* = \uvec^{**} = \uvec^{n+1}\) we obtain an unconditionally stable method, but the downside is that the spatial components aren't separated due to the nonlinear convective term. 

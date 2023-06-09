@@ -1,0 +1,23 @@
+\newpage
+\section{Hyperbolic equations}
+\subsection{Introduction}
+Let us consider the following scalar hyperbolic problem 
+\begin{equation}
+    \begin{dcases}
+        \partialderivative{u}{t} + a\partialderivative{u}{x} = 0 & x\in \real, \ t > 0, \\
+        u(x, 0) = u_0 (x), & x\in \real, 
+    \end{dcases}
+    \label{1_hyp}
+\end{equation}
+where \(a \in \real \backslash \left\{ 0 \right\}\). The solution of such problem is a wave travelling at a velocity \(a\), in the \((x,t)\) plane, given by 
+\[
+    u(x,t) = u_0(x-at), \ t \geq 0.
+\]
+We consider the curves \(x(t)\) in the plane \((x,t)\), solutions of the following ordinary differential equation 
+\begin{equation*}
+    \begin{cases}
+        \dfrac{dx}{dt} = a, & t>0,
+        x(0) = x_0,
+    \end{cases}
+\end{equation*}
+for varying values of \(x_0 \in \real\). They read \(x(t) = x_0 +at\) and are called characteristic lines

@@ -22,6 +22,7 @@
 
 \usepackage[many]{tcolorbox}
 
+
 \setlength\parindent{0pt}
 
 \newlength\mylength
@@ -256,4 +257,89 @@
     \int_{\Omega} \partialderivative{u(t)}{t} v \, d\Omega + a(u(t), v) = \int_\Omega f(t)v \, d\Omega \quad \forall \; v \in V 
     \label{weak_formulation_heat_pbl}
 \end{equation*}
+\section*{Code implementation}
+\subsection*{CG-FEM}
+\begin{itemize}
+    \item Matrix \(A\);
+    \[
+        A_{ij} = \int_\Omega \grad \phi_j \grad \phi_i  
+    \]
+    Loop on all the elements and compute locally (elements with \(\hat{\cdot}\) are computed on the reference element):
+    \[
+        A_{loc_{ij}} = \det(\vect{B}_\element) \int_{\hat{\element}} \hat{\grad} \hat{\phi}^T_j \vect{B}_\element^{-1} \vect{B}^{-1}_\element \hat{\grad} \hat{\phi}_i = \frac{\det(\vect{B})}{2} \hat{\grad} \hat{\phi}^T_j \vect{B}_\element^{-1} \vect{B}^{-T}_\element \hat{\grad} \hat{\phi}_i
+    \]
+    Can be implemented as 
+    \begin{verbatim}
+        function [K_loc]=C_lap_loc(Grad,w_2D,nln,BJ)
+        K_loc=zeros(nln,nln);
+        for i=1:nln
+            for j=1:nln
+                for k=1:length(w_2D)
+                    Binv = inv(BJ(:,:,k));   % inverse
+                    Jdet = det(BJ(:,:,k));   % determinant 
+                    K_loc(i,j) = K_loc(i,j) + (Jdet.*w_2D(k)) .* ( (Grad(k,:,i)
+                                 * Binv) * (Grad(k,:,j) * Binv )');
+                end
+            end
+        end
+    \end{verbatim}
+    \item Mass matrix \(M\):
+    \[
+        M_{ij} = \int_\Omega \phi_j, \phi_i
+    \]
+    Loop on all the elements and calculate the local mass matrix
+    \[
+        M_{loc_{ij}} =  \det(\vect{B}_\element) \int_{\hat{\element}} \hat{\phi}^T_j \vect{B}_\element^{-1} \vect{B}^{-1}_\element \hat{\phi}_i
+    \]
+    Can be implemented as
+    \begin{verbatim}
+        function [M_loc]=C_mass_loc(dphiq,w_2D,nln,BJ)
+        M_loc=zeros(nln,nln);
+        for i=1:nln
+            for j=1:nln
+                for k=1:length(w_2D)
+                    Binv = inv(BJ(:,:,k));      % inverse
+                    Jdet = det(BJ(:,:,k));      % determinant 
+                    M_loc(i,j) = M_loc(i,j) + (Jdet.*w_2D(k))
+                                 .* dphiq(1,k,i).* dphiq(1,k,j);
+                end
+            end
+        end
+    \end{verbatim}
+    \item Transport matrix \(T\)
+    
+    Can be implemented as 
+    \begin{verbatim}
+        function [ADV_loc]=C_adv_loc(Grad,dphiq,beta,w_2D,nln,BJ)
+        ADV_loc=sparse(nln,nln);
+        for i=1:nln
+            for j=1:nln
+                for k=1:length(w_2D)
+                    Binv=inv(BJ(:,:,k));    % inverse
+                    Jdet=det(BJ(:,:,k));    % determinant 
+                    ADV_loc(i,j) = ADV_loc(i,j)+(Jdet.*w_2D(k)).* dphiq(1,k,i)
+                                   *( (beta)*(Grad(k,:,j) * Binv )');
+                end
+            end
+        end
+    \end{verbatim}
+    \item Right hand side \(\vect{b}\):
+    \[
+        b_i = \int_\Omega f\phi_i
+    \]
+    which is computed 
+    \begin{verbatim}
+        function [f]=C_loc_rhs2D(force,dphiq,BJ,w_2D,pphys_2D,nln,mu)
+        f = zeros(nln,1);
+        x = pphys_2D(:,1);
+        y = pphys_2D(:,2);
+        F = eval(force);
+        for s = 1:nln
+            for k = 1:length(w_2D)
+                Jdet = det(BJ(:,:,k));  % determinant 
+                f(s) = f(s) + w_2D(k)*Jdet*F(k)*dphiq(1,k,s);
+            end    
+        end
+    \end{verbatim}
+\end{itemize}
 \end{document}
