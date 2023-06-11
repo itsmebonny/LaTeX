@@ -257,6 +257,14 @@
     \int_{\Omega} \partialderivative{u(t)}{t} v \, d\Omega + a(u(t), v) = \int_\Omega f(t)v \, d\Omega \quad \forall \; v \in V 
     \label{weak_formulation_heat_pbl}
 \end{equation*}
+\[
+    \Downarrow
+\]
+for each \(t > 0\), we need to find \(u_h(t) \in V_h\) s.t. 
+\begin{equation*}
+    \int_\Omega \partialderivative{u_h(t)}{t} v_h \, d\Omega + a(u_h(t), v_h) = \int_\Omega f(t)v_h \, d\Omega \quad \forall \; v_h \in V_h
+\label{semi-discretization_pbl}
+\end{equation*}
 \section*{Code implementation}
 \subsection*{CG-FEM}
 \begin{itemize}

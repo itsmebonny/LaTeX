@@ -3,10 +3,10 @@
 \subsection{Introduction}
 Let us consider the following scalar hyperbolic problem 
 \begin{equation}
-    \begin{dcases}
-        \partialderivative{u}{t} + a\partialderivative{u}{x} = 0 & x\in \real, \ t > 0, \\
+    \begin{cases}
+        \displaystyle\partialderivative{u}{t} + a\partialderivative{u}{x} = 0 & x\in \real, \ t > 0, \\
         u(x, 0) = u_0 (x), & x\in \real, 
-    \end{dcases}
+    \end{cases}
     \label{1_hyp}
 \end{equation}
 where \(a \in \real \backslash \left\{ 0 \right\}\). The solution of such problem is a wave travelling at a velocity \(a\), in the \((x,t)\) plane, given by 
@@ -26,10 +26,10 @@ for varying values of \(x_0 \in \real\). They read \(x(t) = x_0 +at\) and are ca
 \]
 In the case of the more general problem
 \begin{equation}
-    \begin{dcases}
-        \partialderivative{u}{t}+a\partialderivative{u}{x} a_0u = f, & x\in \real, \ t > 0, \\
+    \begin{cases}
+        \displaystyle\partialderivative{u}{t}+a\partialderivative{u}{x} a_0u = f, & x\in \real, \ t > 0, \\
         u(x, 0) = u_0(x), & x \in \real,
-    \end{dcases}
+    \end{cases}
     \label{2_hyp}
 \end{equation}
 where \(a,a_0\) and \(f\) are given functions of \((x,t)\), the characteristic lines \(x(t)\) are the solution of the Cauchy problem 
@@ -49,4 +49,479 @@ Therefore it is possible to extract the solution \(u\) by solving an ordinary di
 \]
 Let us now consider problem \eqref{1_hyp} in a bounded interval. For instance, let us \(x \in [0,1]\) and \(a > 0\). As \(u\) is constant on the characteristics, from the figure we deduce that the value of the solution at a point \(P\) coincides with the value of \(u_0\) at the foot \(P_0\) of the characteristic outgoing from \(P\). Instead, a characteristic outgoing from \(Q\) intersects \(x=0\) for \(t>0\), so \(x=0\) is an inflow point. Same thing for \(x=1\) and \(a<0\).
 
-In the case of \(u_0\) discontinuous in \(x_0\), such discontinuity would propagate along the characteristic outgoing from \(x_0\).
+In the case of \(u_0\) discontinuous in \(x_0\), such discontinuity would propagate along the characteristic outgoing from \(x_0\). In order to regularize it, one could approximate the initial datum \(u_0\) with a series of regular functions \(u_0^\epsilon(x), \ \epsilon > 0\). But is an effective solution to a linear problem. In the case of a nonlinear hyperbolic problems can indeed develop discontinuities for regular initial data. In such cases, the best approach is to regularize the differential equation itself, rather than the initial datum, obtaining, for example, in the case of diffusion-transport equation 
+\[
+    \partialderivative{u^\epsilon}{t} + a\partialderivative{u^\epsilon}{x} = \epsilon\partialderivative{^2u^\epsilon}{x^2}, \ x\in \real, \ t > 0,
+\]
+which, for small values of \(\epsilon\) can be regarded as a parabolic regularization of \eqref{1_hyp}. 
+\subsection{A priori estimate}
+Let us now return to the problem \eqref{2_hyp} on a bounded interval
+\begin{equation}
+    \begin{cases}
+        \displaystyle \partialderivative{u}{t} + a \partialderivative{u}{x} + a_0 u =  f, & x \in (\alpha, \beta), \ t > 0, \\
+        u(x,0) = u_0(x), & x \in (\alpha,\beta), \\
+        u(\alpha, t) = \phi(t) & t > 0,
+    \end{cases}
+    \label{3_hyp}
+\end{equation}
+where \(a(x), f(x,t)\) and \(\phi(t)\) are assigned functions. We have made the assumptions that \(a(x) > 0\), so that the inflow point is \(\alpha\) and \(\beta\) the outflow point. By multiplying the first equation of \eqref{3_hyp} by \(u\), integrating in \(x\) by parts, we obtain 
+\begin{equation*}
+    \onehalf\frac{d}{dt} \int_\alpha^\beta u^2 \, dx + \int_\alpha^\beta \left( a_0 - \onehalf a_x \right) u^2 \, dx + \onehalf (au^2)(\beta) -\onehalf (au^2)(\alpha) = \int_\alpha^\beta.
+\end{equation*}
+By supposing that there exists a \(\mu_0 \geq 0\) such that
+\[
+    a_0 -\onehalf a_x \geq \mu_0 \quad \forall \; x \in [\alpha, \beta],
+\]
+we find 
+\[
+    \onehalf \frac{d}{dt} \norm{u(t)}^2_{L^2(\alpha,\beta)} + \mu_0 \norm{u(t)}^2_{L^2(\alpha,\beta)} + \onehalf (au^2)(\beta) \leq \int_\alpha^\beta fu \, dx + \onehalf a(\alpha)\phi^2(t).
+\]
+In the case \(f\) and \(\phi\) are null, then
+\[
+    \norm{u(t)}_{L^2(\alpha,\beta)} \leq \norm{u_0}_{L^2(\alpha,\beta)} \quad \forall \; t > 0.
+\]
+In the case of the more general problem \eqref{2_hyp}, if we suppose that \(\mu_0 > 0\), thanks to the Cauchy-Schwartz and Young inequalities, we have
+\[
+    \int_\alpha^\beta fu \, dx \leq \norm{f}_{L^2(\alpha,\beta)}\norm{u}_{L^2(\alpha,\beta)} \leq \frac{u_0}{2} \norm{u}_{L^2(\alpha,\beta)}^2 + \frac{1}{2\mu_0} \norm{f}_{L^2(\alpha,\beta)}^2.
+\]
+Then, integrating over time, we obtain 
+\begin{equation*}
+    \begin{split}
+        \norm{u(t)}_{L^2(\alpha,\beta)}^2 + \mu_0 \int_0^t \norm{u(s)}_{L^2(\alpha,\beta)}^2 \, ds + a(\beta)\int_0^t u^2(\beta,s) \, ds \\
+        \leq \norm{u_0}^2_{L^2(\alpha,\beta)} + a(\alpha)\int^t_0 \phi^2(s) \, ds + \frac{1}{\mu_0} \int_0^t \norm{f}^2_{L^2(\alpha,\beta)}.
+    \end{split}
+\end{equation*}
+An alternative estimate could be obtained without requiring the differentiability of \(a(x)\), by using the hypothesis that \(a_0 \leq a(x) \leq a_1\) and multiplying the equation for \(a^{-1}\),
+\[
+    a^{-1} \partialderivative{u}{t} + \partialderivative{u}{x} = a^{-1}f.
+\]
+By multiplying by \(u\) and integrating
+\[
+    \onehalf \frac{d}{dt} \int_\alpha^\beta a^{-1}(x)u^2(x,t) \, dx \onehalf u^2(\beta,t) = \int_\alpha^\beta a^{-1}(x)f(x,t)u(x,t) \, dx + \onehalf \phi^2(t).
+\]
+We can define 
+\[
+    \norm{v}_a = \left( \int_\alpha^\beta a^{-1}(x) v(x) \, dx \right)^\onehalf.
+\]
+If \(f=0\) we obtain 
+\[
+    \norm{u(t)}^2_a + \int_0^t u^2(\beta, s)\, ds = \norm{u_0}^2_a + \int_0^t \phi^2(s) \, ds, \quad t > 0.
+\]
+Thanks to the lower and upper bounds of \(a^{-1}\), \(\norm{v}_a\) is equivalent to the norm of \({L^2(\alpha,\beta)}\). On the other hand, if \(f\) is non-null we have 
+\[
+    \norm{u(t)}^2_a + \int_0^t u^2(\beta, s)\, ds = \norm{u_0}^2_a + \int_0^t \phi^2(s) \, ds + \int_0^t \norm{f}^2_a \, ds + \int_0^t \norm{u(s)}^2_a \, ds,
+\]
+thanks to Cauchy-Schwartz. Then, applying Gronwall's lemma we obtain, for each \(t>0\), 
+\[
+    \norm{u(t)}^2_a + \int_0^t u^2(\beta, s) \, ds \leq e^t \left( \norm{u_0}^2_a + \int_0^t \phi^2(s) \, ds + \int_0^t \norm{f}^2_a \, ds\right).
+\]
+\subsection{The finite difference method}
+Going back to \eqref{1_hyp} out of simplicity. To solve it numerically, we can use spatio-temporal discretization based on the finite difference method. In this case, the half-plane \(\left\{ t>0 \right\}\) is discretized choosing a temporal step \(\tstep\), a spatial discretization \(h\) and defining the gridpoint \((x_j, t^n)\) in the following way 
+\begin{align*}
+    &x_j = jh,  &j \in \mathbb{Z},    &\\
+    &t^n = n\tstep, & n\in \mathbb{N}.&
+\end{align*}
+
+Set \(\lambda = \frac{\tstep}{h}\), and define 
+\[
+    x_{j+\onehalf} = x_j + \frac{h}{2}
+\]
+Usually hyperbolic initial value problems are discretized using explicit methods. Of course this imposes restriction on \(\lambda\). Any explicit finite difference method can be written as 
+\begin{equation}
+    u^{n+1}_j = u^n_j -\lambda(H^n_{j+\onehalf} - H^2_{j-\onehalf}),
+    \label{4_hyp}
+\end{equation}
+where \(H^n_{j+\onehalf} = H(u_j^n, u^n_{j+1})\) for a suitable function \(H(\cdot, \cdot)\) called numerical flux.
+The numerical scheme \eqref{4_hyp} is basically the outcome of the following consideration. Suppose that \(a\) is a constant and let us write \eqref{1_hyp} in conservation form 
+\[
+    \partialderivative{u}{t} + \partialderivative{(au)}{x} = 0,
+\]
+with \(au\) being the flux associated to the equation. By integrating in space we obtain 
+\[
+    \int_{x_{j-\onehalf}}^{x_{j+\onehalf}} \partialderivative{u}{t} \, dx + \left[ au \right]_{x_{j-\onehalf}}^{x_{j+\onehalf}} = 0, \quad j \in \mathbb{Z},
+\]
+that is 
+\[
+    \pderivative{t} U_j + \frac{(au)(x_{j+\onehalf}) - (au)(x_{j-\onehalf})}{h},
+\]
+where 
+\[
+    U_j = h^{-1} \int_{x_{j-\onehalf}}^{x_{j+\onehalf}} u(x) \, dx.
+\]
+Equation \eqref{4_hyp} can now be interpreted as an approximation where the temporal derivative is discretized using the forward Euler finite difference scheme, \(U_j\) is replaced by \(u_j\) and \(H_{j+\onehalf}\) is an approximation of \((au)(x_{j+\onehalf})\).
+\subsection{Discretization of the scalar equation}
+The choice of \(H\) decide which numerical method will be use. Some of them are 
+\begin{itemize}
+    \item forward/Centerd Euler (FE/C)
+    \item Lax-Friedrichs (LF)
+    \item Lax-Wendroff (LW)
+    \item Upwind (U)
+\end{itemize}
+\subsubsection*{Forward/Centered Euler}
+\begin{equation}
+    u_j^{n+1} = u_j^n - \frac{\lambda}{2} a(u^n_{j+1} - u^n_{j-1}),
+    \label{5_hyp}
+\end{equation}
+that takes the form \eqref{4_hyp} provided that we define 
+\begin{equation}
+    H_{j+\onehalf} = \frac{1}{2} a(u_{j+1} + u_j). 
+    \label{6_hyp}
+\end{equation}
+\subsubsection*{Lax-Friedrichs}
+\begin{equation}
+    u_j^{n+1} = \onehalf (u_{j+1}^n + u^n_{j-1}) - \frac{\lambda}{2} a(u^n_{j+1} - u^n_{j-1}),
+    \label{7_hyp}
+\end{equation}
+that takes the form \eqref{4_hyp} when  
+\begin{equation}
+    H_{j+\onehalf} = \frac{1}{2} \left[ a(u_{j+1} + u_j) - \lambda^{-1} (u_{j+1} - u_j)\right]. 
+    \label{8_hyp}
+\end{equation}
+\subsubsection*{Lax-Wendroff}
+\begin{equation}
+    u_j^{n+1} = u^n_j - \frac{\lambda}{2} a(u_{j+1}^n - u^n_{j-1}) + \frac{\lambda^2}{2} a^2(u^n_{j+1} -2u^n_j + u^n_{j-1}),
+    \label{9_hyp}
+\end{equation}
+that takes the form \eqref{4_hyp} with 
+\begin{equation}
+    H_{j+\onehalf} = \frac{1}{2} \left[ a(u_{j+1} + u_j) - \lambda a^2 (u_{j+1} - u_j)\right]. 
+    \label{10_hyp}
+\end{equation}
+\subsubsection*{Upwind}
+\begin{equation}
+    u_j^{n+1} = u^n_j - \frac{\lambda}{2} a(u_{j+1}^n - u^n_{j-1}) + \frac{\lambda}{2} \abs{a}(u^n_{j+1} -2u^n_j + u^n_{j-1}),
+    \label{11_hyp}
+\end{equation}
+that takes the form \eqref{4_hyp} if 
+\begin{equation}
+    H_{j+\onehalf} = \frac{1}{2} \left[ a(u_{j+1} + u_j) - \lambda \abs{a}(u_{j+1} - u_j)\right]. 
+    \label{12_hyp}
+\end{equation}
+The LF method is obtained from the FE/C by replacing the nodal value \(u_j^n\) in \eqref{5_hyp} with the average of \(u_{j-1}^n\) and \(u^n_{j+1}\). The LW method derive from the Taylor expansion in time 
+\[
+    u^{n+1} = u^n + \left( \partial_t u \right)^n \tstep + \left( \partial_{tt} u \right)^n \frac{\Delta t^2}{2} + \mathcal{O}(\tstep^3)
+\]
+where \((\partial_t u)^n\) denotes the partial derivative of \(u\) at time \(t^n\). Then, using the equation \eqref{1_hyp}, we replace \(\partial_t u\) by \(-a\partial_x u\), and \(\partial_{tt}u\) by \(a^2\partial_{xx} u\). Neglecting the remainder \(\mathcal{O}(\tstep^3)\) and approximating the spatial derivatives with centered finite differences, we get \eqref{9_hyp}. Finally, the U method is obtained by discretizing the convective term \(a\partial_x u\) of the equation with the upwind finite difference.
+
+An example of an implicit method is the following
+\subsubsection*{Backward/Centered Euler (BE/C)}
+\begin{equation}
+    u_j^{n+1} + \frac{\lambda}{2} (u^{n+1}_{j+1} - u^{n+1}_{j+1}) = u^n_j.
+    \label{13_hyp}
+\end{equation}
+\subsection{Boundary treatment}
+In case we want to discretize the hyperbolic equation \eqref{3_hyp} on a bounded interval, we will obviously need to use the inflow \(x=\alpha\) to impose the boundary condition, say \(u^{n+1}_0 = \phi(t^{n+1})\), while at all other nodes \(x_j\), \(1\leq j \leq m\) (including the outflow \(x_m = \beta\)) we will write the finite difference scheme. 
+
+However, schemes using a centered discretization of the space derivative require a particular treatment at \(x_m\). Indeed, they would require the value \(u_{m+1}\), which is unavailable as it relates to the point with coordinates \(\beta + h\), outside the integration interval. This can be solved in various ways. An option is to use only the upwind decentered discretization on the on the last node, as such discretization does not require knowing the datum in \(x_{m+1}\), but this is a first order approach.
+
+Alternatively, the value \(u_m^{n+1}\) can be obtained through extrapolation from the values available at the internal nodes, like characteristic lines for example. 
+\subsection{Analysis of the finite difference method}
+\subsubsection*{Consistency and convergence}
+For a given numerical scheme, the local truncation error is the error generated by expecting the exact solution to verify the numerical scheme. For instance, in the case of FE/C, having denoted by \(u\) the solution to the exact problem \eqref{1_hyp}, we can define the truncation error at the point (\(x_j, t^n\)) as 
+\[
+    \tau_j^n = \frac{u(x_j,t^{n+1}) - u(x_j, t^n)}{\tstep} + a\frac{u(x_{j+1}, t^n)- u(x_{j-1}, t^n)}{2h}.
+\]
+If the truncation error 
+\[
+    \tau(\tstep, h) = \max_{j,n}\abs{\tau_j^n}
+\]
+tends to zero when \(\tstep\) and \(h\) tend to zero, independently, then the numerical scheme will be said to be consistent.
+
+Moreover, we will say that a numerical scheme is accurate to order \(p\) in time and to order \(q\) in space. if, for a sufficiently regular solution of the exact problem we have 
+\[
+    \tau(\tstep, h) = \mathcal{O}(\tstep^p + h^q).
+\]
+Using Taylor expansion suitably, we can then see that the truncation of the previously introduced methods is: 
+\begin{itemize}
+    \item Euler: \(\mathcal{O}(\tstep + h^2)\).
+    \item Upwind: \(\mathcal{O}(\tstep + h)\).
+    \item Lax-Friedrichs: \(\mathcal{O}(\frac{h^2}{\tstep} + \tstep + h^2)\).
+    \item Lax-Wendroff: \(\mathcal{O}(\tstep^2 + h^2 +h^2\tstep)\).
+\end{itemize}
+Finally, we will say that a scheme is convergent (in the maximum norm) if 
+\[
+    \lim_{\tstep, h \to 0} (\max_{j,} \abs{u(x_j, t^n) - u_j^n}) = 0.
+\]
+Obviously, we can also consider weaker norms, such as \(\normdot_{\Delta,1}\) and \(\normdot_{\Delta, 2}\), which we will introduce later.
+\subsubsection*{Stability}
+We will say that a numerical method for a linear hyperbolic problem is stable if for each instant \(T\) there exists a constant \(C_T > 0\) such that for each \(h>0\), there exists \(\delta_0 > 0\) such that for each \(0 < \tstep < \delta_0\) we have 
+\begin{equation}
+    \norm{\uvec^n}_\Delta \leq C_T \norm{\uvec^0}_\Delta, 
+    \label{14_hyp}
+\end{equation}
+for each \(n\) such that \(n\tstep \leq T\), and for each initial datum \(\uvec_0\). \(C_T\) should not depend on \(\tstep\) or \(h\).
+\begin{notation}
+    \(\normdot_\Delta\) denotes a suitable discrete norm, for example 
+    \begin{equation}
+        \norm{\vvec}_{\Delta,p} = \left( h\sum_{j=-\infty}^{\infty} \abs{v_j}^p\right)^{\frac{1}{p}} \txt{ for } p = 1,2 \quad \norm{\vvec}_{\Delta,\infty} = \sup_j \abs{v_j}.
+        \label{15_hyp}
+    \end{equation}
+    This is an approximation of the \(L^p\) norm for some \(p\).
+\end{notation}
+\begin{theorem}
+    The implicit backward/centered Euler scheme \eqref{13_hyp} is stable in the norm \(\normdot_{\Delta,2}\) for any choice of \(\tstep\) and \(h\). Precisely,
+    \[
+        \norm{\uvec}_{\Delta,2} \leq \norm{\uvec_0}_{\Delta,2} \ \forall \; \tstep, h >0.    
+    \]
+\end{theorem}
+A scheme is called strongly stable with respect to the norm \(\normdot_\Delta\) if 
+\begin{equation}
+    \norm{\uvec^n}_\Delta \leq \norm{\uvec^{n-1}}_\Delta, 
+    \label{18_hyp} 
+\end{equation}
+for each \(n\) such that \(n\tstep \leq T\), and for each initial datum \(\uvec_0\), which implies that \eqref{14_hyp} is verified with \(C^T=1\).
+\begin{remark}
+    In the contest of hyperbolic problems, one often wants long-time solutions. Such cases require a strongly stable scheme, as this guarantees that the numerical solution is bounded for each value of \(T\).
+\end{remark} 
+As we will see a necessary condition for the stabiliy of an explicit numerical scheme like \eqref{4_hyp} is that the temporal and spatial discretization steps satisfy
+\begin{equation}
+    \abs{a\lambda} \leq 1, \txt{ or } \tstep \leq \frac{h}{\abs{a}}.
+    \label{19_hyp}
+\end{equation}
+This is the celebrated CFL condition (from Courant, Friedrichs and Lewy). \(a\lambda\) is commonly called \(CFL\) number and is a physically dimensionless quantity.
+\begin{remark}
+    The CFL condition estabilishes, in particular, that there is no explicit finite difference scheme for hyperbolic initial value problems that is unconditionally stable and consistent. Indeed, suppose the CFL condition is violated. Then there exists at least a point \(x^*\) in the dependency domain that doesn't belong to the numerical dependency domain. Then, changing the initial datum to \(x^*\) will only modify the exact solution and not the numerical one.
+\end{remark}
+\begin{remark}
+    In the case where \(a = a(x,t)\) is no longer constant in \eqref{1_hyp}, the CFL condition 
+    \[
+        \tstep \leq \frac{h}{\sup_{\substack{x\in \real \\ t > 0}} \abs{a(x,t)}}.
+    \]
+    If the spatial discretization step varies, we have 
+    \[
+        \tstep \leq \frac{h}{\sup_{\substack{x\in (x_k, x_{k+1}) \\ t > 0}} \abs{a(x,t)}}.
+    \]
+    with \(h_k = x_{k+1} - x_k\).
+\end{remark}
+\begin{theorem}
+    If the CFL condition \eqref{19_hyp} is satisfied, the upwind, Lax-Friedrichs and Lax-Wendroff schemes are strongly stable \(\normdot_{\Delta,1}\).
+\end{theorem}
+\begin{theorem}
+    If the CFL is verified, the upwind scheme satisfies
+    \begin{equation}
+        \norm{\uvec^n}_{\Delta, \infty} \leq \norm{\uvec_0}_{\Delta, \infty} \quad \forall \; n \geq 0.
+        \label{20_hyp}
+    \end{equation}
+    This relation is called discrete maximum principle.
+\end{theorem}
+\begin{theorem}
+    The backward Euler BE/C is strongly stable in the norm \(\norm{\cdot}_{\Delta, 2}\), with no restriction on \(\tstep\). The forward FE/C, instead, is never strongly stable. However, it is stable with constant \(C_T = e^{\frac{T}{2}}\) provided that we assume that \(\tstep\) satisfies the following condition (more restrictive than the CFL condition)
+    \begin{equation}
+        \tstep \leq \left( \frac{h}{a} \right)^2
+        \label{21_hyp}
+    \end{equation}  
+\end{theorem}
+\subsection{Wave equation}
+Let us consider the following second order hyperbolic problem 
+\begin{equation}
+    \begin{cases}
+        \displaystyle\partialderivative{^2 u}{t^2} - c^2 \partialderivative{^2 u}{x^2} = 0 & x \in \real, \ t > 0, \\
+        u(x, 0) = u_0 (x), & x \in \real, \\
+        \partialderivative{u}{t}(x,0) = v_0(x), & x \in \real,
+    \end{cases}
+    \label{23_hyp}
+\end{equation}
+where \(c > 0\) is characteristic velocity. 
+
+The function \(u\) can represent the vertical displacement of a vibrating string elastic chord. The functions \(u_0(x)\) and \(v_0(x)\) describe the initial displacement and the velocity of the chord. 
+
+By performing, the change of variables \(\vect{w} = (\partial_x u, \partial_t u)^T\), we can rewrite \eqref{23_hyp} as a first order system of PDEs, in the form 
+\begin{equation}
+    \begin{cases}
+        \displaystyle \partialderivative{\vect{w}}{t} + A \partialderivative{\vect{w}}{t} = \vect{0}, & x \in \real, \ t> 0,\\
+        \vect{w}(x,0) = \vect{w}_0, & x \in \real,
+    \end{cases}
+    \label{24_hyp}
+\end{equation}
+with 
+\[
+    A = \left( \begin{matrix}
+        0 & -1 \\
+        -c^2 & 0
+    \end{matrix} \right), \quad \vect{w}_0 = \left( \begin{matrix}
+        \partial_x u_0(x) \\
+        v_0(x)
+    \end{matrix} \right).
+\]
+Since the eigenvalues of \(A\) are distinct real \(\pm c\) (representing the wave propagation rates), system \eqref{24_hyp} is hyperbolic.
+\subsection{Finite Difference discretization}
+The half-plane \(\left\{ t>0 \right\}\) is discretized choosing a temporal step \(\tstep\), a spatial discretization step \(h\) and defining \((x_j, t^n)\) in the following way 
+\begin{align*}
+    &x_j = jh,  &j \in \mathbb{Z},    &\\
+    &t^n = n\tstep, & n\in \mathbb{N}.&
+\end{align*}
+Moreover, we set \(\lambda =  \frac{\tstep}{h}\) and seek discrete solutions \(\vect{w}^n_j\) which approximate \(\vect{w}(x_j, t^n)\). On one hand, FE/C reads
+\begin{equation}
+    \begin{cases}
+        \vect{w}^{n+1}_j = \vect{w}^n_j -\frac{\lambda}{2} A(\vect{w}^n_{j+1} - \vect{w}^n_{j-1}), & \txt{for } j \in \mathbb{Z}, n \in \mathbb{N}, \\
+        \vect{w}^0_j = \vect{w}_0(x_j), & \txt{for } j \in \mathbb{Z}.
+    \end{cases}
+    \label{25_hyp}
+\end{equation} 
+On the other hand, the BE/C scheme
+\begin{equation}
+    \begin{cases}
+        \vect{w}^{n+1}_j = \vect{w}^n_j -\frac{\lambda}{2} A(\vect{w}^{n+1}_{j+1} - \vect{w}^{n+1}_{j-1}), & \txt{for } j \in \mathbb{Z}, n \in \mathbb{N}, \\
+        \vect{w}^0_j = \vect{w}_0(x_j), & \txt{for } j \in \mathbb{Z}.
+    \end{cases}
+    \label{26_hyp}
+\end{equation}
+Let us study the numerical stability of the FE/C and BE/C schemes. The matrix \(A\) can be diagonalized as 
+\[
+    A = T\Lambda T^{-1},
+\]
+where \(\Lambda = \txt{diag}(c,-c)\) and 
+\[
+    T = \left( \begin{matrix}
+        1 & 1 \\
+        -c & c 
+    \end{matrix} \right).
+\]
+Then: 
+\begin{align*}
+    \partialderivative{\vect{w}}{t} + A \partialderivative{\vect{w}}{x} &= \vect{0} \\
+    T^{-1} \partialderivative{\vect{w}}{t} + T^{-1} A \partialderivative{\vect{w}}{x} &= \vect{0} \\ 
+    \partialderivative{T^{-1}\vect{w}}{t} + \underbrace{T^{-1} A T}_{\Lambda} \underbrace{T^{-1}\partialderivative{\vect{w}}{x}}_{\displaystyle \partialderivative{T^{-1} \vect{w}}{x}} &= \vect{0} 
+\end{align*}
+We then introduce the so-called characteristic variables \(\vect{z} = T^{-1}\vect{w}.\) Specifically, we have 
+\begin{equation}
+    \begin{aligned}
+        z_1 &= \onehalf \left( w_1 - \frac{w_2}{c} \right), \\ 
+        z_2 &= \onehalf \left( w_1 + \frac{w_2}{c} \right).
+    \end{aligned}
+    \label{27_hyp}
+\end{equation}
+Thus: 
+\[
+    \partialderivative{\vect{z}}{t} + \Lambda \partialderivative{\vect{z}}{x} = \vect{0}.
+\]
+Hence, left-multiplying \eqref{25_hyp} by \(T^{-1}\), and by writing \(A = ATT^{-1}\), we get 
+\begin{equation}
+    \vect{z}^{n+1}_n = \vect{z}_j^n - \frac{\lambda}{2} \underbrace{T^{-1}AT}_{\Lambda} (\vect{z}^n_{j+1} - \vect{z}^n_{j-1}).
+    \label{28_hyp}
+\end{equation}
+Being \(\Lambda\) a diagonal matrix, the equations of the above system can be decoupled as follows
+\begin{align*}
+    (z_1)^{n+1}_j &= (z_1)^n_j -\frac{\lambda}{2} c ((z_1)^n_{j+1} - (z_1)^n_{j-1}), \\
+    (z_2)^{n+1}_j &= (z_2)_j^n +\frac{\lambda}{2} c ((z_1)^n_{j+1} - (z_2)^n_{j-1}).
+\end{align*}
+In conclusion, applying FE/C scheme \eqref{25_hyp} to system \eqref{24_hyp} is equivalent to independently apply scalar FE/C to each characteristic variable. The same argument can be applied to the BE/C scheme. Therefore, the FE/C and BE/C numerical schemes \eqref{25_hyp} and \eqref{26_hyp} are stable if and only if the corresponding scalar schemes are stable for each characteristic variable. We conclude that the BE/C scheme is strongly stable in the norm \(\normdot_{\Delta, 2}\) for any choice of the parameters \(h\) and \(\tstep\). Conversely, the FE/C scheme is stable in the norm \(\normdot_{\Delta, 2}\) whenever 
+\begin{equation}
+    \tstep \leq \left( \frac{h}{c} \right)^2.
+    \label{29_hyp}
+\end{equation}
+\subsection{Wave equation in a bounded domain}
+Consider now problem \eqref{23_hyp} in a bounded domain \((a,b) \subset \real\). 
+\begin{equation}
+    \begin{cases}
+        \displaystyle \partialderivative{^2 u}{u^2} - c^2 \partialderivative{^2 u}{x^2} = 0 & x \in (a,b), \ t > 0, \\
+        u(x,0) = u_0(x), & x \in \real, \\
+        \displaystyle \partialderivative{u}{t}(x,0) = v_0(x), & x \in (a,b), 
+        + \txt{B.C.} 
+    \end{cases}
+    \label{30_hyp}
+\end{equation}
+Equation \eqref{30_hyp} can be rewritten as 
+\begin{equation}
+    \begin{cases}
+        \displaystyle\partialderivative{\vect{w}}{t} + A \partialderivative{\vect{w}}{x} = \vect{0}, & x\in (a,b), \ t > 0 \\
+        \vect{w}(x,0) = \vect{w}_0, & x \in (a,b), \\
+        + \txt{B.C.}
+    \end{cases}
+    \label{31_hyp}
+\end{equation}
+Let us know study boundary conditions can be meaningful for \eqref{30_hyp}.
+
+Left-multiplying \eqref{31_hyp} by \(T^{-1}\) we get 
+\begin{equation}
+    \begin{cases}
+        \partialderivative{\vect{z}}{t} + \Lambda \partialderivative{\vect{z}}{x} = 0, & x \in (a,b), t > 0, \\
+        \vect{z}(x,0) = \vect{z}_0 = T^{-1} \vect{w}_0, & x \in (a,b).
+    \end{cases}
+    \label{32_hyp}
+\end{equation}
+The first line can be decoupled into two independent equations: 
+\begin{align*}
+    &\partialderivative{z_1}{t} + c \partialderivative{z_1}{x} = 0  & x\in (a,b), \ t >0, \\
+    &\partialderivative{z_2}{t} - c \partialderivative{z_2}{x} = 0  & x\in (a,b), \ t >0, \\
+\end{align*}
+The two characteristic variables \(z_1\) and \(z_2\) are associated with positive \(c\) and negative \(-c\) velocities respectively. 
+Therefore, a possible set of boundary conditions would consist in assigning the first characteristic variable on the left boundary \((z_1(a,t) = g_a(t))\) and the second one on the right boundary \((z_2(b, t)=g_b(t))\). Considering the primitive variable \(u(x,t)\), these conditions read as follows 
+\begin{equation}
+    \begin{cases}
+        \displaystyle \partialderivative{u}{x}(a,t) -\frac{1}{c}\partialderivative{u}{t}(a,t) = 2 g_a (t), & t > 0, \\
+        \displaystyle  \partialderivative{u}{x}(b,t) + \frac{1}{c} \partialderivative{u}{t}(b,t) = 2 g_b (t), & t> 0.
+    \end{cases}
+    \label{33_hyp}
+\end{equation}
+In general terms, given an hyperbolic system in the form \eqref{24_hyp}, the number of positive eigenvalues of \(A\) determines the number of boundary conditions to be assigned at \(x=a\), while \(x=b\) we will need to assign as many conditions as the number of negative eigenvalues. 
+\subsection{Finite element method}
+We now illustrate how to apply Galerkin methods to the discretization of scalar hyperbolic equations. Let us consider the following model problem, where \(a\) is a positive constant
+\begin{equation}
+    \begin{cases}
+        \displaystyle \partialderivative{u}{t} + a \partialderivative{u}{x} = f, & x \in (0,1), \ t > 0 \\
+        u(x,0) = u_0(x), & x \in [0,1], \\
+        u(0,t) = 0, & t > 0,
+    \end{cases}
+    \label{36_hyp}
+\end{equation}
+To start with, we proceed with a spatial discretization based on continuous finite element. We therefore attempt a semidiscretization of the following form 
+\begin{equation}
+    \begin{split}
+        \forall \; t > 0&, \ \find u_h = u_h(t) \in V_h : \\
+        &\left( \partialderivative{u_h}{t}, v_h \right) + a\left( \partialderivative{u_h}{x}, v_h \right) = (f,v_h) \quad \forall \; v_h \in V_h,
+    \end{split}
+    \label{37_hyp}
+\end{equation}
+with \(u_h^0\) being the approximation of the initial datum. We have set 
+\[
+    V_h = \left\{ v_h \in X_h^r : v_h(0) = 0 \right\}, \quad r \geq 1.
+\]
+For the temporal discretization we will use finite difference schemes. In the case of BE/C we will have 
+\begin{equation}
+    \begin{split}
+        \forall \; > 0&, \ \find u^{n+1}_h \in V_h : \\
+        \frac{1}{\tstep} (u_h^{n+1}- u_h^n, v_h) + a\left( \partialderivative{u_h^{n+1}}{x}, v_h \right) = (f^{n+1}, v_h) \quad \forall \; v_h \in V_h.
+    \end{split}
+    \label{38_hyp}
+\end{equation}
+By choosing \(v_h = u_h^{n+1}\) with \(f=0\), we obtain, as in the case of finite differences, that the BE/C scheme is strongly with no restriction on \(\tstep\). 
+
+In case we the FE/C scheme instead, the discrete problem becomes: 
+\begin{equation}
+    \begin{split}
+        \forall \; > 0&, \ \find u^{n+1}_h \in V_h : \\
+        \frac{1}{\tstep} (u_h^{n+1}- u_h^n, v_h) + a\left( \partialderivative{u_h^{n}}{x}, v_h \right) = (f^{n+1}, v_h) \quad \forall \; v_h \in V_h.
+    \end{split}
+    \label{39_hyp}
+\end{equation}
+As in the case of finite differences, the FE/C is never strongly stable. 
+
+To make it stable, we use the other methods, LF, U or LW.
+By observing that the these schemes can be rewritten as 
+\begin{equation}
+    \frac{u_j^{n+1}-u^n_j}{\tstep} + a \frac{u_{j+1}^{n}-u^n_{j-1}}{2h} - \mu \frac{u_{j+1}^{n}-2u^n_j+u^n_{j-1}}{h^2} = 0.
+    \label{40_hyp}
+\end{equation}
+The second term is the discretization via centered finite differences of the convective term \(au_x(t^n)\), while the third one is a numerical diffusion term and corresponds to the discretization via finite differences of \(-\mu u_{xx}(t^n)\). The numerical viscosity coefficient \(\mu\) is given by 
+\begin{equation}
+    \mu = 
+    \begin{cases}
+        \dfrac{h^2}{2\tstep} & LF \\
+        \dfrac{a^2\tstep}{2} & LW \\
+        \dfrac{ah}{2}
+    \end{cases}
+    \label{41_hyp}
+\end{equation}
+Equation \eqref{40_hyp} suggests the following finite element version for the approximation of problem \eqref{36_hyp}:
+\begin{equation}
+    \begin{split}
+        \forall \; > 0&, \ \find u^{n+1}_h \in V_h : \\
+        &\frac{1}{\tstep} (u_h^{n+1}- u_n^h, v_h) + a\left( \partialderivative{u_n^h}{x}, v_h \right) + \mu \left( \partialderivative{u^n_h}{x}, \partialderivative{v_h}{x} \right) \\
+        &(f^n,v_h) \quad \forall \; v_h \in V_h,
+    \end{split}
+    \label{42_hyp}
+\end{equation}
+where the artificial viscosity \(\mu\) is given in \eqref{41_hyp} by analogy with the finite difference case. We denote the resulting methods as LF-FE, LW-FE and U-FE, respectively. 
+
+As a matter of fact, it is possible to prove that the same stability results of finite differences holds for finite elements as well. 
