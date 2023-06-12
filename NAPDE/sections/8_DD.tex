@@ -1,0 +1,256 @@
+\newpage
+\section{Domain Decomposition}
+Consider the elliptic BVP: 
+\begin{equation}
+    \begin{cases}
+        \loperator u := -u'' = f & a < x < b, \\
+        u(a) = u(b) = 0.
+    \end{cases}
+    \label{1_dd}
+\end{equation}
+Now consider the splitting of \(\overline{\Omega}\) in \(\overline{\Omega}_1 \cup \overline{\Omega}_2 = \emptyset\). And now consider the splitting of the space \(V\): 
+\begin{equation}
+    V = V_1 \oplus H_\gamma \oplus V_2
+    \label{3_dd}
+\end{equation}
+where  
+\begin{equation*}
+    \begin{aligned}
+        &V_i = \tilde{H}^1_0 := \left\{ v \in H^1_0(\Omega): v\limited{\Omega_i} \in H^1_0(\Omega_i), v\limited{\Omega\setminus\Omega_i} = 0 \right\}, \ i = 1,2 \\
+        &H_\gamma = \txt{ space of harmonic extensions of functions whose values at } \gamma \txt{ is given }\\
+        &\quad \;  = \left\{ v_H \in V : v(\gamma) = v_\gamma, v\limited{\Omega_i} = v_i, v''_i = 0, i = 1,2 \ \forall \; v_\gamma \in \real \right\}
+    \end{aligned}
+\end{equation*}
+\begin{remark}
+    The splitting \eqref{3_dd} is unique. 
+\end{remark}
+So we can say
+\begin{proposition}
+    \(u\) is solution to the weak formulation of \eqref{1_dd} if and only if:
+    \begin{equation}
+        \begin{cases}
+            -u''_1 = f & \txt{in }\Omega_1 \\
+            -u''_2 = f & \txt{in }\Omega_2 \\
+            u_1 = u_2 & \txt{Dirichlet transmission condition} \\
+            u'_1 = u'_2 & \txt{Neumann transmission condition} \\
+            u_1(a) = u_2(b) = 0 & \txt{B.C.}
+        \end{cases}
+        \label{5_dd}
+    \end{equation}
+    The converse is also true, meaning that if \(u1,u_2\) is the solution to \eqref{5_dd}, then \(u : u\limited{\Omega_1} = u_1, u\limited{\Omega_2} = u_2\) is solution to the weak formulation of \eqref{1_dd}. So \eqref{1_dd} and \eqref{5_dd} are equivalent.
+\end{proposition}
+In the case of overlapping domains we have \(\overline{\Omega} = \overline{\Omega_1} \cup \overline{\Omega_2}, \Omega_1 \cap \Omega_2 = \Omega_{12}\) which has a non-null measure.
+Then we have
+\begin{proposition}
+    This problem is equivalent to \eqref{5_dd}
+    \begin{equation}
+        \begin{cases}
+            -u''_1 = f & \txt{in }\Omega_1 \\
+            -u''_2 = f & \txt{in }\Omega_2 \\
+            u_1 =  u_2 & \txt{in } \Omega_{12} \\
+            u_1(a) = u_2(b) = 0 & txt{B.C.}
+        \end{cases}
+        \label{8_dd}
+    \end{equation}
+    The condition on \(\Omega_{12}\) is called continuity condition.
+\end{proposition}
+This method can be used in the discretization method of any PDEs, to make their algebraic solution more efficient on parallel computer systems. These method allow for the reformulation of problems into multiple subdomains, which is very convenient for multiphysics problems, in which there are different equations in different subregions of the domain.
+
+\subsection{Iterative methods}
+Consider the problem
+\begin{equation}
+    \find u :\Omega \to \real \txt{ s.t. }
+    \begin{cases}
+        \loperator u = f & \txt{in } \Omega, \\ 
+        u = 0 & \txt{on } \boundary.
+    \end{cases}
+    \label{model_problem_dd}
+\end{equation}
+The weak formulation reads: 
+\begin{equation*}
+    \find u \in V = H^1_0(\Omega) : a(u,v) = (f,v) \quad \forall \; v \in V,
+\end{equation*}
+\subsubsection*{Schwarz Method}
+Now consider a decomposition of \(\Omega\) into subdomains with an overlap. We have \(\Omega_1,\Omega_2\) and their overlap \(\Omega_{12}\) which boundary can be divided into two subregions \(\Gamma_1 \cup \Gamma_2 = \partial\boundary_{12}\), where \(\Gamma_1\) is the old boundary of \(\Omega_1\) and \(\Gamma_2\) of \(\Omega_2\). 
+
+Then, given \(u_2^0\) on \(\Gamma_1\), for \(k \geq 1\):
+\begin{equation*}
+    \txt{solve }\begin{cases}
+        \loperator u^{(k)}_1 = f & \txt{in } \Omega_1 \\
+        u^{(k)}_1 = u^{(k-1)}_2 & \txt{on } \Gamma_1 \\
+        u^{(k)}_1 = 0 & \txt{on } \boundary_1\setminus \Gamma_1
+    \end{cases}
+\end{equation*}
+\begin{equation*}
+    \txt{solve }\begin{cases}
+        \loperator u^{(k)}_2 = f & \txt{in } \Omega_2 \\
+        u^{(k)}_2 = \begin{cases}
+            u^{(k-1)}_1 \\
+            u^{(k)}_1 
+        \end{cases} & \txt{on } \Gamma_2 \\
+        u^{(k)}_2 = 0 & \txt{on } \boundary_2\setminus \Gamma_2
+    \end{cases}
+\end{equation*}
+The choice of \(u^{(k)}_1\) implies that we are using a multiplicative Schwarz method, otherwise we are using an additive one.
+
+The Schwarz method always converges with a rate that increase as the overlap of the two domain increases.
+\begin{remark}
+    The Schwarz method requires that at each iteration the solution of the subproblems is of the same kind of the original problem, and that the boundary condition remain unchanged. Also it is necessary to apply Dirichlet B.C. at the interfaces.
+\end{remark}
+\subsubsection*{Dirichlet-Neumann method}
+In the case of non overlapping domain, so a common interface \(\Gamma\), the following theorem holds 
+\begin{theorem}
+    The solution of the \eqref{model_problem_dd} is such that \(u\limited{\Omega_i} = u_i\) for \(i=1,2\) where \(u_i\) is the solution to 
+    \begin{equation*}
+        \begin{cases}
+            \loperator u_i = f & \txt{in } \Omega_i \\
+            u_i = 0 & \txt{on } \boundary_i \setminus \Gamma
+        \end{cases}
+    \end{equation*}
+    with interface conditions
+    \begin{equation*}
+        u_1 =  u_2 \quad \partialderivative{u_i}{n_L} = \partialderivative{u_2}{n_L} \quad \txt{on } \Gamma
+    \end{equation*}
+    where \(\pderivative{n_L}\) is the conormal derivative.
+\end{theorem}
+and we can use the Dirichlet-Neumann, which, given \(u_2^0\) on \(\Gamma\), for \(k \geq 1\) 
+\begin{equation*}
+    \txt{solve }\begin{cases}
+        \loperator u^{(k)}_1 = f & \txt{in } \Omega_1 \\
+        u^{(k)}_1 = u^{(k-1)}_2 & \txt{on } \Gamma \\
+        u^{(k)}_1 = 0 & \txt{on } \boundary_1\setminus \Gamma
+    \end{cases}
+\end{equation*}
+\begin{equation*}
+    \txt{solve }\begin{cases}
+        \loperator u^{(k)}_2 = f & \txt{in } \Omega_2 \\
+        \displaystyle \partialderivative{u^{(k)}_2}{n_L} = \partialderivative{u_1^{(k)}}{n_L} & \txt{on } \Gamma \\
+        u^{(k)}_2 = 0 & \txt{on } \boundary_2\setminus \Gamma
+    \end{cases}
+\end{equation*}
+Thanks to the theorem, when the two sequences \(\left\{ u^{(k)}_1 \right\}\) and \(\left\{ u^{(k)}_2 \right\}\) converge, their limit will be the solution to the exact problem. So the method is consistent, but its convergence is not guaranteed.
+\subsubsection*{Other methods}
+Considering a partition of \(\Omega\) into two disjoint subdomains and denote by \(\lambda\) the unknown value of the solution on their interface \(\Gamma\) we have \(\lambda = u_i\) on \(\Gamma\) for \(i=1,2\).
+Consider the following iterative algorithm (called Neumann-Neumann): for any given \(\lambda^{(0)}\) on \(\Gamma\), for \(k \geq 0\) and \(i = 1,2\)
+\begin{equation*}
+    \txt{solve }\begin{cases}
+        \loperator u^{(k+1)}_i = f & \txt{in } \Omega_i \\
+        u^{(k+1)}_i = \lambda^{(k)} & \txt{on } \Gamma \\
+        u^{(k+1)}_i = 0 & \txt{on } \boundary_i\setminus \Gamma
+    \end{cases}
+\end{equation*}
+\begin{equation*}
+    \txt{solve }\begin{cases}
+        \loperator \psi^{(k+1)}_i = 0 & \txt{in } \Omega_i \\
+        \displaystyle \partialderivative{\psi^{(k+1)}_i}{n} = \partialderivative{u_1^{(k+1)}}{n} - \partialderivative{u^{(k+1)}_2}{n} & \txt{on } \Gamma \\
+        \psi^{(k+1)}_i = 0 & \txt{on } \boundary_i\setminus \Gamma
+    \end{cases}
+\end{equation*}
+with 
+\[
+    \lambda^{(k+1)} = \lambda^{(k)} - \theta\left( \sigma_1 \psi^{(k+1)}_{1\limited{\Gamma}} - \sigma_2\psi^{(k+1)}_{2\limited{\Gamma}} \right)
+\]
+Another method is the Robin-Robin algorithm: for every \(k\geq 0\) 
+\begin{equation*}
+    \txt{solve }\begin{cases}
+        \loperator u^{(k+1)}_i = f & \txt{in } \Omega_1 \\
+        \displaystyle \partialderivative{u^{(k+1)}}{n} + \gamma_1u_1^{(k+1)} = \partialderivative{u_2^{(k)}}{n} + \gamma_1u_2^{(2)} & \txt{on } \Gamma \\
+        u^{(k+1)}_i = 0 & \txt{on } \boundary_1\setminus \Gamma
+    \end{cases}
+\end{equation*}
+\begin{equation*}
+    \txt{solve }\begin{cases}
+        \loperator u^{(k+1)}_2 = f & \txt{in } \Omega_2 \\
+        \displaystyle \partialderivative{u^{(k+1)}_2}{n} + \gamma_2u_2^{(k+1)} = \partialderivative{u_1^{(k+1)}}{n} - \gamma_2u_1^{(k+1)} & \txt{on } \Gamma \\
+        u^{(k+1)}_2 = 0 & \txt{on } \boundary_2\setminus \Gamma
+    \end{cases}
+\end{equation*}
+where \(u^{(0)}_2\) is assigned and \(\gamma_1,\gamma_2\) are non-negative acceleration parameters tat satisfy \(\gamma_1+\gamma_2 > 0\). 
+\subsection{The Steklov-Poincaré interface equation}
+Let us change the model prolem with a classical Poisson equation 
+\begin{equation}
+    \begin{cases}
+        -\Delta u = f & \txt{in }\Omega \\
+        u = 0 & \txt{on }\boundary.
+    \end{cases}
+    \label{model_problem_poisson_dd}
+\end{equation}
+The equivalen multidomain formulation is (\(u_i = u\limited{\Omega_i}\))
+\begin{equation}
+    \begin{cases}
+        -\Delta u_1 = f & \txt{in }\Omega_1 \\
+        -\Delta u_2 = f & \txt{in }\Omega_2 \\
+        u_1 = 0 & \txt{on }\boundary_1\setminus\Gamma \\
+        u_2 = 0 & \txt{on } \boundary_2\setminus\Gamma\\
+        u_1 = u_2 & \txt{on }\Gamma \\
+        \partialderivative{u_1}{n} = \partialderivative{u_2}{n} & \txt{on }\Gamma
+    \end{cases}
+    \label{multi_domain_poisson_dd}
+\end{equation}
+\begin{remark}
+    On the interface we \(\Gamma\) we have the normal unit vectors \(\normal_1\) and \(\normal_2\), with \(\normal_1 = -\normal_2\). We can denote \(\normal =  \normal_1\) so that 
+    \[
+        \pderivative{n} = \pderivative{n_1} = -\pderivative{n_2} \quad \Gamma.
+    \]
+\end{remark}
+\subsubsection*{The Steklov Poincaré operator}
+Let \(\lambda\) be the unknown value of \(u\) on \(\Gamma\):
+\[
+    \lambda = u\limited{\Gamma}
+\]
+If we know \(\lambda \txt{ on }\Gamma\), we could solve the following two independent boundary-value problems with Dirichlet conditions on \(\Gamma\) and \(i=1,2\):
+\begin{equation*}
+    \begin{cases}
+        -\Delta w_i = f & \txt{in }\Omega_i \\
+        w_i = \lambda & \txt{on }\Gamma \\
+        w_i = 0 & \txt{on }\boundary_i\setminus\Gamma
+    \end{cases}
+\end{equation*} 
+With the aim of obtaining the value \(\lambda\) on \(\Gamma\), let us split \(w_i\) in 
+\[
+    w_i = w_i^* + u_i^0,
+\]
+where \(w_i^*\) and \(u_i^0\) are the solutions to \((i = 1,2)\):
+\begin{equation*}
+    \begin{cases}
+        -\Delta w_i^* = f & \txt{in } \Omega_i \\
+        w_i^* = 0 & \txt{on }\boundary_i \cap \boundary \\ 
+        w_i^* = 0 & \txt{on }\Gamma
+    \end{cases}
+\end{equation*}
+\begin{equation*}
+    \begin{cases}
+        -\Delta u_i^0 = 0 & \txt{in } \Omega_i \\
+        u_i^0 = 0 & \txt{on }\boundary_i \cap \boundary \\ 
+        u_i^0 = 0 & \txt{on }\Gamma
+    \end{cases}
+\end{equation*}
+The functions \(w^*_i\) depend solely on the source data \(f\) (\(\lambda = G_i f\)), while \(u_i^0\) depends on \(\lambda\).
+We could write \(u_i^0 = H_i\lambda\), where \(H_i\) is the harmonic extension operator of \(\lambda\) on the domain \(\Omega_i\).
+\begin{align*}
+    u_i = w^*_i + u_i^0 &\iff \partialderivative{w_1}{n} = \partialderivative{w_2}{n} \quad \txt{on }\Gamma \\
+    &\iff \pderivative{n}(w_i^* + u_i^0) = \pderivative{n}(w_2^* + u_2^0) \quad \txt{on }\Gamma \\
+    &\iff \pderivative{G_1 f + H_1\lambda} = \pderivative{n}(G_2 f + H_2 \lambda) \quad \txt{on }\Gamma \\
+    &\iff \left( \partialderivative{H_1}{n} - \partialderivative{H_2}{n} \right)\lambda = \left( \partialderivative{G_2}{n} - \partialderivative{G_1}{n} \right) f \quad \txt{on }\Gamma.
+\end{align*}
+which is the Steklov-Poincaré equation for \(\lambda\) on \(\Gamma\)
+\[
+    S\lambda = \chi \quad \txt{on }\Gamma
+\]
+where \(S\) is the Steklov-Poincaré operator 
+\[
+    S\mu = \pderivative{n}H_1 \mu - \pderivative{n}H_2\mu = \sum_{i=1}^{2}\pderivative{n_i} H_i\mu
+\]
+\(\chi\) is a linear functional 
+\[
+    \chi = \pderivative{n} G_2 f -\pderivative{n}G_1 f = -\sum_{i=1}^{2} \pderivative{n_i} G_i f.
+\]
+The operator 
+\[
+    S_i : \mu \to S_i\mu = {\pderivative{n_i}(H_i\mu)}\bigg\vert_\Gamma
+\]
+is called local Steklov-Poincaré operator which operates between 
+\[
+    \Lambda = \left\{ \mu : \exists \; v \in V \txt{s.t.} \mu = v\limited{\Gamma} \right\} = H^{\onehalf}_{00}(\Gamma)
+\]
+and its dual \(\Lambda'\).
