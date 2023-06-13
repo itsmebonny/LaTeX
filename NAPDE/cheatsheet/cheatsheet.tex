@@ -216,6 +216,14 @@
 \[
     \int_\Omega \div u = \int_\boundary u \cdot \vect{n} 
 \]
+\[
+    -\int_\Omega \vect{v} \cdot \grad p = \int_\Omega p\div \vect{v} + \int_\boundary \vvec \cdot \normal p
+\]
+\[
+    \int_\Omega \pderivative{x}u^2 = \onehalf \int_\boundary u\cdot \normal  
+\]
+\subsection*{Lifting Operators}
+If \(u\) on \(\boundary\) is non-null, we need to solve this problem, otherwise we cannot use test functions that vanish at the boundary. To do so, given \(u = g \txt{ on }\boundary\) we use a lifting operator \(Rg \in H^1(\Omega) : Rg\limited{\boundary} = g\), and modify our solution such that \(u = \overset{\mathrm{o}}{u} + Rg\), so the function \(\overset{\mathrm{o}}{u}\) has the properties we need. We then look for bilinear formulation such as \(a(\overset{\mathrm{o}}{u}, v)\) and add to the right-hand side \(-a(Rg, v)\).
 \section*{Weak Formulations}
 \subsection*{Elliptic equations}
 \begin{equation*}
@@ -265,6 +273,20 @@ for each \(t > 0\), we need to find \(u_h(t) \in V_h\) s.t.
     \int_\Omega \partialderivative{u_h(t)}{t} v_h \, d\Omega + a(u_h(t), v_h) = \int_\Omega f(t)v_h \, d\Omega \quad \forall \; v_h \in V_h
 \label{semi-discretization_pbl}
 \end{equation*}
+
+\section*{Numerical formulation}
+\subsection*{Continuous Galerkin}
+Space \(V_h = \left\{ v_h \in \mathcal{C}^0(\overline{\Omega}) : v_h\limited{\element} \in \mathbb{P}^r(\element) \ \forall \; \eit, v_h\limited{\Gamma_D} = 0 \right\}\)
+\[
+    \find u_h \in V_h : a(u_h,v_h) = F(v_h) \quad \forall \; v_h \in V_h
+\]
+\subsection*{Discontinuous Galerkin}
+\subsection*{SEM-NI}
+
+Space \(X_\delta= \left\{ v_\delta \in \mathcal{C}^0(\Omega) : v\limited{\element} = \hat{v}_\delta \, \mathrm{o}\, \vect{F}^{-1}_\element, \txt{ with } \hat{v}_\delta \in \mathbb{Q}_p(\hat{\element}) \ \forall \; \eit \right\}\)
+\[
+    \find u_\delta \in X_\delta : a_\delta(u_\delta, v_\delta) = F_\delta(v_\delta) \quad \forall \; v_\delta \in X_\delta
+\]
 \section*{Code implementation}
 \subsection*{CG-FEM}
 \begin{itemize}
@@ -297,7 +319,7 @@ for each \(t > 0\), we need to find \(u_h(t) \in V_h\) s.t.
     \]
     Loop on all the elements and calculate the local mass matrix
     \[
-        M_{loc_{ij}} =  \det(\vect{B}_\element) \int_{\hat{\element}} \hat{\phi}^T_j \vect{B}_\element^{-1} \vect{B}^{-1}_\element \hat{\phi}_i
+        M_{loc_{ij}} =  \det(\vect{B}_\element) \int_{\hat{\element}} \hat{\phi}^T_j \hat{\phi}_i
     \]
     Can be implemented as
     \begin{verbatim}
@@ -306,7 +328,6 @@ for each \(t > 0\), we need to find \(u_h(t) \in V_h\) s.t.
         for i=1:nln
             for j=1:nln
                 for k=1:length(w_2D)
-                    Binv = inv(BJ(:,:,k));      % inverse
                     Jdet = det(BJ(:,:,k));      % determinant 
                     M_loc(i,j) = M_loc(i,j) + (Jdet.*w_2D(k))
                                  .* dphiq(1,k,i).* dphiq(1,k,j);
@@ -331,7 +352,7 @@ for each \(t > 0\), we need to find \(u_h(t) \in V_h\) s.t.
             end
         end
     \end{verbatim}
-    \item Right hand side \(\vect{b}\):
+    \item Right-hand side \(\vect{b}\):
     \[
         b_i = \int_\Omega f\phi_i
     \]
@@ -350,4 +371,21 @@ for each \(t > 0\), we need to find \(u_h(t) \in V_h\) s.t.
         end
     \end{verbatim}
 \end{itemize}
+\section*{Convergence rates}
+\subsection*{Navier-Stokes}
+In case of inf-sup (LBB) condition satisfied by \(V\) and \(Q\)
+\[
+    \norm{\uvec-\uvec_h}_V + \norm{{p}-{p}_h}_Q \leq C(\alpha_h, \beta_h, \gamma, \delta)\left\{ \inf_{\vvec_h \in V_h}\norm{\uvec-\vvec_h}_V + \inf_{{q}_h \in Q_h}\norm{{p}-{q}_h}_Q \right\}
+\]
+where 
+\begin{itemize}
+    \item \(\alpha_h\) is the coercivity constant on the subspace \(V_h\) of divergence free velocities
+    \item \(\beta_h\) is the LBB constant 
+    \item \(\gamma\) is the continuity constant of \(\bilinear\)
+    \item \(\delta\) is the continuity constant of \(b(\cdot,\cdot)\)
+\end{itemize}
+In case of Taylor-Hoods elements 
+\[
+    \norm{\uvec-\uvec_h}_V + \norm{{p}-{p}_h}_Q \leq Ch(\norm{\uvec}_{H^{k+1}} + \norm{p}_{H^k})
+\]
 \end{document}

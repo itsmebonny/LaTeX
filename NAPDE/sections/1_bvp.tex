@@ -60,8 +60,8 @@ where \(a: V \times V \to \real\) is a bilinear form and \(F:V \to \real\) is a 
     \begin{itemize}
         \item \(V\) Hilbert space with \(\normdot\) and inner product \((\cdot, \cdot)\)
         \item \(F \in V^*: \abs{F(v)} \leq \norm{F}_{V^*}\norm{v} \; \forall \; v \in V\)
-        \item \(a\) continuous: \(\exists \; M > 0: \abs{a(u,v)} \leq M \norm{u}\norm{v} \; \forall \; u,v \in V\)
-        \item \(a\) coercive: \(\exists \; \alpha > 0: a(v,v) \geq \alpha\norm{v}^2 \; \forall \; v \in V\)
+        \item \(a\) continuous: \(\exists \; M > 0: \abs{a(u,v)} \leq M \norm{u}_V\norm{v}_V \; \forall \; u,v \in V\)
+        \item \(a\) coercive: \(\exists \; \alpha > 0: a(v,v) \geq \alpha\norm{v}_V^2 \; \forall \; v \in V\)
     \end{itemize}
     Then, there exists a unique solution \(u\) of \ref*{Weak Formulation of Boundary Value Problems}
 \end{theorem}
@@ -69,11 +69,11 @@ Moreover
 \[
     \alpha \norm{u}^2 \leq a(u,u) = F(u) \leq \norm{F}_{V^*} \norm{u}
 \]
-where \(\alpha\) is the coercivity costant. Hence
+where \(\alpha\) is the coercivity constant. Hence,
 \[
     \norm{u} \leq \frac{\norm{F}_{V^*}}{\alpha} \to \txt{stability/continuous dependence on data}
 \]
-But what if some of the assumptions of Lax-Milgram (in particular coercivity) are not satisfied?
+But what if some assumptions of Lax-Milgram (in particular coercivity) are not satisfied?
 
 We need a slightly more general problem to formulate Nečas theorem:
 \begin{equation}
@@ -129,7 +129,7 @@ Recall for a moment the weak formulation of a generic elliptic problem
         a(u,v) = \scalarproduct{F}{v} & \forall \; v \in V \label{Weak Formulation of Boundary Value Problems - 2}
     \end{cases}
 \end{equation}
-with \(V\) being an appropriate Hilbert space, subset of \(H^1(), a(\cdot,\cdot)\) being a continuous and coercive bilinear forrm from \(V \times V \to \real\), \(F(\cdot)\) being a continuous linear functional from \(V \to \real\).
+with \(V\) being an appropriate Hilbert space, subset of \(H^1(), a(\cdot,\cdot)\) being a continuous and coercive bilinear form from \(V \times V \to \real\), \(F(\cdot)\) being a continuous linear functional from \(V \to \real\).
 
 Let \(V_h \subset V\) be a family of spaces that depends on a parameter \(h > 0\), such that \(\dim V_h = N_h < \infty\).
 We can rewrite the weak formulation 
@@ -140,7 +140,7 @@ We can rewrite the weak formulation
     \end{cases}
 \end{equation}
 and is called a \textbf{Galerkin problem}. Denoting with \(\left\{\phi_j, j = 1,2,\ldots,N_h\right\}\) a basis of \(V_h\), it is sufficient that the \eqref{Galerkin Problem Formula} is verified for each function of the basis. 
-Also we need that 
+Also, we need that 
 \[
     a(u_h, \phi_i) = F(\phi_i) \quad i = 1, 2, \ldots , N_h
 \]

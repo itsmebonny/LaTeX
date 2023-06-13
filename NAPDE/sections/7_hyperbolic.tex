@@ -43,13 +43,13 @@ In this case, solutions of \eqref{2_hyp} satisfy
 \[
     \frac{d}{dt} u(x(t), t) = f(x(t), t) - a_0(x(t),t)u(x(t),t).
 \]
-Therefore it is possible to extract the solution \(u\) by solving an ordinary differential equation on each characteristic curve. If, for instance \(a_0 = 0\), we find 
+Therefore, it is possible to extract the solution \(u\) by solving an ordinary differential equation on each characteristic curve. If, for instance \(a_0 = 0\), we find 
 \[
     u(x,t) = u_0(x-at) + \int_\Omega \int_0^t f(x-a(t-s),s) \, ds, \ t > 0.
 \]
 Let us now consider problem \eqref{1_hyp} in a bounded interval. For instance, let us \(x \in [0,1]\) and \(a > 0\). As \(u\) is constant on the characteristics, from the figure we deduce that the value of the solution at a point \(P\) coincides with the value of \(u_0\) at the foot \(P_0\) of the characteristic outgoing from \(P\). Instead, a characteristic outgoing from \(Q\) intersects \(x=0\) for \(t>0\), so \(x=0\) is an inflow point. Same thing for \(x=1\) and \(a<0\).
 
-In the case of \(u_0\) discontinuous in \(x_0\), such discontinuity would propagate along the characteristic outgoing from \(x_0\). In order to regularize it, one could approximate the initial datum \(u_0\) with a series of regular functions \(u_0^\epsilon(x), \ \epsilon > 0\). But is an effective solution to a linear problem. In the case of a nonlinear hyperbolic problems can indeed develop discontinuities for regular initial data. In such cases, the best approach is to regularize the differential equation itself, rather than the initial datum, obtaining, for example, in the case of diffusion-transport equation 
+In the case of \(u_0\) discontinuous in \(x_0\), such discontinuity would propagate along the characteristic outgoing from \(x_0\). In order to regularize it, one could approximate the initial datum \(u_0\) with a series of regular functions \(u_0^\epsilon(x), \ \epsilon > 0\). But is an effective solution to a linear problem. In the case of nonlinear hyperbolic problems can indeed develop discontinuities for regular initial data. In such cases, the best approach is to regularize the differential equation itself, rather than the initial datum, obtaining, for example, in the case of diffusion-transport equation 
 \[
     \partialderivative{u^\epsilon}{t} + a\partialderivative{u^\epsilon}{x} = \epsilon\partialderivative{^2u^\epsilon}{x^2}, \ x\in \real, \ t > 0,
 \]
@@ -152,7 +152,7 @@ Equation \eqref{4_hyp} can now be interpreted as an approximation where the temp
 \subsection{Discretization of the scalar equation}
 The choice of \(H\) decide which numerical method will be use. Some of them are 
 \begin{itemize}
-    \item forward/Centerd Euler (FE/C)
+    \item forward/Centered Euler (FE/C)
     \item Lax-Friedrichs (LF)
     \item Lax-Wendroff (LW)
     \item Upwind (U)
@@ -212,7 +212,7 @@ An example of an implicit method is the following
 \subsection{Boundary treatment}
 In case we want to discretize the hyperbolic equation \eqref{3_hyp} on a bounded interval, we will obviously need to use the inflow \(x=\alpha\) to impose the boundary condition, say \(u^{n+1}_0 = \phi(t^{n+1})\), while at all other nodes \(x_j\), \(1\leq j \leq m\) (including the outflow \(x_m = \beta\)) we will write the finite difference scheme. 
 
-However, schemes using a centered discretization of the space derivative require a particular treatment at \(x_m\). Indeed, they would require the value \(u_{m+1}\), which is unavailable as it relates to the point with coordinates \(\beta + h\), outside the integration interval. This can be solved in various ways. An option is to use only the upwind decentered discretization on the on the last node, as such discretization does not require knowing the datum in \(x_{m+1}\), but this is a first order approach.
+However, schemes using a centered discretization of the space derivative require a particular treatment at \(x_m\). Indeed, they would require the value \(u_{m+1}\), which is unavailable as it relates to the point with coordinates \(\beta + h\), outside the integration interval. This can be solved in various ways. An option is to use only the upwind decentered discretization on the last node, as such discretization does not require knowing the datum in \(x_{m+1}\), but this is a first order approach.
 
 Alternatively, the value \(u_m^{n+1}\) can be obtained through extrapolation from the values available at the internal nodes, like characteristic lines for example. 
 \subsection{Analysis of the finite difference method}
@@ -227,7 +227,7 @@ If the truncation error
 \]
 tends to zero when \(\tstep\) and \(h\) tend to zero, independently, then the numerical scheme will be said to be consistent.
 
-Moreover, we will say that a numerical scheme is accurate to order \(p\) in time and to order \(q\) in space. if, for a sufficiently regular solution of the exact problem we have 
+Moreover, we will say that a numerical scheme is accurate to order \(p\) in time and to order \(q\) in space. If, for a sufficiently regular solution of the exact problem we have 
 \[
     \tau(\tstep, h) = \mathcal{O}(\tstep^p + h^q).
 \]
@@ -273,14 +273,14 @@ for each \(n\) such that \(n\tstep \leq T\), and for each initial datum \(\uvec_
 \begin{remark}
     In the contest of hyperbolic problems, one often wants long-time solutions. Such cases require a strongly stable scheme, as this guarantees that the numerical solution is bounded for each value of \(T\).
 \end{remark} 
-As we will see a necessary condition for the stabiliy of an explicit numerical scheme like \eqref{4_hyp} is that the temporal and spatial discretization steps satisfy
+As we will see a necessary condition for the stability of an explicit numerical scheme like \eqref{4_hyp} is that the temporal and spatial discretization steps satisfy
 \begin{equation}
     \abs{a\lambda} \leq 1, \txt{ or } \tstep \leq \frac{h}{\abs{a}}.
     \label{19_hyp}
 \end{equation}
 This is the celebrated CFL condition (from Courant, Friedrichs and Lewy). \(a\lambda\) is commonly called \(CFL\) number and is a physically dimensionless quantity.
 \begin{remark}
-    The CFL condition estabilishes, in particular, that there is no explicit finite difference scheme for hyperbolic initial value problems that is unconditionally stable and consistent. Indeed, suppose the CFL condition is violated. Then there exists at least a point \(x^*\) in the dependency domain that doesn't belong to the numerical dependency domain. Then, changing the initial datum to \(x^*\) will only modify the exact solution and not the numerical one.
+    The CFL condition establishes, in particular, that there is no explicit finite difference scheme for hyperbolic initial value problems that is unconditionally stable and consistent. Indeed, suppose the CFL condition is violated. Then there exists at least a point \(x^*\) in the dependency domain that doesn't belong to the numerical dependency domain. Then, changing the initial datum to \(x^*\) will only modify the exact solution and not the numerical one.
 \end{remark}
 \begin{remark}
     In the case where \(a = a(x,t)\) is no longer constant in \eqref{1_hyp}, the CFL condition 
@@ -289,7 +289,7 @@ This is the celebrated CFL condition (from Courant, Friedrichs and Lewy). \(a\la
     \]
     If the spatial discretization step varies, we have 
     \[
-        \tstep \leq \frac{h}{\sup_{\substack{x\in (x_k, x_{k+1}) \\ t > 0}} \abs{a(x,t)}}.
+        \tstep \leq \frac{h}{\sup_{\substack{x\in (x_k, x_{k+1}) \\ t > 0}} \abs{a(x,t)}}
     \]
     with \(h_k = x_{k+1} - x_k\).
 \end{remark}
@@ -454,7 +454,7 @@ Therefore, a possible set of boundary conditions would consist in assigning the 
     \end{cases}
     \label{33_hyp}
 \end{equation}
-In general terms, given an hyperbolic system in the form \eqref{24_hyp}, the number of positive eigenvalues of \(A\) determines the number of boundary conditions to be assigned at \(x=a\), while \(x=b\) we will need to assign as many conditions as the number of negative eigenvalues. 
+In general terms, given a hyperbolic system in the form \eqref{24_hyp}, the number of positive eigenvalues of \(A\) determines the number of boundary conditions to be assigned at \(x=a\), while \(x=b\) we will need to assign as many conditions as the number of negative eigenvalues. 
 \subsection{Finite element method}
 We now illustrate how to apply Galerkin methods to the discretization of scalar hyperbolic equations. Let us consider the following model problem, where \(a\) is a positive constant
 \begin{equation}
@@ -487,7 +487,7 @@ For the temporal discretization we will use finite difference schemes. In the ca
 \end{equation}
 By choosing \(v_h = u_h^{n+1}\) with \(f=0\), we obtain, as in the case of finite differences, that the BE/C scheme is strongly with no restriction on \(\tstep\). 
 
-In case we the FE/C scheme instead, the discrete problem becomes: 
+In case we use the FE/C scheme instead, the discrete problem becomes: 
 \begin{equation}
     \begin{split}
         \forall \; > 0&, \ \find u^{n+1}_h \in V_h : \\

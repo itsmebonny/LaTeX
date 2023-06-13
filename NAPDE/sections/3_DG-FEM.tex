@@ -43,7 +43,7 @@ Now define the average operator
     \average{\phi(x_k)} &:= \frac{1}{2}\phi(x_k^-) +\phi(x^+_k) & x_k : \txt{ interior node} \\
     \average{\phi(x_N)} &:= \phi(x^-_N) &\nonumber \label{average_function}
 \end{align}
-This way we obtain this formula 
+This way we obtain this formula (magic formula)
 \begin{equation}
     \sum_{k=0}^{N} \jump{u'(x_k)v(x_k)} = \sum_{k=0}^{N} \average{u'(x_k)} \jump{v(x_k)} + \sum_{k=1}^{N-1} \jump{u'(x_k)}\average{v(x_k)}\label{magic_formula_dg}
 \end{equation}

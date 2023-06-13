@@ -54,7 +54,7 @@ Then we have
     \end{equation}
     The condition on \(\Omega_{12}\) is called continuity condition.
 \end{proposition}
-This method can be used in the discretization method of any PDEs, to make their algebraic solution more efficient on parallel computer systems. These method allow for the reformulation of problems into multiple subdomains, which is very convenient for multiphysics problems, in which there are different equations in different subregions of the domain.
+This method can be used in the discretization method of any PDEs, to make their algebraic solution more efficient on parallel computer systems. These methods allow for the reformulation of problems into multiple subdomains, which is very convenient for multi-physics problems, in which there are different equations in different subregions of the domain.
 
 \subsection{Iterative methods}
 Consider the problem
@@ -95,7 +95,7 @@ The choice of \(u^{(k)}_1\) implies that we are using a multiplicative Schwarz m
 
 The Schwarz method always converges with a rate that increase as the overlap of the two domain increases.
 \begin{remark}
-    The Schwarz method requires that at each iteration the solution of the subproblems is of the same kind of the original problem, and that the boundary condition remain unchanged. Also it is necessary to apply Dirichlet B.C. at the interfaces.
+    The Schwarz method requires that at each iteration the solution of the subproblems is of the same kind of the original problem, and that the boundary condition remain unchanged. Also, it is necessary to apply Dirichlet B.C. at the interfaces.
 \end{remark}
 \subsubsection*{Dirichlet-Neumann method}
 In the case of non overlapping domain, so a common interface \(\Gamma\), the following theorem holds 
@@ -113,7 +113,7 @@ In the case of non overlapping domain, so a common interface \(\Gamma\), the fol
     \end{equation*}
     where \(\pderivative{n_L}\) is the conormal derivative.
 \end{theorem}
-and we can use the Dirichlet-Neumann, which, given \(u_2^0\) on \(\Gamma\), for \(k \geq 1\) 
+And we can use the Dirichlet-Neumann, which, given \(u_2^0\) on \(\Gamma\), for \(k \geq 1\) 
 \begin{equation*}
     \txt{solve }\begin{cases}
         \loperator u^{(k)}_1 = f & \txt{in } \Omega_1 \\
@@ -165,9 +165,9 @@ Another method is the Robin-Robin algorithm: for every \(k\geq 0\)
         u^{(k+1)}_2 = 0 & \txt{on } \boundary_2\setminus \Gamma
     \end{cases}
 \end{equation*}
-where \(u^{(0)}_2\) is assigned and \(\gamma_1,\gamma_2\) are non-negative acceleration parameters tat satisfy \(\gamma_1+\gamma_2 > 0\). 
+where \(u^{(0)}_2\) is assigned and \(\gamma_1,\gamma_2\) are non-negative acceleration parameters that satisfy \(\gamma_1+\gamma_2 > 0\). 
 \subsection{The Steklov-Poincaré interface equation}
-Let us change the model prolem with a classical Poisson equation 
+Let us change the model problem with a classical Poisson equation 
 \begin{equation}
     \begin{cases}
         -\Delta u = f & \txt{in }\Omega \\
@@ -175,7 +175,7 @@ Let us change the model prolem with a classical Poisson equation
     \end{cases}
     \label{model_problem_poisson_dd}
 \end{equation}
-The equivalen multidomain formulation is (\(u_i = u\limited{\Omega_i}\))
+The equivalent multidomain formulation is (\(u_i = u\limited{\Omega_i}\))
 \begin{equation}
     \begin{cases}
         -\Delta u_1 = f & \txt{in }\Omega_1 \\
@@ -254,3 +254,117 @@ is called local Steklov-Poincaré operator which operates between
     \Lambda = \left\{ \mu : \exists \; v \in V \txt{s.t.} \mu = v\limited{\Gamma} \right\} = H^{\onehalf}_{00}(\Gamma)
 \]
 and its dual \(\Lambda'\).
+\subsection{Finite Element Method: multi-domain formulation}
+Consider \eqref{model_problem_poisson_dd} and its weak formulation 
+\[
+    \find u \in V: a(u,v) = F(v) \forall \; v \in V
+\]
+with \(V = H^1_0(\Omega)\). Suppose \(\Omega\) is split into two non-overlapping subdomains and consider a uniform triangulation \(\triangulation\) of \(\Omega\), conforming on \(\Gamma\). 
+The Galerkin finite element approximation of the Poisson problem reads:
+\[
+    \find u_h \in V_h : a(u_h, v_h) = F(v_h) \quad \forall \; v_h \in V_h 
+\]
+where 
+\[
+    V_h = \left\{ v_h \in \mathcal{C}^0(\overline{\Omega}) : v_h\limited{\element} \in \mathbb{P}^r(\element), r\geq 1, \forall \; \eit, v_h = 0, \txt{ on }\boundary \right\}
+\]
+is the space of finite element functions of degree \(r\) with basis \(\left\{ \phi_i \right\}_{i=1}^{N_h}\).
+
+The Galerkin finite element approximation can be rewritten as 
+\[
+    \find u_h \in V_h : a(u_h,\phi_i) = F(\phi_i) \quad \forall \; i = 1,\ldots,N_h
+\]
+Given a partition of the nodes such as 
+\begin{itemize}
+    \item \(\left\{ x_j^{(1)}, 1\leq j \leq N_1 \right\}\) nodes in subdomain \(\Omega_1\)
+    \item \(\left\{ x_j^{(2)}, 1\leq j \leq N_2 \right\}\) nodes in subdomain \(\Omega_2\)
+    \item \(\left\{ x_j^{(\Gamma)}, 1\leq j \leq N_\Gamma \right\}\) nodes in the interface \(\Gamma\)
+\end{itemize}
+and a division of the basis function 
+\begin{itemize}
+    \item \(\phi_j^{(1)}\) functions associated to the nodes \(x_j^{(1)}\)
+    \item \(\phi_j^{(2)}\) functions associated to the nodes \(x_j^{(2)}\)
+    \item \(\phi_j^{(\Gamma)}\) functions associated to the nodes \(x_j^{(\Gamma)}\) on the interface
+\end{itemize}
+So the Galerkin formulation is equivalent to 
+\[
+    \find u_h \in V_h :\begin{cases}
+        a(u_h,\phi_i^{(1)}) = F(\phi_i^{(1)}) & \forall \; i = 1,\ldots, N_1 \\
+        a(u_h,\phi_j^{(2)}) = F(\phi_j^{(2)}) & \forall \; j = 1,\ldots, N_2 \\
+        a(u_h,\phi_k^{(\Gamma)}) = F(\phi_k^{(\Gamma)}) & \forall \; k = 1,\ldots, N_\Gamma
+    \end{cases}
+\]
+Now we can introduce the bilinear form on \(\Omega_i\):
+\[
+    a_i (v,w) = \int_{\Omega_i} \grad v \cdot \grad w \quad \forall \; v,w \in V, i = 1,2,
+\]
+the space 
+\[
+    V_{h}^i = \left\{ v \in H^1(\Omega_i) : v = 0 \txt{ on } \boundary_i\setminus \Gamma \right\} (i=1,2),
+\]
+\(u_h^{(i)} = u_h\limited{\boundary_i}\) and rewrite the formulation as 
+\[
+    \find u_h^{(1)} \in V_h^1, u_h^{(2)} \in V_h^2 : \begin{cases}
+        a_1(u_h^{(1)},\phi_i^{(1)}) = F_1(\phi_i^{(1)}) & \forall \; i = 1,\ldots, N_1 \\
+        a_2(u_h^{(2)},\phi_j^{(2)}) = F_2(\phi_j^{(2)}) & \forall \; j = 1,\ldots, N_2 \\
+        \begin{aligned}
+            a_1(u_h^{(1)},\phi_k^{(\Gamma)}) + a_2(u_h^{(2)},\phi_k^{(\Gamma)}) \\ = F_1(\phi_k^{(\Gamma)}\limited{\Omega_1}) + F_2(\phi_k^{(\Gamma)}\limited{\Omega_2})
+        \end{aligned} & \forall \; k = 1,\ldots, N_\Gamma
+    \end{cases}
+\]
+By writing 
+\[
+    u_h(x) = \sum_{j=1}^{N_1} u_h(x_j^{(1)}) \phi^{(1)}_j(x) + \sum_{j=1}^{N_2} u_h(x_j^{(2)})\phi_j^{(2)}(x) + \sum_{j=1}^{N_\Gamma} u_h(x_j^{(\Gamma)})\phi_j^{(\Gamma)}(x)
+\]
+and substituting it inside the weak formulation and doing a bit\footnote[80]{A lot} of algebra we obtain the algebraic form:
+\[
+    \begin{cases}
+        A_{11} \uvec_1 + A_{1\Gamma} \bm{\lambda} = \fvec_1 \\
+        A_{22} \uvec_2 + A_{2\Gamma} \bm{\lambda} = \fvec_2 \\
+        A_{\Gamma 1} \uvec_1 + A_{\Gamma 2}\uvec_2 + \left( A_{\Gamma \Gamma}^{(1)} + A^{(2)}_{\Gamma \Gamma} \right) \bm{\lambda} = \fvec^{(\Gamma)}_1 + \fvec^{(\Gamma)}_2
+    \end{cases}
+\]
+or 
+\[
+    \left( \begin{matrix}
+        A_{11} & 0 & A_{1\Gamma} \\ 0 & A_{22} & A_{2\Gamma} \\ A_{\Gamma 1} & A_{\Gamma 2} & A_{\Gamma\Gamma}
+    \end{matrix} \right) \left( \begin{matrix}
+        \uvec_1 \\ \uvec_2 \\ \bm{\lambda}
+    \end{matrix} \right) = \left( \begin{matrix}
+        \fvec_1 \\ \fvec_2 \\ \fvec_{\Gamma}
+    \end{matrix} \right)
+\]
+where \(A_{\Gamma\Gamma} = \left( A_{\Gamma\Gamma}^{(1)} + A_{\Gamma\Gamma}^{(2)} \right)\) and \(\fvec_\Gamma =  \fvec_1^{(\Gamma)} + \fvec_2^{(\Gamma)}\).
+Consider now \(M\) subdomains \(\Omega_i\) \(i = 1,\ldots, M\). Its finite element approximation is defined by the linear system
+\[
+    \left( \begin{matrix}
+        A_{ii} & A_{i\Gamma} \\ A_{\Gamma i} & A_{\Gamma \Gamma}
+    \end{matrix} \right) \left( \begin{matrix}
+        \uvec_i \\ \bm{\lambda}
+    \end{matrix} \right) = \left( \begin{matrix}
+        \fvec_i \\ \fvec_{\Gamma}
+    \end{matrix} \right)
+\]
+where \(\uvec_i\) is the vector of unknowns in the subdomain and \(\bm_{\lambda}\) the vector of the unknowns on \(\Gamma\): \(\uvec_\Gamma = \bm{\lambda}\). 
+The submatrix associated to the internal nodes is block diagonal 
+\[
+    A_{ii} = \left( \begin{matrix}
+        A_{11} & 0 & \cdots & 0 \\
+        0 \ddots & & \vdots \\
+        \vdots & & \ddots & 0 \\
+        0 & \cdots & 0 & A_{MM} 
+    \end{matrix} \right)
+\]
+while \(A_{i\Gamma}\) is a banded matrix.
+\begin{remark}
+    On each subdomain \(\Omega_i\) the matrix 
+    \[
+        A_i = \left( \begin{matrix}
+            A_ii & A_{i \Gamma } \\
+            A_{\Gamma i} & A_{\Gamma\Gamma}
+        \end{matrix} \right)
+    \]
+    represents the local stiffness matrix associated to a Neumann problem.
+\end{remark}
+\subsection{Algebraic form of Schwarz iterative methods}
+Let \(A\uvec = \fvec\) be the system associated to the finite element approximation of \eqref{model_problem_poisson_dd} and still assume that \(\Omega\) is decomposed in two subdomains \(\Omega_1\) and \(\Omega_2\).

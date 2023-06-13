@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1686393679 "/home/bonni/Documents/LaTeX/NAPDE/cheatsheet/cheatsheet.tex" "cheatsheet.pdf" "cheatsheet" 1686393681
+["pdflatex"] 1686665389 "/home/bonni/Documents/LaTeX/NAPDE/cheatsheet/cheatsheet.tex" "cheatsheet.pdf" "cheatsheet" 1686665391
   "/etc/texmf/web2c/texmf.cnf" 1663235487 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/bonni/Documents/LaTeX/NAPDE/cheatsheet/cheatsheet.tex" 1686393679 10767 c889954e80d409d87c08c417ae129a88 ""
+  "/home/bonni/Documents/LaTeX/NAPDE/cheatsheet/cheatsheet.tex" 1686665389 12935 5ced83dc7c40564ec0c72ce9bbf6a6c2 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm" 1136768653 1536 02c06700a42be0f5a28664c7273f82e7 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm" 1246382020 1124 14ccf5552bc7f77ca02a8a402bea8bfb ""
@@ -38,6 +38,7 @@
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/rsfs/rsfs5.tfm" 1229303445 684 3a51bd4fd9600428d5264cf25f04bb9a ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb" 1248133631 34811 78b52f49e893bcba91bd7581cdc144c0 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb" 1248133631 32080 340ef9bf63678554ee606688e7b5339d ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb" 1248133631 32166 b0c356b15f19587482a9217ce1d8fa67 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb" 1248133631 30251 6afa5cb1d0204815a708a080681d4674 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1248133631 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb" 1248133631 37166 8ab3487cbe3ab49ebce74c29ea2418db ""
@@ -210,9 +211,9 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1683288490 4379155 98693266ff65f58d9f98aff394de12d2 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1685694486 2798404 f3ec2215737410dfdf7ff0ab7626857a ""
-  "cheatsheet.aux" 1686393681 1038 3600839b3a3c48db366565a41fd8d974 "pdflatex"
-  "cheatsheet.out" 1686393681 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "cheatsheet.tex" 1686393679 10767 c889954e80d409d87c08c417ae129a88 ""
+  "cheatsheet.aux" 1686665390 1038 d8c4232c9838a7a2e87107672c772a14 "pdflatex"
+  "cheatsheet.out" 1686665390 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "cheatsheet.tex" 1686665389 12935 5ced83dc7c40564ec0c72ce9bbf6a6c2 ""
   (generated)
   "cheatsheet.aux"
   "cheatsheet.log"

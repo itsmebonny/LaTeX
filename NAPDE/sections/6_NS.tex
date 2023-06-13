@@ -48,7 +48,7 @@ where \(\uvec_0\) is a given divergence-free vector field. Then we would need ne
 where \(\bm{\phi}\) and \(\bm{\psi}\) are given vector functions, while \(\Gamma_D\) and \(\Gamma_N\) provide a partition of the boundary, such that \(\Gamma_D \cup \Gamma_N = \boundary, \interior{\Gamma}_D \cap \interior{\Gamma}_N =\emptyset\).
 Finally, as usual \(\normal\) is the outward unit normal vector to \(\boundary\).
 
-If we denote with \(u_i, i = 1,\ldots, d\) the components of \(uvec\) w.r.t. a Cartesian frame, and, likewise, with \(f_i\) compoonents of \(\vect{f}\), we obtain, from \eqref{navier_stokes_ns}
+If we denote with \(u_i, i = 1,\ldots, d\) the components of \(\uvec\) w.r.t. a Cartesian frame, and, likewise, with \(f_i\) components of \(\vect{f}\), we obtain, from \eqref{navier_stokes_ns}
 \[
     \begin{cases}
         \displaystyle \partialderivative{u_i}{t} - \nu \grad u_i + \sum_{j=1}^{d} u_j\partialderivative{u_i}{x_j} + \partialderivative{p}{x_j} = f_i & i = 1,\ldots, d \\
@@ -75,7 +75,7 @@ A weak formulation of the problem can be obtained as usual, by multiplying a tes
 \end{equation}
 Using Green's formula we find 
 \begin{align*}
-    -\int_\Omega \nu \Delta \uvec \cdot \vvec \, d\Omega &= \int_\Omega \nu \grad \uvec \cdot \grad \vvec \, d\Omega - \int_\boundary \grad p \cdot \vvec \, d\Omega \\
+    -\int_\Omega \nu \Delta \uvec \cdot \vvec \, d\Omega &= \int_\Omega \nu \grad \uvec \cdot \grad \vvec \, d\Omega - \int_\boundary \nu \partialderivative{\uvec}{\normal} \cdot \vvec \, d\Omega \\
     \int_\Omega \grad p \cdot \vvec \, d\Omega &= - \int_\Omega p \div \vvec \, d\Omega + \int_\boundary p \vvec \cdot \normal \, d\gamma
 \end{align*}
 Using these relations in the first of \eqref{navier_stokes_ns} we obtain 
@@ -754,7 +754,7 @@ where \(\loperator\) is a differential operator that splits into the sum of two 
     \loperator v = \loperator_1 v + \loperator_2 v
 \]
 We perform an advancement in time only on the first operator, and then correct the solution by performing the advancement on the second operator. The idea is to separate a complex problem into smaller simpler ones, for example separating diffusion from transport.
-\subsubsection{Chorin Temam method}
+\subsubsection*{Chorin Temam method}
 This strategy also involves two operators: \(\loperator_1(\vect{w}) = -\nu\Delta \vect{w} + (\vect{w} \cdot \grad)\vect{w}\) whereas \(\loperator_2\) is associated to the remaining terms of \eqref{navier_stokes_ns}. Thanks to this solution we can split the main difficult of the Navier-Stokes equations, the nonlinear part from the incompressiblility constraint.
 
 The corresponding scheme reads 
@@ -820,7 +820,7 @@ To conclude, the full algorithm reads:
         \end{cases}
         \label{68_slide_ns}
     \end{equation}
-    \item obtain the corrected velocity \(\uvec^{n+1}\) thanks to the correcion equation \eqref{66_slide_ns}
+    \item obtain the corrected velocity \(\uvec^{n+1}\) thanks to the correction equation \eqref{66_slide_ns}
     \begin{equation}
         \uvec^{n+1} = \tilde{\uvec}^{n+1} - \Delta t \grad p^{n+1}
         \label{69_slide_ns}
@@ -830,6 +830,14 @@ As with many explicit schemes, if we take \(\uvec^* = \uvec^{**} = \uvec^n\) we 
 \[
     \tstep \leq C \frac{h}{\max_{\xvec\in \Omega}\abs{\uvec^n(\xvec)}}.
 \]
-On the other hand, this system splits into indepedent systems of smaller size, one for each spatial component of the velocity fields.
+On the other hand, this system splits into independent systems of smaller size, one for each spatial component of the velocity fields.
 
 If we decided to use \(\uvec^* = \uvec^{**} = \uvec^{n+1}\) we obtain an unconditionally stable method, but the downside is that the spatial components aren't separated due to the nonlinear convective term. 
+Its algebraic formulation is of the form 
+\[
+    \left( \frac{1}{\\tstep} M + A \right) \tilde{\uvec}^{n+1} = \tilde{\fvec}^{n+1}
+\]
+On the second step, we generate a divergence free solution, but there is a failure to satisfy the physical condition in the case the pressure boundary layer has a width greater than 
+\[
+    \sqrt{\nu \tstep}
+\]
