@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1686665389 "/home/bonni/Documents/LaTeX/NAPDE/cheatsheet/cheatsheet.tex" "cheatsheet.pdf" "cheatsheet" 1686665391
+["pdflatex"] 1686755047 "/home/bonni/Documents/LaTeX/NAPDE/cheatsheet/cheatsheet.tex" "cheatsheet.pdf" "cheatsheet" 1686755049
   "/etc/texmf/web2c/texmf.cnf" 1663235487 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/bonni/Documents/LaTeX/NAPDE/cheatsheet/cheatsheet.tex" 1686665389 12935 5ced83dc7c40564ec0c72ce9bbf6a6c2 ""
+  "/home/bonni/Documents/LaTeX/NAPDE/cheatsheet/cheatsheet.tex" 1686755046 18239 8e0ddf31eba48f02a796cf3e7ada34c2 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm" 1136768653 1536 02c06700a42be0f5a28664c7273f82e7 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm" 1246382020 1124 14ccf5552bc7f77ca02a8a402bea8bfb ""
@@ -49,8 +49,10 @@
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb" 1248133631 32734 69e00a6b65cedb993666e42eedb3d48f ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1248133631 32726 0a1aea6fcd6468ee2cf64d891f5c43c8 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb" 1248133631 32587 1788b0c1c5b39540c96f5e42ccd6dae8 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1248133631 32626 4f5c1b83753b1dd3a97d1b399a005b4b ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb" 1248133631 31099 c85edf1dd5b9e826d67c9c7293b6786c ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb" 1248133631 31764 459c573c03a4949a528c2cc7f557e217 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb" 1248133631 34694 ad62b13721ee8eda1dcc8993c8bd7041 ""
   "/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1461363279 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/share/texlive/texmf-dist/tex/generic/atbegshi/atbegshi.sty" 1575674566 24708 5584a51a7101caf7e6bbf1fc27d8f7b1 ""
@@ -211,9 +213,9 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1683288490 4379155 98693266ff65f58d9f98aff394de12d2 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1685694486 2798404 f3ec2215737410dfdf7ff0ab7626857a ""
-  "cheatsheet.aux" 1686665390 1038 d8c4232c9838a7a2e87107672c772a14 "pdflatex"
-  "cheatsheet.out" 1686665390 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "cheatsheet.tex" 1686665389 12935 5ced83dc7c40564ec0c72ce9bbf6a6c2 ""
+  "cheatsheet.aux" 1686755048 1156 735b28fdce4c1f7a9d9443f43ce911de "pdflatex"
+  "cheatsheet.out" 1686755048 103 d7baafce2aafa66c46543218572abbf9 "pdflatex"
+  "cheatsheet.tex" 1686755046 18239 8e0ddf31eba48f02a796cf3e7ada34c2 ""
   (generated)
   "cheatsheet.aux"
   "cheatsheet.log"

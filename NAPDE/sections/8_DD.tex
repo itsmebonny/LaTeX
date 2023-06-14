@@ -367,4 +367,38 @@ while \(A_{i\Gamma}\) is a banded matrix.
     represents the local stiffness matrix associated to a Neumann problem.
 \end{remark}
 \subsection{Algebraic form of Schwarz iterative methods}
-Let \(A\uvec = \fvec\) be the system associated to the finite element approximation of \eqref{model_problem_poisson_dd} and still assume that \(\Omega\) is decomposed in two subdomains \(\Omega_1\) and \(\Omega_2\).
+Let \(A\uvec = \fvec\) be the system associated to the finite element approximation of \eqref{model_problem_poisson_dd} and still assume that \(\Omega\) is decomposed in two subdomains \(\Omega_1\) and \(\Omega_2\). The total number of internal nodes \(N_h\) is made by the nodes in the domains \(n_1\) and \(n_2\) such that \(N_h \leq n_1+n_2\), and the stiffness matrix contain two submatrices \(A_1\) and \(A_2\) which corresponds to the bilinear form of the problem.
+Consider the multiplicative method: given \(u_2^0\) on \(\Gamma_1\), for \(k \geq 1\):
+\begin{equation*}
+    \txt{solve }\begin{cases}
+        \loperator u^{(k)}_1 = f & \txt{in } \Omega_1 \\
+        u^{(k)}_1 = u^{(k-1)}_2 & \txt{on } \Gamma_1 \\
+        u^{(k)}_1 = 0 & \txt{on } \boundary_1\setminus \Gamma_1
+    \end{cases}
+\end{equation*}
+\begin{equation*}
+    \txt{solve }\begin{cases}
+        \loperator u^{(k)}_2 = f & \txt{in } \Omega_2 \\
+        u^{(k)}_2 = u^{(k)}_1 & \txt{on } \Gamma_2 \\
+        u^{(k)}_2 = 0 & \txt{on } \boundary_2\setminus \Gamma_2
+    \end{cases}
+\end{equation*}
+We introduce the discrete spaces: 
+\begin{align*}
+    V_h &= \left\{ v_h \in \mathcal{C}^0(\Omega) : v_h\limited{\element} \in \mathbb{P}^r \ \forall \; \element \in \triangulation, v_h\limited{\boundary} = 0 \right\} \\
+    V_{i,h} &= \left\{ v_h \in \mathcal{C}^0(\Omega_i) : v_h\limited{\element} \in \mathbb{P}^r \ \forall \; \element \in \triangulation^i, v_h\limited{\boundary} = 0 \right\} \\
+    \overset{\mathrm{o}}{V}_{i,h} &= \left\{ v_h \in \mathcal{C}^0(\Omega_i) : v_h\limited{\element} \in \mathbb{P}^r \ \forall \; \element \in \triangulation^i, v_h\limited{\boundary_i} = 0 \right\} \\
+\end{align*}
+with \(i = 1,2\). The Galerkin formulation reads 
+\begin{equation*}
+    \find u^{(k)}_{1,h} \in V_{1,h} : \begin{cases}
+        a_1(u^{(k)}_{1,h}, v_{1,h}) = \loperator_1 (v_{1,h}) & \forall \; v_{1,h} \in \overset{\mathrm{o}}{V}_{1,h} \\
+        u^{(k)}_{1,h} = u^{(k-1)}_{2,h} & \txt{on } \Gamma_1
+    \end{cases}
+\end{equation*}
+\begin{equation*}
+    \find u^{(k)}_{2,h} \in V_{2,h} : \begin{cases}
+        a_2(u^{(k)}_{2,h}, v_{2,h}) = \loperator_2 (v_{2,h}) & \forall \; v_{2,h} \in \overset{\mathrm{o}}{V}_{2,h} \\
+        u^{(k)}_{2,h} = u^{(k)}_{1,h} & \txt{on } \Gamma_2
+    \end{cases}
+\end{equation*}

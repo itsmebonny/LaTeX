@@ -225,15 +225,15 @@ The stability of the method guarantees that the norm \(\norm{u_h}_V\) of the dis
 \end{proof}
 
 
-Also this can be generalized in the cases in which \(a(\cdot, \cdot)\) is not symmetric. Consider the value taken by the bilinear form when both its arguments are \(u-u_h\). If \(v_h\) is an arbitrary element of \(V_h\) we obtain 
+Also, this can be generalized in the cases in which \(a(\cdot, \cdot)\) is not symmetric. Consider the value taken by the bilinear form when both its arguments are \(u-u_h\). If \(v_h\) is an arbitrary element of \(V_h\) we obtain 
 \[
     a(u-u_h, u-u_h) = a(u-u_h, u-v_h) + a(u-u_h, v_h-u_h)
 \]
-The last term is null by \eqref{Galerkin orthogonality}. Moreover 
+The last term is null by \eqref{Galerkin orthogonality}. Moreover, 
 \[
     \abs{a(u-u_h, u-v_h)} \leq M \norm{u-u_h}_V\norm{u-v_h}_V
 \]
-having exploited the continuity of the bilinear form. Also by the coercivity 
+having exploited the continuity of the bilinear form. Also, by the coercivity 
 \[
     a(u-u_h, u-u_h) \geq \alpha \norm{u-u_h}^2_V
 \]
@@ -241,7 +241,7 @@ hence
 \[
     \norm{u-u_h}_V \leq \frac{M}{\alpha} \norm{u-v_h}_V \quad \forall \; v_h \in V_h
 \]
-Such inequality holds for all functions \(v_h \in V_h\) and therefore we find 
+Such inequality holds for all functions \(v_h \in V_h\), and therefore we find 
 \begin{equation}
    \underbrace{ \norm{u-u_h}_V}_{\text{Galerkin error}} \leq \frac{M}{\alpha} \underbrace{\inf_{w_h \in V_h} \norm{u - w_h}_V}_{\text{Best Approximation Error}} \label{Ceà Lemma}
 \end{equation}
@@ -249,11 +249,11 @@ In order for the method to converge, it is sufficient that, for \(h \to 0\) the 
 \begin{equation}
     \lim_{h \to 0} \inf_{v_h \in V_h} \norm{v-v_h}_V= 0 \quad \forall \; v \in V \label{Saturation Property}
 \end{equation}
-In that case the Galerkin method is convergent and it can be written that
+In that case the Galerkin method is convergent, and it can be written that
 \[
     \lim_{h\to 0} \norm{u-u_h}_V = 0 \Leftrightarrow \text{convergence}
 \]
-Thie space \(V_h\) must be chosen carefully to satisfy the saturation property \eqref{Saturation Property}.
+This space \(V_h\) must be chosen carefully to satisfy the saturation property \eqref{Saturation Property}.
 \subsection{Finite Element Method}
 \subsubsection*{Partitions}
 \begin{itemize}
@@ -263,7 +263,7 @@ Thie space \(V_h\) must be chosen carefully to satisfy the saturation property \
         a = x_0 < x_1 < \ldots < x_{N-1} < x_N = b \label{Partition of an interval}
     \end{equation}
     and set \(h = \max_j h_j\). 
-    \item[\textbf{2D}] Now we can extend the FEM for multi-dimensional problems. For simplicity we will consider \(\Omega \subset \real^2\) with polygonal shapes \(\mathcal{T}_h\). In this case the partition is called a triangulation. We can define the discretized domain 
+    \item[\textbf{2D}] Now we can extend the FEM for multidimensional problems. For simplicity, we will consider \(\Omega \subset \real^2\) with polygonal shapes \(\mathcal{T}_h\). In this case the partition is called a triangulation. We can define the discretized domain 
     \[
         \Omega_h = \text{int}\left(\bigcup_{K \in \mathcal{T}_h} K\right)
     \]
@@ -304,7 +304,7 @@ Since the functions of \(H^1(a,b)\) are continuous on \([a,b]\), it is possible 
 \begin{equation}
     X_h^r = \left\{v_h \in \mathcal{C}^0\left(\overline{\Omega}\right) : v_h \vert_{K_j} \in \mathbb{P}_r \;\; \forall \; K_j \in \mathcal{T}_h\right\}, \quad r= 1,2,\ldots \label{Family of spaces FEM}
 \end{equation}
-having denoted by \(\mathbb{P}_r\) the space of polynomials with degree lower or equal to \(r\) in the variable \(x\). All these spaces are subspaces of \(H^1(a,b)\) as they are constituted by differentiable functions except for at most a finite number of points (the vertices of the partition). It is convenient to sekect a basis for the \(X^r_h\) space that is \textit{Lagrangian}.
+having denoted by \(\mathbb{P}_r\) the space of polynomials with degree lower or equal to \(r\) in the variable \(x\). All these spaces are subspaces of \(H^1(a,b)\) as they are constituted by differentiable functions except for at most a finite number of points (the vertices of the partition). It is convenient to select a basis for the \(X^r_h\) space that is \textit{Lagrangian}.
 
     \begin{align*}
         \mathbb{P}^r:\quad &\text{1D} \quad &p(x) =& \sum_{k=0}^r a_k x^k &\text{intervals} \\
@@ -362,7 +362,7 @@ In \eqref{Galerkin weak formulation} take \(v_h = \phi_j\) \(\forall \; j = 1,\l
     &\Rightarrow \sum_{j=1}^{N_h} \underbrace{a(\phi_j, \phi_i)}_{\mathclap{\substack{a_{ij} \text{ elements}\\ \text{of } A}}} u_j (\vect{x}) = F_i \quad i = 1, \ldots, N_h \\
     &\Rightarrow A\,\vect{u} = \vect{F}
 \end{align*}
-Which is a linear system of dimension \(N_h \times N_h\) with \(\vect{F}\) the right hand side (RHS), \(A\) the stiffness matrix and \(\vect{u}\) a vector of unknown nodal values of the solution \(u_h\).
+Which is a linear system of dimension \(N_h \times N_h\) with \(\vect{F}\) the right-hand side (RHS), \(A\) the stiffness matrix and \(\vect{u}\) a vector of unknown nodal values of the solution \(u_h\).
 \subsection{Advection Diffusion Reaction Problem}
 \begin{equation*}
    \begin{cases}
@@ -395,7 +395,7 @@ If \(A\) is spd (symmetric positive defined) then \(K_2(A) = \frac{\lambda_{max}
             \vect{v}^TA\vect{v} & = \sum_{i,j}A_{ij}v_iv_j = \sum_{i,j}a(\phi_j, \phi_i)v_i v_j \\
             & = a(\sum_j v_j \phi_j, \sum_i v_i \phi_i) = a(v_h, v_h) \geq \alpha\norm{v_h}^2 > 0
         \end{align*}
-    if (\(v_h \neq 0 \Leftrightarrow \vect{v} \neq \vect{0}\)). Hence \(A\) is positive defined.
+    if (\(v_h \neq 0 \Leftrightarrow \vect{v} \neq \vect{0}\)). Hence, \(A\) is positive defined.
     \end{proof}
 
 \begin{definition}
@@ -490,7 +490,7 @@ Assuming that \(\phi \in H^2(\Omega) \cap V\) (elliptic regularity). Consider no
         u = 0 & \txt{on } \partial \Omega
     \end{cases}
 \end{equation*}
-satisfies \(\phi \in H^2(\Omega)\). Moreover
+satisfies \(\phi \in H^2(\Omega)\). Moreover,
 \begin{equation}
     \exists \; C_1 > 0 : \norm{\phi(g)}_{H^2(\Omega)} \leq C_1 \norm{g}_{L^2(\Omega)}  \label{L2_norm_bvp}
 \end{equation}

@@ -26,7 +26,7 @@ also we'll need some BC, like
     \end{aligned}
     \label{BC_example_pbl}
 \end{equation}
-where \(u_0, \phi\) and \(\psi\) are given funcion and \(\left\{ \Gamma_D, \Gamma_N \right\}\) provides a boundary partition that is \(\Gamma_D \cup \Gamma_N = \boundary, \interior{\Gamma_D} \cap \interior{\Gamma_N} = \emptyset\). For obvious reasons \(\Gamma_D\) is the Dirichlet boundary, while \(\Gamma_N\) is the Neumann one.
+where \(u_0, \phi\) and \(\psi\) are given function and \(\left\{ \Gamma_D, \Gamma_N \right\}\) provides a boundary partition that is \(\Gamma_D \cup \Gamma_N = \boundary, \interior{\Gamma_D} \cap \interior{\Gamma_N} = \emptyset\). For obvious reasons \(\Gamma_D\) is the Dirichlet boundary, while \(\Gamma_N\) is the Neumann one.
 
 In the one dimensional case the problem becomes 
 \begin{equation}
@@ -81,7 +81,7 @@ with \(u_h(0) = u_{0h}\), where \(V_h \subset V\) is a suitable space of finite 
 
 Now we need to discretize the temporal variable, because, as of now, we obtained a semi-discretization of the problem.
 
-We introduce a basis \(\left\{ \phi_j \right\}\) for \(V_h\) and we observe that it suffices that \eqref{semi-discretization_pbl} is verified for the basis function in order to be satisfied by all the functions in the subspace. 
+We introduce a basis \(\left\{ \phi_j \right\}\) for \(V_h\), and we observe that it suffices that \eqref{semi-discretization_pbl} is verified for the basis function in order to be satisfied by all the functions in the subspace. 
 
 Moreover, since for each \(t > 0\), the solution to the Galerkin problem belongs to the subspace as well, we will have
 \[
@@ -98,7 +98,7 @@ that is
     \sum_{j=1}^{N_h} \dot{u}_j(t) \underbrace{\int_\Omega \phi_j \phi_i \, d\Omega}_{m_{ij}} + \sum_{j=1}^{N_h} u_j(t) \underbrace{a(\phi_j, \phi_i)}_{a_{ij}} = \underbrace{\int_\Omega f(t)\phi_i \, d\Omega} \quad i = 1,2,\ldots, N_h
     \label{algebraic_formulation_pbl}
 \end{equation}
-If we define the vector of unknowns \(\vect{u} = (u_1(t), u_2(t), \ldots, u_{N_h}(t))^T\), the mass matrix \(M = [m_{ij}]\), the stiffness matrix \(A = [a_{ij}]\) and the right hand side vector \(\vect{f} = (f_1(t), f_2(t), \ldots, f_{N_h}(t))^T\), the system \eqref{algebraic_formulation_pbl} can be rewritten as 
+If we define the vector of unknowns \(\vect{u} = (u_1(t), u_2(t), \ldots, u_{N_h}(t))^T\), the mass matrix \(M = [m_{ij}]\), the stiffness matrix \(A = [a_{ij}]\) and the right-hand side vector \(\vect{f} = (f_1(t), f_2(t), \ldots, f_{N_h}(t))^T\), the system \eqref{algebraic_formulation_pbl} can be rewritten as 
 \[
     M\dot{\vect{u}}(t) + A\vect{u}(t) = \vect{f}(t)
 \]
@@ -112,7 +112,7 @@ The real positive parameter \(\Delta t = t^{k+1}-t^k\), \(k=0,1,\ldots\) denotes
 
 Some particular cases of \eqref{algebraic_formulation_pbl} 
 \begin{itemize}
-    \item \(\theta = 0\) wThe forward Euler method 
+    \item \(\theta = 0\) The forward Euler method 
     \[
         M\frac{\vect{u}^{k+1}-\vect{u}^k}{\Delta t} + A\vect{u}^{k} = \vect{f}^k
     \]
@@ -136,7 +136,7 @@ so \(\tstep\) cannot be chosen irrespective of \(h\).
 
 In this case, if we make \(M\) diagonal, we actually decouple the system. This operation is called lumping of the mass matrix.
 
-When \(\theta > 0\), the system will have the from \(K\vect{u}^{k+1} = \vect{g}\), where \(\vect{g}\) is the source term and \(K = \frac{M}{\tstep}\). The latter is invariant in time (the operator \(\loperator\) being independent of time), so, if the spatial mesh doesn't change, it can be factorized only once at the beginning of the process. 
+When \(\theta > 0\), the system will have the form \(K\vect{u}^{k+1} = \vect{g}\), where \(\vect{g}\) is the source term and \(K = \frac{M}{\tstep}\). The latter is invariant in time (the operator \(\loperator\) being independent of time), so, if the spatial mesh doesn't change, it can be factorized only once at the beginning of the process. 
 
 Then, since \(M\) is symmetric, if \(A\) is symmetric, also \(K\) will be symmetric too. Hence, we can use, for example, the Cholesky factorization \(K = HH^T\), with \(H\) being lower triangular. At each timestep, then, will be solved two triangular systems 
 \begin{align*}
@@ -144,7 +144,7 @@ Then, since \(M\) is symmetric, if \(A\) is symmetric, also \(K\) will be symmet
     H^T \vect{u}^{k+1} = \vect{y}
 \end{align*}
 \subsection{A priori estimate}
-Let us know consider \eqref{weak_formulation_heat_pbl}. Since the corresponding equation must hold for each \(v \in V\), it will be legitimate to set \(v = u(t)\) with \(t\) being given. yielding 
+Let us know consider \eqref{weak_formulation_heat_pbl}. Since the corresponding equation must hold for each \(v \in V\), it will be legitimate to set \(v = u(t)\) with \(t\) being given. Yielding 
 \begin{equation}
     \int_\Omega \partialderivative{u(t)}{t} u(t) = \frac{1}{2}\partialderivative{\null}{t} \int_\Omega \abs{u(t)}^2 \, d\Omega = \frac{1}{2} \partialderivative{\null}{t} \ltwonorm{u(t)}^2
     \label{a_priori_est_pbl}
@@ -225,7 +225,7 @@ Now, noticing that
 \[
     \ltwonorm{f(s)} \int_0^s \ltwonorm{f(\tau)} \, d\tau = \pderivative{s} \left( \int_0^s \ltwonorm{f} \, d\tau \right)^s
 \]
-we can rewrite the right hand side of \eqref{16_slide_pbl} as:
+we can rewrite the right-hand side of \eqref{16_slide_pbl} as:
 \begin{equation*}
     \begin{split}
         \ltwonorm{u_0}^2 \int_0^t \ltwonorm{f(s)}\ltwonorm{u_0}\, ds+ 2 \int_0^t \ltwonorm{f(s)}\int_0^s \ltwonorm{f(\tau)} \, d\tau ds \\
@@ -347,7 +347,7 @@ From an algebraic viewpoint, problem \eqref{eigenvalues_of_bilinear_pbl} can be 
 \[
     A\vect{w} = \lambda_h M \vect{w},
 \]
-where \(A\) is the stiffness matrix and \(M\) the mass matrix. This is a generalized eigenvalue problem. Such eigenvalue are all positive and \(N_h\) (the usual dimension of \(V_h\)). After ordering them in ascending order we have
+where \(A\) is the stiffness matrix and \(M\) the mass matrix. This is a generalized eigenvalue problem. Such eigenvalues are all positive and \(N_h\) (the usual dimension of \(V_h\)). After ordering them in ascending order we have
 \[
     \lambda_h^{N_h} \quad \txt{for } N_h \to \infty.
 \]
@@ -399,15 +399,15 @@ While the second inequality is always verified, we can rewrite the first one as:
 \[
     2\theta - 1 > -\frac{2}{\lambda_h^i \tstep}. 
 \]
-If \(\theta \geq \onehalf\), the left hand side is nonnegative, while the right hand side is negative, so the relation always holds. In the case \(\theta < \onehalf\), the inequality is satisfied if 
+If \(\theta \geq \onehalf\), the left-hand side is nonnegative, while the right-hand side is negative, so the relation always holds. In the case \(\theta < \onehalf\), the inequality is satisfied if 
 \begin{equation}
     \tstep < \frac{2}{(1-2\theta) \lambda_h^i}.
     \label{stability_forward_euler_pbl}
 \end{equation}
 So, we have that 
 \begin{itemize}
-    \item if \(\theta \geq \onehalf\), the \(\theta\)-method is unconditionally absolutely stable, for every value of \(\tstep\).
-    \item if \(\theta < \onehalf\) the \(\theta\)-method is absolutely stable only if \eqref{stability_forward_euler_pbl} is satisfied.
+    \item If \(\theta \geq \onehalf\), the \(\theta\)-method is unconditionally absolutely stable, for every value of \(\tstep\).
+    \item If \(\theta < \onehalf\) the \(\theta\)-method is absolutely stable only if \eqref{stability_forward_euler_pbl} is satisfied.
 \end{itemize}
 Thanks to the definition of eigenvalue \eqref{eigenvalues_of_bilinear_pbl} and the continuity property of \(\bilinear\), we deduce that 
 \[
@@ -568,7 +568,7 @@ Consider now a time-advancin scheme, where the diffusion and reaction term are t
     \[
         1 - \frac{\tstep b_1 (b_1 + \epsilon)}{4\omega \mu_0} + \frac{(1-\omega) \tstep \mu_0}{C^2_p} > \frac{1}{2\eta_1} + \frac{\eta_1}{2}
     \]
-    The right hand side is minimized for \(\eta_1 = 1\). Rearranging the term, we get 
+    The right-hand side is minimized for \(\eta_1 = 1\). Rearranging the term, we get 
     \begin{equation}
         -\omega^2 + \omega -\frac{b_1(b_1 +\epsilon)C_p^2}{4\mu_0^2} > 0
         \label{34_slide_pbl}

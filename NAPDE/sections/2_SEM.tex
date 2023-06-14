@@ -2,7 +2,7 @@
 \section{Spectral Element Method}
 \subsection{Introduction}
 The problem with the Finite Element Method is that the rate of convergence is limited by the degree of the polynomials used. An alternative can be the Spectral Element Method, for which the convergence rate is limited by the regularity of the solution. 
-\subsection{Legendre polynomials}
+\subsection{Legendre's polynomials}
 The Legendre polynomials \(\{L_k(x) \in \mathbb{P}_k, k = 0, 1, \ldots\}\) are the eigenfunctions of the singular Sturm-Liouville problem:
 \[
     ((1-x^2)L'_k(x))' + k(k+1)L_k(x) = 0 \quad -1 < x < 1
@@ -79,12 +79,12 @@ Given \(u_N \in V_N\) the solution of the problem, then if \(u \in H^{s+1}(\Omeg
     \honenorm{u-u_N} \leq C(s)\left(\frac{1}{N}\right)^s\norm{u}_{H^{s+1}(\Omega)}
 \]
 So \(u_N\) converges with spectral accuracy with respect to \(N\).
-But doing so we would have two full matrices, the stiffness one and the mass one  \(M_{ij} = (\psi_j, \psi_i)_{L^2(-1,1)}\) are quite expensive to compute or invert.
+But doing so, we would have two full matrices, the stiffness one and the mass one  \(M_{ij} = (\psi_j, \psi_i)_{L^2(-1,1)}\) are quite expensive to compute or invert.
 
 To solve this we can use a Lagrange nodal basis instead of a modal one, by using the Legendre-Gauss-Lobatto quadrature formulas.
 In this case we need a Legendre polynomial \(L_N(x)\).
 
-Given a \(L_N(x)\) polynomial, we can put one node at each end of the domain, so \(x_0 = -1, x_N =  1\) and \(x_j = \txt{ zeros of }L'
+Given an \(L_N(x)\) polynomial, we can put one node at each end of the domain, so \(x_0 = -1, x_N =  1\) and \(x_j = \txt{ zeros of }L'
 _N\) with \(j =  1, \ldots, N-1\). We also need a set of weights \(w_j = \frac{2}{N(N+1)} \frac{1}{[L_N(x_j)]^2}\) with \(j = 0, \ldots, N\).
 
 With this set of nodes and weights it's possible to obtain the following interpolatory quadrature formula
@@ -114,7 +114,7 @@ Some useful operation with LGL nodes
         c_1 \norm{v_N}_{L^2(-1,1)} \leq \norm{v_N}_N \leq c_2 \norm{v_N}_{L^2(-1,1)} \quad \forall \; v_N \in \mathbb{P}_N
     \]
 \end{itemize}
-Given \(\left\{\phi_0, \ldots, \phi_N\right\}\) characteristics Lagrange polynomials in \(\mathbb{P}_N\) w.r.t the LGL nodes. then
+Given \(\left\{\phi_0, \ldots, \phi_N\right\}\) characteristics Lagrange polynomials in \(\mathbb{P}_N\) w.r.t the LGL nodes. Then
 \[
     \phi_j = \frac{1}{n(n+1)} \frac{(1-x^2)}{(x_j-x)}\frac{L'_N(x)}{L_N(x_j)} \quad \txt{for } j = 0, \ldots, N
 \]
@@ -183,7 +183,7 @@ with \(A_{ij}^{\txt{GNI}} = a_N(\phi_j, \phi_i)\) for \(i = 1,\ldots, N-1, j = 0
         0 \\ \vdots \\ f_i^{\txt{GNI}} \\ \vdots \\ 0
     \end{matrix*}\right]
 \]
-Given that \(a(u,v) = \int_{-1}^1 \mu u' v' - \int_{-1}^1 bu v' + \int_{-1}^1 \sigma u v\) and \((f,v) = \int_{-1}^1 fv\). We estabilished that \(a_n(u,v) = (\mu u', v')_N - (bu,v')_N + (\sigma u, v)_N\) and that \((f,v)_N = (f,v)_N\), so we obtain 
+Given that \(a(u,v) = \int_{-1}^1 \mu u' v' - \int_{-1}^1 bu v' + \int_{-1}^1 \sigma u v\) and \((f,v) = \int_{-1}^1 fv\). We established that \(a_n(u,v) = (\mu u', v')_N - (bu,v')_N + (\sigma u, v)_N\) and that \((f,v)_N = (f,v)_N\), so we obtain 
 \[
     A_{ij}^{\txt{GNI}} = a_N(\phi_j, \phi_i) = \underbrace{\left(\mu \phi_j', \phi_i'\right)_N}_{\txt{A}} - \underbrace{\left(b\phi_j, \phi_i'\right)_N}_{\txt{B}}+\underbrace{\left(\sigma \phi_j, \phi_i\right)_N}_{\txt{C}}
 \]
@@ -239,7 +239,7 @@ If \(u \in H^{s+1}(\Omega)\) and \(f \in H^{s}(\Omega)\) with \(s \geq 0\), then
 So \(u_N^{\txt{GNI}}\) converges with spectral accuracy w.r.t. to \(N\) to the exact solution when the latter is smooth.
 
 \subsubsection*{General ideas}
-The idea proposed until now are the following:
+The ideas proposed until now are the followings:
 \[
     \begin{array}{lccc}
         \txt{(WP)} & V \txt{ Hilbert} & a \txt{ bilinear form} & F \txt{ functional} \\ 
@@ -278,8 +278,8 @@ with \(\left\{V_h\right\}\) being a family of subspaces of \(V\). Suppose that \
 \]
 Also suppose that \(F_h\) is linear and bounded on \(V_h\). Then:
 \begin{itemize}
-    \item exist a unique solution \(u_h\) to the problem.
-    \item such solution depends continuously on the data, i.e. we have 
+    \item Exist a unique solution \(u_h\) to the problem.
+    \item Such solution depends continuously on the data, i.e. we have 
     \[
         \norm{u_h}_V \leq \frac{1}{\alpha^*} \sup_{v_h \in V_h \backslash \left\{0\right\}} \frac{F_h(v_h)}{\norm{v_h}_V}
     \]
@@ -294,7 +294,7 @@ with \(M\) being the continuity constant of \(a(\cdot, \cdot)\)
 \label{strang_lemma_sem}
 \end{lemma}
 \begin{proof}
-    The assumption of Lax-Milgram are satisfied for \eqref{another_weak_approximation}, so the solution exists and is unique. Moreover
+    The assumption of Lax-Milgram are satisfied for \eqref{another_weak_approximation}, so the solution exists and is unique. Moreover,
     \[
         \norm{u_h}_V \leq \frac{1}{\alpha^*} \norm{F_h}_{V'_h} 
     \]
@@ -328,7 +328,7 @@ with \(M\) being the continuity constant of \(a(\cdot, \cdot)\)
 \end{proof}
 Now we should try to apply Strang's lemma to GNI method in one dimension, to verify its convergence. Obviously, we will have \(V_N\) instead of \(V_h\) and everything that follows from there.
 
-First of all, the error of the LGL numerical integration formula 
+First, the error of the LGL numerical integration formula 
 \[
     E(g, v_N) = (g, v_N) - (g, v_N)_N
 \]
@@ -432,7 +432,7 @@ We can define the local LGL quadrature as
     \int_{I_k} u(x)v(x) \, dx \approx (u,v)_{\delta, I_k} = \sum_{j=0}^{p} u(\xi_j)v(\xi_j)w_j
 \]
 with \(\xi_j = \frac{b_k - a_k}{2}\hat{\xi}_j + \frac{b_k + a_k}{2}\) and \(w_j = \frac{b_k -a_k}{2}\hat{w}_j\).
-Meanwhile we can pass this quadrature to the whole domain, obtaining the composite LGL quadrature:
+Meanwhile, we can pass this quadrature to the whole domain, obtaining the composite LGL quadrature:
 \[
     \int_\Omega u(x)v(x)\, dx \approx (u,v)_{\delta, \Omega} = \sum_{k=1}^{N_e} (u,v)_{\delta, I_k}
 \]
@@ -465,7 +465,7 @@ Now set \(a_\delta(\phi_j, \phi_i) = (\mu \phi'_j- b\phi_j, \phi_i)_{\delta, \Om
 \begin{equation}
     \find u_\delta^{\txt{GNI}} \in V_\delta : a_\delta(u_\delta^{\txt{GNI}}, v_\delta) = (f,v_\delta)_{\delta, \Omega} \quad \forall \; v_\delta \in V_\delta
 \end{equation}
-Now expand \(u_\delta^{\txt{GNI}}\) w.r.t the Lagrange basis \(u_\delta^{\txt{GNI}}(x) = \sum_{i=1}^{N_p}u_\delta^{\txt{GNI}}(x_i)\phi_i(x)\) adn choose \(v_\delta(x) = \phi_i(x)\) for any \(i = 1, \ldots, N_p\). We can now write the SEM-GNI discretization of the weak formulation:
+Now expand \(u_\delta^{\txt{GNI}}\) w.r.t the Lagrange basis \(u_\delta^{\txt{GNI}}(x) = \sum_{i=1}^{N_p}u_\delta^{\txt{GNI}}(x_i)\phi_i(x)\) and choose \(v_\delta(x) = \phi_i(x)\) for any \(i = 1, \ldots, N_p\). We can now write the SEM-GNI discretization of the weak formulation:
 \[
     \begin{cases}
         \find u^{\txt{GNI}} = \left[ u_\delta^{\txt{GNI}}(x_j) \right]_{j=1}^{N_p} \\
@@ -482,7 +482,7 @@ Now, for the error analysis, we will apply the Strang lemma, so:
     & + \frac{1}{\mu^*} \sup_{v_\delta \in V_\delta \backslash\left\{ 0 \right\}} \frac{\abs{f,v_\delta}_{L^2(\Omega) - (f,v_\delta)_{\delta,\Omega}}}{\norm{v_\delta}_V}
 \end{align*}
 where \(\mu^*\) is the coercivity constant of \(a_\delta\): \(a_\delta(v_\delta, v_\delta) \geq \mu^*\norm{v_\delta}^"_V\) and \(u_\delta\) the SEM-GNI solution.
-Thus for any \(u \in H^{s+1}(\Omega)\) and \(f \in H^r(\Omega)\) 
+Thus, for any \(u \in H^{s+1}(\Omega)\) and \(f \in H^r(\Omega)\) 
 \[
     \norm{u-u_\delta^{\txt{GNI}}}_{H^1(\Omega)} \leq C\left[ h^{\min(p,s)}\left( \frac{1}{p} \right)^s \norm{u}_{H^{s+1}(\Omega)} + h^{\min(p,r)}\left( \frac{1}{p} \right)^r \norm{f}_{H^{r}(\Omega)}  \right]
 \]

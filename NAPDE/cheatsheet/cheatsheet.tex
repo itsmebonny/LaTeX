@@ -273,7 +273,32 @@ for each \(t > 0\), we need to find \(u_h(t) \in V_h\) s.t.
     \int_\Omega \partialderivative{u_h(t)}{t} v_h \, d\Omega + a(u_h(t), v_h) = \int_\Omega f(t)v_h \, d\Omega \quad \forall \; v_h \in V_h
 \label{semi-discretization_pbl}
 \end{equation*}
-
+\subsection*{Discontinuous Galerkin}
+\begin{equation*}
+    \begin{cases}
+        -\Delta u = f & \txt{in }\Omega \\
+        u = 0 & \txt{on }\boundary
+    \end{cases}
+\end{equation*}
+\[
+    \Downarrow
+\]
+\[
+    \sum_{\eit}\int_\element \grad u \cdot \grad v - \sum_\eit \int_{\boundary\element} \grad u \cdot \normal_\element v = \int_\Omega fv
+\]
+\[
+    \Downarrow
+\]
+\begin{equation*}
+    \sum_{\eit} \int_{\boundary\element} u \cdot \normal_\element v = \sum_{F \in \mathcal{F}} \int_F \average{u} \cdot \jump{v} + \sum_{F \in \mathcal{F}'_h} \int_F \jump{u}\average{v} \tag*{Magic formula}
+\end{equation*}
+\[\Downarrow\]
+\begin{equation*}
+    \begin{split}
+        \sum_\eit \int_\element \grad u \grad v - \sum_{F \in \mathcal{F}_h} \int_F \average{\grad u} \cdot \jump{v} 
+        -\theta \sum_{F \in \mathcal{F}_h} \int_F \jump{u} \cdot \average{\grad_h v} + \sum_{F \in \mathcal{F}_h} \int_F \gamma \jump{u} \cdot \jump{v} = \int_\Omega fv
+    \end{split}
+\end{equation*}
 \section*{Numerical formulation}
 \subsection*{Continuous Galerkin}
 Space \(V_h = \left\{ v_h \in \mathcal{C}^0(\overline{\Omega}) : v_h\limited{\element} \in \mathbb{P}^r(\element) \ \forall \; \eit, v_h\limited{\Gamma_D} = 0 \right\}\)
@@ -281,11 +306,118 @@ Space \(V_h = \left\{ v_h \in \mathcal{C}^0(\overline{\Omega}) : v_h\limited{\el
     \find u_h \in V_h : a(u_h,v_h) = F(v_h) \quad \forall \; v_h \in V_h
 \]
 \subsection*{Discontinuous Galerkin}
+Space \(V^p_h = \left\{ v_h \in L^2(\Omega) : v_h\limited{\element} \in \mathbb{P}^{p_\element}(\element) \ \forall \eit \right\}\not \subseteq H^1_0(\Omega)\)
+\[
+    \find u_h \in V^p_h : \mathcal{A}(u_h, v_h) = \int_\Omega fv_h \quad \forall \; v_h \in V_h^p
+\]
+where 
+\[
+    \begin{split}
+        \mathcal{A}(u,v) = \sum_\eit \int_\element \grad u \grad v - \sum_{F \in \mathcal{F}_h} \int_F \average{\grad_h u} \cdot \jump{v} \\
+        -\theta \sum_{F \in \mathcal{F}_h} \int_F \jump{u} \cdot \average{\grad_h v} + \sum_{F \in \mathcal{F}_h} \int_F \gamma \jump{u} \cdot \jump{v}
+    \end{split}
+\]
+\begin{itemize}
+    \item \(\theta = 1\) Symmetric interior penalty
+    \item \(\theta = -1\) Non-symmetric interior penalty
+    \item \(\theta = 0\) Incomplete interior penalty
+    \item \(\gamma = \alpha \frac{p^2}{h}\)
+\end{itemize}
+In the case of Dirichlet B.C. \(u = g\) on \(\boundary\) modify r.h.s. and introduce the set of boundary faces \(\mathcal{F}^B_h\)
+\[
+    \int_\Omega fv - \theta \sum_{F \in \mathcal{F}^B_h} \int_F g \grad_h v \cdot n + \sum_{F \in \mathcal{F}^B_h} \int_F \gamma g v 
+\]
+In case of Neumann B.C. \(\grad u \cdot n = g\) on \(\boundary\) we introduce the set of interior faces \(\mathcal{F}'_h\)
+\[
+    \begin{split}
+        \mathcal{A}(u,v) = \sum_\eit \int_\element \grad u \grad v - \sum_{F \in \mathcal{F}'_h} \int_F \average{\grad_h u} \cdot \jump{v} \\
+        -\theta \sum_{F \in \mathcal{F}'_h} \int_F \jump{u} \cdot \average{\grad_h v} + \sum_{F \in \mathcal{F}'_h} \int_F \gamma \jump{u} \cdot \jump{v}
+    \end{split}
+\]
+and 
+\[
+    \int_\Omega fv + \sum_{F \in \mathcal{F}^B_h} \int_F g v 
+\]
+\subsection{Galerkin-NI}
+Space \(V_N = \left\{ v_N \in \mathbb{P}_N(\Omega) : v\limited{\Gamma_D} = g \right\}\)
+\[
+    \find u_N \in V_N : a_N(u_N,v_N) = f_N(v_N) \quad \forall \; v_N \in V_N
+\]
 \subsection*{SEM-NI}
-
 Space \(X_\delta= \left\{ v_\delta \in \mathcal{C}^0(\Omega) : v\limited{\element} = \hat{v}_\delta \, \mathrm{o}\, \vect{F}^{-1}_\element, \txt{ with } \hat{v}_\delta \in \mathbb{Q}_p(\hat{\element}) \ \forall \; \eit \right\}\)
 \[
     \find u_\delta \in X_\delta : a_\delta(u_\delta, v_\delta) = F_\delta(v_\delta) \quad \forall \; v_\delta \in X_\delta
+\]
+\section*{Stability}
+\subsection*{Discontinuous Galerkin}
+Introduce broken Sobolev space
+\[
+    H^s(\triangulation) = \left\{ v \in L^2(\Omega) : v\limited{\element} \in H^s(\element) \ \forall \; \eit \right\}
+\]
+and the norms 
+\begin{align*}
+    &\norm{v}^2_{H^s(\triangulation)} = \sum_{\eit} \norm{v}^2_{H^s(\element)} &\norm{v}^2_{L^2(\mathcal{F}_h)} = \sum_{F \in \mathcal{F}} \norm{v}^2_{L^2(F)} \\ 
+    &\norm{v}^2_{DG} = \ltwonorm{\grad_h v}^2 + \norm{\sqrt{\gamma}\jump{v}}^2_{L^2(\mathcal{F}_h)} &\threenorm[2]{v}{DG} = \norm{v}^2_{DG} + \norm{\frac{1}{\sqrt{\gamma}} \average{\grad_h v}}^2_{L^2(\mathcal{F}_h)}
+\end{align*}
+And some key properties to stability
+\begin{itemize}
+    \item Continuity on \(H^2(\triangulation) \times V_h^p\)
+    \[
+        \abs{\mathcal{A}(u, v_h)} \lesssim \threenorm{u}{DG} \norm{v_h}_{DG} \quad \forall \; u \in H^2(\triangulation), \forall \; v_h \in V_h^p 
+    \]
+    \item Coercivity on \(V_h^p \times V_h^p\) 
+    \[
+        \mathcal{A}(v_h, v_h) \gtrsim \norm{v}^2_{DG} \quad \forall \; v_h \in V_h^p
+    \]
+    \item  Strong-consistency (Galerkin orthogonality):
+    \[
+        \mathcal{A}(u,v_h) = \int_\Omega f v_h \ \ \forall \; v_h \in V_h^p \Rightarrow \mathcal{A}(u-u_h, v_h) = 0 \quad \forall \; v_h \in V_h^p
+    \]
+    \item Approximation. Let \(\prod_{h}^{p}u \in V_h^p\) be a suitable approximation of \(u\), then 
+    \[
+        \threenorm{u-{\textstyle \prod_{h}^{p}u}}{DG} \lesssim \frac{h^{\min(p,s)}}{p^{s-\frac{1}{2}}}\norm{u}_{H^{s+1}(\triangulation)}
+    \]
+    If \(p \geq s\)
+    \[
+        \threenorm{u-{\textstyle \prod_{h}^{p}u}}{DG} \lesssim \left( \frac{h}{p} \right)^s p^{\frac{1}{2}}\norm{u}_{H^{s+1}(\triangulation)}
+    \]
+\end{itemize}
+\section*{Convergence rates}
+\subsection*{Galerkin-NI}
+\[
+    \norm{u-u_N^{\txt{GNI}}}_{H^1(\Omega)} \leq C(s) \left(\frac{1}{N}\right)^s \left(\norm{u}_{H^{s+1}(\Omega)}+\norm{f}_{H^s(\Omega)}\right)
+\]
+\subsection*{Discontinuous Galerkin}
+General (if \(\alpha\) large enough for SIP and NIP):
+\[
+    \norm{u-u_h} \lesssim \frac{h^{\min(p,s)}}{p^{s-\onehalf}}\norm{u}_{H^{s+1}(\triangulation)}
+\]
+\(L^2\) norm (if \(\Omega\) is a convex domain):
+\begin{itemize}
+    \item SIP \(\theta = 1\)
+    \[
+        \ltwonorm{u-u_h} \lesssim \frac{h^{\min(p,s)+1}}{p^{s+\onehalf}}\norm{u}_{H^{s+1}(\triangulation)}
+    \]
+    \item NIP \(\theta = -1\) and IIP \(\theta = 0\)
+    \[
+        \ltwonorm{u-u_h} \lesssim \frac{h^{\min(p,s)}}{p^{s-\onehalf}}\norm{u}_{H^{s+1}(\triangulation)}
+    \]
+\end{itemize}
+\subsection*{Navier-Stokes}
+In case of inf-sup (LBB) condition satisfied by \(V\) and \(Q\)
+\[
+    \norm{\uvec-\uvec_h}_V + \norm{{p}-{p}_h}_Q \leq C(\alpha_h, \beta_h, \gamma, \delta)\left\{ \inf_{\vvec_h \in V_h}\norm{\uvec-\vvec_h}_V + \inf_{{q}_h \in Q_h}\norm{{p}-{q}_h}_Q \right\}
+\]
+where 
+\begin{itemize}
+    \item \(\alpha_h\) is the coercivity constant on the subspace \(V_h\) of divergence free velocities
+    \item \(\beta_h\) is the LBB constant 
+    \item \(\gamma\) is the continuity constant of \(\bilinear\)
+    \item \(\delta\) is the continuity constant of \(b(\cdot,\cdot)\)
+\end{itemize}
+In case of Taylor-Hoods elements 
+\[
+    \norm{\uvec-\uvec_h}_V + \norm{{p}-{p}_h}_Q \leq Ch(\norm{\uvec}_{H^{k+1}} + \norm{p}_{H^k})
 \]
 \section*{Code implementation}
 \subsection*{CG-FEM}
@@ -371,21 +503,4 @@ Space \(X_\delta= \left\{ v_\delta \in \mathcal{C}^0(\Omega) : v\limited{\elemen
         end
     \end{verbatim}
 \end{itemize}
-\section*{Convergence rates}
-\subsection*{Navier-Stokes}
-In case of inf-sup (LBB) condition satisfied by \(V\) and \(Q\)
-\[
-    \norm{\uvec-\uvec_h}_V + \norm{{p}-{p}_h}_Q \leq C(\alpha_h, \beta_h, \gamma, \delta)\left\{ \inf_{\vvec_h \in V_h}\norm{\uvec-\vvec_h}_V + \inf_{{q}_h \in Q_h}\norm{{p}-{q}_h}_Q \right\}
-\]
-where 
-\begin{itemize}
-    \item \(\alpha_h\) is the coercivity constant on the subspace \(V_h\) of divergence free velocities
-    \item \(\beta_h\) is the LBB constant 
-    \item \(\gamma\) is the continuity constant of \(\bilinear\)
-    \item \(\delta\) is the continuity constant of \(b(\cdot,\cdot)\)
-\end{itemize}
-In case of Taylor-Hoods elements 
-\[
-    \norm{\uvec-\uvec_h}_V + \norm{{p}-{p}_h}_Q \leq Ch(\norm{\uvec}_{H^{k+1}} + \norm{p}_{H^k})
-\]
 \end{document}

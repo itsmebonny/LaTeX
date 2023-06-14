@@ -37,7 +37,7 @@ In order for \eqref{navier_stokes_ns} to be well posed, it is necessary to assig
     \uvec(\xvec, 0) = \uvec_0(\xvec) \quad \forall \; \xvec \in \Omega
     \label{initial_condition_ns}
 \end{equation}
-where \(\uvec_0\) is a given divergence-free vector field. Then we would need need suitable BC
+where \(\uvec_0\) is a given divergence-free vector field. Then we would need suitable BC
 \begin{equation}
     \begin{cases}
         \uvec(\xvec, t) = \bm{\phi}(\xvec, t) & \forall \; \xvec \in \Gamma_D, \ t > 0 \\
@@ -56,7 +56,7 @@ If we denote with \(u_i, i = 1,\ldots, d\) the components of \(\uvec\) w.r.t. a 
     \end{cases}
 \]
 \begin{remark}
-    The Navier-Stokes equations have been written in terms of the primitive variable \(\uvec\) and \(p\), but other sets of variables may be used too. For instance, in the two dimensional case it is common to see the vorticity \(\omega\) and the streamfunctoin \(\psi\) that are related to the velocity
+    The Navier-Stokes equations have been written in terms of the primitive variable \(\uvec\) and \(p\), but other sets of variables may be used too. For instance, in the two-dimensional case it is common to see the vorticity \(\omega\) and the streamfunctoin \(\psi\) that are related to the velocity
     \begin{equation*}
         \omega =\rot\uvec = \partialderivative{u_2}{x_1} - \partialderivative{u_1}{x_2}, \quad \uvec = \left[ \begin{matrix*}
             \partialderivative{\psi}{x_2} \\
@@ -259,7 +259,7 @@ Using these notations, problem \eqref{13_slide_ns} becomes
 \end{equation}
 where \((\vect{f}, v) = \sum_{i=1}^{d} \int_\Omega f_iv_i \, d\Omega\).
 
-Considering non homogeneous BC like in \eqref{boundaries_ns}, the weak formulation of the Stokes problem becomes
+Considering non-homogeneous BC like in \eqref{boundaries_ns}, the weak formulation of the Stokes problem becomes
 \begin{equation}
     \find (\overset{\mathrm{o}}{\uvec}, p) \in V \times Q: 
     \begin{cases}
@@ -268,7 +268,7 @@ Considering non homogeneous BC like in \eqref{boundaries_ns}, the weak formulati
     \end{cases}
     \label{16_slide_ns}
 \end{equation}
-where \(V\) and \(Q\) are the spaces \eqref{space_galerkin_ns} and \eqref{8_slide_ns}, respectively. Having denoted with \(\vect{R}\bm{\phi} \in \honed\) a lifting of the boundary datum \(\bm{\phi}\), we have set \(\overset{\mathrm{o}}{\uvec} = \uvec -\vect{R}\bm{\phi}\), while the new terms on the right hand side have the following expression
+where \(V\) and \(Q\) are the spaces \eqref{space_galerkin_ns} and \eqref{8_slide_ns}, respectively. Having denoted with \(\vect{R}\bm{\phi} \in \honed\) a lifting of the boundary datum \(\bm{\phi}\), we have set \(\overset{\mathrm{o}}{\uvec} = \uvec -\vect{R}\bm{\phi}\), while the new terms on the right-hand side have the following expression
 \begin{equation}
     \begin{aligned}
         \vect{F}(\vvec) &= (\vect{f}, \vvec) + \int_{\Gamma_N} \bm{\psi}\vvec \, d\gamma - a(\vect{R}\bm{\phi}, \vvec), \\
@@ -466,7 +466,7 @@ Clearly, every solution of \((u_h, \eta_h)\) of \eqref{28_slide_ns} yields a sol
     \end{align}
     \label{uniqueness_discrete}
 \end{theorem}
-The coercivity condition \eqref{25_slide_ns} does not necessarily guarantees \eqref{31_slide_ns}, as \(X_h^0 \not\subset X^0\), nor does the compatibility condition \eqref{26_slide_ns} in general imply the discrete compatibility condition \eqref{32_slide_ns} due to the fact that \(X_h\) is a proper subspace of \(X\). \eqref{32_slide_ns} is called inf-sup condition.
+The coercivity condition \eqref{25_slide_ns} does not necessarily guarantee \eqref{31_slide_ns}, as \(X_h^0 \not\subset X^0\), nor does the compatibility condition \eqref{26_slide_ns} in general imply the discrete compatibility condition \eqref{32_slide_ns} due to the fact that \(X_h\) is a proper subspace of \(X\). \eqref{32_slide_ns} is called inf-sup condition.
 
 \begin{theorem}
     Let the assumptions of existence and uniqueness theorems \eqref{uniqueness_continuous} and \eqref{uniqueness_discrete} be satisfied. Then, the solutions \((u,\eta)\) and \((u_h, \eta_h)\) of problems \eqref{22_slide_ns} and \eqref{28_slide_ns}, respectively, satisfy the following error estimates: 
@@ -531,7 +531,7 @@ The \((N+M) \times (N+M)\) matrix
     \end{matrix} \right]
     \label{48_slide_ns}
 \end{equation}
-is block-symmetric (as \(A\) is symmetric) and indefinite, featuring real eigenvalues with variable sign. \(S\) is non-singular if and only if is null, a property that follows from the inf-sup condition \eqref{20_slide_ns}.
+is block-symmetric (as \(A\) is symmetric) and indefinite, featuring real eigenvalues with variable sign. \(S\) is non-singular if and only if it is null, a property that follows from the inf-sup condition \eqref{20_slide_ns}.
 
 To prove the latter statement we proceed as follows. 
 
@@ -565,7 +565,7 @@ Let us take \(\vect{q} = \vect{p}\). We require:
 \[
     \scalarproduct{A^{-1}B^T \vect{p}}{B^T\vect{q}} = \vect{0} \Rightarrow \vect{p} = \vect{0}
 \]
-Set \(\vect{w} = B^T \vect{p}\). Since \(A\) is spd, we have that \(\scalarproduct{A^{-1}\vect{w}}{\vect{w}} = \vect{0}\), which implies \(\vect{w} = \vect{0}\). Finally
+Set \(\vect{w} = B^T \vect{p}\). Since \(A\) is spd, we have that \(\scalarproduct{A^{-1}\vect{w}}{\vect{w}} = \vect{0}\), which implies \(\vect{w} = \vect{0}\). Finally,
 \[
     (\vect{w} = B^T \vect{p} = \vect{0} \Rightarrow \vect{p} = \vect{0}) \iff \ker (B^T) =  \left\{ \vect{0} \right\}
 \]
@@ -594,7 +594,7 @@ Consequently, if \((\uvec_h, p_h)\) is a solution to the Stokes problem \eqref{1
     \end{aligned}
     \quad \forall \; \vvec_h \in V_h
 \end{equation*}
-Functions \(q_h^*\) which fail to satisfy the inf-sup condition are invisible to the Galerkin problem \eqref{18_slide_ns}.For this reason, as already observed, they are called spurious pressure modes, or parasitic modes. Their presence yields numerical instabilities. 
+Functions \(q_h^*\) which fail to satisfy the inf-sup condition are invisible to the Galerkin problem \eqref{18_slide_ns}. For this reason, as already observed, they are called spurious pressure modes, or parasitic modes. Their presence yields numerical instabilities. 
 
 Two strategies are generally adopted in order to guarantee well-posedness of the numerical problem:
 \begin{itemize}
@@ -606,7 +606,7 @@ Let us analyze the first type of strategy. To start with, we will consider the c
 
 As Stokes equation are of order one in \(p\) and two in \(\uvec\) it makes sense to use polynomials of degree \(k \geq 1\) for \(V_h\) and of degree \(k-1\) for \(Q_h\).  When looking for a compatible couple of spaces, the larger the velocity space \(V_h\), the more likely the inf-sup condition is satisfied. 
 
-Suitable choices of spaces that fullfill the inf sup pressure. are, for example, the couple \((\mathbb{P}_2, \mathbb{P}_0)\), (\((\mathbb{Q}_2, \mathbb{P}_0)\)) or the so-called Crouzeix Raviart elements, in which the velocity components are piecewise quadratic functions with a bubble function on each element, while the pressure components are piecewise linear discontinuous element.
+Suitable choices of spaces that fullfill the inf sup pressure are, for example, the couple \((\mathbb{P}_2, \mathbb{P}_0)\), (\((\mathbb{Q}_2, \mathbb{P}_0)\)) or the so-called Crouzeix Raviart elements, in which the velocity components are piecewise quadratic functions with a bubble function on each element, while the pressure components are piecewise linear discontinuous element.
 
 In the case of continuous pressure, examples of incompatible spaces could be piecewise linear elements on triangles for both velocity and pressure. More in general, not a good idea to use the same polynomial degree.
 
@@ -640,7 +640,7 @@ We have set
 \end{align*}
 and \(\delta\) is a positive parameter chosen accordingly.
 
-This is a strongly consistent approximation of problem \eqref{11_slide_ns}. As a matter of fact, the additional term is null when calculated on the exact solution thanks to \eqref{13_slide_ns}. Note that,since \(k=1, \Delta \uvec_{h\limited{\element} = \Delta \vvec_{h\limited{\element}}} = \vect{0} \forall \; \eit\) as we are using piecewise linear finite elements functions.
+This is a strongly consistent approximation of problem \eqref{11_slide_ns}. As a matter of fact, the additional term is null when calculated on the exact solution thanks to \eqref{13_slide_ns}. Note that, since \(k=1, \Delta \uvec_{h\limited{\element} = \Delta \vvec_{h\limited{\element}}} = \vect{0} \forall \; \eit\) as we are using piecewise linear finite elements functions.
 
 We obtain the following stability inequality 
 \begin{equation}
@@ -669,7 +669,7 @@ This system differs from \eqref{47_slide_ns} without stabilization because of th
 \[
     C = [c_{km}], c_{km} = \delta \sum_\eit h^2_\element \int_\element \grad \oldphi_m \cdot \grad \oldphi_k \, d\element, k,m = 1,\ldots, M
 \]
-while the components of the right hand side \(\vect{G}\) are 
+while the components of the right-hand side \(\vect{G}\) are 
 \[
     g_k = -\delta \sum_\eit h^2_\element \int_\element \vect{f} \cdot \grad \oldphi_k \, d\element, k = 1,\ldots, M
 \]
@@ -710,7 +710,7 @@ we obtain
     \end{cases}
     \label{59_slide_ns}
 \end{equation}
-Since, except for the forward Euler method, the solution of this system is quite involved, a possible alternative is a semi-implicit scheme in which the linear part of the equation is advanced implicitly, while the nonlinear ones explicitly. in this way, for \(\theta \geq \onehalf\), the resulting scheme is unconditionally stable, whereas, in all other cases, it must obey a stability restriction on the timestep \(\tstep\). 
+Since, except for the forward Euler method, the solution of this system is quite involved, a possible alternative is a semi-implicit scheme in which the linear part of the equation is advanced implicitly, while the nonlinear ones explicitly. In this way, for \(\theta \geq \onehalf\), the resulting scheme is unconditionally stable, whereas, in all other cases, it must obey a stability restriction on the timestep \(\tstep\). 
 \subsubsection*{Finite difference methods}
 We consider an explicit temporal discretization of the first equation in \eqref{58_slide_ns}, corresponding to \(\theta = 0\) in \eqref{59_slide_ns}. If all the quantities are known at \(t^n\), then we can write
 \begin{equation*}
@@ -779,7 +779,7 @@ The corresponding scheme reads
 \end{enumerate}
 where \(\uvec^*\) and \(\uvec^{**}\) can be either \(\tilde{\uvec}^{n+1}\) or \(\uvec^n\) depending on whether the nonlinear terms are treated.
 
-In such a way, in the first step the velocity is calculated as \(\tilde{\uvec}^{n+1}\) and then it is corrected in the second step to satisfy the constraints.
+In such a way, in the first step the velocity is calculated as \(\tilde{\uvec}^{n+1}\), and then it is corrected in the second step to satisfy the constraints.
 
 While the first step is a classic advection-diffusion problem, the second step is a bit more tricky. First we need to apply the divergence operator to the first equation of \eqref{64_slide_ns}
 \[

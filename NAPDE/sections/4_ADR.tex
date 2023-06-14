@@ -1,7 +1,7 @@
 \newpage
 \section{Advection-Diffusion-Reaction equations}
 \subsection{Formulation of the problem}
-Consideting the problem \(\mathcal{L}u = f\) in \(\Omega\), \(u=0\) on \(\partial\Omega\) where 
+Considering the problem \(\mathcal{L}u = f\) in \(\Omega\), \(u=0\) on \(\partial\Omega\) where 
 \begin{align*}
     &\mathcal{L} u = -\div \left(\mu \grad u + \vect{b} u\right) + \sigma u & \txt{(conservative form)} \\
     &\mathcal{L} u = -\div \left(\mu \grad u\right) + \vect{b} \cdot \grad u + \sigma u & \txt{(non-conservative form)}
@@ -44,7 +44,7 @@ and move to the error estimate
 \[
     \norm{u-u_h} \underset{(\txt{Ceà})}{\leq} \frac{M}{\alpha} \inf_{v_h \in V_h} \norm{u-v_h} \underset{\substack{(\txt{interpolation} \\\txt{error estimate})}}{\leq} C \frac{M}{\alpha} h^r \abs{u}_{H^{r+1}(\Omega)}
 \]
-If it is a convection dominated flow (or reaction dominated), then \(\frac{M}{\alpha} \gg 1\), then we need to find a tradeoff between \(\frac{M}{\alpha}\) and \(h^r\). Also it is numerically prohibitive. 
+If it is a convection dominated flow (or reaction dominated), then \(\frac{M}{\alpha} \gg 1\), then we need to find a trade-off between \(\frac{M}{\alpha}\) and \(h^r\). Also, it is numerically prohibitive. 
 
 The Péclet number tells us if the flow is dominated by advection or diffusion if its greater or smaller than \(1\). We can define it as 
 \[
@@ -70,7 +70,7 @@ Now the solution is stabilized, but is not fully consistent. So the solution is 
 \]
 with \(\mathscr{L}_h\) suitably chosen such that
 \[
-    \mathscr{L}(u_h, f; v_h) = 0 \quad \forall \; v_h \in V_h
+    \mathscr{L}(u_h, f; v_h) = 0 \quad \forall \; v_h \in V_h,
 \]
 so we obtain a strongly consistent approximation of the original problem.
 
@@ -78,7 +78,7 @@ One possibility could be to use an operator proportional to the residual:
 \[
     \mathscr{L}_h(u_h, f;v_h) = \sum_{\element \in \triangulation} \int_\element(\mathcal{L}u - f)\tau_\element \phi(v_h) \quad \forall \; v_h \in V_h  
 \]
-with \(\tau_\element\) as a scaling factor. Typically is chosen, given \(h_\element = diam(\element)\):
+with \(\tau_\element\) as a scaling factor. Typically, is chosen, given \(h_\element = diam(\element)\):
 \[
     \tau_\element (\vect{x}) = \delta \frac{h_\element}{\abs{\vect{b}(\vect{x})}} \quad \forall \; \vect{x} \in \element, \element \in \triangulation
 \]
@@ -97,7 +97,7 @@ For matrices it is \(A = A_S + A_{SS}\)
 \[
   A_S = \frac{1}{2} (A + A^T) \quad A_{SS} = \frac{1}{2} (A -A^T)
 \]
-Let us see an example in the non conservative form 
+Let us see an example in the non-conservative form 
 \begin{align*}
         \mathcal{L}^1 &= -\mu \Delta u + \vect{b} \cdot \grad u + \sigma u \\
         &= \underbrace{\left[ -\mu \Delta u + \left( \sigma - \frac{1}{2} \div \vect{b} \right)u\right]}_{\mathcal{L}^1_s u} + \underbrace{\left[ \frac{1}{2} \left( \div(\vect{b}u) + \vect{b} \cdot \grad u \right) \right]}_{\mathcal{L}^1_{ss}u}
@@ -113,7 +113,7 @@ Indeed we can see
     &= \frac{1}{2} \int_\Omega (-(\vect{b}\cdot \grad v)u - \div(\vect{b}v)u) = -{}_V\langle u, \mathcal{L}_{ss}^1 \rangle_{V'}
 \end{align*}
 \begin{remark}
-    If \(\div \vect{b} = 0\), which happens if \(\vect{b}\) is constant, then the conservative and non conservative forms coincide.
+    If \(\div \vect{b} = 0\), which happens if \(\vect{b}\) is constant, then the conservative and non-conservative forms coincide.
 \end{remark}
 \subsection{GLS method (conservative form)}
 \[
@@ -172,7 +172,7 @@ As we already said, a smart choice for \(\scalingfactor\) is \(\delta\frac{h_\el
 \[
     \scalingfactor(\vect{x}) = \frac{h_\element}{2\abs{\vect{b}(\vect{x})}} \xi(\peclet_\element)
 \]
-with \(\xi(\theta) = \coth(\theta)-\frac{1}{\theta}\). and \(\peclet_\element (\vect{x}) = \frac{\abs{\vect{b}(\vect{x})}}{2\mu(\vect{x})}h_\element\) is the local Péclet number. 
+with \(\xi(\theta) = \coth(\theta)-\frac{1}{\theta}\). And \(\peclet_\element (\vect{x}) = \frac{\abs{\vect{b}(\vect{x})}}{2\mu(\vect{x})}h_\element\) is the local Péclet number. 
 Moreover, if \(\theta \to 0\), then \(\xi(\theta) = \frac{\theta}{3} + o(\theta)\), therefore when \(\peclet_\element(\vect{x}) \ll 1\), we have \(\tau_\element(\vect{x}) \to 0\) and no stabilization is needed.
 \subsection{Convergence of GLS}
 To state the convergence of GLS we need the inverse inequality, defined as
@@ -200,7 +200,7 @@ To state the convergence of GLS we need the inverse inequality, defined as
     \end{equation}
 \end{theorem}
 \begin{proof}
-    First of all, rewrite the error as 
+    First, rewrite the error as 
     \begin{equation}
         e_h = u_h - u = \sigma_h - \eta
         \label{error_rewrite_adr}
@@ -254,7 +254,7 @@ To state the convergence of GLS we need the inverse inequality, defined as
     \[
         \norm{\sigma_h}_{GLS}^2 \leq 2\mathcal{E}(\eta)
     \]
-    It's time to estimate \(\mathcal{E}(\eta)\), by bounding each of it's summands separately. To do this, we will use the local approximation property \eqref{convergence_gls_adr} and the local Péclet \eqref{local_peclet_adr}. Moreover, we observe that the constant \(C\), introduced in the remainder, depends neither on \(h\) nor on \(\peclet_\element\), but can depend on other quantities such as the constant \(\gamma_1\), the reaction constant \(\sigma\) or the norm \(\norm{\vect{b}}_{L^\infty(\Omega)}\), the stabilization parameter \(\delta\).
+    It's time to estimate \(\mathcal{E}(\eta)\), by bounding each of its summands separately. To do this, we will use the local approximation property \eqref{convergence_gls_adr} and the local Péclet \eqref{local_peclet_adr}. Moreover, we observe that the constant \(C\), introduced in the remainder, depends neither on \(h\) nor on \(\peclet_\element\), but can depend on other quantities such as the constant \(\gamma_1\), the reaction constant \(\sigma\) or the norm \(\norm{\vect{b}}_{L^\infty(\Omega)}\), the stabilization parameter \(\delta\).
 
     Then we have 
     \begin{align*}
@@ -264,7 +264,7 @@ To state the convergence of GLS we need the inverse inequality, defined as
         &\leq c h^{2r+1} \abs{u}^2_{H^{r+1}(\Omega)} \\
         2 \ltwonorm{\sqrt{\gamma}\eta}^2 &\leq 2\gamma_1 \ltwonorm{\eta}^2 \leq Ch^{2r+1} \abs{u}^2_{H^{r+1}(\Omega)} 
     \end{align*} 
-    For the fouth term we have 
+    For the fourth term we have 
     \begin{align*}
         \sum_\eit \delta \left( \frac{h_\element}{\vecbabs}\mathcal{L}\eta, \mathcal{L}\eta \right)_{L^2(\element)} &= \sum_\eit \norm{\sqrt{\frac{h_\element}{\vecbabs}} \mathcal{L}\eta}_{L^2(\element)}^2 \\
         &= \sum_\eit \delta \norm{-\mu \sqrt{\frac{h_\element}{\vecbabs}} \Delta \eta + \sqrt{\frac{h_\element}{\vecbabs}} \div(\vect{b}\eta) + \sigma \sqrt{\frac{h_\element}{\vecbabs}} \eta}_{L^2(\element)}^2 \stepcounter{equation}\tag{\theequation}\label{fourth_term_adr}\\
