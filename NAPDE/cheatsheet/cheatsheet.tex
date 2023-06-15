@@ -211,7 +211,7 @@
 \maketitle
 \section*{Reminders on calculus}
 \[
-    \int_\Omega-\Delta u v = \int_\Omega \grad u \cdot \grad v - \underbrace{\int_{\Gamma_D}  \grad u \cdot \vect{n} v}_{= 0 \txt{ if } v\vert_{\Gamma_D} = 0}
+    \int_\Omega-\Delta u v = \int_\Omega \grad u \cdot \grad v - \underbrace{\int_{\boundary}  \grad u \cdot \vect{n} v}_{= 0 \txt{ if } v\vert_{\boundary} = 0}
 \]
 \[
     \int_\Omega \div u = \int_\boundary u \cdot \vect{n} 
@@ -338,17 +338,50 @@ and
 \[
     \int_\Omega fv + \sum_{F \in \mathcal{F}^B_h} \int_F g v 
 \]
-\subsection{Galerkin-NI}
+\subsection*{SEM}
+Space \(\mathbb{Q}_N(I) = \left\{ v(x) = \sum_{k=0}^{N} a_k x^k, \ a_k \in \real \right\}\)
+
+In one dimension \(\mathbb{Q}_N = \mathbb{P}_N\)
+
+Space \(V_N = \left\{ v_N \in \mathbb{Q}_N : v_N\limited{\Gamma_D} = g \right\}\)
+
+If the domain is meshed \(V_N = \left\{ v_N \in \mathcal{C}^0(\overline{\Omega}): v_N\limited{\element} \mathrm{o} \bm{\phi}_k \in \mathbb{Q}_N(\hat{\element}) \ \forall \; \eit \right\}\)
+\[
+    \find u_N \in V_N: a(u_N, v_N) = (F, v_N)_{L^2(\Omega)} \quad \forall \; v_N \in V_N
+\]
+\subsection*{Galerkin-NI}
 Space \(V_N = \left\{ v_N \in \mathbb{P}_N(\Omega) : v\limited{\Gamma_D} = g \right\}\)
 \[
     \find u_N \in V_N : a_N(u_N,v_N) = f_N(v_N) \quad \forall \; v_N \in V_N
 \]
 \subsection*{SEM-NI}
-Space \(X_\delta= \left\{ v_\delta \in \mathcal{C}^0(\Omega) : v\limited{\element} = \hat{v}_\delta \, \mathrm{o}\, \vect{F}^{-1}_\element, \txt{ with } \hat{v}_\delta \in \mathbb{Q}_p(\hat{\element}) \ \forall \; \eit \right\}\)
+Space \(X_\delta= \left\{ v_\delta \in \mathcal{C}^0(\Omega) : v_\delta\limited{\element} = \hat{v}_\delta \, \mathrm{o}\, \vect{F}^{-1}_\element, \txt{ with } \hat{v}_\delta \in \mathbb{Q}_p(\hat{\element}) \ \forall \; \eit \right\}\)
 \[
     \find u_\delta \in X_\delta : a_\delta(u_\delta, v_\delta) = F_\delta(v_\delta) \quad \forall \; v_\delta \in X_\delta
 \]
 \section*{Stability}
+\subsection*{Continuous Galerkin}
+\[
+    \norm{u_h} \leq \frac{\norm{F}_{V'}}{\alpha}
+\]
+\subsection*{Stabilized Galerkin}
+\[
+    \norm{u_h}_{GLS}^2 \leq C \norm{f}_{L^2(\Omega)}^2
+\]
+Also \(\tau_\element\)
+\[
+    \tau_\element(\xvec) = \delta\frac{h_\element}{\abs{\vect{b}(\xvec)}} \quad \tau_\element(\xvec) = \frac{h_\element}{2\abs{\vect{b}(\xvec)}} \epsilon(\peclet_\element)
+\]
+\subsection*{Parabolic equations}
+Stability of \(\theta\)-method for \(\theta <\onehalf\) 
+\[
+    \exists \; c > 0: \tstep \leq ch^2 \quad \forall \; h > 0
+\]
+or even 
+\[
+    \tstep \leq \frac{2}{(1-2\theta)\lambda_h^{N_h}}
+\]
+where \(\lambda_h^{N_h}\) is the largest eigenvalue of the bilinear form.
 \subsection*{Discontinuous Galerkin}
 Introduce broken Sobolev space
 \[
@@ -382,15 +415,54 @@ And some key properties to stability
         \threenorm{u-{\textstyle \prod_{h}^{p}u}}{DG} \lesssim \left( \frac{h}{p} \right)^s p^{\frac{1}{2}}\norm{u}_{H^{s+1}(\triangulation)}
     \]
 \end{itemize}
+\subsection*{Spectral Methods}
+Strang Lemma 
+\[
+    \norm{v_h}_V \leq \frac{1}{\alpha^*} \sup_{v_h \in V_h \setminus \left\{ 0 \right\}} \frac{F_h(v_h)}{\norm{v_h}_V}
+\]
 \section*{Convergence rates}
+\subsection*{Galerkin} 
+Ceà Lemma 
+\[
+    \norm{u-u_h} \leq \frac{M}{\alpha} \inf_{v_h \in V_H} \norm{u-v_h}
+\]
+\[
+    \norm{u- \textstyle \prod_{h}^{r}u} \leq C h^r\seminorm{u}{H^{r+1}(\Omega)}
+\]
+\subsection*{Stabilized Galerkin}
+If 
+\[
+    \peclet_\element(\xvec) = \frac{\abs{\vect{b}(\xvec)} h_\element}{2\mu} > 1 \quad \forall \; \xvec \in \element
+\]
+then 
+\[
+    \norm{u - u_h}_{GLS} \leq Ch^{r+\onehalf} \seminorm{u}{H^{r+1}(\Omega)}
+\]
+\subsection*{Parabolic equations}
+\begin{equation*}
+    \begin{split}
+        \left\{ \ltwonorm{u(t) - u_h(t)}^2 + \alpha \int_0^t \ltwonorm{\grad u(s) -\grad u_h(s)}^2 \, ds \right\}^{\onehalf} \\
+        \leq Ch^r \left\{ \seminorm{u_0}{H^r(\Omega)}^2 + \int_0^t \seminorm{u(s)}{H^{r+1}( Omega)}^2 \, ds + \int_0^t \seminorm{\partialderivative{u(s)}{s}}{H^{r+1}(\Omega)}^2 \, ds \right\}^{\onehalf}
+    \end{split}
+\end{equation*}
 \subsection*{Galerkin-NI}
 \[
     \norm{u-u_N^{\txt{GNI}}}_{H^1(\Omega)} \leq C(s) \left(\frac{1}{N}\right)^s \left(\norm{u}_{H^{s+1}(\Omega)}+\norm{f}_{H^s(\Omega)}\right)
 \]
+\subsection*{SEM-NI}
+\[
+    \norm{u - u_\delta}_{H^1(\Omega)} \leq C(s) \left( h^{\min(p,s)} \left( \frac{1}{p} \right)^s \norm{u}_{H^{s+1}} + h^{\min(p,r)}\left( \frac{1}{p} \right)^r \norm{f}_{H^r(\Omega)} \right)
+\]
 \subsection*{Discontinuous Galerkin}
+Interpolation error 
+\[
+    \threenorm{u-\textstyle\prod_h^p u}{DG} \lesssim \frac{h^{\min(p,s)}}{p^{s-\onehalf}}\norm{u}_{H^{s+1}(\triangulation)}
+\]
+And, since \( \norm{u-u_h}_{DG} \lesssim \threenorm{u-\textstyle\prod_h^p u}{DG}\):
+
 General (if \(\alpha\) large enough for SIP and NIP):
 \[
-    \norm{u-u_h} \lesssim \frac{h^{\min(p,s)}}{p^{s-\onehalf}}\norm{u}_{H^{s+1}(\triangulation)}
+    \norm{u-u_h}_{DG} \lesssim \frac{h^{\min(p,s)}}{p^{s-\onehalf}}\norm{u}_{H^{s+1}(\triangulation)}
 \]
 \(L^2\) norm (if \(\Omega\) is a convex domain):
 \begin{itemize}
@@ -445,13 +517,24 @@ In case of Taylor-Hoods elements
             end
         end
     \end{verbatim}
+    or (use this if P1)
+    \begin{verbatim}
+        for i=1:nln
+            for j=1:nln
+                    Binv = inv(BJ(:,:,1));   % inverse
+                    Jdet = det(BJ(:,:,1));   % determinant 
+                    K_loc(i,j) = K_loc(i,j) + 0.5 * Jdet 
+                    *  Grad(1,:,i) * Binv * Binv' * Grad(1,:,j)';
+            end
+        end
+    \end{verbatim}
     \item Mass matrix \(M\):
     \[
         M_{ij} = \int_\Omega \phi_j, \phi_i
     \]
     Loop on all the elements and calculate the local mass matrix
     \[
-        M_{loc_{ij}} =  \det(\vect{B}_\element) \int_{\hat{\element}} \hat{\phi}^T_j \hat{\phi}_i
+        M_{loc_{ij}} =  \det(\vect{B}_\element) \int_{\hat{\element}} \hat{\phi}_j \hat{\phi}_i
     \]
     Can be implemented as
     \begin{verbatim}
