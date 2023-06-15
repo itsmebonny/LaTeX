@@ -402,3 +402,79 @@ with \(i = 1,2\). The Galerkin formulation reads
         u^{(k)}_{2,h} = u^{(k)}_{1,h} & \txt{on } \Gamma_2
     \end{cases}
 \end{equation*}
+Then we can use a lifting strategy for the boundary datum, setting \(\tilde{w}^{(k)}_{i,h} = \) extension by zero to \(\Omega \setminus \Omega_i\) of \(w^{(k)}_{i,h}\)
+\begin{equation*}
+    \find w^{(k)}_{1,h} \in \overset{\mathrm{o}}{V}_{1,h} : \begin{cases}
+        a_1(w^{(k)}_{1,h}, v_{1,h}) = \loperator_1 (v_{1,h}) - a_1(u^{(k)}_{h}, v_{1,h})& \forall \; v_{1,h} \in \overset{\mathrm{o}}{V}_{1,h} \\
+        u^{(k+\onehalf)}_{h} = u^{(k)}_{h} + \tilde{w}^{(k)}_{2,h} & \txt{on } \Gamma_1
+    \end{cases}
+\end{equation*}
+\begin{equation*}
+    \find w^{(k)}_{2,h} \in \overset{\mathrm{o}}{V}_{2,h} : \begin{cases}
+        a_2(w^{(k)}_{2,h}, v_{2,h}) = \loperator_2 (v_{2,h}) -a_2(u^{(k)})_{h}, v_{2,h} & \forall \; v_{2,h} \in \overset{\mathrm{o}}{V}_{2,h} \\
+        u^{(k+1)}_{h} = u^{(k+\onehalf)}_{h} + \tilde{w}_{2,h}^{(k)} & \txt{on } \Gamma_2
+    \end{cases}
+\end{equation*}
+Now, thanks to the following matrices 
+\[
+    R_1^T = \left[ \begin{matrix}
+        1 & \cdots & 0 \\
+        \vdots & \ddots & \vdots \\
+        0 & \cdots & 1 \\
+        &  & \\
+        & \makebox(0,0){\text{\huge0}} & \\
+        & & 
+    \end{matrix}  \right], \quad R_2^T \left[ \begin{matrix}
+          &  & \\
+        & \makebox(0,0){\text{\huge0}} & \\
+        & & \\
+        1 & \cdots & 0 \\
+        \vdots & \ddots & \vdots \\
+        0 & \cdots & 1       
+    \end{matrix} \right]
+\]
+So that \(R_1^T, R_2^T\) are prolongation matrices and \(R_1, R_2\) are restriction matrices. Obviously, \(R^T R = I(N_h \times N_h)\) and \(A_1 = R_1AR_1^T, A_2 = R_2AR^T_2\).
+
+We can now write the algebraic formulation
+\[
+    A_1 \vect{w}^{(k)} = R_1 \fvec -A_1 R_1 \uvec^{(k)}
+\]
+that is the same as 
+\[
+    A_1 R_1 \tilde{\vect{w}}_1^{(k)} = R_1 \fvec - A_1 R_1 \uvec^{(k)}
+\]
+which entails, using \(A_1 = R_1 A R_1^T\): 
+\begin{align*}
+    A_1 R_1 \left( \uvec^{(k+\onehalf)} - \uvec^{(k)}\right) &= R_1\fvec - R_1A \overbrace{R_1^T R_1}^{I(N_h \times N_h)} \uvec^{(k)} = R_1\left( \fvec -A\uvec^{(k)} \right) \\
+    R_1 \left( \uvec^{(k+\onehalf)} - \uvec^{(k)} \right) &= A^{-1}_1 R_1 \left( \fvec - A\uvec^{(k)} \right)
+\end{align*}
+Left-multiplying by \(R_1^T\) and noting that \(R_1^T R_1 = I(N_h \times N_h)\) yields:
+\[
+    \uvec^{(k+\onehalf)} = \uvec^{(k)} + R_1^T A^{-1}_1 R_1 \left( \fvec - A\uvec^{(k)} \right)
+\]
+By working similarly on the second step, we get: 
+\[
+    \uvec^{(k+1)} = \uvec^{(k+\onehalf)} R_2^T (R_2AR^T_2)^{-1} R_2 \left( \fvec - A \uvec^{(k+\onehalf)} \right)
+\]
+In conclusion, we obtain:
+\begin{align*}
+    \uvec^{(k+\onehalf)} &= \uvec^{(k)} R_1^T (R_1AR^T_1)^{-1} R_1 \left( \fvec - A \uvec^{(k)} \right) \\
+    \uvec^{(k+1)} &= \uvec^{(k+\onehalf)} R_2^T (R_2AR^T_2)^{-1} R_2 \left( \fvec - A \uvec^{(k+\onehalf)} \right)
+\end{align*}
+Define, for \(i = 1,2\) 
+\[
+    Q_i = R_i(R_iAR_i^T)^{-1} R_i
+\]
+We get 
+\begin{align*}
+    \uvec^{(k+\onehalf)} &= \uvec^{(k)} + Q_1 \left( \fvec - A\uvec^{(k)} \right) \\
+    \uvec^{(k+1)} &= \uvec^{(k+\onehalf)} Q_2\left( \fvec - A\uvec^{(k+\onehalf)} \right) 
+\end{align*}
+and 
+\[
+    \uvec^{(k+1)} = \uvec^{(k)} + Q_1 \left( \fvec - A \uvec^{(k)} \right) + Q_2 \left[ \fvec - A \left( \uvec^{(k)} + Q_1 \left( \fvec - A \uvec^{(k)} \right) \right) \right]
+\]
+or equivalently, 
+\[
+    \uvec^{(k+1)} = \uvec^{(k)} + (Q_1  Q_2 - Q_2AQ_1) (\fvec - A\uvec^{(k)})
+\]
