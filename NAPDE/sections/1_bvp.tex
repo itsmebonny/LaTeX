@@ -35,7 +35,7 @@ Consider
         -\div(\mu \grad u)+ \vect{b}\cdot \grad u + \sigma u = f& \text{in } \Omega \quad g \in L^2(\Gamma_N) \\
         u = 0 & \txt{on }\Gamma_D \quad \partial\Omega = \Gamma_D \cup \Gamma_N \\
 
-        \mu \grad u \cdot \vect{n} = g & \txt{on } \Gamma_N \quad \interior{\Gamma_D} \cap \interior{\Gamma_N} = \emptyset
+        \mu \grad u \cdot \vect{n} = g & \txt{on } \Gamma_N \quad \interior{\Gamma}_D \cap \interior{\Gamma}_N = \emptyset
     \end{cases}
 \end{equation}
 Suppose that \(f \in L^2(\Omega)\) and \(\mu, \sigma \in L^\infty(\Omega)\). Also suppose that \(\exists \; \mu_0 > 0 \txt{ s.t. } \mu(\vect{x}) \geq \mu_0\), and \(\sigma(\vect{x}) \geq 0\) a.e. on \(\Omega\).  
@@ -59,19 +59,19 @@ where \(a: V \times V \to \real\) is a bilinear form and \(F:V \to \real\) is a 
     Assume that 
     \begin{itemize}
         \item \(V\) Hilbert space with \(\normdot\) and inner product \((\cdot, \cdot)\)
-        \item \(F \in V^*: \abs{F(v)} \leq \norm{F}_{V^*}\norm{v} \; \forall \; v \in V\)
+        \item \(F \in V': \abs{F(v)} \leq \norm{F}_{V'}\norm{v} \; \forall \; v \in V\)
         \item \(a\) continuous: \(\exists \; M > 0: \abs{a(u,v)} \leq M \norm{u}_V\norm{v}_V \; \forall \; u,v \in V\)
         \item \(a\) coercive: \(\exists \; \alpha > 0: a(v,v) \geq \alpha\norm{v}_V^2 \; \forall \; v \in V\)
     \end{itemize}
-    Then, there exists a unique solution \(u\) of \ref*{Weak Formulation of Boundary Value Problems}
+    Then, there exists a unique solution \(u\) of \eqref{Weak Formulation of Boundary Value Problems}
 \end{theorem}
 Moreover 
 \[
-    \alpha \norm{u}^2 \leq a(u,u) = F(u) \leq \norm{F}_{V^*} \norm{u}
+    \alpha \norm{u}^2 \leq a(u,u) = F(u) \leq \norm{F}_{V'} \norm{u}
 \]
 where \(\alpha\) is the coercivity constant. Hence,
 \[
-    \norm{u} \leq \frac{\norm{F}_{V^*}}{\alpha} \to \txt{stability/continuous dependence on data}
+    \norm{u} \leq \frac{\norm{F}_{V'}}{\alpha} \to \txt{stability/continuous dependence on data}
 \]
 But what if some assumptions of Lax-Milgram (in particular coercivity) are not satisfied?
 
@@ -84,15 +84,15 @@ We need a slightly more general problem to formulate Nečas theorem:
 \end{equation}
 They belong to different spaces: W for the test function, V the solutions
 \begin{theorem}[Nečas]
-    Assume that \(F \in W^*\). Consider the following conditions:
+    Assume that \(F \in W'\). Consider the following conditions:
     \begin{itemize}
         \item \(a\) continuous: \(\exists \; M > 0: \abs{a(u,w)} \leq M \norm{u}_V \norm{w}_W \; \forall \; u \in V, w \in W\)
         \item \(\inf-\sup\) condition: \(\exists \; \alpha > 0: \forall \; v \in V \quad \sup_{w \in W \setminus \left\{0\right\}} \frac{a(v,m)}{\norm{w}_W} \geq \alpha \norm{v}_V\)
         \item \(\forall \; w \in W, w \neq 0, \exists \; v \in V : a(v,w) \neq 0\)
     \end{itemize}
-    These conditions are necessary and sufficient for the existence and uniqueness of a solution of \ref*{Generalized weak formulation}, for any \(F \in W^*\). Moreover 
+    These conditions are necessary and sufficient for the existence and uniqueness of a solution of \ref*{Generalized weak formulation}, for any \(F \in W'\). Moreover 
     \[
-        \norm{u}_V \leq \frac{1}{\alpha}\norm{F}_{W^*}
+        \norm{u}_V \leq \frac{1}{\alpha}\norm{F}_{W'}
     \]
 \label{Nečas}
 \end{theorem}
@@ -114,11 +114,11 @@ and
 \[
     a(u,v) = \int_\Omega \mu \underbrace{\grad u \grad v}_{\grad u, \grad v \in L^2} + \int_\Omega b \underbrace{\grad u v}_{\in L^1} + \int_\Omega \sigma \underbrace{u v}_{\in L^1}
 \]
-We want to choose \(v\) in order to have all of these integrable \[\Rightarrow V = \left\{v \in L^2(\Omega), \grad u \in \left[L^2(\Omega)\right]^d, v\vert_{\Gamma_D} = 0\right\} = V_{\Gamma_D}\].
+We want to choose \(v\) in order to have all of these integrable \[\Rightarrow V = \left\{v \in L^2(\Omega), \grad v \in \left[L^2(\Omega)\right]^d, v\vert_{\Gamma_D} = 0\right\} = V_{\Gamma_D}\].
 
 Knowing that a Sobolev space 
 \[
-    H^1 = \left\{v \in L^2(\Omega), \grad u \in \left[L^2(\Omega)\right]^d\right\}
+    H^1 = \left\{v \in L^2(\Omega), \grad v \in \left[L^2(\Omega)\right]^d\right\}
 \]
 we can say \(V_{\Gamma_D} = \left\{v \in H^1(\Omega): v\limited{\Gamma_D}= 0\right\}\), and if \(\Gamma_D = \partial\Omega\), then \(V_{\Gamma_D} = H^1_0\)
 \subsection{Approximation}
@@ -129,7 +129,7 @@ Recall for a moment the weak formulation of a generic elliptic problem
         a(u,v) = \scalarproduct{F}{v} & \forall \; v \in V \label{Weak Formulation of Boundary Value Problems - 2}
     \end{cases}
 \end{equation}
-with \(V\) being an appropriate Hilbert space, subset of \(H^1(), a(\cdot,\cdot)\) being a continuous and coercive bilinear form from \(V \times V \to \real\), \(F(\cdot)\) being a continuous linear functional from \(V \to \real\).
+with \(V\) being an appropriate Hilbert space, subset of \(H^1(\Omega), a(\cdot,\cdot)\) being a continuous and coercive bilinear form from \(V \times V \to \real\), \(F(\cdot)\) being a continuous linear functional from \(V \to \real\).
 
 Let \(V_h \subset V\) be a family of spaces that depends on a parameter \(h > 0\), such that \(\dim V_h = N_h < \infty\).
 We can rewrite the weak formulation 
@@ -199,10 +199,10 @@ To prove this we can prove that the solution to \eqref{Linear system Galerkin} e
 \begin{corollary}
     The Galerkin method is stable, uniformly with respect to \(h\), by virtue of the following upper bound for the solution
     \[
-        \norm{u_h}_V \leq \frac{1}{\alpha}\norm{F}_{V^*}
+        \norm{u_h}_V \leq \frac{1}{\alpha}\norm{F}_{V'}
     \]
 \end{corollary}
-The stability of the method guarantees that the norm \(\norm{u_h}_V\) of the discrete solution remains bounded for \(h \to 0\). Equivalently it guarantees that \(\norm{u_h-w_h}_V \leq \frac{1}{\alpha}\norm{F-G}_{V^*}\) with \(u_h\) and \(w_h\) being numerical solution corresponding to different data \(F\) and \(G\).
+The stability of the method guarantees that the norm \(\norm{u_h}_V\) of the discrete solution remains bounded for \(h \to 0\). Equivalently it guarantees that \(\norm{u_h-w_h}_V \leq \frac{1}{\alpha}\norm{F-G}_{V'}\) with \(u_h\) and \(w_h\) being numerical solution corresponding to different data \(F\) and \(G\).
 \subsection*{Convergence}
 
     \begin{lemma}[Galerkin orthogonality]
@@ -215,11 +215,11 @@ The stability of the method guarantees that the norm \(\norm{u_h}_V\) of the dis
 \begin{proof}
     Since \(V_h \subset V\), the exact solution \(u\) satisfies the weak problem \eqref{Weak Formulation of Boundary Value Problems - 2} for each element \(v = v_h \in V_h\), hence we have 
     \begin{equation}
-        a(u, v_h) = F(v_h) \forall \; v_h \in V_h \label{Application of exact solution}
+        a(u, v_h) = F(v_h) \quad \forall \; v_h \in V_h \label{Application of exact solution}
     \end{equation}
     By subtracting side by side \eqref{Galerkin Problem Formula} from \eqref{Application of exact solution}, we obtain 
     \[
-        a(u,v_h)-a(u_h, v_h) = 0 \forall \; v_h \in V_h
+        a(u,v_h)-a(u_h, v_h) = 0 \quad \forall \; v_h \in V_h
     \]
     from which the claim follows.
 \end{proof}
@@ -258,7 +258,7 @@ This space \(V_h\) must be chosen carefully to satisfy the saturation property \
 \subsubsection*{Partitions}
 \begin{itemize}
     \item[\textbf{1D}]
-    Let us suppose that \(\Omega\) is an interval \((a,b)\). How to create an approximation of the space \(H^1(a,b)\) that depend on a parameter \(h\). Consider a partition \(\mathcal{T}_h\) in \(N+1\) subintervals \(K_j = x_{j-1}, x_j\), having width \(h_j = x_j - x_{j-1}\) with 
+    Let us suppose that \(\Omega\) is an interval \((a,b)\). How to create an approximation of the space \(H^1(a,b)\) that depend on a parameter \(h\)? Consider a partition \(\mathcal{T}_h\) in \(N+1\) subintervals \(K_j = (x_{j-1}, x_j)\), having width \(h_j = x_j - x_{j-1}\) with 
     \begin{equation}
         a = x_0 < x_1 < \ldots < x_{N-1} < x_N = b \label{Partition of an interval}
     \end{equation}
@@ -374,7 +374,7 @@ Lax-Milgram tells us that if \(\sigma - \frac{1}{2}\div\vect{b} \geq \gamma > 0\
 \begin{itemize}
     \item Weak coercivity (Gårding inequality): 
     \[
-        \exists \; \alpha, \lambda : a(v,v) \geq \alpha \norm{v}^2-\norm{v}_{L^2(\Omega)}^2 \quad \forall \; v \in V
+        \exists \; \alpha, \lambda : a(v,v) \geq \alpha \norm{v}_V^2-\norm{v}_{L^2(\Omega)}^2 \quad \forall \; v \in V
     \]
     \item Uniqueness condition (typically proven by maximum principle):
     \[
@@ -446,19 +446,19 @@ which is a good approximation.
 \subsection*{Interpolant error estimates}
 Then, for \(m=0,1\) \(\exists \; C = C(r,m,\hat{k})\) s.t.
 \begin{equation}
-    \seminorm{v-\prod_{h}^{r}v}{H^m(\Omega)} \leq C\left(\sum_{K \in \mathcal{T}_h}h_K^{2(r+1-m)}\seminorm{v}{H^{r+1}(K)}^2\right)^{\frac{1}{2}} \label{some_estimate_bvp}
+    \seminorm{v-{\textstyle\prod_{h}^{r}}v}{H^m(\Omega)} \leq C\left(\sum_{K \in \mathcal{T}_h}h_K^{2(r+1-m)}\seminorm{v}{H^{r+1}(K)}^2\right)^{\frac{1}{2}} \label{some_estimate_bvp}
 \end{equation}
     
 
 where \(h_K = \txt{diam}(K)\) and \(h_K \leq h\) \(\forall \; K\) this yields:
 \begin{equation}
-    \seminorm{v-\prod_{h}^{r}v}{H^m(\Omega)} \leq C h^{r+1-m}\seminorm{v}{H^{r+1}(K)} \quad \forall \; v \in H^{r+1}(\Omega), m = 0,1 \label{some_other_estimate_bvp}
+    \seminorm{v-{\textstyle\prod_{h}^{r}}v}{H^m(\Omega)} \leq C h^{r+1-m}\seminorm{v}{H^{r+1}(K)} \quad \forall \; v \in H^{r+1}(\Omega), m = 0,1 \label{some_other_estimate_bvp}
 \end{equation}
 Recall also that 
 \begin{align*}
     \norm{u-u_h} &= \norm{u-u_h}_{H^1(\Omega)} \\
     &\leq \frac{M}{\alpha} \inf_{v_h \in V_h} \norm{u-v_h} \\
-    &\leq \frac{M}{\alpha} \norm{u-\prod_h^r u}_{H^1(\Omega)}
+    &\leq \frac{M}{\alpha} \norm{u-{\textstyle\prod_{h}^{r}} u}_{H^1(\Omega)}
 \end{align*}
 Using \eqref{some_estimate_bvp} we obtain
 \begin{equation}

@@ -46,7 +46,7 @@
 
 \tcolorboxenvironment{theorem}{
   breakable,
-  colback=purple!30,
+  colback=blue!15!white,
   boxrule=0pt,
   boxsep=1pt,
   left=2pt,right=2pt,top=5pt,bottom=5pt,
@@ -55,7 +55,8 @@
   after skip=\topsep,
 }
 \tcolorboxenvironment{corollary}{
-  colback=blue!15!white,
+  breakable,
+  colback=blue!20!white,
   boxrule=0pt,
   boxsep=1pt,
   left=2pt,right=2pt,top=2pt,bottom=2pt,
@@ -64,7 +65,8 @@
   after skip=\topsep,
 }
 \tcolorboxenvironment{proposition}{
-  colback=blue!15!white,
+  breakable,
+  colback=blue!25!white,
   boxrule=0pt,
   boxsep=1pt,
   left=2pt,right=2pt,top=2pt,bottom=2pt,
@@ -74,7 +76,7 @@
 }
 \tcolorboxenvironment{lemma}{
   breakable,
-  colback=pink,
+  colback=blue!30!white,
   boxrule=0pt,
   boxsep=1pt,
   left=2pt,right=2pt,top=2pt,bottom=2pt,
@@ -84,16 +86,15 @@
 }
 \tcolorboxenvironment{remark}{
   breakable,
-  colback=orange!15!white,
-  boxrule=0pt,
-  boxsep=1pt,
-  left=2pt,right=2pt,top=2pt,bottom=2pt,
-  oversize=2pt,
-  before skip=\topsep,
-  after skip=\topsep,
+    blanker,
+    before skip=6pt,after skip=6pt,
+    boxsep=1pt,
+    left=5pt,right=2pt,top=2pt,bottom=2pt,
+    borderline west={1mm}{0pt}{blue!35}
 }
 \tcolorboxenvironment{notation}{
-  colback=green!150!black!50,
+  breakable,
+  colback=blue!15!white,
   boxrule=0pt,
   boxsep=1pt,
   left=2pt,right=2pt,top=2pt,bottom=2pt,
@@ -102,7 +103,8 @@
   after skip=\topsep,
 }
 \tcolorboxenvironment{definition}{
-  colback=yellow!70!,
+  breakable,
+  colback=blue!10!white,
   boxrule=0pt,
   boxsep=1pt,
   left=2pt,right=2pt,top=2pt,bottom=2pt,
@@ -110,6 +112,23 @@
   before skip=\topsep,
   after skip=\topsep,
 }
+
+\tcolorboxenvironment{proof}{
+  breakable,
+  blanker,
+  before skip=6pt,after skip=6pt,
+  boxsep=1pt,
+  left=5pt,right=2pt,top=2pt,bottom=2pt,
+  borderline west={1mm}{0pt}{black}}
+\tcolorboxenvironment{example}{
+    breakable,
+    blanker,
+    before skip=6pt,after skip=6pt,
+    boxsep=1pt,
+    left=5pt,right=2pt,top=2pt,bottom=2pt,
+    borderline west={1mm}{0pt}{blue}}
+  
+
 
 \renewcommand*{\proofname}{\textbf{Proof}}
 \renewcommand\qedsymbol{$\bigstar$}
