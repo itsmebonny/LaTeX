@@ -14,7 +14,7 @@ where
     \item \(\uvec\) is the fluid's velocity
     \item \(p\) is the pressure divided by the density (which will be simply called ``pressure'')
     \item \(\nu\) is the kinematic viscosity 
-    \item \(\vect{f} \in L^2(\real^+; [L^2(\Omega)])\) is a forcing term per unit of mass
+    \item \(\vect{f} \in L^2(\real^+; [L^2(\Omega)]^d)\) is a forcing term per unit of mass
 \end{itemize}
 The first equation represents conservation of linear momentum, while the second one the conservation of mass. In fact, the term \(\left( \uvec \cdot \grad \right)\uvec\) describes the process of convective transport, while the term \(-\div \left[ \nu \left( \grad \uvec + \grad \uvec^t \right) \right]\) describe the process of molecular diffusion.
 
@@ -56,7 +56,7 @@ If we denote with \(u_i, i = 1,\ldots, d\) the components of \(\uvec\) w.r.t. a 
     \end{cases}
 \]
 \begin{remark}
-    The Navier-Stokes equations have been written in terms of the primitive variable \(\uvec\) and \(p\), but other sets of variables may be used too. For instance, in the two-dimensional case it is common to see the vorticity \(\omega\) and the streamfunctoin \(\psi\) that are related to the velocity
+    The Navier-Stokes equations have been written in terms of the primitive variable \(\uvec\) and \(p\), but other sets of variables may be used too. For instance, in the two-dimensional case it is common to see the vorticity \(\omega\) and the streamfunction \(\psi\) that are related to the velocity
     \begin{equation*}
         \omega =\rot\uvec = \partialderivative{u_2}{x_1} - \partialderivative{u_1}{x_2}, \quad \uvec = \left[ \begin{matrix*}
             \partialderivative{\psi}{x_2} \\
@@ -93,7 +93,7 @@ Similarly, by multiplying the second equation of \eqref{navier_stokes_ns} by a t
 \end{equation}
 Usually, \(V\) is chosen so that the test functions vanish on the boundary portion where a Dirichlet data is prescribed on \(\uvec\)
 \begin{equation}
-    V = \left[ H^1_{\Gamma_D} \right]^d = \left\{ \vvec \in [H^1(\Omega)] : \vvec\limited{\Gamma_D} = \vect{0}\right\}
+    V = \left[ H^1_{\Gamma_D} \right]^d = \left\{ \vvec \in [H^1(\Omega)]^d : \vvec\limited{\Gamma_D} = \vect{0}\right\}
     \label{space_galerkin_ns}
 \end{equation}
 It will coincide with \(\left[ H^1_0(\Omega) \right]^d\) if \(\Gamma_D = \boundary\). 
@@ -116,7 +116,7 @@ Having chosen these functional spaces, we can note first of all that
     \]
     its seminorm. Thanks to Poincaré's inequality, \(\seminorm{\vvec}{\vect{H}^1(\Omega)}\) is equivalent to \(\norm{\vvec}_{\vect{H}^1(\Omega)}\) for all functions belonging to \(V\), provided that the Dirichlet boundary has a positive measure.
 \end{notation}
-All the integrals involving bilinear terms are finite. To be more precise, by using the vector notation \(\vect{H}^k(\Omega) = [H^k(\Omega)]^d, \vect{L}^p(\Omega) = [L^p(\Omega)]^d, k \geq 1, 1\leq p > \infty\), we find 
+All the integrals involving bilinear terms are finite. To be more precise, by using the vector notation \(\vect{H}^k(\Omega) = [H^k(\Omega)]^d, \vect{L}^p(\Omega) = [L^p(\Omega)]^d, k \geq 1, 1\leq p < \infty\), we find 
 \begin{align*}
     \abs{\nu \int_\Omega \grad \uvec \cdot \grad \vvec \, d\Omega} &\leq \nu \seminorm{\uvec}{\vect{H}^1(\Omega)} \seminorm{\vvec}{\vect{H}^1(\Omega)} \\
     \abs{\int_\Omega p\div \vvec \, d\Omega} &\leq \ltwonorm{p} \seminorm{\vvec}{\vect{H}^1(\Omega)} \\
@@ -124,7 +124,7 @@ All the integrals involving bilinear terms are finite. To be more precise, by us
 \end{align*}
 Also the integral involving the trilinear term is finite. Before we see how let's recall the following result: if \(d \leq 3\)
 \[
-    \forall \; \vvec in \vect{H}^1(\Omega), \txt{ then } \vvec \in \vect{L}^4(\Omega) \txt{ and } \exists \; C > 0 : \norm{\vvec}_{\vect{L}^4(\Omega)} \leq C \norm{\vvec}_{\vect{H}^1(\Omega)}.
+    \forall \; \vvec \in \vect{H}^1(\Omega), \txt{ then } \vvec \in \vect{L}^4(\Omega) \txt{ and } \exists \; C > 0 : \norm{\vvec}_{\vect{L}^4(\Omega)} \leq C \norm{\vvec}_{\vect{H}^1(\Omega)}.
 \]
 Then, using the following three-term Hölder inequality 
 \[
@@ -236,7 +236,7 @@ The weak formulation of problem \eqref{11_slide_ns} reads:
     \find \uvec \in V \txt{ and } p \in Q : 
     \begin{cases}
         \displaystyle \int_\Omega \left( \sigma \uvec \cdot \vvec + \nu \grad u \cdot \grad v \right) \, d\Omega - \int_\Omega p \div \vvec \, d\Omega = \int_\Omega \vect{f} \cdot \vect{v} \, d\Omega & \forall \; \vvec \in V, \\
-        \int_\Omega q \div \uvec \, d\Omega = 0 & \forall \; q \in Q,
+        \displaystyle \int_\Omega q \div \uvec \, d\Omega = 0 & \forall \; q \in Q,
     \end{cases}
     \label{13_slide_ns}
 \end{equation} 
@@ -443,7 +443,7 @@ which allow us to introduce the following reduced formulation
     \find u_h \in X_h^\sigma : a(u_h, v_h) = \scalarproduct{I}{v_h} \quad \forall \; v_h \in X_h^0
     \label{30_slide_ns}
 \end{equation}
-Since, in general, \(M_h\) is different from \(M\) the space \eqref{29_slide_ns} is not necessarily a subspace of \(X^\sigma\). 
+Since, in general, \(M_h\) is different from \(M\), the space \eqref{29_slide_ns} is not necessarily a subspace of \(X^\sigma\). 
 
 Clearly, every solution of \((u_h, \eta_h)\) of \eqref{28_slide_ns} yields a solution \(u_h\) for the reduced problem \eqref{30_slide_ns}. Now we look for a solution that allows us to prove that the converse is true.
 \begin{theorem}[Existence, uniqueness and stability]
@@ -606,7 +606,7 @@ Let us analyze the first type of strategy. To start with, we will consider the c
 
 As Stokes equation are of order one in \(p\) and two in \(\uvec\) it makes sense to use polynomials of degree \(k \geq 1\) for \(V_h\) and of degree \(k-1\) for \(Q_h\).  When looking for a compatible couple of spaces, the larger the velocity space \(V_h\), the more likely the inf-sup condition is satisfied. 
 
-Suitable choices of spaces that fullfill the inf sup pressure are, for example, the couple \((\mathbb{P}_2, \mathbb{P}_0)\), (\((\mathbb{Q}_2, \mathbb{P}_0)\)) or the so-called Crouzeix Raviart elements, in which the velocity components are piecewise quadratic functions with a bubble function on each element, while the pressure components are piecewise linear discontinuous element.
+Suitable choices of spaces that fullfill the inf sup pressure are, for example, the couple \((\mathbb{P}_2, \mathbb{P}_0)\), \((\mathbb{Q}_2, \mathbb{P}_0)\) or the so-called Crouzeix Raviart elements, in which the velocity components are piecewise quadratic functions with a bubble function on each element, while the pressure components are piecewise linear discontinuous element.
 
 In the case of continuous pressure, examples of incompatible spaces could be piecewise linear elements on triangles for both velocity and pressure. More in general, not a good idea to use the same polynomial degree.
 
@@ -620,7 +620,7 @@ We have seen that finite element or spectral methods that make use of equal-degr
 
 Here we will limit ourselves to the case of piecewise continuous linear finite elements (\(\mathbb{P}_1, \mathbb{P}_1\)), stabilized using GLS.
 \[
-    V_h = [\overset{\mathrm{o}_1}{X}_h]^2, \ \quad Q_h = \left\{ q_h \in X_h^1 : \int_\Omega \, d\Omega = 0 \right\}.
+    V_h = [\overset{\mathrm{o}}{X^1_h}]^2, \ \quad Q_h = \left\{ q_h \in X_h^1 : \int_\Omega \, d\Omega = 0 \right\}.
 \]
 This choice is urged by the need of keeping the global numer of degrees of freedom as low as possible, especially when dealing with three-dimensional problem. However, as it violates the inf-sup condition, it will be unstable.
 
@@ -640,7 +640,7 @@ We have set
 \end{align*}
 and \(\delta\) is a positive parameter chosen accordingly.
 
-This is a strongly consistent approximation of problem \eqref{11_slide_ns}. As a matter of fact, the additional term is null when calculated on the exact solution thanks to \eqref{13_slide_ns}. Note that, since \(k=1, \Delta \uvec_{h\limited{\element} = \Delta \vvec_{h\limited{\element}}} = \vect{0} \forall \; \eit\) as we are using piecewise linear finite elements functions.
+This is a strongly consistent approximation of problem \eqref{11_slide_ns}. As a matter of fact, the additional term is null when calculated on the exact solution thanks to \eqref{13_slide_ns}. Note that, since \(k=1, \Delta {\uvec_h}\limited{\element} = \Delta {\vvec_h}\limited{\element} = \vect{0} \; \forall \; \eit\) as we are using piecewise linear finite elements functions.
 
 We obtain the following stability inequality 
 \begin{equation}
@@ -667,23 +667,23 @@ We can show that \eqref{53_slide_ns} admits the following matrix form
 \end{equation}
 This system differs from \eqref{47_slide_ns} without stabilization because of the presence of the non-null block occupying the position \((2,2)\) which is associated to the stabilization term:
 \[
-    C = [c_{km}], c_{km} = \delta \sum_\eit h^2_\element \int_\element \grad \oldphi_m \cdot \grad \oldphi_k \, d\element, k,m = 1,\ldots, M
+    C = [c_{km}], \;  c_{km} = \delta \sum_\eit h^2_\element \int_\element \grad \oldphi_m \cdot \grad \oldphi_k \, d\element, k,m = 1,\ldots, M
 \]
 while the components of the right-hand side \(\vect{G}\) are 
 \[
     g_k = -\delta \sum_\eit h^2_\element \int_\element \vect{f} \cdot \grad \oldphi_k \, d\element, k = 1,\ldots, M
 \]
-Note that num
-\begin{align}
+Note that
+\begin{align*}
     A\vect{U} + B^T\vect{P} = \vect{F} &\Rightarrow \vect{U} = A^{-1} (\vect{F} - B^T\vect{P}),\\
     B\vect{U} - C\vect{P} & \Rightarrow BA^{-1} \vect{F} - BA^{-1}B^T \vect{P} -C\vect{P} = \vect{G} \\
     &\Rightarrow (BA^{-1}B^T + C)\vect{P} = BA^{-1} \vect{F} - \vect{G}.
-\end{align}
+\end{align*}
 Then, in this case, the reduced system reads 
 \[
     R\vect{P} = BA^{-1} \vect{F} - \vect{G}.
 \]
-In contrast to \eqref{50_slide_ns}, this time the matrix \(R\) is non-singular as \(C\) is positive defined., but \(B^T\) is not full-rank.
+In contrast to \eqref{50_slide_ns}, this time the matrix \(R\) is non-singular as \(C\) is positive defined, but \(B^T\) is not full-rank.
 \subsection{Time discretization}
 We consider the following semi discretized formulation
 \begin{equation}
@@ -723,7 +723,7 @@ with \(M\) mass matrix
 \[
     m_{ij} = \int_\Omega \bm{\phi}_i \bm{\phi}_j
 \]
-This system does not allow the determination of the pressure \(\pvec^{n+1}\). In particular, there is no way to enforce the divergence-free constraints on \(\uvec^{n+1}\) Howeverm if we replace \(\pvec^n\) by \(\pvec^{n+1}\) we obtain 
+This system does not allow the determination of the pressure \(\pvec^{n+1}\). In particular, there is no way to enforce the divergence-free constraints on \(\uvec^{n+1}\). However, if we replace \(\pvec^n\) by \(\pvec^{n+1}\) we obtain 
 \begin{equation}
     \begin{cases}
         \frac{1}{\tstep} M \uvec^{n+1} + B^T\pvec^{n+1} = \vect{G}, \\
@@ -835,7 +835,7 @@ On the other hand, this system splits into independent systems of smaller size, 
 If we decided to use \(\uvec^* = \uvec^{**} = \uvec^{n+1}\) we obtain an unconditionally stable method, but the downside is that the spatial components aren't separated due to the nonlinear convective term. 
 Its algebraic formulation is of the form 
 \[
-    \left( \frac{1}{\\tstep} M + A \right) \tilde{\uvec}^{n+1} = \tilde{\fvec}^{n+1}
+    \left( \frac{1}{\tstep} M + A \right) \tilde{\uvec}^{n+1} = \tilde{\fvec}^{n+1}
 \]
 On the second step, we generate a divergence free solution, but there is a failure to satisfy the physical condition in the case the pressure boundary layer has a width greater than 
 \[

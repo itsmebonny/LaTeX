@@ -172,7 +172,7 @@ We denote by \(A\) the matrix made by \(a_{ij} = a(\phi_j, \phi_i)\) and \(\vect
     \]
     The correspondence 
     \[
-        \vect{v} = (v_i) \in \real^{N_h} \longrightarrow v_h(x) = \sum_{j=1}^{N_h} v_j\phi_j \in V_h
+        \vect{v} = (v_i) \in \real^{N_h} \longrightarrow v_h(x) = \sum_{j=1}^{N_h} v_j\phi_j(x) \in V_h
     \]
     defines a bijection between \(V_h\) and \(\real^{N_h}\). Given a generic vector \(\vect{v} = (v_i)\) of \(\real^{N_h}\), thanks to the bilinearity and coercivity of \(a\) we obtain 
     
@@ -325,8 +325,8 @@ where \(\delta_{ij}\) is the Kronecker delta. So we have our basis function that
 The formula for the basis function is then given by 
 \begin{equation}
     \phi_i(x) = \begin{cases}
-        \frac{x-x_{i-1}}{x_i - x_{i-1}} & \text{for }x_{i-1} \leq x \leq x_i \\
-        \frac{x-x_{i+1}}{x_{i+1} - x_i} & \text{for }x_i \leq x \leq x_{i+1} \\
+        \displaystyle\frac{x-x_{i-1}}{x_i - x_{i-1}} & \text{for }x_{i-1} \leq x \leq x_i \\
+        \displaystyle\frac{x-x_{i+1}}{x_{i+1} - x_i} & \text{for }x_i \leq x \leq x_{i+1} \\
         0 & \text{otherwise}
     \end{cases}
 \end{equation}
@@ -370,7 +370,7 @@ Which is a linear system of dimension \(N_h \times N_h\) with \(\vect{F}\) the r
        \txt{BC }& \txt{on }\partial\Omega\\
    \end{cases}
 \end{equation*}
-Lax-Milgram tells us that if \(\sigma - \frac{1}{2}\div\vect{b} \geq \gamma > 0\) then \(\exists!\) a solution to the problem. But what if these conditions are not satisfied? We can use Nečas theorem (\eqref{Nečas}) with equivalent assumptions:
+Lax-Milgram tells us that if \(\sigma - \frac{1}{2}\div\vect{b} \geq \gamma > 0\) then \(\exists!\) a solution to the problem. But what if these conditions are not satisfied? We can use Nečas theorem \eqref{Nečas} with equivalent assumptions:
 \begin{itemize}
     \item Weak coercivity (Gårding inequality): 
     \[
@@ -399,7 +399,7 @@ If \(A\) is spd (symmetric positive defined) then \(K_2(A) = \frac{\lambda_{max}
     \end{proof}
 
 \begin{definition}
-    If \(A\) is spd, we define the \textit{A-norm} of \(\vect{v}\) as 
+    If \(A\) is spd, we define the \textbf{A-norm} of \(\vect{v}\) as 
     \begin{align*}
         \norm{v}_A :=& (A\vect{v}, \vect{v})^{\frac{1}{2}}\\
         =& \left(\sum_{i,j}a_{ij} v_i v_j\right)^{\frac{1}{2}}

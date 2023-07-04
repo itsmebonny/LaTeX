@@ -479,9 +479,9 @@ Now, for the error analysis, we will apply the Strang lemma, so:
 \begin{align*}
     \norm{u- u _\delta^{\txt{GNI}}}_V \leq \ & \norm{u-u_\delta}_V \\
     & + \frac{1}{\mu^*} \sup_{v_\delta \in V_\delta \backslash\left\{ 0 \right\}} \frac{\abs{a(u_\delta, v_\delta) - a_\delta(u_\delta, v_\delta)}}{\norm{v_\delta}_V} \\
-    & + \frac{1}{\mu^*} \sup_{v_\delta \in V_\delta \backslash\left\{ 0 \right\}} \frac{\abs{f,v_\delta}_{L^2(\Omega) - (f,v_\delta)_{\delta,\Omega}}}{\norm{v_\delta}_V}
+    & + \frac{1}{\mu^*} \sup_{v_\delta \in V_\delta \backslash\left\{ 0 \right\}} \frac{\abs{f,v_\delta}_{L^2(\Omega)} - (f,v_\delta)_{\delta,\Omega}}{\norm{v_\delta}_V}
 \end{align*}
-where \(\mu^*\) is the coercivity constant of \(a_\delta\): \(a_\delta(v_\delta, v_\delta) \geq \mu^*\norm{v_\delta}^"_V\) and \(u_\delta\) the SEM-GNI solution.
+where \(\mu^*\) is the coercivity constant of \(a_\delta\): \(a_\delta(v_\delta, v_\delta) \geq \mu^*\norm{v_\delta}^2_V\) and \(u_\delta\) the SEM-GNI solution.
 Thus, for any \(u \in H^{s+1}(\Omega)\) and \(f \in H^r(\Omega)\) 
 \[
     \norm{u-u_\delta^{\txt{GNI}}}_{H^1(\Omega)} \leq C\left[ h^{\min(p,s)}\left( \frac{1}{p} \right)^s \norm{u}_{H^{s+1}(\Omega)} + h^{\min(p,r)}\left( \frac{1}{p} \right)^r \norm{f}_{H^{r}(\Omega)}  \right]

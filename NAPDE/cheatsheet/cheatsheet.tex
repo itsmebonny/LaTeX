@@ -305,6 +305,10 @@ Space \(V_h = \left\{ v_h \in \mathcal{C}^0(\overline{\Omega}) : v_h\limited{\el
 \[
     \find u_h \in V_h : a(u_h,v_h) = F(v_h) \quad \forall \; v_h \in V_h
 \]
+\subsection*{GLS}
+\[
+    \find u_h \in V_h : a(u_h, v_h) + \sum_{\element \in \triangulation} \int_\Omega \mathcal{L}u_h \tau_\element \mathcal{L}v_h = \int_\Omega f v_h + \sum_{\element \in \triangulation} \int_\Omega f \tau_\element \mathcal{L}v_h \qquad \forall \; v_h \in V_h
+\]
 \subsection*{Discontinuous Galerkin}
 Space \(V^p_h = \left\{ v_h \in L^2(\Omega) : v_h\limited{\element} \in \mathbb{P}^{p_\element}(\element) \ \forall \eit \right\}\not \subseteq H^1_0(\Omega)\)
 \[

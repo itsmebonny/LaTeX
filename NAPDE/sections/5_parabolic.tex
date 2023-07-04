@@ -69,7 +69,7 @@ so that the bilinear form
     \tilde{a}(w,v) := a(w,v)+\lambda(w,v)_{L^2(\Omega)} \Rightarrow \tilde{a}(w,w) := a(w,w) + \lambda \ltwonorm{w}^2
 \]
 \begin{theorem}
-    Suppose that the bilinear form \(a(\cdot,\cdot)\) is continuous and weakly coercive. Moreover, we require \(u_0 \in L^2(\Omega)\) and \(f \in L^2(Q_T)\)- Then, \eqref{weak_formulation_heat_pbl} admits a unique solution \(u \in \mathcal{C}^0 (\real^+;L^2(\Omega))\). Also, \(u \in L^2(\real^+;V)\) and \(\partialderivative{u}{t} \in L^2(\real^+; V')\).
+    Suppose that the bilinear form \(a(\cdot,\cdot)\) is continuous and weakly coercive. Moreover, we require \(u_0 \in L^2(\Omega)\) and \(f \in L^2(Q_T)\). Then, \eqref{weak_formulation_heat_pbl} admits a unique solution \(u \in \mathcal{C}^0 (\real^+;L^2(\Omega))\). Also, \(u \in L^2(\real^+;V)\) and \(\partialderivative{u}{t} \in L^2(\real^+; V')\).
 \end{theorem}
 \subsection{Algebraic formulation}
 Now we can use Galerkin to approximate, for each \(t > 0\), we need to find \(u_h(t) \in V_h\) s.t. 
@@ -95,7 +95,7 @@ Denoting by \(\dot{u}_j(t)\) the temporal derivatives of \(u_j(t)\), \eqref{semi
 \]
 that is 
 \begin{equation}
-    \sum_{j=1}^{N_h} \dot{u}_j(t) \underbrace{\int_\Omega \phi_j \phi_i \, d\Omega}_{m_{ij}} + \sum_{j=1}^{N_h} u_j(t) \underbrace{a(\phi_j, \phi_i)}_{a_{ij}} = \underbrace{\int_\Omega f(t)\phi_i \, d\Omega} \quad i = 1,2,\ldots, N_h
+    \sum_{j=1}^{N_h} \dot{u}_j(t) \underbrace{\int_\Omega \phi_j \phi_i \, d\Omega}_{m_{ij}} + \sum_{j=1}^{N_h} u_j(t) \underbrace{a(\phi_j, \phi_i)}_{a_{ij}} = \underbrace{\int_\Omega f(t)\phi_i \, d\Omega}_{f_i} \quad i = 1,2,\ldots, N_h
     \label{algebraic_formulation_pbl}
 \end{equation}
 If we define the vector of unknowns \(\vect{u} = (u_1(t), u_2(t), \ldots, u_{N_h}(t))^T\), the mass matrix \(M = [m_{ij}]\), the stiffness matrix \(A = [a_{ij}]\) and the right-hand side vector \(\vect{f} = (f_1(t), f_2(t), \ldots, f_{N_h}(t))^T\), the system \eqref{algebraic_formulation_pbl} can be rewritten as 
@@ -122,7 +122,7 @@ Some particular cases of \eqref{algebraic_formulation_pbl}
     \]
     \item \(\theta = \frac{1}{2}\) The Crank-Nicolson (or trapezoidal) method
     \[
-        M\frac{\vect{u}^{k+1}-\vect{u}^k}{\Delta t} + \frac{1}{2}A\left( \vect{u}^{k+1} + \vect{u}^k \right) = \frac{1}{2}\left( \vect{f}^{k+1} \vect{f}^k \right)
+        M\frac{\vect{u}^{k+1}-\vect{u}^k}{\Delta t} + \frac{1}{2}A\left( \vect{u}^{k+1} + \vect{u}^k \right) = \frac{1}{2}\left( \vect{f}^{k+1} + \vect{f}^k \right)
     \]
     which is of the second order in \(\Delta t\). 
 \end{itemize}
@@ -141,7 +141,7 @@ When \(\theta > 0\), the system will have the form \(K\vect{u}^{k+1} = \vect{g}\
 Then, since \(M\) is symmetric, if \(A\) is symmetric, also \(K\) will be symmetric too. Hence, we can use, for example, the Cholesky factorization \(K = HH^T\), with \(H\) being lower triangular. At each timestep, then, will be solved two triangular systems 
 \begin{align*}
     H\vect{y} &= \vect{g} \\
-    H^T \vect{u}^{k+1} = \vect{y}
+    H^T \vect{u}^{k+1} &= \vect{y}
 \end{align*}
 \subsection{A priori estimate}
 Let us know consider \eqref{weak_formulation_heat_pbl}. Since the corresponding equation must hold for each \(v \in V\), it will be legitimate to set \(v = u(t)\) with \(t\) being given. Yielding 
@@ -214,8 +214,8 @@ Let us now use the first inequality in \eqref{a_priori_not_integrated_pbl} and i
     \begin{aligned}
         \ltwonorm{u(t)}^2 + 2\alpha \int_0^t \ltwonorm{\grad u(s)}^2 \, ds 
         &\underset{\eqref{a_priori_not_integrated_pbl}}{\leq} \ltwonorm{u(t)}^2 + 2\int_0^t \ltwonorm{f(s)}\ltwonorm{u(s)} \, ds \\
-        &\underset{\eqref{another_a_priori_pbl}}{\leq} \ltwonorm{u_0}^2 + 2\int_0^t \ltwonorm{f(s)} \cdot \Bigg( \ltwonorm{u_0} \\
-        &\qquad + \int_0^s \ltwonorm{f(\tau)} \, d\tau \Bigg) \, ds \\
+        &\underset{\eqref{another_a_priori_pbl}}{\leq} \ltwonorm{u_0}^2 + 2\int_0^t \ltwonorm{f(s)} \cdot \bigg( \ltwonorm{u_0} \\
+        &\qquad + \int_0^s \ltwonorm{f(\tau)} \, d\tau \bigg) \, ds \\
         &= \ltwonorm{u_0}^2 \int_0^t \ltwonorm{f(s)}\ltwonorm{u_0}\, ds \\
         &\qquad+ 2 \int_0^t \ltwonorm{f(s)}\int_0^s \ltwonorm{f(\tau)} \, d\tau ds
     \end{aligned}
@@ -264,7 +264,7 @@ and
     \begin{equation*}
         \begin{split}
             \left\{ \ltwonorm{u(t) - u_h(t)}^2 + \alpha \int_0^t \ltwonorm{\grad u(s) -\grad u_h(s)}^2 \, ds \right\}^{\onehalf} \\
-            \leq Ch^r \left\{ \seminorm{u_0}{H^r(\Omega)}^2 + \int_0^t \seminorm{u(s)}{H^{r+1}( Omega)}^2 \, ds + \int_0^t \seminorm{\partialderivative{u(s)}{s}}{H^{r+1}(\Omega)}^2 \, ds \right\}^{\onehalf}
+            \leq Ch^r \left\{ \seminorm{u_0}{H^r(\Omega)}^2 + \int_0^t \seminorm{u(s)}{H^{r+1}(\Omega)}^2 \, ds + \int_0^t \seminorm{\partialderivative{u(s)}{s}}{H^{r+1}(\Omega)}^2 \, ds \right\}^{\onehalf}
         \end{split}
     \end{equation*}
 \end{theorem}
@@ -285,7 +285,7 @@ For the analysis we will consider \(F=0\), and the case of implicit Euler \(\the
 \]
 By choosing \(v_h = u_h^{k+1}\), we obtain 
 \[
-    ( u_h^{k+1}, u_h^{k+1} ) +\tstep a(u^{k+1}_h, u_h^{k+1}) = (u_h^{k}, u_h^{k+1})
+    ( u_h^{k+1}, u_h^{k+1} ) +\tstep \, a(u^{k+1}_h, u_h^{k+1}) = (u_h^{k}, u_h^{k+1})
 \]
 and then, thanks to these inequalities 
 \begin{align*}
@@ -321,7 +321,7 @@ Now we assume \(f \neq 0\)
 \]
 where 
 \begin{align*}
-    (1) &\geq \frac{1}{2\tstep t} \left( \ltwonorm{u_h^{k+1}}^2 -\ltwonorm{u_h^{k}}^2 \right) \\
+    (1) &\geq \frac{1}{2\tstep } \left( \ltwonorm{u_h^{k+1}}^2 -\ltwonorm{u_h^{k}}^2 \right) \\
     (2) &\geq \alpha \ltwonorm{u_h^{k+1}}^2 \\
     (3) &\underset{\txt{\tiny{(CS)}}}{\leq} \ltwonorm{f^{k+1}} \norm{u_h^{k+1}}_V \underset{\txt{\tiny{(Young)}}}{\leq} \frac{1}{2\alpha} \ltwonorm{f^{k+1}}^2 + \frac{\alpha}{2} \norm{u_h^{k+1}}_V^2
 \end{align*}
@@ -340,7 +340,7 @@ Now, before analyzing the general case, where \(0 \leq \theta \leq 1\), we need 
 \end{definition}
 If the bilinear form \(\bilinear\) is symmetric and coercive, it has positive and real eigenvalues forming an infinite sequence, moreover, its eigenfunctions form a basis of the space \(V\). The eigenvalues and eigenfunctions of \(\bilinear\) can be approximated by finding the pairs \(\lambda_h \in \real\) and \(w_h \in V_h\), which satisy 
 \begin{equation}
-    a(w_h, w_h) \lambda_h (w_h, v_h) \quad \forall \; v_h \in V_h
+    a(w_h, v_h) = \lambda_h (w_h, v_h) \quad \forall \; v_h \in V_h
     \label{eigenvalues_of_bilinear_pbl}
 \end{equation}
 From an algebraic viewpoint, problem \eqref{eigenvalues_of_bilinear_pbl} can be formulated as 
@@ -383,7 +383,7 @@ Solving for \(u^{k+1}_i\), we find:
 \[
     u_i^{k+1} = u_i^k \frac{1-(1-\theta) \lambda_h^i \tstep}{1+\theta \lambda_h^i\tstep}.
 \]
-Now, recalling \eqref{orthonormality_pbl}, we can conclude that absolute stability comes from the followin inequality
+Now, recalling \eqref{orthonormality_pbl}, we can conclude that absolute stability comes from the following inequality
 \[
     \abs{\frac{1-(1-\theta) \lambda_h^i \tstep}{1+\theta \lambda_h^i\tstep}} < 1
 \]
@@ -449,8 +449,8 @@ Consider the parabolic PDE, where \(\Omega \subset \real^2\) is an open bounded 
 where \(\mu , \beta, \sigma\) and \(f\) are regular functions, satisfying: 
 \begin{align*}
     & 0 < \mu_0 \leq \mu \leq \mu_1 & \txt{a.e. in } \Omega \\
-    \abs{\beta} \leq b_1 & \txt{a.e. in } \Omega \\
-    0 < \sigma_0 \leq \sigma \leq \sigma_1 & \txt{a.e. in } \Omega
+    &\abs{\beta} \leq b_1 & \txt{a.e. in } \Omega \\
+    &0 < \sigma_0 \leq \sigma \leq \sigma_1 & \txt{a.e. in } \Omega
 \end{align*}
 Then, introducing a finite element space \(V_h \subset H^1_0(\Omega)\), the semi-discrete Galerkin formulation reads 
 \begin{equation}
@@ -462,7 +462,7 @@ Then, introducing a finite element space \(V_h \subset H^1_0(\Omega)\), the semi
 \end{equation}
 And such that \(u_h(0) = u_{0h}\), where \(u_{0h}\) is the projection of the initial condition into \(V_h\).
 \subsubsection{A semimplicit scheme}
-Consider now a time-advancin scheme, where the diffusion and reaction term are treated implicitly, while the advection term is treated explicitedly. Let us denote \(t_k = k\Delta t\), for \(k = 0, \ldots, N\), where \(\tstep = \frac{T}{N}\). Let now \(u_h^{k}\) be the approximation of \(u(t_k)\). A fully discretized version of \eqref{semi_weak_form_parabolic_adr_pbl} reads:
+Consider now a time-advancing scheme, where the diffusion and reaction term are treated implicitly, while the advection term is treated explicitedly. Let us denote \(t_k = k\Delta t\), for \(k = 0, \ldots, N\), where \(\tstep = \frac{T}{N}\). Let now \(u_h^{k}\) be the approximation of \(u(t_k)\). A fully discretized version of \eqref{semi_weak_form_parabolic_adr_pbl} reads:
 \begin{equation}
     \begin{cases}
         \begin{aligned}

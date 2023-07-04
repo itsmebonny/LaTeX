@@ -66,7 +66,7 @@ Let us now return to the problem \eqref{2_hyp} on a bounded interval
 \end{equation}
 where \(a(x), f(x,t)\) and \(\phi(t)\) are assigned functions. We have made the assumptions that \(a(x) > 0\), so that the inflow point is \(\alpha\) and \(\beta\) the outflow point. By multiplying the first equation of \eqref{3_hyp} by \(u\), integrating in \(x\) by parts, we obtain 
 \begin{equation*}
-    \onehalf\frac{d}{dt} \int_\alpha^\beta u^2 \, dx + \int_\alpha^\beta \left( a_0 - \onehalf a_x \right) u^2 \, dx + \onehalf (au^2)(\beta) -\onehalf (au^2)(\alpha) = \int_\alpha^\beta.
+    \onehalf\frac{d}{dt} \int_\alpha^\beta u^2 \, dx + \int_\alpha^\beta \left( a_0 - \onehalf a_x \right) u^2 \, dx + \onehalf (au^2)(\beta) -\onehalf (au^2)(\alpha) = \int_\alpha^\beta fu \, dx.
 \end{equation*}
 By supposing that there exists a \(\mu_0 \geq 0\) such that
 \[
@@ -82,7 +82,7 @@ In the case \(f\) and \(\phi\) are null, then
 \]
 In the case of the more general problem \eqref{2_hyp}, if we suppose that \(\mu_0 > 0\), thanks to the Cauchy-Schwartz and Young inequalities, we have
 \[
-    \int_\alpha^\beta fu \, dx \leq \norm{f}_{L^2(\alpha,\beta)}\norm{u}_{L^2(\alpha,\beta)} \leq \frac{u_0}{2} \norm{u}_{L^2(\alpha,\beta)}^2 + \frac{1}{2\mu_0} \norm{f}_{L^2(\alpha,\beta)}^2.
+    \int_\alpha^\beta fu \, dx \leq \norm{f}_{L^2(\alpha,\beta)}\norm{u}_{L^2(\alpha,\beta)} \leq \frac{\mu_0}{2} \norm{u}_{L^2(\alpha,\beta)}^2 + \frac{1}{2\mu_0} \norm{f}_{L^2(\alpha,\beta)}^2.
 \]
 Then, integrating over time, we obtain 
 \begin{equation*}
@@ -481,7 +481,7 @@ For the temporal discretization we will use finite difference schemes. In the ca
 \begin{equation}
     \begin{split}
         \forall \; > 0&, \ \find u^{n+1}_h \in V_h : \\
-        \frac{1}{\tstep} (u_h^{n+1}- u_h^n, v_h) + a\left( \partialderivative{u_h^{n+1}}{x}, v_h \right) = (f^{n+1}, v_h) \quad \forall \; v_h \in V_h.
+        &\frac{1}{\tstep} (u_h^{n+1}- u_h^n, v_h) + a\left( \partialderivative{u_h^{n+1}}{x}, v_h \right) = (f^{n+1}, v_h) \quad \forall \; v_h \in V_h.
     \end{split}
     \label{38_hyp}
 \end{equation}
@@ -491,7 +491,7 @@ In case we use the FE/C scheme instead, the discrete problem becomes:
 \begin{equation}
     \begin{split}
         \forall \; > 0&, \ \find u^{n+1}_h \in V_h : \\
-        \frac{1}{\tstep} (u_h^{n+1}- u_h^n, v_h) + a\left( \partialderivative{u_h^{n}}{x}, v_h \right) = (f^{n+1}, v_h) \quad \forall \; v_h \in V_h.
+        &\frac{1}{\tstep} (u_h^{n+1}- u_h^n, v_h) + a\left( \partialderivative{u_h^{n}}{x}, v_h \right) = (f^{n+1}, v_h) \quad \forall \; v_h \in V_h.
     \end{split}
     \label{39_hyp}
 \end{equation}
