@@ -1,14 +1,14 @@
 # Fdb version 3
-["bibtex main"] 1692552578 "main.aux" "main.bbl" "main" 1692552580
+["bibtex main"] 1692635839 "main.aux" "main.bbl" "main" 1692635961
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "bibliography.bib" 1691925946 5848 64b2aa43424b7e9793e99bf353516cb9 ""
-  "main.aux" 1692552579 3138 f0ecaa6f6b947633df32d53bab0e2496 "pdflatex"
+  "bibliography.bib" 1692634959 7922 1c7a969586d0e4558076a714949008b4 ""
+  "main.aux" 1692635961 5805 9f51b74785e884058c93bec759f0cd7b "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
-["pdflatex"] 1692552578 "/home/bonni/Documents/LaTeX/Reports/NAPDE_Project/main.tex" "main.pdf" "main" 1692552580
+["pdflatex"] 1692635959 "/home/bonni/Documents/LaTeX/Reports/NAPDE_Project/main.tex" "main.pdf" "main" 1692635961
   "/etc/texmf/web2c/texmf.cnf" 1663235487 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/bonni/Documents/LaTeX/Reports/NAPDE_Project/main.tex" 1692552576 14923 502c394d5b18078871fceec6433cf035 ""
+  "/home/bonni/Documents/LaTeX/Reports/NAPDE_Project/main.tex" 1692635958 22085 1c8a732b55db8292d3d81038cbd944c0 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx0900.tfm" 1136768653 3584 1a7de6c99457381c64abc1a7c545505f ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1000.tfm" 1136768653 3584 2d666ecf6d466d8b007246bc2f94d9da ""
@@ -20,6 +20,7 @@
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1095.tfm" 1136768653 3584 929cdff2b7a8c11bd4d49fd68cb0ae70 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1200.tfm" 1136768653 3584 f80ddd985bd00e29e9a6047ebd9d4781 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1440.tfm" 1136768653 3584 3169d30142b88a27d4ab0e3468e963a2 ""
+  "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecti1000.tfm" 1136768653 3072 3bce340d4c075dffe6d4ec732b4c32fe ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecxc0900.tfm" 1136768653 3072 cb0b3516611a13f0d239445a80f366e6 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm" 1246382020 1124 14ccf5552bc7f77ca02a8a402bea8bfb ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy8.tfm" 1246382020 1120 200be8b775682cdf80acad4be5ef57e4 ""
@@ -227,6 +228,7 @@
   "/usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb" 1663245267 135942 859a90cad7494a1e79c94baf546d7de5 ""
   "/usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb" 1636152094 138258 6525c253f16cededa14c7fd0da7f67b2 ""
   "/usr/share/texmf/fonts/type1/public/cm-super/sfrm1095.pfb" 1663245268 145929 f25e56369a345c4ff583b067cd87ce8e ""
+  "/usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb" 1636152094 186554 e8f0fa8ca05e038f257a06405232745f ""
   "/usr/share/texmf/fonts/type1/public/cm-super/sfxc0900.pfb" 1663245268 118384 db01a2723ef3951daff42f4227566c38 ""
   "/usr/share/texmf/web2c/texmf.cnf" 1644012257 39432 7155514e09a3d69036fac785183a21c2 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1683288490 4379155 98693266ff65f58d9f98aff394de12d2 ""
@@ -235,10 +237,14 @@
   "Configuration_files/title_page.tex" 1691941194 1286 da35f6aa5ee36b55d71d11c95d94c478 ""
   "Images//logo_polimi_ing_indinf.eps" 1691925946 1016894 87cec33dc4ce62619be8e2b6e306843d ""
   "Images//raggiera_polimi.eps" 1691925946 1813066 dca994a8e6dbfff46979ea0a845ddce3 ""
-  "main.aux" 1692552579 3138 f0ecaa6f6b947633df32d53bab0e2496 "pdflatex"
-  "main.bbl" 1692552578 120 3036c562c6b2aa0d4383df81050fd8a2 "bibtex main"
-  "main.out" 1692552579 1523 a65cb7d79d86225c6ab5f17766c1c231 "pdflatex"
-  "main.tex" 1692552576 14923 502c394d5b18078871fceec6433cf035 ""
+  "Images/Dropout_example.png" 1692632683 28733 b08fad00cb87b07061ccd022844a7a58 ""
+  "Images/L2Error_inv_pbl.png" 1692635612 89397 478ede1696fd96ad929cce19a607e06b ""
+  "Images/PINN_structure.png" 1692631804 51689 d7ea38decae8d0abfbfd0f254bbe30ba ""
+  "Images/PINN_structure_3.png" 1692631951 152478 40ffd890cdf24f224ab7f88560eee401 ""
+  "main.aux" 1692635961 5805 9f51b74785e884058c93bec759f0cd7b "pdflatex"
+  "main.bbl" 1692635839 972 79cf0adfbd7f04ae1d4f1b96934b4f97 "bibtex main"
+  "main.out" 1692635961 2208 a0509863e07db7ffe9c1c83e88e452d9 "pdflatex"
+  "main.tex" 1692635958 22085 1c8a732b55db8292d3d81038cbd944c0 ""
   (generated)
   "main.aux"
   "main.log"

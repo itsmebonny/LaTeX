@@ -138,7 +138,10 @@
 % INTRODUCTION
 %-----------------------------------------------------------------------------
 \section{Introduction}
-In this report I'll try to review the main Uncertainty Quantification (UQ) methods in Neural Networks (NNs), with a focus on Physics Informed Neural Networks (PINNs). To do so, I'll present a brief recap on UQ and NNs, followed by the methodology to quantify uncertainty while solving SDEs using PINNs. \cite{bibtex}
+
+This report aims to be a recap on Uncertainty Quantification in Physics Informed Neural Networks. Most of the work present here comes from \cite{Zhang_2019}.
+
+The brief introduction about Neural Networks (NNs) and Uncertainty Quantification (UQ) comes from \cite{Abdar_2021}.
 \subsection{Neural Networks}
 Today NNs are all over the news, they are the tools behind many new inventions, like large language models. Here I'll describe the simplest possible architecture for a neural network. 
 
@@ -150,7 +153,7 @@ In its most basic configuration, a feed-forward neural network is made up of thr
 \end{itemize}
 While the first and last layers are quite self-explanatory (the input layer takes a vector \(\bm{x}\) \(D\)-dimensional as an input and the output layer returns an object compatible with the dimensions of the dataset), the hidden layer is made up of multiple units, called neurons, which are basically vector transformations, to which is applied a nonlinear function. The general idea behind is to minimize the loss between the predictions of the model and the real values of the training dataset, by continuously modifying the neurons. Once a satisfying loss between the prediction and real results is reached, the model is ready to be used. 
 
-One of the main features of NNs is that they work really well as function approximators, so one of the logical step after their introduction was to use them to solve PDEs, Lagaris et al 1998, but, at the time, it didn't lead anywhere until recently, when the advent of new tools and machine learning frameworks made possible to work again on solving PDEs using neural networks built up for the task.
+One of the main features of NNs is that they work really well as function approximators, so one of the logical step after their introduction was to use them to solve PDEs \cite{Lagaris_1998}, but, at the time, it didn't lead anywhere until recently, when the advent of new tools and machine learning frameworks made possible to work again on solving PDEs using neural networks built up for the task.
 \subsection{Uncertainty Quantification}
 To describe uncertainty in a model, we must distinguish between the two different kinds. The model itself cannot represent reality as a whole, it will always be built up on assumptions that adds up creating epistemic uncertainty, which must be acknowledged, as it is irreducible. In the real world, data are collected by humans and sensors, which are both prone to errors and noise. This is the second kind of uncertainty, called aleatoric. To sum up, the total uncertainty in a model is made of two components:
 \[
@@ -194,7 +197,12 @@ Here is how to solve differential equations using PINNs. To do so, \eqref{proble
     \label{problem_setup_det}
 \end{equation}
 The neural network will be denoted by \(\hat{u}(x;\theta)\), which is the approximation of the solution \(u(x)\) with a specific set of parameters \(\theta\) dependent on the network. In a classical deep learning setting, the network should have one constraint, which is to reproduce the values in the dataset. In a physics informed settings, there is a second constraint, which is that the network should comply with the physical laws imposed by \eqref{problem_setup_det}. 
-
+\begin{figure}[H]
+    \centering 
+    \includegraphics[width=0.5\textwidth]{Images/PINN_structure.png}
+    \captionsetup{justification=centering,margin=1cm}
+    \caption{Schematic of a PINN for solving differential equations. Figure from \cite{Zhang_2019}.}
+\end{figure}
 To do so, a second network is defined 
 \begin{equation}
     \hat{f}(x;\theta,\eta) := \mathcal{N}_x\left[ \hat{u}(x;\theta);\eta \right],
@@ -241,11 +249,99 @@ Given \(\lambda_l\) and \(\phi_l\) be the \(l\)-largest eigenvalue and its eigen
 \[
     K = \bm{\Phi}^T\bm{\Lambda}\bm{\Phi},
 \]
-where \(\bm{\Phi} = \phi_1, \phi_2 \ldots, \phi_{N_k}\) is an orthonormal matrix and \(\bm{\Lambda} = \text{diag}(\lambda_1, \lambda_2, \ldots, \lambda_{N_k})\) is a diagonal matrix. 
+where \(\bm{\Phi} = \phi_1, \phi_2 \ldots, \phi_{N_k}\) is an orthonormal matrix and \(\bm{\Lambda} = \text{diag}(\lambda_1, \lambda_2, \ldots, \lambda_{N_k})\) is a diagonal matrix. Let \(\bm{k}_s = [k^{1}_s, k^{(2)}_s \ldots, k^{(N_k)}_s]^T\) be the results of the \(k\) measurement at the \(s^{\text{th}}\) moment. It is possible then to write
+\[
+    \bm{\xi}_s = \bm{\Phi}^T \sqrt{\bm{\Lambda}}^{-1} \bm{k}_s,
+\]
+which is an uncorrelated random vector. Thanks to that, and the fact that \(\bm{k}_0 = \mathbb{E}[\bm{k}]\) is the mean of each measurement, is it possible to rewrite 
+\[
+    \bm{k}_s \approx \bm{k}_0 + \sqrt{\bm{\Lambda}^M}\bm{\Phi}^M\bm{\xi}^M_s, \quad M < N_k.
+\]
+The choice of \(M\) depends on the accuracy that one wants to maintain in the low dimensional space.
+\subsubsection{Arbitrary polynomial chaos expansion}
+Assuming a set of \(M\)-dimensional samples of random vectors 
+\[
+    S:= \{\bm{\xi}_s\}_{s=1}^N
+\]
+with hidden probability measure \(\rho(\bm{\xi})\). With a sufficiently large number of observation, it is possible to approximate this probability measure with a discrete one
+\[
+    \rho(\bm{\xi}) \approx \nu_S(\bm{\xi}) = \frac{1}{N} \sum_{\bm{\xi}_s \in S} \delta_{\bm{\xi}_s}(\bm{\xi}), 
+\]
+where \(\delta_{\bm{\xi}_s}\) is the Dirac measure. Then a set of \(P+1\) multivariate orthonormal polynomial basis \(\{\psi_\alpha(\bm{\xi})\}^P_{\alpha=0}\) can be constructed using Gram-Schmidt algorithm. 
+
+\subsubsection{Learning stochastic modes}
+
+Now the networks must be trained to predict the stochastic modes of the QoI. The focus will be on the inverse problem, where both \(u\) and \(k\) are partially unknown. The first network \(\hat{u_\alpha}\) takes the spatial coordinates \(x\) as input and returns a \((P+1) \times 1\) vector of the aPC modes of \(u\) evaluated in \(x\), while the \(\hat{k}\) network takes \(x\) as input and outputs a \((M+1) \times 1\) vector of the \(k\) modes. Thanks to that, \(u\) and \(k\) can be approximated as 
+\begin{align*}
+    \tilde{k}(x; \omega_s) &= \hat{k}_0(x) + \sum_{i=1}^{M} \sqrt{\lambda_i} \hat{k}_i(x) \xi_{s,i}, \\
+    \tilde{u}(x;\omega_s) &= \sum_{\alpha=0}^{P} \hat{u_\alpha}(x)\psi_\alpha(\bm{\xi}_s).
+\end{align*}
+The residual network is then obtained through automatic differentiation. Thanks to the aPC, it is possible to build a network that avoid being an uninterpretable black box. The idea is to build smaller networks which learns the various modes of \(\hat{k}\) and \(\hat{u}\). One network will learn the mean, one the first order basis and so on.
+\begin{figure}[H]
+    \centering 
+    \includegraphics[width=0.5\textwidth]{Images/PINN_structure_3.png}
+    \captionsetup{justification=centering,margin=1cm}
+    \caption{Schematic of the various networks needed for learning the stochastic modes. There are two smaller networks which calculates the two means and the bigger networks calculate the rest of the modes. Figure from \cite{Zhang_2019}.}
+\end{figure}
+The loss function is defined as the sum of the squared errors
+\[
+    \mathcal{L}(\mathcal{S}_t) = MSE_u + MSE_k + MSE_f,
+\]
+where 
+\begin{align*}
+    MSE_u &= \frac{1}{NN_u} \sum_{s=1}^{N}\sum_{i=1}^{N_u} \left[ (\tilde{u}(x^{(i)}_u;\omega_s) - u(x^{(i)}_u; \omega_s))^2 \right], \\
+    MSE_k &= \frac{1}{NN_k} \sum_{s=1}^{N}\sum_{i=1}^{N_k} \left[ (\tilde{k}(x^{(i)}_k;\omega_s) - k(x^{(i)}_k; \omega_s))^2 \right], \\
+    MSE_f &= \frac{1}{NN_f} \sum_{s=1}^{N}\sum_{i=1}^{N_f} \left[ \left(\mathcal{N}_x[\tilde{u}(x^{(i)}_f;\omega_s);\tilde{k}(x^{(i)}_f;\omega_s)]\right)^2 \right].
+\end{align*}
+
+\subsubsection{Dropout}
+
+The main problem with standard NNs is that they are not able to quantify model uncertainty. One common way to overcome this problem is the use of dropout. In the deep learning world, dropout is a technique used during the training of neural networks in which some neurons are randomly shut off during the training phase. This is made to prevent excessive co-tuning and to help the information spread across the network. In a classical setting, neurons are shut off only during the training phase, while for uncertainty quantification, they are shut off also at the test phase. Then the prediction \(y\) of the neural network can be estimated with the Monte Carlo (MC) method. Given \(T\) runs 
+\[
+    \mathbb{E}(y) \approx \frac{1}{T} \sum_{t=1}^{T}\mathcal{NN}_t(x),
+\]
+where \(\mathcal{NN}_t\) is the \(t^{\text{th}}\) run with some dropped neurons.
+
+\begin{figure}[H]
+    \centering 
+    \includegraphics[width=0.5\textwidth]{Images/Dropout_example.png}
+    \captionsetup{justification=centering,margin=1cm}
+    \caption{An example of using dropout for quantify uncertainty. Here the function \(y = x^3e^{-x}\) is approximated using a NN. Mean and standard deviation are calculated from \(1000\) MC runs. Figure from \cite{Zhang_2019}.}
+\end{figure}
 %-----------------------------------------------------------------------------
 % NUMERICAL RESULTS
 %-----------------------------------------------------------------------------
- \section{Numerical Results}
+\section{Numerical Results}
+
+\subsection{Solving SPDEs}
+
+The problem given involves a stochastic elliptic equation that reads
+\begin{equation}
+    \begin{cases}
+        \displaystyle -\frac{d}{dx} \left( k(x;w)\frac{d}{dx}u \right) = f(x) & x \in [-1,1], \omega \in \Omega \\
+        u(-1) = u(1) = 0
+    \end{cases}
+    \label{inverse_pbl}
+\end{equation}
+In this case, there are some extra information about \(u(x;\omega)\), but the distribution of the diffusion coefficient \(k(x;\omega)\) is unknown. The forcing term \(f(x) = 10\), while the randomness comes from \(k(x;\omega)\). \(k\) it is modeled and sampled from a non-Gaussian random process such that 
+\[
+    \log(k(x;\omega)) \sim \mathcal{GP}(k_0(x), \text{Cov}(x, x')),
+\]
+where the mean \(k_0(x) = \sin({3\pi x}/2)/5\) and the covariance matrix has the form 
+\[
+    \text{Cov}(x, x') = \sigma^2 \exp\left( - \frac{(x-x')^2}{l_c^2} \right),
+\]
+where \(\sigma = 0.1\) and \(l_c= 1.0\).
+
+The dataset is built up using the MC sampling method. From a number \(N = 1000\) of trajectories the data at the training points are extrapolated, for both \(u, k\) and \(f\). Same for \(N=500\) trajectories that make up the test set. For the PCA, 6 variables are used, which are enough to explain \(99\%\) of the dataset, while for the aPC, a first order expansion is used.
+\begin{figure}[H]
+    \centering 
+    \includegraphics[width=0.7\textwidth]{Images/L2Error_inv_pbl.png}
+    \captionsetup{justification=centering,margin=1cm}
+    \caption{Comparing the prediction accuracy against various combinations of networks and values of the L2 regularizer \(\lambda\) (left side). Comparing the prediction accuracy against the number of training points (sensors) for \(u\) and \(k\). Figure from \cite{Zhang_2019}.}
+    \label{fig:regularization}
+\end{figure}
+Two groups of NNs are used, \(\hat{k}_i\) and \(\hat{u_\alpha}\), to calculate the modes of \(k\) and \(u\). After some trial, as seen in Figure \ref{fig:regularization} with various shapes of networks, the optimal shape looks like to be \(4\) hidden layers with \(32\) neurons per layer, with a regularization parameter \(\lambda=0.0005\). Then, looking for the correct amount of training points, the balance is reached in \(7\) training points of \(u\) and \(4\) training points of \(k\).
 %-----------------------------------------------------------------------------
 % CONCLUSION
 %-----------------------------------------------------------------------------
