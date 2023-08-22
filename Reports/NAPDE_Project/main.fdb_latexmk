@@ -1,14 +1,14 @@
 # Fdb version 3
-["bibtex main"] 1692635839 "main.aux" "main.bbl" "main" 1692635961
+["bibtex main"] 1692699654 "main.aux" "main.bbl" "main" 1692699656
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
   "bibliography.bib" 1692634959 7922 1c7a969586d0e4558076a714949008b4 ""
-  "main.aux" 1692635961 5805 9f51b74785e884058c93bec759f0cd7b "pdflatex"
+  "main.aux" 1692699656 7321 d9c1349fcf8de0b41639bc53021345e8 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
-["pdflatex"] 1692635959 "/home/bonni/Documents/LaTeX/Reports/NAPDE_Project/main.tex" "main.pdf" "main" 1692635961
+["pdflatex"] 1692699654 "/home/bonni/Documents/LaTeX/Reports/NAPDE_Project/main.tex" "main.pdf" "main" 1692699656
   "/etc/texmf/web2c/texmf.cnf" 1663235487 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/bonni/Documents/LaTeX/Reports/NAPDE_Project/main.tex" 1692635958 22085 1c8a732b55db8292d3d81038cbd944c0 ""
+  "/home/bonni/Documents/LaTeX/Reports/NAPDE_Project/main.tex" 1692699652 23767 f79d92257c0ee37be9d16189a277432c ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx0900.tfm" 1136768653 3584 1a7de6c99457381c64abc1a7c545505f ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1000.tfm" 1136768653 3584 2d666ecf6d466d8b007246bc2f94d9da ""
@@ -239,12 +239,15 @@
   "Images//raggiera_polimi.eps" 1691925946 1813066 dca994a8e6dbfff46979ea0a845ddce3 ""
   "Images/Dropout_example.png" 1692632683 28733 b08fad00cb87b07061ccd022844a7a58 ""
   "Images/L2Error_inv_pbl.png" 1692635612 89397 478ede1696fd96ad929cce19a607e06b ""
+  "Images/Mean_STD_2ndorder.png" 1692698785 43720 8593fa161dd059a09cbb2f9fcb48736e ""
+  "Images/Mean_STD_k.png" 1692699059 53461 342d6e88cf9cf083bc29c089ae3f7fa5 ""
   "Images/PINN_structure.png" 1692631804 51689 d7ea38decae8d0abfbfd0f254bbe30ba ""
   "Images/PINN_structure_3.png" 1692631951 152478 40ffd890cdf24f224ab7f88560eee401 ""
-  "main.aux" 1692635961 5805 9f51b74785e884058c93bec759f0cd7b "pdflatex"
-  "main.bbl" 1692635839 972 79cf0adfbd7f04ae1d4f1b96934b4f97 "bibtex main"
-  "main.out" 1692635961 2208 a0509863e07db7ffe9c1c83e88e452d9 "pdflatex"
-  "main.tex" 1692635958 22085 1c8a732b55db8292d3d81038cbd944c0 ""
+  "Images/Table_L2_Error.png" 1692696037 29818 95e19b98f9345a1ceb9e289cc6fb33eb ""
+  "main.aux" 1692699656 7321 d9c1349fcf8de0b41639bc53021345e8 "pdflatex"
+  "main.bbl" 1692699654 972 79cf0adfbd7f04ae1d4f1b96934b4f97 "bibtex main"
+  "main.out" 1692699656 2208 a0509863e07db7ffe9c1c83e88e452d9 "pdflatex"
+  "main.tex" 1692699652 23767 f79d92257c0ee37be9d16189a277432c ""
   (generated)
   "main.aux"
   "main.log"

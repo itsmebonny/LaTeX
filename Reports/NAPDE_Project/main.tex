@@ -342,6 +342,33 @@ The dataset is built up using the MC sampling method. From a number \(N = 1000\)
     \label{fig:regularization}
 \end{figure}
 Two groups of NNs are used, \(\hat{k}_i\) and \(\hat{u_\alpha}\), to calculate the modes of \(k\) and \(u\). After some trial, as seen in Figure \ref{fig:regularization} with various shapes of networks, the optimal shape looks like to be \(4\) hidden layers with \(32\) neurons per layer, with a regularization parameter \(\lambda=0.0005\). Then, looking for the correct amount of training points, the balance is reached in \(7\) training points of \(u\) and \(4\) training points of \(k\).
+\begin{figure}[H]
+    \centering 
+    \includegraphics[width=0.7\textwidth]{Images/Table_L2_Error.png}
+    \captionsetup{justification=centering,margin=1cm}
+    \caption{Comparing the L2 error when using \(1^{st}\) and \(2^{nd}\) order expansion aPC. Figure from \cite{Zhang_2019}.}
+    \label{fig:table}
+\end{figure}
+As seen in Figure \ref{fig:table}, the \(2^{nd}\) order expansion aPC vastly improves the accuracy of the prediction. In fact, when testing both the \(1^{st}\) and \(2^{nd}\) order expansion is it possible to see how much better the \(2^{nd}\) order expansion performs the task. 
+\begin{figure}[H]
+    \centering 
+    \includegraphics[width=0.7\textwidth]{Images/Mean_STD_2ndorder.png}
+    \captionsetup{justification=centering,margin=1cm}
+    \caption{Predicted mean and standard deviation of \(u\) for various order expansions. Figure from \cite{Zhang_2019}.}
+    \label{fig:mean_u}
+\end{figure}
+\begin{figure}[H]
+    \centering 
+    \includegraphics[width=0.7\textwidth]{Images/Mean_STD_k.png}
+    \captionsetup{justification=centering,margin=1cm}
+    \caption{Predicted mean and standard deviation of \(k\) for various order expansion. Figure from \cite{Zhang_2019}.}
+    \label{fig:mean_k}
+\end{figure}
+Figure \ref{fig:mean_u} shows how the networks performs in predicting the mean and standard deviation of \(u\), in which is already clear that the higher order expansion is more accurate. In Figure \ref{fig:mean_k} is shown that, despite having all the training points where the mean is \(1.0\) and the standard deviation is \(0.1\), the network is able to reconstruct the wavy structure of both, which is way more information that the data would provide.
+
+\subsection{Solving deterministic differential equations with PINNs and dropout}
+
+Is it possible, given a deterministic problem
 %-----------------------------------------------------------------------------
 % CONCLUSION
 %-----------------------------------------------------------------------------
