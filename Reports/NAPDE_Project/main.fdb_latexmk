@@ -1,14 +1,14 @@
 # Fdb version 3
-["bibtex main"] 1692699654 "main.aux" "main.bbl" "main" 1692699656
+["bibtex main"] 1692718548 "main.aux" "main.bbl" "main" 1692720535
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
   "bibliography.bib" 1692634959 7922 1c7a969586d0e4558076a714949008b4 ""
-  "main.aux" 1692699656 7321 d9c1349fcf8de0b41639bc53021345e8 "pdflatex"
+  "main.aux" 1692720535 9764 2add0280b0b94a77db85a4a8d6fb521e "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
-["pdflatex"] 1692699654 "/home/bonni/Documents/LaTeX/Reports/NAPDE_Project/main.tex" "main.pdf" "main" 1692699656
+["pdflatex"] 1692720532 "/home/bonni/Documents/LaTeX/Reports/NAPDE_Project/main.tex" "main.pdf" "main" 1692720535
   "/etc/texmf/web2c/texmf.cnf" 1663235487 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/bonni/Documents/LaTeX/Reports/NAPDE_Project/main.tex" 1692699652 23767 f79d92257c0ee37be9d16189a277432c ""
+  "/home/bonni/Documents/LaTeX/Reports/NAPDE_Project/main.tex" 1692720531 28694 285567f251cd3b35ce6ece7acc02e861 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx0900.tfm" 1136768653 3584 1a7de6c99457381c64abc1a7c545505f ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecbx1000.tfm" 1136768653 3584 2d666ecf6d466d8b007246bc2f94d9da ""
@@ -244,10 +244,14 @@
   "Images/PINN_structure.png" 1692631804 51689 d7ea38decae8d0abfbfd0f254bbe30ba ""
   "Images/PINN_structure_3.png" 1692631951 152478 40ffd890cdf24f224ab7f88560eee401 ""
   "Images/Table_L2_Error.png" 1692696037 29818 95e19b98f9345a1ceb9e289cc6fb33eb ""
-  "main.aux" 1692699656 7321 d9c1349fcf8de0b41639bc53021345e8 "pdflatex"
-  "main.bbl" 1692699654 972 79cf0adfbd7f04ae1d4f1b96934b4f97 "bibtex main"
-  "main.out" 1692699656 2208 a0509863e07db7ffe9c1c83e88e452d9 "pdflatex"
-  "main.tex" 1692699652 23767 f79d92257c0ee37be9d16189a277432c ""
+  "Images/act_lear23.png" 1692718370 132968 cef289753943553bca729ea46afbd910 ""
+  "Images/act_lear_2.png" 1692717293 142785 615b151c2d37df96224646fc1304e4d5 ""
+  "Images/active_learn.png" 1692716729 75045 b02bdaa41c8e6b5498fb64a00c19f444 ""
+  "Images/dropout_k.png" 1692715056 43009 82f89efda6d3d14b24d4f6233e289e5a ""
+  "main.aux" 1692720535 9764 2add0280b0b94a77db85a4a8d6fb521e "pdflatex"
+  "main.bbl" 1692718548 972 79cf0adfbd7f04ae1d4f1b96934b4f97 "bibtex main"
+  "main.out" 1692720535 2940 d04e2f0bcac2a160018315b00f44fee3 "pdflatex"
+  "main.tex" 1692720531 28694 285567f251cd3b35ce6ece7acc02e861 ""
   (generated)
   "main.aux"
   "main.log"

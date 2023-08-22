@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.2)  22 AUG 2023 12:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2023.6.2)  22 AUG 2023 18:08
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -822,7 +822,7 @@ Package epstopdf Info: Source file: <Images//logo_polimi_ing_indinf.eps>
 (epstopdf)             Command: <repstopdf --outfile=Images//logo_polimi_ing_indinf-eps-converted-to.pdf Images//logo_polimi_ing_indinf.eps>
 (epstopdf)             \includegraphics on input line 7.
 Package epstopdf Info: Output file is already uptodate.
-<Images//logo_polimi_ing_indinf-eps-converted-to.pdf, id=63, 493.845pt x 227.85126pt>
+<Images//logo_polimi_ing_indinf-eps-converted-to.pdf, id=71, 493.845pt x 227.85126pt>
 File: Images//logo_polimi_ing_indinf-eps-converted-to.pdf Graphic file (type pdf)
 <use Images//logo_polimi_ing_indinf-eps-converted-to.pdf>
 Package pdftex.def Info: Images//logo_polimi_ing_indinf-eps-converted-to.pdf  used on input line 7.
@@ -878,7 +878,7 @@ Package epstopdf Info: Source file: <Images//raggiera_polimi.eps>
 (epstopdf)             Command: <repstopdf --outfile=Images//raggiera_polimi-eps-converted-to.pdf Images//raggiera_polimi.eps>
 (epstopdf)             \includegraphics on input line 164.
 Package epstopdf Info: Output file is already uptodate.
-<Images//raggiera_polimi-eps-converted-to.pdf, id=67, 502.87875pt x 502.87875pt>
+<Images//raggiera_polimi-eps-converted-to.pdf, id=75, 502.87875pt x 502.87875pt>
 File: Images//raggiera_polimi-eps-converted-to.pdf Graphic file (type pdf)
 <use Images//raggiera_polimi-eps-converted-to.pdf>
 Package pdftex.def Info: Images//raggiera_polimi-eps-converted-to.pdf  used on input line 164.
@@ -886,7 +886,7 @@ Package pdftex.def Info: Images//raggiera_polimi-eps-converted-to.pdf  used on i
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./Images//raggiera_polimi-eps-converted-to.pdf> <./Images//logo_polimi_ing_indinf-eps-converted-to.pdf>]
-<Images/PINN_structure.png, id=103, 480.79625pt x 212.795pt>
+<Images/PINN_structure.png, id=111, 480.79625pt x 212.795pt>
 File: Images/PINN_structure.png Graphic file (type png)
 <use Images/PINN_structure.png>
 Package pdftex.def Info: Images/PINN_structure.png  used on input line 202.
@@ -895,70 +895,86 @@ Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on inp
 LaTeX Font Info:    External font `cmex7' loaded for size
 (Font)              <6> on input line 216.
  [2 <./Images/PINN_structure.png>] [3]
-<Images/PINN_structure_3.png, id=136, 599.23875pt x 379.4175pt>
+<Images/PINN_structure_3.png, id=144, 599.23875pt x 379.4175pt>
 File: Images/PINN_structure_3.png Graphic file (type png)
 <use Images/PINN_structure_3.png>
 Package pdftex.def Info: Images/PINN_structure_3.png  used on input line 282.
 (pdftex.def)             Requested size: 241.84843pt x 153.13062pt.
  [4 <./Images/PINN_structure_3.png>]
-<Images/Dropout_example.png, id=145, 381.425pt x 261.97874pt>
+<Images/Dropout_example.png, id=153, 381.425pt x 261.97874pt>
 File: Images/Dropout_example.png Graphic file (type png)
 <use Images/Dropout_example.png>
 Package pdftex.def Info: Images/Dropout_example.png  used on input line 307.
 (pdftex.def)             Requested size: 241.84843pt x 166.11081pt.
  [5 <./Images/Dropout_example.png>]
-<Images/L2Error_inv_pbl.png, id=156, 776.9025pt x 300.12125pt>
+<Images/L2Error_inv_pbl.png, id=164, 776.9025pt x 300.12125pt>
 File: Images/L2Error_inv_pbl.png Graphic file (type png)
 <use Images/L2Error_inv_pbl.png>
 Package pdftex.def Info: Images/L2Error_inv_pbl.png  used on input line 339.
 (pdftex.def)             Requested size: 338.58632pt x 130.79898pt.
-<Images/Table_L2_Error.png, id=160, 732.7375pt x 164.615pt>
+<Images/Table_L2_Error.png, id=168, 732.7375pt x 164.615pt>
 File: Images/Table_L2_Error.png Graphic file (type png)
 <use Images/Table_L2_Error.png>
 Package pdftex.def Info: Images/Table_L2_Error.png  used on input line 347.
 (pdftex.def)             Requested size: 338.58632pt x 76.06541pt.
-<Images/Mean_STD_2ndorder.png, id=164, 602.25pt x 266.9975pt>
+<Images/Mean_STD_2ndorder.png, id=172, 602.25pt x 266.9975pt>
 File: Images/Mean_STD_2ndorder.png Graphic file (type png)
 <use Images/Mean_STD_2ndorder.png>
 Package pdftex.def Info: Images/Mean_STD_2ndorder.png  used on input line 355.
 (pdftex.def)             Requested size: 338.58632pt x 150.11238pt.
-<Images/Mean_STD_k.png, id=167, 602.25pt x 280.04625pt>
+<Images/Mean_STD_k.png, id=175, 602.25pt x 280.04625pt>
 File: Images/Mean_STD_k.png Graphic file (type png)
 <use Images/Mean_STD_k.png>
 Package pdftex.def Info: Images/Mean_STD_k.png  used on input line 362.
 (pdftex.def)             Requested size: 338.58632pt x 157.4487pt.
- [6 <./Images/L2Error_inv_pbl.png> <./Images/Table_L2_Error.png>] (./main.bbl)
+ [6 <./Images/L2Error_inv_pbl.png> <./Images/Table_L2_Error.png>]
+<Images/dropout_k.png, id=189, 383.4325pt x 288.07625pt>
+File: Images/dropout_k.png Graphic file (type png)
+<use Images/dropout_k.png>
+Package pdftex.def Info: Images/dropout_k.png  used on input line 388.
+(pdftex.def)             Requested size: 145.11053pt x 109.02174pt.
+ [7 <./Images/Mean_STD_2ndorder.png> <./Images/Mean_STD_k.png>]
+<Images/active_learn.png, id=205, 733.74126pt x 282.05376pt>
+File: Images/active_learn.png Graphic file (type png)
+<use Images/active_learn.png>
+Package pdftex.def Info: Images/active_learn.png  used on input line 400.
+(pdftex.def)             Requested size: 290.22107pt x 111.56279pt.
+<Images/act_lear_2.png, id=210, 1004.75375pt x 669.50125pt>
+File: Images/act_lear_2.png Graphic file (type png)
+<use Images/act_lear_2.png>
+Package pdftex.def Info: Images/act_lear_2.png  used on input line 411.
+(pdftex.def)             Requested size: 145.11053pt x 96.6921pt.
+<Images/act_lear23.png, id=215, 1004.75375pt x 397.485pt>
+File: Images/act_lear23.png Graphic file (type png)
+<use Images/act_lear23.png>
+Package pdftex.def Info: Images/act_lear23.png  used on input line 419.
+(pdftex.def)             Requested size: 290.22107pt x 114.8128pt.
+ [8 <./Images/dropout_k.png> <./Images/active_learn.png> <./Images/act_lear_2.png>] (./main.bbl)
 
 Package caption Warning: Unused \captionsetup[table] on input line 23.
 See the caption package documentation for explanation.
 
-[7 <./Images/Mean_STD_2ndorder.png> <./Images/Mean_STD_k.png>] (./main.aux)
+[9 <./Images/act_lear23.png>] (./main.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.4641pt have occurred.
 
-
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: A0509863E07DB7FFE9C1C83E88E452D9;2208
-(rerunfilecheck)             After:  4999727FE329F22F6EAE877FD9AA2BB1;2622.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: D04E2F0BCAC2A160018315B00F44FEE3;2940.
  ) 
 Here is how much of TeX's memory you used:
- 28443 strings out of 478287
- 533812 string characters out of 5849290
+ 28494 strings out of 478287
+ 534844 string characters out of 5849290
  909994 words of memory out of 5000000
- 46075 multiletter control sequences out of 15000+600000
+ 46113 multiletter control sequences out of 15000+600000
  487504 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 83i,19n,80p,772b,712s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 83i,21n,80p,1018b,712s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx0900.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfti1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfxc0900.pfb>
-Output written on main.pdf (7 pages, 734047 bytes).
+Output written on main.pdf (9 pages, 1051872 bytes).
 PDF statistics:
- 282 PDF objects out of 1000 (max. 8388607)
- 207 compressed objects within 3 object streams
- 47 named destinations out of 1000 (max. 500000)
- 170 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 327 PDF objects out of 1000 (max. 8388607)
+ 238 compressed objects within 3 object streams
+ 56 named destinations out of 1000 (max. 500000)
+ 206 words of extra memory for PDF output out of 10000 (max. 10000000)
 

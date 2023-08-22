@@ -368,11 +368,72 @@ Figure \ref{fig:mean_u} shows how the networks performs in predicting the mean a
 
 \subsection{Solving deterministic differential equations with PINNs and dropout}
 
-Is it possible, given a deterministic problem
+Is it possible, given a deterministic inverse problem like 
+\begin{equation}
+    \begin{cases}
+        \displaystyle -\frac{d}{dx} \left(e^{\frac{\sin(3\pi x/2)}{5}} \frac{d}{dx}u\right) = f(x), & x \in [-1,1], \\
+        u(-1) = u(1) = 0.
+    \end{cases}
+    \label{pbl:deterministic}
+\end{equation}
+This time \(f(x) = 9\pi^2\sin(3\pi x /2)/4\) is the forcing term and \(k(x) = \exp(\sin(3\pi x/2)/5)\). For the training points, \(7\) \(u\) and \(5\) \(k\) measurements are set inside the domain. Two separate NNs are built: 
+\begin{itemize}
+    \item a small scale net with \(2\) hidden layers and \(4\) neurons per layer to model \(u(x)\);
+    \item a larger one with \(6\) hidden layers and \(100\) neurons per layer to model \(k(x)\).
+\end{itemize} 
+Both the network have a dropout rate fixed at \(0.01\).
+
+\begin{figure}[H]
+    \centering 
+    \includegraphics[width=0.3\textwidth]{Images/dropout_k.png}
+    \captionsetup{justification=centering,margin=1cm}
+    \caption{Prediction of \(k(x)\) with and without dropout. Figure from \cite{Zhang_2019}.}
+    \label{fig:drop_k}
+\end{figure}
+
+As seen in Figure \ref{fig:drop_k}, thanks to the use of dropout, the network is able to predict correctly \(k(x)\). The dotted lines, which represent prediction without dropout, are prone to overfit the solution around the data available.
+\subsubsection{Active learning for inverse stochastic problems}
+Thanks to the uncertainty introduced by the dropout method, it is possible to build an active learning environment. The problem is the same \eqref{pbl:deterministic}. The idea behind this method is to evaluate the dropout network for \(10000\) times to estimate mean and standard deviation. Next, place a new training point where the standard deviation reaches its maximum, unless there is already a training point in a radius \(\rho = 0.003\). In that case, count the already existing training point twice. 
+
+\begin{figure}[H]
+    \centering 
+    \includegraphics[width=0.6\textwidth]{Images/active_learn.png}
+    \captionsetup{justification=centering,margin=1cm}
+    \caption{Prediction of \(k\) at the first step (left) and at the step \(15\) (right). Figure from \cite{Zhang_2019}.}
+    \label{fig:act_k}
+\end{figure}
+As seen in Figure \ref{fig:act_k}, letting this process run for \(15\) steps, vastly improves the accuracy of the predictions on \(k(x)\), this is because there are more training points and those are set where the curvature of \(k(x)\) increases, helping the network predict it correctly. 
+
+This active learning method can be used also on stochastic inverse problem, such as \eqref{problem_setup}. The setup is similar to the one used before, where additional training points of \(k\) are placed after \(10000\) iterations where the maximum of the standard deviation of the first mode is reached. The first mode is the one that explain most of the standard deviation, so it makes sense to focus on it.  
+
+\begin{figure}[H]
+    \centering 
+    \includegraphics[width=0.3\textwidth]{Images/act_lear_2.png}
+    \captionsetup{justification=centering,margin=1cm}
+    \caption{Error reduction in \(15\) steps. Figure from \cite{Zhang_2019}.}
+    \label{fig:act2_k}
+\end{figure}
+Figure \ref{fig:act2_k} shows well how much the \(L2\) error decreases when more \(k\) sensor are strategically placed following that algorithm. The dropout method is applied only to the network that predicts \(k(x)\) since \(u(x)\) is less impacted by overfitting issues, as seen in Figure \ref{fig:act3_k} and the main goal of an inverse problem is to identify \(k(x)\).
+\begin{figure}[H]
+    \centering 
+    \includegraphics[width=0.6\textwidth]{Images/act_lear23.png}
+    \captionsetup{justification=centering,margin=1cm}
+    \caption{Predictions of \(k\) (left) and \(u\) (right) at some steps, along with the new training points. Figure from \cite{Zhang_2019}.}
+    \label{fig:act3_k}
+\end{figure}
+
+
+
+
 %-----------------------------------------------------------------------------
 % CONCLUSION
 %-----------------------------------------------------------------------------
 \section{Conclusions}
+
+According to the authors of the paper, there is little literature about solving stochastic differential equations using PINNs. The method used to quantify uncertainty by employing aPC expansion to represent the stochastic solution is a new kind of approach. The original paper also solves forward problems, which are not present here, since they are solved with the same methodology as inverse problem, but are less challenging. In the paper the aim was to quantify both parametric uncertainty given by the stochastic nature of the problem and approximation uncertainty given by the aPC-PINN solution used to solve the problem. For the approximation uncertainty represent how well the PINN is trained, and is modeled by the dropout strategy implemented. This report is focused on this approach because its novelty made it stand out between the other methods, which were more ``classical'' and with an extensive literature to support them.
+
+
+
 
 %---------------------------------------------------------------------------
 %  BIBLIOGRAPHY
