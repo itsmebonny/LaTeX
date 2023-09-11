@@ -103,7 +103,9 @@
 
 % Insert here the info that will be displayed into your Title page
 % -> title of your work
-\renewcommand{\title}{Uncertainty Quantification in Scientific Machine Learning}
+\renewcommand{\title}{Quantifying total uncertainty in physics-informed neural
+networks for solving inverse stochastic
+problems}
 
 % -> author name and surname
 \renewcommand{\author}{Andrea Bonifacio}
@@ -139,11 +141,11 @@
 %-----------------------------------------------------------------------------
 \section{Introduction}
 
-This report aims to be a recap on Uncertainty Quantification in Physics Informed Neural Networks. Most of the work present here comes from \cite{Zhang_2019}.
+This report aims to be a recap on Uncertainty Quantification in Physics Informed Neural Networks (PINNs). The decision to focus on using PINNs to solve stochastic problems comes from the fact that there aren't many articles about in the existing literature. Also because solving problems using Scientific Machine Learning techniques helps in keeping a low computational cost, while losing a negligible amount of accuracy in the solution. Most of the work present here comes from \cite{Zhang_2019}.
 
 The brief introduction about Neural Networks (NNs) and Uncertainty Quantification (UQ) comes from \cite{Abdar_2021}.
 \subsection{Neural Networks}
-Today NNs are all over the news, they are the tools behind many new inventions, like large language models. Here I'll describe the simplest possible architecture for a neural network. 
+In the last few years NNs became very common in a lot of different fields. The creation of frameworks like TensorFlow and Torch helped the diffusion of these tools, thanks to the many features that they brought, like automatic differentiation. Here I'll describe the simplest possible architecture for a neural network. 
 
 In its most basic configuration, a feed-forward neural network is made up of three layers:
 \begin{itemize}
@@ -229,7 +231,7 @@ Assuming a dataset with \(N_u\) observations on \(u\) collected at \(\{ x^{(i)}_
 \]
 \end{algorithm}
 \subsection{Moving to a stochastic setting}
-The idea now is to analyze a stochastic problem, which brings back \eqref{problem_setup}. A new dataset is needed to collect all the random events. This dataset will be made up of \(N_k\) measurement at \(x^{(i)}_k\) locations in the domain. Given \(N\) measurements, the random instance at the \(s^{\text{th}}\) event will be called \(\omega_s\). Now, defining \(k_s^{(i)} = k(x_k^{(i)}; \omega_s)\) and \(u_s^{(i)} = u(x_u^{(i)};\omega_s)\), the new dataset is built up like this:
+The idea now is to analyze a stochastic problem, which brings back \eqref{problem_setup}. A new dataset is needed to collect all the random events. This dataset will be made up of \(N_k\) measurement at \(x^{(i)}_k\) locations in the domain. Given \(N\) measurements, the random instance at the \(s^{\text{\tiny th}}\) event will be called \(\omega_s\). Now, defining \(k_s^{(i)} = k(x_k^{(i)}; \omega_s)\) and \(u_s^{(i)} = u(x_u^{(i)};\omega_s)\), the new dataset is built up like this:
 \[
     \mathcal{S}_t = \{\{(x^{(i)}_k, k^{(i)}_s)\}^{N_k}_{i=1},\{(x^{(i)}_u, u^{(i)}_s)\}^{N_u}_{i=1},\{(x^{(i)}_f,0)\}^{N_f}_{i=1}\}^{N}_{s=1}.
 \]    
@@ -249,7 +251,7 @@ Given \(\lambda_l\) and \(\phi_l\) be the \(l\)-largest eigenvalue and its eigen
 \[
     K = \bm{\Phi}^T\bm{\Lambda}\bm{\Phi},
 \]
-where \(\bm{\Phi} = \phi_1, \phi_2 \ldots, \phi_{N_k}\) is an orthonormal matrix and \(\bm{\Lambda} = \text{diag}(\lambda_1, \lambda_2, \ldots, \lambda_{N_k})\) is a diagonal matrix. Let \(\bm{k}_s = [k^{1}_s, k^{(2)}_s \ldots, k^{(N_k)}_s]^T\) be the results of the \(k\) measurement at the \(s^{\text{th}}\) moment. It is possible then to write
+where \(\bm{\Phi} = \phi_1, \phi_2 \ldots, \phi_{N_k}\) is an orthonormal matrix and \(\bm{\Lambda} = \text{diag}(\lambda_1, \lambda_2, \ldots, \lambda_{N_k})\) is a diagonal matrix. Let \(\bm{k}_s = [k^{(1)}_s, k^{(2)}_s \ldots, k^{(N_k)}_s]^T\) be the results of the \(k\) measurement at the \(s^{\text{\tiny th}}\) moment. It is possible then to write
 \[
     \bm{\xi}_s = \bm{\Phi}^T \sqrt{\bm{\Lambda}}^{-1} \bm{k}_s,
 \]
@@ -430,7 +432,7 @@ Figure \ref{fig:act2_k} shows well how much the \(L2\) error decreases when more
 %-----------------------------------------------------------------------------
 \section{Conclusions}
 
-According to the authors of the paper, there is little literature about solving stochastic differential equations using PINNs. The method used to quantify uncertainty by employing aPC expansion to represent the stochastic solution is a new kind of approach. The original paper also solves forward problems, which are not present here, since they are solved with the same methodology as inverse problem, but are less challenging. In the paper the aim was to quantify both parametric uncertainty given by the stochastic nature of the problem and approximation uncertainty given by the aPC-PINN solution used to solve the problem. For the approximation uncertainty represent how well the PINN is trained, and is modeled by the dropout strategy implemented. This report is focused on this approach because its novelty made it stand out between the other methods, which were more ``classical'' and with an extensive literature to support them.
+According to the authors of the paper, there is little literature about solving stochastic differential equations using PINNs. The method used to quantify uncertainty by employing aPC expansion to represent the stochastic solution is a new kind of approach. The original paper also solves forward problems, which are not present here, since they are solved with the same methodology as inverse problem, but are less challenging. In the paper the aim was to quantify both parametric uncertainty given by the stochastic nature of the problem and approximation uncertainty given by the aPC-PINN solution used to solve the problem. The latter represents how well the PINN is trained, and is modeled by the dropout strategy implemented. This method is capable of solving stochastic inverse problems, in which there are partial information about the solution and the parameters and differs from a classical inverse problem in which the solution is known. Here the data driven method let the model train and then the model is able to predict new information at a very low computational cost.This report is focused on this approach because its novelty made it stand out between the other methods, which were more ``classical'' and with an extensive literature to support them.
 
 
 
