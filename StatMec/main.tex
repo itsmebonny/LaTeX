@@ -1,0 +1,233 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{hhline}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{bm}
+\usepackage[margin=2cm]{geometry}
+
+\usepackage{amsthm}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{physics}
+\usepackage{textcomp}
+
+\usepackage{mdframed}
+\usepackage{xcolor}
+
+\usepackage[makeroom]{cancel}
+\usepackage{mathrsfs}
+
+\usepackage[many]{tcolorbox}
+
+\setlength\parindent{0pt}
+
+\newlength\mylength
+\setlength\mylength{0.1cm}
+\newcolumntype{Y}{>{\Centering\arraybackslash}X}
+\newtheoremstyle{break}
+  {\partopsep}{\topsep}%  
+  {\normalfont}{}
+  {\bfseries}{}%
+  {\newline}{}%
+  \theoremstyle{break}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{notation}{Notation}[section]
+\newtheorem{definition}{Definition}[section]
+
+
+\tcolorboxenvironment{theorem}{
+  breakable,
+  colback=green!15!white,
+  boxrule=0pt,
+  boxsep=1pt,
+  left=2pt,right=2pt,top=5pt,bottom=5pt,
+  oversize=2pt,
+  before skip=\topsep,
+  after skip=\topsep,
+}
+\tcolorboxenvironment{corollary}{
+  breakable,
+  colback=green!20!white,
+  boxrule=0pt,
+  boxsep=1pt,
+  left=2pt,right=2pt,top=2pt,bottom=2pt,
+  oversize=2pt,
+  before skip=\topsep,
+  after skip=\topsep,
+}
+\tcolorboxenvironment{proposition}{
+  breakable,
+  colback=green!25!white,
+  boxrule=0pt,
+  boxsep=1pt,
+  left=2pt,right=2pt,top=2pt,bottom=2pt,
+  oversize=2pt,
+  before skip=\topsep,
+  after skip=\topsep,
+}
+\tcolorboxenvironment{lemma}{
+  breakable,
+  colback=green!30!white,
+  boxrule=0pt,
+  boxsep=1pt,
+  left=2pt,right=2pt,top=2pt,bottom=2pt,
+  oversize=2pt,
+  before skip=\topsep,
+  after skip=\topsep,
+}
+\tcolorboxenvironment{remark}{
+  breakable,
+    blanker,
+    before skip=6pt,after skip=6pt,
+    boxsep=1pt,
+    left=5pt,right=2pt,top=2pt,bottom=2pt,
+    borderline west={1mm}{0pt}{green!35}
+}
+\tcolorboxenvironment{notation}{
+  breakable,
+  colback=green!15!white,
+  boxrule=0pt,
+  boxsep=1pt,
+  left=2pt,right=2pt,top=2pt,bottom=2pt,
+  oversize=2pt,
+  before skip=\topsep,
+  after skip=\topsep,
+}
+\tcolorboxenvironment{definition}{
+  breakable,
+  colback=green!10!white,
+  boxrule=0pt,
+  boxsep=1pt,
+  left=2pt,right=2pt,top=2pt,bottom=2pt,
+  oversize=2pt,
+  before skip=\topsep,
+  after skip=\topsep,
+}
+
+\tcolorboxenvironment{proof}{
+  breakable,
+  blanker,
+  before skip=6pt,after skip=6pt,
+  boxsep=1pt,
+  left=5pt,right=2pt,top=2pt,bottom=2pt,
+  borderline west={1mm}{0pt}{black}}
+\tcolorboxenvironment{example}{
+    breakable,
+    blanker,
+    before skip=6pt,after skip=6pt,
+    boxsep=1pt,
+    left=5pt,right=2pt,top=2pt,bottom=2pt,
+    borderline west={1mm}{0pt}{green}}
+  
+
+
+\renewcommand*{\proofname}{\textbf{Proof}}
+\renewcommand\qedsymbol{$\bigstar$}
+\renewcommand*{\grad}{\nabla\mspace{1mu}}
+\renewcommand*{\div}{\text{div}\mspace{1mu}}
+\newcommand{\rot}{\text{rot}\mspace{1mu}}
+\renewcommand\labelenumi{(\theenumi)}
+\newcommand{\vect}[1]{\textbf{#1}}
+
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+\let\oldepsilon\epsilon
+\let\epsilon\varepsilon
+\let\oldphi\phi
+\let\phi\varphi
+
+\newcommand*{\txt}[1]{\text{#1}}
+
+\newcommand{\ind}{\perp\!\!\!\!\perp} 
+\newcommand{\measurespace}{(X, \mathcal{M}, \mu)}
+\newcommand{\sigalg}{\sigma\mbox{-algebra}}
+\newcommand{\boreal}{\mathcal{B}(\mathbb{R})}
+\renewcommand{\real}{\mathbb{R}}
+\renewcommand{\natural}{\mathbb{N}}
+\newcommand{\barreal}{\overline{\mathbb{R}}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\xdownarrow}[1]{%
+  {\left\downarrow\vbox to #1{}\right.\kern-\nulldelimiterspace}
+}
+\newcommand{\xuparrow}[1]{%
+  {\left\uparrow\vbox to #1{}\right.\kern-\nulldelimiterspace}
+}
+\newcommand{\arrvline}{\hfil\kern\arraycolsep\vline\kern-\arraycolsep\hfilneg}
+\newcommand{\esssup}{\text{ess}\, \text{sup}}
+\newcommand{\normdot}{\norm{\cdot}}
+\newcommand{\scalardot}{\langle \cdot,\cdot \rangle}
+\newcommand{\scalarproduct}[2]{\langle #1,#2 \rangle}
+\newcommand*{\limited}[1]{\vert_{#1}}
+\newcommand{\interior}[1]{%
+ {\kern0pt#1}^{\mathrm{o}}%
+}
+\newcommand*{\seminorm}[2]{\left\lvert#1\right\rvert_{#2}}
+\newcommand*{\threenorm}[3][\null]{\left\lvert\mspace{-2mu}\left\lvert\mspace{-2mu}\left\lvert#2\right\rvert\mspace{-2mu}\right\rvert\mspace{-2mu}\right\rvert_{#3}^{#1}}
+
+\newcommand{\ltwonorm}[1]{\norm{#1}_{L^2(\Omega)}}
+\newcommand{\honenorm}[1]{\norm{#1}_{H^1(\Omega)}}
+
+\newcommand{\jump}[1]{\left[\mspace{-4mu}\left[#1\right]\mspace{-4mu}\right]}
+\newcommand{\average}[1]{\left\{\mspace{-7.5mu}\left\{#1\right\}\mspace{-7.5mu}\right\}}
+
+\newcommand{\element}{\mathcal{K}}
+\newcommand{\triangulation}{\mathcal{T}_h}
+
+\newcommand{\boundary}{{\partial\Omega}}
+\newcommand{\eit}{{\element\in\triangulation}}
+\newcommand{\scalingfactor}{\tau_{\element}}
+\newcommand{\peclet}{\mathbb{P}e}
+
+\newcommand{\vecbabs}{\abs{\vect{b}}}
+\newcommand{\loperator}{\mathcal{L}}
+\newcommand{\xvec}{\vect{x}}
+\newcommand{\tstep}{\Delta t}
+\newcommand{\onehalf}{\frac{1}{2}}
+\newcommand{\bilinear}{a(\cdot, \cdot)}
+\newcommand{\uvec}{\vect{u}}
+\newcommand{\normal}{\vect{n}}
+\newcommand{\vvec}{\vect{v}}
+\newcommand{\pvec}{\vect{p}}
+\newcommand{\fvec}{\vect{f}}
+\newcommand{\qvec}{\vect{q}}
+\newcommand{\honed}{\left[ H^1(\Omega) \right]^d}
+\newcommand{\find}{\txt{find }}
+
+\newmdenv[backgroundcolor=green!20]{background}
+
+
+\def\stackbelow#1#2{\underset{\displaystyle\overset{\displaystyle\shortparallel}{#2}}{#1}}
+\def\stackbelowlittle#1#2{\underset{\textstyle\overset{\textstyle\shortparallel}{#2}}{#1}}
+
+
+
+\long\def\symbolfootnotemark[#1]#2{\begingroup%
+\def\thefootnote{\fnsymbol{footnote}}\footnotetext[#1]{#2}\footnotemark[#1]\endgroup}
+
+\long\def\symbolfootnotetext[#1]#2{\begingroup%
+\def\thefootnote{\fnsymbol{footnote}}\footnotetext[#1]{#2}\endgroup}
+
+
+\numberwithin{equation}{section}
+
+
+
+
+
+\begin{document}
+\title{Models and Methods for Statistical Mechanics \\
+\small from the lectures of Prof. Lorenzani}
+\author{Andrea Bonifacio}
+\date{\today}
+\maketitle
+\input{sections/1_lecture.tex}
+\end{document}
