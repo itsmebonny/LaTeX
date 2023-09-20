@@ -7,4 +7,30 @@ Statistical mechanics may be naturally divided into two branches:
 \end{itemize}
 Non-equilibrium phenomena are less understood at the moment. A notable exception is offered by the case of diluted gases. 
 
-Thanks to
+A basic equation was established by Ludwig Boltzmann in \(1872\), which appears as a prototype of a reduced description taking into account only partial information about the underlying microscopic state (fully described by the coordinate and momenta of all the molecules), but nevertheless undergoing an autonomous time evolution. Thus, the problem of the rigorous derivation of the Boltzmann from the microscopic description has attracted a certain amount of interest among physicists and mathematicians. This, in turn, has revived the interest in the existence and uniqueness of the solution of the Boltzmann equation, since this problem has proved to be intimately tied with the previous one. According to the molecular theory of matter, a macroscopic volume of gas (e.g. \(1 \txt{ cm}^3\)) is a system if a very large number of molecules (\(\approx 10^{20}\)) moving in a rather irregular way. 
+
+In principle, we may assume that the laws of interaction between the molecules are perfectly known so that, idealistically, the evolution of the system is computable provided suitable initial data are given. If the molecules are, for example, mass points, the equation of motion are 
+\begin{subequations}
+    \begin{equation}
+        \begin{cases}
+               \dot{\vec{\xi}}_i = \vec{X}_i, \\
+                \dot{\vec{x}}_i = \vec{\xi}_i, 
+        \end{cases}
+        \label{1.1a}
+    \end{equation}
+    \txt{or: }
+    \begin{equation}
+        \ddot{\vec{x}}_i = \vec{X}_i,
+        \label{1.1b}
+    \end{equation}
+\end{subequations}
+where \(\vec{x}_i\) is the position vector of the \(i^{\txt{\tiny th}}\) particle of a system of \(i = 1,\ldots,N\) particles and \(\vec{\xi}_i\) is the velocity vector. The term \(\vec{X}_i\) is the force acting upon the particle divided by its mass. Such a force will be usually the sum of the external forces (e.g. gravity) and the forces describing the action of the other particles on the one under observation. The expression of such forces must be given as a part of the description of the mechanical system. 
+
+In order to compute the time evolution of the system, one would need to solve the \(6N\) first order differential equations \eqref{1.1a} in the \(6N\) unknowns constituting the \(2N\) vector \((\vec{x}_i, \vec{\xi}_i)\). A prerequisite for this is the knowledge of the \(6N\) initial conditions
+\begin{equation}
+    \begin{aligned}
+        &\vec{x}_i(0) = \vec{x_i}^0, \\
+        &\dot{\vec{x}}_i(0) = \vec{\xi}_i(0) = \vec{\xi_i}^0
+    \end{aligned} 
+    \label{1.2}
+\end{equation}

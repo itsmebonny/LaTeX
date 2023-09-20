@@ -175,7 +175,7 @@ Now, given a test sample \(\bm{x}^*\), a class label can be predicted as
 The problem can be formulated in the following way
 \begin{equation}
     \begin{cases}
-        \mathcal{N}_x\left[ u(x;\omega); k(x;\omega) \right], & x \in \mathcal{D}, \omega \in \Omega, \\
+        \mathcal{N}_x\left[ u(x;\omega); k(x;\omega) \right] = 0, & x \in \mathcal{D}, \omega \in \Omega, \\
         \mathcal{B}_x\left[ u(x;\omega) \right] = 0, & x \in \Gamma,
     \end{cases}
     \label{problem_setup}
@@ -193,7 +193,7 @@ There are two possible problems:
 Here is how to solve differential equations using PINNs. To do so, \eqref{problem_setup} must be rewritten replacing the random inputs with a set of finite parameters, to transform it in a deterministic problem.
 \begin{equation}
     \begin{cases}
-        \mathcal{N}_x\left[ u; \eta \right], & x \in \mathcal{D}, \\
+        \mathcal{N}_x\left[ u; \eta \right] = 0, & x \in \mathcal{D}, \\
         \mathcal{B}_x\left[ u \right] = 0, & x \in \Gamma.
     \end{cases}
     \label{problem_setup_det}
