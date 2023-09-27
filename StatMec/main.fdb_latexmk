@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1695831221 "/home/bonni/Documents/LaTeX/StatMec/main.tex" "main.pdf" "main" 1695831223 0
+["pdflatex"] 1695831266 "/home/bonni/Documents/LaTeX/StatMec/main.tex" "main.pdf" "main" 1695831268 0
   "/etc/texmf/web2c/texmf.cnf" 1694803673 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/bonni/Documents/LaTeX/StatMec/main.tex" 1695827420 6185 7e0cbc6f8d72c00b36a04b47198170c5 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -208,10 +208,10 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1676468108 39561 34c98e380bf7c7201ee6a7909aff625a ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1694805966 4623455 fa0568a71dd9a288d6c226ee477506c6 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1694806126 7881572 10f6a280a9d98e5043f132b246cf5e80 ""
-  "main.aux" 1695831222 2060 2ef5b90dbaccc1b29f5b2ae6c423498f "pdflatex"
-  "main.out" 1695831222 333 e133a5eb95eece5495de5585a5cd81a1 "pdflatex"
+  "main.aux" 1695831268 2060 2ef5b90dbaccc1b29f5b2ae6c423498f "pdflatex"
+  "main.out" 1695831268 333 e133a5eb95eece5495de5585a5cd81a1 "pdflatex"
   "main.tex" 1695827420 6185 7e0cbc6f8d72c00b36a04b47198170c5 ""
-  "sections/1_lecture.tex" 1695831219 13067 ebcfd3e54597d8776476a9c09aed4a4f ""
+  "sections/1_lecture.tex" 1695831266 13064 ecfc078a7338f84071bd353673a8376c ""
   (generated)
   "main.aux"
   "main.log"
