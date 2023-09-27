@@ -7,7 +7,7 @@ Statistical mechanics may be naturally divided into two branches:
 \end{itemize}
 Non-equilibrium phenomena are less understood at the moment. A notable exception is offered by the case of diluted gases. 
 
-A basic equation was established by Ludwig Boltzmann in \(1872\), which appears as a prototype of a reduced description taking into account only partial information about the underlying microscopic state (fully described by the coordinate and momenta of all the molecules), but nevertheless undergoing an autonomous time evolution. Thus, the problem of the rigorous derivation of the Boltzmann from the microscopic description has attracted a certain amount of interest among physicists and mathematicians. This, in turn, has revived the interest in the existence and uniqueness of the solution of the Boltzmann equation, since this problem has proved to be intimately tied with the previous one. According to the molecular theory of matter, a macroscopic volume of gas (e.g. \(1 \txt{ cm}^3\)) is a system if a very large number of molecules (\(\approx 10^{20}\)) moving in a rather irregular way. 
+A basic equation was established by Ludwig Boltzmann in \(1872\), which appears as a prototype of a reduced description taking into account only partial information about the underlying microscopic state (fully described by the coordinate and momenta of all the molecules), but nevertheless undergoing an autonomous time evolution. Thus, the problem of the rigorous derivation of the Boltzmann from the microscopic description has attracted a certain amount of interest among physicists and mathematicians. This, in turn, has revived the interest in the existence and uniqueness of the solution of the Boltzmann equation, since this problem has proved to be intimately tied with the previous one. According to the molecular theory of matter, a macroscopic volume of gas (e.g. \(1 \txt{ cm}^3\)) is a system if a very large number of molecules (\(N \approx 10^{20}\)) moving in a rather irregular way. 
 
 In principle, we may assume that the laws of interaction between the molecules are perfectly known so that, idealistically, the evolution of the system is computable provided suitable initial data are given. If the molecules are, for example, mass points, the equation of motion are 
 \begin{subequations}
@@ -30,7 +30,102 @@ In order to compute the time evolution of the system, one would need to solve th
 \begin{equation}
     \begin{aligned}
         &\vec{x}_i(0) = \vec{x_i}^0, \\
-        &\dot{\vec{x}}_i(0) = \vec{\xi}_i(0) = \vec{\xi_i}^0
+        &\dot{\vec{x}}_i(0) = \vec{\xi}_i(0) = \vec{\xi_i}^0,
     \end{aligned} 
     \label{1.2}
+\end{equation}
+where the component of \(\vec{x_i}^0\) and \(\vec{\xi_i}^0\) are \(6N\) given constants which describe the initial state of the system. However, solving the above initial value problem is an impossible and useless task for a realistic number of molecules. As a consequence, one should consider the evolution, not of a system, but of an ensemble of identical systems whose initial data differ from each other by quantities of the order of the accepted ones. 
+
+The conclusion is that the only significant and useful results are those about the behavior of many systems in the form of statistics, that is information about probable distributions. As a result, only overlaps can be computed, provided they are related to macroscopic quantities as pressure, temperature, stresses, heat flow, etc. This is the basic idea of statistical mechanics. When we deal with statistical mechanics, therefore, we talk about probabilities instead of certainties: that is, in our description, a given particle will not have a definite position and velocity, but only different probabilities and velocities. It is to be stressed that the particles which appear in statistical mechanics range through a continuous set of values. 
+
+Thus, in the case of \(n\) continuous variables \(\vec{z}_1, \vec{z}_2, \ldots, \vec{z}_n\), that is a vector variable \(\vec{Z} = (\vec{z}_1, \vec{z}_2, \ldots, \vec{z}_n)\), we have to introduce a probability density \(P(\vec{z})\) such that \(P(\vec{z}) d^n\vec{z}\) is the probability that \(\vec{z}\) lies between \(\vec{z}\) and \(\vec{z} + d\vec{z}\) with \(d^n\vec{z}\) denoting the volume of an infinitesimal cell, also denoted as \(d\vec{z}_1, d\vec{z}_2,\ldots, d\vec{z}_n\). In this case the property of the ``sum'' is one becomes 
+\begin{equation}
+    \int_Z P(\vec{z}) d^n\vec{z} = 1
+    \label{2.1}
+\end{equation}
+where \(Z\) is the region of the \(n-\)dimensional space in which \(\vec{z}\) varies. 
+What is the use of a probability density? A probability density is needed to compute averages: if we know the probability density \(P(\vec{z})\) we can compute the average value of any given functions. As a matter of fact, we can define averages as follows
+\begin{equation}
+    \langle q(\vec{z}) \rangle = \overline{q(\vec{z})} = \int_Z P(\vec{z}) q(\vec{z}) \, d\vec{z}.
+    \label{2.2}
+\end{equation}
+In other words, in order to compute the average value of a function \(\phi(\vec{z})\) we integrate it over all values of \(\vec{z}\) weighting each \(d\vec{z}\) with the probability density for a value in \(d\vec{z}\) to be realized. 
+
+If \(P(\vec{z}) = \delta(\vec{z} \vec{z}_0)\), then \(\overline{q(\vec{z})} = q(\vec{z}_0)\), that is, in the case of a probability density equal to the delta function, we have a probability density meant to represent certainty.
+\section{Phase space and Liouville's theorem}
+In order to discuss the behavior of a system of \(N\) mass points satisfying \eqref{1.1a}, it is very convenient to introduce the so-called \textbf{phase space}; that is, a \(6N-\)dimensional space where the Cartesian coordinates are the \(3N\) components of the \(N\) position vectors \(\vec{x}_i\) and the \(3N\) components of the \(N\) position \(\vec{\xi}_i\). Let us introduce the \(6N-\)dimensional vector \(\vec{z}\) which gives the position of the representative point in phase space 
+\begin{equation*}
+    \vec{z} = (\vec{x}, \vec{\xi}).
+\end{equation*} 
+The evolution equation for \(\vec{z}\) is from \eqref{1.1a}
+\begin{equation}
+    \dot{\vec{z}} = \frac{d\vec{z}}{dt} = \vec{Z},
+    \label{3.1}
+\end{equation} 
+where \(\vec{Z}\) is a \(6N-\)dimensional vector, whose components are respectively given by the \(3N\) components of the \(N\) three-dimensional vectors \(\vec{\xi}_i\) and the \(3N\) components of the \(N\) three-dimensional vectors \(\vec{X}_i\). Given the initial state, that is a point \(\vec{z}_0\) in the phase space, \eqref{3.1} determines \(\vec{z}\) at subsequent times. 
+
+If the initial data are not known with absolute accuracy, we must introduce a probability density \(P_0(\vec{z})\) which gives us the distribution of probability for the initial data and we can try to set up the problem of computing the probability density at subsequent times \(P(\vec{z}, t)\). This can be done provided the forces are known; that is if the only uncertainty is in the initial data. 
+
+The equation satisfied by \(P(\vec{z}, t)\) can be defined in the following way: the evolution equation \eqref{3.1} defines, at each instant, a mapping of the phase space into itself; in this mapping, to each point \(\vec{z}_0\) there corresponds the point \(\vec{z} = \vec{z}(\vec{z}_0, t)\) reached at time \(t\) by a point which was at \(\vec{z}_0\) at \(t=0\). The mapping is \(1-1\) if the equations have, as we shall assume, a unique solution to given initial data, for both \(t>0\) and \(t<0\). The probability for the point representing the system to be found in a region \(R\) of the phase space at time \(t\) is 
+\begin{equation}
+    Prob(\vec{z} \in R) = \int_R P(\vec{z}, t) \, d\vec{z}
+    \label{3.9}
+\end{equation}
+The above-mentioned probability will be equal to the probability that the representative point was, at \(t=0\), in the region \(R_0\) consisting of the points \(\vec{z}_0\) which are the inverse images of the points \(\vec{z} \in R\) in the mapping considered above. In fact a point can be in \(R\) at time \(t\) if and only if it was in \(R_0\) at \(t=0\). Hence:
+\begin{equation}
+    \int_R P(\vec{z}, t) \, d\vec{z} = \int_{R_0} P_0(\vec{z}_0) \, d\vec{z}_0,
+    \label{3.10}
+\end{equation}
+where the set of values of \(\vec{z} \in R\) coincides with the set of points \(\vec{z} = \vec{z}(\vec{z}_0, t)\) with \(\vec{z}_0 \in R_0\). We can exploit this fact to change the integration variables from the components of \(\vec{z}\) to those of \(\vec{z}_0\) in the first integral obtaining:
+\begin{equation}
+    \int_R P(\vec{z}, t) \, d\vec{z} = \int_{R_0} P_0(\vec{z}(\vec{z}_0, t), t) J({}^{\vec{z}}{\mskip -5mu\diagup\mskip -3mu}_{\vec{z}_0}) \, d\vec{z}_0, \label{3.11}
+\end{equation}
+where \(J({}^{\vec{z}}{\mskip -5mu\diagup\mskip -3mu}_{\vec{z}_0})\) is the Jacobian determinant of the old variables with respect to the new ones. Comparison of \eqref{3.11} and \eqref{3.10} gives, due to the arbitrariness of \(R_0\), 
+\begin{equation}
+    P(\vec{z}(\vec{z}_0, t), t) J({}^{\vec{z}}{\mskip -5mu\diagup\mskip -3mu}_{\vec{z}_0}) = P_0(\vec{z}_0). \label{3.12}
+\end{equation}
+Since the right-hand side is time independent, the total derivative of the left-hand side with respect to time must vanish identically 
+\begin{equation}
+    J\left(\partialderivative{P}{t} + \partialderivative{\vec{z}}{t} \cdot \partialderivative{P}{\vec{z}}\right) + P \cdot \partialderivative{J}{t} = 0, \label{3.13}
+\end{equation}
+where the argument of \(P\) are \(\vec{z}, t\) and those of \(J\) are \(\vec{z}_0, t\). Since \(J \neq 0\), we can use \eqref{3.1} to obtain
+\begin{equation}
+    \partialderivative{P}{t} + \vec{Z}\cdot\partialderivative{P}{\vec{z}} + \frac{P}{J} \partialderivative{J}{t} = 0. \label{3.14}
+\end{equation}
+We compute now \(\partialderivative{J}{t}\). Let \(J_{rs}\) be the cofactor of \(\changevar{\partial \vec{z}_r}{\partial \vec{z}_{s}^{\mskip 3mu \mathrm{o}}}\) in the Jacobian determinant, then try the rule for differentiating determinants, keeping in mind that 
+\[
+    J_{rs} = J \partialderivative{ \vec{z}_r}{ \vec{z}_{s}^{\mskip 3mu \mathrm{o}}}, \tag*{Laplace's theorem}
+\]
+we have 
+\begin{equation}
+    \begin{split}
+        \partialderivative{J}{t} = \sum_{r,s = 1}^{6N} \pderivative{t} \left(\partialderivative{ \vec{z}_r}{ \vec{z}_{s}^{\mskip 3mu \mathrm{o}}}\right)J_{rs} = \sum_{r,s = 1}^{6N} \pderivative{\vec{z}_{s}^{\mskip 3mu \mathrm{o}}} \left(\partialderivative{\vec{z}_r}{t}\right) J_{rs} = \sum_{r,s = 1}^{6N} \partialderivative{\vec{z}_r}{\vec{Z}_{s}^{\mskip 3mu \mathrm{o}}} J_{rs} =\\ =
+        J\sum_{r,s = 1}^{6N} \partialderivative{\vec{Z}_r}{\cancel{\vec{z}_{s}^{\mskip 3mu \mathrm{o}}}} \partialderivative{\cancel{\vec{z}_{s}^{\mskip 3mu \mathrm{o}}}}{\vec{z}_r} = J\sum_{r = 1}^{6N} \partialderivative{\vec{Z}_r}{\vec{z}_r} = J\div \vec{Z}. \label{3.15}
+    \end{split}
+\end{equation}
+Inserting \eqref{3.15} in \eqref{3.14} gives 
+\[
+    \partialderivative{P}{t} + \vec{Z} \cdot \partialderivative{P}{\vec{z}} + \frac{P}{\cancel{J}} \cancel{J}    \div \vec{Z} = 0,
+\]
+which is written as 
+\begin{equation*}
+    \partialderivative{P}{t} + \vec{Z} \cdot \grad P + P\div \vec{Z} = 0. \tag*{Liouville equation}
+\end{equation*}
+Normally, \(\div \vec{Z} = 0\). In fact, since \(\vec{x}_i\) and \(\vec{\xi}_i\) are independent variables. 
+\begin{equation}
+    \div \vec{Z} = \sum_{i = 1}^{N} \left( \pderivative{\vec{x}_i} \cdot \vec{\xi}_i + \pderivative{\vec{\xi}_i} \cdot \vec{X}_i \right) = \sum_{i=1}^{N} \pderivative{\vec{\xi}_i} \cdot \vec{X}_i. \label{3.6}
+\end{equation}
+If the force per unit mass is velocity-independent, then also \(\pderivative{\vec{\xi}_i} \cdot \vec{X}_i = 0\), and \(\div \vec{Z} = 0\), as stated. We shall always consider forces such that \(\div \vec{Z} = 0\). 
+
+Hence, we write the Liouville equation in the following form
+\begin{equation}
+    \partialderivative{P}{t} + \vec{Z} \cdot \partialderivative{P}{\vec{z}} = 0. \label{3.7}
+\end{equation}
+\eqref{3.7} can be, of course, rewritten in terms of the variables \(\vec{x}_i, \vec{\xi}_i\)
+\begin{equation}
+    \partialderivative{P}{t} + \sum_{i=1}^{N} \vec{\xi}_i \cdot \partialderivative{P}{\vec{\xi}_i} + \sum_{i=1}^{N} \vec{X}_i \cdot \partialderivative{P}{\vec{\xi}_i} = 0. \label{3.8}
+\end{equation}
+We note, incidentally, that \eqref{3.15} shows that \(J = \txt{const.}\) for \(\div \vec{Z} = 0\) and, since \(J=1\) for \(t=0\), then \(J=1\) for any \(t\). As a consequence, the volume of a region in phase space is invariant with respect to the mapping induced by the motion of the systems, provided \(\div \vec{Z} = 0\) (Liouville's theorem). In fact, we can write \eqref{3.11} for the case \(P = 1\)
+\begin{equation}
+    \int_R d\vec{z} = \int_{R_0} J(\changevar{\vec{z}}{\vec{z}_0}) \, d\vec{z}_0 = \int_{R_0} d\vec{z}_0. \label{3.16}
 \end{equation}
