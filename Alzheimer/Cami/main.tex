@@ -1,0 +1,1203 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+% Importing settings from our file "setup.sty"
+\usepackage{amsmath,stackengine}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{amsfonts}
+\usepackage{verbatim} 
+\usepackage{graphicx}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{dsfont}
+\usepackage{hyperref}
+
+
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+}
+
+\def\ba{$\mathrm{A} \beta$ }
+\newtheorem{thm}{Theorem}[section]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+\newtheorem{lemma}{Lemma}[section]
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\geometry{a4paper, top=3cm, bottom=3cm, left=2cm, right=3.5cm, heightrounded, bindingoffset=5mm}
+\linespread{1.5}
+
+\begin{document}
+
+\begin{titlepage}
+\vbox{ }
+\begin{center}
+% Upper part of the page
+\includegraphics[width=0.40\textwidth]{Logo_Politecnico_Milano.png}\\[1cm]
+\textsc{\Large Master of Science in Mathematical Engineering}\\[0.5cm]
+
+\textsc{\Large Course of \textbf{Methods and Models for Statistical Mechanics}\\Professor: Silvia Lorenzani}
+\large
+
+\vbox{ }
+
+% Title
+\vspace{2 cm}
+        \LARGE
+        \textbf{A Mathematical Model for Alzheimer Disease, from Microscopic to a Macroscopic Model using the Two-Scale Homogenization Theory}
+            
+
+% Author
+\vspace{1 cm}
+\large
+\emph{Authors:}\\
+\bigskip
+
+Andrea Bonifacio, 217658 \hspace{5.3cm} \\
+ 
+\vfill
+
+% Bottom of the page
+{\large A.Y. 2021/22}
+\end{center}
+\end{titlepage}
+\tableofcontents
+\newpage
+
+\section{Introduction}
+Alzheimer's disease (AD) is a neurodegenerative disease that usually starts slowly and progressively worsens. It is the most common form of senile dementia but the cause of it is still poorly understood. \\
+\begin{figure}[H]
+  \scalebox{.3}{\incfig{drawing}}
+  \label{fig:riemmans-theorem}
+\end{figure}
+In our brain exists a protein called \ba{} peptide and it has been proven that it has a substantial role in the process of synaptic degeneration leading to neuronal death and eventually to dementia. This protein is produced in monomeric form by every healthy brain, the problem occurs when  by unknown reasons (partially genetic) some neurons start to present an imbalance between production and clearance of $\mathrm{A} \beta$ amyloid during aging and, at elevated levels, it produces pathological aggregates such as long insoluble amyloid fibrils which accumulate in spherical deposits known as senile plaques. Actually has been proved that the most toxic form of the \ba is not the senile plaque but the oligomeric aggregation of the peptide outside the neurons. The $\mathrm{A} \beta$ amyloid is involved in the release of neurotoxic products that are connected in neuronal and synaptic damage. \\
+The importance of having a mathematical model for this disease is that the most toxic polymers don't live long enough to be studied from the experimental point of view. For this reason the mathematical model is the only way that we have to study the behavior of the amyloid.\\
+The modellization process carried out in this paper starts from the Smoluchowski equation: a system of partial differential equations which describes the evolving densities of diffusing particles that coagulate in pairs. We will study the application of the Smoluchowski equation to the description of agglomeration of $\mathrm{A} \beta$ peptide. Indeed, one wants to start from differential equations that are assumed to hold on the microscale and to transform them into equations on macroscale. To do this not trivial passage, which involves a sort of "average process", we use a method called homogenization. It consists in performing the limits of the solutions of PDE's and finding the set of equations of which these limits are solutions. \\
+So our main aim is to derive a macroscopic model starting from a microscopic one: this strategy is particularly relevant because allows to model the onset and progression of the disease at the proper neuronal scale and then, through an asymptotic procedure, to obtain consistent macroscopic equations whose outcomes can be directly compared with the clinical data.
+
+% \section{Smoluchowski equation}
+% Let's introduce the concept of $i$ cluster which is a cluster of polymers of length $i$: $i $ identical particles (polymers formed by $i$ monomers). Indicate with $u_{i}\geq0$ the concentration of the cluster, and suppose these clusters diffuse with diffusion coefficient $d_{i}>0$.
+% We can model this phenomena with a nonlinear equation: the Smoluchowski equation
+% \begin{equation}
+% \frac{\partial u_{i}}{\partial t}(t, x)-d_{i} \triangle_{x} u_{i}(t, x)=Q_{i}(u) \quad i \geq 1
+% \label{SmoluchowskiEqation}\end{equation} 
+% Where $Q_{i}(u)=Q_{g,i}(u)-Q_{l,i}(u)$ is the gain term minus the loss term which  are defined in this way:\\
+
+% $$
+% \begin{aligned}
+% &Q_{g, i}=\frac{1}{2} \sum_{j=1}^{i-1} a_{i-j, j} u_{i-j} u_{j} \\
+% &Q_{l, i}=u_{i} \sum_{j=1}^{\infty} a_{i, j} u_{j}
+% \end{aligned}
+% $$
+% $Q_{g,i}$ describes the increasing of concentrations of the cluster of length $i$,
+% $Q_{l,i}$ describes the depletion of the polymers of size $i$.
+% An important role is played by the coagulation coefficients $a_{i-i,j}$ which describe a situation where a polymer $i-j$ coagulates with a polymer of length $i$ to form one of length $j$, they are symmetric, indeed $a_{i,j}=a_{j,i}$.\\
+% The \eqref{SmoluchowskiEqation} is non linear and of infinite dimension: the existence and uniqueness of the solution is not guaranteed by the theory of reaction and diffusion equation. The existence of the solution as a matter of facts depends on the choice of the coagulation coefficients, of which an explicit expression is given in Bretsch Et Al. \\
+% If there are no sources the total mass of the clusters will be conserved, but actually this is not true. In fact a particular choice of the coefficients produces a non-conservation of the total mass due to the appearance of an infinite cluster called gel, which is born from the growth of longer and longer clusters (this is known as gelation phenomenon), but we will not discuss it in this paper.
+% \section{The mathematical model for Alzheimer Disease}
+% As mentioned above, in our brain there exists a protein called beta amyloid peptide ($\mathrm{A} \beta$). Also healthy brains produce this protein in monomeric form, when the mechanism breaks down \ba starts to auto agglomerate and to form senile plaques. The toxic polymers are the intermediate oligomeric formulation which produces the death of neurons. This is because when these polymers develop they produce a toxic mechanism inside the brain that produces the death of neurons. However the causes of the AD are not yet completely known, researchers try to study this phenomena but the problem is that these intermediate polymers decay very soon in other longer ones. From experiments it's not easy to study  the process of coagulation, therefore the mathematical model helps us to study this process. An assumption that we will make is that 'large' assemblies do not aggregate with each other.
+% \subsection{Model for the brain}
+% The portion of cerebral tissue considered  in the following is represented by a bounded smooth region $\Omega_{0}\subset \mathbb{R}^3$, whereas the neurons are represented by a family of regular region $\Omega_{j}$ such that \\
+% (i) $\bar\Omega_{j}\subset \Omega_{0}$  if   $j=1,2,\dots,\bar{M}$\\
+% (ii) $\bar\Omega_{i}\cap \bar\Omega_{j}= \emptyset$  if $i\neq j$\\
+% Let us set 
+% $$
+% \Omega := \Omega_{0}
+% \bigcup_{j=1}^{\bar M} \bar\Omega_{j}
+% $$
+% and consider the vector-valued function $u=(u_1,\dots, u_M)$, where $u_j=u_j(t,x)$ $(t\geq 0, t\in \mathbb{R}$ and $x\in \Omega)$ is the molar concentration at the point $x$ and at the time $t$ of an \ba assembly of $j$ monomers, while $u_M$ takes into account the aggregation of more than $M-1$ monomers. With the definition of $u_M$ we are assuming that 'large' assemblies do not aggregate to each other.\\
+% In this section we briefly present the modelization of our problem. We are considering three different stages of the aggregation of our \ba: we can model its concentration with $u_{i}$ with $1\leq i \leq m < M$.
+% The $u_{1}$ describes the concentration of monomers with the following Diffusion-Reaction equation: 
+% $$
+% \frac{\partial u_{1}}{\partial t}(t, x)-d_{1} \Delta_{x} u_{1}(t, x)+u_{1}(t, x) \sum_{j=1}^{M} a_{1, j} u_{j}(t, x)=0\\
+% $$
+% We don't have the gain term on the righten side because there does not exist two monomers that coagulate to form a single one.
+% To solve this equation we have to impose boundary conditions and initial conditions.
+% On the external boundary we assume homogeneous Neumann condition, it is meant to artificially isolate the portion of tissue considered from its environment:
+% $$
+% \frac{\partial u_1}{\partial v} \equiv \nabla_{x} u_1\cdot n=0 \quad \text { on }[0, T] \times \partial \Omega$$
+% We are practically imposing that the flux on external fixed boundary is equal to zero: we are isolating our portion of cerebral tissue from the rest of the world.
+% We have to put the boundary conditions also on the boundaries of the neurons $\partial\Omega_{j}$:
+% $$ 
+% \frac{\partial u_{1}}{\partial v} \equiv \nabla_{x} u_1 \cdot n= \psi_{j} \quad \text { on } \partial\Omega_{j}
+% $$
+% This physically models the fact that the neurons produce \ba{} in monomeric form. The function $\psi$ is a smooth function and it represents the quantity of \ba which is produced by the membrane of the neuron, it is a given of the problem.\\
+% We now model a portion of the cerebral tissue with a bounded open set $\Omega$ in $\mathbb{R}^{3}$ with a smooth boundary $\partial \Omega$. The neurons in our model will be represented as holes in this domain which are distributed periodically and which have characteristic dimension $0<\epsilon<1$. The set of the domain with the holes is called the perforated domain.
+% We assume that the membrane of the neurons (holes) produces $\mathrm{A} \beta$ and that at time $t=0$ there is no production of  $\mathrm{A} \beta$ from the holes. \\
+% Let $Y$ be the unit periodicity cell $\left[0,1\left[{ }^{3}\right.\right.$ having the paving property. 
+% Let us denote by $T$ an open subset of $Y$ with a smooth boundary $\Gamma$, such that $\bar{T} \subset \operatorname{Int} Y$, this means that $T$ can not intersect the boundary of our set $Y$. We call with $Y^{*}=Y \backslash T$ the material part, the "solid part" of our brain.
+% \begin{figure}[H]
+%    \centering
+%    \includegraphics[width=7cm]{unitcellMS.jpg}
+%    \caption{Unit cell $Y$}
+%     \label{fig:Y}
+% \end{figure}
+% Starting from this we create a perforated domain: we perforate $\Omega$ by removing from it a set $T_{\epsilon}$ of periodically distributed holes defined as before. The set $T$ represents a generic neuron, and $Y^{*}$ the supporting cerebral tissue. We define $\tau(\epsilon \bar{T})$ to be the set of all translated images $\epsilon \bar{T}$ of the form $\epsilon(k+\bar{T}), k \in \mathbb{Z}^{3}$. Then,
+
+% \[ T_{\epsilon}:=\Omega \cap \tau(\epsilon \bar{T}) . \] is the set of all the holes in our domain.
+
+% Introduce now the periodically perforated domain $\Omega_{\epsilon}$ defined by
+
+% $$
+% \Omega_{\epsilon}=\Omega \backslash \bar{T}_{\epsilon} .
+% $$
+% which represent all the set outside the holes.\\
+
+% \begin{figure}[H]
+%    \centering
+%    \includegraphics[width=7cm]{periodicallyperforateddomain.jpg}
+%    \caption{Periodically perforated domain $\Omega$}
+%     \label{fig:\Omega_{\epsilon}}
+% \end{figure}
+
+% We ensure that there exists a "security zone", this is necessary to extend all the functions which live in the solid part also in the holes.
+% \begin{equation}
+%   \exists \delta>0 \text { such that dist }\left(\partial \Omega, T_{\epsilon}\right) \geq \delta
+% \label{eq 8}\end{equation}
+% $$
+%  .
+% $$
+% Therefore we can assume that $\Omega_{\epsilon}$ is connected. In this scenario there are two boundaries, an internal one $\Gamma_{\epsilon}$, defined by:
+% $$
+% \Gamma_{\epsilon}:=\cup\{\partial(\epsilon(k+\bar{T})) \mid \epsilon(k+\bar{T}) \subset \Omega\}
+% $$
+% and an external one that is the fixed exterior boundary denoted by $\partial \Omega$:
+% $$
+% \partial\Omega_{\epsilon}=\partial\Omega+\Gamma_{\epsilon}
+% $$
+% \begin{figure}[H]
+%    \centering
+%    \includegraphics[width=7cm]{boundary.jpg}
+%    \caption{Periodically perforated domain $\Omega$}
+%     \label{fig:\Omega_{\epsilon}}
+% \end{figure}
+% It is also known that:
+% \begin{equation}
+%   \lim _{\epsilon \rightarrow 0} \epsilon\left|\Gamma_{\epsilon}\right|_{N-1}=|\Gamma|_{N-1} \frac{|\Omega|_{N}}{|Y|_{N}}
+% \label{eq 9}\end{equation}
+% where $|\cdot|_{N}$ is the $N$-dimensional Hausdorff measure.\\ Our aim is to pass from the microscopic scale to the macroscopic, that is, we are looking at our brain from 'very high' and we obtain it by performing $\epsilon \rightarrow 0$ which is the scale where clinical data exists. This process is called homogenization theory and it is a mathematical technique that gives us some mathematical tools to perform this sort of average.
+% \subsection{The equations}
+% The system that describes the evolution of monomers is the following:
+% \begin{equation}
+%     \begin{cases}
+%     \frac{\partial u_{1}^{\epsilon}}{\partial t}(t, x)-d_{1} \Delta_{x} u_{1}^{\epsilon}(t, x)+u_{1}^{\epsilon}(t, x) \sum_{j=1}^{M} a_{1, j} u_{j}^{\epsilon}(t, x)=0 & \text { in }[0, T] \times \Omega_{\epsilon}\\
+%     \frac{\partial u^{\epsilon}_1}{\partial v} \equiv \nabla_{x} u^{\epsilon}_1\cdot n=0 & \text { on }[0, T] \times \partial \Omega\\
+%     \frac{\partial u^{\epsilon}_{1}}{\partial v} \equiv \nabla_{x} u^{\epsilon}_1 \cdot n=\epsilon \psi\left(t, x, \frac{x}{\epsilon}\right) & \text { on }[0, T] \times \Gamma_{\epsilon}\\
+%     u_{1}^{\epsilon}(0, x)=U_{1} & \text{ in }\Omega_{\epsilon}
+    
+%     \end{cases}
+% \label{eq 10.1}\end{equation}
+% Note that the $\epsilon$ is put in front of $\psi$ to prevent the divergence of the integral in a further passage, in order to avoid singularities. 
+% The variable $x$ is called the slow variable and the dependence between $\psi$ and $x$ models the becoming sick . 
+% $\frac{x}{\epsilon}$ is called the fast scale variable, which represents the microscopic scale because the main variation of our function are on the scale of the neurons, it's in this small scale that we have a very big change.\\
+% From our assumptions we suppose that for $t>0$ the brain becomes sick. For technically reasons we have to assume some regularity on $\psi$ and $U_1$:
+% \begin{enumerate}
+%     \item $\psi\left(t, x, \frac{x}{\epsilon}\right) \in C^{1}(0, T ; B)$ with $B=C^{1}\left[\bar{\Omega} ; C_{\text {\# }}^{1}(Y)\right]$, where $C_{\#}^{1}(Y)$ is the subset of $C^{1}\left(\mathbb{R}^{N}\right)$ of $Y$-periodic functions;
+%     \item $\psi\left(t=0, x, \frac{x}{\epsilon}\right)=0$
+%     \item 
+% $U_{1}$ is a positive constant such that
+% \begin{equation}
+%   U_{1} \leq\|\psi\|_{L^{\infty}(0, T ; B)} .
+% \label{eq 11}\end{equation}
+% \end{enumerate}
+% Behind these properties $\psi $ is a generic given function that should be specified in some way if one wants to make the model applicable. We will give an explicit example of it in the last part of the paper.\\
+% Now we will describe the evolution of oligomers: $1<m<M$. The unknown here is the concentration of a oligomer of generic length $m$
+% \begin{equation}
+%     \begin{cases}
+%         \frac{\partial u_{m}^{\epsilon}}{\partial t}(t, x)-d_{m} \Delta_{x} u_{m}^{\epsilon}(t, x)+u_{m}^{\epsilon}(t, x) \sum_{j=1}^{M} a_{m, j} u_{j}^{\epsilon}(t, x)= \frac{1}{2} \sum_{j=1}^{m-1} a_{j, m-j} u_{j}^{\epsilon} u_{m-j}^{\epsilon} & \text { in }[0, T] \times \Omega_{\epsilon} \\
+%         \frac{\partial u_{m}^{\epsilon}}{\partial v} \equiv \nabla_{x} u_{m}^{\epsilon} \cdot n=0  & \text { on }[0, T] \times \partial \Omega \\
+        
+%         \frac{\partial u_{m}^{\epsilon}}{\partial v} \equiv \nabla_{x} u_{m}^{\epsilon} \cdot n=0 & \text { on }[0, T] \times \Gamma_{\epsilon}\\ 
+%      u_{m}^{\epsilon}(0, x)=0 & \text{ in } \Omega_{\epsilon}
+%     \end{cases}
+% \label{eq 12}\end{equation}
+% In this case we assume homogeneous boundary conditions also on $\Gamma_{\epsilon}$ because we assume that the neurons can't produce \ba in oligomeric form.
+% For what it concerns $u_{M}$, it describes the sum of all the densities of all large assemblies of \ba. We are able to do that because in reality when we have a large polymer of \ba it doesn't  coagulate anymore. 
+% \begin{equation}
+%     \begin{cases}
+%         \frac{\partial u_{M}^{\epsilon}}{\partial t}(t, x)-d_{M} \Delta_{x} u_{M}^{\epsilon}(t, x)= \frac{1}{2} \sum_{\substack{j+k\geq M\\k<M\\j<M}} a_{j, k} u_{j}^{\epsilon} u_{k}^{\epsilon} & \text { in }[0, T] \times \Omega_{\epsilon}\\
+%         \frac{\partial u_{M}^{\epsilon}}{\partial v} \equiv \nabla_{x} u_{M}^{\epsilon} \cdot n=0  & \text { on }[0, T] \times \partial \Omega
+%         \\
+%         \frac{\partial u_{M}^{\epsilon}}{\partial v} \equiv \nabla_{x} u_{M}^{\epsilon} \cdot n=0 & \text { on }[0, T] \times \Gamma_{\epsilon}\\ 
+%         u_{M}^{\epsilon}(0, x)=0 & \text{ in } \Omega_{\epsilon}
+%     \end{cases}
+% \label{eq 13}\end{equation}
+% In this last system there isn't the loss term because they don't coagulate each other.
+% At this point we want to go from macroscopic to microscopic, trying to compute a sort of average process. Indeed our aim is to perform the homogenization on the set \eqref{eq 10}-\eqref{eq 13} of equations as $\epsilon \rightarrow 0$, however there is not a clear notion of convergence for the sequence $u_j^{\epsilon}$ $1\geq j \geq M$ which is defined on a varying set $\Omega_{\epsilon}$, which also is random perforated.\\
+
+% \begin{thm} If $\epsilon>0$, the system (10)-(13) has a unique solution
+% $$
+% \left(u_{1}^{\epsilon}, \ldots, u_{M}^{\epsilon}\right) \in C^{1+\alpha / 2,2+\alpha}\left([0, T] \times \Omega_{\epsilon}\right) \quad(\alpha \in(0,1))
+% $$
+% such that
+% $$
+% u_{j}^{\epsilon}(t, x)>0 \text { for }(t, x) \in(0, T) \times \Omega_{\epsilon}, j=1, \ldots, M .
+% $$
+% \label{thm 4.1}\end{thm}
+
+% \section{Two-Scale Convergence}
+
+% \begin{definition}[Two-scale convergence]
+% A sequence of functions $ v ^ {\epsilon } $in $ L^2([ 0 ,T]\times\Omega) $ two-scale converges to $v_{0} \in L^2([ 0 ,T]\times\Omega \times Y)$ if
+% $$
+% \lim_{\epsilon \to 0} \int_{0}^{\textrm{T}} \int_{\Omega} v^{\epsilon}(t,x)\psi\left(t,x,\frac{x}{\epsilon}\right)dxdt=\int_{0}^{\textrm{T}} \int_{\Omega} \int_{\textrm{Y}} v(t,x,y)\psi(t,x,y)dxdydt
+% $$ 
+% for all $\psi \in C^1([0,T]\times \bar\Omega;C_{\#}^{\infty}(Y))$
+% \label{def 7.1}\end{definition}
+% This definition makes sense because of the next compactness theorem 
+% \begin{thm}[Compactness Theorem]
+% If $v^{\epsilon}$ is a bounded sequence in $ L^2([ 0 ,T]\times\Omega) $, then there exist a function $v_{0}(t,x,y) \in   L^2([ O ,T]\times\Omega \times Y)$ s.t. $v^{\epsilon}$ two-scale converges to $v_{0}$, we write: 
+% $v^{\epsilon} \overset{2s}{\rightharpoonup} v_{0}$.
+% \label{thm 7.1}\end{thm}
+% This theorem is important because it shows that the minimal requirement to have two-scale convergence is that $v$ must be bounded. Notice that the two-scale limit contains one more variable with respect to the first one, that is the $y$ variable. It represent the small scale and it reflects the fluctuations of our model on the microscale.
+% \begin{remark}[Remark, relation with weak convergence] If we assume that $\psi$ is independent of $y$, and ignoring the dependence on time (since the homogenization is performed on the spatial grid) we obtain:
+% $$ 
+% \lim_{\epsilon \to 0} \int_{\Omega} v^{\epsilon}(x)\psi(x)dx= \int_{\Omega} \int_{\textrm{Y}} v(x,y)\psi(x)dxdy=\int_{\Omega} \left[\int_{\textrm{Y}} v(x,y)dy\right]\psi(x)dx
+% $$This shows that, in this specific case, the two-scale convergence coincides with the weak convergence.
+% In this definition the time is only a parameter, and if we assume that $\psi$ does not depend on $y$ we obtain the definition of weak limit. So in this case the weak limit coincides with the two-scale limit. Therefore the two-scale convergence and the weak convergence are strictly related: the main difference between them is that in the first one the oscillations are captured due to the extra variable $y$.
+% \end{remark}
+% \section{Useful Theorems and the related Theory}
+% The next theorems yield a characterization of the two-scale limit of the gradients of bounded sequences $v^{\epsilon}$ which is a critical result in order to apply the homogenization on problems. Let's recall some theory on Sobolev spaces.\\
+% We identify $H^{1}(\Omega)=W^{1,2}(\Omega)$, where the Sobolev space $W^{1, p}(\Omega)$ is defined by
+% $$
+% W^{1, p}(\Omega)=\left\{v \mid v \in L^{p}(\Omega), \frac{\partial v}{\partial x_{i}} \in L^{p}(\Omega), i=1, \ldots, N\right\}
+% $$and we denote by $H_{\#}^{1}(Y)$ the closure of $C_{\#}^{\infty}(Y)$ for the $H^{1}$-norm.
+% Let's recall that the quotient space of a vector space $V$ and its subspace $U$ is the set denoted with $V/U$ of all equivalence classes in $U$. In particular $v \sim v' \iff v-v'\in U$: two elements of $V$ differ at most to elements that belong to $U$.
+% \begin{thm}
+% Let $v^{\epsilon}$ be a sequence of functions in $L^{2}([0, T] \times \Omega)$ which two-scale converges to a limit $v_{0} \in L^{2}([0, T] \times \Omega \times Y)$. Suppose, furthermore, that
+% $$
+% \lim _{\epsilon \rightarrow 0} \int_{0}^{T} \int_{\Omega}\left|v^{\epsilon}(t, x)\right|^{2} \mathrm{~d} t \mathrm{~d} x=\int_{0}^{T} \int_{\Omega} \int_{Y}\left|v_{0}(t, x, y)\right|^{2} \mathrm{~d} t \mathrm{~d} x \mathrm{~d} y
+% $$
+% Then, for any sequence $w^{\epsilon}$ in $L^{2}([0, T] \times \Omega)$ that two-scale converges to a limit $w_{0} \in L^{2}([0, T] \times \Omega \times Y)$, we have
+% $$
+% \begin{aligned}
+% \lim _{\epsilon \rightarrow 0} \int_{0}^{T} \int_{\Omega} v^{\epsilon}(t, x) & w^{\epsilon}(t, x) \phi\left(t, x, \frac{x}{\epsilon}\right) \mathrm{d} t \mathrm{~d} x \\
+% &=\int_{0}^{T} \int_{\Omega} \int_{Y} v_{0}(t, x, y) w_{0}(t, x, y) \phi(t, x, y) \mathrm{d} t \mathrm{~d} x \mathrm{~d} y
+% \end{aligned}
+% $$for all $\phi \in C^{1}\left([0, T] \times \bar{\Omega} ; C_{\#}^{\infty}(Y)\right)$.
+% \label{thm 7.2}\end{thm}
+% This theorem shows that, under specific hypotheses, the limit of the product coincides with the product of the limits. Whereas when we perform the limit it appears an extra variable we need a theorem that defines how to manage the gradient of this variable.
+% \begin{thm}
+% Let $v^{\epsilon}$ be a bounded sequence in $L^{2}\left(0, T ; H^{1}(\Omega)\right)$ such that $v_{\epsilon}(t,x)\rightharpoonup v(t,x)$  in $L^{2}\left(0, T ; H^{1}(\Omega)\right)$. Then $v^{\epsilon} \overset{2s}{\rightharpoonup} v(t, x)$, and there exists a function $v_{1}(t, x, y)$ in $L^{2}\left([0, T] \times \Omega ; H_{\#}^{1}(Y) / \mathbb{R}\right)$ such that, up to a subsequence, $\nabla v^{\epsilon}  \overset{2s}{\rightharpoonup} \left(\nabla_{x} v(t, x)+\nabla_{y} v_{1}(t, x, y)\right)$. 
+% \label{thm 7.3}\end{thm}
+% \begin{thm} Let $v^{\epsilon}$ and $\epsilon \nabla v^{\epsilon}$ be two bounded sequences in $L^{2}([0, T] \times \Omega)$. Then, there exists a function $v_{1}(t, x, y)$ in $L^{2}\left([0, T] \times \Omega ; H_{\#}^{1}(Y) / \mathbb{R}\right)$ such that, up to a subsequence, $v^{\epsilon}$ and $\epsilon \nabla v^{\epsilon}$ two-scale converge to $v_{1}(t, x, y)$ and $\nabla_{y} v_{1}(t, x, y)$, respectively.
+% \label{thm 7.4}\end{thm}
+% The main result of two-scale convergence can be generalized to the case of sequences defined on the boundary of the holes: $L^{2}\left([0, T] \times \Gamma_{\epsilon}\right)$.
+% \begin{thm}
+% Let $v^{\epsilon}$ be a sequence in $L^{2}\left([0, T] \times \Gamma_{\epsilon}\right)$ such that
+% $$
+% \epsilon \int_{0}^{T} \int_{\Gamma_{\epsilon}}\left|v^{\epsilon}(t, x)\right|^{2} \mathrm{~d} t \mathrm{~d} \sigma_{\epsilon}(x) \leq C
+% $$
+% where $C$ is a positive constant, independent of $\epsilon$. There exist a subsequence (still denoted by $\epsilon$ ) and a two-scale limit $v_{0}(t, x, y) \in L^{2}\left([0, T] \times \Omega ; L^{2}(\Gamma)\right)$ such that $v^{\epsilon}(t, x)$ two-scale converges to $v_{0}(t, x, y)$ in the sense that
+
+% $$
+% \begin{aligned}
+% &\lim _{\epsilon \rightarrow 0} \epsilon \int_{0}^{T} \int_{\Gamma_{\epsilon}} v^{\epsilon}(t, x) \phi\left(t, x, \frac{x}{\epsilon}\right) \mathrm{d} t \mathrm{~d} \sigma_{\epsilon}(x) \\
+% &=\int_{0}^{T} \int_{\Omega} \int_{\Gamma} v_{0}(t, x, y) \phi(t, x, y) \mathrm{d} t \mathrm{~d} x \mathrm{~d} \sigma(y)
+% \end{aligned}
+% $$
+
+% for any function $\phi \in C^{1}\left([0, T] \times \bar{\Omega} ; C_{\#}^{\infty}(Y)\right)$.
+% \label{thm 7.5}\end{thm}
+% This two-scale convergence theorem on the boundary led to the following lemma:
+% \begin{lemma} Let $B=C\left[\bar{\Omega} ; C_{\#}(Y)\right]$ be the space of continuous functions $\phi(x, y)$ on $\bar{\Omega} \times Y$ which are $Y$-periodic in $y$. Then, B is a separable Banach space which is dense in $L^{2}\left(\Omega ; L^{2}(\Gamma)\right)$, and such that any function $\phi(x, y) \in B$ satisfies
+% $$
+% \epsilon \int_{\Gamma_{\epsilon}}\left|\phi\left(x, \frac{x}{\epsilon}\right)\right|^{2} \mathrm{~d} \sigma_{\epsilon}(x) \leq C\|\phi\|_{B}^{2},
+% $$
+% and
+% $$
+% \lim _{\epsilon \rightarrow 0} \epsilon \int_{\Gamma_{\epsilon}}\left|\phi\left(x, \frac{x}{\epsilon}\right)\right|^{2} \mathrm{~d} \sigma_{\epsilon}(x)=\int_{\Omega} \int_{\Gamma}|\phi(x, y)|^{2} \mathrm{~d} x \mathrm{~d} \sigma(y) .
+% $$
+% \label{lemma 7.4}\end{lemma}
+% Since $\phi$ is a data of our problem we can assume every regularity we want and we can use exactly the previous result.
+% \section{Homogenization of the Smoluchowsky equation}
+% We now try to homogenize our problem, For convenience we report below the microscopic system
+% \begin{equation}
+%     \begin{cases}\frac{\partial u_{1}^{\epsilon}}{\partial t}-\operatorname{div}\left(d_{1} \nabla_{x} u_{1}^{\epsilon}\right)+u_{1}^{\epsilon} \sum_{j=1}^{M} a_{1, j} u_{1}^{\epsilon}=0 & \text { in }[0, T] \times \Omega_{\epsilon} \\ \frac{\partial u_{1}^{\epsilon}}{\partial v} \equiv \nabla_{x} u_{1}^{\epsilon} \cdot n=0 & \text { on }[0, T] \times \partial \Omega \\ \frac{\partial u_{1}^{\epsilon}}{\partial \nu} \equiv \nabla_{x} u_{1}^{\epsilon} \cdot n=\epsilon \psi\left(t, x, \frac{x}{\epsilon}\right) & \text { on }[0, T] \times \Gamma_{\epsilon} \\ u_{1}^{\epsilon}(0, x)=U_{1} & \text { in } \Omega_{\epsilon}
+%     \end{cases}
+% \label{eq 10}\end{equation}
+% now letting $\epsilon \rightarrow 0$ we pass on a description on the large scale, but to do this, due to previous definitions we need to prove the boundedness of $u_{j}^{\epsilon}, \nabla u_{j}^{\epsilon}, \partial_{t} u_{j}^{\epsilon}$.
+
+% \subsection{Preliminary a Priori Estimates}
+
+% Since the homogenization will be carried out in the framework of two-scale convergence, we first need to obtain the a priori estimates for the sequences $u_{j}^{\epsilon}, \nabla u_{j}^{\epsilon}, \partial_{t} u_{j}^{\epsilon}$ in $[0, T] \times \Omega_{\epsilon}$.\\
+% Since
+% $$
+% \operatorname{div}\left(d_{1} \nabla_{x} u_{1}^{\epsilon}\right)-\frac{\partial u_{1}^{\epsilon}}{\partial t} \geq 0
+% $$
+% by the classical maximum principle (Protter and Weinberger 1984), the following estimate holds.
+% \begin{lemma} Let $T>0$ be arbitrary and $u_{1}^{\epsilon}$ be a classical solution of \eqref{eq 10}. Then,
+% \begin{equation} \left\|u_{1}^{\epsilon}\right\|_{L^{\infty}\left(0, T ; L^{\infty}\left(\Omega_{\epsilon}\right)\right)} \leq\left|U_{1}\right|+\left\|u_{1}^{\epsilon}\right\|_{L^{\infty}\left(0, T ; L^{\infty}\left(\Gamma_{\epsilon}\right)\right)} 
+% \label{eq 20}\end{equation}
+% \label{lemma 5.1}\end{lemma}
+% \begin{lemma} Let $T>0$ be arbitrary and $u_{1}^{\epsilon}$ be a classical solution of \eqref{eq 10}. Then,
+% \begin{equation}
+%     \left\|u_{1}^{\epsilon}\right\|_{L^{\infty}\left(0, T ; L^{\infty}\left(\Gamma_{\epsilon}\right)\right)} \leq c\|\psi\|_{L^{\infty}(0, T ; B)}
+% \label{eq 21}\end{equation}where $c$ is independent of $\epsilon$.
+% \label{lemma 5.2}\end{lemma}
+% Thus, the boundedness of $u_{1}^{\epsilon}(t, x)$ in $L^{\infty}\left([0, T] \times \Gamma_{\epsilon}\right)$, uniformly in $\epsilon$, can be immediately deduced from Lemma \eqref{lemma 5.2} applying Lemma \eqref{lemma 5.1}.
+% In order to establish Lemma \eqref{lemma 5.2}, we will first need the following preliminary results, Theorem \eqref{thm 5.2} and Lemma \eqref{lemma 5.3}.
+% \begin{lemma}[Ladyzenskaja et al. (1968),Lemma 5.6] Let $\left(\tilde{z}_{n}\right)_{n \in \mathbb{N}_{0}}$ be a sequence of nonnegative real numbers such that
+
+% \begin{equation}
+%  \tilde{z}_{n+1} \leq c b^{n} \tilde{z}_{n}^{r / 2}   
+% \label{eq 22}\end{equation}
+% for all $n \in \mathbb{N}_{0}$, with fixed positive constants $c, b, r$, where $b>1$ and
+
+% $$
+% r=\frac{2(N+1)}{N}>2 .
+% $$
+% If
+% \begin{equation}
+%     \tilde{z}_{0} \leq \theta:=c^{-N} b^{-N^{2}}
+% \label{eq 23}\end{equation}
+
+% then,
+% \begin{equation}
+%     \tilde{z}_{n} \leq \theta b^{-n N}
+% \label{eq 24}\end{equation}
+
+
+% for all $n \in \mathbb{N}_{0}$.
+
+% \label{lemma 5.3}\end{lemma}
+% \begin{thm} Assume that there exist positive constants $T, \hat{k}=\|\psi\|_{L^{\infty}(0, T ; B)}, \gamma$, such that for all $k \geq \hat{k}$ we have
+% \begin{equation}
+%     \left\|u_{\epsilon}^{(k)}\right\|_{Q_{\epsilon}(T)}^{2}:=\sup _{0 \leq t \leq T} \int_{\Omega_{\epsilon}}\left|u_{\epsilon}^{(k)}\right|^{2} \mathrm{~d} x+\int_{0}^{T} \mathrm{~d} t \int_{\Omega_{\epsilon}}\left|\nabla u_{\epsilon}^{(k)}\right|^{2} \mathrm{~d} x \leq \epsilon \gamma k^{2} \int_{0}^{T} \mathrm{~d} t\left|B_{k}^{\epsilon}(t)\right|
+% \label{eq 25}\end{equation}
+% where $u_{\epsilon}^{(k)}(t):=\left(u_{1}^{\epsilon}(t)-k\right)_{+}$and $B_{k}^{\epsilon}(t)$ is the set of points on $\Gamma_{\epsilon}$ at which $u_{1}^{\epsilon}(t, x)>k$.
+% Then
+% \begin{equation}
+% \operatorname{\esssup }_{(t, x) \in[0, T] \times \Gamma_{\epsilon}} u_{1}^{\epsilon}(t, x) \leq 2 m \hat{k}
+% \label{eq 26}\end{equation}
+% where the positive constant $m$ is independent of $\epsilon$.
+% \label{thm 5.2}\end{thm}
+% \begin{proof} Let us choose
+% $$
+% r=\frac{2(N+1)}{N}>2
+% $$
+% Then, it holds
+% \begin{equation}
+% \frac{1}{r}+\frac{(N-1)}{2 r}=\frac{N}{2N+2}+\frac{(N-1)N}{4N+4}=\frac{N}{4}
+% \label{eq 27}\end{equation}
+% Let $\mathcal{M} \geq \hat{k}$ be arbitrary and define
+% $$
+% k_{n}:=\left(2-2^{-n}\right) \mathcal{M} \geq \hat{k} $$
+% \begin{equation}
+%     z_{n}:=\epsilon^{2 / r}\left[\int_{0}^{T} \mathrm{~d} t\left|B_{k_{n}}^{\epsilon}(t)\right|\right]^{2 / r}
+% \label{eq 28}\end{equation}
+% for all $n \in \mathbb{N}_{0}$. We prove that the sequence $\left(z_{n}\right)$ satisfies the assumptions of \eqref{lemma 5.3}. To this end, let $n \in \mathbb{N}_{0}$ be fixed. From the trivial estimate
+% \begin{equation}
+%  \left|u_{\epsilon}^{\left(k_{n}\right)}(t)\right|^{2} \geq\left(k_{n+1}-k_{n}\right)^{2} \mathds{1}_{B_{k_{n+1}}^{\epsilon}}{ }^{(t)}
+% \label{eq 29}\end{equation}
+% we get
+% \begin{equation}
+%   \begin{aligned}
+% z_{n+1} & \leq \epsilon^{2 / r}\left[\int_{0}^{T} \mathrm{~d} t\left(k_{n+1}-k_{n}\right)^{-r} \int_{\Gamma_{\epsilon}}\left|u_{\epsilon}^{\left(k_{n}\right)}(t)\right|^{r} \mathrm{~d} \sigma_{\epsilon}(x)\right]^{2 / r} \\
+% &=\left(k_{n+1}-k_{n}\right)^{-2} \epsilon^{2 / r}\left[\int_{0}^{T} \mathrm{~d} t \int_{\Gamma_{\epsilon}}\left|u_{\epsilon}^{\left(k_{n}\right)}(t)\right|^{r} \mathrm{~d} \sigma_{\epsilon}(x)\right]^{2 / r}
+% \end{aligned}
+% \label{eq 30}\end{equation}
+% Hence, since the condition \eqref{eq 27} holds, by using \eqref{eq 120}, we obtain
+% \begin{equation}
+% \begin{aligned}
+%   &2^{-2(n+1)} \mathcal{M}^{2} z_{n+1}=\left(k_{n+1}-k_{n}\right)^{2} z_{n+1} \\
+% &\leq c \epsilon^{2 / r} \epsilon^{-N-\left[\frac{2(1-N)}{r}\right]}\left\|u_{\epsilon}^{\left(k_{n}\right)}\right\|_{Q_{\epsilon}(T)}^{2}
+% \end{aligned}
+% \label{eq 31}\end{equation}
+% where $c$ is a positive constant independent of $\epsilon$. Therefore,
+% \begin{equation}
+%   2^{-2(n+1)} \mathcal{M}^{2} z_{n+1} \leq c \epsilon^{-\frac{N}{(1+N)}}\left\|u_{\epsilon}^{\left(k_{n}\right)}\right\|_{Q_{\epsilon}(T)}^{2}
+% \label{eq 32}\end{equation}
+% Moreover, from \eqref{eq 25} and \eqref{eq 28}, we get
+% \begin{equation}
+%   \begin{aligned}
+% \left\|u_{\epsilon}^{\left(k_{n}\right)}\right\|_{Q_{\epsilon}(T)}^{2} & \leq \gamma k_{n}^{2} z_{n}^{r / 2} \leq \gamma\left(2-2^{-n}\right)^{2} \mathcal{M}^{2} z_{n}^{r / 2} \\
+% & \leq 4 \gamma \mathcal{M}^{2} z_{n}^{r / 2}
+% \end{aligned}
+% \label{eq 33}\end{equation}
+% Combining \eqref{eq 32} and \eqref{eq 33}, we obtain
+% \begin{equation}
+%   z_{n+1} \leq c_{0} \epsilon^{-\frac{N}{(1+N)}} 2^{2 n} z_{n}^{r / 2}
+% \label{eq 34}\end{equation}
+% where $c_{0}$ is a positive constant independent of $\epsilon$.
+% Let us define
+% $$
+% \begin{aligned}
+% &d:=\frac{(r-2)}{r} \\
+% &\lambda:=\left(c_{0}\right)^{-\frac{r}{(r-2)}} 2^{-\frac{4}{(r-2) d}}
+% \end{aligned}
+% $$
+% and choose
+% \begin{equation}
+%   \mathcal{M}:=\hat{k}+\lambda^{-1 / r} \sqrt{c^{\prime}} \hat{k} \equiv m \hat{k}
+% \label{eq 35}\end{equation}
+% where $c^{\prime}$ is defined in \eqref{eq 36} and $m>1$. Now we want to estimate $z_{0}$ for the fixed value of $\mathcal{M}$ given by \eqref{eq 35}. From the definition \eqref{eq 28} and \eqref{eq 9}, by following the same strategy which leads to \eqref{eq 32} and \eqref{eq 33}, where we substitute $\hat{k}$ for $k_{n}$ and $\mathcal{M}$ for $k_{n+1}$, we have
+% \begin{equation}
+%   \begin{aligned}
+% (\mathcal{M}-\hat{k})^{2} z_{0} \leq c \epsilon^{-\frac{N}{(1+N)}}\left\|u_{\epsilon}^{(\hat{k})}\right\|_{Q_{\epsilon}(T)}^{2} & \leq c \epsilon^{-\frac{N}{(1+N)}}\left[\gamma \hat{k}^{2} T \frac{|\Gamma|_{N-1}|\Omega|_{N}}{|Y|_{N}}\right] \\
+% &:=c^{\prime} \epsilon^{-\frac{N}{(1+N)} \hat{k}^{2}}
+% \end{aligned}
+% \label{eq 36}\end{equation}
+% so that
+% \begin{equation}
+%   z_{0} \leq \frac{c^{\prime} \epsilon^{-\frac{N}{(1+N)}} \hat{k}^{2}}{(\mathcal{M}-\hat{k})^{2}}
+% \label{eq 37}\end{equation}
+% for all $\mathcal{M} \geq \hat{k}$. Therefore, from \eqref{eq 37} and \eqref{eq 35}, we obtain that
+% \begin{equation}
+%   z_{0} \leq \epsilon^{-\frac{N}{(1+N)}} \lambda^{2 / r} .
+% \label{eq 38}\end{equation}
+% For a fixed $\epsilon$, we set
+% \begin{equation}
+%   \tilde{z}_{n}=\epsilon^{\frac{N}{(1+N)}} z_{n}
+% \label{eq 39}\end{equation}
+% for all $n \in \mathbb{N}_{0}$. Then, the recursion inequality \eqref{eq 34} and the estimate \eqref{eq 38} can be rewritten as follows:
+% \begin{equation}
+%   \left\{\begin{array}{l}
+% \tilde{z}_{n+1} \leq c_{0} 2^{2 n} \epsilon^{-1} \tilde{z}_{n}^{r / 2} \\
+% \tilde{z}_{0} \leq \lambda^{2 / r}=\left(c_{0}\right)^{-N} 2^{-2 N^{2}}
+% \end{array}\right.
+% \label{eq 40}\end{equation}
+% Keeping in mind \eqref{eq 40}, it is easy to see that the sequence $\left(\tilde{z}_{n}\right)$ satisfies the assumptions of Lemma \eqref{lemma 5.3} with
+% $$
+% c:=\max \left\{c_{0}, \frac{c_{0}}{\epsilon}\right\} \text { and } b:=4
+% $$
+% Therefore, in view of Lemma \eqref{lemma 5.3}, one can conclude that $z_{n} \rightarrow 0$ as $n \rightarrow \infty$, which implies
+% $$
+% u_{1}^{\epsilon} \leq \lim _{n \rightarrow \infty} k_{n}=2 \mathcal{M}
+% $$
+% almost everywhere on $\Gamma_{\epsilon}$ for almost every $t \in[0, T]$ if we define $\mathcal{M}$ as in\eqref{eq 35}. This gives \eqref{eq 26}.
+% \end{proof}
+% Now we have the tools to prove Lemma \eqref{lemma 5.2}
+% \begin{proof} Let $T>0$ and $k \geq 0$ be fixed. Define: $u_{\epsilon}^{(k)}(t):=\left(u_{1}^{\epsilon}(t)-k\right)_{+}$ for $t \geq 0$, with derivatives:
+% \begin{equation}
+%  \frac{\partial u_{\epsilon}^{(k)}}{\partial t} =\frac{\partial u_{1}^{\epsilon}}{\partial t} \mathbbm{1}_{\left\{u_{1}^{\epsilon}>k\right\}}
+% \label{eq 41}\end{equation}
+% \begin{equation}
+%   \nabla_{x} u_{\epsilon}^{(k)} =\nabla_{x} u_{1}^{\epsilon} \mathbbm{1}_{\left\{u_{1}^{\epsilon}>k\right\}} .
+% \label{eq 42}\end{equation}
+% Moreover,
+% \begin{equation}
+%   &\left.u_{\epsilon}^{(k)}\right|_{\partial \Omega}=\left(\left.u_{1}^{\epsilon}\right|_{\partial \Omega}-k\right)_{+}
+% \label{eq 43}\end{equation}
+% \begin{equation}
+%   &\left.u_{\epsilon}^{(k)}\right|_{\Gamma_{\epsilon}}=\left(\left.u_{1}^{\epsilon}\right|_{\Gamma_{\epsilon}}-k\right)_{+}
+% \label{eq 44}\end{equation}
+% Let us assume $k \geq \hat{k}$, where $\hat{k}:=\|\psi\|_{L^{\infty}(0, T ; B)}$. Then, recalling that $U_{1} \leq\|\psi\|_{L^{\infty}(0, T ; B)}$,
+% \begin{equation}
+%   u_{1}^{\epsilon}(0, x)=U_{1} \leq \hat{k} \leq k
+% \label{eq 45}\end{equation}
+% For $t \in\left[0, T_{1}\right]$ with $T_{1} \leq T$, we get
+% \begin{equation}
+% \begin{aligned}
+% \frac{1}{2} \int_{\Omega_{\epsilon}}\left|u_{\epsilon}^{(k)}(t)\right|^{2} \mathrm{~d} x &=\int_{0}^{t} \frac{\mathrm{d}}{\mathrm{d} s}\left[\frac{1}{2} \int_{\Omega_{\epsilon}}\left|u_{\epsilon}^{(k)}(s)\right|^{2} \mathrm{~d} x\right] \mathrm{d} s \underset{\frac{\mathrm{d}}{\mathrm{d} s}\frac{1}{2} \left|u_{\epsilon}^{(k)}(s)\right|^{2} = \frac{\partial u_{\epsilon}^{(k)}(s)}{\partial s} u_{\epsilon}^{(k)}(s)}{=} \\
+% &=\int_{0}^{t} \mathrm{~d} s \int_{\Omega_{\epsilon}} \frac{\partial u_{\epsilon}^{(k)}(s)}{\partial s} u_{\epsilon}^{(k)}(s) \mathrm{d} x
+% \end{aligned} 
+% \label{eq 46}\end{equation}
+% Taking into account \eqref{eq 41}, \eqref{eq 10} and Lemma \eqref{lemma 7.1}, we obtain that for all $s \in\left[0, T_{1}\right]$
+% \begin{equation}
+%   \begin{aligned}
+% &\int_{\Omega_{\epsilon}} \frac{\partial u_{\epsilon}^{(k)}(s)}{\partial s} u_{\epsilon}^{(k)}(s) \mathrm{d} x \underset{\eqref{eq 41}}{=}\int_{\Omega_{\epsilon}} \frac{\partial u_{1}^{\epsilon}(s)}{\partial s} u_{\epsilon}^{(k)}(s) \mathrm{d} x \\
+% &\underset{\eqref{eq 10}}{=}\int_{\Omega_{\epsilon}}\left[d_{1} \Delta_{x} u_{1}^{\epsilon}-u_{1}^{\epsilon} \sum_{j=1}^{M} a_{1, j} u_{j}^{\epsilon}\right] u_{\epsilon}^{(k)}(s) \mathrm{d} x \\
+% &\underset{\text{diveregence thm}}{=}-\int_{\Omega_{\epsilon}} u_{1}^{\epsilon}(s) \sum_{j=1}^{M} a_{1, j} u_{j}^{\epsilon}(s) u_{\epsilon}^{(k)}(s) \mathrm{d} x+d_{1} \int_{\Gamma_{\epsilon}} \nabla_{x} u^{\epsilon}_1 \cdot n u_{\epsilon}^{(k)}(s) \mathrm{d} \sigma_{\epsilon}(x)-d_{1} \int_{\Omega_{\epsilon}} \nabla_{x} u_{1}^{\epsilon}(s) \cdot \nabla_{x} u_{\epsilon}^{(k)}(s) \mathrm{d} x \\
+% &\underset{\eqref{eq 10}}{=}-\int_{\Omega_{\epsilon}} u_{1}^{\epsilon}(s) \sum_{j=1}^{M} a_{1, j} u_{j}^{\epsilon}(s) u_{\epsilon}^{(k)}(s) \mathrm{d} x+\epsilon d_{1} \int_{\Gamma_{\epsilon}} \psi\left(s, x, \frac{x}{\epsilon}\right) u_{\epsilon}^{(k)}(s) \mathrm{d} \sigma_{\epsilon}(x)
+% -d_{1} \int_{\Omega_{\epsilon}} \nabla_{x} u_{1}^{\epsilon}(s) \cdot \nabla_{x} u_{\epsilon}^{(k)}(s) \mathrm{d} x \\
+% &\leq \epsilon d_{1} \int_{\Gamma_{\epsilon}} \psi\left(s, x, \frac{x}{\epsilon}\right) u_{\epsilon}^{(k)}(s) \mathrm{d} \sigma_{\epsilon}(x)-d_{1} \int_{\Omega_{\epsilon}} \nabla_{x} u_{1}^{\epsilon}(s) \cdot \nabla_{x} u_{\epsilon}^{(k)}(s) \mathrm{d} x \\
+% &\underset{\substack{\text{Young inequality}\\\text{and}\\\text{definition of } $B_{k}^{\epsilon}(t)$}}{\leq} \frac{\epsilon d_{1}}{2} \int_{B_{k}^{\epsilon}(s)}\left|\psi\left(s, x, \frac{x}{\epsilon}\right)\right|^{2} \mathrm{~d} \sigma_{\epsilon}(x)+\frac{\epsilon d_{1}}{2} \int_{\Gamma_{\epsilon}}\left|u_{\epsilon}^{(k)}(s)\right|^{2} \mathrm{~d} \sigma_{\epsilon}(x) -d_{1} \int_{\Omega_{\epsilon}} \nabla_{x} u_{1}^{\epsilon}(s) \cdot \nabla_{x} u_{\epsilon}^{(k)}(s) \mathrm{d} x \\
+% &\underset{\eqref{lemma 7.1}}{\leq} \frac{\epsilon d_{1}}{2} \int_{B_{k}^{\epsilon}(s)}\left|\psi\left(s, x, \frac{x}{\epsilon}\right)\right|^{2} \mathrm{~d} \sigma_{\epsilon}(x)+\frac{C_{1} d_{1}}{2} \int_{A_{k}^{\epsilon}(s)}\left|u_{\epsilon}^{(k)}(s)\right|^{2} \mathrm{~d} x -d_{1}\left(1-\frac{C_{1} \epsilon^{2}}{2}\right) \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{\epsilon}^{(k)}(s)\right|^{2} \mathrm{~d} x
+% \end{aligned}
+% \label{eq 47}\end{equation}
+% where we denote by $A_{k}^{\epsilon}(t)$ and $B_{k}^{\epsilon}(t)$ the set of points in $\Omega_{\epsilon}$ and on $\Gamma_{\epsilon}$, respectively, at which $u_{1}^{\epsilon}(t, x)>k$. It holds:
+% $$
+% \begin{aligned}
+% &\left|A_{k}^{\epsilon}(t)\right| \leq\left|\Omega_{\epsilon}\right| \\
+% &\left|B_{k}^{\epsilon}(t)\right| \leq\left|\Gamma_{\epsilon}\right|
+% \end{aligned}
+% $$
+% with $|\cdot|$ being the natural Hausdorff measure.
+% Plugging \eqref{eq 47} into \eqref{eq 46} and varying over $t$, we arrive at the estimate: 
+% \begin{equation}
+%   \begin{aligned}
+% &\sup _{0 \leq t \leq T_{1}}\left[\frac{1}{2} \int_{\Omega_{\epsilon}}\left|u_{\epsilon}^{(k)}(t)\right|^{2} \mathrm{~d} x\right]+d_{1}\left(1-\frac{C_{1} \epsilon^{2}}{2}\right) \int_{0}^{T_{1}} \mathrm{~d} t \int_{\Omega_{\epsilon}}\left|\nabla u_{\epsilon}^{(k)}(t)\right|^{2} \mathrm{~d} x \\
+% &\leq \frac{C_{1} d_{1}}{2} \int_{0}^{T_{1}} \mathrm{~d} t \int_{A_{k}^{\epsilon}(t)}\left|u_{\epsilon}^{(k)}(t)\right|^{2} \mathrm{~d} x+\frac{\epsilon d_{1}}{2} \int_{0}^{T_{1}} \mathrm{~d} t \int_{B_{k}^{\epsilon}(t)}\left|\psi\left(t, x, \frac{x}{\epsilon}\right)\right|^{2} \mathrm{~d} \sigma_{\epsilon}(x)
+% \end{aligned}
+% \label{eq 48}\end{equation}
+% Introducing the following norm
+% \begin{equation}
+%   \|u\|_{Q_{\epsilon}(T)}^{2}:=\sup _{0 \leq t \leq T} \int_{\Omega_{\epsilon}}|u(t)|^{2} \mathrm{~d} x+\int_{0}^{T} \mathrm{~d} t \int_{\Omega_{\epsilon}}|\nabla u(t)|^{2} \mathrm{~d} x
+% \label{eq 49}\end{equation}
+% the inequality \eqref{eq 48} can be rewritten as follows
+% \begin{equation}
+%   \begin{aligned}
+% \min \left\{\frac{1}{2}, d_{1}\left(1-\frac{C_{1} \epsilon^{2}}{2}\right)\right\}\left\|u_{\epsilon}^{(k)}\right\|_{Q_{\epsilon}\left(T_{1}\right)}^{2} \leq & \frac{C_{1} d_{1}}{2} \int_{0}^{T_{1}} \mathrm{~d} t \int_{A_{k}^{\epsilon}(t)}\left|u_{\epsilon}^{(k)}(t)\right|^{2} \mathrm{~d} x \\
+% &+\frac{\epsilon d_{1}}{2} \int_{0}^{T_{1}} \mathrm{~d} t \int_{B_{k}^{\epsilon}(t)}\left|\psi\left(t, x, \frac{x}{\epsilon}\right)\right|^{2} \mathrm{~d} \sigma_{\epsilon}(x)
+% \end{aligned}
+% \label{eq 50}\end{equation}
+% We estimate the right-hand side of \eqref{eq 50}. From Hölder's inequality, we obtain
+% \begin{equation}
+%   \int_{0}^{T_{1}} \mathrm{~d} t \int_{A_{k}^{\epsilon}(t)}\left|u_{\epsilon}^{(k)}(t)\right|^{2} \mathrm{~d} x \leq\left\|u_{\epsilon}^{(k)}\right\|_{L^{\bar{r}_{1}}\left(0, T_{1} ; L^{\bar{q}_{1}}\left(\Omega_{\epsilon}\right)\right)}^{2}\left\|\mathbbm{1}_{A_{k}^{\epsilon}}\right\|_{L^{r_{1}^{\prime}}\left(0, T_{1} ; L^{q_{1}^{\prime}}\left(\Omega_{\epsilon}\right)\right)}
+% \label{eq 51}\end{equation}
+% with $r_{1}^{\prime}=\frac{r_{1}}{r_{1}-1}, q_{1}^{\prime}=\frac{q_{1}}{q_{1}-1}, \bar{r}_{1}=2 r_{1}, \bar{q}_{1}=2 q_{1}$, where, for $N>2, \bar{r}_{1} \in(2, \infty)$ and $\bar{q}_{1} \in\left(2, \frac{2 N}{(N-2)}\right)$ have been chosen such that
+% $$
+% \frac{1}{\bar{r}_{1}}+\frac{N}{2 \bar{q}_{1}}=\frac{N}{4}
+% $$
+% In particular, $r_{1}^{\prime}, q_{1}^{\prime}<\infty$, so that \eqref{eq 51} yields
+% \begin{equation}
+%   \int_{0}^{T_{1}} \mathrm{~d} t \int_{A_{k}^{\epsilon}(t)}\left|u_{\epsilon}^{(k)}(t)\right|^{2} \mathrm{~d} x \leq\left\|u_{\epsilon}^{(k)}\right\|_{L^{\overline{r_{1}}\left(0, T_{1} ; L^{\bar{q}_{1}}\left(\Omega_{\epsilon}\right)\right)}}^{2}|\Omega|^{1 / q_{1}^{\prime}} T_{1}^{1 / r_{1}^{\prime}} .
+% \label{eq 52}\end{equation}
+% If we choose
+% $$
+% T_{1}^{1 / r_{1}^{\prime}}<\frac{\min \left\{1, d_{1}\right\}}{2 C_{1} d_{1}}|\Omega|^{-1 / q_{1}^{\prime}} \leq \frac{\min \left\{\frac{1}{2}, d_{1}\left(1-\frac{C_{1} \epsilon^{2}}{2}\right)\right\}}{C_{1} d_{1}}|\Omega|^{-1 / q_{1}^{\prime}}
+% $$
+% then from \eqref{eq 117}, it follows that
+% \begin{equation}
+%   \frac{C_{1} d_{1}}{2} \int_{0}^{T_{1}} \mathrm{~d} t \int_{A_{k}^{\epsilon}(t)}\left|u_{\epsilon}^{(k)}(t)\right|^{2} \mathrm{~d} x \leq \frac{1}{2} \min \left\{\frac{1}{2}, d_{1}\left(1-\frac{C_{1} \epsilon^{2}}{2}\right)\right\}\left\|u_{\epsilon}^{(k)}\right\|_{Q_{\epsilon}\left(T_{1}\right)}^{2}
+% \label{eq 53}\end{equation}
+% Analogously, from Hölder's inequality, we have, for $k \geq \hat{k}$
+% \begin{equation}
+%   \begin{aligned}
+% \frac{\epsilon d_{1}}{2} \int_{0}^{T_{1}} \mathrm{~d} t \int_{B_{k}^{\epsilon}(t)}\left|\psi\left(t, x, \frac{x}{\epsilon}\right)\right|^{2} \mathrm{~d} \sigma_{\epsilon}(x) & \leq \frac{\epsilon d_{1} k^{2}}{2}\left(\frac{\hat{k}^{2}}{k^{2}}\right)\left\|\mathds{1}_{B_{k}^{\epsilon}}\right\|_{L^{1}\left(0, T_{1} ; L^{1}\left(\Gamma_{\epsilon}\right)\right)} \\
+% & \leq \frac{\epsilon d_{1} k^{2}}{2} \int_{0}^{T_{1}} \mathrm{~d} t\left|B_{k}^{\epsilon}(t)\right| .
+% \end{aligned}
+% \label{eq 54}\end{equation}
+% Thus \eqref{eq 50} yields
+% \begin{equation}
+%   \left\|u_{\epsilon}^{(k)}\right\|_{Q_{\epsilon}\left(T_{1}\right)}^{2} \leq \epsilon \gamma k^{2} \int_{0}^{T_{1}} \mathrm{~d} t\left|B_{k}^{\epsilon}(t)\right| .
+% \label{eq 55}\end{equation}
+% Hence, by Theorem \eqref{thm 5.2}, we obtain
+% $$
+% \left\|u_{1}^{\epsilon}\right\|_{L^{\infty}\left(0, T_{1} ; L^{\infty}\left(\Gamma_{\epsilon}\right)\right)} \leq 2 m \hat{k}
+% $$
+% where the positive constant $m$ is independent of $\epsilon$. Analogous arguments are valid for the cylinder $\left[T_{s}, T_{s+1}\right] \times \Omega_{\epsilon}, s=1,2, \ldots, p-1$ with
+% $$
+% \left[T_{s+1}-T_{s}\right]^{1 / r_{1}^{\prime}}<\frac{\min \left\{1, d_{1}\right\}}{2 C_{1} d_{1}}|\Omega|^{-1 / q_{1}^{\prime}}
+% $$
+% and $T_{p} \equiv T$. Thus, after a finite number of steps, we obtain the estimate \eqref{eq 21}.
+% \end{proof}
+% \begin{lemma}
+%   The sequence $\nabla_{x} u_{1}^{\epsilon}$ is bounded in $L^{2}\left([0, T] \times \Omega_{\epsilon}\right)$, uniformly in $\epsilon$.
+% \label{lemma 5.4}\end{lemma}
+% \begin{proof}
+% Let us multiply the first equation in \eqref{eq 10} by the function $u_{1}^{\epsilon}(t, x)$, to keep the equation fast and readable we will not write explicitly the dependence on $t,x$
+% $$\frac{\partial u_{1}^{\epsilon}}{\partial t}u_{1}^{\epsilon}-\operatorname{div}\left(d_{1} \nabla_{x} u_{1}^{\epsilon}\right)u_{1}^{\epsilon}+u_{1}^{\epsilon}u_{1}^{\epsilon} \sum_{j=1}^{M} a_{1, j} u_{1}^{\epsilon}=0$$
+% Integrating, the divergence theorem yields
+% \begin{equation}
+% \frac{1}{2}\int_{\Omega_{\epsilon}} \frac{\partial}{\partial t}\left|u_{1}^{\epsilon}\right|^{2} \mathbf{d} x+& d_{1} \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{1}^{\epsilon}\right|^{2} \mathrm{~d} x+\int_{\Omega_{\epsilon}}\left|u_{1}^{\epsilon}\right|^{2} \sum_{j=1}^{M} a_{1, j} u_{j}^{\epsilon} \mathrm{d} x =\epsilon d_{1} \int_{\Gamma_{\epsilon}} \psi\left(t, x, \frac{x}{\epsilon}\right) u_{1}^{\epsilon}(t, x) \mathrm{d} \sigma_{\epsilon}(x)
+% \label{eq 56}\end{equation}
+% By Hölder's and Young's inequalities, the right-hand side of Eq. \eqref{eq 56} can be rewritten as
+% \begin{equation}
+%   \int_{\Gamma_{\epsilon}} \psi\left(t, x, \frac{x}{\epsilon}\right) u_{1}^{\epsilon}(t, x) \mathrm{d} \sigma_{\epsilon}(x) \leq \frac{1}{2}\left\|\psi\left(t, \cdot, \frac{\cdot}{\epsilon}\right)\right\|_{L^{2}\left(\Gamma_{\epsilon}\right)}^{2}+\frac{1}{2}\left\|u_{1}^{\epsilon}(t, \cdot)\right\|_{L^{2}\left(\Gamma_{\epsilon}\right)}^{2}
+% \label{eq 57}\end{equation}
+% Thanks to Lemma \eqref{lemma 7.4}
+% \begin{equation}
+%   \epsilon \int_{\Gamma_{\epsilon}}\left|\psi\left(t, x, \frac{x}{\epsilon}\right)\right|^{2} \mathrm{~d} \sigma_{\epsilon}(x) \leq C_{2}\|\psi(t)\|_{B}^{2}
+% \label{eq 58}\end{equation}
+% where $C_{2}$ is a positive constant independent of $\epsilon$ and $B=C^{1}\left[\bar{\Omega} ; C_{\#}^{1}(Y)\right]$. Therefore, by combining Eqs. \eqref{eq 56}-\eqref{eq 58} and by using Lemma \eqref{lemma 7.1}, we deduce
+% \begin{equation*}
+% \begin{aligned}
+%     \frac{1}{2} \int_{\Omega_{\epsilon}} \frac{\partial}{\partial t}\left|u_{1}^{\epsilon}\right|^{2} \mathbf{d} x+& d_{1} \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{1}^{\epsilon}\right|^{2} \mathrm{~d} x+\int_{\Omega_{\epsilon}}\left|u_{1}^{\epsilon}\right|^{2} \sum_{j=1}^{M} a_{1, j} u_{j}^{\epsilon} \mathrm{d} x\\
+%     &=\epsilon d_{1} \int_{\Gamma_{\epsilon}} \psi\left(t, x, \frac{x}{\epsilon}\right) u_{1}^{\epsilon}(t, x) \mathrm{d} \sigma_{\epsilon}(x) \underset{\eqref{eq 57}}{\leq} \epsilon d_{1} \frac{1}{2}\left\|\psi\left(t, x, \frac{x}{\epsilon}\right)\right\|_{L^{2}\left(\Gamma_{\epsilon}\right)}^{2}+\frac{1}{2}\left\|u_{1}^{\epsilon}(t, x)\right\|_{L^{2}\left(\Gamma_{\epsilon}\right)}^{2} \\ 
+%     &\underset{\eqref{eq 58}}{\leq} C_{2}\|\psi(t)\|_{B}^{2} +\frac{1}{2}\left\|u_{1}^{\epsilon}(t, x)\right\|_{L^{2}\left(\Gamma_{\epsilon}\right)}^{2}\\
+%     &\underset{\eqref{lemma 7.1}}{\leq}  C_{2}\|\psi(t)\|_{B}^{2} + \frac{1}{2}\frac{1}{\epsilon}C_{1}\left( \int_{\Omega_{\epsilon}}|u_{1}^{\epsilon}|^{2} \mathrm{~d} x+{\epsilon^_{2}}\int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{1}^{\epsilon}\right|^{2} \mathrm{~d} x\right)
+% \end{aligned}
+% \end{equation*}
+% And so it is easy to see that the following inequality holds:
+% \begin{equation}
+% &\int_{\Omega_{\epsilon}} \frac{\partial}{\partial t}\left|u_{1}^{\epsilon}\right|^{2} \mathrm{~d} x+d_{1}\left(2-\epsilon^{2} C_{1}\right) \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{1}^{\epsilon}\right|^{2} \mathrm{~d} x\leq d_{1} C_{2}\|\psi(t)\|_{B}^{2}+d_{1} C_{1} \int_{\Omega_{\epsilon}}\left|u_{1}^{\epsilon}\right|^{2} \mathrm{~d} x
+% \label{eq 59}\end{equation}
+% since the third term on the left-hand side of \eqref{eq 56} is nonnegative. Integrating over $[0, t]$ with $t \in[0, T]$, we get
+% \begin{equation}
+%   \left\|u_{1}^{\epsilon}(t)\right\|_{L^{2}\left(\Omega_{\epsilon}\right)}^{2}+d_{1}\left(2-\epsilon^{2} C_{1}\right) \int_{0}^{t} \mathrm{~d} s \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{1}^{\epsilon}\right|^{2} \mathrm{~d} x \leq C_{3}+d_{1} C_{1}\left\|u_{1}^{\epsilon}\right\|_{L^{2}\left(0, T ; L^{2}\left(\Omega_{\epsilon}\right)\right)}^{2}
+% \label{eq 60}\end{equation}
+% where $C_{1}$ and $C_{3}$ are positive constants independent of $\epsilon$ since, by \eqref{eq 11},
+% $$
+% u_{1}^{\epsilon}(0, x)=U_{1} \leq\|\psi\|_{L^{\infty}(0, T ; B)}
+% $$
+% Taking into account that the first term on the left-hand side of \eqref{eq 60} is nonnegative and the sequence $u_{1}^{\epsilon}$ is bounded in $L^{\infty}\left(0, T ; L^{\infty}\left(\Omega_{\epsilon}\right)\right)$, one has
+% \begin{equation}
+%   d_{1}\left(2-\epsilon^{2} C_{1}\right)\left\|\nabla_{x} u_{1}^{\epsilon}\right\|_{L^{2}\left(0, T ; L^{2}\left(\Omega_{\epsilon}\right)\right)}^{2} \leq C_{4}
+% \label{eq 61}\end{equation}
+% Thus the boundedness of $\nabla_{x} u_{1}^{\epsilon}(t, x)$ follows, provided that $\epsilon$ is close to zero.
+% \end{proof} 
+% The lemmas that we have considered shows us the boundedness of the term $u_1^{\epsilon}(t,x)$ and $\nabla_{x} u_{1}^{\epsilon}(t, x)$, with a similar procedure we now show the boundedness of the generic term $u_m$ and of its gradient.
+% \begin{lemma} Let $u_{m}^{\epsilon}(t, x)(1<m<M)$ be a classical solution of \eqref{eq 12}. Then
+% \begin{equation}
+%   \left\|u_{m}^{\epsilon}\right\|_{L^{\infty}\left(0, T ; L^{\infty}\left(\Omega_{\epsilon}\right)\right)} \leq K_{m}
+% \label{eq 62}\end{equation}
+% uniformly with respect to $\epsilon$, where
+% \begin{equation}
+%   K_{m}=1+\frac{\left[\sum_{j=1}^{m-1} a_{j, m-j} K_{j} K_{m-j}\right]}{a_{m, m}}
+% \label{eq 63}\end{equation}
+% \label{lemma 5.5}\end{lemma}
+% \begin{proof}
+% The Lemma can be proved directly by induction following the same arguments presented in Wrzosek (1997) (Lemma 2.2, p. 284). Since we have a zero initial condition for the system \eqref{eq 12}, we have chosen a function slightly different than what was done in Wrzosek (1997) to test the $m$th equation of \eqref{eq 12}:
+% $$
+% \phi_{m} \equiv p\left(u_{m}^{\epsilon}\right)^{(p-1)} \quad p \geq 2 .
+% $$
+% We stress that the functions $\phi_{m}$ are strictly positive and continuously differentiable in $[0, t] \times \bar{\Omega}$, for all $t>0$. The rest of the proof carries over verbatim.
+% \end{proof} 
+% \begin{lemma}
+% The sequence $\nabla_{x} u_{m}^{\epsilon}(1<m<M)$ is bounded in $L^{2}\left([0, T] \times \Omega_{\epsilon}\right)$, uniformly in $\epsilon$.
+% \label{lemma 5.6}\end{lemma}
+% \begin{proof}
+%  Let us multiply the first equation in \eqref{eq 12} by the function $u_{m}^{\epsilon}(t, x)$.
+%  \begin{equation*}
+%  \begin{aligned}
+%  \frac{\partial u_{m}^{\epsilon}}{\partial t}(t, x)u_{m}^{\epsilon}(t, x)-d_{m} \Delta_{x} u_{m}^{\epsilon}(t, x)u_{m}^{\epsilon}(t, x)+&u_{m}^{\epsilon}(t, x)u_{m}^{\epsilon}(t, x) \sum_{j=1}^{M} a_{m, j} u_{j}^{\epsilon}(t, x)=\\ &=\frac{1}{2} u_{m}^{\epsilon}(t, x)\sum_{j=1}^{m-1} a_{j, m-j} u_{j}^{\epsilon} u_{m-j}^{\epsilon} & \text { in }[0, T] \times \Omega_{\epsilon} 
+%      \end{aligned}
+%  \end{equation*}
+% By the divergence theorem the second term becomes:
+%  \begin{equation*}
+%      -d_{m} \Delta_{x} u_{m}^{\epsilon}(t, x)u_{m}^{\epsilon}(t, x)= -d_m\operatorname{div} (\nabla u_{m}^{\epsilon}(t, x) )u_{m}^{\epsilon}(t, x)=d_m \int_{\Omega_\epsilon} \left|\nabla_{x} u_{m}^{\epsilon}\right|^{2} \mathrm{~d} x - d_m\int_{\partial \Omega_\epsilon} \nabla_{x} u_{m}^{\epsilon} \cdot n u_{m}^{\epsilon} \mathrm{~d} x
+%  \end{equation*}
+%  where the integral on the boundary is $0$ due to the boundary conditions in \eqref{eq 12}.
+% Now applying Hölder's inequality and exploiting the boundedness of $u_{j}^{\epsilon}(t, x)$ $(1 \leq j \leq m-1)$ in $L^{\infty}\left(0, T ; L^{\infty}\left(\Omega_{\epsilon}\right)\right)$, we get
+% \begin{equation}
+%   \frac{1}{2} \int_{\Omega_{\epsilon}} \frac{\partial}{\partial t}\left|u_{m}^{\epsilon}\right|^{2} \mathrm{~d} x+d_{m} \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{m}^{\epsilon}\right|^{2} \mathrm{~d} x \leq C_{3}\left\|u_{m}^{\epsilon}(t, \cdot)\right\|_{L^{2}\left(\Omega_{\epsilon}\right)}
+% \label{eq 64}\end{equation}
+% where $C_{3}$ is a constant which does not depend on $\epsilon$. Dividing by $\left\|u_{m}^{\epsilon}(t, \cdot)\right\|_{L^{2}\left(\Omega_{\epsilon}\right)}$ and integrating over $[0, t]$ with $t \in[0, T]$, we deduce:
+% \begin{equation}
+%   \int_{0}^{t} \mathrm{~d} s \frac{\mathrm{d}}{\mathrm{d} s}\left\|u_{m}^{\epsilon}(s, \cdot)\right\|_{L^{2}\left(\Omega_{\epsilon}\right)}+d_{m} C_{4} \int_{0}^{t} \mathrm{~d} s \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{m}^{\epsilon}\right|^{2} \mathrm{~d} x \leq C_{3} T
+% \label{eq 65}\end{equation}
+% exploiting the boundedness of $u_{m}^{\epsilon}(t, x)$ in $L^{\infty}\left(0, T ; L^{\infty}\left(\Omega_{\epsilon}\right)\right)$ proved in Lemma \eqref{lemma 5.5}. Hence
+% \begin{equation}
+%   \left\|u_{m}^{\epsilon}(t, \cdot)\right\|_{L^{2}\left(\Omega_{\epsilon}\right)}+d_{m} C_{4} \int_{0}^{t} \mathrm{~d} s \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{m}^{\epsilon}\right|^{2} \mathrm{~d} x \leq C_{5}
+% \label{eq 66}\end{equation}
+% where $C_{4}$ and $C_{5}$ are positive constants independent of $\epsilon$. Then, the boundedness of $\nabla_{x} u_{m}^{\epsilon}(t, x)$ in $L^{2}\left([0, T] \times \Omega_{\epsilon}\right)$, uniformly in $\epsilon$, follows from \eqref{eq 66}.
+% \end{proof}
+% \begin{lemma} Let $u_{M}^{\epsilon}(t, x)$ be a classical solution of (13). Then
+% $$
+% \left\|u_{M}^{\epsilon}\right\|_{L^{\infty}\left(0, T ; L^{\infty}\left(\Omega_{\epsilon}\right)\right)} \leq K_{M}
+% $$
+% uniformly with respect to $\epsilon$, where
+% $$
+% K_{M}=e^{T} \sum_{\substack{j+k \geq M \\ k<M \\ j<M}} a_{j, k} K_{j} K_{k}
+% $$
+% with the constants $K_{j}(1<j<M)$ given by \eqref{eq 63}.
+% \label{lemma 5.7}\end{lemma}
+% \begin{proof}
+% Let us test the first equation of \eqref{eq 13} with the function
+% $$
+% \phi_{M} \equiv p\left(u_{M}^{\epsilon}\right)^{(p-1)} \quad p \geq 2 .
+% $$
+% The function $\phi_{M}$ is strictly positive and continuously differentiable in $[0, t] \times \bar{\Omega}$, for all $t>0$. Integrating, the divergence theorem yields
+% \begin{equation}
+%   \begin{aligned}
+% \int_{0}^{t} \mathrm{~d} s \int_{\Omega_{\epsilon}} \frac{\partial}{\partial s}\left(u_{M}^{\epsilon}\right)^{p}(s) \mathrm{d} x=&-d_{M} p \int_{0}^{t} \mathrm{~d} s \int_{\Omega_{\epsilon}} \nabla_{x} u_{M}^{\epsilon} \cdot \nabla\left[\left(u_{M}^{\epsilon}\right)^{(p-1)}\right] \mathrm{d} x \\
+% &+\frac{p}{2} \int_{0}^{t} \mathrm{~d} s \int_{\Omega_{\epsilon}} \sum_{\substack{j+k \geq M \\
+% k<M \\
+% j<M}} a_{j, k} u_{j}^{\epsilon} u_{k}^{\epsilon}\left(u_{M}^{\epsilon}\right)^{(p-1)} \mathrm{d} x
+% \end{aligned}
+% \label{eq 69}\end{equation}
+% Hence
+% \begin{equation}
+%   \begin{aligned}
+% \int_{\Omega_{\epsilon}}\left(u_{M}^{\epsilon}\right)^{p}(t) \mathrm{d} x+& d_{M} p(p-1) \int_{0}^{t} \mathrm{~d} s \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{M}^{\epsilon}\right|^{2}\left(u_{M}^{\epsilon}\right)^{(p-2)} \mathrm{d} x \\
+% &=\frac{p}{2} \int_{0}^{t} \mathrm{~d} s \int_{\substack{\Omega_{\epsilon}}} \sum_{\substack{j+k \geq M \\
+% k<M \\
+% j<M}} a_{j, k} u_{j}^{\epsilon} u_{k}^{\epsilon}\left(u_{M}^{\epsilon}\right)^{(p-1)} \mathrm{d} x
+% \end{aligned}
+% \label{eq 70}\end{equation}
+% Taking into account the boundedness of $u_{j}^{\epsilon}(1 \leq j<M)$ in $L^{\infty}\left(0, T ; L^{\infty}\left(\Omega_{\epsilon}\right)\right)$, we get
+% \begin{equation}
+%   \begin{aligned}
+% \int_{\Omega_{\epsilon}}\left(u_{M}^{\epsilon}\right)^{p}(t) \mathrm{d} x+& d_{M} p(p-1) \int_{0}^{t} \mathrm{~d} s \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{M}^{\epsilon}\right|^{2}\left(u_{M}^{\epsilon}\right)^{(p-2)} \mathrm{d} x \\
+% & \leq p \int_{0}^{t} \mathrm{~d} s \int_{\Omega_{\epsilon}}\left[\sum_{\substack{j+k \geq M \\
+% k<M \\
+% j<M}} a_{j, k} K_{j} K_{k}\right]\left(u_{M}^{\epsilon}\right)^{(p-1)} \mathrm{d} x=: I_{3}
+% \end{aligned}
+% \label{eq 71}\end{equation}
+% In order to estimate $I_{3}$, it is now convenient to use Young's inequality in the following form Brezis (2010):
+% \begin{equation}
+%   a b \leq \eta a^{p^{\prime}}+\eta^{1-p}b^{p} \quad \forall a \geq 0, b \geq 0
+% \label{eq 72}\end{equation}
+% with $p^{\prime}=\frac{p}{p-1}$. We find
+% \begin{equation}
+%   \begin{aligned}
+% I_{3} & \leq \int_{0}^{t} \mathrm{~d} s \int_{\Omega_{\epsilon}} p^{p}\left[\sum_{\substack{j+k \geq M \\
+% k<M \\
+% j<M \\
+% \hdashline}} a_{j, k} K_{j} K_{k}\right]^{p} \eta^{1-p} \mathrm{~d} x+\int_{0}^{t} \mathrm{~d} s \int_{\Omega_{\epsilon}} \eta\left(u_{M}^{\epsilon}\right)^{p} \mathrm{~d} x \\
+% & \leq p^{p-1}\left(\frac{p}{p-1}\right)^{1-p}\left[\sum_{\substack{j+k \geq M \\
+% k<M \\
+% j<M}} a_{j, k} K_{j} K_{k}\right]^{p} \eta^{1-p}\left|\Omega_{\epsilon}\right| t+\eta \int_{0}^{t} \mathrm{~d} s \int_{\Omega_{\epsilon}}\left(u_{M}^{\epsilon}\right)^{p} \mathrm{~d} x
+% \end{aligned}
+% \label{eq 73}\end{equation}
+% Taking $\eta=p$ yields
+% \begin{equation}
+%   I_{3} \leq\left[\sum_{\substack{j+k \geq M \\ k<M \\ j<M}} a_{j, k} K_{j} K_{k}\right]^{p}\left|\Omega_{\epsilon}\right| t+p \int_{0}^{t} \mathrm{~d} s \int_{\Omega_{\epsilon}}\left(u_{M}^{\epsilon}\right)^{p} \mathrm{~d} x
+% \label{eq 74}\end{equation}
+% Finally from \eqref{eq 71} and \eqref{eq 74} it follows that
+% \begin{equation}
+%   \left\|u_{M}^{\epsilon}(t)\right\|_{L^{p}\left(\Omega_{\epsilon}\right)}^{p} \leq\left[\sum_{\substack{j+k \geq M \\ k<M \\ j<M}} a_{j, k} K_{j} K_{k}\right]^{p}\left|\Omega_{\epsilon}\right| T+\int_{0}^{t} \mathrm{~d} s p\left\|u_{M}^{\epsilon}(s)\right\|_{L^{p}\left(\Omega_{\epsilon}\right)}^{p}
+% \label{eq 75}\end{equation}
+% The Gronwall Lemma applied to \eqref{eq 75} leads to the estimate
+% \begin{equation}
+%   \left\|u_{M}^{\epsilon}(t)\right\|_{L^{p}\left(\Omega_{\epsilon}\right)}^{p} \leq\left[\sum_{\substack{j+k \geq M \\ k<M \\ j<M}} a_{j, k} K_{j} K_{k}\right]^{p}\left|\Omega_{\epsilon}\right| T e^{p t}
+% \label{eq 76}\end{equation}
+% Hence
+% \begin{equation}
+%   \sup _{t \in[0, T]} \lim _{p \rightarrow \infty}\left[\int_{\Omega_{\epsilon}}\left(u_{M}^{\epsilon}(t, x)\right)^{p} \mathrm{~d} x\right]^{1 / p} \leq \sum_{\substack{j+k \geq M \\ k<M \\ j<M}} a_{j, k} K_{j} K_{k} e^{T}
+% \label{eq 77}\end{equation}
+% \end{proof}
+% \begin{lemma} The sequence $\nabla_{x} u_{M}^{\epsilon}$ is bounded in $L^{2}\left([0, T] \times \Omega_{\epsilon}\right)$, uniformly in $\epsilon$.
+% \label{lemma 5.8}\end{lemma}
+% The proof of  this Lemma is achieved by applying exactly the same arguments considered in the proof of Lemma \eqref{lemma 5.6}.
+% \begin{lemma} The sequence $\partial_{t} u_{j}^{\epsilon}(1 \leq j \leq M)$ is bounded in $L^{2}\left([0, T] \times \Omega_{\epsilon}\right)$, uniformly in $\epsilon$.
+% \label{lemma 5.9}\end{lemma}
+% \begin{proof}
+% Case $j=1$ : let us multiply the first equation in \eqref{eq 10} by the function $\partial_{t} u_{1}^{\epsilon}(t, x)$. By the divergence theorem, by Hölder's and Young's inequalities, following the same arguments of the previous proofs and exploiting the boundedness of $u_{j}^{\epsilon}(t, x)(1 \leq j \leq M)$ in $L^{\infty}\left(0, T ; L^{\infty}\left(\Omega_{\epsilon}\right)\right)$, one get
+% \begin{equation}
+%   \int_{\Omega_{\epsilon}}\left|\frac{\partial u_{1}^{\epsilon}}{\partial t}\right|^{2} \mathrm{~d} x+d_{1} \frac{\partial}{\partial t} \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{1}^{\epsilon}\right|^{2} \mathrm{~d} x \leq C_{1}+2 \epsilon d_{1} \int_{\Gamma_{\epsilon}} \psi\left(t, x, \frac{x}{\epsilon}\right) \frac{\partial u_{1}^{\epsilon}}{\partial t} \mathrm{~d} \sigma_{\epsilon}(x)
+% \label{eq 78}\end{equation}
+% Integrating over $[0, t]$ with $t \in[0, T]$, we obtain
+% \begin{equation}
+%   \begin{aligned}
+% \int_{0}^{t} \mathrm{~d} s \int_{\Omega_{\epsilon}}\left|\frac{\partial u_{1}^{\epsilon}}{\partial s}\right|^{2} \mathrm{~d} x &+d_{1} \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{1}^{\epsilon}(t, x)\right|^{2} \mathrm{~d} x \leq C_{1} T \\
+% &+2 \epsilon d_{1} \int_{\Gamma_{\epsilon}} \psi\left(t, x, \frac{x}{\epsilon}\right) u_{1}^{\epsilon}(t, x) \mathrm{d} \sigma_{\epsilon}(x) \\
+% &-2 \epsilon d_{1} \int_{0}^{t} \mathrm{~d} s \int_{\Gamma_{\epsilon}} \frac{\partial}{\partial s} \psi\left(s, x, \frac{x}{\epsilon}\right) u_{1}^{\epsilon}(s, x) \mathrm{d} \sigma_{\epsilon}(x)
+% \end{aligned}
+% \label{eq 79}\end{equation}
+% since $\psi\left(t=0, x, \frac{x}{\epsilon}\right) \equiv 0$. Taking into account the inequalities \eqref{eq 57}-\eqref{eq 58} and Lemma \eqref{lemma 7.1}, Eq. \eqref{eq 79} can be rewritten as follows
+% \begin{equation}
+%   \int_{0}^{t} \mathrm{~d} s \int_{\Omega_{\epsilon}}\left|\frac{\partial u_{1}^{\epsilon}}{\partial s}\right|^{2} \mathrm{~d} x+d_{1}\left(1-\epsilon^{2} C_{3}\right) \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{1}^{\epsilon}\right|^{2} \mathrm{~d} x \leq C_{1} T+C_{4}+C_{7}
+% \label{eq 80}\end{equation}
+% where the positive constants $C_{1}, C_{3}, C_{4}, C_{7}$ are independent of $\epsilon$, since $\psi \in$ $L^{\infty}(0, T ; B), u_{1}^{\epsilon}$ is bounded in $L^{\infty}\left(0, T ; L^{\infty}\left(\Omega_{\epsilon}\right)\right), \nabla_{x} u_{1}^{\epsilon}$ is bounded in $L^{2}(0, T$; $\left.L^{2}\left(\Omega_{\epsilon}\right)\right)$ and the following inequality holds
+% $$
+% \epsilon \int_{\Gamma_{\epsilon}}\left|\partial_{t} \psi\left(t, x, \frac{x}{\epsilon}\right)\right|^{2} \mathrm{~d} \sigma_{\epsilon}(x) \leq \tilde{C}\left\|\partial_{t} \psi(t)\right\|_{B}^{2} \leq C_{5}
+% $$
+% with $\tilde{C}$ and $C_{5}$ independent of $\epsilon$. For a sequence $\epsilon$ of positive numbers going to zero: $\left(1-\epsilon^{2} C_{3}\right) \geq 0$. Then, the second term on the left-hand side of \eqref{eq 80} is nonnegative, and one has
+% \begin{equation}
+%   \left\|\partial_{t} u_{1}^{\epsilon}\right\|_{L^{2}\left(0, T ; L^{2}\left(\Omega_{\epsilon}\right)\right)}^{2} \leq C
+% \label{eq 81}\end{equation}
+% where $C \geq 0$ is a constant independent of $\epsilon$.
+% Case $1<j<M$ : let us multiply the first equation in \eqref{eq 12} by the function $\partial_{t} u_{m}^{\epsilon}(t, x)$. By the divergence theorem, by Hölder's and Young's inequalities, exploiting the boundedness of $u_{j}^{\epsilon}(t, x)(1 \leq j \leq M)$ in $L^{\infty}\left(0, T ; L^{\infty}\left(\Omega_{\epsilon}\right)\right)$, one get
+% \begin{equation}
+%   \int_{\Omega_{\epsilon}}\left|\frac{\partial u_{m}^{\epsilon}}{\partial t}\right|^{2} \mathrm{~d} x+2 d_{m} \frac{\partial}{\partial t} \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{m}^{\epsilon}\right|^{2} \mathrm{~d} x \leq 2 C_{1}+C_{2}
+% \label{eq 82}\end{equation}
+% Integrating over $[0, t]$ with $t \in[0, T]$, we obtain
+% \begin{equation}
+%   \int_{0}^{t} \mathrm{~d} s \int_{\Omega_{\epsilon}}\left|\frac{\partial u_{m}^{\epsilon}}{\partial s}\right|^{2} \mathrm{~d} x+2 d_{m} \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{m}^{\epsilon}(t, x)\right|^{2} \mathrm{~d} x \leq C_{3} T
+% \label{eq 83}\end{equation}
+% Since the second term on the left-hand side of \eqref{eq 83} is nonnegative, we conclude that 
+% \begin{equation}
+%   \left\|\partial_{t} u_{m}^{\epsilon}\right\|_{L^{2}\left(0, T ; L^{2}\left(\Omega_{\epsilon}\right)\right)}^{2} \leq C
+% \label{eq 84}\end{equation}
+% where $C \geq 0$ is a constant independent of $\epsilon$.
+% By applying exactly the same arguments considered in proving the boundedness of $\partial_{t} u_{j}^{\epsilon}(t, x)(1<j<M)$ in $L^{2}\left(0, T ; L^{2}\left(\Omega_{\epsilon}\right)\right)$, one can derive also the following estimate
+% \begin{equation}
+%   \left\|\partial_{t} u_{M}^{\epsilon}\right\|_{L^{2}\left(0, T ; L^{2}\left(\Omega_{\epsilon}\right)\right)}^{2} \leq C
+% \label{eq 85}\end{equation}
+% where $C \geq 0$ is a constant independent of $\epsilon$.
+% \end{proof}
+% \section{State and proof of the Main Theorem}
+% \begin{thm} Let $u_{m}^{\epsilon}(t, x)(1 \leq m \leq M)$ be a family of classical solutions to problems (10)-(13). The sequences $\widetilde{u_{m}^{\epsilon}}$ and $\widetilde{\nabla_{x} u_{m}^{\epsilon}}(1 \leq m \leq M)$ two-scale converge to: $\left[\chi(y) u_{m}(t, x)\right]$ and $\left[\chi(y)\left(\nabla_{x} u_{m}(t, x)+\nabla_{y} u_{m}^{1}(t, x, y)\right)\right](1 \leq m \leq M)$, respectively, where tilde denotes the extension by zero outside $\Omega_{\epsilon}$ and $\chi(y)$ represents the characteristic function of $Y^{*}$. The limiting functions $\left(u_{m}(t, x), u_{m}^{1}(t, x, y)\right)(1 \leq m \leq M)$ are the unique solutions in $L^{2}\left(0, T ; H^{1}(\Omega)\right) \times L^{2}\left([0, T] \times \Omega ; H_{\#}^{1}(Y) / \mathbb{R}\right)$ of the following two-scale homogenized systems.
+
+% If $m=1$ we have:
+% \begin{equation}
+%   \begin{cases}\theta \frac{\partial u_{1}}{\partial t}(t, x)-\operatorname{div}_{x}\left[d_{1} A \nabla_{x} u_{1}(t, x)\right] & \\ +\theta u_{1}(t, x) \sum_{j=1}^{M} a_{1, j} u_{j}(t, x) & \text { in }[0, T] \times \Omega \\ =d_{1} \int_{\Gamma} \psi(t, x, y) \mathrm{d} \sigma(y) & \text { on }[0, T] \times \partial \Omega \\ {\left[A \nabla_{x} u_{1}(t, x)\right] \cdot n=0} & \text { in } \Omega \\ u_{1}(0, x)=U_{1} & \end{cases}
+% \label{eq 16}\end{equation}
+
+% if $1<m<M$ we have:
+% \begin{equation}
+%   \begin{cases}\theta \frac{\partial u_{m}}{\partial t}(t, x)-\operatorname{div}_{x}\left[d_{m} A \nabla_{x} u_{m}(t, x)\right] \\ +\theta u_{m}(t, x) \sum_{j=1}^{M} a_{m, j} u_{j}(t, x) & \\ =\frac{\theta}{2} \sum_{j=1}^{m-1} a_{j, m-j} u_{j}(t, x) u_{m-j}(t, x) & \text { in }[0, T] \times \Omega \\ {\left[A \nabla_{x} u_{m}(t, x)\right] \cdot n=0} & \text { on }[0, T] \times \partial \Omega \\ u_{m}(0, x)=0 & \text { in } \Omega\end{cases}
+% \label{eq 17}\end{equation}
+
+
+% if $m=M$ we have :
+% \begin{equation}
+%   \begin{cases}\theta \frac{\partial u_{M}}{\partial t}(t, x)-d i v_{x}\left[d_{M} A \nabla_{x} u_{M}(t, x)\right] & \\ =\frac{\theta}{2} \sum_{\substack{j+k \geq M \\ k<M \\ j<M}} a_{j, k} u_{j}(t, x) u_{k}(t, x) & \text { in }[0, T] \times \Omega \\ {\left[A \nabla_{x} u_{M}(t, x)\right] \cdot n=0} & \text { on }[0, T] \times \partial \Omega \\ u_{M}(0, x)=0 & \text { in } \Omega\end{cases}
+% \label{eq 18}\end{equation}
+
+% where
+
+% $$
+% \begin{aligned}
+% u_{m}^{1}(t, x, y) &=\sum_{i=1}^{N} w_{i}(y) \frac{\partial u_{m}}{\partial x_{i}}(t, x) \quad(1 \leq m \leq M), \\
+% \theta &=\int_{Y} \chi(y) \mathrm{d} y=\left|Y^{*}\right|
+% \end{aligned}
+% $$
+% is the volume fraction of material, and $A$ is a matrix with constant coefficients defined by
+% \begin{equation*}
+% A_{i j}=\int_{Y^{*}}\left(\nabla_{y} w_{i}+\hat{e}_{i}\right) \cdot\left(\nabla_{y} w_{j}+\hat{e}_{j}\right) \mathrm{d} y\end{equation*}
+% with  $\hat{e}_{i}$ being the $ith$ unit vector in $\mathbb{R}^n$ and $(w_i)_1\leq i \leq N$ the family of solutions of the cell problem
+
+% \begin{equation}
+% \begin{cases}
+% -\operatorname{div}_{y}\left[\nabla_{y} w_{i}+\hat{e}_{i}\right]=0 & \text { in } Y^{*} \\
+% \left(\nabla_{y} w_{i}+\hat{e}_{i}\right) \cdot n=0 & \text { on } \Gamma \\
+% y \rightarrow w_{i}(y) & Y-\text { periodic }\end{cases}
+% \label{eq 19}\end{equation}
+% \label{thm 5.1}\end{thm}
+% \begin{proof}
+% In view of Lemmas \eqref{lemma 5.1}-\eqref{lemma 5.2} and \eqref{lemma 5.4}-\eqref{lemma 5.8}, the sequences $\widetilde{u_{m}^{\epsilon}}$ and $\widetilde{\nabla_{x} u_{m}^{\epsilon}}(1 \leq m \leq M)$ are bounded in $L^{2}([0, T] \times \Omega)$, and by application of Theorem \eqref{thm 7.1} and Theorem \eqref{thm 7.3}, and so:
+% \begin{equation}
+% \widetilde{u_{m}^{\epsilon}}  \overset{2s}{\rightharpoonup}
+% \left[\chi(y) u_{m}(t, x)\right]
+% \end{equation}
+% \begin{equation}
+% \widetilde{\nabla_{x} u_{m}^{\epsilon}}
+% \overset{2s}{\rightharpoonup}
+% \left[\chi(y)\left(\nabla_{x} u_{m}(t, x)+\right.\right.\left.\left.\nabla_{y} u_{m}^{1}(t, x, y)\right)\right] & (1 \leq m \leq M)
+% \end{equation}
+% Similarly, in view of Lemma \eqref{lemma 5.9}, it is possible to prove that \begin{equation}
+% \left(\widetilde{\frac{\partial u_{m}^{\epsilon}}{\partial t}}\right)
+% \overset{2s}{\rightharpoonup}
+% \left[\chi(y) \frac{\partial u_{m}}{\partial t}(t, x)\right]  & (1 \leq m \leq M)
+% \end{equation}
+% We can now find the homogenized equations satisfied by $u_{m}(t, x)$ and $u_{m}^{1}(t, x, y)$ $(1 \leq m \leq M)$.
+% In the case $m=1$, let us multiply the first equation of \eqref{eq 10} by the test function to obtain the weak formulation of the problem
+% $$
+% \phi_{\epsilon} \equiv \phi(t, x)+\epsilon \phi_{1}\left(t, x, \frac{x}{\epsilon}\right)
+% $$
+% where $\phi \in C^{1}([0, T] \times \bar{\Omega})$ and $\phi_{1} \in C^{1}\left([0, T] \times \bar{\Omega} ; C_{\#}^{\infty}(Y)\right)$. 
+% \begin{equation*}
+%     \frac{\partial u_{1}^{\epsilon}}{\partial t}\phi_{\epsilon}-\operatorname{div}\left(d_{1} \nabla_{x} u_{1}^{\epsilon}\right)\phi_{\epsilon}+u_{1}^{\epsilon} \sum_{j=1}^{M} a_{1, j} u_{1}^{\epsilon}\phi_{\epsilon}=0
+% \end{equation*}
+% Integrating, the divergence theorem yields
+% \begin{equation}
+%   \begin{aligned}
+% &\int_{0}^{T} \int_{\Omega_{\epsilon}} \frac{\partial u_{1}^{\epsilon}}{\partial t} \phi_{\epsilon}\left(t, x, \frac{x}{\epsilon}\right) \mathrm{d} t \mathrm{~d} x+d_{1} \int_{0}^{T} \int_{\Omega_{\epsilon}} \nabla_{x} u_{1}^{\epsilon} \cdot \nabla \phi_{\epsilon} \mathrm{d} t \mathrm{~d} x \\
+% &+\int_{0}^{T} \int_{\Omega_{\epsilon}} u_{1}^{\epsilon} \sum_{j=1}^{M} a_{1, j} u_{j}^{\epsilon} \phi_{\epsilon} \mathrm{d} t \mathrm{~d} x=\epsilon d_{1} \int_{0}^{T} \int_{\Gamma_{\epsilon}} \psi\left(t, x, \frac{x}{\epsilon}\right) \phi_{\epsilon} \mathrm{d} t \mathrm{~d} \sigma_{\epsilon}(x)
+% \end{aligned}
+% \label{eq 86}\end{equation}
+% Passing to the two-scale limit, we get
+% \begin{equation}
+% \begin{aligned}
+% &\int_{0}^{T} \int_{\Omega} \int_{Y^{*}} \frac{\partial u_{1}}{\partial t}(t, x) \phi(t, x) \mathrm{d} t \mathrm{~d} x \mathrm{~d} y \\
+% &\quad+d_{1} \int_{0}^{T} \int_{\Omega} \int_{Y^{*}}\left[\nabla_{x} u_{1}(t, x)+\nabla_{y} u_{1}^{1}(t, x, y)\right] \cdot\left[\nabla_{x} \phi(t, x)+\nabla_{y} \phi_{1}(t, x, y)\right] \mathrm{d} t \mathrm{~d} x \mathrm{~d} y+\\&+\int_{0}^{T} \int_{\Omega} \int_{Y^{*}} u_{1}(t, x) \sum_{j=1}^{M} a_{1, j} u_{j}(t, x) \phi(t, x) \mathrm{d} t \mathrm{~d} x \mathrm{~d} y= d_{1} \int_{0}^{T} \int_{\Omega} \int_{\Gamma} \psi(t, x, y) \phi(t, x) \mathrm{d} t \mathrm{~d} x \mathrm{~d} \sigma(y)
+% \end{aligned}
+% \label{eq 87}\end{equation}
+% The last term on the left-hand side of \eqref{eq 87} has been obtained by using Theorem \eqref{thm 7.2}, while the term on the right-hand side has been attained by application of Theorem \eqref{thm 7.5}. An integration by parts shows that \eqref{eq 87} is a variational formulation associated with the following homogenized system:
+% \begin{equation}
+%   &-\operatorname{div}_{y}\left[d_{1}\left(\nabla_{x} u_{1}(t, x)+\nabla_{y} u_{1}^{1}(t, x, y)\right)\right]=0 \quad \text { in }[0, T] \times \Omega \times Y^{*} 
+% \label{eq 88}\end{equation}
+% \begin{equation}
+%  &{\left[\nabla_{x} u_{1}(t, x)+\nabla_{y} u_{1}^{1}(t, x, y)\right] \cdot n=0 \quad \text { on }[0, T] \times \Omega \times \Gamma}
+% \label{eq 89}\end{equation}
+% \begin{equation}
+% \begin{aligned}
+% &\theta \frac{\partial u_{1}}{\partial t}(t, x)-\operatorname{div}_{x}\left[d_{1} \int_{Y^{*}}\left(\nabla_{x} u_{1}(t, x)+\nabla_{y} u_{1}^{1}(t, x, y)\right) \mathrm{d} y\right] \\&+\theta u_{1}(t, x) \sum_{j=1}^{M} a_{1, j} u_{j}(t, x)-d_{1} \int_{\Gamma} \psi(t, x, y) \mathrm{d} \sigma(y)=0 \quad \text { in }[0, T] \times \Omega
+% \end{aligned}
+% \label{eq 90}\end{equation}
+
+% \begin{equation}
+%  {\left[\int_{Y^{*}}\left(\nabla_{x} u_{1}(t, x)+\nabla_{y} u_{1}^{1}(t, x, y)\right) \mathrm{d} y\right] \cdot n=0 \quad \text { on }[0, T] \times \partial \Omega}
+% \label{eq 91}\end{equation}
+
+
+% where
+
+% $$
+% \theta=\int_{Y} \chi(y) \mathrm{d} y=\left|Y^{*}\right|
+% $$
+
+% is the volume fraction of material. To conclude, by continuity, we have that
+
+% $$
+% u_{1}(0, x)=U_{1} \quad \text { in } \Omega .
+% $$
+
+% Taking advantage of the constancy of the diffusion coefficient $d_{1}$, Eqs. \eqref{eq 88} and \eqref{eq 89} can be reexpressed as follows
+% \begin{equation}
+% \Delta_{y} u_{1}^{1}(t, x, y)=0 & \text { in }[0, T] \times \Omega \times Y^{*} 
+% \label{eq 92}\end{equation}
+% \begin{equation}
+%  \nabla_{y} u_{1}^{1}(t, x, y) \cdot n=-\nabla_{x} u_{1}(t, x) \cdot n & \text { on }[0, T] \times \Omega \times \Gamma
+% \label{eq 93}\end{equation}
+
+
+% Then, $u_{1}^{1}(t, x, y)$ satisfying (92)-(93) can be written as
+% \begin{equation}
+%  u_{1}^{1}(t, x, y)=\sum_{i=1}^{N} w_{i}(y) \frac{\partial u_{1}}{\partial x_{i}}(t, x)
+% \label{eq 94}\end{equation}
+
+
+
+% where $\left(w_{i}\right)_{1 \leq i \leq N}$ is the family of solutions of the cell problem
+% \begin{equation}
+%  \begin{cases}-\operatorname{div}_{y}\left[\nabla_{y} w_{i}+\hat{e}_{i}\right]=0 & \text { in } Y^{*} \\ \left(\nabla_{y} w_{i}+\hat{e}_{i}\right) \cdot n=0 & \text { on } \Gamma \\ y \rightarrow w_{i}(y) \quad Y-\text { periodic } & \end{cases}
+% \label{eq 95}\end{equation}
+
+
+% By using the relation \eqref{eq 94} in Eqs. \eqref{eq 90} and \eqref{eq 91}, we get
+% \begin{equation}
+%  \theta \frac{\partial u_{1}}{\partial t}(t, x)-\operatorname{div}_{x}\left[d_{1} A \nabla_{x} u_{1}(t, x)\right]+\theta u_{1}(t, x) \sum_{j=1}^{M} a_{1, j} u_{j}(t, x) \\
+% -d_{1} \int_{\Gamma} \psi(t, x, y) \mathrm{d} \sigma(y)=0 \quad \text { in }[0, T] \times \Omega
+% \label{eq 96}\end{equation}
+
+% \begin{equation}
+%  \left[A \nabla_{x} u_{1}(t, x)\right] \cdot n=0 \quad \text { on }[0, T] \times \partial \Omega
+% \label{eq 97}\end{equation}
+
+
+% where $A$ is a matrix with constant coefficients defined by
+
+% $$
+% A_{i j}=\int_{Y^{*}}\left(\nabla_{y} w_{i}+\hat{e}_{i}\right) \cdot\left(\nabla_{y} w_{j}+\hat{e}_{j}\right) \mathrm{d} y .
+% $$
+
+% In the case $1<m<M$, let us multiply the first equation of \eqref{eq 12} by the test function
+% $$
+% \phi_{\epsilon} \equiv \phi(t, x)+\epsilon \phi_{1}\left(t, x, \frac{x}{\epsilon}\right)
+% $$
+
+% where $\phi \in C^{1}([0, T] \times \bar{\Omega})$ and $\phi_{1} \in C^{1}\left([0, T] \times \bar{\Omega} ; C_{\#}^{\infty}(Y)\right)$. Following the same arguments as before: integrating, and using the divergence theorem 
+% \begin{equation}
+%  \begin{aligned}
+% &\int_{0}^{T} \int_{\Omega_{\epsilon}} \frac{\partial u_{m}^{\epsilon}}{\partial t} \phi_{\epsilon}\left(t, x, \frac{x}{\epsilon}\right) \mathrm{d} t \mathrm{~d} x+d_{m} \int_{0}^{T} \int_{\Omega_{\epsilon}} \nabla_{x} u_{m}^{\epsilon} \cdot \nabla \phi_{\epsilon} \mathrm{d} t \mathrm{~d} x \\
+% &\quad+\int_{0}^{T} \int_{\Omega_{\epsilon}} u_{m}^{\epsilon} \sum_{j=1}^{M} a_{m, j} u_{j}^{\epsilon} \phi_{\epsilon} \mathrm{d} t \mathrm{~d} x \\
+% &=\frac{1}{2} \int_{0}^{T} \int_{\Omega_{\epsilon}} \sum_{j=1}^{m-1} a_{j, m-j} u_{j}^{\epsilon} u_{m-j}^{\epsilon} \phi_{\epsilon} \mathrm{d} t \mathrm{~d} x
+% \end{aligned}
+% \label{eq 98}\end{equation}
+
+
+% Passing to the two-scale limit, we get 
+% \begin{equation}
+%  \begin{aligned}
+% \int_{0}^{T} & \int_{\Omega} \int_{Y^{*}} \frac{\partial u_{m}}{\partial t}(t, x) \phi(t, x) \mathrm{d} t \mathrm{~d} x \mathrm{~d} y \\
+% &+d_{m} \int_{0}^{T} \int_{\Omega} \int_{Y^{*}}\left[\nabla_{x} u_{m}(t, x)+\nabla_{y} u_{m}^{1}(t, x, y)\right] \cdot\left[\nabla_{x} \phi(t, x)+\nabla_{y} \phi_{1}(t, x, y)\right] \mathrm{d} t \mathrm{~d} x \mathrm{~d} y \\
+% &+\int_{0}^{T} \int_{\Omega} \int_{Y^{*}} u_{m}(t, x) \sum_{j=1}^{M} a_{m, j} u_{j}(t, x) \phi(t, x) \mathrm{d} t \mathrm{~d} x \mathrm{~d} y \\
+% &=\frac{1}{2} \int_{0}^{T} \int_{\Omega} \int_{Y^{*}} \sum_{j=1}^{m-1} a_{j, m-j} u_{j}(t, x) u_{m-j}(t, x) \phi(t, x) \mathrm{d} t \mathrm{~d} x \mathrm{~d} y
+% \end{aligned}
+% \label{eq 99}\end{equation}
+
+
+% The last term on the left-hand side of \eqref{eq 99} and the term on the right-hand side have been obtained by using Theorem \eqref{thm 7.1}. An integration by parts shows that \eqref{eq 99} is a variational formulation associated with the following homogenized system:
+% \begin{equation}
+%  -\operatorname{div}_{y}\left[d_{m}\left(\nabla_{x} u_{m}(t, x)+\nabla_{y} u_{m}^{1}(t, x, y)\right)\right]=0 \quad \text { in }[0, T] \times \Omega \times Y^{*}
+% \label{eq 100}\end{equation}
+% \begin{equation}
+%  \left[\nabla_{x} u_{m}(t, x)+\nabla_{y} u_{m}^{1}(t, x, y)\right] \cdot n=0 \quad \text { on }[0, T] \times \Omega \times \Gamma
+% \label{eq 101}\end{equation}
+% \begin{equation}
+% \begin{aligned}
+% &\theta \frac{\partial u_{m}}{\partial t}(t, x)-\operatorname{div}_{x}\left[d_{m} \int_{Y^{*}}\left(\nabla_{x} u_{m}(t, x)+\nabla_{y} u_{m}^{1}(t, x, y)\right) \mathrm{d} y\right] \\
+% &\quad+\theta u_{m}(t, x) \sum_{j=1}^{M} a_{m, j} u_{j}(t, x) \\
+% &\quad-\frac{\theta}{2} \sum_{j=1}^{m-1} a_{j, m-j} u_{j}(t, x) u_{m-j}(t, x)=0 \text { in }[0, T] \times \Omega
+% \end{aligned}
+% \label{eq 102}\end{equation}
+% \begin{equation}
+%  \left[\int_{Y^{*}}\left(\nabla_{x} u_{m}(t, x)+\nabla_{y} u_{m}^{1}(t, x, y)\right) \mathrm{d} y\right] \cdot n=0 \quad \text { on }[0, T] \times \partial \Omega
+% \label{eq 103}\end{equation}
+% where
+% $$
+% \theta=\int_{Y} \chi(y) \mathrm{d} y=\left|Y^{*}\right|
+% $$
+% is the volume fraction of material. Moreover, by continuity
+% $$
+% u_{m}(0, x)=0 \quad \text { in } \Omega .
+% $$
+% Taking advantage of the constancy of the diffusion coefficient $d_{m}$, Eqs. \eqref{eq 100} and \eqref{eq 101} can be reexpressed as follows
+% \begin{equation}
+%  \Delta_{y} u_{m}^{1}(t, x, y)=0 & \text { in }[0, T] \times \Omega \times Y^{*}
+% \label{eq 104}\end{equation}
+% \begin{equation}
+%  \nabla_{y} u_{m}^{1}(t, x, y) \cdot n=-\nabla_{x} u_{m}(t, x) \cdot n & \text { on }[0, T] \times \Omega \times \Gamma
+% \label{eq 105}\end{equation}
+% Then, $u_{m}^{1}(t, x, y)$ satisfying \eqref{eq 104}-\eqref{eq 105} can be written as 
+% \begin{equation}
+%  u_{m}^{1}(t, x, y)=\sum_{i=1}^{N} w_{i}(y) \frac{\partial u_{m}}{\partial x_{i}}(t, x)
+% \label{eq 106}\end{equation}
+% where $\left(w_{i}\right)_{1 \leq i \leq N}$ is the family of solutions of the cell problem
+% \begin{equation}
+%  \left\{\begin{array}{lc}
+% -\operatorname{div}_{y}\left[\nabla_{y} w_{i}+\hat{e}_{i}\right]=0 & \text { in } Y^{*} \\
+% \left(\nabla_{y} w_{i}+\hat{e}_{i}\right) \cdot n=0 & \text { on } \Gamma \\
+% y \rightarrow w_{i}(y) \quad Y-\text { periodic } &
+% \end{array}\right.
+% \label{eq 107}\end{equation}
+% By using the relation \eqref{eq 106} in Eqs. \eqref{eq 102}and \eqref{eq 103}, we get
+% \begin{equation}
+%  \begin{aligned}
+% &\theta \frac{\partial u_{m}}{\partial t}(t, x)-\operatorname{div}_{x}\left[d_{m} A \nabla_{x} u_{m}(t, x)\right]+\theta u_{m}(t, x) \sum_{j=1}^{M} a_{m, j} u_{j}(t, x) \\
+% &-\frac{\theta}{2} \sum_{j=1}^{m-1} a_{j, m-j} u_{j}(t, x) u_{m-j}(t, x)=0 \quad \text { in }[0, T] \times \Omega \end{aligned}
+% \label{eq 108}\end{equation}
+% \begin{equation}
+%  \left[A \nabla_{x} u_{m}(t, x)\right] \cdot n=0 \quad \text { on }[0, T] \times \partial \Omega
+% \label{eq 109}\end{equation}
+% where $A$ is a matrix with constant coefficients defined by
+% $$
+% A_{i j}=\int_{Y^{*}}\left(\nabla_{y} w_{i}+\hat{e}_{i}\right) \cdot\left(\nabla_{y} w_{j}+\hat{e}_{j}\right) \mathrm{d} y .
+% $$
+% The proof for the case $m=M$ is achieved by applying exactly the same arguments considered when $1<m<M$.
+% \end{proof}
+% Theorem \eqref{thm 5.1} shows that the macroscale (homogenized) model, obtained from Eqs. \eqref{eq 10}-\eqref{eq 13} as $\epsilon \rightarrow 0$, is asymptotically consistent with the original model and resolves both the coarse and the small scale. The information given on the microscale, by the non-homogeneous Neumann boundary condition in \eqref{eq 10}, is transferred into the source term in the first equation of \eqref{eq 16}, describing the limit model. Furthermore, on the macroscale, the geometric structure of the perforated domain induces a correction in that the scalar diffusion coefficients $d_{i}(1 \leq i \leq M)$, defined at the microscale, are replaced by a tensorial quantity with constant coefficients.
+
+% \section{Conclusions and final remarks}
+% The model we just presented can be related to the one introduced in Bertsch et al. (2016), where the process of diffusion and agglomeration of $\mathrm{A} \beta$ is described on the macroscale by a Smoluchowski system with a source term, coupled with a kinetic-type transport equation for the distribution function of the degree of malfunctioning of neurons that keeps into account the spreading of the disease through a neuron-to-neuron prion-like transmission. At the beginning of our analysis we said that the $\psi(t,x,y)$ is a given for our model. In particular, the mathematical analysis carried out in this paper can be regarded as a formal derivation (that is, neglecting regularity issues), starting from the microscale, of the source term $\mathcal{F}$, introduced in the second equation of (2.16) in Bertsch et al. (2016), in order to describe the production of $\mathrm{A} \beta$ in monomeric form by neurons. A comparison between the model Eq. \eqref{eq 16} and the second equation of (2.16) in Bertsch et al. (2016) allows us to make the following choice of the function $\psi(t, x, y)$ appearing in \eqref{eq 16}:
+% \begin{equation}
+%   \psi(t, x, y)=C_{\mathcal{F}} \int_{0}^{1}\left(\mu_{0}+a\right)(1-a) f(x, a, t) \mathrm{d} a g(y)
+% \label{eq 110}\end{equation}
+% with
+% $$
+% \int_{\Gamma} g(y) \mathrm{d} \sigma(y)=\text { const. }
+% $$
+% In Eq. \eqref{eq 110}, the parameter $a \in[0,1]$ describes the degree of malfunctioning of a neuron: $a$ close to 0 stands for 'the neuron is healthy,' whereas $a$ close to 1 for 'the neuron is dead.' Given $x \in \Omega, t \geq 0$ and $a \in[0,1]$,
+% $$
+% f(x, a, t) \mathrm{d} a
+% $$
+% indicates the fraction of neurons close to $x$ with degree of malfunctioning at time $t$ between $a$ and $a+d a$. Furthermore, the small constant $\mu_{0}>0$ in \eqref{eq 110} accounts for $\mathrm{A} \beta$ production by healthy neurons. In Bertsch et al. (2016), an evolution equation for the distribution function $f$ has been proposed:
+% \begin{equation}
+%   \partial_{t} f+\partial_{a}(f v[f])=J[f]
+% \label{eq 111}\end{equation}
+% where $v=v(x, a, t)$ indicates the deterioration rate of the health state of the neurons. We assume that
+% \begin{equation}
+%   v[f]=\iint_{\Omega \times[0,1]} \mathcal{K}(x, a, y, b) f(y, b, t) \mathrm{d} y \mathrm{~d} b .
+% \label{eq 112}\end{equation}
+% The integral term describes the possible prion-like propagation of AD through the neural pathway. Malfunctioning neighbors are harmful for a neuron's health state, while healthy ones are not:
+% $$
+% \begin{array}{rr}
+% \mathcal{K}(x, a, y, b) \geq 0 & \forall x, y \in \Omega, a, b \in[0,1], \\
+% \mathcal{K}(x, a, y, b)=0 & \text { if } a>b .
+% \end{array}
+% $$
+% The term $J[f]$ in \eqref{eq 111}accounts for the onset of AD, since it is written in terms of the probability that, in randomly chosen parts of the cerebral tissue, the degree of malfunctioning of neurons randomly jumps to higher values due to external agents or genetic factors. What prevents our homogenization results from being considered a fully rigorous derivation of the source term $\mathcal{F}$, appearing in the second equation of (2.16) in Bertsch et al. (2016), is the fact that the solutions of Eq. \eqref{eq 111} do not satisfy, in general, all the regularity properties assumed on $\psi$. However, Eq. \eqref{eq 110} allows us to establish a link, at least formally, between the limit model derived here and the one presented in Bertsch et al. (2016), suggesting a possible choice for $\psi$, considered, in the present paper, as a generic given function.
+% It is worth noting that the plots of $f$, at different times, can be directly compared with medical fluorodeoxyglucose PET images (Bertsch et al. 2016). The numerical simulations reported in Bertsch et al. (2016) are in good qualitative agreement with clinical images of the disease distribution in the brain which vary from early to advanced stages.
+% It's good to notice that the homogenization theory works in every perforated domain so we can follow the previous arguments to homogenize every system in a random perforated domain.
+% \begin{thebibliography}{9}
+% \bibitem{FL}
+% Bruno Franchi, Silvia Lorenzani (2016):\emph{From a Microscopic to a Macroscopic Model for Alzheimer Disease: Two-Scale Homogenization of the Smoluchowski Equation in Perforated Domain}, Journal of Nonlinear Science.
+% \bibitem{AQ}
+% Alfio Quarteroni (2017): \emph{Numerical Models for Differential Problems}, Springer, 3rd ed.
+% \bibitem{fg}
+%  Ferrero,M., Gazzola, F., Zanotti, M.(2013): \emph{Elementi di Analisi Superiore per la fisica e l'ingegneria}, Escualipo
+%  \bibitem{bertsh}
+% Bertsh, M., Franchi, B., Marcello, N., Tesi, M.C., Tosin, A.:\emph{Alzheimer's disease: a mathematical model for onset and progression}. Med. Biol. (2016 in press)
+% \end{thebibliography}
+
+% \appendix
+% \section{Appendix A}
+% \begin{lemma} The following estimate holds: if $v \in \operatorname{Lip}\left(\Omega_{\epsilon}\right)$, then
+% \begin{equation}
+%   \|v\|_{L^{2}\left(\Gamma_{\epsilon}\right)}^{2} \leq C_{1}\left[\epsilon^{-1} \int_{\Omega_{\epsilon}}|v|^{2} \mathrm{~d} x+\epsilon \int_{\Omega_{\epsilon}}\left|\nabla_{x} v\right|^{2} \mathrm{~d} x\right]
+% \label{eq 113}\end{equation}
+
+
+% where $C_{1}$ is a constant which does not depend on $\epsilon$.
+% \label{lemma 7.1}\end{lemma}
+% The inequality \eqref{eq 113} can be easily obtained from the standard trace theorem by means of a scaling argument (Allaire et al. 1996; Chiadò Piat and Piatnitski 2010; Chiadò Piat et al. 2012).
+
+% \begin{lemma}
+  
+%  Suppose that the domain $\Omega_{\epsilon}$ is such that assumption \eqref{eq 8} is satisfied. Then, there exists a family of linear continuous extension operators
+
+% $$
+% P_{\epsilon}: W^{1, p}\left(\Omega_{\epsilon}\right) \rightarrow W^{1, p}(\Omega)
+% $$
+
+% and a constant $C>0$ independent of $\epsilon$ such that
+
+% $$
+% P_{\epsilon} v=v \quad \text { in } \Omega_{\epsilon}
+% $$
+
+% and
+% \begin{equation}
+%   \int_{\Omega}\left|P_{\epsilon} v\right|^{p} \mathrm{~d} x \leq C \int_{\Omega_{\epsilon}}|v|^{p} \mathrm{~d} x,
+% \label{eq 114}\end{equation}
+% \begin{equation}
+%   \int_{\Omega}\left|\nabla\left(P_{\epsilon} v\right)\right|^{p} \mathrm{~d} x \leq C \int_{\Omega_{\epsilon}}|\nabla v|^{p} \mathrm{~d} x
+% \label{eq 115}\end{equation}
+
+% for each $v \in W^{1, p}\left(\Omega_{\epsilon}\right)$ and for any $p \in(1,+\infty)$.
+% \label{lemma 7.2}\end{lemma}
+
+
+% As a consequence of the existence of extension operators, one can derive the Sobolev inequalities in $W^{1, p}\left(\Omega_{\epsilon}\right)$ with a constant independent of $\epsilon$.
+
+% \begin{lemma} (Anisotropic Sobolev inequalities in perforated domains)
+
+% (i) For arbitrary $v \in H^{1}\left(0, T ; L^{2}\left(\Omega_{\epsilon}\right)\right) \cap L^{2}\left(0, T ; H^{1}\left(\Omega_{\epsilon}\right)\right)$ and $q_{1}$ and $r_{1}$ satisfying the conditions
+% \begin{equation}
+%   \left\{\begin{array}{l}
+% \frac{1}{r_{1}}+\frac{N}{2 q_{1}}=\frac{N}{4} \\
+% r_{1} \in[2, \infty], q_{1} \in\left[2, \frac{2 N}{N-2}\right] \quad \text { for } N>2
+% \end{array}\right.
+% \label{eq 116}\end{equation}
+
+% the following estimate holds
+% \begin{equation}
+%   \|v\|_{L^{r_{1}}\left(0, T ; L^{q_{1}}\left(\Omega_{\epsilon}\right)\right)} \leq c\|v\|_{Q_{\epsilon}(T)}
+% \label{eq 117}\end{equation}
+% where $\mathrm{c}$ is a positive constant independent of $\epsilon$ and
+% \begin{equation}
+%   \|v\|_{Q_{\epsilon}(T)}^{2}:=\sup _{0 \leq t \leq T} \int_{\Omega_{\epsilon}}|v(t)|^{2} \mathrm{~d} x+\int_{0}^{T} \mathrm{~d} t \int_{\Omega_{\epsilon}}|\nabla v(t)|^{2} \mathrm{~d} x
+% \label{eq 118}\end{equation}
+
+
+% (ii) For arbitrary $v \in H^{1}\left(0, T ; L^{2}\left(\Omega_{\epsilon}\right)\right) \cap L^{2}\left(0, T ; H^{1}\left(\Omega_{\epsilon}\right)\right)$ and $q_{2}$ and $r_{2}$ satisfying the conditions
+% \begin{equation}
+%   \left\{\begin{array}{l}
+% \frac{1}{r_{2}}+\frac{(N-1)}{2 q_{2}}=\frac{N}{4} \\
+% r_{2} \in[2, \infty], q_{2} \in\left[2, \frac{2(N-1)}{(N-2)}\right] \quad \text { for } N \geq 3
+% \end{array}\right.
+% \label{eq 119}\end{equation}
+
+
+% the following estimate holds
+% \begin{equation}
+%   \|v\|_{L^{r_{2}}\left(0, T ; L^{q_{2}}\left(\Gamma_{\epsilon}\right)\right)} \leq c \epsilon^{-\frac{N}{2}-\frac{(1-N)}{q_{2}}}\|v\|_{Q_{\epsilon}(T)}
+% \label{eq 120}\end{equation}
+
+
+% where $c$ is a positive constant independent of $\epsilon$ and the norm $\|v\|_{Q_{\epsilon}(T)}$ is defined as in \eqref{eq 118}.
+% \label{lemma 7.3}\end{lemma}
+% \begin{proof}
+% (i) The extension Lemma \eqref{lemma 7.2} ensures the well definiteness of a linear continuous extension operator $P_{\epsilon}$ which satisfies \eqref{eq 114} and \eqref{eq 115}. By the classical multiplicative Sobolev inequalities valid in $\Omega$ (see Ladyzenskaja et al. 1968 and Nittka 2014), we have that
+% \begin{equation}
+%   \left\|P_{\epsilon} v\right\|_{L_{1}^{r_{1}}\left(0, T ; L^{q_{1}(\Omega)}\right.} \leq c_{1}\left\|P_{\epsilon} v\right\|_{Q(T)}
+% \label{eq 121}\end{equation}
+
+
+% where $c_{1} \geq 0$ depends only on $\Omega, r_{1}, q_{1}$, with $r_{1}$ and $q_{1}$ satisfying the conditions \eqref{eq 116} and
+% \begin{equation}
+%   \left\|P_{\epsilon} v\right\|_{Q(T)}^{2}:=\sup _{0 \leq t \leq T} \int_{\Omega}\left|P_{\epsilon} v(t)\right|^{2} \mathrm{~d} x+\int_{0}^{T} \mathrm{~d} t \int_{\Omega}\left|\nabla\left(P_{\epsilon} v(t)\right)\right|^{2} \mathrm{~d} x
+% \label{eq 122}\end{equation}
+
+% By using \eqref{eq 114},\eqref{eq 115} and \eqref{eq 121}, we conclude that
+% \begin{equation}
+%   \begin{aligned}
+% \|v\|_{L^{r_{1}}\left(0, T ; L^{q_{1}}\left(\Omega_{\epsilon}\right)\right)} & \leq C^{\prime}\left\|P_{\epsilon} v\right\|_{L^{r_{1}}\left(0, T ; L^{q_{1}}(\Omega)\right)} \\
+% & \leq C^{\prime} c_{1}\left\|P_{\epsilon} v\right\|_{Q(T)} \leq C^{\prime} c_{1} C\|v\|_{Q_{\epsilon}(T)}
+% \end{aligned}
+% \label{eq 123}\end{equation}
+
+
+% where $c:=C^{\prime} c_{1} C$ is independent of $\epsilon$.
+
+% (ii) Let us rewrite the anisotropic Sobolev inequality valid on $\partial \Omega$ (see Ladyzenskaja et al. 1968 and Nittka 2014):
+% \begin{equation}
+%   \begin{aligned}
+% &{\left[\int_{0}^{T} \mathrm{~d} t\left[\int_{\partial \Omega}|v(t)|^{q_{2}} d \mathcal{H}^{N-1}\right]^{\frac{r_{2}}{q_{2}}}\right]^{\frac{1}{r_{2}}}} \\
+% &\leq c_{1}\left[\sup _{0 \leq t \leq T} \int_{\Omega}|v(t)|^{2} \mathrm{~d} y+\int_{0}^{T} \mathrm{~d} t \int_{\Omega}|\nabla v(t)|^{2} \mathrm{~d} y\right]^{1 / 2}
+% \end{aligned}
+% \label{124}\end{equation}
+% where $c_{1} \geq 0$ depends only on $r_{2}, q_{2}$ and on local properties of the surface $\partial \Omega$ (which is assumed to be piecewise smooth) with $r_{2}$ and $q_{2}$ satisfying the conditions \eqref{eq 119}. By performing the change of variable $y=\frac{x}{\epsilon}$, it is easy to obtain the corresponding re-scaled estimates:
+% \begin{equation}
+%   \begin{aligned}
+% &\epsilon^{\frac{(1-N)}{q_{2}}}\left[\int_{0}^{T} \mathrm{~d} t\left[\int_{\Gamma_{\epsilon}}|v(t)|^{q_{2}} d \mathcal{H}^{N-1}\right]^{\frac{r_{2}}{q_{2}}}\right]^{\frac{1}{r_{2}}} \\
+% &\quad \leq c_{1} \epsilon^{-\frac{N}{2}}\left[\sup _{0 \leq t \leq T} \int_{\Omega_{\epsilon}}|v(t)|^{2} \mathrm{~d} x+\epsilon^{2} \int_{0}^{T} \mathrm{~d} t \int_{\Omega_{\epsilon}}|\nabla v(t)|^{2} \mathrm{~d} x\right]^{1 / 2} \\
+% \end{aligned}
+% \label{eq 125}\end{equation}
+% \begin{equation}
+% \begin{aligned}
+% &{\left[\int_{0}^{T} \mathrm{~d} t\left[\int_{\Gamma_{\epsilon}}|v(t)|^{q_{2}} d \mathcal{H}^{N-1}\right]^{\frac{r_{2}}{q_{2}}}\right]^{\frac{1}{r_{2}}}} \\
+% &\quad \leq c \epsilon^{-\frac{N}{2}-\frac{(1-N)}{q_{2}}}\left[\sup _{0 \leq t \leq T} \int_{\Omega_{\epsilon}}|v(t)|^{2} \mathrm{~d} x+\int_{0}^{T} \mathrm{~d} t \int_{\Omega_{\epsilon}}|\nabla v(t)|^{2} \mathrm{~d} x\right]^{1 / 2}
+% \end{aligned}
+% \label{eq 126}\end{equation}
+
+% where $c$ is a positive constant independent of $\epsilon$.
+% \end{proof}
+
+\end{document}
+
+

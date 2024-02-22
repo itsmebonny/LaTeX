@@ -1,0 +1,19 @@
+\section{Smoluchowski equation}
+Let's introduce the concept of $i$ cluster which is a cluster of polymers of length $i$: $i $ identical particles (polymers formed by $i$ monomers). Indicate with $u_{i}\geq0$ the concentration of the cluster, and suppose these clusters diffuse with diffusion coefficient $d_{i}>0$.
+We can model this phenomena with a nonlinear equation: the Smoluchowski equation
+\begin{equation}
+\frac{\partial u_{i}}{\partial t}(t, x)-d_{i} \triangle_{x} u_{i}(t, x)=Q_{i}(u) \quad i \geq 1
+\label{SmoluchowskiEquation}\end{equation} 
+Where $Q_{i}(u)=Q_{g,i}(u)-Q_{l,i}(u)$ is the gain term minus the loss term which  are defined in this way:\\
+
+$$
+\begin{aligned}
+&Q_{g, i}=\frac{1}{2} \sum_{j=1}^{i-1} a_{i-j, j} u_{i-j} u_{j} \\
+&Q_{l, i}=u_{i} \sum_{j=1}^{\infty} a_{i, j} u_{j}
+\end{aligned}
+$$
+$Q_{g,i}$ describes the increasing of concentrations of the cluster of length $i$,
+$Q_{l,i}$ describes the depletion of the polymers of size $i$.
+An important role is played by the coagulation coefficients $a_{i-i,j}$ which describe a situation where a polymer $i-j$ coagulates with a polymer of length $i$ to form one of length $j$, they are symmetric, indeed $a_{i,j}=a_{j,i}$.\\
+The \eqref{SmoluchowskiEquation} is non linear and of infinite dimension: the existence and uniqueness of the solution is not guaranteed by the theory of reaction and diffusion equation. The existence of the solution as a matter of facts depends on the choice of the coagulation coefficients, of which an explicit expression is given in Bretsch Et Al. \\
+If there are no sources the total mass of the clusters will be conserved, but actually this is not true. In fact a particular choice of the coefficients produces a non-conservation of the total mass due to the appearance of an infinite cluster called gel, which is born from the growth of longer and longer clusters (this is known as gelation phenomenon), but we will not discuss it in this paper.
