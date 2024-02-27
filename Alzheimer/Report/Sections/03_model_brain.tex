@@ -3,13 +3,13 @@ As mentioned above, in our brain there exists a protein called \(\beta\) amyloid
 \subsection{Model for the brain}
 The portion of cerebral tissue considered  in the following is represented by a bounded smooth region $\Omega_{0}\subset \mathbb{R}^3$, whereas the neurons are represented by a family of regular region $\Omega_{j}$ such that:
 \begin{enumerate}[label=(\roman*)]
-    \item $\bar\Omega_{j}\subset \Omega_{0}$  if   $j=1,2,\dots,\bar{M}$,\\
-    \item $\bar\Omega_{i}\cap \bar\Omega_{j}= \emptyset$  if $i\neq j$.\\
+    \item $\bar\Omega_{j}\subset \Omega_{0}$  if   $j=1,2,\dots,\bar{M}$,
+    \item $\bar\Omega_{i}\cap \bar\Omega_{j}= \emptyset$  if $i\neq j$.
 \end{enumerate}
 Let us set 
 $$
 \Omega := \Omega_{0} \setminus
-\bigcup_{j=1}^{\bar M} \bar\Omega_{j}
+\bigcup_{j=1}^{\bar M} \bar\Omega_{j},
 $$
 \begin{figure}[H]
     \centering
@@ -17,8 +17,8 @@ $$
     \caption{The perforated domain $\Omega$ representing the cerebral tissue. The neurons are represented by the holes.}
     \label{fig:perforated_domain}
   \end{figure}
-and consider the vector-valued function $u=(u_1,\dots, u_M)$, where $u_j=u_j(t,x)$ $(t\geq 0, t\in \mathbb{R}$ and $x\in \Omega)$ is the molar concentration at the point $x$ and at the time $t$ of an \(\beta\) assembly of $j$ monomers, while $u_M$ takes into account the aggregation of more than $M-1$ monomers. With the definition of $u_M$ we are assuming that 'large' assemblies do not aggregate to each other.\\
-In this section we briefly present the modelization of our problem. We are considering three different stages of the aggregation of our \(\beta\): we can model its concentration with $u_{i}$ with $1\leq i \leq m < M$.
+and consider the vector-valued function $u=(u_1,\dots, u_M)$, where $u_j=u_j(t,x)$ $(t\geq 0, t\in \mathbb{R}$ and $x\in \Omega)$ is the molar concentration at the point $x$ and at the time $t$ of a \(\beta\) assembly of $j$ monomers, while $u_M$ takes into account the aggregation of more than $M-1$ monomers. With the definition of $u_M$ we are assuming that 'large' assemblies do not aggregate to each other.\\
+In this section we briefly present the modeling of our problem. We are considering three different stages of the aggregation of our \(\beta\): we can model its concentration with $u_{i}$ with $1\leq i \leq m < M$.
 The $u_{1}$ describes the concentration of monomers with the following Diffusion-Reaction equation: 
 $$
 \frac{\partial u_{1}}{\partial t}(t, x)-d_{1} \Delta_{x} u_{1}(t, x)+u_{1}(t, x) \sum_{j=1}^{M} a_{1, j} u_{j}(t, x)=0\\
