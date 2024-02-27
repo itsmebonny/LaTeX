@@ -21,7 +21,6 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage[T1]{fontenc} % Font encoding
-
 % PACKAGES FOR IMAGES
 \usepackage{graphicx}
 \graphicspath{{Images/}} % Path for images' folder
@@ -94,6 +93,7 @@
 \usepackage{xifthen}
 \usepackage{pdfpages}
 \usepackage{transparent}
+\usepackage{wrapfig}
 
 \newcommand{\incfig}[1]{%
     \def\svgwidth{\columnwidth}
@@ -107,20 +107,23 @@
 
 % Insert here the info that will be displayed into your Title page
 % -> title of your work
-\renewcommand{\title}{Title}
+\renewcommand{\title}{\noindent A Mathematical Model for Alzheimer Disease:
+
+from Microscopic to a Macroscopic Model using
+the Two-Scale Homogenization Theory}
 
 % -> author name and surname
-\renewcommand{\author}{Ilaria Bonfanti}
+\renewcommand{\author}{Andrea Bonifacio}
 % -> MSc course
 \newcommand\norm[1]{\lVert#1\rVert}
-\newcommand{\course}{course name}
+\newcommand{\course}{Methods and Models for Statistical Mechanics}
 % -> advisor name and surname
-\newcommand{\advisor}{prof}
+\newcommand{\advisor}{prof. Silvia Lorenzani}
 % IF AND ONLY IF you need to modify the co-supervisors you also have to modify the file Configuration_files/title_page.tex (ONLY where it is marked)
 %\newcommand{\firstcoadvisor}{Name Surname} % insert if any otherwise comment
 %\newcommand{\secondcoadvisor}{Name Surname} % insert if any otherwise comment
 % -> academic year
-\newcommand{\YEAR}{2021-2022}
+\newcommand{\YEAR}{2023-2024}
 
 %-------------------------------------------------------------------------
 %	BEGIN OF YOUR DOCUMENT
@@ -137,14 +140,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%     THESIS MAIN TEXT     %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Little preview
+In this work will be presented a mathematical model for Alzheimer's disease (AD) at the microscopic scale. The model will be derived from the Smoluchowski equation, which describes the evolution of the density of diffusing particles that coagulate in pairs. Then will be proved that the model two-scale converges to a macroscopic model asymptotically consistent with the original one.Indeed, the information given on the microscale by the non-homogeneous Neumann boundary condition is transferred into a source term appearing in the limiting (homogenized) equations. Furthermore, on the macroscale, the geometric structure of the perforated domain induces a correction in that the scalar diffusion coefficients defined at the microscale are replaced by tensorial quantities.
 %-----------------------------------------------------------------------------
 % INTRODUCTION
 %-----------------------------------------------------------------------------
 
-% \input{Sections/01_introduction}
-% \input{Sections/02_Smoluchowski}
- \input{Sections/03_model_brain}
+\input{Sections/01_introduction}
+\input{Sections/02_Smoluchowski}
+\input{Sections/03_model_brain}
 
 %-----------------------------------------------------------------------------
 % CONCLUSION
