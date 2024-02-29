@@ -85,6 +85,7 @@
 %	ADD YOUR PACKAGES (be careful of package interaction)
 %----------------------------------------------------------------------------
 \usepackage{amsfonts} 
+\usepackage[font=footnotesize,labelfont=bf]{caption}
 
 %----------------------------------------------------------------------------
 %	ADD YOUR DEFINITIONS AND COMMANDS (be careful of existing commands)
@@ -95,11 +96,35 @@
 \usepackage{transparent}
 \usepackage{wrapfig}
 
+\parindent=0pt
+
 \newcommand{\incfig}[1]{%
     \def\svgwidth{\columnwidth}
     \import{./Images/}{#1.pdf_tex}
 }
+\newcommand*{\oldepsilon}{\epsilon}
+\renewcommand*{\epsilon}{\varepsilon}
 
+
+%----------------------------------------------------------------------------
+%	CONFIGURATION OF THEOREM ENVIRONMENTS
+
+
+% \newtheoremstyle{break}
+%     {\partopsep}{\topsep}%  
+%     {\normalfont}{}
+%     {\bfseries}{}%
+%     {\newline}{}%
+% \theoremstyle{break}
+% \newtheorem{theorem}{Theorem}[section]
+% \newtheorem{corollary}{Corollary}[section]
+% \newtheorem{proposition}{Proposition}[section]
+% \newtheorem{remark}{Remark}[section]
+% \newtheorem{lemma}{Lemma}[section]
+% \newtheorem{notation}{Notation}[section]
+% \newtheorem{definition}{Definition}[section]
+
+%----------------------------------------------------------------------------
 
 % Do not change Configuration_files/config.tex file unless you really know what you are doing.
 % This file ends the configuration procedures (e.g. customizing commands, definition of new commands)
@@ -129,7 +154,6 @@ the Two-Scale Homogenization Theory}
 %	BEGIN OF YOUR DOCUMENT
 %-------------------------------------------------------------------------
 \begin{document}
-
 %-----------------------------------------------------------------------------
 % TITLE PAGE
 %-----------------------------------------------------------------------------
