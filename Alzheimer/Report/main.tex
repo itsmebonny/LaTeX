@@ -124,6 +124,11 @@
 % \newtheorem{notation}{Notation}[section]
 % \newtheorem{definition}{Definition}[section]
 
+\newtheorem{definition}{Definition}[section]
+
+\newtheorem*{remark}{Remark}
+
+\newtheorem{lemma}{Lemma}[section]
 %----------------------------------------------------------------------------
 
 % Do not change Configuration_files/config.tex file unless you really know what you are doing.
@@ -164,7 +169,7 @@ the Two-Scale Homogenization Theory}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%     THESIS MAIN TEXT     %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In this work will be presented a mathematical model for Alzheimer's disease (AD) at the microscopic scale. The model will be derived from the Smoluchowski equation, which describes the evolution of the density of diffusing particles that coagulate in pairs. Then will be proved that the model two-scale converges to a macroscopic model asymptotically consistent with the original one.Indeed, the information given on the microscale by the non-homogeneous Neumann boundary condition is transferred into a source term appearing in the limiting (homogenized) equations. Furthermore, on the macroscale, the geometric structure of the perforated domain induces a correction in that the scalar diffusion coefficients defined at the microscale are replaced by tensorial quantities.
+In this work will be presented a mathematical model for Alzheimer's disease (AD) at the microscopic scale. The model will be derived from the Smoluchowski equation, which describes the evolution of the density of diffusing particles that coagulate in pairs. Then will be proved that the model two-scale converges to a macroscopic model asymptotically consistent with the original one.Indeed, the information given on the microscale by the non-homogeneous Neumann boundary condition is transferred into a source term appearing in the limiting (homogenized) equations.
 %-----------------------------------------------------------------------------
 % INTRODUCTION
 %-----------------------------------------------------------------------------
@@ -172,6 +177,8 @@ In this work will be presented a mathematical model for Alzheimer's disease (AD)
 \input{Sections/01_introduction}
 \input{Sections/02_Smoluchowski}
 \input{Sections/03_model_brain}
+\input{Sections/04_two_scale_convergence}
+\input{Sections/05_useful_theorems}
 
 %-----------------------------------------------------------------------------
 % CONCLUSION
