@@ -12,10 +12,10 @@ This definition makes sense because of the next compactness theorem
 If $v^{\epsilon}$ is a bounded sequence in $ L^2([ 0 ,T]\times\Omega) $, then there exist a function $v_{0}(t,x,y) \in   L^2([0,T]\times\Omega \times Y)$ s.t. $v^{\epsilon}$ two-scale converges to $v_{0}$, we write: 
 $v^{\epsilon} \overset{2s}{\rightharpoonup} v_{0}$.
 \label{thm 7.1}\end{theorem}
-This theorem is important because it shows that the minimal requirement to have two-scale convergence is that $v$ must be bounded. Notice that the two-scale limit contains one more variable with respect to the first one, that is the $y$ variable. It represent the small scale and it reflects the fluctuations of our model on the microscale.
+This theorem is important because it shows that the minimal requirement to have two-scale convergence is that $v$ must be bounded. Notice that the two-scale limit contains one more variable with respect to the first one, that is the $y$ variable. It represents the small scale, and it reflects the fluctuations of our model on the microscale.
 \begin{remark}[Remark, relation with weak convergence] If we assume that $\psi$ is independent of $y$, and ignoring the dependence on time (since the homogenization is performed on the spatial grid) we obtain:
 $$ 
-\lim_{\epsilon \to 0} \int_{\Omega} v^{\epsilon}(x)\psi(x)dx= \int_{\Omega} \int_{\textrm{Y}} v(x,y)\psi(x)dxdy=\int_{\Omega} \left[\int_{\textrm{Y}} v(x,y)dy\right]\psi(x)dx
+\lim_{\epsilon \to 0} \int_{\Omega} v^{\epsilon}(x)\psi(x)dx= \int_{\Omega} \int_{\textrm{Y}} v(x,y)\psi(x)dxdy=\int_{\Omega} \left[\int_{\textrm{Y}} v(x,y)dy\right]\psi(x)dx.
 $$This shows that, in this specific case, the two-scale convergence coincides with the weak convergence.
-In this definition the time is only a parameter, and if we assume that $\psi$ does not depend on $y$ we obtain the definition of weak limit. So in this case the weak limit coincides with the two-scale limit. Therefore the two-scale convergence and the weak convergence are strictly related: the main difference between them is that in the first one the oscillations are captured due to the extra variable $y$.
+In this definition the time is only a parameter, and if we assume that $\psi$ does not depend on $y$ we obtain the definition of weak limit. So in this case the weak limit coincides with the two-scale limit. Therefore, the two-scale convergence and the weak convergence are strictly related: the main difference between them is that in the first one the oscillations are captured due to the extra variable $y$.
 \end{remark}

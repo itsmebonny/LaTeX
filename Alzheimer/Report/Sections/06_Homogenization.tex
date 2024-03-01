@@ -1,0 +1,498 @@
+\section{Homogenization of the Smoluchowsky equation}
+We now try to homogenize our problem, For convenience we report below the microscopic system
+\begin{equation}
+    \begin{dcases}\frac{\partial u_{1}^{\epsilon}}{\partial t}-\operatorname{div}\left(d_{1} \nabla_{x} u_{1}^{\epsilon}\right)+u_{1}^{\epsilon} \sum_{j=1}^{M} a_{1, j} u_{1}^{\epsilon}=0, & \text { in }[0, T] \times \Omega_{\epsilon}, \\ 
+    \frac{\partial u_{1}^{\epsilon}}{\partial v} \equiv \nabla_{x} u_{1}^{\epsilon} \cdot n=0, & \text { on }[0, T]\times\partial\Omega,\\ 
+    \frac{\partial u_{1}^{\epsilon}}{\partial \nu} \equiv \nabla_{x} u_{1}^{\epsilon} \cdot n=\epsilon \psi\left(t, x, \frac{x}{\epsilon}\right), & \text { on }[0, T] \times \Gamma_{\epsilon} \\ u_{1}^{\epsilon}(0, x)=U_{1}, & \text { in } \Omega_{\epsilon}.
+    \end{dcases}
+\label{eq 10}\end{equation}
+now letting $\epsilon \rightarrow 0$ we pass on a description on the large scale, but to do this, due to previous definitions we need to prove the boundedness of $u_{j}^{\epsilon}, \nabla u_{j}^{\epsilon}, \partial_{t} u_{j}^{\epsilon}$.
+
+\subsection{Preliminary a Priori Estimates}
+
+Since the homogenization will be carried out in the framework of two-scale convergence, we first need to obtain the a priori estimates for the sequences $u_{j}^{\epsilon}, \nabla u_{j}^{\epsilon}, \partial_{t} u_{j}^{\epsilon}$ in $[0, T] \times \Omega_{\epsilon}$.
+Since
+$$
+\operatorname{div}\left(d_{1} \nabla_{x} u_{1}^{\epsilon}\right)-\frac{\partial u_{1}^{\epsilon}}{\partial t} \geq 0
+$$
+by the classical maximum principle \cite{Protter_Weinberger_1984}, the following estimate holds.
+\begin{lemma} Let $T>0$ be arbitrary and $u_{1}^{\epsilon}$ be a classical solution of \eqref{eq 10}. Then,
+\begin{equation} \left\|u_{1}^{\epsilon}\right\|_{L^{\infty}\left(0, T ; L^{\infty}\left(\Omega_{\epsilon}\right)\right)} \leq\left|U_{1}\right|+\left\|u_{1}^{\epsilon}\right\|_{L^{\infty}\left(0, T ; L^{\infty}\left(\Gamma_{\epsilon}\right)\right)}. 
+\label{eq 20}\end{equation}
+\label{lemma 5.1}\end{lemma}
+\begin{lemma} Let $T>0$ be arbitrary and $u_{1}^{\epsilon}$ be a classical solution of \eqref{eq 10}. Then,
+\begin{equation}
+    \left\|u_{1}^{\epsilon}\right\|_{L^{\infty}\left(0, T ; L^{\infty}\left(\Gamma_{\epsilon}\right)\right)} \leq c\|\psi\|_{L^{\infty}(0, T ; B)},
+\label{eq 21}\end{equation}where $c$ is independent of $\epsilon$.
+\label{lemma 5.2}\end{lemma}
+Thus, the boundedness of $u_{1}^{\epsilon}(t, x)$ in $L^{\infty}\left([0, T] \times \Gamma_{\epsilon}\right)$, uniformly in $\epsilon$, can be immediately deduced from Lemma \eqref{lemma 5.2} applying Lemma \eqref{lemma 5.1}.
+In order to establish Lemma \eqref{lemma 5.2}, we will first need the following preliminary results, Theorem \eqref{theorem 5.2} and Lemma \eqref{lemma 5.3}.
+The following is Lemma 5.6 from \cite{Ladyženskaja_Solonnikov_Uralceva_1968}.
+\begin{lemma}Let $\left(\tilde{z}_{n}\right)_{n \in \mathbb{N}_{0}}$ be a sequence of nonnegative real numbers such that
+\begin{equation}
+    \tilde{z}_{n+1} \leq c b^{n} \tilde{z}_{n}^{r / 2}   
+    \label{eq 22}
+\end{equation}
+for all $n \in \mathbb{N}_{0}$, with fixed positive constants $c, b, r$, where $b>1$ and
+$$
+    r=\frac{2(N+1)}{N}>2 .
+$$
+If
+\begin{equation}
+    \tilde{z}_{0} \leq \theta\coloneqq c^{-N} b^{-N^{2}}
+\label{eq 23}
+\end{equation}
+then,
+\begin{equation}
+    \tilde{z}_{n} \leq \theta b^{-n N}
+\label{eq 24}
+\end{equation}
+for all $n \in \mathbb{N}_{0}$.
+\label{lemma 5.3}
+\end{lemma}
+\begin{theorem} Assume that there exist positive constants $T, \hat{k}=\|\psi\|_{L^{\infty}(0, T ; B)}, \gamma$, such that for all $k \geq \hat{k}$ we have
+\begin{equation}
+    \left\|u_{\epsilon}^{(k)}\right\|_{Q_{\epsilon}(T)}^{2}\coloneqq \sup _{0 \leq t \leq T} \int_{\Omega_{\epsilon}}\left|u_{\epsilon}^{(k)}\right|^{2} \, dx+\int_{0}^{T} \, dt \int_{\Omega_{\epsilon}}\left|\nabla u_{\epsilon}^{(k)}\right|^{2} \, dx \leq \epsilon \gamma k^{2} \int_{0}^{T} \, dt\left|B_{k}^{\epsilon}(t)\right|,
+\label{eq 25}\end{equation}
+where $u_{\epsilon}^{(k)}(t)\coloneqq \left(u_{1}^{\epsilon}(t)-k\right)_{+}$ and $B_{k}^{\epsilon}(t)$ is the set of points on $\Gamma_{\epsilon}$ at which $u_{1}^{\epsilon}(t, x)>k$.
+Then
+\begin{equation}
+    \operatorname{\esssup }_{(t, x) \in[0, T] \times \Gamma_{\epsilon}} u_{1}^{\epsilon}(t, x) \leq 2 m \hat{k},
+\label{eq 26}
+\end{equation}
+where the positive constant $m$ is independent of $\epsilon$.
+\label{theorem 5.2}
+\end{theorem}
+\begin{proof} Let us choose
+$$
+    r=\frac{2(N+1)}{N}>2
+$$
+Then, it holds
+\begin{equation}
+    \frac{1}{r}+\frac{(N-1)}{2 r}=\frac{N}{2N+2}+\frac{(N-1)N}{4N+4}=\frac{N}{4}.
+\label{eq 27}
+\end{equation}
+Let $\mathcal{M} \geq \hat{k}$ be arbitrary and define
+
+
+\begin{align}
+    k_{n} &\coloneqq \left(2-2^{-n}\right) \mathcal{M} \geq \hat{k},  \nonumber \\
+    z_{n} &\coloneqq \epsilon^{2 / r}\left[\int_{0}^{T} \mathrm{~d} t\left|B_{k_{n}}^{\epsilon}(t)\right|\right]^{2 / r}
+\label{eq 28}
+\end{align}
+for all $n \in \mathbb{N}_{0}$. We prove that the sequence $\left(z_{n}\right)$ satisfies the assumptions of \eqref{lemma 5.3}. To this end, let $n \in \mathbb{N}_{0}$ be fixed. From the trivial estimate
+\begin{equation}
+ \left|u_{\epsilon}^{\left(k_{n}\right)}(t)\right|^{2} \geq\left(k_{n+1}-k_{n}\right)^{2} \mathds{1}_{B_{k_{n+1}}^{\epsilon}}{ }^{(t)}
+\label{eq 29}\end{equation}
+we get
+\begin{equation}
+    \begin{aligned}
+        z_{n+1} & \leq \epsilon^{2 / r}\left[\int_{0}^{T} \mathrm{~d} t\left(k_{n+1}-k_{n}\right)^{-r} \int_{\Gamma_{\epsilon}}\left|u_{\epsilon}^{\left(k_{n}\right)}(t)\right|^{r} \mathrm{~d} \sigma_{\epsilon}(x)\right]^{2 / r} \\
+        &=\left(k_{n+1}-k_{n}\right)^{-2} \epsilon^{2 / r}\left[\int_{0}^{T} \mathrm{~d} t \int_{\Gamma_{\epsilon}}\left|u_{\epsilon}^{\left(k_{n}\right)}(t)\right|^{r} \mathrm{~d} \sigma_{\epsilon}(x)\right]^{2 / r}.
+    \end{aligned}
+\label{eq 30}
+\end{equation}
+Hence, since the condition \eqref{eq 27} holds, by using \eqref{eq 120}, we obtain
+\begin{equation}
+    \begin{aligned}
+        &2^{-2(n+1)} \mathcal{M}^{2} z_{n+1}=\left(k_{n+1}-k_{n}\right)^{2} z_{n+1} \\
+        &\leq c \epsilon^{2 / r} \epsilon^{-N-\left[\frac{2(1-N)}{r}\right]}\left\|u_{\epsilon}^{\left(k_{n}\right)}\right\|_{Q_{\epsilon}(T)}^{2},
+    \end{aligned}
+\label{eq 31}
+\end{equation}
+where $c$ is a positive constant independent of $\epsilon$. Therefore,
+\begin{equation}
+    2^{-2(n+1)} \mathcal{M}^{2} z_{n+1} \leq c \epsilon^{-\frac{N}{(1+N)}}\left\|u_{\epsilon}^{\left(k_{n}\right)}\right\|_{Q_{\epsilon}(T)}^{2}
+\label{eq 32}
+\end{equation}
+Moreover, from \eqref{eq 25} and \eqref{eq 28}, we get
+\begin{equation}
+    \begin{aligned}
+        \left\|u_{\epsilon}^{\left(k_{n}\right)}\right\|_{Q_{\epsilon}(T)}^{2} & \leq \gamma k_{n}^{2} z_{n}^{r / 2} \leq \gamma\left(2-2^{-n}\right)^{2} \mathcal{M}^{2} z_{n}^{r / 2} \\
+        & \leq 4 \gamma \mathcal{M}^{2} z_{n}^{r / 2}.
+    \end{aligned}
+\label{eq 33}\end{equation}
+Combining \eqref{eq 32} and \eqref{eq 33}, we obtain
+\begin{equation}
+    z_{n+1} \leq c_{0} \epsilon^{-\frac{N}{(1+N)}} 2^{2 n} z_{n}^{r / 2},
+\label{eq 34}
+\end{equation}
+where $c_{0}$ is a positive constant independent of $\epsilon$.
+Let us define
+$$
+    \begin{aligned}
+        &d\coloneqq \frac{(r-2)}{r}, \\
+        &\lambda\coloneqq \left(c_{0}\right)^{-\frac{r}{(r-2)}} 2^{-\frac{4}{(r-2) d}},
+    \end{aligned}
+$$
+and choose
+\begin{equation}
+  \mathcal{M}\coloneqq \hat{k}+\lambda^{-1 / r} \sqrt{c^{\prime}} \hat{k} \equiv m \hat{k},
+\label{eq 35}\end{equation}
+where $c^{\prime}$ is defined in \eqref{eq 36} and $m>1$. Now we want to estimate $z_{0}$ for the fixed value of $\mathcal{M}$ given by \eqref{eq 35}. From the definition \eqref{eq 28} and \eqref{eq:limit_gamma_eps}, by following the same strategy which leads to \eqref{eq 32} and \eqref{eq 33}, where we substitute $\hat{k}$ for $k_{n}$ and $\mathcal{M}$ for $k_{n+1}$, we have
+\begin{equation}
+    \begin{aligned}
+        (\mathcal{M}-\hat{k})^{2} z_{0} \leq c \epsilon^{-\frac{N}{(1+N)}}\left\|u_{\epsilon}^{(\hat{k})}\right\|_{Q_{\epsilon}(T)}^{2} & \leq c \epsilon^{-\frac{N}{(1+N)}}\left[\gamma \hat{k}^{2} T \frac{|\Gamma|_{N-1}|\Omega|_{N}}{|Y|_{N}}\right] \\
+        &\coloneqq c^{\prime} \epsilon^{-\frac{N}{(1+N)} \hat{k}^{2}},
+    \end{aligned}
+\label{eq 36}
+\end{equation}
+so that
+\begin{equation}
+    z_{0} \leq \frac{c^{\prime} \epsilon^{-\frac{N}{(1+N)}} \hat{k}^{2}}{(\mathcal{M}-\hat{k})^{2}}
+\label{eq 37}
+\end{equation}
+for all $\mathcal{M} \geq \hat{k}$. Therefore, from \eqref{eq 37} and \eqref{eq 35}, we obtain that
+\begin{equation}
+    z_{0} \leq \epsilon^{-\frac{N}{(1+N)}} \lambda^{2 / r}.
+\label{eq 38}
+\end{equation}
+For a fixed $\epsilon$, we set
+\begin{equation}
+    \tilde{z}_{n}=\epsilon^{\frac{N}{(1+N)}} z_{n}
+\label{eq 39}
+\end{equation}
+for all $n \in \mathbb{N}_{0}$. Then, the recursion inequality \eqref{eq 34} and the estimate \eqref{eq 38} can be rewritten as follows:
+\begin{equation}
+    \begin{cases}
+        \tilde{z}_{n+1} \leq c_{0} 2^{2 n} \epsilon^{-1} \tilde{z}_{n}^{r / 2}, \\
+        \tilde{z}_{0} \leq \lambda^{2 / r}=\left(c_{0}\right)^{-N} 2^{-2 N^{2}}.
+    \end{cases}
+\label{eq 40}
+\end{equation}
+Keeping in mind \eqref{eq 40}, it is easy to see that the sequence $\left(\tilde{z}_{n}\right)$ satisfies the assumptions of Lemma \eqref{lemma 5.3} with
+$$
+    c\coloneqq \max \left\{c_{0}, \frac{c_{0}}{\epsilon}\right\} \text { and } b\coloneqq 4.
+$$
+Therefore, in view of Lemma \eqref{lemma 5.3}, one can conclude that $z_{n} \rightarrow 0$ as $n \rightarrow \infty$, which implies
+$$
+    u_{1}^{\epsilon} \leq \lim _{n \rightarrow \infty} k_{n}=2 \mathcal{M}
+$$
+a.e. on $\Gamma_{\epsilon}$ for almost every $t \in[0, T]$ if we define $\mathcal{M}$ as in \eqref{eq 35}. This gives \eqref{eq 26}.
+\end{proof}
+Now we have the tools to prove Lemma \eqref{lemma 5.2}
+\begin{proof} Let $T>0$ and $k \geq 0$ be fixed. Define: $u_{\epsilon}^{(k)}(t)\coloneqq \left(u_{1}^{\epsilon}(t)-k\right)_{+}$ for $t \geq 0$, with derivatives:
+\begin{equation}
+    \frac{\partial u_{\epsilon}^{(k)}}{\partial t} =\frac{\partial u_{1}^{\epsilon}}{\partial t} \mathbbm{1}_{\left\{u_{1}^{\epsilon}>k\right\}},
+\label{eq 41}
+\end{equation}
+\begin{equation}
+    \nabla_{x} u_{\epsilon}^{(k)} =\nabla_{x} u_{1}^{\epsilon} \mathbbm{1}_{\left\{u_{1}^{\epsilon}>k\right\}} .
+\label{eq 42}
+\end{equation}
+Moreover,
+\begin{equation}
+    \left.u_{\epsilon}^{(k)}\right|_{\partial \Omega}=\left(\left.u_{1}^{\epsilon}\right|_{\partial \Omega}-k\right)_{+},
+\label{eq 43}
+\end{equation}
+\begin{equation}
+    \left.u_{\epsilon}^{(k)}\right|_{\Gamma_{\epsilon}}=\left(\left.u_{1}^{\epsilon}\right|_{\Gamma_{\epsilon}}-k\right)_{+}.
+\label{eq 44}
+\end{equation}
+Let us assume $k \geq \hat{k}$, where $\hat{k}\coloneqq \|\psi\|_{L^{\infty}(0, T ; B)}$. Then, recalling that $U_{1} \leq\|\psi\|_{L^{\infty}(0, T ; B)}$,
+\begin{equation}
+    u_{1}^{\epsilon}(0, x)=U_{1} \leq \hat{k} \leq k
+\label{eq 45}
+\end{equation}
+For $t \in\left[0, T_{1}\right]$ with $T_{1} \leq T$, we get (recall that \(\frac{\mathrm{d}}{\mathrm{d} s}\frac{1}{2} \left|u_{\epsilon}^{(k)}(s)\right|^{2} = \frac{\partial u_{\epsilon}^{(k)}(s)}{\partial s} u_{\epsilon}^{(k)}(s)\)):
+\begin{equation}
+    \begin{aligned}
+        \frac{1}{2} \int_{\Omega_{\epsilon}}\left|u_{\epsilon}^{(k)}(t)\right|^{2} \mathrm{~d} x &=\int_{0}^{t} \frac{d}{ds}\left[\frac{1}{2} \int_{\Omega_{\epsilon}}\left|u_{\epsilon}^{(k)}(s)\right|^{2} \,d x\right] \, ds = \\
+        &=\int_{0}^{t} \, ds \int_{\Omega_{\epsilon}} \frac{\partial u_{\epsilon}^{(k)}(s)}{\partial s} u_{\epsilon}^{(k)}(s) \, dx
+    \end{aligned} 
+\label{eq 46}\end{equation}
+Taking into account \eqref{eq 41}, \eqref{eq 10} and Lemma \eqref{lemma 7.1}, we obtain that for all $s \in\left[0, T_{1}\right]$
+% \begin{equation}
+%   \begin{aligned}
+%         &\int_{\Omega_{\epsilon}} \frac{\partial u_{\epsilon}^{(k)}(s)}{\partial s} u_{\epsilon}^{(k)}(s) \mathrm{d} x \underset{\eqref{eq 41}}{=}\int_{\Omega_{\epsilon}} \frac{\partial u_{1}^{\epsilon}(s)}{\partial s} u_{\epsilon}^{(k)}(s) \mathrm{d} x \\
+%         &\underset{\eqref{eq 10}}{=}\int_{\Omega_{\epsilon}}\left[d_{1} \Delta_{x} u_{1}^{\epsilon}-u_{1}^{\epsilon} \sum_{j=1}^{M} a_{1, j} u_{j}^{\epsilon}\right] u_{\epsilon}^{(k)}(s) \mathrm{d} x \\
+%         &\underset{\text{diveregence theorem}}{=}-\int_{\Omega_{\epsilon}} u_{1}^{\epsilon}(s) \sum_{j=1}^{M} a_{1, j} u_{j}^{\epsilon}(s) u_{\epsilon}^{(k)}(s) \mathrm{d} x+d_{1} \int_{\Gamma_{\epsilon}} \nabla_{x} u^{\epsilon}_1 \cdot n u_{\epsilon}^{(k)}(s) \mathrm{d} \sigma_{\epsilon}(x)-d_{1} \int_{\Omega_{\epsilon}} \nabla_{x} u_{1}^{\epsilon}(s) \cdot \nabla_{x} u_{\epsilon}^{(k)}(s) \mathrm{d} x \\
+%         &\underset{\eqref{eq 10}}{=}-\int_{\Omega_{\epsilon}} u_{1}^{\epsilon}(s) \sum_{j=1}^{M} a_{1, j} u_{j}^{\epsilon}(s) u_{\epsilon}^{(k)}(s) \mathrm{d} x+\epsilon d_{1} \int_{\Gamma_{\epsilon}} \psi\left(s, x, \frac{x}{\epsilon}\right) u_{\epsilon}^{(k)}(s) \mathrm{d} \sigma_{\epsilon}(x)
+%         -d_{1} \int_{\Omega_{\epsilon}} \nabla_{x} u_{1}^{\epsilon}(s) \cdot \nabla_{x} u_{\epsilon}^{(k)}(s) \mathrm{d} x \\
+%         &\leq \epsilon d_{1} \int_{\Gamma_{\epsilon}} \psi\left(s, x, \frac{x}{\epsilon}\right) u_{\epsilon}^{(k)}(s) \mathrm{d} \sigma_{\epsilon}(x)-d_{1} \int_{\Omega_{\epsilon}} \nabla_{x} u_{1}^{\epsilon}(s) \cdot \nabla_{x} u_{\epsilon}^{(k)}(s) \mathrm{d} x \\
+%         &\underset{\substack{\text{Young inequality}\\\text{and}\\\text{definition of } $B_{k}^{\epsilon}(t)$}}{\leq} \frac{\epsilon d_{1}}{2} \int_{B_{k}^{\epsilon}(s)}\left|\psi\left(s, x, \frac{x}{\epsilon}\right)\right|^{2} \mathrm{~d} \sigma_{\epsilon}(x)+\frac{\epsilon d_{1}}{2} \int_{\Gamma_{\epsilon}}\left|u_{\epsilon}^{(k)}(s)\right|^{2} \mathrm{~d} \sigma_{\epsilon}(x) -d_{1} \int_{\Omega_{\epsilon}} \nabla_{x} u_{1}^{\epsilon}(s) \cdot \nabla_{x} u_{\epsilon}^{(k)}(s) \mathrm{d} x \\
+%         &\underset{\eqref{lemma 7.1}}{\leq} \frac{\epsilon d_{1}}{2} \int_{B_{k}^{\epsilon}(s)}\left|\psi\left(s, x, \frac{x}{\epsilon}\right)\right|^{2} \mathrm{~d} \sigma_{\epsilon}(x)+\frac{C_{1} d_{1}}{2} \int_{A_{k}^{\epsilon}(s)}\left|u_{\epsilon}^{(k)}(s)\right|^{2} \mathrm{~d} x -d_{1}\left(1-\frac{C_{1} \epsilon^{2}}{2}\right) \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{\epsilon}^{(k)}(s)\right|^{2} \mathrm{~d} x
+%    \end{aligned}
+% \label{eq 47}\end{equation}
+where we denote by $A_{k}^{\epsilon}(t)$ and $B_{k}^{\epsilon}(t)$ the set of points in $\Omega_{\epsilon}$ and on $\Gamma_{\epsilon}$, respectively, at which $u_{1}^{\epsilon}(t, x)>k$. It holds:
+$$
+\begin{aligned}
+&\left|A_{k}^{\epsilon}(t)\right| \leq\left|\Omega_{\epsilon}\right| \\
+&\left|B_{k}^{\epsilon}(t)\right| \leq\left|\Gamma_{\epsilon}\right|
+\end{aligned}
+$$
+with $|\cdot|$ being the natural Hausdorff measure.
+Plugging \eqref{eq 47} into \eqref{eq 46} and varying over $t$, we arrive at the estimate: 
+\begin{equation}
+  \begin{aligned}
+&\sup _{0 \leq t \leq T_{1}}\left[\frac{1}{2} \int_{\Omega_{\epsilon}}\left|u_{\epsilon}^{(k)}(t)\right|^{2} \mathrm{~d} x\right]+d_{1}\left(1-\frac{C_{1} \epsilon^{2}}{2}\right) \int_{0}^{T_{1}} \mathrm{~d} t \int_{\Omega_{\epsilon}}\left|\nabla u_{\epsilon}^{(k)}(t)\right|^{2} \mathrm{~d} x \\
+&\leq \frac{C_{1} d_{1}}{2} \int_{0}^{T_{1}} \mathrm{~d} t \int_{A_{k}^{\epsilon}(t)}\left|u_{\epsilon}^{(k)}(t)\right|^{2} \mathrm{~d} x+\frac{\epsilon d_{1}}{2} \int_{0}^{T_{1}} \mathrm{~d} t \int_{B_{k}^{\epsilon}(t)}\left|\psi\left(t, x, \frac{x}{\epsilon}\right)\right|^{2} \mathrm{~d} \sigma_{\epsilon}(x)
+\end{aligned}
+\label{eq 48}\end{equation}
+Introducing the following norm
+\begin{equation}
+  \|u\|_{Q_{\epsilon}(T)}^{2}\coloneqq \sup _{0 \leq t \leq T} \int_{\Omega_{\epsilon}}|u(t)|^{2} \mathrm{~d} x+\int_{0}^{T} \mathrm{~d} t \int_{\Omega_{\epsilon}}|\nabla u(t)|^{2} \mathrm{~d} x
+\label{eq 49}\end{equation}
+the inequality \eqref{eq 48} can be rewritten as follows
+\begin{equation}
+  \begin{aligned}
+\min \left\{\frac{1}{2}, d_{1}\left(1-\frac{C_{1} \epsilon^{2}}{2}\right)\right\}\left\|u_{\epsilon}^{(k)}\right\|_{Q_{\epsilon}\left(T_{1}\right)}^{2} \leq & \frac{C_{1} d_{1}}{2} \int_{0}^{T_{1}} \mathrm{~d} t \int_{A_{k}^{\epsilon}(t)}\left|u_{\epsilon}^{(k)}(t)\right|^{2} \mathrm{~d} x \\
+&+\frac{\epsilon d_{1}}{2} \int_{0}^{T_{1}} \mathrm{~d} t \int_{B_{k}^{\epsilon}(t)}\left|\psi\left(t, x, \frac{x}{\epsilon}\right)\right|^{2} \mathrm{~d} \sigma_{\epsilon}(x)
+\end{aligned}
+\label{eq 50}\end{equation}
+We estimate the right-hand side of \eqref{eq 50}. From Hölder's inequality, we obtain
+\begin{equation}
+  \int_{0}^{T_{1}} \mathrm{~d} t \int_{A_{k}^{\epsilon}(t)}\left|u_{\epsilon}^{(k)}(t)\right|^{2} \mathrm{~d} x \leq\left\|u_{\epsilon}^{(k)}\right\|_{L^{\bar{r}_{1}}\left(0, T_{1} ; L^{\bar{q}_{1}}\left(\Omega_{\epsilon}\right)\right)}^{2}\left\|\mathbbm{1}_{A_{k}^{\epsilon}}\right\|_{L^{r_{1}^{\prime}}\left(0, T_{1} ; L^{q_{1}^{\prime}}\left(\Omega_{\epsilon}\right)\right)}
+\label{eq 51}\end{equation}
+with $r_{1}^{\prime}=\frac{r_{1}}{r_{1}-1}, q_{1}^{\prime}=\frac{q_{1}}{q_{1}-1}, \bar{r}_{1}=2 r_{1}, \bar{q}_{1}=2 q_{1}$, where, for $N>2, \bar{r}_{1} \in(2, \infty)$ and $\bar{q}_{1} \in\left(2, \frac{2 N}{(N-2)}\right)$ have been chosen such that
+$$
+\frac{1}{\bar{r}_{1}}+\frac{N}{2 \bar{q}_{1}}=\frac{N}{4}
+$$
+In particular, $r_{1}^{\prime}, q_{1}^{\prime}<\infty$, so that \eqref{eq 51} yields
+\begin{equation}
+  \int_{0}^{T_{1}} \mathrm{~d} t \int_{A_{k}^{\epsilon}(t)}\left|u_{\epsilon}^{(k)}(t)\right|^{2} \mathrm{~d} x \leq\left\|u_{\epsilon}^{(k)}\right\|_{L^{\overline{r_{1}}\left(0, T_{1} ; L^{\bar{q}_{1}}\left(\Omega_{\epsilon}\right)\right)}}^{2}|\Omega|^{1 / q_{1}^{\prime}} T_{1}^{1 / r_{1}^{\prime}} .
+\label{eq 52}\end{equation}
+If we choose
+$$
+T_{1}^{1 / r_{1}^{\prime}}<\frac{\min \left\{1, d_{1}\right\}}{2 C_{1} d_{1}}|\Omega|^{-1 / q_{1}^{\prime}} \leq \frac{\min \left\{\frac{1}{2}, d_{1}\left(1-\frac{C_{1} \epsilon^{2}}{2}\right)\right\}}{C_{1} d_{1}}|\Omega|^{-1 / q_{1}^{\prime}}
+$$
+then from \eqref{eq 117}, it follows that
+\begin{equation}
+  \frac{C_{1} d_{1}}{2} \int_{0}^{T_{1}} \mathrm{~d} t \int_{A_{k}^{\epsilon}(t)}\left|u_{\epsilon}^{(k)}(t)\right|^{2} \mathrm{~d} x \leq \frac{1}{2} \min \left\{\frac{1}{2}, d_{1}\left(1-\frac{C_{1} \epsilon^{2}}{2}\right)\right\}\left\|u_{\epsilon}^{(k)}\right\|_{Q_{\epsilon}\left(T_{1}\right)}^{2}
+\label{eq 53}\end{equation}
+Analogously, from Hölder's inequality, we have, for $k \geq \hat{k}$
+\begin{equation}
+  \begin{aligned}
+\frac{\epsilon d_{1}}{2} \int_{0}^{T_{1}} \mathrm{~d} t \int_{B_{k}^{\epsilon}(t)}\left|\psi\left(t, x, \frac{x}{\epsilon}\right)\right|^{2} \mathrm{~d} \sigma_{\epsilon}(x) & \leq \frac{\epsilon d_{1} k^{2}}{2}\left(\frac{\hat{k}^{2}}{k^{2}}\right)\left\|\mathds{1}_{B_{k}^{\epsilon}}\right\|_{L^{1}\left(0, T_{1} ; L^{1}\left(\Gamma_{\epsilon}\right)\right)} \\
+& \leq \frac{\epsilon d_{1} k^{2}}{2} \int_{0}^{T_{1}} \mathrm{~d} t\left|B_{k}^{\epsilon}(t)\right| .
+\end{aligned}
+\label{eq 54}\end{equation}
+Thus \eqref{eq 50} yields
+\begin{equation}
+  \left\|u_{\epsilon}^{(k)}\right\|_{Q_{\epsilon}\left(T_{1}\right)}^{2} \leq \epsilon \gamma k^{2} \int_{0}^{T_{1}} \mathrm{~d} t\left|B_{k}^{\epsilon}(t)\right| .
+\label{eq 55}\end{equation}
+Hence, by Theorem \eqref{theorem 5.2}, we obtain
+$$
+\left\|u_{1}^{\epsilon}\right\|_{L^{\infty}\left(0, T_{1} ; L^{\infty}\left(\Gamma_{\epsilon}\right)\right)} \leq 2 m \hat{k}
+$$
+where the positive constant $m$ is independent of $\epsilon$. Analogous arguments are valid for the cylinder $\left[T_{s}, T_{s+1}\right] \times \Omega_{\epsilon}, s=1,2, \ldots, p-1$ with
+$$
+\left[T_{s+1}-T_{s}\right]^{1 / r_{1}^{\prime}}<\frac{\min \left\{1, d_{1}\right\}}{2 C_{1} d_{1}}|\Omega|^{-1 / q_{1}^{\prime}}
+$$
+and $T_{p} \equiv T$. Thus, after a finite number of steps, we obtain the estimate \eqref{eq 21}.
+\end{proof}
+\begin{lemma}
+  The sequence $\nabla_{x} u_{1}^{\epsilon}$ is bounded in $L^{2}\left([0, T] \times \Omega_{\epsilon}\right)$, uniformly in $\epsilon$.
+\label{lemma 5.4}\end{lemma}
+\begin{proof}
+Let us multiply the first equation in \eqref{eq 10} by the function $u_{1}^{\epsilon}(t, x)$, to keep the equation fast and readable we will not write explicitly the dependence on $t,x$
+$$\frac{\partial u_{1}^{\epsilon}}{\partial t}u_{1}^{\epsilon}-\operatorname{div}\left(d_{1} \nabla_{x} u_{1}^{\epsilon}\right)u_{1}^{\epsilon}+u_{1}^{\epsilon}u_{1}^{\epsilon} \sum_{j=1}^{M} a_{1, j} u_{1}^{\epsilon}=0$$
+Integrating, the divergence theorem yields
+\begin{equation}
+\frac{1}{2}\int_{\Omega_{\epsilon}} \frac{\partial}{\partial t}\left|u_{1}^{\epsilon}\right|^{2} \mathbf{d} x+ d_{1} \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{1}^{\epsilon}\right|^{2} \mathrm{~d} x+\int_{\Omega_{\epsilon}}\left|u_{1}^{\epsilon}\right|^{2} \sum_{j=1}^{M} a_{1, j} u_{j}^{\epsilon} \mathrm{d} x =\epsilon d_{1} \int_{\Gamma_{\epsilon}} \psi\left(t, x, \frac{x}{\epsilon}\right) u_{1}^{\epsilon}(t, x) \mathrm{d} \sigma_{\epsilon}(x)
+\label{eq 56}\end{equation}
+By Hölder's and Young's inequalities, the right-hand side of Eq. \eqref{eq 56} can be rewritten as
+\begin{equation}
+  \int_{\Gamma_{\epsilon}} \psi\left(t, x, \frac{x}{\epsilon}\right) u_{1}^{\epsilon}(t, x) \mathrm{d} \sigma_{\epsilon}(x) \leq \frac{1}{2}\left\|\psi\left(t, \cdot, \frac{\cdot}{\epsilon}\right)\right\|_{L^{2}\left(\Gamma_{\epsilon}\right)}^{2}+\frac{1}{2}\left\|u_{1}^{\epsilon}(t, \cdot)\right\|_{L^{2}\left(\Gamma_{\epsilon}\right)}^{2}
+\label{eq 57}\end{equation}
+Thanks to Lemma \eqref{lemma 7.4}
+\begin{equation}
+  \epsilon \int_{\Gamma_{\epsilon}}\left|\psi\left(t, x, \frac{x}{\epsilon}\right)\right|^{2} \mathrm{~d} \sigma_{\epsilon}(x) \leq C_{2}\|\psi(t)\|_{B}^{2}
+\label{eq 58}\end{equation}
+where $C_{2}$ is a positive constant independent of $\epsilon$ and $B=C^{1}\left[\bar{\Omega} ; C_{\#}^{1}(Y)\right]$. Therefore, by combining Eqs. \eqref{eq 56}-\eqref{eq 58} and by using Lemma \eqref{lemma 7.1}, we deduce
+% \begin{equation*}
+% \begin{aligned}
+%     \frac{1}{2} \int_{\Omega_{\epsilon}} \frac{\partial}{\partial t}\left|u_{1}^{\epsilon}\right|^{2} \mathbf{d} x+& d_{1} \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{1}^{\epsilon}\right|^{2} \mathrm{~d} x+\int_{\Omega_{\epsilon}}\left|u_{1}^{\epsilon}\right|^{2} \sum_{j=1}^{M} a_{1, j} u_{j}^{\epsilon} \mathrm{d} x\\
+%     &=\epsilon d_{1} \int_{\Gamma_{\epsilon}} \psi\left(t, x, \frac{x}{\epsilon}\right) u_{1}^{\epsilon}(t, x) \mathrm{d} \sigma_{\epsilon}(x) \underset{\eqref{eq 57}}{\leq} \epsilon d_{1} \frac{1}{2}\left\|\psi\left(t, x, \frac{x}{\epsilon}\right)\right\|_{L^{2}\left(\Gamma_{\epsilon}\right)}^{2}+\frac{1}{2}\left\|u_{1}^{\epsilon}(t, x)\right\|_{L^{2}\left(\Gamma_{\epsilon}\right)}^{2} \\ 
+%     &\underset{\eqref{eq 58}}{\leq} C_{2}\|\psi(t)\|_{B}^{2} +\frac{1}{2}\left\|u_{1}^{\epsilon}(t, x)\right\|_{L^{2}\left(\Gamma_{\epsilon}\right)}^{2}\\
+%     &\underset{\eqref{lemma 7.1}}{\leq}  C_{2}\|\psi(t)\|_{B}^{2} + \frac{1}{2}\frac{1}{\epsilon}C_{1}\left( \int_{\Omega_{\epsilon}}|u_{1}^{\epsilon}|^{2} \mathrm{~d} x+{\epsilon^_{2}}\int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{1}^{\epsilon}\right|^{2} \mathrm{~d} x\right)
+% \end{aligned}
+% \end{equation*}
+And so it is easy to see that the following inequality holds:
+\begin{equation}
+\int_{\Omega_{\epsilon}} \frac{\partial}{\partial t}\left|u_{1}^{\epsilon}\right|^{2} \mathrm{~d} x+d_{1}\left(2-\epsilon^{2} C_{1}\right) \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{1}^{\epsilon}\right|^{2} \mathrm{~d} x\leq d_{1} C_{2}\|\psi(t)\|_{B}^{2}+d_{1} C_{1} \int_{\Omega_{\epsilon}}\left|u_{1}^{\epsilon}\right|^{2} \mathrm{~d} x
+\label{eq 59}\end{equation}
+since the third term on the left-hand side of \eqref{eq 56} is nonnegative. Integrating over $[0, t]$ with $t \in[0, T]$, we get
+\begin{equation}
+  \left\|u_{1}^{\epsilon}(t)\right\|_{L^{2}\left(\Omega_{\epsilon}\right)}^{2}+d_{1}\left(2-\epsilon^{2} C_{1}\right) \int_{0}^{t} \mathrm{~d} s \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{1}^{\epsilon}\right|^{2} \mathrm{~d} x \leq C_{3}+d_{1} C_{1}\left\|u_{1}^{\epsilon}\right\|_{L^{2}\left(0, T ; L^{2}\left(\Omega_{\epsilon}\right)\right)}^{2}
+\label{eq 60}\end{equation}
+where $C_{1}$ and $C_{3}$ are positive constants independent of $\epsilon$ since, by \eqref{eq 11},
+$$
+u_{1}^{\epsilon}(0, x)=U_{1} \leq\|\psi\|_{L^{\infty}(0, T ; B)}
+$$
+Taking into account that the first term on the left-hand side of \eqref{eq 60} is nonnegative and the sequence $u_{1}^{\epsilon}$ is bounded in $L^{\infty}\left(0, T ; L^{\infty}\left(\Omega_{\epsilon}\right)\right)$, one has
+\begin{equation}
+  d_{1}\left(2-\epsilon^{2} C_{1}\right)\left\|\nabla_{x} u_{1}^{\epsilon}\right\|_{L^{2}\left(0, T ; L^{2}\left(\Omega_{\epsilon}\right)\right)}^{2} \leq C_{4}
+\label{eq 61}\end{equation}
+Thus the boundedness of $\nabla_{x} u_{1}^{\epsilon}(t, x)$ follows, provided that $\epsilon$ is close to zero.
+\end{proof} 
+The lemmas that we have considered shows us the boundedness of the term $u_1^{\epsilon}(t,x)$ and $\nabla_{x} u_{1}^{\epsilon}(t, x)$, with a similar procedure we now show the boundedness of the generic term $u_m$ and of its gradient.
+\begin{lemma} Let $u_{m}^{\epsilon}(t, x)(1<m<M)$ be a classical solution of \eqref{eq 12}. Then
+\begin{equation}
+  \left\|u_{m}^{\epsilon}\right\|_{L^{\infty}\left(0, T ; L^{\infty}\left(\Omega_{\epsilon}\right)\right)} \leq K_{m}
+\label{eq 62}\end{equation}
+uniformly with respect to $\epsilon$, where
+\begin{equation}
+  K_{m}=1+\frac{\left[\sum_{j=1}^{m-1} a_{j, m-j} K_{j} K_{m-j}\right]}{a_{m, m}}
+\label{eq 63}\end{equation}
+\label{lemma 5.5}\end{lemma}
+\begin{proof}
+The Lemma can be proved directly by induction following the same arguments presented in Wrzosek (1997) (Lemma 2.2, p. 284). Since we have a zero initial condition for the system \eqref{eq 12}, we have chosen a function slightly different than what was done in Wrzosek (1997) to test the $m$th equation of \eqref{eq 12}:
+$$
+\phi_{m} \equiv p\left(u_{m}^{\epsilon}\right)^{(p-1)} \quad p \geq 2 .
+$$
+We stress that the functions $\phi_{m}$ are strictly positive and continuously differentiable in $[0, t] \times \bar{\Omega}$, for all $t>0$. The rest of the proof carries over verbatim.
+\end{proof} 
+\begin{lemma}
+The sequence $\nabla_{x} u_{m}^{\epsilon}(1<m<M)$ is bounded in $L^{2}\left([0, T] \times \Omega_{\epsilon}\right)$, uniformly in $\epsilon$.
+\label{lemma 5.6}\end{lemma}
+\begin{proof}
+ Let us multiply the first equation in \eqref{eq 12} by the function $u_{m}^{\epsilon}(t, x)$.
+ \begin{equation*}
+ \begin{aligned}
+ \frac{\partial u_{m}^{\epsilon}}{\partial t}(t, x)u_{m}^{\epsilon}(t, x)-d_{m} \Delta_{x} u_{m}^{\epsilon}(t, x)u_{m}^{\epsilon}(t, x)+&u_{m}^{\epsilon}(t, x)u_{m}^{\epsilon}(t, x) \sum_{j=1}^{M} a_{m, j} u_{j}^{\epsilon}(t, x)=\\ &=\frac{1}{2} u_{m}^{\epsilon}(t, x)\sum_{j=1}^{m-1} a_{j, m-j} u_{j}^{\epsilon} u_{m-j}^{\epsilon} & \text { in }[0, T] \times \Omega_{\epsilon} 
+     \end{aligned}
+ \end{equation*}
+By the divergence theorem the second term becomes:
+ \begin{equation*}
+     -d_{m} \Delta_{x} u_{m}^{\epsilon}(t, x)u_{m}^{\epsilon}(t, x)= -d_m\operatorname{div} (\nabla u_{m}^{\epsilon}(t, x) )u_{m}^{\epsilon}(t, x)=d_m \int_{\Omega_\epsilon} \left|\nabla_{x} u_{m}^{\epsilon}\right|^{2} \mathrm{~d} x - d_m\int_{\partial \Omega_\epsilon} \nabla_{x} u_{m}^{\epsilon} \cdot n u_{m}^{\epsilon} \mathrm{~d} x
+ \end{equation*}
+ where the integral on the boundary is $0$ due to the boundary conditions in \eqref{eq 12}.
+Now applying Hölder's inequality and exploiting the boundedness of $u_{j}^{\epsilon}(t, x)$ $(1 \leq j \leq m-1)$ in $L^{\infty}\left(0, T ; L^{\infty}\left(\Omega_{\epsilon}\right)\right)$, we get
+\begin{equation}
+  \frac{1}{2} \int_{\Omega_{\epsilon}} \frac{\partial}{\partial t}\left|u_{m}^{\epsilon}\right|^{2} \mathrm{~d} x+d_{m} \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{m}^{\epsilon}\right|^{2} \mathrm{~d} x \leq C_{3}\left\|u_{m}^{\epsilon}(t, \cdot)\right\|_{L^{2}\left(\Omega_{\epsilon}\right)}
+\label{eq 64}\end{equation}
+where $C_{3}$ is a constant which does not depend on $\epsilon$. Dividing by $\left\|u_{m}^{\epsilon}(t, \cdot)\right\|_{L^{2}\left(\Omega_{\epsilon}\right)}$ and integrating over $[0, t]$ with $t \in[0, T]$, we deduce:
+\begin{equation}
+  \int_{0}^{t} \mathrm{~d} s \frac{\mathrm{d}}{\mathrm{d} s}\left\|u_{m}^{\epsilon}(s, \cdot)\right\|_{L^{2}\left(\Omega_{\epsilon}\right)}+d_{m} C_{4} \int_{0}^{t} \mathrm{~d} s \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{m}^{\epsilon}\right|^{2} \mathrm{~d} x \leq C_{3} T
+\label{eq 65}\end{equation}
+exploiting the boundedness of $u_{m}^{\epsilon}(t, x)$ in $L^{\infty}\left(0, T ; L^{\infty}\left(\Omega_{\epsilon}\right)\right)$ proved in Lemma \eqref{lemma 5.5}. Hence
+\begin{equation}
+  \left\|u_{m}^{\epsilon}(t, \cdot)\right\|_{L^{2}\left(\Omega_{\epsilon}\right)}+d_{m} C_{4} \int_{0}^{t} \mathrm{~d} s \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{m}^{\epsilon}\right|^{2} \mathrm{~d} x \leq C_{5}
+\label{eq 66}\end{equation}
+where $C_{4}$ and $C_{5}$ are positive constants independent of $\epsilon$. Then, the boundedness of $\nabla_{x} u_{m}^{\epsilon}(t, x)$ in $L^{2}\left([0, T] \times \Omega_{\epsilon}\right)$, uniformly in $\epsilon$, follows from \eqref{eq 66}.
+\end{proof}
+\begin{lemma} Let $u_{M}^{\epsilon}(t, x)$ be a classical solution of (13). Then
+$$
+\left\|u_{M}^{\epsilon}\right\|_{L^{\infty}\left(0, T ; L^{\infty}\left(\Omega_{\epsilon}\right)\right)} \leq K_{M}
+$$
+uniformly with respect to $\epsilon$, where
+$$
+K_{M}=e^{T} \sum_{\substack{j+k \geq M \\
+j,k<M}} a_{j, k} K_{j} K_{k}
+$$
+with the constants $K_{j}(1<j<M)$ given by \eqref{eq 63}.
+\label{lemma 5.7}\end{lemma}
+\begin{proof}
+Let us test the first equation of \eqref{eq 13} with the function
+$$
+\phi_{M} \equiv p\left(u_{M}^{\epsilon}\right)^{(p-1)} \quad p \geq 2 .
+$$
+The function $\phi_{M}$ is strictly positive and continuously differentiable in $[0, t] \times \bar{\Omega}$, for all $t>0$. Integrating, the divergence theorem yields
+\begin{equation}
+  \begin{aligned}
+\int_{0}^{t} \mathrm{~d} s \int_{\Omega_{\epsilon}} \frac{\partial}{\partial s}\left(u_{M}^{\epsilon}\right)^{p}(s) \mathrm{d} x=&-d_{M} p \int_{0}^{t} \mathrm{~d} s \int_{\Omega_{\epsilon}} \nabla_{x} u_{M}^{\epsilon} \cdot \nabla\left[\left(u_{M}^{\epsilon}\right)^{(p-1)}\right] \mathrm{d} x \\
+&+\frac{p}{2} \int_{0}^{t} \mathrm{~d} s \int_{\Omega_{\epsilon}} \sum_{\substack{j+k \geq M \\
+j,k<M}} a_{j, k} u_{j}^{\epsilon} u_{k}^{\epsilon}\left(u_{M}^{\epsilon}\right)^{(p-1)} \mathrm{d} x
+\end{aligned}
+\label{eq 69}\end{equation}
+Hence
+\begin{equation}
+  \begin{aligned}
+\int_{\Omega_{\epsilon}}\left(u_{M}^{\epsilon}\right)^{p}(t) \mathrm{d} x+& d_{M} p(p-1) \int_{0}^{t} \mathrm{~d} s \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{M}^{\epsilon}\right|^{2}\left(u_{M}^{\epsilon}\right)^{(p-2)} \mathrm{d} x \\
+&=\frac{p}{2} \int_{0}^{t} \mathrm{~d} s \int_{\substack{\Omega_{\epsilon}}} \sum_{\substack{j+k \geq M \\
+j,k<M}} a_{j, k} u_{j}^{\epsilon} u_{k}^{\epsilon}\left(u_{M}^{\epsilon}\right)^{(p-1)} \mathrm{d} x
+\end{aligned}
+\label{eq 70}\end{equation}
+Taking into account the boundedness of $u_{j}^{\epsilon}(1 \leq j<M)$ in $L^{\infty}\left(0, T ; L^{\infty}\left(\Omega_{\epsilon}\right)\right)$, we get
+\begin{equation}
+  \begin{aligned}
+\int_{\Omega_{\epsilon}}\left(u_{M}^{\epsilon}\right)^{p}(t) \mathrm{d} x+& d_{M} p(p-1) \int_{0}^{t} \mathrm{~d} s \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{M}^{\epsilon}\right|^{2}\left(u_{M}^{\epsilon}\right)^{(p-2)} \mathrm{d} x \\
+& \leq p \int_{0}^{t} \mathrm{~d} s \int_{\Omega_{\epsilon}}\left[\sum_{\substack{j+k \geq M \\
+j,k<M}} a_{j, k} K_{j} K_{k}\right]\left(u_{M}^{\epsilon}\right)^{(p-1)} \mathrm{d} x=: I_{3}
+\end{aligned}
+\label{eq 71}\end{equation}
+In order to estimate $I_{3}$, it is now convenient to use Young's inequality in the following form Brezis (2010):
+\begin{equation}
+  a b \leq \eta a^{p^{\prime}}+\eta^{1-p}b^{p} \quad \forall a \geq 0, b \geq 0
+\label{eq 72}\end{equation}
+with $p^{\prime}=\frac{p}{p-1}$. We find
+\begin{equation}
+  \begin{aligned}
+I_{3} & \leq \int_{0}^{t} \mathrm{~d} s \int_{\Omega_{\epsilon}} p^{p}\left[\sum_{\substack{j+k \geq M \\
+j,k<M \\}} a_{j, k} K_{j} K_{k}\right]^{p} \eta^{1-p} \mathrm{~d} x+\int_{0}^{t} \mathrm{~d} s \int_{\Omega_{\epsilon}} \eta\left(u_{M}^{\epsilon}\right)^{p} \mathrm{~d} x \\
+& \leq p^{p-1}\left(\frac{p}{p-1}\right)^{1-p}\left[\sum_{\substack{j+k \geq M \\
+j,k<M}} a_{j, k} K_{j} K_{k}\right]^{p} \eta^{1-p}\left|\Omega_{\epsilon}\right| t+\eta \int_{0}^{t} \mathrm{~d} s \int_{\Omega_{\epsilon}}\left(u_{M}^{\epsilon}\right)^{p} \mathrm{~d} x
+\end{aligned}
+\label{eq 73}\end{equation}
+Taking $\eta=p$ yields
+\begin{equation}
+  I_{3} \leq\left[\sum_{\substack{j+k \geq M \\
+j,k<M}} a_{j, k} K_{j} K_{k}\right]^{p}\left|\Omega_{\epsilon}\right| t+p \int_{0}^{t} \mathrm{~d} s \int_{\Omega_{\epsilon}}\left(u_{M}^{\epsilon}\right)^{p} \mathrm{~d} x
+\label{eq 74}\end{equation}
+Finally from \eqref{eq 71} and \eqref{eq 74} it follows that
+\begin{equation}
+  \left\|u_{M}^{\epsilon}(t)\right\|_{L^{p}\left(\Omega_{\epsilon}\right)}^{p} \leq\left[\sum_{\substack{j+k \geq M \\
+j,k<M}} a_{j, k} K_{j} K_{k}\right]^{p}\left|\Omega_{\epsilon}\right| T+\int_{0}^{t} \mathrm{~d} s p\left\|u_{M}^{\epsilon}(s)\right\|_{L^{p}\left(\Omega_{\epsilon}\right)}^{p}
+\label{eq 75}\end{equation}
+The Gronwall Lemma applied to \eqref{eq 75} leads to the estimate
+\begin{equation}
+  \left\|u_{M}^{\epsilon}(t)\right\|_{L^{p}\left(\Omega_{\epsilon}\right)}^{p} \leq\left[\sum_{\substack{j+k \geq M \\
+j,k<M}} a_{j, k} K_{j} K_{k}\right]^{p}\left|\Omega_{\epsilon}\right| T e^{p t}
+\label{eq 76}\end{equation}
+Hence
+\begin{equation}
+  \sup _{t \in[0, T]} \lim _{p \rightarrow \infty}\left[\int_{\Omega_{\epsilon}}\left(u_{M}^{\epsilon}(t, x)\right)^{p} \mathrm{~d} x\right]^{1 / p} \leq \sum_{\substack{j+k \geq M \\
+j,k<M}} a_{j, k} K_{j} K_{k} e^{T}
+\label{eq 77}\end{equation}
+\end{proof}
+\begin{lemma} The sequence $\nabla_{x} u_{M}^{\epsilon}$ is bounded in $L^{2}\left([0, T] \times \Omega_{\epsilon}\right)$, uniformly in $\epsilon$.
+\label{lemma 5.8}\end{lemma}
+The proof of  this Lemma is achieved by applying exactly the same arguments considered in the proof of Lemma \eqref{lemma 5.6}.
+\begin{lemma} The sequence $\partial_{t} u_{j}^{\epsilon}(1 \leq j \leq M)$ is bounded in $L^{2}\left([0, T] \times \Omega_{\epsilon}\right)$, uniformly in $\epsilon$.
+\label{lemma 5.9}\end{lemma}
+\begin{proof}
+Case $j=1$ : let us multiply the first equation in \eqref{eq 10} by the function $\partial_{t} u_{1}^{\epsilon}(t, x)$. By the divergence theorem, by Hölder's and Young's inequalities, following the same arguments of the previous proofs and exploiting the boundedness of $u_{j}^{\epsilon}(t, x)(1 \leq j \leq M)$ in $L^{\infty}\left(0, T ; L^{\infty}\left(\Omega_{\epsilon}\right)\right)$, one get
+\begin{equation}
+  \int_{\Omega_{\epsilon}}\left|\frac{\partial u_{1}^{\epsilon}}{\partial t}\right|^{2} \mathrm{~d} x+d_{1} \frac{\partial}{\partial t} \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{1}^{\epsilon}\right|^{2} \mathrm{~d} x \leq C_{1}+2 \epsilon d_{1} \int_{\Gamma_{\epsilon}} \psi\left(t, x, \frac{x}{\epsilon}\right) \frac{\partial u_{1}^{\epsilon}}{\partial t} \mathrm{~d} \sigma_{\epsilon}(x)
+\label{eq 78}\end{equation}
+Integrating over $[0, t]$ with $t \in[0, T]$, we obtain
+\begin{equation}
+  \begin{aligned}
+\int_{0}^{t} \mathrm{~d} s \int_{\Omega_{\epsilon}}\left|\frac{\partial u_{1}^{\epsilon}}{\partial s}\right|^{2} \mathrm{~d} x &+d_{1} \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{1}^{\epsilon}(t, x)\right|^{2} \mathrm{~d} x \leq C_{1} T \\
+&+2 \epsilon d_{1} \int_{\Gamma_{\epsilon}} \psi\left(t, x, \frac{x}{\epsilon}\right) u_{1}^{\epsilon}(t, x) \mathrm{d} \sigma_{\epsilon}(x) \\
+&-2 \epsilon d_{1} \int_{0}^{t} \mathrm{~d} s \int_{\Gamma_{\epsilon}} \frac{\partial}{\partial s} \psi\left(s, x, \frac{x}{\epsilon}\right) u_{1}^{\epsilon}(s, x) \mathrm{d} \sigma_{\epsilon}(x)
+\end{aligned}
+\label{eq 79}\end{equation}
+since $\psi\left(t=0, x, \frac{x}{\epsilon}\right) \equiv 0$. Taking into account the inequalities \eqref{eq 57}-\eqref{eq 58} and Lemma \eqref{lemma 7.1}, Eq. \eqref{eq 79} can be rewritten as follows
+\begin{equation}
+  \int_{0}^{t} \mathrm{~d} s \int_{\Omega_{\epsilon}}\left|\frac{\partial u_{1}^{\epsilon}}{\partial s}\right|^{2} \mathrm{~d} x+d_{1}\left(1-\epsilon^{2} C_{3}\right) \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{1}^{\epsilon}\right|^{2} \mathrm{~d} x \leq C_{1} T+C_{4}+C_{7}
+\label{eq 80}\end{equation}
+where the positive constants $C_{1}, C_{3}, C_{4}, C_{7}$ are independent of $\epsilon$, since $\psi \in$ $L^{\infty}(0, T ; B), u_{1}^{\epsilon}$ is bounded in $L^{\infty}\left(0, T ; L^{\infty}\left(\Omega_{\epsilon}\right)\right), \nabla_{x} u_{1}^{\epsilon}$ is bounded in $L^{2}(0, T$; $\left.L^{2}\left(\Omega_{\epsilon}\right)\right)$ and the following inequality holds
+$$
+\epsilon \int_{\Gamma_{\epsilon}}\left|\partial_{t} \psi\left(t, x, \frac{x}{\epsilon}\right)\right|^{2} \mathrm{~d} \sigma_{\epsilon}(x) \leq \tilde{C}\left\|\partial_{t} \psi(t)\right\|_{B}^{2} \leq C_{5}
+$$
+with $\tilde{C}$ and $C_{5}$ independent of $\epsilon$. For a sequence $\epsilon$ of positive numbers going to zero: $\left(1-\epsilon^{2} C_{3}\right) \geq 0$. Then, the second term on the left-hand side of \eqref{eq 80} is nonnegative, and one has
+\begin{equation}
+  \left\|\partial_{t} u_{1}^{\epsilon}\right\|_{L^{2}\left(0, T ; L^{2}\left(\Omega_{\epsilon}\right)\right)}^{2} \leq C
+\label{eq 81}\end{equation}
+where $C \geq 0$ is a constant independent of $\epsilon$.
+Case $1<j<M$ : let us multiply the first equation in \eqref{eq 12} by the function $\partial_{t} u_{m}^{\epsilon}(t, x)$. By the divergence theorem, by Hölder's and Young's inequalities, exploiting the boundedness of $u_{j}^{\epsilon}(t, x)(1 \leq j \leq M)$ in $L^{\infty}\left(0, T ; L^{\infty}\left(\Omega_{\epsilon}\right)\right)$, one get
+\begin{equation}
+  \int_{\Omega_{\epsilon}}\left|\frac{\partial u_{m}^{\epsilon}}{\partial t}\right|^{2} \mathrm{~d} x+2 d_{m} \frac{\partial}{\partial t} \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{m}^{\epsilon}\right|^{2} \mathrm{~d} x \leq 2 C_{1}+C_{2}
+\label{eq 82}\end{equation}
+Integrating over $[0, t]$ with $t \in[0, T]$, we obtain
+\begin{equation}
+  \int_{0}^{t} \mathrm{~d} s \int_{\Omega_{\epsilon}}\left|\frac{\partial u_{m}^{\epsilon}}{\partial s}\right|^{2} \mathrm{~d} x+2 d_{m} \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{m}^{\epsilon}(t, x)\right|^{2} \mathrm{~d} x \leq C_{3} T
+\label{eq 83}\end{equation}
+Since the second term on the left-hand side of \eqref{eq 83} is nonnegative, we conclude that 
+\begin{equation}
+  \left\|\partial_{t} u_{m}^{\epsilon}\right\|_{L^{2}\left(0, T ; L^{2}\left(\Omega_{\epsilon}\right)\right)}^{2} \leq C
+\label{eq 84}\end{equation}
+where $C \geq 0$ is a constant independent of $\epsilon$.
+By applying exactly the same arguments considered in proving the boundedness of $\partial_{t} u_{j}^{\epsilon}(t, x)(1<j<M)$ in $L^{2}\left(0, T ; L^{2}\left(\Omega_{\epsilon}\right)\right)$, one can derive also the following estimate
+\begin{equation}
+  \left\|\partial_{t} u_{M}^{\epsilon}\right\|_{L^{2}\left(0, T ; L^{2}\left(\Omega_{\epsilon}\right)\right)}^{2} \leq C
+\label{eq 85}\end{equation}
+where $C \geq 0$ is a constant independent of $\epsilon$.
+\end{proof}

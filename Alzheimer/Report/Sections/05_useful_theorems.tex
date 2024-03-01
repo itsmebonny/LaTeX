@@ -1,44 +1,43 @@
-\section{Useful Theorems and the related Theory}
-The next theorems yield a characterization of the two-scale limit of the gradients of bounded sequences $v^{\epsilon}$ which is a critical result in order to apply the homogenization on problems. Let's recall some theory on Sobolev spaces.\\
+\section{Useful Theorems}
+The next theorems yield a characterization of the two-scale limit of the gradients of bounded sequences $v^{\epsilon}$ which is a critical result in order to apply the homogenization on problems. Let's recall some theory on Sobolev spaces.
 We identify $H^{1}(\Omega)=W^{1,2}(\Omega)$, where the Sobolev space $W^{1, p}(\Omega)$ is defined by
 $$
 W^{1, p}(\Omega)=\left\{v \mid v \in L^{p}(\Omega), \frac{\partial v}{\partial x_{i}} \in L^{p}(\Omega), i=1, \ldots, N\right\}
-$$and we denote by $H_{\#}^{1}(Y)$ the closure of $C_{\#}^{\infty}(Y)$ for the $H^{1}$-norm.
+$$
+and we denote by $H_{\#}^{1}(Y)$ the closure of $C_{\#}^{\infty}(Y)$ for the $H^{1}$-norm.
 Let's recall that the quotient space of a vector space $V$ and its subspace $U$ is the set denoted with $V/U$ of all equivalence classes in $U$. In particular $v \sim v' \iff v-v'\in U$: two elements of $V$ differ at most to elements that belong to $U$.
 \begin{theorem}
 Let $v^{\epsilon}$ be a sequence of functions in $L^{2}([0, T] \times \Omega)$ which two-scale converges to a limit $v_{0} \in L^{2}([0, T] \times \Omega \times Y)$. Suppose, furthermore, that
 $$
-\lim _{\epsilon \rightarrow 0} \int_{0}^{T} \int_{\Omega}\left|v^{\epsilon}(t, x)\right|^{2} \, dxdt=\int_{0}^{T} \int_{\Omega} \int_{Y}\left|v_{0}(t, x, y)\right|^{2} \, dy dx dt
+\lim _{\epsilon \rightarrow 0} \int_{0}^{T} \int_{\Omega}\left|v^{\epsilon}(t, x)\right|^{2} \, dxdt=\int_{0}^{T} \int_{\Omega} \int_{Y}\left|v_{0}(t, x, y)\right|^{2} \, dy dx dt.
 $$
 Then, for any sequence $w^{\epsilon}$ in $L^{2}([0, T] \times \Omega)$ that two-scale converges to a limit $w_{0} \in L^{2}([0, T] \times \Omega \times Y)$, we have
 $$
 \begin{aligned}
-\lim _{\epsilon \rightarrow 0} \int_{0}^{T} \int_{\Omega} v^{\epsilon}(t, x) & w^{\epsilon}(t, x) \phi\left(t, x, \frac{x}{\epsilon}\right) \mathrm{d} t \mathrm{~d} x \\
-&=\int_{0}^{T} \int_{\Omega} \int_{Y} v_{0}(t, x, y) w_{0}(t, x, y) \phi(t, x, y) \mathrm{d} t \mathrm{~d} x \mathrm{~d} y
+\lim _{\epsilon \rightarrow 0} \int_{0}^{T} \int_{\Omega} v^{\epsilon}(t, x) & w^{\epsilon}(t, x) \phi\left(t, x, \frac{x}{\epsilon}\right) \, dxdt \\
+&=\int_{0}^{T} \int_{\Omega} \int_{Y} v_{0}(t, x, y) w_{0}(t, x, y) \phi(t, x, y) \, dy dx dt
 \end{aligned}
 $$for all $\phi \in C^{1}\left([0, T] \times \bar{\Omega} ; C_{\#}^{\infty}(Y)\right)$.
-\label{theorem 7.2}\end{theorem}
+\label{theorem:5.1}\end{theorem}
 This theorem shows that, under specific hypotheses, the limit of the product coincides with the product of the limits. Whereas when we perform the limit it appears an extra variable we need a theorem that defines how to manage the gradient of this variable.
 \begin{theorem}
 Let $v^{\epsilon}$ be a bounded sequence in $L^{2}\left(0, T ; H^{1}(\Omega)\right)$ such that $v_{\epsilon}(t,x)\rightharpoonup v(t,x)$  in $L^{2}\left(0, T ; H^{1}(\Omega)\right)$. Then $v^{\epsilon} \overset{2s}{\rightharpoonup} v(t, x)$, and there exists a function $v_{1}(t, x, y)$ in $L^{2}\left([0, T] \times \Omega ; H_{\#}^{1}(Y) / \mathbb{R}\right)$ such that, up to a subsequence, $\nabla v^{\epsilon}  \overset{2s}{\rightharpoonup} \left(\nabla_{x} v(t, x)+\nabla_{y} v_{1}(t, x, y)\right)$. 
-\label{theorem 7.3}\end{theorem}
+\label{theorem:5.2}\end{theorem}
 \begin{theorem} Let $v^{\epsilon}$ and $\epsilon \nabla v^{\epsilon}$ be two bounded sequences in $L^{2}([0, T] \times \Omega)$. Then, there exists a function $v_{1}(t, x, y)$ in $L^{2}\left([0, T] \times \Omega ; H_{\#}^{1}(Y) / \mathbb{R}\right)$ such that, up to a subsequence, $v^{\epsilon}$ and $\epsilon \nabla v^{\epsilon}$ two-scale converge to $v_{1}(t, x, y)$ and $\nabla_{y} v_{1}(t, x, y)$, respectively.
 \label{theorem 7.4}\end{theorem}
 The main result of two-scale convergence can be generalized to the case of sequences defined on the boundary of the holes: $L^{2}\left([0, T] \times \Gamma_{\epsilon}\right)$.
 \begin{theorem}
 Let $v^{\epsilon}$ be a sequence in $L^{2}\left([0, T] \times \Gamma_{\epsilon}\right)$ such that
 $$
-\epsilon \int_{0}^{T} \int_{\Gamma_{\epsilon}}\left|v^{\epsilon}(t, x)\right|^{2} \mathrm{~d} t \mathrm{~d} \sigma_{\epsilon}(x) \leq C
+\epsilon \int_{0}^{T} \int_{\Gamma_{\epsilon}}\left|v^{\epsilon}(t, x)\right|^{2} \, d\sigma_{\epsilon}(x)dt \leq C,
 $$
-where $C$ is a positive constant, independent of $\epsilon$. There exist a subsequence (still denoted by $\epsilon$ ) and a two-scale limit $v_{0}(t, x, y) \in L^{2}\left([0, T] \times \Omega ; L^{2}(\Gamma)\right)$ such that $v^{\epsilon}(t, x)$ two-scale converges to $v_{0}(t, x, y)$ in the sense that
-
+where $C$ is a positive constant, independent of $\epsilon$. There exists a subsequence (still denoted by $\epsilon$) and a two-scale limit $v_{0}(t, x, y) \in L^{2}\left([0, T] \times \Omega ; L^{2}(\Gamma)\right)$ such that $v^{\epsilon}(t, x)$ two-scale converges to $v_{0}(t, x, y)$ in the sense that
 $$
 \begin{aligned}
 &\lim _{\epsilon \rightarrow 0} \epsilon \int_{0}^{T} \int_{\Gamma_{\epsilon}} v^{\epsilon}(t, x) \phi\left(t, x, \frac{x}{\epsilon}\right) \mathrm{d} t \mathrm{~d} \sigma_{\epsilon}(x) \\
 &=\int_{0}^{T} \int_{\Omega} \int_{\Gamma} v_{0}(t, x, y) \phi(t, x, y) \mathrm{d} t \mathrm{~d} x \mathrm{~d} \sigma(y)
 \end{aligned}
 $$
-
 for any function $\phi \in C^{1}\left([0, T] \times \bar{\Omega} ; C_{\#}^{\infty}(Y)\right)$.
 \label{theorem 7.5}\end{theorem}
 This two-scale convergence theorem on the boundary led to the following lemma:

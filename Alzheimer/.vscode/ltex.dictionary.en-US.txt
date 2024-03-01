@@ -1,2 +1,6 @@
 Smoluchowski
 PDEs
+Hölder
+Smoluchowsky
+boundedness
+nonnegative
