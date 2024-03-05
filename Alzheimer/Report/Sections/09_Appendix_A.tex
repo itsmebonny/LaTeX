@@ -1,0 +1,122 @@
+\section{Appendix A}
+\begin{lemma} The following estimate holds: if $v \in \operatorname{Lip}\left(\Omega_{\epsilon}\right)$, then
+\begin{equation}
+  \|v\|_{L^{2}\left(\Gamma_{\epsilon}\right)}^{2} \leq C_{1}\left[\epsilon^{-1} \int_{\Omega_{\epsilon}}|v|^{2} \mathrm{~d} x+\epsilon \int_{\Omega_{\epsilon}}\left|\nabla_{x} v\right|^{2} \mathrm{~d} x\right]
+\label{eq 113}\end{equation}
+
+
+where $C_{1}$ is a constant which does not depend on $\epsilon$.
+\label{lemma 7.1}\end{lemma}
+The inequality \eqref{eq 113} can be easily obtained from the standard trace theorem by means of a scaling argument (Allaire et al. 1996; Chiadò Piat and Piatnitski 2010; Chiadò Piat et al. 2012).
+
+\begin{lemma}
+  
+ Suppose that the domain $\Omega_{\epsilon}$ is such that assumption \eqref{eq:security_zone} is satisfied. Then, there exists a family of linear continuous extension operators
+
+$$
+P_{\epsilon}: W^{1, p}\left(\Omega_{\epsilon}\right) \rightarrow W^{1, p}(\Omega)
+$$
+
+and a constant $C>0$ independent of $\epsilon$ such that
+
+$$
+P_{\epsilon} v=v \quad \text { in } \Omega_{\epsilon}
+$$
+
+and
+\begin{equation}
+  \int_{\Omega}\left|P_{\epsilon} v\right|^{p} \mathrm{~d} x \leq C \int_{\Omega_{\epsilon}}|v|^{p} \mathrm{~d} x,
+\label{eq 114}\end{equation}
+\begin{equation}
+  \int_{\Omega}\left|\nabla\left(P_{\epsilon} v\right)\right|^{p} \mathrm{~d} x \leq C \int_{\Omega_{\epsilon}}|\nabla v|^{p} \mathrm{~d} x
+\label{eq 115}\end{equation}
+
+for each $v \in W^{1, p}\left(\Omega_{\epsilon}\right)$ and for any $p \in(1,+\infty)$.
+\label{lemma 7.2}\end{lemma}
+
+
+As a consequence of the existence of extension operators, one can derive the Sobolev inequalities in $W^{1, p}\left(\Omega_{\epsilon}\right)$ with a constant independent of $\epsilon$.
+
+\begin{lemma} (Anisotropic Sobolev inequalities in perforated domains)
+
+(i) For arbitrary $v \in H^{1}\left(0, T ; L^{2}\left(\Omega_{\epsilon}\right)\right) \cap L^{2}\left(0, T ; H^{1}\left(\Omega_{\epsilon}\right)\right)$ and $q_{1}$ and $r_{1}$ satisfying the conditions
+\begin{equation}
+  \left\{\begin{array}{l}
+\frac{1}{r_{1}}+\frac{N}{2 q_{1}}=\frac{N}{4} \\
+r_{1} \in[2, \infty], q_{1} \in\left[2, \frac{2 N}{N-2}\right] \quad \text { for } N>2
+\end{array}\right.
+\label{eq 116}\end{equation}
+
+the following estimate holds
+\begin{equation}
+  \|v\|_{L^{r_{1}}\left(0, T ; L^{q_{1}}\left(\Omega_{\epsilon}\right)\right)} \leq c\|v\|_{Q_{\epsilon}(T)}
+\label{eq 117}\end{equation}
+where $\mathrm{c}$ is a positive constant independent of $\epsilon$ and
+\begin{equation}
+  \|v\|_{Q_{\epsilon}(T)}^{2}:=\sup _{0 \leq t \leq T} \int_{\Omega_{\epsilon}}|v(t)|^{2} \mathrm{~d} x+\int_{0}^{T} \mathrm{~d} t \int_{\Omega_{\epsilon}}|\nabla v(t)|^{2} \mathrm{~d} x
+\label{eq 118}\end{equation}
+
+
+(ii) For arbitrary $v \in H^{1}\left(0, T ; L^{2}\left(\Omega_{\epsilon}\right)\right) \cap L^{2}\left(0, T ; H^{1}\left(\Omega_{\epsilon}\right)\right)$ and $q_{2}$ and $r_{2}$ satisfying the conditions
+\begin{equation}
+  \left\{\begin{array}{l}
+\frac{1}{r_{2}}+\frac{(N-1)}{2 q_{2}}=\frac{N}{4} \\
+r_{2} \in[2, \infty], q_{2} \in\left[2, \frac{2(N-1)}{(N-2)}\right] \quad \text { for } N \geq 3
+\end{array}\right.
+\label{eq 119}\end{equation}
+
+
+the following estimate holds
+\begin{equation}
+  \|v\|_{L^{r_{2}}\left(0, T ; L^{q_{2}}\left(\Gamma_{\epsilon}\right)\right)} \leq c \epsilon^{-\frac{N}{2}-\frac{(1-N)}{q_{2}}}\|v\|_{Q_{\epsilon}(T)}
+\label{eq 120}\end{equation}
+
+
+where $c$ is a positive constant independent of $\epsilon$ and the norm $\|v\|_{Q_{\epsilon}(T)}$ is defined as in \eqref{eq 118}.
+\label{lemma 7.3}\end{lemma}
+\begin{proof}
+(i) The extension Lemma \eqref{lemma 7.2} ensures the well definiteness of a linear continuous extension operator $P_{\epsilon}$ which satisfies \eqref{eq 114} and \eqref{eq 115}. By the classical multiplicative Sobolev inequalities valid in $\Omega$ (see Ladyzenskaja et al. 1968 and Nittka 2014), we have that
+\begin{equation}
+  \left\|P_{\epsilon} v\right\|_{L_{1}^{r_{1}}\left(0, T ; L^{q_{1}(\Omega)}\right.} \leq c_{1}\left\|P_{\epsilon} v\right\|_{Q(T)}
+\label{eq 121}\end{equation}
+
+
+where $c_{1} \geq 0$ depends only on $\Omega, r_{1}, q_{1}$, with $r_{1}$ and $q_{1}$ satisfying the conditions \eqref{eq 116} and
+\begin{equation}
+  \left\|P_{\epsilon} v\right\|_{Q(T)}^{2}:=\sup _{0 \leq t \leq T} \int_{\Omega}\left|P_{\epsilon} v(t)\right|^{2} \mathrm{~d} x+\int_{0}^{T} \mathrm{~d} t \int_{\Omega}\left|\nabla\left(P_{\epsilon} v(t)\right)\right|^{2} \mathrm{~d} x
+\label{eq 122}\end{equation}
+
+By using \eqref{eq 114},\eqref{eq 115} and \eqref{eq 121}, we conclude that
+\begin{equation}
+  \begin{aligned}
+\|v\|_{L^{r_{1}}\left(0, T ; L^{q_{1}}\left(\Omega_{\epsilon}\right)\right)} & \leq C^{\prime}\left\|P_{\epsilon} v\right\|_{L^{r_{1}}\left(0, T ; L^{q_{1}}(\Omega)\right)} \\
+& \leq C^{\prime} c_{1}\left\|P_{\epsilon} v\right\|_{Q(T)} \leq C^{\prime} c_{1} C\|v\|_{Q_{\epsilon}(T)}
+\end{aligned}
+\label{eq 123}\end{equation}
+
+
+where $c:=C^{\prime} c_{1} C$ is independent of $\epsilon$.
+
+(ii) Let us rewrite the anisotropic Sobolev inequality valid on $\partial \Omega$ (see Ladyzenskaja et al. 1968 and Nittka 2014):
+\begin{equation}
+  \begin{aligned}
+&{\left[\int_{0}^{T} \mathrm{~d} t\left[\int_{\partial \Omega}|v(t)|^{q_{2}} d \mathcal{H}^{N-1}\right]^{\frac{r_{2}}{q_{2}}}\right]^{\frac{1}{r_{2}}}} \\
+&\leq c_{1}\left[\sup _{0 \leq t \leq T} \int_{\Omega}|v(t)|^{2} \mathrm{~d} y+\int_{0}^{T} \mathrm{~d} t \int_{\Omega}|\nabla v(t)|^{2} \mathrm{~d} y\right]^{1 / 2}
+\end{aligned}
+\label{124}\end{equation}
+where $c_{1} \geq 0$ depends only on $r_{2}, q_{2}$ and on local properties of the surface $\partial \Omega$ (which is assumed to be piecewise smooth) with $r_{2}$ and $q_{2}$ satisfying the conditions \eqref{eq 119}. By performing the change of variable $y=\frac{x}{\epsilon}$, it is easy to obtain the corresponding re-scaled estimates:
+\begin{equation}
+  \begin{aligned}
+&\epsilon^{\frac{(1-N)}{q_{2}}}\left[\int_{0}^{T} \mathrm{~d} t\left[\int_{\Gamma_{\epsilon}}|v(t)|^{q_{2}} d \mathcal{H}^{N-1}\right]^{\frac{r_{2}}{q_{2}}}\right]^{\frac{1}{r_{2}}} \\
+&\quad \leq c_{1} \epsilon^{-\frac{N}{2}}\left[\sup _{0 \leq t \leq T} \int_{\Omega_{\epsilon}}|v(t)|^{2} \mathrm{~d} x+\epsilon^{2} \int_{0}^{T} \mathrm{~d} t \int_{\Omega_{\epsilon}}|\nabla v(t)|^{2} \mathrm{~d} x\right]^{1 / 2} \\
+\end{aligned}
+\label{eq 125}\end{equation}
+\begin{equation}
+\begin{aligned}
+&{\left[\int_{0}^{T} \mathrm{~d} t\left[\int_{\Gamma_{\epsilon}}|v(t)|^{q_{2}} d \mathcal{H}^{N-1}\right]^{\frac{r_{2}}{q_{2}}}\right]^{\frac{1}{r_{2}}}} \\
+&\quad \leq c \epsilon^{-\frac{N}{2}-\frac{(1-N)}{q_{2}}}\left[\sup _{0 \leq t \leq T} \int_{\Omega_{\epsilon}}|v(t)|^{2} \mathrm{~d} x+\int_{0}^{T} \mathrm{~d} t \int_{\Omega_{\epsilon}}|\nabla v(t)|^{2} \mathrm{~d} x\right]^{1 / 2}
+\end{aligned}
+\label{eq 126}\end{equation}
+
+where $c$ is a positive constant independent of $\epsilon$.
+\end{proof}

@@ -1,41 +1,54 @@
 \section{State and proof of the Main Theorem}
-\begin{theorem} Let $u_{m}^{\epsilon}(t, x)(1 \leq m \leq M)$ be a family of classical solutions to problems (10)-(13). The sequences $\widetilde{u_{m}^{\epsilon}}$ and $\widetilde{\nabla_{x} u_{m}^{\epsilon}}(1 \leq m \leq M)$ two-scale converge to: $\left[\chi(y) u_{m}(t, x)\right]$ and $\left[\chi(y)\left(\nabla_{x} u_{m}(t, x)+\nabla_{y} u_{m}^{1}(t, x, y)\right)\right](1 \leq m \leq M)$, respectively, where tilde denotes the extension by zero outside $\Omega_{\epsilon}$ and $\chi(y)$ represents the characteristic function of $Y^{*}$. The limiting functions $\left(u_{m}(t, x), u_{m}^{1}(t, x, y)\right)(1 \leq m \leq M)$ are the unique solutions in $L^{2}\left(0, T ; H^{1}(\Omega)\right) \times L^{2}\left([0, T] \times \Omega ; H_{\#}^{1}(Y) / \mathbb{R}\right)$ of the following two-scale homogenized systems.
-
+\begin{theorem} Let $u_{m}^{\epsilon}(t, x)(1 \leq m \leq M)$ be a family of classical solutions to problems \eqref{eq:u_1_eqs}-\eqref{eq:u_M_eqs}. The sequences $\widetilde{u_{m}^{\epsilon}}$ and $\widetilde{\nabla_{x} u_{m}^{\epsilon}}(1 \leq m \leq M)$ two-scale converge to: $\left[\chi(y) u_{m}(t, x)\right]$ and $\left[\chi(y)\left(\nabla_{x} u_{m}(t, x)+\nabla_{y} u_{m}^{1}(t, x, y)\right)\right](1 \leq m \leq M)$, respectively, where tilde denotes the extension by zero outside $\Omega_{\epsilon}$ and $\chi(y)$ represents the characteristic function of $Y^{*}$. The limiting functions $\left(u_{m}(t, x), u_{m}^{1}(t, x, y)\right)(1 \leq m \leq M)$ are the unique solutions in $L^{2}\left(0, T ; H^{1}(\Omega)\right) \times L^{2}\left([0, T] \times \Omega ; H_{\#}^{1}(Y) / \mathbb{R}\right)$ of the following two-scale homogenized systems.
 If $m=1$ we have:
 \begin{equation}
-  \begin{cases}\theta \frac{\partial u_{1}}{\partial t}(t, x)-\operatorname{div}_{x}\left[d_{1} A \nabla_{x} u_{1}(t, x)\right] & \\ +\theta u_{1}(t, x) \sum_{j=1}^{M} a_{1, j} u_{j}(t, x) & \text { in }[0, T] \times \Omega \\ =d_{1} \int_{\Gamma} \psi(t, x, y) \mathrm{d} \sigma(y) & \text { on }[0, T] \times \partial \Omega \\ {\left[A \nabla_{x} u_{1}(t, x)\right] \cdot n=0} & \text { in } \Omega \\ u_{1}(0, x)=U_{1} & \end{cases}
-\label{eq 16}\end{equation}
-
-if $1<m<M$ we have:
+  \begin{dcases}
+   \begin{split}
+     \theta \frac{\partial u_{1}}{\partial t}(t, x)-\operatorname{div}_{x}\left[d_{1} A \nabla_{x} u_{1}(t, x)\right] \\  +\theta u_{1}(t, x) \sum_{j=1}^{M} a_{1, j} u_{j}(t, x) \\ =d_{1} \int_{\Gamma} \psi(t, x, y) \, d  \sigma(y), 
+   \end{split} & \text { in }[0, T]\times\Omega, \\
+    {\left[A \nabla_{x} u_{1}(t, x)\right] \cdot n=0}, & \text { on }[0, T]\times\partial\Omega, \\ 
+    u_{1}(0, x)=U_{1}, & \text { in }\Omega. \\ 
+\end{dcases}
+\label{eq 16}
+\end{equation}
+If $1<m<M$ we have:
 \begin{equation}
-  \begin{cases}\theta \frac{\partial u_{m}}{\partial t}(t, x)-\operatorname{div}_{x}\left[d_{m} A \nabla_{x} u_{m}(t, x)\right] \\ +\theta u_{m}(t, x) \sum_{j=1}^{M} a_{m, j} u_{j}(t, x) & \\ =\frac{\theta}{2} \sum_{j=1}^{m-1} a_{j, m-j} u_{j}(t, x) u_{m-j}(t, x) & \text { in }[0, T] \times \Omega \\ {\left[A \nabla_{x} u_{m}(t, x)\right] \cdot n=0} & \text { on }[0, T] \times \partial \Omega \\ u_{m}(0, x)=0 & \text { in } \Omega\end{cases}
+  \begin{dcases}
+    \begin{split}
+        \theta \frac{\partial u_{m}}{\partial t}(t, x)-\operatorname{div}_{x}\left[d_{m} A \nabla_{x} u_{m}(t, x)\right] \\ +\theta u_{m}(t, x) \sum_{j=1}^{M} a_{m, j} u_{j}(t, x) & \\ =\frac{\theta}{2} \sum_{j=1}^{m-1} a_{j, m-j} u_{j}(t, x) u_{m-j}(t, x), 
+    \end{split}& \text { in }[0, T]\times\Omega,\\ 
+    {\left[A \nabla_{x} u_{m}(t, x)\right] \cdot n=0}, & \text { on }[0, T]\times\partial\Omega, \\ 
+    u_{m}(0, x)=0, & \text { in }\Omega.
+\end{dcases}
 \label{eq 17}\end{equation}
-
-
-if $m=M$ we have :
+If $m=M$ we have :
 \begin{equation}
-  \begin{cases}\theta \frac{\partial u_{M}}{\partial t}(t, x)-d i v_{x}\left[d_{M} A \nabla_{x} u_{M}(t, x)\right] & \\ =\frac{\theta}{2} \sum_{\substack{j+k \geq M \\ k<M \\ j<M}} a_{j, k} u_{j}(t, x) u_{k}(t, x) & \text { in }[0, T] \times \Omega \\ {\left[A \nabla_{x} u_{M}(t, x)\right] \cdot n=0} & \text { on }[0, T] \times \partial \Omega \\ u_{M}(0, x)=0 & \text { in } \Omega\end{cases}
+  \begin{dcases}
+    \begin{split}
+        \theta \frac{\partial u_{M}}{\partial t}(t, x)-d i v_{x}\left[d_{M} A \nabla_{x} u_{M}(t, x)\right] & \\ =\frac{\theta}{2} \sum_{\substack{j+k \geq M \\ j,k<M}} a_{j, k} u_{j}(t, x) u_{k}(t, x),
+    \end{split} & \text { in }[0, T]\times\Omega,\\ 
+    {\left[A \nabla_{x} u_{M}(t, x)\right] \cdot n=0}, & \text { on }[0, T]\times\partial\Omega, \\ 
+    u_{M}(0, x)=0,& \text { in }\Omega.
+\end{dcases}
 \label{eq 18}\end{equation}
-
 where
-
 $$
 \begin{aligned}
 u_{m}^{1}(t, x, y) &=\sum_{i=1}^{N} w_{i}(y) \frac{\partial u_{m}}{\partial x_{i}}(t, x) \quad(1 \leq m \leq M), \\
-\theta &=\int_{Y} \chi(y) \mathrm{d} y=\left|Y^{*}\right|
+\theta &=\int_{Y} \chi(y) \, d  y=\left|Y^{*}\right|
 \end{aligned}
 $$
 is the volume fraction of material, and $A$ is a matrix with constant coefficients defined by
 \begin{equation*}
-A_{i j}=\int_{Y^{*}}\left(\nabla_{y} w_{i}+\hat{e}_{i}\right) \cdot\left(\nabla_{y} w_{j}+\hat{e}_{j}\right) \mathrm{d} y\end{equation*}
+A_{i j}=\int_{Y^{*}}\left(\nabla_{y} w_{i}+\hat{e}_{i}\right) \cdot\left(\nabla_{y} w_{j}+\hat{e}_{j}\right) \, d  y,
+\end{equation*}
 with  $\hat{e}_{i}$ being the $ith$ unit vector in $\mathbb{R}^n$ and $(w_i)_1\leq i \leq N$ the family of solutions of the cell problem
-
 \begin{equation}
-    \begin{cases}
-        -\operatorname{div}_{y}\left[\nabla_{y} w_{i}+\hat{e}_{i}\right]=0 & \text { in } Y^{*} \\
-        \left(\nabla_{y} w_{i}+\hat{e}_{i}\right) \cdot n=0 & \text { on } \Gamma \\
-        y \rightarrow w_{i}(y) & Y-\text { periodic }
-    \end{cases}
+    \begin{dcases}
+        -\operatorname{div}_{y}\left[\nabla_{y} w_{i}+\hat{e}_{i}\right]=0, & \text { in } Y^{*}, \\
+        \left(\nabla_{y} w_{i}+\hat{e}_{i}\right) \cdot n=0, & \text { on } \Gamma, \\
+        y \rightarrow w_{i}(y), & Y-\text {periodic}.
+    \end{dcases}
     \label{eq 19}
 \end{equation}
 \label{thm 5.1}
@@ -44,196 +57,166 @@ with  $\hat{e}_{i}$ being the $ith$ unit vector in $\mathbb{R}^n$ and $(w_i)_1\l
 In view of Lemmas \eqref{lemma 5.1}-\eqref{lemma 5.2} and \eqref{lemma 5.4}-\eqref{lemma 5.8}, the sequences $\widetilde{u_{m}^{\epsilon}}$ and $\widetilde{\nabla_{x} u_{m}^{\epsilon}}(1 \leq m \leq M)$ are bounded in $L^{2}([0, T] \times \Omega)$, and by application of Theorem \eqref{thm 7.1} and Theorem \eqref{thm 7.3}, and so:
 \begin{equation}
 \widetilde{u_{m}^{\epsilon}}  \overset{2s}{\rightharpoonup}
-\left[\chi(y) u_{m}(t, x)\right]
+\left[\chi(y) u_{m}(t, x)\right],
 \end{equation}
 \begin{equation}
 \widetilde{\nabla_{x} u_{m}^{\epsilon}}
 \overset{2s}{\rightharpoonup}
-\left[\chi(y)\left(\nabla_{x} u_{m}(t, x)+\right.\right.\left.\left.\nabla_{y} u_{m}^{1}(t, x, y)\right)\right] \quad (1 \leq m \leq M)
+\left[\chi(y)\left(\nabla_{x} u_{m}(t, x)+\right.\right.\left.\left.\nabla_{y} u_{m}^{1}(t, x, y)\right)\right], \quad (1 \leq m \leq M).
 \end{equation}
 Similarly, in view of Lemma \eqref{lemma 5.9}, it is possible to prove that
 \begin{equation}
 \left(\widetilde{\frac{\partial u_{m}^{\epsilon}}{\partial t}}\right)
 \overset{2s}{\rightharpoonup}
-\left[\chi(y) \frac{\partial u_{m}}{\partial t}(t, x)\right]  \quad (1 \leq m \leq M)
+\left[\chi(y) \frac{\partial u_{m}}{\partial t}(t, x)\right],  \quad (1 \leq m \leq M).
 \end{equation}
 We can now find the homogenized equations satisfied by $u_{m}(t, x)$ and $u_{m}^{1}(t, x, y)$ $(1 \leq m \leq M)$.
-In the case $m=1$, let us multiply the first equation of \eqref{eq 10} by the test function to obtain the weak formulation of the problem
+In the case $m=1$, let us multiply the first equation of \eqref{eq:u_1_eqs} by the test function to obtain the weak formulation of the problem
 $$
-\phi_{\epsilon} \equiv \phi(t, x)+\epsilon \phi_{1}\left(t, x, \frac{x}{\epsilon}\right)
+\phi_{\epsilon} \equiv \phi(t, x)+\epsilon \phi_{1}\left(t, x, \frac{x}{\epsilon}\right),
 $$
 where $\phi \in C^{1}([0, T] \times \bar{\Omega})$ and $\phi_{1} \in C^{1}\left([0, T] \times \bar{\Omega} ; C_{\#}^{\infty}(Y)\right)$. 
 \begin{equation*}
-    \frac{\partial u_{1}^{\epsilon}}{\partial t}\phi_{\epsilon}-\operatorname{div}\left(d_{1} \nabla_{x} u_{1}^{\epsilon}\right)\phi_{\epsilon}+u_{1}^{\epsilon} \sum_{j=1}^{M} a_{1, j} u_{1}^{\epsilon}\phi_{\epsilon}=0
+    \frac{\partial u_{1}^{\epsilon}}{\partial t}\phi_{\epsilon}-\operatorname{div}\left(d_{1} \nabla_{x} u_{1}^{\epsilon}\right)\phi_{\epsilon}+u_{1}^{\epsilon} \sum_{j=1}^{M} a_{1, j} u_{1}^{\epsilon}\phi_{\epsilon}=0.
 \end{equation*}
 Integrating, the divergence theorem yields
 \begin{equation}
   \begin{aligned}
-&\int_{0}^{T} \int_{\Omega_{\epsilon}} \frac{\partial u_{1}^{\epsilon}}{\partial t} \phi_{\epsilon}\left(t, x, \frac{x}{\epsilon}\right) \mathrm{d} t \mathrm{~d} x+d_{1} \int_{0}^{T} \int_{\Omega_{\epsilon}} \nabla_{x} u_{1}^{\epsilon} \cdot \nabla \phi_{\epsilon} \mathrm{d} t \mathrm{~d} x \\
-&+\int_{0}^{T} \int_{\Omega_{\epsilon}} u_{1}^{\epsilon} \sum_{j=1}^{M} a_{1, j} u_{j}^{\epsilon} \phi_{\epsilon} \mathrm{d} t \mathrm{~d} x=\epsilon d_{1} \int_{0}^{T} \int_{\Gamma_{\epsilon}} \psi\left(t, x, \frac{x}{\epsilon}\right) \phi_{\epsilon} \mathrm{d} t \mathrm{~d} \sigma_{\epsilon}(x)
+&\int_{0}^{T} \int_{\Omega_{\epsilon}} \frac{\partial u_{1}^{\epsilon}}{\partial t} \phi_{\epsilon}\left(t, x, \frac{x}{\epsilon}\right) \, d  t \, d  x+d_{1} \int_{0}^{T} \int_{\Omega_{\epsilon}} \nabla_{x} u_{1}^{\epsilon} \cdot \nabla \phi_{\epsilon} \, d  t \, d  x \\
+&+\int_{0}^{T} \int_{\Omega_{\epsilon}} u_{1}^{\epsilon} \sum_{j=1}^{M} a_{1, j} u_{j}^{\epsilon} \phi_{\epsilon} \, d  t \, d  x=\epsilon d_{1} \int_{0}^{T} \int_{\Gamma_{\epsilon}} \psi\left(t, x, \frac{x}{\epsilon}\right) \phi_{\epsilon} \, d  t \, d  \sigma_{\epsilon}(x).
 \end{aligned}
 \label{eq 86}\end{equation}
 Passing to the two-scale limit, we get
 \begin{equation}
 \begin{aligned}
-&\int_{0}^{T} \int_{\Omega} \int_{Y^{*}} \frac{\partial u_{1}}{\partial t}(t, x) \phi(t, x) \mathrm{d} t \mathrm{~d} x \mathrm{~d} y \\
-&\quad+d_{1} \int_{0}^{T} \int_{\Omega} \int_{Y^{*}}\left[\nabla_{x} u_{1}(t, x)+\nabla_{y} u_{1}^{1}(t, x, y)\right] \cdot\left[\nabla_{x} \phi(t, x)+\nabla_{y} \phi_{1}(t, x, y)\right] \mathrm{d} t \mathrm{~d} x \mathrm{~d} y+\\&+\int_{0}^{T} \int_{\Omega} \int_{Y^{*}} u_{1}(t, x) \sum_{j=1}^{M} a_{1, j} u_{j}(t, x) \phi(t, x) \mathrm{d} t \mathrm{~d} x \mathrm{~d} y= d_{1} \int_{0}^{T} \int_{\Omega} \int_{\Gamma} \psi(t, x, y) \phi(t, x) \mathrm{d} t \mathrm{~d} x \mathrm{~d} \sigma(y)
+&\int_{0}^{T} \int_{\Omega} \int_{Y^{*}} \frac{\partial u_{1}}{\partial t}(t, x) \phi(t, x) \, d  t \, d  x \, d  y \\
+&\quad+d_{1} \int_{0}^{T} \int_{\Omega} \int_{Y^{*}}\left[\nabla_{x} u_{1}(t, x)+\nabla_{y} u_{1}^{1}(t, x, y)\right] \cdot\left[\nabla_{x} \phi(t, x)+\nabla_{y} \phi_{1}(t, x, y)\right] \, d  t \, d  x \, d  y+\\&+\int_{0}^{T} \int_{\Omega} \int_{Y^{*}} u_{1}(t, x) \sum_{j=1}^{M} a_{1, j} u_{j}(t, x) \phi(t, x) \, d  t \, d  x \, d  y= d_{1} \int_{0}^{T} \int_{\Omega} \int_{\Gamma} \psi(t, x, y) \phi(t, x) \, d  t \, d  x \, d  \sigma(y).
 \end{aligned}
 \label{eq 87}\end{equation}
 The last term on the left-hand side of \eqref{eq 87} has been obtained by using Theorem \eqref{thm 7.2}, while the term on the right-hand side has been attained by application of Theorem \eqref{thm 7.5}. An integration by parts shows that \eqref{eq 87} is a variational formulation associated with the following homogenized system:
+
 \begin{equation}
-  -\operatorname{div}_{y}\left[d_{1}\left(\nabla_{x} u_{1}(t, x)+\nabla_{y} u_{1}^{1}(t, x, y)\right)\right]=0 \quad \text { in }[0, T] \times \Omega \times Y^{*} 
+  -\operatorname{div}_{y}\left[d_{1}\left(\nabla_{x} u_{1}(t, x)+\nabla_{y} u_{1}^{1}(t, x, y)\right)\right]=0, \quad \text { in }[0, T] \times \Omega \times Y^{*},
 \label{eq 88}\end{equation}
 \begin{equation}
- {\left[\nabla_{x} u_{1}(t, x)+\nabla_{y} u_{1}^{1}(t, x, y)\right] \cdot n=0 \quad \text { on }[0, T] \times \Omega \times \Gamma}
+ {\left[\nabla_{x} u_{1}(t, x)+\nabla_{y} u_{1}^{1}(t, x, y)\right] \cdot n=0, \quad \text { on }[0, T] \times \Omega \times \Gamma},
 \label{eq 89}\end{equation}
 \begin{equation}
 \begin{aligned}
-&\theta \frac{\partial u_{1}}{\partial t}(t, x)-\operatorname{div}_{x}\left[d_{1} \int_{Y^{*}}\left(\nabla_{x} u_{1}(t, x)+\nabla_{y} u_{1}^{1}(t, x, y)\right) \mathrm{d} y\right] \\&+\theta u_{1}(t, x) \sum_{j=1}^{M} a_{1, j} u_{j}(t, x)-d_{1} \int_{\Gamma} \psi(t, x, y) \mathrm{d} \sigma(y)=0 \quad \text { in }[0, T] \times \Omega
+&\theta \frac{\partial u_{1}}{\partial t}(t, x)-\operatorname{div}_{x}\left[d_{1} \int_{Y^{*}}\left(\nabla_{x} u_{1}(t, x)+\nabla_{y} u_{1}^{1}(t, x, y)\right) \, d  y\right] \\&+\theta u_{1}(t, x) \sum_{j=1}^{M} a_{1, j} u_{j}(t, x)-d_{1} \int_{\Gamma} \psi(t, x, y) \, d  \sigma(y)=0, \quad \text { in }[0, T] \times \Omega,
 \end{aligned}
 \label{eq 90}\end{equation}
 
 \begin{equation}
- {\left[\int_{Y^{*}}\left(\nabla_{x} u_{1}(t, x)+\nabla_{y} u_{1}^{1}(t, x, y)\right) \mathrm{d} y\right] \cdot n=0 \quad \text { on }[0, T] \times \partial \Omega}
+ {\left[\int_{Y^{*}}\left(\nabla_{x} u_{1}(t, x)+\nabla_{y} u_{1}^{1}(t, x, y)\right) \, d  y\right] \cdot n=0, \quad \text { on }[0, T] \times \partial \Omega}.
 \label{eq 91}\end{equation}
-
-
-where
-
-$$
-\theta=\int_{Y} \chi(y) \mathrm{d} y=\left|Y^{*}\right|
-$$
-
-is the volume fraction of material. To conclude, by continuity, we have that
-
+To conclude, by continuity, we have that
 $$
 u_{1}(0, x)=U_{1} \quad \text { in } \Omega .
 $$
-
-Taking advantage of the constancy of the diffusion coefficient $d_{1}$, Eqs. \eqref{eq 88} and \eqref{eq 89} can be reexpressed as follows
+Taking advantage of the constancy of the diffusion coefficient $d_{1}$, Eqs. \eqref{eq 88} and \eqref{eq 89} can be rewritten as follows
 \begin{equation}
-\Delta_{y} u_{1}^{1}(t, x, y)=0 \quad \text { in }[0, T] \times \Omega \times Y^{*} 
+\Delta_{y} u_{1}^{1}(t, x, y)=0, \quad \text { in }[0, T] \times \Omega \times Y^{*},
 \label{eq 92}\end{equation}
 \begin{equation}
- \nabla_{y} u_{1}^{1}(t, x, y) \cdot n=-\nabla_{x} u_{1}(t, x) \cdot n \quad \text { on }[0, T] \times \Omega \times \Gamma
+ \nabla_{y} u_{1}^{1}(t, x, y) \cdot n=-\nabla_{x} u_{1}(t, x) \cdot n, \quad \text { on }[0, T] \times \Omega \times \Gamma.
 \label{eq 93}\end{equation}
-
-
 Then, $u_{1}^{1}(t, x, y)$ satisfying (92)-(93) can be written as
 \begin{equation}
- u_{1}^{1}(t, x, y)=\sum_{i=1}^{N} w_{i}(y) \frac{\partial u_{1}}{\partial x_{i}}(t, x)
+ u_{1}^{1}(t, x, y)=\sum_{i=1}^{N} w_{i}(y) \frac{\partial u_{1}}{\partial x_{i}}(t, x),
 \label{eq 94}\end{equation}
-
-
-
 where $\left(w_{i}\right)_{1 \leq i \leq N}$ is the family of solutions of the cell problem
 \begin{equation}
- \begin{cases}-\operatorname{div}_{y}\left[\nabla_{y} w_{i}+\hat{e}_{i}\right]=0 & \text { in } Y^{*} \\ \left(\nabla_{y} w_{i}+\hat{e}_{i}\right) \cdot n=0 & \text { on } \Gamma \\ y \rightarrow w_{i}(y) \quad Y-\text { periodic } & \end{cases}
+ \begin{cases}-\operatorname{div}_{y}\left[\nabla_{y} w_{i}+\hat{e}_{i}\right]=0, & \text { in } Y^{*}, \\ \left(\nabla_{y} w_{i}+\hat{e}_{i}\right) \cdot n=0, & \text { on } \Gamma, \\ y \rightarrow w_{i}(y), & Y-\text {periodic}. \end{cases}
 \label{eq 95}\end{equation}
-
-
 By using the relation \eqref{eq 94} in Eqs. \eqref{eq 90} and \eqref{eq 91}, we get
 \begin{equation}
  \begin{split}
     \theta \frac{\partial u_{1}}{\partial t}(t, x)-\operatorname{div}_{x}\left[d_{1} A \nabla_{x} u_{1}(t, x)\right]+\theta u_{1}(t, x) \sum_{j=1}^{M} a_{1, j} u_{j}(t, x) \\
-   -d_{1} \int_{\Gamma} \psi(t, x, y) \mathrm{d} \sigma(y)=0 \quad \text { in }[0, T] \times \Omega
+   -d_{1} \int_{\Gamma} \psi(t, x, y) \, d  \sigma(y)=0, \quad \text { in }[0, T] \times \Omega,
  \end{split}
 \label{eq 96}\end{equation}
-
 \begin{equation}
- \left[A \nabla_{x} u_{1}(t, x)\right] \cdot n=0 \quad \text { on }[0, T] \times \partial \Omega
+ \left[A \nabla_{x} u_{1}(t, x)\right] \cdot n=0, \quad \text { on }[0, T] \times \partial \Omega,
 \label{eq 97}\end{equation}
-
-
 where $A$ is a matrix with constant coefficients defined by
-
 $$
-A_{i j}=\int_{Y^{*}}\left(\nabla_{y} w_{i}+\hat{e}_{i}\right) \cdot\left(\nabla_{y} w_{j}+\hat{e}_{j}\right) \mathrm{d} y .
+A_{i j}=\int_{Y^{*}}\left(\nabla_{y} w_{i}+\hat{e}_{i}\right) \cdot\left(\nabla_{y} w_{j}+\hat{e}_{j}\right) \, d  y .
 $$
-
-In the case $1<m<M$, let us multiply the first equation of \eqref{eq 12} by the test function
+In the case $1<m<M$, let us multiply the first equation of \eqref{eq:u_m_eqs} by the test function
 $$
 \phi_{\epsilon} \equiv \phi(t, x)+\epsilon \phi_{1}\left(t, x, \frac{x}{\epsilon}\right)
 $$
-
 where $\phi \in C^{1}([0, T] \times \bar{\Omega})$ and $\phi_{1} \in C^{1}\left([0, T] \times \bar{\Omega} ; C_{\#}^{\infty}(Y)\right)$. Following the same arguments as before: integrating, and using the divergence theorem 
 \begin{equation}
  \begin{aligned}
-&\int_{0}^{T} \int_{\Omega_{\epsilon}} \frac{\partial u_{m}^{\epsilon}}{\partial t} \phi_{\epsilon}\left(t, x, \frac{x}{\epsilon}\right) \mathrm{d} t \mathrm{~d} x+d_{m} \int_{0}^{T} \int_{\Omega_{\epsilon}} \nabla_{x} u_{m}^{\epsilon} \cdot \nabla \phi_{\epsilon} \mathrm{d} t \mathrm{~d} x \\
-&\quad+\int_{0}^{T} \int_{\Omega_{\epsilon}} u_{m}^{\epsilon} \sum_{j=1}^{M} a_{m, j} u_{j}^{\epsilon} \phi_{\epsilon} \mathrm{d} t \mathrm{~d} x \\
-&=\frac{1}{2} \int_{0}^{T} \int_{\Omega_{\epsilon}} \sum_{j=1}^{m-1} a_{j, m-j} u_{j}^{\epsilon} u_{m-j}^{\epsilon} \phi_{\epsilon} \mathrm{d} t \mathrm{~d} x
+&\int_{0}^{T} \int_{\Omega_{\epsilon}} \frac{\partial u_{m}^{\epsilon}}{\partial t} \phi_{\epsilon}\left(t, x, \frac{x}{\epsilon}\right) \, d  t \, d  x+d_{m} \int_{0}^{T} \int_{\Omega_{\epsilon}} \nabla_{x} u_{m}^{\epsilon} \cdot \nabla \phi_{\epsilon} \, d  t \, d  x \\
+&\quad+\int_{0}^{T} \int_{\Omega_{\epsilon}} u_{m}^{\epsilon} \sum_{j=1}^{M} a_{m, j} u_{j}^{\epsilon} \phi_{\epsilon} \, d  t \, d  x \\
+&=\frac{1}{2} \int_{0}^{T} \int_{\Omega_{\epsilon}} \sum_{j=1}^{m-1} a_{j, m-j} u_{j}^{\epsilon} u_{m-j}^{\epsilon} \phi_{\epsilon} \, d  t \, d  x.
 \end{aligned}
 \label{eq 98}\end{equation}
-
-
 Passing to the two-scale limit, we get 
 \begin{equation}
  \begin{aligned}
-\int_{0}^{T} & \int_{\Omega} \int_{Y^{*}} \frac{\partial u_{m}}{\partial t}(t, x) \phi(t, x) \mathrm{d} t \mathrm{~d} x \mathrm{~d} y \\
-&+d_{m} \int_{0}^{T} \int_{\Omega} \int_{Y^{*}}\left[\nabla_{x} u_{m}(t, x)+\nabla_{y} u_{m}^{1}(t, x, y)\right] \cdot\left[\nabla_{x} \phi(t, x)+\nabla_{y} \phi_{1}(t, x, y)\right] \mathrm{d} t \mathrm{~d} x \mathrm{~d} y \\
-&+\int_{0}^{T} \int_{\Omega} \int_{Y^{*}} u_{m}(t, x) \sum_{j=1}^{M} a_{m, j} u_{j}(t, x) \phi(t, x) \mathrm{d} t \mathrm{~d} x \mathrm{~d} y \\
-&=\frac{1}{2} \int_{0}^{T} \int_{\Omega} \int_{Y^{*}} \sum_{j=1}^{m-1} a_{j, m-j} u_{j}(t, x) u_{m-j}(t, x) \phi(t, x) \mathrm{d} t \mathrm{~d} x \mathrm{~d} y
+\int_{0}^{T} & \int_{\Omega} \int_{Y^{*}} \frac{\partial u_{m}}{\partial t}(t, x) \phi(t, x) \, d  t \, d  x \, d  y \\
+&+d_{m} \int_{0}^{T} \int_{\Omega} \int_{Y^{*}}\left[\nabla_{x} u_{m}(t, x)+\nabla_{y} u_{m}^{1}(t, x, y)\right] \cdot\left[\nabla_{x} \phi(t, x)+\nabla_{y} \phi_{1}(t, x, y)\right] \, d  t \, d  x \, d  y \\
+&+\int_{0}^{T} \int_{\Omega} \int_{Y^{*}} u_{m}(t, x) \sum_{j=1}^{M} a_{m, j} u_{j}(t, x) \phi(t, x) \, d  t \, d  x \, d  y \\
+&=\frac{1}{2} \int_{0}^{T} \int_{\Omega} \int_{Y^{*}} \sum_{j=1}^{m-1} a_{j, m-j} u_{j}(t, x) u_{m-j}(t, x) \phi(t, x) \, d  t \, d  x \, d  y.
 \end{aligned}
 \label{eq 99}\end{equation}
-
-
 The last term on the left-hand side of \eqref{eq 99} and the term on the right-hand side have been obtained by using Theorem \eqref{thm 7.1}. An integration by parts shows that \eqref{eq 99} is a variational formulation associated with the following homogenized system:
 \begin{equation}
- -\operatorname{div}_{y}\left[d_{m}\left(\nabla_{x} u_{m}(t, x)+\nabla_{y} u_{m}^{1}(t, x, y)\right)\right]=0 \quad \text { in }[0, T] \times \Omega \times Y^{*}
+ -\operatorname{div}_{y}\left[d_{m}\left(\nabla_{x} u_{m}(t, x)+\nabla_{y} u_{m}^{1}(t, x, y)\right)\right]=0, \quad \text { in }[0, T] \times \Omega \times Y^{*},
 \label{eq 100}\end{equation}
 \begin{equation}
- \left[\nabla_{x} u_{m}(t, x)+\nabla_{y} u_{m}^{1}(t, x, y)\right] \cdot n=0 \quad \text { on }[0, T] \times \Omega \times \Gamma
+ \left[\nabla_{x} u_{m}(t, x)+\nabla_{y} u_{m}^{1}(t, x, y)\right] \cdot n=0, \quad \text { on }[0, T] \times \Omega \times \Gamma,
 \label{eq 101}\end{equation}
 \begin{equation}
 \begin{aligned}
-&\theta \frac{\partial u_{m}}{\partial t}(t, x)-\operatorname{div}_{x}\left[d_{m} \int_{Y^{*}}\left(\nabla_{x} u_{m}(t, x)+\nabla_{y} u_{m}^{1}(t, x, y)\right) \mathrm{d} y\right] \\
+&\theta \frac{\partial u_{m}}{\partial t}(t, x)-\operatorname{div}_{x}\left[d_{m} \int_{Y^{*}}\left(\nabla_{x} u_{m}(t, x)+\nabla_{y} u_{m}^{1}(t, x, y)\right) \, d  y\right] \\
 &\quad+\theta u_{m}(t, x) \sum_{j=1}^{M} a_{m, j} u_{j}(t, x) \\
-&\quad-\frac{\theta}{2} \sum_{j=1}^{m-1} a_{j, m-j} u_{j}(t, x) u_{m-j}(t, x)=0 \text { in }[0, T] \times \Omega
+&\quad-\frac{\theta}{2} \sum_{j=1}^{m-1} a_{j, m-j} u_{j}(t, x) u_{m-j}(t, x)=0, \quad \text { in }[0, T] \times \Omega,
 \end{aligned}
 \label{eq 102}\end{equation}
 \begin{equation}
- \left[\int_{Y^{*}}\left(\nabla_{x} u_{m}(t, x)+\nabla_{y} u_{m}^{1}(t, x, y)\right) \mathrm{d} y\right] \cdot n=0 \quad \text { on }[0, T] \times \partial \Omega
+ \left[\int_{Y^{*}}\left(\nabla_{x} u_{m}(t, x)+\nabla_{y} u_{m}^{1}(t, x, y)\right) \, d  y\right] \cdot n=0, \quad \text { on }[0, T] \times \partial \Omega.
 \label{eq 103}\end{equation}
-where
-$$
-\theta=\int_{Y} \chi(y) \mathrm{d} y=\left|Y^{*}\right|
-$$
-is the volume fraction of material. Moreover, by continuity
+Moreover, by continuity
 $$
 u_{m}(0, x)=0 \quad \text { in } \Omega .
 $$
-Taking advantage of the constancy of the diffusion coefficient $d_{m}$, Eqs. \eqref{eq 100} and \eqref{eq 101} can be reexpressed as follows
+Taking advantage of the constancy of the diffusion coefficient $d_{m}$, Eqs. \eqref{eq 100} and \eqref{eq 101} can be rewritten as follows
 \begin{equation}
- \Delta_{y} u_{m}^{1}(t, x, y)=0 \quad \text { in }[0, T] \times \Omega \times Y^{*}
+ \Delta_{y} u_{m}^{1}(t, x, y)=0, \quad \text { in }[0, T] \times \Omega \times Y^{*},
 \label{eq 104}\end{equation}
 \begin{equation}
- \nabla_{y} u_{m}^{1}(t, x, y) \cdot n=-\nabla_{x} u_{m}(t, x) \cdot n \quad \text { on }[0, T] \times \Omega \times \Gamma
+ \nabla_{y} u_{m}^{1}(t, x, y) \cdot n=-\nabla_{x} u_{m}(t, x) \cdot n, \quad \text { on }[0, T] \times \Omega \times \Gamma.
 \label{eq 105}\end{equation}
 Then, $u_{m}^{1}(t, x, y)$ satisfying \eqref{eq 104}-\eqref{eq 105} can be written as 
 \begin{equation}
- u_{m}^{1}(t, x, y)=\sum_{i=1}^{N} w_{i}(y) \frac{\partial u_{m}}{\partial x_{i}}(t, x)
+ u_{m}^{1}(t, x, y)=\sum_{i=1}^{N} w_{i}(y) \frac{\partial u_{m}}{\partial x_{i}}(t, x),
 \label{eq 106}\end{equation}
 where $\left(w_{i}\right)_{1 \leq i \leq N}$ is the family of solutions of the cell problem
 \begin{equation}
- \left\{\begin{array}{lc}
--\operatorname{div}_{y}\left[\nabla_{y} w_{i}+\hat{e}_{i}\right]=0 & \text { in } Y^{*} \\
-\left(\nabla_{y} w_{i}+\hat{e}_{i}\right) \cdot n=0 & \text { on } \Gamma \\
-y \rightarrow w_{i}(y) \quad Y-\text { periodic } &
-\end{array}\right.
+ \begin{dcases}
+-\operatorname{div}_{y}\left[\nabla_{y} w_{i}+\hat{e}_{i}\right]=0, & \text { in } Y^{*}, \\
+\left(\nabla_{y} w_{i}+\hat{e}_{i}\right) \cdot n=0, & \text { on } \Gamma, \\
+y \rightarrow w_{i}(y), & Y-\text {periodic}. 
+\end{dcases}
 \label{eq 107}\end{equation}
 By using the relation \eqref{eq 106} in Eqs. \eqref{eq 102}and \eqref{eq 103}, we get
 \begin{equation}
  \begin{aligned}
 &\theta \frac{\partial u_{m}}{\partial t}(t, x)-\operatorname{div}_{x}\left[d_{m} A \nabla_{x} u_{m}(t, x)\right]+\theta u_{m}(t, x) \sum_{j=1}^{M} a_{m, j} u_{j}(t, x) \\
-&-\frac{\theta}{2} \sum_{j=1}^{m-1} a_{j, m-j} u_{j}(t, x) u_{m-j}(t, x)=0 \quad \text { in }[0, T] \times \Omega \end{aligned}
+&-\frac{\theta}{2} \sum_{j=1}^{m-1} a_{j, m-j} u_{j}(t, x) u_{m-j}(t, x)=0, \quad \text { in }[0, T] \times \Omega. \end{aligned}
 \label{eq 108}\end{equation}
 \begin{equation}
- \left[A \nabla_{x} u_{m}(t, x)\right] \cdot n=0 \quad \text { on }[0, T] \times \partial \Omega
+ \left[A \nabla_{x} u_{m}(t, x)\right] \cdot n=0, \quad \text { on }[0, T] \times \partial \Omega.
 \label{eq 109}\end{equation}
 where $A$ is a matrix with constant coefficients defined by
 $$
-A_{i j}=\int_{Y^{*}}\left(\nabla_{y} w_{i}+\hat{e}_{i}\right) \cdot\left(\nabla_{y} w_{j}+\hat{e}_{j}\right) \mathrm{d} y .
+A_{i j}=\int_{Y^{*}}\left(\nabla_{y} w_{i}+\hat{e}_{i}\right) \cdot\left(\nabla_{y} w_{j}+\hat{e}_{j}\right) \, d  y .
 $$
 The proof for the case $m=M$ is achieved by applying exactly the same arguments considered when $1<m<M$.
 \end{proof}
-Theorem \eqref{thm 5.1} shows that the macroscale (homogenized) model, obtained from Eqs. \eqref{eq 10}-\eqref{eq 13} as $\epsilon \rightarrow 0$, is asymptotically consistent with the original model and resolves both the coarse and the small scale. The information given on the microscale, by the non-homogeneous Neumann boundary condition in \eqref{eq 10}, is transferred into the source term in the first equation of \eqref{eq 16}, describing the limit model. Furthermore, on the macroscale, the geometric structure of the perforated domain induces a correction in that the scalar diffusion coefficients $d_{i}(1 \leq i \leq M)$, defined at the microscale, are replaced by a tensorial quantity with constant coefficients.
+Theorem \eqref{thm 5.1} shows that the macroscale (homogenized) model, obtained from Eqs. \eqref{eq:u_1_eqs}-\eqref{eq:u_M_eqs} as $\epsilon \rightarrow 0$, is asymptotically consistent with the original model and resolves both the coarse and the small scale. The information given on the microscale, by the non-homogeneous Neumann boundary condition in \eqref{eq:u_1_eqs}, is transferred into the source term in the first equation of \eqref{eq 16}, describing the limit model. Furthermore, on the macroscale, the geometric structure of the perforated domain induces a correction in that the scalar diffusion coefficients $d_{i}(1 \leq i \leq M)$, defined at the microscale, are replaced by a tensorial quantity with constant coefficients.
