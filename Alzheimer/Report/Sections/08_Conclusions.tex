@@ -11,7 +11,7 @@ In Eq. \eqref{eq 110}, the parameter $a \in[0,1]$ describes the degree of malfun
 $$
 f(x, a, t) \, {d} a
 $$
-indicates the fraction of neurons close to $x$ with degree of malfunctioning at time $t$ between $a$ and $a+d a$. Furthermore, the small constant $\mu_{0}>0$ in \eqref{eq 110} accounts for $\mathrm{A} \beta$ production by healthy neurons. In Bertsch et al. (2016), an evolution equation for the distribution function $f$ has been proposed:
+indicates the fraction of neurons close to $x$ with degree of malfunctioning at time $t$ between $a$ and $a+d a$. Furthermore, the small constant $\mu_{0}>0$ in \eqref{eq 110} accounts for $\mathrm{A} \beta$ production by healthy neurons. In \cite{Bertsch}, an evolution equation for the distribution function $f$ has been proposed:
 \begin{equation}
   \partial_{t} f+\partial_{a}(f v[f])=J[f],
 \label{eq 111}\end{equation}
@@ -20,14 +20,10 @@ where $v=v(x, a, t)$ indicates the deterioration rate of the health state of the
   v[f]=\iint_{\Omega \times[0,1]} \mathcal{K}(x, a, y, b) f(y, b, t) \, {d} y \, {d} b .
 \label{eq 112}\end{equation}
 The integral term describes the possible prion-like propagation of AD through the neural pathway. Malfunctioning neighbors are harmful for a neuron's health state, while healthy ones are not:
-$$
-\begin{array}{rr}
-\mathcal{K}(x, a, y, b) \geq 0 & \forall x, y \in \Omega, a, b \in[0,1], \\
-\mathcal{K}(x, a, y, b)=0 & \text { if } a>b .
-\end{array}
-$$
-The term $J[f]$ in \eqref{eq 111}accounts for the onset of AD, since it is written in terms of the probability that, in randomly chosen parts of the cerebral tissue, the degree of malfunctioning of neurons randomly jumps to higher values due to external agents or genetic factors. What prevents our homogenization results from being considered a fully rigorous derivation of the source term $\mathcal{F}$, appearing in the second equation of (2.16) in \cite{Bertsch}, is the fact that the solutions of Eq. \eqref{eq 111} do not satisfy, in general, all the regularity properties assumed on $\psi$. However, Eq. \eqref{eq 110} allows us to establish a link, at least formally, between the limit model derived here and the one presented in Bertsch et al. (2016), suggesting a possible choice for $\psi$, considered, in the present paper, as a generic given function.
+\begin{align*}
+&\mathcal{K}(x, a, y, b) \geq 0, & \forall x, y \in \Omega, a, b \in[0,1], \\
+&\mathcal{K}(x, a, y, b)=0, & \text { if } a>b .
+\end{align*}
+The term $J[f]$ in \eqref{eq 111} accounts for the onset of AD, since it is written in terms of the probability that, in randomly chosen parts of the cerebral tissue, the degree of malfunctioning of neurons randomly jumps to higher values due to external agents or genetic factors. What prevents our homogenization results from being considered a fully rigorous derivation of the source term $\mathcal{F}$, appearing in the second equation of (2.16) in \cite{Bertsch}, is the fact that the solutions of Eq. \eqref{eq 111} do not satisfy, in general, all the regularity properties assumed on $\psi$. However, Eq. \eqref{eq 110} allows us to establish a link, at least formally, between the limit model derived here and the one presented in \cite{Bertsch}, suggesting a possible choice for $\psi$, considered, in the present paper, as a generic given function.
 It is worth noting that the plots of $f$, at different times, can be directly compared with medical fluorodeoxyglucose PET images \cite{Bertsch}. The numerical simulations reported in \cite{Bertsch} are in good qualitative agreement with clinical images of the disease distribution in the brain which vary from early to advanced stages.
 It's good to notice that the homogenization theory works in every perforated domain so we can follow the previous arguments to homogenize every system in a random perforated domain.
-
-% \appendix

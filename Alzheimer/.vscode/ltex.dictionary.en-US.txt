@@ -4,3 +4,4 @@ Hölder
 Smoluchowsky
 boundedness
 nonnegative
+Sobolev
