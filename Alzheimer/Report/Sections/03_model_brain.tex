@@ -18,8 +18,8 @@ $$
 \bigcup_{j=1}^{\bar M} \bar\Omega_{j},
 $$
 
-\noindent and consider the vector-valued function $u=(u_1,\dots, u_M)$, where $u_j=u_j(t,x)$ $(t\geq 0, t\in \mathbb{R}$ and $x\in \Omega)$ is the molar concentration at the point $x$ and at the time $t$ of a \(\beta\) assembly of $j$ monomers, while $u_M$ takes into account the aggregation of more than $M-1$ monomers. With the definition of $u_M$ it is assumed that 'large' assemblies do not aggregate to each other.
-Here's a brief presentation of the model made for this problem. Three different stages of the aggregation of our \(\beta\) will be considered: its concentration can be modeled with $u_{i}$ with $1\leq i \leq m < M$.
+\noindent and consider the vector-valued function $u=(u_1,\dots, u_M)$, where $u_j=u_j(t,x)$ $(t\geq 0, t\in \mathbb{R}$ and $x\in \Omega)$ is the molar concentration at the point $x$ and at the time $t$ of a \(\beta\) assembly of $j$ monomers, while $u_M$ takes into account the aggregation of more than $M-1$ monomers. With the definition of $u_M$ it is assumed that `large' assemblies do not aggregate to each other.
+Here's a brief presentation of the model made for this problem. Three different stages of the aggregation of \(\beta\) will be considered: its concentration can be modeled with $u_{i}$ with $1\leq i \leq m < M$.
 The $u_{1}$ describes the concentration of monomers with the following RDE: 
 $$
 \frac{\partial u_{1}}{\partial t}(t, x)-d_{1} \Delta_{x} u_{1}(t, x)+u_{1}(t, x) \sum_{j=1}^{M} a_{1, j} u_{j}(t, x)=0.
@@ -35,10 +35,10 @@ $$
 \frac{\partial u_{1}}{\partial v} \equiv \nabla_{x} u_1 \cdot n= \psi_{j} \quad \text { on } \partial\Omega_{j}.
 $$
 This physically models the fact that the neurons produce \(\beta\) in monomeric form. The function $\psi$ is a smooth function and it represents the quantity of \(\beta\) which is produced by the membrane of the neuron, it is a given of the problem.\\
-We now model a portion of the cerebral tissue with a bounded open set $\Omega$ in $\mathbb{R}^{3}$ with a smooth boundary $\partial \Omega$ as seen in Figure \ref{fig:domain}. The neurons in our model will be represented as holes in this domain which are distributed periodically and which have characteristic dimension $0<\epsilon<1$. The set of the domain with the holes is called the perforated domain.
-We assume that the membrane of the neurons (holes) produces $\mathrm{A} \beta$ and that at time $t=0$ there is no production of  $\mathrm{A} \beta$ from the holes. \\
+The model considers a portion of the cerebral tissue with a bounded open set $\Omega$ in $\mathbb{R}^{3}$ with a smooth boundary $\partial \Omega$ as seen in Figure \ref{fig:domain}. The neurons in the model will be represented as holes in this domain which are distributed periodically and which have characteristic dimension $0<\epsilon<1$. The set of the domain with the holes is called the perforated domain.
+It is assumed that the membrane of the neurons (holes) produces $\mathrm{A} \beta$ and that at time $t=0$ there is no production of  $\mathrm{A} \beta$ from the holes.
 Let $Y$ be the unit periodicity cell $\left[0,1\left[{ }^{3}\right.\right.$ having the paving property, shown in Figure \ref{fig:unit_cell}. 
-Let us denote by $T$ an open subset of $Y$ with a smooth boundary $\Gamma$, such that $\overline{T} \subset \operatorname{Int} Y$, this means that $T$ can not intersect the boundary of our set $Y$, which is the boundary of the cell. We call with $Y^{*}=Y \backslash T$ the material part, the "solid part" of our brain. 
+Also, denote by $T$ an open subset of $Y$ with a smooth boundary $\Gamma$, such that $\overline{T} \subset \operatorname{Int} Y$, this means that $T$ can not intersect the boundary of the set $Y$, which is the boundary of the cell. Now call with $Y^{*}=Y \backslash T$ the material part, the "solid part" of the brain. 
 \begin{figure}[H]
     \centering
     \scalebox{.5}{\incfig{cell}}
@@ -46,9 +46,9 @@ Let us denote by $T$ an open subset of $Y$ with a smooth boundary $\Gamma$, such
     \label{fig:unit_cell}
   \end{figure}
 
-Starting from this we create a perforated domain: we perforate $\Omega$ by removing from it a set $T_{\epsilon}$ of periodically distributed holes defined as before. The set $T$ represents a generic neuron, and $Y^{*}$ the supporting cerebral tissue. We define $\tau(\epsilon \overline{T})$ to be the set of all translated images $\epsilon \overline{T}$ of the form $\epsilon(k+\overline{T}), k \in \mathbb{Z}^{3}$. Then,
+Starting from this it is possible to create a perforated domain: perforate $\Omega$ by removing from it a set $T_{\epsilon}$ of periodically distributed holes defined as before. The set $T$ represents a generic neuron, and $Y^{*}$ the supporting cerebral tissue. Then define $\tau(\epsilon \overline{T})$ to be the set of all translated images $\epsilon \overline{T}$ of the form $\epsilon(k+\overline{T}), k \in \mathbb{Z}^{3}$. Then,
 
-\[ T_{\epsilon} \coloneqq \Omega \cap \tau(\epsilon \overline{T}) . \] is the set of all the holes in our domain.
+\[ T_{\epsilon} \coloneqq \Omega \cap \tau(\epsilon \overline{T}) . \] is the set of all the holes in the domain.
 
 Introduce now the periodically perforated domain $\Omega_{\epsilon}$ defined by
 
@@ -63,12 +63,12 @@ which represent all the set outside the holes. The domain $\Omega_{\epsilon}$ is
     \label{fig:perforated_domain}
   \end{figure}
 
-We ensure that there exists a ``security zone'' where the neurons cannot touch the boundary of \(\Omega\), this is necessary to extend all the functions which live in the solid part also in the holes.
+Ensure that there exists a ``security zone'' where the neurons cannot touch the boundary of \(\Omega\), this is necessary to extend all the functions which live in the solid part also in the holes.
 \begin{equation}
   \exists \delta>0 \text { such that dist }\left(\partial\Omega, T_{\epsilon}\right)\geq\delta.
 \label{eq:security_zone}
 \end{equation}
-Therefore we can assume that $\Omega_{\epsilon}$ is connected. In this scenario there are two boundaries, an internal one $\Gamma_{\epsilon}$, defined by:
+Therefore can be assumed that $\Omega_{\epsilon}$ is connected. In this scenario there are two boundaries, an internal one $\Gamma_{\epsilon}$, defined by:
 $$
 \Gamma_{\epsilon} \coloneqq \bigcup\left\{\partial(\epsilon(k+\bar{T})) \mid \epsilon(k+\bar{T}) \subset \Omega\right\}
 $$
@@ -83,7 +83,7 @@ It is also known that:
 \end{equation}
 where $|\cdot|_{N}$ is the $N$-dimensional Hausdorff measure.
 
-Our aim is to pass from the microscopic scale to the macroscopic, that is, we are looking at our brain from 'very high' and we obtain it by performing $\epsilon \rightarrow 0$ which is the scale where clinical data exists. This process is called homogenization theory, and it is a mathematical technique that gives us some mathematical tools to perform this sort of average.
+The aim is to pass from the microscopic scale to the macroscopic, that is, looking at the brain from 'very high' and we obtain it by performing $\epsilon \rightarrow 0$ which is the scale where clinical data exists. This process is called homogenization theory, and it is a mathematical technique that gives us some mathematical tools to perform this sort of average.
 \subsection{The equations}
 The system that describes the evolution of monomers is the following:
 \begin{equation}
