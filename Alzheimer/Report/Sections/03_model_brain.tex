@@ -1,5 +1,5 @@
 \section{The mathematical model for Alzheimer Disease}
-As mentioned above, in our brain there exists a protein called \(\beta\) amyloid peptide ($\mathrm{A} \beta$). Healthy brains produce this protein in monomeric form, but when the mechanism breaks down \(\beta\) starts to auto agglomerate and to form senile plaques. The toxic polymers are the intermediate oligomeric formulation which causes the death of neurons. However, the causes of the AD are not yet completely known, researchers try to study this phenomenon, but the problem is that these intermediate polymers decay very soon in other longer ones. From experiments, it's not easy to study the process of coagulation, therefore the mathematical model helps us to study this process. An assumption that we will make is that 'large' assemblies do not aggregate with each other.
+As mentioned above, inside the brain there exists a protein called \(\beta\) amyloid peptide ($\mathrm{A} \beta$). Healthy brains produce this protein in monomeric form, but when the mechanism breaks down \(\beta\) starts to auto agglomerate and to form senile plaques. The toxic polymers are the intermediate oligomeric formulation which causes the death of neurons. However, the causes of the AD are not yet completely known, researchers try to study this phenomenon, but the problem is that these intermediate polymers decay very soon in other longer ones. From experiments, it's not easy to study the process of coagulation, therefore the mathematical model helps us to study this process. An assumption that will be made is that 'large' assemblies do not aggregate with each other.
 \subsection{Model for the brain}
 \begin{figure}[H]
   \centering
@@ -12,25 +12,25 @@ The portion of cerebral tissue considered  in the following is represented by a 
     \item $\bar\Omega_{j}\subset \Omega_{0}$  if   $j=1,2,\dots,\bar{M}$,
     \item $\bar\Omega_{i}\cap \bar\Omega_{j}= \emptyset$  if $i\neq j$.
 \end{enumerate}
-Let us set 
+Let 
 $$
 \Omega := \Omega_{0} \setminus
 \bigcup_{j=1}^{\bar M} \bar\Omega_{j},
 $$
 
-\noindent and consider the vector-valued function $u=(u_1,\dots, u_M)$, where $u_j=u_j(t,x)$ $(t\geq 0, t\in \mathbb{R}$ and $x\in \Omega)$ is the molar concentration at the point $x$ and at the time $t$ of a \(\beta\) assembly of $j$ monomers, while $u_M$ takes into account the aggregation of more than $M-1$ monomers. With the definition of $u_M$ we are assuming that 'large' assemblies do not aggregate to each other.\\
-In this section we briefly present the modeling of our problem. We are considering three different stages of the aggregation of our \(\beta\): we can model its concentration with $u_{i}$ with $1\leq i \leq m < M$.
-The $u_{1}$ describes the concentration of monomers with the following Diffusion-Reaction equation: 
+\noindent and consider the vector-valued function $u=(u_1,\dots, u_M)$, where $u_j=u_j(t,x)$ $(t\geq 0, t\in \mathbb{R}$ and $x\in \Omega)$ is the molar concentration at the point $x$ and at the time $t$ of a \(\beta\) assembly of $j$ monomers, while $u_M$ takes into account the aggregation of more than $M-1$ monomers. With the definition of $u_M$ it is assumed that 'large' assemblies do not aggregate to each other.
+Here's a brief presentation of the model made for this problem. Three different stages of the aggregation of our \(\beta\) will be considered: its concentration can be modeled with $u_{i}$ with $1\leq i \leq m < M$.
+The $u_{1}$ describes the concentration of monomers with the following RDE: 
 $$
 \frac{\partial u_{1}}{\partial t}(t, x)-d_{1} \Delta_{x} u_{1}(t, x)+u_{1}(t, x) \sum_{j=1}^{M} a_{1, j} u_{j}(t, x)=0.
 $$
 There is no gain term on the right-hand side because it's impossible for two monomers to coagulate and form another monomer. The loss term is given by the sum of all the possible coagulation of the monomers. 
-To solve this equation we have to impose boundary conditions and initial conditions.
-On the external boundary we assume homogeneous Neumann condition, which is meant to artificially isolate the portion of tissue considered from the surrounding environment:
+To solve this equation boundary conditions and initial conditions are necessary.
+On the external boundary homogeneous Neumann conditions are assumed, which is meant to artificially isolate the portion of tissue considered from the surrounding environment:
 $$
 \frac{\partial u_1}{\partial v} \equiv \nabla_{x} u_1\cdot n=0 \quad \text { on }[0, T] \times \partial \Omega.$$
-We are practically imposing that the flux on external fixed boundary is equal to zero: we are isolating our portion of cerebral tissue from the rest of the world.
-We have to put the boundary conditions also on the boundaries of the neurons $\partial\Omega_{j}$:
+In this way the flux on external fixed boundary is equal to zero, essentially isolating the portion of cerebral tissue from the rest of the world.
+Boundary conditions are also needed on the boundaries of the neurons $\partial\Omega_{j}$:
 $$ 
 \frac{\partial u_{1}}{\partial v} \equiv \nabla_{x} u_1 \cdot n= \psi_{j} \quad \text { on } \partial\Omega_{j}.
 $$
