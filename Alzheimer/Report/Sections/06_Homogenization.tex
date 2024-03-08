@@ -1,5 +1,5 @@
 \section{Homogenization of the Smoluchowsky equation}
-We now try to homogenize our problem, For convenience we report below the microscopic system
+The idea is to try to homogenize the problem, conveniently reported again here:
 \begin{equation}
     \begin{dcases}\frac{\partial u_{1}^{\epsilon}}{\partial t}-\operatorname{div}\left(d_{1} \nabla_{x} u_{1}^{\epsilon}\right)+u_{1}^{\epsilon} \sum_{j=1}^{M} a_{1, j} u_{1}^{\epsilon}=0, & \text { in }[0, T] \times \Omega_{\epsilon}, \\ 
     \frac{\partial u_{1}^{\epsilon}}{\partial v} \equiv \nabla_{x} u_{1}^{\epsilon} \cdot n=0, & \text { on }[0, T]\times\partial\Omega,\\ 
@@ -10,7 +10,7 @@ now letting $\epsilon \rightarrow 0$ we pass on a description on the large scale
 
 \subsection{Preliminary a Priori Estimates}
 
-Since the homogenization will be carried out in the framework of two-scale convergence, we first need to obtain the a priori estimates for the sequences $u_{j}^{\epsilon}, \nabla u_{j}^{\epsilon}, \partial_{t} u_{j}^{\epsilon}$ in $[0, T] \times \Omega_{\epsilon}$.
+Since the homogenization will be carried out in the framework of two-scale convergence, the first necessary step is to obtain the a priori estimates for the sequences $u_{j}^{\epsilon}, \nabla u_{j}^{\epsilon}, \partial_{t} u_{j}^{\epsilon}$ in $[0, T] \times \Omega_{\epsilon}$.
 Since
 $$
 \operatorname{div}\left(d_{1} \nabla_{x} u_{1}^{\epsilon}\right)-\frac{\partial u_{1}^{\epsilon}}{\partial t} \geq 0
@@ -26,7 +26,7 @@ by the classical maximum principle \cite{Protter_Weinberger_1984}, the following
 \label{eq 21}\end{equation}where $c$ is independent of $\epsilon$.
 \label{lemma 5.2}\end{lemma}
 Thus, the boundedness of $u_{1}^{\epsilon}(t, x)$ in $L^{\infty}\left([0, T] \times \Gamma_{\epsilon}\right)$, uniformly in $\epsilon$, can be immediately deduced from Lemma \eqref{lemma 5.2} applying Lemma \eqref{lemma 5.1}.
-In order to establish Lemma \eqref{lemma 5.2}, we will first need the following preliminary results, Theorem \eqref{theorem 5.2} and Lemma \eqref{lemma 5.3}.
+In order to establish Lemma \eqref{lemma 5.2}, it will be necessary the following preliminary results, Theorem \eqref{theorem 5.2} and Lemma \eqref{lemma 5.3}.
 The following is Lemma 5.6 from \cite{Ladyzenskaja_Solonnikov_Uralceva_1968}.
 \begin{lemma}Let $\left(\tilde{z}_{n}\right)_{n \in \mathbb{N}_{0}}$ be a sequence of nonnegative real numbers such that
 \begin{equation}
@@ -63,7 +63,7 @@ Then
 where the positive constant $m$ is independent of $\epsilon$.
 \label{theorem 5.2}
 \end{theorem}
-\begin{proof} Let us choose
+\begin{proof} Choose
 $$
     r=\frac{2(N+1)}{N}>2
 $$
@@ -80,11 +80,11 @@ Let $\mathcal{M} \geq \hat{k}$ be arbitrary and define
     z_{n} &\coloneqq \epsilon^{2 / r}\left[\int_{0}^{T} \, d  t\left|B_{k_{n}}^{\epsilon}(t)\right|\right]^{2 / r}
 \label{eq 28}
 \end{align}
-for all $n \in \mathbb{N}_{0}$. We prove that the sequence $\left(z_{n}\right)$ satisfies the assumptions of \eqref{lemma 5.3}. To this end, let $n \in \mathbb{N}_{0}$ be fixed. From the trivial estimate
+for all $n \in \mathbb{N}_{0}$. To prove now that the sequence $\left(z_{n}\right)$ satisfies the assumptions of \eqref{lemma 5.3}, let $n \in \mathbb{N}_{0}$ be fixed. From the trivial estimate
 \begin{equation}
  \left|u_{\epsilon}^{\left(k_{n}\right)}(t)\right|^{2} \geq\left(k_{n+1}-k_{n}\right)^{2} \mathds{1}_{B_{k_{n+1}}^{\epsilon}}{ }^{(t)}
 \label{eq 29}\end{equation}
-we get
+is obtained
 \begin{equation}
     \begin{aligned}
         z_{n+1} & \leq \epsilon^{2 / r}\left[\int_{0}^{T} \, d  t\left(k_{n+1}-k_{n}\right)^{-r} \int_{\Gamma_{\epsilon}}\left|u_{\epsilon}^{\left(k_{n}\right)}(t)\right|^{r} \, d  \sigma_{\epsilon}(x)\right]^{2 / r} \\
@@ -92,7 +92,7 @@ we get
     \end{aligned}
 \label{eq 30}
 \end{equation}
-Hence, since the condition \eqref{eq 27} holds, by using \eqref{eq 120}, we obtain
+Hence, since the condition \eqref{eq 27} holds, by using \eqref{eq 120}, is obtained
 \begin{equation}
     \begin{aligned}
         &2^{-2(n+1)} \mathcal{M}^{2} z_{n+1}=\left(k_{n+1}-k_{n}\right)^{2} z_{n+1} \\
@@ -105,20 +105,20 @@ where $c$ is a positive constant independent of $\epsilon$. Therefore,
     2^{-2(n+1)} \mathcal{M}^{2} z_{n+1} \leq c \epsilon^{-\frac{N}{(1+N)}}\left\|u_{\epsilon}^{\left(k_{n}\right)}\right\|_{Q_{\epsilon}(T)}^{2}
 \label{eq 32}
 \end{equation}
-Moreover, from \eqref{eq 25} and \eqref{eq 28}, we get
+Moreover, from \eqref{eq 25} and \eqref{eq 28}:
 \begin{equation}
     \begin{aligned}
         \left\|u_{\epsilon}^{\left(k_{n}\right)}\right\|_{Q_{\epsilon}(T)}^{2} & \leq \gamma k_{n}^{2} z_{n}^{r / 2} \leq \gamma\left(2-2^{-n}\right)^{2} \mathcal{M}^{2} z_{n}^{r / 2} \\
         & \leq 4 \gamma \mathcal{M}^{2} z_{n}^{r / 2}.
     \end{aligned}
 \label{eq 33}\end{equation}
-Combining \eqref{eq 32} and \eqref{eq 33}, we obtain
+Combining \eqref{eq 32} and \eqref{eq 33}, is obtained
 \begin{equation}
     z_{n+1} \leq c_{0} \epsilon^{-\frac{N}{(1+N)}} 2^{2 n} z_{n}^{r / 2},
 \label{eq 34}
 \end{equation}
 where $c_{0}$ is a positive constant independent of $\epsilon$.
-Let us define
+Define
 $$
     \begin{aligned}
         &d\coloneqq \frac{(r-2)}{r}, \\
@@ -129,7 +129,7 @@ and choose
 \begin{equation}
   \mathcal{M}\coloneqq \hat{k}+\lambda^{-1 / r} \sqrt{c^{\prime}} \hat{k} \equiv m \hat{k},
 \label{eq 35}\end{equation}
-where $c^{\prime}$ is defined in \eqref{eq 36} and $m>1$. Now we want to estimate $z_{0}$ for the fixed value of $\mathcal{M}$ given by \eqref{eq 35}. From the definition \eqref{eq 28} and \eqref{eq:limit_gamma_eps}, by following the same strategy which leads to \eqref{eq 32} and \eqref{eq 33}, where we substitute $\hat{k}$ for $k_{n}$ and $\mathcal{M}$ for $k_{n+1}$, we have
+where $c^{\prime}$ is defined in \eqref{eq 36} and $m>1$. Now should be optimal to estimate $z_{0}$ for the fixed value of $\mathcal{M}$ given by \eqref{eq 35}. From the definition \eqref{eq 28} and \eqref{eq:limit_gamma_eps}, by following the same strategy which leads to \eqref{eq 32} and \eqref{eq 33}, where $\hat{k}$ is substituted for $k_{n}$ and $\mathcal{M}$ for $k_{n+1}$, have that
 \begin{equation}
     \begin{aligned}
         (\mathcal{M}-\hat{k})^{2} z_{0} \leq c \epsilon^{-\frac{N}{(1+N)}}\left\|u_{\epsilon}^{(\hat{k})}\right\|_{Q_{\epsilon}(T)}^{2} & \leq c \epsilon^{-\frac{N}{(1+N)}}\left[\gamma \hat{k}^{2} T \frac{|\Gamma|_{N-1}|\Omega|_{N}}{|Y|_{N}}\right] \\
@@ -142,12 +142,12 @@ so that
     z_{0} \leq \frac{c^{\prime} \epsilon^{-\frac{N}{(1+N)}} \hat{k}^{2}}{(\mathcal{M}-\hat{k})^{2}}
 \label{eq 37}
 \end{equation}
-for all $\mathcal{M} \geq \hat{k}$. Therefore, from \eqref{eq 37} and \eqref{eq 35}, we obtain that
+for all $\mathcal{M} \geq \hat{k}$. Therefore, from \eqref{eq 37} and \eqref{eq 35}, obtain that
 \begin{equation}
     z_{0} \leq \epsilon^{-\frac{N}{(1+N)}} \lambda^{2 / r}.
 \label{eq 38}
 \end{equation}
-For a fixed $\epsilon$, we set
+For a fixed $\epsilon$, set
 \begin{equation}
     \tilde{z}_{n}=\epsilon^{\frac{N}{(1+N)}} z_{n}
 \label{eq 39}
@@ -170,7 +170,7 @@ $$
 $$
 a.e. on $\Gamma_{\epsilon}$ for almost every $t \in[0, T]$ if we define $\mathcal{M}$ as in \eqref{eq 35}. This gives \eqref{eq 26}.
 \end{proof}
-Now we have the tools to prove Lemma \eqref{lemma 5.2}
+Now it is possible to prove Lemma \eqref{lemma 5.2}
 \begin{proof} Let $T>0$ and $k \geq 0$ be fixed. Define: $u_{\epsilon}^{(k)}(t)\coloneqq \left(u_{1}^{\epsilon}(t)-k\right)_{+}$ for $t \geq 0$, with derivatives:
 \begin{equation}
     \frac{\partial u_{\epsilon}^{(k)}}{\partial t} =\frac{\partial u_{1}^{\epsilon}}{\partial t} \mathbbm{1}_{\left\{u_{1}^{\epsilon}>k\right\}},
@@ -189,19 +189,19 @@ Moreover,
     \left.u_{\epsilon}^{(k)}\right|_{\Gamma_{\epsilon}}=\left(\left.u_{1}^{\epsilon}\right|_{\Gamma_{\epsilon}}-k\right)_{+}.
 \label{eq 44}
 \end{equation}
-Let us assume $k \geq \hat{k}$, where $\hat{k}\coloneqq \|\psi\|_{L^{\infty}(0, T ; B)}$. Then, recalling that $U_{1} \leq\|\psi\|_{L^{\infty}(0, T ; B)}$,
+Assume $k \geq \hat{k}$, where $\hat{k}\coloneqq \|\psi\|_{L^{\infty}(0, T ; B)}$. Then, recalling that $U_{1} \leq\|\psi\|_{L^{\infty}(0, T ; B)}$,
 \begin{equation}
     u_{1}^{\epsilon}(0, x)=U_{1} \leq \hat{k} \leq k
 \label{eq 45}
 \end{equation}
-For $t \in\left[0, T_{1}\right]$ with $T_{1} \leq T$, we get (recall that \(\frac{\mathrm{d}}{\mathrm{d} s}\frac{1}{2} \left|u_{\epsilon}^{(k)}(s)\right|^{2} = \frac{\partial u_{\epsilon}^{(k)}(s)}{\partial s} u_{\epsilon}^{(k)}(s)\)):
+For $t \in\left[0, T_{1}\right]$ with $T_{1} \leq T$, obtain (recall that \(\frac{\mathrm{d}}{\mathrm{d} s}\frac{1}{2} \left|u_{\epsilon}^{(k)}(s)\right|^{2} = \frac{\partial u_{\epsilon}^{(k)}(s)}{\partial s} u_{\epsilon}^{(k)}(s)\)):
 \begin{equation}
     \begin{aligned}
         \frac{1}{2} \int_{\Omega_{\epsilon}}\left|u_{\epsilon}^{(k)}(t)\right|^{2} \, d  x &=\int_{0}^{t} \frac{d}{ds}\left[\frac{1}{2} \int_{\Omega_{\epsilon}}\left|u_{\epsilon}^{(k)}(s)\right|^{2} \,d x\right] \, ds = \\
         &=\int_{0}^{t} \, ds \int_{\Omega_{\epsilon}} \frac{\partial u_{\epsilon}^{(k)}(s)}{\partial s} u_{\epsilon}^{(k)}(s) \, dx
     \end{aligned} 
 \label{eq 46}\end{equation}
-Taking into account \eqref{eq 41}, \eqref{eq 10} and Lemma \eqref{lemma 7.1}, we obtain that for all $s \in\left[0, T_{1}\right]$
+Taking into account \eqref{eq 41}, \eqref{eq 10} and Lemma \eqref{lemma 7.1}, it is possible to obtain that for all $s \in\left[0, T_{1}\right]$
 \begin{equation}
   \begin{aligned}
         &\int_{\Omega_{\epsilon}} \frac{\partial u_{\epsilon}^{(k)}(s)}{\partial s} u_{\epsilon}^{(k)}(s) \, dx \underset{\eqref{eq 41}}{=}\int_{\Omega_{\epsilon}} \frac{\partial u_{1}^{\epsilon}(s)}{\partial s} u_{\epsilon}^{(k)}(s) \, dx \\
@@ -214,7 +214,7 @@ Taking into account \eqref{eq 41}, \eqref{eq 10} and Lemma \eqref{lemma 7.1}, we
         &\underset{\eqref{lemma 7.1}}{\leq} \frac{\epsilon d_{1}}{2} \int_{B_{k}^{\epsilon}(s)}\left|\psi\left(s, x, \frac{x}{\epsilon}\right)\right|^{2} \, {d} \sigma_{\epsilon}(x)+\frac{C_{1} d_{1}}{2} \int_{A_{k}^{\epsilon}(s)}\left|u_{\epsilon}^{(k)}(s)\right|^{2} \, {d} x -d_{1}\left(1-\frac{C_{1} \epsilon^{2}}{2}\right) \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{\epsilon}^{(k)}(s)\right|^{2} \, {d} x,
    \end{aligned}
 \label{eq 47}\end{equation}
-where we denote by $A_{k}^{\epsilon}(t)$ and $B_{k}^{\epsilon}(t)$ the set of points in $\Omega_{\epsilon}$ and on $\Gamma_{\epsilon}$, respectively, at which $u_{1}^{\epsilon}(t, x)>k$. It holds:
+where is denoted by $A_{k}^{\epsilon}(t)$ and $B_{k}^{\epsilon}(t)$ the set of points in $\Omega_{\epsilon}$ and on $\Gamma_{\epsilon}$, respectively, at which $u_{1}^{\epsilon}(t, x)>k$. It holds:
 $$
 \begin{aligned}
 &\left|A_{k}^{\epsilon}(t)\right| \leq\left|\Omega_{\epsilon}\right|, \\
@@ -222,7 +222,7 @@ $$
 \end{aligned}
 $$
 with $|\cdot|$ being the natural Hausdorff measure.
-Plugging \eqref{eq 47} into \eqref{eq 46} and varying over $t$, we arrive at the estimate: 
+Plugging \eqref{eq 47} into \eqref{eq 46} and varying over $t$, it is possible to arrive at the estimate: 
 \begin{equation}
   \begin{aligned}
 &\sup _{0 \leq t \leq T_{1}}\left[\frac{1}{2} \int_{\Omega_{\epsilon}}\left|u_{\epsilon}^{(k)}(t)\right|^{2} \, d  x\right]+d_{1}\left(1-\frac{C_{1} \epsilon^{2}}{2}\right) \int_{0}^{T_{1}} \, d  t \int_{\Omega_{\epsilon}}\left|\nabla u_{\epsilon}^{(k)}(t)\right|^{2} \, d  x \\
@@ -240,7 +240,7 @@ the inequality \eqref{eq 48} can be rewritten as follows:
 &+\frac{\epsilon d_{1}}{2} \int_{0}^{T_{1}} \, d  t \int_{B_{k}^{\epsilon}(t)}\left|\psi\left(t, x, \frac{x}{\epsilon}\right)\right|^{2} \, d  \sigma_{\epsilon}(x).
 \end{aligned}
 \label{eq 50}\end{equation}
-We estimate the right-hand side of \eqref{eq 50}. From Hölder's inequality, we obtain
+It is possible to estimate the right-hand side of \eqref{eq 50}. From Hölder's inequality, obtain
 \begin{equation}
   \int_{0}^{T_{1}} \, d  t \int_{A_{k}^{\epsilon}(t)}\left|u_{\epsilon}^{(k)}(t)\right|^{2} \, d  x \leq\left\|u_{\epsilon}^{(k)}\right\|_{L^{\bar{r}_{1}}\left(0, T_{1} ; L^{\bar{q}_{1}}\left(\Omega_{\epsilon}\right)\right)}^{2}\left\|\mathbbm{1}_{A_{k}^{\epsilon}}\right\|_{L^{r_{1}^{\prime}}\left(0, T_{1} ; L^{q_{1}^{\prime}}\left(\Omega_{\epsilon}\right)\right)},
 \label{eq 51}\end{equation}
@@ -252,7 +252,7 @@ In particular, $r_{1}^{\prime}, q_{1}^{\prime}<\infty$, so that \eqref{eq 51} yi
 \begin{equation}
   \int_{0}^{T_{1}} \, d  t \int_{A_{k}^{\epsilon}(t)}\left|u_{\epsilon}^{(k)}(t)\right|^{2} \, d  x \leq\left\|u_{\epsilon}^{(k)}\right\|_{L^{\overline{r_{1}}\left(0, T_{1} ; L^{\bar{q}_{1}}\left(\Omega_{\epsilon}\right)\right)}}^{2}|\Omega|^{1 / q_{1}^{\prime}} T_{1}^{1 / r_{1}^{\prime}} .
 \label{eq 52}\end{equation}
-If we choose
+If one chooses
 $$
 T_{1}^{1 / r_{1}^{\prime}}<\frac{\min \left\{1, d_{1}\right\}}{2 C_{1} d_{1}}|\Omega|^{-1 / q_{1}^{\prime}} \leq \frac{\min \left\{\frac{1}{2}, d_{1}\left(1-\frac{C_{1} \epsilon^{2}}{2}\right)\right\}}{C_{1} d_{1}}|\Omega|^{-1 / q_{1}^{\prime}},
 $$
@@ -260,7 +260,7 @@ then from \eqref{eq 117}, it follows that
 \begin{equation}
   \frac{C_{1} d_{1}}{2} \int_{0}^{T_{1}} \, d  t \int_{A_{k}^{\epsilon}(t)}\left|u_{\epsilon}^{(k)}(t)\right|^{2} \, d  x \leq \frac{1}{2} \min \left\{\frac{1}{2}, d_{1}\left(1-\frac{C_{1} \epsilon^{2}}{2}\right)\right\}\left\|u_{\epsilon}^{(k)}\right\|_{Q_{\epsilon}\left(T_{1}\right)}^{2}.
 \label{eq 53}\end{equation}
-Analogously, from Hölder's inequality, we have, for $k \geq \hat{k}$
+Analogously, from Hölder's inequality, it is possible to have, for $k \geq \hat{k}$
 \begin{equation}
   \begin{aligned}
 \frac{\epsilon d_{1}}{2} \int_{0}^{T_{1}} \, d  t \int_{B_{k}^{\epsilon}(t)}\left|\psi\left(t, x, \frac{x}{\epsilon}\right)\right|^{2} \, d  \sigma_{\epsilon}(x) & \leq \frac{\epsilon d_{1} k^{2}}{2}\left(\frac{\hat{k}^{2}}{k^{2}}\right)\left\|\mathds{1}_{B_{k}^{\epsilon}}\right\|_{L^{1}\left(0, T_{1} ; L^{1}\left(\Gamma_{\epsilon}\right)\right)} \\
@@ -271,7 +271,7 @@ Thus \eqref{eq 50} yields
 \begin{equation}
   \left\|u_{\epsilon}^{(k)}\right\|_{Q_{\epsilon}\left(T_{1}\right)}^{2} \leq \epsilon \gamma k^{2} \int_{0}^{T_{1}} \, d  t\left|B_{k}^{\epsilon}(t)\right| .
 \label{eq 55}\end{equation}
-Hence, by Theorem \eqref{theorem 5.2}, we obtain
+Hence, by Theorem \eqref{theorem 5.2}, one obtains
 $$
 \left\|u_{1}^{\epsilon}\right\|_{L^{\infty}\left(0, T_{1} ; L^{\infty}\left(\Gamma_{\epsilon}\right)\right)} \leq 2 m \hat{k}
 $$
@@ -279,13 +279,13 @@ where the positive constant $m$ is independent of $\epsilon$. Analogous argument
 $$
 \left[T_{s+1}-T_{s}\right]^{1 / r_{1}^{\prime}}<\frac{\min \left\{1, d_{1}\right\}}{2 C_{1} d_{1}}|\Omega|^{-1 / q_{1}^{\prime}}
 $$
-and $T_{p} \equiv T$. Thus, after a finite number of steps, we obtain the estimate \eqref{eq 21}.
+and $T_{p} \equiv T$. Thus, after a finite number of steps, it is possible to obtain the estimate \eqref{eq 21}.
 \end{proof}
 \begin{lemma}
   The sequence $\nabla_{x} u_{1}^{\epsilon}$ is bounded in $L^{2}\left([0, T] \times \Omega_{\epsilon}\right)$, uniformly in $\epsilon$.
 \label{lemma 5.4}\end{lemma}
 \begin{proof}
-Let us multiply the first equation in \eqref{eq 10} by the function $u_{1}^{\epsilon}(t, x)$, to keep the equation fast and readable we will not write explicitly the dependence on $t,x$
+Multiply the first equation in \eqref{eq 10} by the function $u_{1}^{\epsilon}(t, x)$, to keep the equation fast and readable it will not be written explicitly the dependence on $t,x$
 $$
 \frac{\partial u_{1}^{\epsilon}}{\partial t}u_{1}^{\epsilon}-\operatorname{div}\left(d_{1} \nabla_{x} u_{1}^{\epsilon}\right)u_{1}^{\epsilon}+u_{1}^{\epsilon}u_{1}^{\epsilon} \sum_{j=1}^{M} a_{1, j} u_{1}^{\epsilon}=0.
 $$
@@ -293,7 +293,7 @@ Integrating, the divergence theorem yields
 \begin{equation}
 \frac{1}{2}\int_{\Omega_{\epsilon}} \frac{\partial}{\partial t}\left|u_{1}^{\epsilon}\right|^{2} \mathbf{d} x+ d_{1} \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{1}^{\epsilon}\right|^{2} \, d  x+\int_{\Omega_{\epsilon}}\left|u_{1}^{\epsilon}\right|^{2} \sum_{j=1}^{M} a_{1, j} u_{j}^{\epsilon} \mathrm{d} x =\epsilon d_{1} \int_{\Gamma_{\epsilon}} \psi\left(t, x, \frac{x}{\epsilon}\right) u_{1}^{\epsilon}(t, x) \mathrm{d} \sigma_{\epsilon}(x).
 \label{eq 56}\end{equation}
-By Hölder's and Young's inequalities, the right-hand side of Eq. \eqref{eq 56} can be rewritten as
+By Hölder's and Young's inequalities, the right-hand side of \eqref{eq 56} can be rewritten as
 \begin{equation}
   \int_{\Gamma_{\epsilon}} \psi\left(t, x, \frac{x}{\epsilon}\right) u_{1}^{\epsilon}(t, x) \mathrm{d} \sigma_{\epsilon}(x) \leq \frac{1}{2}\left\|\psi\left(t, \cdot, \frac{\cdot}{\epsilon}\right)\right\|_{L^{2}\left(\Gamma_{\epsilon}\right)}^{2}+\frac{1}{2}\left\|u_{1}^{\epsilon}(t, \cdot)\right\|_{L^{2}\left(\Gamma_{\epsilon}\right)}^{2}.
 \label{eq 57}\end{equation}
@@ -301,7 +301,7 @@ Thanks to Lemma \eqref{lemma 7.4}
 \begin{equation}
   \epsilon \int_{\Gamma_{\epsilon}}\left|\psi\left(t, x, \frac{x}{\epsilon}\right)\right|^{2} \, d  \sigma_{\epsilon}(x) \leq C_{2}\|\psi(t)\|_{B}^{2}
 \label{eq 58}\end{equation}
-where $C_{2}$ is a positive constant independent of $\epsilon$ and $B=C^{1}\left[\bar{\Omega} ; C_{\#}^{1}(Y)\right]$. Therefore, by combining Eqs. \eqref{eq 56}-\eqref{eq 58} and by using Lemma \eqref{lemma 7.1}, we deduce
+where $C_{2}$ is a positive constant independent of $\epsilon$ and $B=C^{1}\left[\bar{\Omega} ; C_{\#}^{1}(Y)\right]$. Therefore, by combining \eqref{eq 56}-\eqref{eq 58} and by using Lemma \eqref{lemma 7.1}, one deduces
 \begin{equation*}
 \begin{aligned}
     \frac{1}{2} \int_{\Omega_{\epsilon}} \frac{\partial}{\partial t}\left|u_{1}^{\epsilon}\right|^{2} \, {d} x+& d_{1} \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{1}^{\epsilon}\right|^{2} \, {d} x+\int_{\Omega_{\epsilon}}\left|u_{1}^{\epsilon}\right|^{2} \sum_{j=1}^{M} a_{1, j} u_{j}^{\epsilon} \, {d} x\\
@@ -315,7 +315,7 @@ And so it is easy to see that the following inequality holds:
 \begin{equation}
 \int_{\Omega_{\epsilon}} \frac{\partial}{\partial t}\left|u_{1}^{\epsilon}\right|^{2} \, d  x+d_{1}\left(2-\epsilon^{2} C_{1}\right) \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{1}^{\epsilon}\right|^{2} \, {d} x\leq d_{1} C_{2}\|\psi(t)\|_{B}^{2}+d_{1} C_{1} \int_{\Omega_{\epsilon}}\left|u_{1}^{\epsilon}\right|^{2} \,{d} x,
 \label{eq 59}\end{equation}
-since the third term on the left-hand side of \eqref{eq 56} is nonnegative. Integrating over $[0, t]$ with $t \in[0, T]$, we get
+since the third term on the left-hand side of \eqref{eq 56} is nonnegative. Integrating over $[0, t]$ with $t \in[0, T]$, it is possible to get
 \begin{equation}
   \left\|u_{1}^{\epsilon}(t)\right\|_{L^{2}\left(\Omega_{\epsilon}\right)}^{2}+d_{1}\left(2-\epsilon^{2} C_{1}\right) \int_{0}^{t} \, d  s \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{1}^{\epsilon}\right|^{2} \, d  x \leq C_{3}+d_{1} C_{1}\left\|u_{1}^{\epsilon}\right\|_{L^{2}\left(0, T ; L^{2}\left(\Omega_{\epsilon}\right)\right)}^{2},
 \label{eq 60}\end{equation}

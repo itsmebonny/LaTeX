@@ -97,7 +97,7 @@ The system that describes the evolution of monomers is the following:
 Note that the $\epsilon$ is put in front of $\psi$ to prevent the divergence of the integral in a further passage, in order to avoid singularities. 
 The variable $x$ is called the slow variable and the dependence between $\psi$ and $x$ models the evolution of the disease at a macroscopic scale. The variable
 $\frac{x}{\epsilon}$ is called the fast scale variable, which represents the microscopic scale because the main variation of our function are on the scale of the neurons, it's in this small scale that we have a very big change.\\
-From our assumptions we suppose that for $t>0$ the brain becomes sick. For technically reasons we have to assume some regularity on $\psi$ and $U_1$:
+It's assumed that for $t>0$ the brain becomes sick. For technical reasons some regularity is needed on $\psi$ and $U_1$:
 \begin{enumerate}
     \item $\psi\left(t, x, \frac{x}{\epsilon}\right) \in C^{1}(0, T ; B)$ with $B=C^{1}\left[\bar{\Omega} ; C_{\text {\# }}^{1}(Y)\right]$, where $C_{\#}^{1}(Y)$ is the subset of $C^{1}\left(\mathbb{R}^{N}\right)$ of $Y$-periodic functions;
     \item $\psi\left(t=0, x, \frac{x}{\epsilon}\right)=0$
@@ -107,8 +107,8 @@ $U_{1}$ is a positive constant such that
   U_{1} \leq\|\psi\|_{L^{\infty}(0, T ; B)} .
 \label{eq:U_1_norm}\end{equation}
 \end{enumerate}
-Behind these properties $\psi $ is a generic given function that should be specified in some way if one wants to make the model applicable. We will give an explicit example of it in the last part of the paper.\\
-Now we will describe the evolution of oligomers: $1<m<M$. The unknown here is the concentration of a oligomer of generic length $m$
+Behind these properties $\psi $ is a generic given function that should be specified in some way if one wants to make the model applicable. Some explicit example of it will be in the last part of the paper.
+Now we will describe the evolution of oligomers: $1<m<M$. The unknown here is the concentration of an oligomer of generic length $m$
 \begin{equation}
     \begin{dcases}
         \frac{\partial u_{m}^{\epsilon}}{\partial t}(t, x)-d_{m} \Delta_{x} u_{m}^{\epsilon}(t, x)+u_{m}^{\epsilon}(t, x) \sum_{j=1}^{M} a_{m, j} u_{j}^{\epsilon}(t, x)= \frac{1}{2} \sum_{j=1}^{m-1} a_{j, m-j} u_{j}^{\epsilon} u_{m-j}^{\epsilon}, & \text { in }[0, T] \times \Omega_{\epsilon},\\
@@ -117,8 +117,8 @@ Now we will describe the evolution of oligomers: $1<m<M$. The unknown here is th
      u_{m}^{\epsilon}(0, x)=0 & \text{ in } \Omega_{\epsilon}
     \end{dcases}
 \label{eq:u_m_eqs}\end{equation}
-In this case we assume homogeneous boundary conditions also on $\Gamma_{\epsilon}$ because we assume that the neurons can't produce \(\beta\) in oligomeric form.
-For what it concerns $u_{M}$, it describes the sum of all the densities of all large assemblies of \(\beta\). We are able to do that because in reality when we have a large polymer of \(\beta\) it doesn't  coagulate anymore. 
+In this case homogeneous boundary conditions are assumed also on $\Gamma_{\epsilon}$ because neurons can't produce \(\beta\) in oligomeric form.
+For what it concerns $u_{M}$, it describes the sum of all the densities of all large assemblies of \(\beta\). It's done this way because in reality a large polymer of \(\beta\) it doesn't coagulate anymore, so the loss term isn't needed.
 \begin{equation}
     \begin{dcases}
         \frac{\partial u_{M}^{\epsilon}}{\partial t}(t, x)-d_{M} \Delta_{x} u_{M}^{\epsilon}(t, x)= \frac{1}{2} \sum_{\mathclap{\substack{j+k\geq M\\k,j<M}}} a_{j, k} u_{j}^{\epsilon} u_{k}^{\epsilon}, & \text { in }[0, T] \times \Omega_{\epsilon},\\
@@ -129,8 +129,7 @@ For what it concerns $u_{M}$, it describes the sum of all the densities of all l
     \end{dcases}
     \label{eq:u_M_eqs}
 \end{equation}
-In this last system there isn't the loss term because we are assuming that large assemblies do not coagulate with each other.
-At this point we want to go from macroscopic to microscopic, trying to compute a sort of average process. Indeed, our aim is to perform the homogenization on the set \eqref{eq:u_1_eqs}-\eqref{eq:u_m_eqs} of equations as $\epsilon \rightarrow 0$, however there is not a clear notion of convergence for the sequence $u_j^{\epsilon}$ $1\geq j \geq M$ which is defined on a varying set $\Omega_{\epsilon}$, which also is random perforated.
+At this point the idea is to go from macroscopic to microscopic, trying to compute a sort of average process. Indeed, the objective is to perform the homogenization on the set \eqref{eq:u_1_eqs}-\eqref{eq:u_m_eqs} of equations as $\epsilon \rightarrow 0$, however there is not a clear notion of convergence for the sequence $u_j^{\epsilon}$ $1\geq j \geq M$ which is defined on a varying set $\Omega_{\epsilon}$, which also is random perforated.
 
 \begin{theorem} 
     If $\epsilon>0$, the system \eqref{eq:u_1_eqs}-\eqref{eq:u_m_eqs} has a unique solution
