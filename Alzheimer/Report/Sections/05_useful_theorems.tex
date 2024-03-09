@@ -1,11 +1,5 @@
-\section{Useful Theorems}
-The next theorems yield a characterization of the two-scale limit of the gradients of bounded sequences $v^{\epsilon}$ which is a critical result in order to apply the homogenization on problems. Let's recall some theory on Sobolev spaces.
-We identify $H^{1}(\Omega)=W^{1,2}(\Omega)$, where the Sobolev space $W^{1, p}(\Omega)$ is defined by
-$$
-W^{1, p}(\Omega)=\left\{v \mid v \in L^{p}(\Omega), \frac{\partial v}{\partial x_{i}} \in L^{p}(\Omega), i=1, \ldots, N\right\}
-$$
-and we denote by $H_{\#}^{1}(Y)$ the closure of $C_{\#}^{\infty}(Y)$ for the $H^{1}$-norm.
-Let's recall that the quotient space of a vector space $V$ and its subspace $U$ is the set denoted with $V/U$ of all equivalence classes in $U$. In particular $v \sim v' \iff v-v'\in U$: two elements of $V$ differ at most to elements that belong to $U$.
+\section{More on Two-Scale Convergence}
+The next theorems yield a characterization of the two-scale limit of the gradients of bounded sequences $v^{\epsilon}$ which is a critical result in order to apply the homogenization on problems.
 \begin{theorem}
 Let $v^{\epsilon}$ be a sequence of functions in $L^{2}([0, T] \times \Omega)$ which two-scale converges to a limit $v_{0} \in L^{2}([0, T] \times \Omega \times Y)$. Suppose, furthermore, that
 $$
@@ -19,9 +13,9 @@ $$
 \end{aligned}
 $$for all $\phi \in C^{1}\left([0, T] \times \bar{\Omega} ; C_{\#}^{\infty}(Y)\right)$.
 \label{thm 7.2}\end{theorem}
-This theorem shows that, under specific hypotheses, the limit of the product coincides with the product of the limits. Whereas when we perform the limit it appears an extra variable we need a theorem that defines how to manage the gradient of this variable.
+This theorem shows that, under specific hypotheses, the limit of the product coincides with the product of the limits. Whereas when the limit is performed it appears an extra variable and one needs a theorem that defines how to manage the gradient of this variable.
 \begin{theorem}
-Let $v^{\epsilon}$ be a bounded sequence in $L^{2}\left(0, T ; H^{1}(\Omega)\right)$ such that $v_{\epsilon}(t,x)\rightharpoonup v(t,x)$  in $L^{2}\left(0, T ; H^{1}(\Omega)\right)$. Then $v^{\epsilon} \overset{2s}{\rightharpoonup} v(t, x)$, and there exists a function $v_{1}(t, x, y)$ in $L^{2}\left([0, T] \times \Omega ; H_{\#}^{1}(Y) / \mathbb{R}\right)$ such that, up to a subsequence, $\nabla v^{\epsilon}  \overset{2s}{\rightharpoonup} \left(\nabla_{x} v(t, x)+\nabla_{y} v_{1}(t, x, y)\right)$. 
+Let $v^{\epsilon}$ be a bounded sequence belonging in $L^{2}\left(0, T ; H^{1}(\Omega)\right)$ such that $v_{\epsilon}(t,x)\rightharpoonup v(t,x)$  in $L^{2}\left(0, T ; H^{1}(\Omega)\right)$. Then $v^{\epsilon} \overset{2s}{\rightharpoonup} v(t, x)$, and there exists a function $v_{1}(t, x, y)$ in $L^{2}\left([0, T] \times \Omega ; H_{\#}^{1}(Y) / \mathbb{R}\right)$ such that, up to a subsequence, $\nabla v^{\epsilon}  \overset{2s}{\rightharpoonup} \left(\nabla_{x} v(t, x)+\nabla_{y} v_{1}(t, x, y)\right)$. 
 \label{thm 7.3}\end{theorem}
 \begin{theorem} Let $v^{\epsilon}$ and $\epsilon \nabla v^{\epsilon}$ be two bounded sequences in $L^{2}([0, T] \times \Omega)$. Then, there exists a function $v_{1}(t, x, y)$ in $L^{2}\left([0, T] \times \Omega ; H_{\#}^{1}(Y) / \mathbb{R}\right)$ such that, up to a subsequence, $v^{\epsilon}$ and $\epsilon \nabla v^{\epsilon}$ two-scale converge to $v_{1}(t, x, y)$ and $\nabla_{y} v_{1}(t, x, y)$, respectively.
 \label{theorem 7.4}\end{theorem}
@@ -50,4 +44,4 @@ $$
 \lim _{\epsilon \rightarrow 0} \epsilon \int_{\Gamma_{\epsilon}}\left|\phi\left(x, \frac{x}{\epsilon}\right)\right|^{2} \mathrm{~d} \sigma_{\epsilon}(x)=\int_{\Omega} \int_{\Gamma}|\phi(x, y)|^{2} \mathrm{~d} x \mathrm{~d} \sigma(y) .
 $$
 \label{lemma 7.4}\end{lemma}
-Since $\phi$ is a data of our problem we can assume every regularity we want and we can use exactly the previous result.
+Since $\phi$ is a data of the problem one can assume every regularity and use exactly the previous result.

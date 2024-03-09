@@ -329,7 +329,7 @@ Taking into account that the first term on the left-hand side of \eqref{eq 60} i
 \label{eq 61}\end{equation}
 Thus the boundedness of $\nabla_{x} u_{1}^{\epsilon}(t, x)$ follows, provided that $\epsilon$ is close to zero.
 \end{proof} 
-The lemmas that we have considered shows us the boundedness of the term $u_1^{\epsilon}(t,x)$ and $\nabla_{x} u_{1}^{\epsilon}(t, x)$, with a similar procedure we now show the boundedness of the generic term $u_m$ and of its gradient.
+The lemmas considered show the boundedness of the term $u_1^{\epsilon}(t,x)$ and $\nabla_{x} u_{1}^{\epsilon}(t, x)$, with a similar procedure one can show the boundedness of the generic term $u_m$ and of its gradient.
 \begin{lemma} Let $u_{m}^{\epsilon}(t, x)(1<m<M)$ be a classical solution of \eqref{eq:u_m_eqs}. Then
 \begin{equation}
   \left\|u_{m}^{\epsilon}\right\|_{L^{\infty}\left(0, T ; L^{\infty}\left(\Omega_{\epsilon}\right)\right)} \leq K_{m}
@@ -340,17 +340,17 @@ uniformly with respect to $\epsilon$, where
 \label{eq 63}\end{equation}
 \label{lemma 5.5}\end{lemma}
 \begin{proof}
-The Lemma can be proved directly by induction following the same arguments presented in \cite{Wrzosek_1997} (Lemma 2.2, p. 284). Since we have a zero initial condition for the system \eqref{eq:u_m_eqs}, we have chosen a function slightly different than what was done in \cite{Wrzosek_1997} to test the $m$-th equation of \eqref{eq:u_m_eqs}:
+The Lemma can be proved directly by induction following the same arguments presented in \cite{Wrzosek_1997} (Lemma 2.2, p. 284). Since there is a zero initial condition for the system \eqref{eq:u_m_eqs}, it is possible to choose a function slightly different from what was done in \cite{Wrzosek_1997} to test the $m$-th equation of \eqref{eq:u_m_eqs}:
 $$
 \phi_{m} \equiv p\left(u_{m}^{\epsilon}\right)^{(p-1)} \quad p \geq 2 .
 $$
-We stress that the functions $\phi_{m}$ are strictly positive and continuously differentiable in $[0, t] \times \bar{\Omega}$, for all $t>0$. The rest of the proof carries over verbatim.
+It is important to stress that the functions $\phi_{m}$ are strictly positive and continuously differentiable in $[0, t] \times \bar{\Omega}$, for all $t>0$. The rest of the proof carries over verbatim.
 \end{proof} 
 \begin{lemma}
 The sequence $\nabla_{x} u_{m}^{\epsilon}(1<m<M)$ is bounded in $L^{2}\left([0, T] \times \Omega_{\epsilon}\right)$, uniformly in $\epsilon$.
 \label{lemma 5.6}\end{lemma}
 \begin{proof}
- Let us multiply the first equation in \eqref{eq:u_m_eqs} by the function $u_{m}^{\epsilon}(t, x)$.
+ Multiply the first equation in \eqref{eq:u_m_eqs} by the function $u_{m}^{\epsilon}(t, x)$.
  \begin{equation*}
  \begin{aligned}
  \frac{\partial u_{m}^{\epsilon}}{\partial t}(t, x)u_{m}^{\epsilon}(t, x)-d_{m} \Delta_{x} u_{m}^{\epsilon}(t, x)u_{m}^{\epsilon}(t, x)+&u_{m}^{\epsilon}(t, x)u_{m}^{\epsilon}(t, x) \sum_{j=1}^{M} a_{m, j} u_{j}^{\epsilon}(t, x)\\ 
@@ -362,11 +362,11 @@ By the divergence theorem the second term becomes:
      -d_{m} \Delta_{x} u_{m}^{\epsilon}(t, x)u_{m}^{\epsilon}(t, x)= -d_m\operatorname{div} (\nabla u_{m}^{\epsilon}(t, x) )u_{m}^{\epsilon}(t, x)=d_m \int_{\Omega_\epsilon} \left|\nabla_{x} u_{m}^{\epsilon}\right|^{2} \, d  x - d_m\int_{\partial \Omega_\epsilon} \nabla_{x} u_{m}^{\epsilon} \cdot n u_{m}^{\epsilon} \, d  x,
  \end{equation*}
 where the integral on the boundary is $0$ due to the boundary conditions in \eqref{eq:u_m_eqs}.
-Now applying Hölder's inequality and exploiting the boundedness of $u_{j}^{\epsilon}(t, x)$ $(1 \leq j \leq m-1)$ in $L^{\infty}\left(0, T ; L^{\infty}\left(\Omega_{\epsilon}\right)\right)$, we get
+Now applying Hölder's inequality and exploiting the boundedness of $u_{j}^{\epsilon}(t, x)$ $(1 \leq j \leq m-1)$ in $L^{\infty}\left(0, T ; L^{\infty}\left(\Omega_{\epsilon}\right)\right)$, one can get
 \begin{equation}
   \frac{1}{2} \int_{\Omega_{\epsilon}} \frac{\partial}{\partial t}\left|u_{m}^{\epsilon}\right|^{2} \, d  x+d_{m} \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{m}^{\epsilon}\right|^{2} \, d  x \leq C_{3}\left\|u_{m}^{\epsilon}(t, \cdot)\right\|_{L^{2}\left(\Omega_{\epsilon}\right)},
 \label{eq 64}\end{equation}
-where $C_{3}$ is a constant which does not depend on $\epsilon$. Dividing by $\left\|u_{m}^{\epsilon}(t, \cdot)\right\|_{L^{2}\left(\Omega_{\epsilon}\right)}$ and integrating over $[0, t]$ with $t \in[0, T]$, we deduce:
+where $C_{3}$ is a constant which does not depend on $\epsilon$. Dividing by $\left\|u_{m}^{\epsilon}(t, \cdot)\right\|_{L^{2}\left(\Omega_{\epsilon}\right)}$ and integrating over $[0, t]$ with $t \in[0, T]$, it is possible to deduce:
 \begin{equation}
   \int_{0}^{t} \, d  s \frac{{d}}{{d} s}\left\|u_{m}^{\epsilon}(s, \cdot)\right\|_{L^{2}\left(\Omega_{\epsilon}\right)}+d_{m} C_{4} \int_{0}^{t} \, d  s \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{m}^{\epsilon}\right|^{2} \, d  x \leq C_{3} T,
 \label{eq 65}\end{equation}
@@ -390,7 +390,7 @@ $$
 with the constants $K_{j}(1<j<M)$ given by \eqref{eq 63}.
 \label{lemma 5.7}\end{lemma}
 \begin{proof}
-Let us test the first equation of \eqref{eq:u_M_eqs} with the function
+Testing the first equation of \eqref{eq:u_M_eqs} with the function
 $$
 \phi_{M} \equiv p\left(u_{M}^{\epsilon}\right)^{(p-1)} \quad p \geq 2 .
 $$
@@ -410,7 +410,7 @@ Hence,
 j,k<M}} a_{j, k} u_{j}^{\epsilon} u_{k}^{\epsilon}\left(u_{M}^{\epsilon}\right)^{(p-1)} \, {d} x.
 \end{aligned}
 \label{eq 70}\end{equation}
-Taking into account the boundedness of $u_{j}^{\epsilon}(1 \leq j<M)$ in $L^{\infty}\left(0, T ; L^{\infty}\left(\Omega_{\epsilon}\right)\right)$, we get
+Taking into account the boundedness of $u_{j}^{\epsilon}(1 \leq j<M)$ in $L^{\infty}\left(0, T ; L^{\infty}\left(\Omega_{\epsilon}\right)\right)$, one can get
 \begin{equation}
   \begin{aligned}
 \int_{\Omega_{\epsilon}}\left(u_{M}^{\epsilon}\right)^{p}(t) \, {d} x+& d_{M} p(p-1) \int_{0}^{t} \, d  s \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{M}^{\epsilon}\right|^{2}\left(u_{M}^{\epsilon}\right)^{(p-2)} \, {d} x \\
@@ -422,7 +422,7 @@ In order to estimate $I_{3}$, it is now convenient to use Young's inequality in 
 \begin{equation}
   a b \leq \eta a^{p^{\prime}}+\eta^{1-p}b^{p} \quad \forall a \geq 0, b \geq 0,
 \label{eq 72}\end{equation}
-with $p^{\prime}=\frac{p}{p-1}$. We find
+with $p^{\prime}=\frac{p}{p-1}$. One can find
 \begin{equation}
   \begin{aligned}
 I_{3} & \leq \int_{0}^{t} \, d  s \int_{\Omega_{\epsilon}} p^{p}\left[\sum_{\substack{j+k \geq M \\
@@ -458,11 +458,11 @@ The proof of  this Lemma is achieved by applying exactly the same arguments cons
 \begin{lemma} The sequence $\partial_{t} u_{j}^{\epsilon}(1 \leq j \leq M)$ is bounded in $L^{2}\left([0, T] \times \Omega_{\epsilon}\right)$, uniformly in $\epsilon$.
 \label{lemma 5.9}\end{lemma}
 \begin{proof}
-Case $j=1$ : let us multiply the first equation in \eqref{eq 10} by the function $\partial_{t} u_{1}^{\epsilon}(t, x)$. By the divergence theorem, by Hölder's and Young's inequalities, following the same arguments of the previous proofs and exploiting the boundedness of $u_{j}^{\epsilon}(t, x)(1 \leq j \leq M)$ in $L^{\infty}\left(0, T ; L^{\infty}\left(\Omega_{\epsilon}\right)\right)$, one get
+Case $j=1$ : multiply the first equation in \eqref{eq 10} by the function $\partial_{t} u_{1}^{\epsilon}(t, x)$. By the divergence theorem, by Hölder's and Young's inequalities, following the same arguments of the previous proofs and exploiting the boundedness of $u_{j}^{\epsilon}(t, x)(1 \leq j \leq M)$ in $L^{\infty}\left(0, T ; L^{\infty}\left(\Omega_{\epsilon}\right)\right)$, one can get
 \begin{equation}
   \int_{\Omega_{\epsilon}}\left|\frac{\partial u_{1}^{\epsilon}}{\partial t}\right|^{2} \, d  x+d_{1} \frac{\partial}{\partial t} \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{1}^{\epsilon}\right|^{2} \, d  x \leq C_{1}+2 \epsilon d_{1} \int_{\Gamma_{\epsilon}} \psi\left(t, x, \frac{x}{\epsilon}\right) \frac{\partial u_{1}^{\epsilon}}{\partial t} \, d  \sigma_{\epsilon}(x).
 \label{eq 78}\end{equation}
-Integrating over $[0, t]$ with $t \in[0, T]$, we obtain
+Integrating over $[0, t]$ with $t \in[0, T]$, it is possible to obtain
 \begin{equation}
   \begin{aligned}
 \int_{0}^{t} \, d  s \int_{\Omega_{\epsilon}}\left|\frac{\partial u_{1}^{\epsilon}}{\partial s}\right|^{2} \, d  x &+d_{1} \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{1}^{\epsilon}(t, x)\right|^{2} \, d  x \leq C_{1} T \\
@@ -483,15 +483,15 @@ with $\tilde{C}$ and $C_{5}$ independent of $\epsilon$. For a sequence $\epsilon
   \left\|\partial_{t} u_{1}^{\epsilon}\right\|_{L^{2}\left(0, T ; L^{2}\left(\Omega_{\epsilon}\right)\right)}^{2} \leq C,
 \label{eq 81}\end{equation}
 where $C \geq 0$ is a constant independent of $\epsilon$.
-Case $1<j<M$ : let us multiply the first equation in \eqref{eq:u_m_eqs} by the function $\partial_{t} u_{m}^{\epsilon}(t, x)$. By the divergence theorem, by Hölder's and Young's inequalities, exploiting the boundedness of $u_{j}^{\epsilon}(t, x)(1 \leq j \leq M)$ in $L^{\infty}\left(0, T ; L^{\infty}\left(\Omega_{\epsilon}\right)\right)$, one get
+Case $1<j<M$ : multiply the first equation in \eqref{eq:u_m_eqs} by the function $\partial_{t} u_{m}^{\epsilon}(t, x)$. By the divergence theorem, by Hölder's and Young's inequalities, exploiting the boundedness of $u_{j}^{\epsilon}(t, x)(1 \leq j \leq M)$ in $L^{\infty}\left(0, T ; L^{\infty}\left(\Omega_{\epsilon}\right)\right)$, one get
 \begin{equation}
   \int_{\Omega_{\epsilon}}\left|\frac{\partial u_{m}^{\epsilon}}{\partial t}\right|^{2} \, d  x+2 d_{m} \frac{\partial}{\partial t} \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{m}^{\epsilon}\right|^{2} \, d  x \leq 2 C_{1}+C_{2}.
 \label{eq 82}\end{equation}
-Integrating over $[0, t]$ with $t \in[0, T]$, we obtain
+Integrating over $[0, t]$ with $t \in[0, T]$, one can obtain
 \begin{equation}
   \int_{0}^{t} \, d  s \int_{\Omega_{\epsilon}}\left|\frac{\partial u_{m}^{\epsilon}}{\partial s}\right|^{2} \, d  x+2 d_{m} \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{m}^{\epsilon}(t, x)\right|^{2} \, d  x \leq C_{3} T.
 \label{eq 83}\end{equation}
-Since the second term on the left-hand side of \eqref{eq 83} is nonnegative, we conclude that 
+Since the second term on the left-hand side of \eqref{eq 83} is nonnegative, it is possible to conclude that 
 \begin{equation}
   \left\|\partial_{t} u_{m}^{\epsilon}\right\|_{L^{2}\left(0, T ; L^{2}\left(\Omega_{\epsilon}\right)\right)}^{2} \leq C,
 \label{eq 84}\end{equation}

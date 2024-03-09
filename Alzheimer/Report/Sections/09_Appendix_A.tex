@@ -1,10 +1,16 @@
-\section{Appendix A}
+\section{On Sobolev spaces}
+Recall some theory on Sobolev spaces.
+Identify $H^{1}(\Omega)=W^{1,2}(\Omega)$, where the Sobolev space $W^{1, p}(\Omega)$ is defined by
+$$
+W^{1, p}(\Omega)=\left\{v \mid v \in L^{p}(\Omega), \frac{\partial v}{\partial x_{i}} \in L^{p}(\Omega), i=1, \ldots, N\right\}
+$$
+and denote by $H_{\#}^{1}(Y)$ the closure of $C_{\#}^{\infty}(Y)$ for the $H^{1}$-norm.
+Now, recall that the quotient space of a vector space $V$ and its subspace $U$ is the set denoted with $V/U$ of all equivalence classes in $U$. In particular $v \sim v' \iff v-v'\in U$: two elements of $V$ differ at most to elements that belong to $U$.
+
 \begin{lemma} The following estimate holds: if $v \in \operatorname{Lip}\left(\Omega_{\epsilon}\right)$, then
 \begin{equation}
-  \|v\|_{L^{2}\left(\Gamma_{\epsilon}\right)}^{2} \leq C_{1}\left[\epsilon^{-1} \int_{\Omega_{\epsilon}}|v|^{2} \, d  x+\epsilon \int_{\Omega_{\epsilon}}\left|\nabla_{x} v\right|^{2} \, d  x\right]
+  \|v\|_{L^{2}\left(\Gamma_{\epsilon}\right)}^{2} \leq C_{1}\left[\epsilon^{-1} \int_{\Omega_{\epsilon}}|v|^{2} \, d  x+\epsilon \int_{\Omega_{\epsilon}}\left|\nabla_{x} v\right|^{2} \, d  x\right],
 \label{eq 113}\end{equation}
-
-
 where $C_{1}$ is a constant which does not depend on $\epsilon$.
 \label{lemma 7.1}\end{lemma}
 The inequality \eqref{eq 113} can be easily obtained from the standard trace theorem by means of a scaling argument (\cite{Allaire_et_al}; \cite{Piat_Piatnitski_2010}; \cite{Piat_Nazarov_Piatnitski_2012}).
@@ -74,7 +80,7 @@ the following estimate holds
 where $c$ is a positive constant independent of $\epsilon$ and the norm $\|v\|_{Q_{\epsilon}(T)}$ is defined as in \eqref{eq 118}.
 \label{lemma 7.3}\end{lemma}
 \begin{proof}
-(i) The extension Lemma \eqref{lemma 7.2} ensures the well definiteness of a linear continuous extension operator $P_{\epsilon}$ which satisfies \eqref{eq 114} and \eqref{eq 115}. By the classical multiplicative Sobolev inequalities valid in $\Omega$ (see \cite{Ladyzenskaja_Solonnikov_Uralceva_1968} and \cite{Nittka_2011}), we have that
+(i) The extension Lemma \eqref{lemma 7.2} ensures the well definiteness of a linear continuous extension operator $P_{\epsilon}$ which satisfies \eqref{eq 114} and \eqref{eq 115}. By the classical multiplicative Sobolev inequalities valid in $\Omega$ (see \cite{Ladyzenskaja_Solonnikov_Uralceva_1968} and \cite{Nittka_2011}), one can have that
 \begin{equation}
   \left\|P_{\epsilon} v\right\|_{L_{1}^{r_{1}}\left(0, T ; L^{q_{1}(\Omega)}\right.} \leq c_{1}\left\|P_{\epsilon} v\right\|_{Q(T)},
 \label{eq 121}\end{equation}
@@ -85,7 +91,7 @@ where $c_{1} \geq 0$ depends only on $\Omega, r_{1}, q_{1}$, with $r_{1}$ and $q
   \left\|P_{\epsilon} v\right\|_{Q(T)}^{2}:=\sup _{0 \leq t \leq T} \int_{\Omega}\left|P_{\epsilon} v(t)\right|^{2} \, d  x+\int_{0}^{T} \, d  t \int_{\Omega}\left|\nabla\left(P_{\epsilon} v(t)\right)\right|^{2} \, d  x.
 \label{eq 122}\end{equation}
 
-By using \eqref{eq 114},\eqref{eq 115} and \eqref{eq 121}, we conclude that
+By using \eqref{eq 114},\eqref{eq 115} and \eqref{eq 121}, it is possible to conclude that
 \begin{equation}
   \begin{aligned}
 \|v\|_{L^{r_{1}}\left(0, T ; L^{q_{1}}\left(\Omega_{\epsilon}\right)\right)} & \leq C^{\prime}\left\|P_{\epsilon} v\right\|_{L^{r_{1}}\left(0, T ; L^{q_{1}}(\Omega)\right)} \\
@@ -96,7 +102,7 @@ By using \eqref{eq 114},\eqref{eq 115} and \eqref{eq 121}, we conclude that
 
 where $c:=C^{\prime} c_{1} C$ is independent of $\epsilon$.
 
-(ii) Let us rewrite the anisotropic Sobolev inequality valid on $\partial \Omega$ (see \cite{Ladyzenskaja_Solonnikov_Uralceva_1968} and \cite{Nittka_2011}):
+(ii) eRwrite the anisotropic Sobolev inequality valid on $\partial \Omega$ (see \cite{Ladyzenskaja_Solonnikov_Uralceva_1968} and \cite{Nittka_2011}):
 \begin{equation}
   \begin{aligned}
 &{\left[\int_{0}^{T} \, d  t\left[\int_{\partial \Omega}|v(t)|^{q_{2}} d \mathcal{H}^{N-1}\right]^{\frac{r_{2}}{q_{2}}}\right]^{\frac{1}{r_{2}}}} \\

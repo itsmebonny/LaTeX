@@ -1,6 +1,6 @@
 \section{State and proof of the Main Theorem}
 \begin{theorem} Let $u_{m}^{\epsilon}(t, x)(1 \leq m \leq M)$ be a family of classical solutions to problems \eqref{eq:u_1_eqs}-\eqref{eq:u_M_eqs}. The sequences $\widetilde{u_{m}^{\epsilon}}$ and $\widetilde{\nabla_{x} u_{m}^{\epsilon}}(1 \leq m \leq M)$ two-scale converge to: $\left[\chi(y) u_{m}(t, x)\right]$ and $\left[\chi(y)\left(\nabla_{x} u_{m}(t, x)+\nabla_{y} u_{m}^{1}(t, x, y)\right)\right](1 \leq m \leq M)$, respectively, where tilde denotes the extension by zero outside $\Omega_{\epsilon}$ and $\chi(y)$ represents the characteristic function of $Y^{*}$. The limiting functions $\left(u_{m}(t, x), u_{m}^{1}(t, x, y)\right)(1 \leq m \leq M)$ are the unique solutions in $L^{2}\left(0, T ; H^{1}(\Omega)\right) \times L^{2}\left([0, T] \times \Omega ; H_{\#}^{1}(Y) / \mathbb{R}\right)$ of the following two-scale homogenized systems.
-If $m=1$ we have:
+If $m=1$:
 \begin{equation}
   \begin{dcases}
    \begin{split}
@@ -11,7 +11,7 @@ If $m=1$ we have:
 \end{dcases}
 \label{eq 16}
 \end{equation}
-If $1<m<M$ we have:
+If $1<m<M$:
 \begin{equation}
   \begin{dcases}
     \begin{split}
@@ -21,7 +21,7 @@ If $1<m<M$ we have:
     u_{m}(0, x)=0, & \text { in }\Omega.
 \end{dcases}
 \label{eq 17}\end{equation}
-If $m=M$ we have :
+If $m=M$:
 \begin{equation}
   \begin{dcases}
     \begin{split}
@@ -70,8 +70,8 @@ Similarly, in view of Lemma \eqref{lemma 5.9}, it is possible to prove that
 \overset{2s}{\rightharpoonup}
 \left[\chi(y) \frac{\partial u_{m}}{\partial t}(t, x)\right],  \quad (1 \leq m \leq M).
 \end{equation}
-We can now find the homogenized equations satisfied by $u_{m}(t, x)$ and $u_{m}^{1}(t, x, y)$ $(1 \leq m \leq M)$.
-In the case $m=1$, let us multiply the first equation of \eqref{eq:u_1_eqs} by the test function to obtain the weak formulation of the problem
+One can now find the homogenized equations satisfied by $u_{m}(t, x)$ and $u_{m}^{1}(t, x, y)$ $(1 \leq m \leq M)$.
+In the case $m=1$, multiply the first equation of \eqref{eq:u_1_eqs} by the test function to obtain the weak formulation of the problem
 $$
 \phi_{\epsilon} \equiv \phi(t, x)+\epsilon \phi_{1}\left(t, x, \frac{x}{\epsilon}\right),
 $$
@@ -86,7 +86,7 @@ Integrating, the divergence theorem yields
 &+\int_{0}^{T} \int_{\Omega_{\epsilon}} u_{1}^{\epsilon} \sum_{j=1}^{M} a_{1, j} u_{j}^{\epsilon} \phi_{\epsilon} \, d  t \, d  x=\epsilon d_{1} \int_{0}^{T} \int_{\Gamma_{\epsilon}} \psi\left(t, x, \frac{x}{\epsilon}\right) \phi_{\epsilon} \, d  t \, d  \sigma_{\epsilon}(x).
 \end{aligned}
 \label{eq 86}\end{equation}
-Passing to the two-scale limit, we get
+Passing to the two-scale limit, one can get
 \begin{equation}
 \begin{aligned}
 &\int_{0}^{T} \int_{\Omega} \int_{Y^{*}} \frac{\partial u_{1}}{\partial t}(t, x) \phi(t, x) \, d  t \, d  x \, d  y \\
@@ -110,7 +110,7 @@ The last term on the left-hand side of \eqref{eq 87} has been obtained by using 
 \begin{equation}
  {\left[\int_{Y^{*}}\left(\nabla_{x} u_{1}(t, x)+\nabla_{y} u_{1}^{1}(t, x, y)\right) \, d  y\right] \cdot n=0, \quad \text { on }[0, T] \times \partial \Omega}.
 \label{eq 91}\end{equation}
-To conclude, by continuity, we have that
+To conclude, by continuity, one can have that
 $$
 u_{1}(0, x)=U_{1} \quad \text { in } \Omega .
 $$
@@ -129,7 +129,7 @@ where $\left(w_{i}\right)_{1 \leq i \leq N}$ is the family of solutions of the c
 \begin{equation}
  \begin{cases}-\operatorname{div}_{y}\left[\nabla_{y} w_{i}+\hat{e}_{i}\right]=0, & \text { in } Y^{*}, \\ \left(\nabla_{y} w_{i}+\hat{e}_{i}\right) \cdot n=0, & \text { on } \Gamma, \\ y \rightarrow w_{i}(y), & Y-\text {periodic}. \end{cases}
 \label{eq 95}\end{equation}
-By using the relation \eqref{eq 94} in Eqs. \eqref{eq 90} and \eqref{eq 91}, we get
+By using the relation \eqref{eq 94} in Eqs. \eqref{eq 90} and \eqref{eq 91}, it is possible to get
 \begin{equation}
  \begin{split}
     \theta \frac{\partial u_{1}}{\partial t}(t, x)-\operatorname{div}_{x}\left[d_{1} A \nabla_{x} u_{1}(t, x)\right]+\theta u_{1}(t, x) \sum_{j=1}^{M} a_{1, j} u_{j}(t, x) \\
@@ -143,7 +143,7 @@ where $A$ is a matrix with constant coefficients defined by
 $$
 A_{i j}=\int_{Y^{*}}\left(\nabla_{y} w_{i}+\hat{e}_{i}\right) \cdot\left(\nabla_{y} w_{j}+\hat{e}_{j}\right) \, d  y .
 $$
-In the case $1<m<M$, let us multiply the first equation of \eqref{eq:u_m_eqs} by the test function
+In the case $1<m<M$, multiply the first equation of \eqref{eq:u_m_eqs} by the test function
 $$
 \phi_{\epsilon} \equiv \phi(t, x)+\epsilon \phi_{1}\left(t, x, \frac{x}{\epsilon}\right)
 $$
@@ -155,7 +155,7 @@ where $\phi \in C^{1}([0, T] \times \bar{\Omega})$ and $\phi_{1} \in C^{1}\left(
 &=\frac{1}{2} \int_{0}^{T} \int_{\Omega_{\epsilon}} \sum_{j=1}^{m-1} a_{j, m-j} u_{j}^{\epsilon} u_{m-j}^{\epsilon} \phi_{\epsilon} \, d  t \, d  x.
 \end{aligned}
 \label{eq 98}\end{equation}
-Passing to the two-scale limit, we get 
+Passing to the two-scale limit, one can get 
 \begin{equation}
  \begin{aligned}
 \int_{0}^{T} & \int_{\Omega} \int_{Y^{*}} \frac{\partial u_{m}}{\partial t}(t, x) \phi(t, x) \, d  t \, d  x \, d  y \\
@@ -204,7 +204,7 @@ where $\left(w_{i}\right)_{1 \leq i \leq N}$ is the family of solutions of the c
 y \rightarrow w_{i}(y), & Y-\text {periodic}. 
 \end{dcases}
 \label{eq 107}\end{equation}
-By using the relation \eqref{eq 106} in Eqs. \eqref{eq 102}and \eqref{eq 103}, we get
+By using the relation \eqref{eq 106} in Eqs. \eqref{eq 102}and \eqref{eq 103}, it is possible to obtain
 \begin{equation}
  \begin{aligned}
 &\theta \frac{\partial u_{m}}{\partial t}(t, x)-\operatorname{div}_{x}\left[d_{m} A \nabla_{x} u_{m}(t, x)\right]+\theta u_{m}(t, x) \sum_{j=1}^{M} a_{m, j} u_{j}(t, x) \\
@@ -219,4 +219,4 @@ A_{i j}=\int_{Y^{*}}\left(\nabla_{y} w_{i}+\hat{e}_{i}\right) \cdot\left(\nabla_
 $$
 The proof for the case $m=M$ is achieved by applying exactly the same arguments considered when $1<m<M$.
 \end{proof}
-Theorem \eqref{thm 5.1} shows that the macroscale (homogenized) model, obtained from Eqs. \eqref{eq:u_1_eqs}-\eqref{eq:u_M_eqs} as $\epsilon \rightarrow 0$, is asymptotically consistent with the original model and resolves both the coarse and the small scale. The information given on the microscale, by the non-homogeneous Neumann boundary condition in \eqref{eq:u_1_eqs}, is transferred into the source term in the first equation of \eqref{eq 16}, describing the limit model. Furthermore, on the macroscale, the geometric structure of the perforated domain induces a correction in that the scalar diffusion coefficients $d_{i}(1 \leq i \leq M)$, defined at the microscale, are replaced by a tensorial quantity with constant coefficients.
+Theorem \eqref{thm 5.1} shows that the macroscale (homogenized) model, obtained from Eqs. \eqref{eq:u_1_eqs}-\eqref{eq:u_M_eqs} as $\epsilon \rightarrow 0$, is asymptotically consistent with the original model and resolves both the coarse and the small scale. The information given on the microscale, by the non-homogeneous Neumann boundary condition in \eqref{eq:u_1_eqs}, is transferred into the source term in the first equation of \eqref{eq 16}, describing the limit model. Furthermore, on the macroscale, the geometric structure of the perforated domain induces a correction such that the scalar diffusion coefficients $d_{i}(1 \leq i \leq M)$, defined at the microscale, are replaced by a tensorial quantity with constant coefficients.

@@ -15,8 +15,9 @@
 
 % Custom theorem environments
 \declaretheoremstyle[
+  shaded={rulecolor=bluePoli!20, rulewidth=1pt, bgcolor=bluePoli!5},
   headfont=\color{bluePoli}\normalfont\bfseries,
-  bodyfont=\color{black}\normalfont\itshape,
+  bodyfont=\color{black}\normalfont,
 ]{colored}
 
 \captionsetup[figure]{labelfont={color=bluePoli}} % Set colour of the captions
@@ -26,6 +27,9 @@
 \theoremstyle{colored}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{proposition}{Proposition}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem*{remark}{Remark}
+\newtheorem{lemma}{Lemma}[section]
 
 % Enhances the features of the standard "table" and "tabular" environments.
 \newcommand\T{\rule{0pt}{2.6ex}}
