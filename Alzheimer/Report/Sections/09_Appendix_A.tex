@@ -80,9 +80,11 @@ the following estimate holds
 where $c$ is a positive constant independent of $\epsilon$ and the norm $\|v\|_{Q_{\epsilon}(T)}$ is defined as in \eqref{eq 118}.
 \label{lemma 7.3}\end{lemma}
 \begin{proof}
-(i) The extension Lemma \eqref{lemma 7.2} ensures the well definiteness of a linear continuous extension operator $P_{\epsilon}$ which satisfies \eqref{eq 114} and \eqref{eq 115}. By the classical multiplicative Sobolev inequalities valid in $\Omega$ (see \cite{Ladyzenskaja_Solonnikov_Uralceva_1968} and \cite{Nittka_2011}), one can have that
+The proof will be carried out in two parts:
+\begin{enumerate}[label=(\roman*)]
+\item The extension Lemma \eqref{lemma 7.2} ensures the well definiteness of a linear continuous extension operator $P_{\epsilon}$ which satisfies \eqref{eq 114} and \eqref{eq 115}. By the classical multiplicative Sobolev inequalities valid in $\Omega$ (see \cite{Ladyzenskaja_Solonnikov_Uralceva_1968} and \cite{Nittka_2011}), one can have that
 \begin{equation}
-  \left\|P_{\epsilon} v\right\|_{L_{1}^{r_{1}}\left(0, T ; L^{q_{1}(\Omega)}\right.} \leq c_{1}\left\|P_{\epsilon} v\right\|_{Q(T)},
+  \left\|P_{\epsilon} v\right\|_{L_{1}^{r_{1}}\left(0, T ; L^{q_{1}}(\Omega)\right.} \leq c_{1}\left\|P_{\epsilon} v\right\|_{Q(T)},
 \label{eq 121}\end{equation}
 
 
@@ -102,7 +104,7 @@ By using \eqref{eq 114},\eqref{eq 115} and \eqref{eq 121}, it is possible to con
 
 where $c:=C^{\prime} c_{1} C$ is independent of $\epsilon$.
 
-(ii) eRwrite the anisotropic Sobolev inequality valid on $\partial \Omega$ (see \cite{Ladyzenskaja_Solonnikov_Uralceva_1968} and \cite{Nittka_2011}):
+\item Rewrite the anisotropic Sobolev inequality valid on $\partial \Omega$ (see \cite{Ladyzenskaja_Solonnikov_Uralceva_1968} and \cite{Nittka_2011}):
 \begin{equation}
   \begin{aligned}
 &{\left[\int_{0}^{T} \, d  t\left[\int_{\partial \Omega}|v(t)|^{q_{2}} d \mathcal{H}^{N-1}\right]^{\frac{r_{2}}{q_{2}}}\right]^{\frac{1}{r_{2}}}} \\
@@ -123,4 +125,5 @@ where $c_{1} \geq 0$ depends only on $r_{2}, q_{2}$ and on local properties of t
 \end{aligned}
 \label{eq 126}\end{equation}
 where $c$ is a positive constant independent of $\epsilon$.
+\end{enumerate}
 \end{proof}

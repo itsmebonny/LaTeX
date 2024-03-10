@@ -1,5 +1,5 @@
 \section{The mathematical model for Alzheimer Disease}
-As mentioned above, inside the brain there exists a protein called \(\beta\) amyloid peptide ($\mathrm{A} \beta$). Healthy brains produce this protein in monomeric form, but when the mechanism breaks down \(\beta\) starts to auto agglomerate and to form senile plaques. The toxic polymers are the intermediate oligomeric formulation which causes the death of neurons. However, the causes of the AD are not yet completely known, researchers try to study this phenomenon, but the problem is that these intermediate polymers decay very soon in other longer ones. From experiments, it's not easy to study the process of coagulation, therefore the mathematical model helps us to study this process. An assumption that will be made is that 'large' assemblies do not aggregate with each other.
+As mentioned above, inside the brain there exists a protein called \(\beta\) amyloid peptide ($\mathrm{A} \beta$). Healthy brains produce this protein in monomeric form, but when the mechanism breaks down \(\beta\) starts to auto agglomerate and to form senile plaques. The toxic polymers are the intermediate oligomeric formulation which causes the death of neurons. However, the causes of the AD are not yet completely known, researchers try to study this phenomenon, but the problem is that these intermediate polymers decay very soon in other longer ones. From experiments, it's not easy to study the process of coagulation, therefore the mathematical model helps us to study this process. An assumption that will be made is that ``large'' assemblies do not aggregate with each other.
 \subsection{Model for the brain}
 \begin{figure}[H]
   \centering
@@ -26,7 +26,7 @@ $$
 $$
 There is no gain term on the right-hand side because it's impossible for two monomers to coagulate and form another monomer. The loss term is given by the sum of all the possible coagulation of the monomers. 
 To solve this equation boundary conditions and initial conditions are necessary.
-On the external boundary homogeneous Neumann conditions are assumed, which is meant to artificially isolate the portion of tissue considered from the surrounding environment:
+On the external boundary homogeneous Neumann conditions are assumed, which are meant to artificially isolate the portion of tissue considered from the surrounding environment:
 $$
 \frac{\partial u_1}{\partial v} \equiv \nabla_{x} u_1\cdot n=0 \quad \text { on }[0, T] \times \partial \Omega.$$
 In this way the flux on external fixed boundary is equal to zero, essentially isolating the portion of cerebral tissue from the rest of the world.
@@ -34,11 +34,12 @@ Boundary conditions are also needed on the boundaries of the neurons $\partial\O
 $$ 
 \frac{\partial u_{1}}{\partial v} \equiv \nabla_{x} u_1 \cdot n= \psi_{j} \quad \text { on } \partial\Omega_{j}.
 $$
-This physically models the fact that the neurons produce \(\beta\) in monomeric form. The function $\psi$ is a smooth function and it represents the quantity of \(\beta\) which is produced by the membrane of the neuron, it is a given of the problem.\\
+This physically models the fact that the neurons produce \(\beta\) in monomeric form. The function $\psi$ is a smooth function and it represents the quantity of \(\beta\) which is produced by the membrane of the neuron. Such function it is assumed to be already known in the problem.
+
 The model considers a portion of the cerebral tissue with a bounded open set $\Omega$ in $\mathbb{R}^{3}$ with a smooth boundary $\partial \Omega$ as seen in Figure \ref{fig:domain}. The neurons in the model will be represented as holes in this domain which are distributed periodically and which have characteristic dimension $0<\epsilon<1$. The set of the domain with the holes is called the perforated domain.
 It is assumed that the membrane of the neurons (holes) produces $\mathrm{A} \beta$ and that at time $t=0$ there is no production of  $\mathrm{A} \beta$ from the holes.
 Let $Y$ be the unit periodicity cell $\left[0,1\left[{ }^{3}\right.\right.$ having the paving property, shown in Figure \ref{fig:unit_cell}. 
-Also, denote by $T$ an open subset of $Y$ with a smooth boundary $\Gamma$, such that $\overline{T} \subset \operatorname{Int} Y$, this means that $T$ can not intersect the boundary of the set $Y$, which is the boundary of the cell. Now call with $Y^{*}=Y \backslash T$ the material part, the "solid part" of the brain. 
+Also, denote by $T$ an open subset of $Y$ with a smooth boundary $\Gamma$, such that $\overline{T} \subset \operatorname{Int} Y$, this means that $T$ can not intersect the boundary of the set $Y$, which is the boundary of the cell. Now call with $Y^{*}=Y \backslash T$ the material part, the ``solid part'' of the brain. 
 \begin{figure}[H]
     \centering
     \scalebox{.5}{\incfig{cell}}
@@ -48,7 +49,7 @@ Also, denote by $T$ an open subset of $Y$ with a smooth boundary $\Gamma$, such 
 
 Starting from this it is possible to create a perforated domain: perforate $\Omega$ by removing from it a set $T_{\epsilon}$ of periodically distributed holes defined as before. The set $T$ represents a generic neuron, and $Y^{*}$ the supporting cerebral tissue. Then define $\tau(\epsilon \overline{T})$ to be the set of all translated images $\epsilon \overline{T}$ of the form $\epsilon(k+\overline{T}), k \in \mathbb{Z}^{3}$. Then,
 
-\[ T_{\epsilon} \coloneqq \Omega \cap \tau(\epsilon \overline{T}) . \] is the set of all the holes in the domain.
+\[ T_{\epsilon} \coloneqq \Omega \cap \tau(\epsilon \overline{T}) \] is the set of all the holes in the domain.
 
 Introduce now the periodically perforated domain $\Omega_{\epsilon}$ defined by
 
@@ -83,7 +84,7 @@ It is also known that:
 \end{equation}
 where $|\cdot|_{N}$ is the $N$-dimensional Hausdorff measure.
 
-The aim is to pass from the microscopic scale to the macroscopic, that is, looking at the brain from 'very high' and we obtain it by performing $\epsilon \rightarrow 0$ which is the scale where clinical data exists. This process is called homogenization theory, and it is a mathematical technique that gives us some mathematical tools to perform this sort of average.
+The aim is to pass from the microscopic scale to the macroscopic, that is, looking at the brain from ``very high'' and we obtain it by performing $\epsilon \rightarrow 0$ which is the scale where clinical data exists. This process is called homogenization theory, and it is a mathematical technique that gives us some mathematical tools to perform this sort of average.
 \subsection{The equations}
 The system that describes the evolution of monomers is the following:
 \begin{equation}
@@ -96,7 +97,8 @@ The system that describes the evolution of monomers is the following:
 \label{eq:u_1_eqs}\end{equation}
 Note that the $\epsilon$ is put in front of $\psi$ to prevent the divergence of the integral in a further passage, in order to avoid singularities. 
 The variable $x$ is called the slow variable and the dependence between $\psi$ and $x$ models the evolution of the disease at a macroscopic scale. The variable
-$\frac{x}{\epsilon}$ is called the fast scale variable, which represents the microscopic scale because the main variation of our function are on the scale of the neurons, it's in this small scale that we have a very big change.\\
+$\frac{x}{\epsilon}$ is called the fast scale variable, which represents the microscopic scale because the main variation of our function are on the scale of the neurons, it's in this small scale that we have significant changes.
+
 It's assumed that for $t>0$ the brain becomes sick. For technical reasons some regularity is needed on $\psi$ and $U_1$:
 \begin{enumerate}
     \item $\psi\left(t, x, \frac{x}{\epsilon}\right) \in C^{1}(0, T ; B)$ with $B=C^{1}\left[\bar{\Omega} ; C_{\text {\# }}^{1}(Y)\right]$, where $C_{\#}^{1}(Y)$ is the subset of $C^{1}\left(\mathbb{R}^{N}\right)$ of $Y$-periodic functions;

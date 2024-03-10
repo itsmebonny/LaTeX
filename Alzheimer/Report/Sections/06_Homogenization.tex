@@ -191,7 +191,7 @@ Moreover,
 \end{equation}
 Assume $k \geq \hat{k}$, where $\hat{k}\coloneqq \|\psi\|_{L^{\infty}(0, T ; B)}$. Then, recalling that $U_{1} \leq\|\psi\|_{L^{\infty}(0, T ; B)}$,
 \begin{equation}
-    u_{1}^{\epsilon}(0, x)=U_{1} \leq \hat{k} \leq k
+    u_{1}^{\epsilon}(0, x)=U_{1} \leq \hat{k} \leq k.
 \label{eq 45}
 \end{equation}
 For $t \in\left[0, T_{1}\right]$ with $T_{1} \leq T$, obtain (recall that \(\frac{\mathrm{d}}{\mathrm{d} s}\frac{1}{2} \left|u_{\epsilon}^{(k)}(s)\right|^{2} = \frac{\partial u_{\epsilon}^{(k)}(s)}{\partial s} u_{\epsilon}^{(k)}(s)\)):
@@ -204,14 +204,13 @@ For $t \in\left[0, T_{1}\right]$ with $T_{1} \leq T$, obtain (recall that \(\fra
 Taking into account \eqref{eq 41}, \eqref{eq 10} and Lemma \eqref{lemma 7.1}, it is possible to obtain that for all $s \in\left[0, T_{1}\right]$
 \begin{equation}
   \begin{aligned}
-        &\int_{\Omega_{\epsilon}} \frac{\partial u_{\epsilon}^{(k)}(s)}{\partial s} u_{\epsilon}^{(k)}(s) \, dx \underset{\eqref{eq 41}}{=}\int_{\Omega_{\epsilon}} \frac{\partial u_{1}^{\epsilon}(s)}{\partial s} u_{\epsilon}^{(k)}(s) \, dx \\
-        &\underset{\eqref{eq 10}}{=}\int_{\Omega_{\epsilon}}\left[d_{1} \Delta_{x} u_{1}^{\epsilon}-u_{1}^{\epsilon} \sum_{j=1}^{M} a_{1, j} u_{j}^{\epsilon}\right] u_{\epsilon}^{(k)}(s) \, dx \\
-        &\underset{\mathclap{\text{\tiny div. thm}}}{=}-\int_{\Omega_{\epsilon}} u_{1}^{\epsilon}(s) \sum_{j=1}^{M} a_{1, j} u_{j}^{\epsilon}(s) u_{\epsilon}^{(k)}(s) \, dx+d_{1} \int_{\Gamma_{\epsilon}} \nabla_{x} u^{\epsilon}_1 \cdot n u_{\epsilon}^{(k)}(s) \, {d} \sigma_{\epsilon}(x)-d_{1} \int_{\Omega_{\epsilon}} \nabla_{x} u_{1}^{\epsilon}(s) \cdot \nabla_{x} u_{\epsilon}^{(k)}(s) \, dx \\
-        &\underset{\eqref{eq 10}}{=}-\int_{\Omega_{\epsilon}} u_{1}^{\epsilon}(s) \sum_{j=1}^{M} a_{1, j} u_{j}^{\epsilon}(s) u_{\epsilon}^{(k)}(s) {d} x+\epsilon d_{1} \int_{\Gamma_{\epsilon}} \psi\left(s, x, \frac{x}{\epsilon}\right) u_{\epsilon}^{(k)}(s) \, {d}\sigma_{\epsilon}(x)
-        -d_{1} \int_{\Omega_{\epsilon}} \nabla_{x} u_{1}^{\epsilon}(s) \cdot \nabla_{x} u_{\epsilon}^{(k)}(s) \, {d} x \\
-        &\leq \epsilon d_{1} \int_{\Gamma_{\epsilon}} \psi\left(s, x, \frac{x}{\epsilon}\right) u_{\epsilon}^{(k)}(s) \, {d} \sigma_{\epsilon}(x)-d_{1} \int_{\Omega_{\epsilon}} \nabla_{x} u_{1}^{\epsilon}(s) \cdot \nabla_{x} u_{\epsilon}^{(k)}(s) \, {d} x \\
-        &\underset{\substack{\text{Young ineq.}\\\text{and}\\\text{def. of } B_{k}^{\epsilon}(t)}}{\leq} \frac{\epsilon d_{1}}{2} \int_{B_{k}^{\epsilon}(s)}\left|\psi\left(s, x, \frac{x}{\epsilon}\right)\right|^{2} \, {d} \sigma_{\epsilon}(x)+\frac{\epsilon d_{1}}{2} \int_{\Gamma_{\epsilon}}\left|u_{\epsilon}^{(k)}(s)\right|^{2} \, {d} \sigma_{\epsilon}(x) -d_{1} \int_{\Omega_{\epsilon}} \nabla_{x} u_{1}^{\epsilon}(s) \cdot \nabla_{x} u_{\epsilon}^{(k)}(s) \, {d} x \\
-        &\underset{\eqref{lemma 7.1}}{\leq} \frac{\epsilon d_{1}}{2} \int_{B_{k}^{\epsilon}(s)}\left|\psi\left(s, x, \frac{x}{\epsilon}\right)\right|^{2} \, {d} \sigma_{\epsilon}(x)+\frac{C_{1} d_{1}}{2} \int_{A_{k}^{\epsilon}(s)}\left|u_{\epsilon}^{(k)}(s)\right|^{2} \, {d} x -d_{1}\left(1-\frac{C_{1} \epsilon^{2}}{2}\right) \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{\epsilon}^{(k)}(s)\right|^{2} \, {d} x,
+        &\int_{\Omega_{\epsilon}} \frac{\partial u_{\epsilon}^{(k)}(s)}{\partial s} u_{\epsilon}^{(k)}(s)  dx \underset{\eqref{eq 41}}{=}\int_{\Omega_{\epsilon}} \frac{\partial u_{1}^{\epsilon}(s)}{\partial s} u_{\epsilon}^{(k)}(s)  dx \\
+        &\underset{\eqref{eq 10}}{=}\int_{\Omega_{\epsilon}}\left[d_{1} \Delta_{x} u_{1}^{\epsilon}-u_{1}^{\epsilon} \sum_{j=1}^{M} a_{1, j} u_{j}^{\epsilon}\right] u_{\epsilon}^{(k)}(s)  dx \\
+        &\underset{\mathclap{\text{\tiny div. thm}}}{=}-\int_{\Omega_{\epsilon}} u_{1}^{\epsilon}(s) \sum_{j=1}^{M} a_{1, j} u_{j}^{\epsilon}(s) u_{\epsilon}^{(k)}(s)  dx+d_{1} \int_{\Gamma_{\epsilon}} \nabla_{x} u^{\epsilon}_1 \cdot n u_{\epsilon}^{(k)}(s)  {d} \sigma_{\epsilon}(x)-d_{1} \int_{\Omega_{\epsilon}} \nabla_{x} u_{1}^{\epsilon}(s) \cdot \nabla_{x} u_{\epsilon}^{(k)}(s)  dx \\
+        &\underset{\mathclap{\eqref{eq 10}}}{=}-\int_{\Omega_{\mathclap{\epsilon}}} u_{1}^{\epsilon}(s) \sum_{j=1}^{M} a_{1, j} u_{j}^{\epsilon}(s) u_{\epsilon}^{(k)}(s) {d} x+\epsilon d_{1} \int_{\mathclap{\Gamma}_{\epsilon}} \psi\left(s, x, \frac{x}{\epsilon}\right) u_{\epsilon}^{(k)}(s)  {d}\sigma_{\epsilon}(x) -d_{1} \int_{\Omega_{\epsilon}} \nabla_{x} u_{1}^{\epsilon}(s) \cdot \nabla_{x} u_{\epsilon}^{(k)}(s)  {d} x \\
+        &\leq \epsilon d_{1} \int_{\Gamma_{\epsilon}} \psi\left(s, x, \frac{x}{\epsilon}\right) u_{\epsilon}^{(k)}(s)  {d} \sigma_{\epsilon}(x)-d_{1} \int_{\Omega_{\epsilon}} \nabla_{x} u_{1}^{\epsilon}(s) \cdot \nabla_{x} u_{\epsilon}^{(k)}(s)  {d} x \\
+        &\underset{\mathclap{\tiny \substack{\text{Young's} \\ \text{ineq.}\\\text{and}\\\text{def. of } \\ B_{k}^{\epsilon}(t)}}}{\leq} \frac{\epsilon d_{1}}{2} \int_{B_{k}^{\epsilon}(s)}\left|\psi\left(s, x, \frac{x}{\epsilon}\right)\right|^{2}  {d} \sigma_{\epsilon}(x)+\frac{\epsilon d_{1}}{2} \int_{\Gamma_{\epsilon}}\left|u_{\epsilon}^{(k)}(s)\right|^{2}  {d} \sigma_{\epsilon}(x) -d_{1} \int_{\Omega_{\epsilon}} \nabla_{x} u_{1}^{\epsilon}(s) \cdot \nabla_{x} u_{\epsilon}^{(k)}(s) {d} x \\
+        &\underset{\eqref{lemma 7.1}}{\leq} \frac{\epsilon d_{1}}{2} \int_{B_{k}^{\epsilon}(s)}\left|\psi\left(s, x, \frac{x}{\epsilon}\right)\right|^{2} {d} \sigma_{\epsilon}(x)+\frac{C_{1} d_{1}}{2} \int_{A_{k}^{\epsilon}(s)}\left|u_{\epsilon}^{(k)}(s)\right|^{2} {d} x -d_{1}\left(1-\frac{C_{1} \epsilon^{2}}{2}\right) \int_{\Omega_{\epsilon}}\left|\nabla_{x} u_{\epsilon}^{(k)}(s)\right|^{2}{d} x,
    \end{aligned}
 \label{eq 47}\end{equation}
 where is denoted by $A_{k}^{\epsilon}(t)$ and $B_{k}^{\epsilon}(t)$ the set of points in $\Omega_{\epsilon}$ and on $\Gamma_{\epsilon}$, respectively, at which $u_{1}^{\epsilon}(t, x)>k$. It holds:
