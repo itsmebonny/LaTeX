@@ -1,0 +1,23 @@
+
+
+% Create color bluePoli (-> manuale grafica coordinata:  https://www.polimi.it/fileadmin/user_upload/il_Politecnico/grafica-coordinata/2015_05_11_46xy_manuale_grafica_coordinata.pdf)
+\definecolor{bluePoli}{cmyk}{0.4,0.1,0,0.4}
+
+% Custom theorem environments
+\declaretheoremstyle[
+  shaded={rulecolor=bluePoli!20, rulewidth=1pt, bgcolor=bluePoli!5},
+  headfont=\color{bluePoli}\normalfont\bfseries,
+  bodyfont=\color{black}\normalfont,
+]{colored}
+
+\captionsetup[figure]{labelfont={color=bluePoli}} % Set colour of the captions
+\captionsetup[table]{labelfont={color=bluePoli}} % Set colour of the captions
+\captionsetup[algorithm]{labelfont={color=bluePoli}} % Set colour of the captions
+
+% \theoremstyle{colored}
+% \newtheorem{theorem}{Theorem}[section]
+% \newtheorem{proposition}{Proposition}[section]
+% \newtheorem{definition}{Definition}[section]
+% \newtheorem*{remark}{Remark}
+% \newtheorem{lemma}{Lemma}[section]
+
