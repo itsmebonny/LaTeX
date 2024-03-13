@@ -1,6 +1,6 @@
 \documentclass{beamer}
 
-\usetheme{polimi}
+\usetheme[bgphoto, nologo]{polimi}
 
 
 
@@ -191,7 +191,7 @@
 
 %------------------------------------------------------------------------------
 \title{A mathematical model for Alzheimer's disease:}
-\subtitle{from Microscopic to a Macroscopic Model using the Two-Scale \\Homogenization Theory}
+\subtitle{from a microscopic to a macroscopic model using the Two-Scale \\Homogenization Theory}
 \author{Andrea Bonifacio}
 
 \date{}
@@ -781,7 +781,7 @@ Let $v^{\epsilon}$ be a bounded sequence belonging in $L^{2}\left(0, T ; H^{1}(\
                 \end{equation}
         \end{block}
 \end{frame}
-\begin{frame}{Proof for \(m=1\)}
+\begin{frame}{Proof for \(m=1\) I}
     \begin{proofs}
         In view of Lemmas \eqref{lemma 5.1}-\eqref{lemma 5.2} and \eqref{lemma 5.4}, the sequences $\widetilde{u_{m}^{\epsilon}}$ and $\widetilde{\nabla_{x} u_{m}^{\epsilon}}(1 \leq m \leq M)$ are bounded in $L^{2}([0, T] \times \Omega)$, and by application of Theorem \eqref{thm 7.1} and Theorem \eqref{thm 7.3}, and so:
         \begin{equation}
@@ -795,7 +795,7 @@ Let $v^{\epsilon}$ be a bounded sequence belonging in $L^{2}\left(0, T ; H^{1}(\
         \end{equation}
     \end{proofs}
 \end{frame}
-\begin{frame}
+\begin{frame}{Proof for \(m=1\) II}
     \begin{proofc}
         Similarly, in view of Lemma \eqref{lemma 5.9}, it is possible to prove that
         \begin{equation}
@@ -810,7 +810,7 @@ Let $v^{\epsilon}$ be a bounded sequence belonging in $L^{2}\left(0, T ; H^{1}(\
         $$
     \end{proofc}
 \end{frame}
-\begin{frame}
+\begin{frame}{Proof for \(m=1\) III}
     \begin{proofc}
         where $\phi \in C^{1}([0, T] \times \bar{\Omega})$ and $\phi_{1} \in C^{1}\left([0, T] \times \bar{\Omega} ; C_{\#}^{\infty}(Y)\right)$. 
         \begin{equation*}
@@ -818,7 +818,7 @@ Let $v^{\epsilon}$ be a bounded sequence belonging in $L^{2}\left(0, T ; H^{1}(\
         \end{equation*}
     \end{proofc}
 \end{frame}
-\begin{frame}
+\begin{frame}{Proof for \(m=1\) IV}
     \begin{proofc}
         Integrating, the divergence theorem yields
         \begin{equation}
@@ -831,7 +831,7 @@ Let $v^{\epsilon}$ be a bounded sequence belonging in $L^{2}\left(0, T ; H^{1}(\
         \label{eq 86}\end{equation}
     \end{proofc}
 \end{frame}
-\begin{frame}
+\begin{frame}{Proof for \(m=1\) V}
     \begin{proofc}
         Passing to the two-scale limit, one can get
         \begin{equation}
@@ -845,30 +845,44 @@ Let $v^{\epsilon}$ be a bounded sequence belonging in $L^{2}\left(0, T ; H^{1}(\
         \label{eq 87}\end{equation}
     \end{proofc}
 \end{frame}
-\begin{frame}
+\begin{frame}{Proof for \(m=1\) VI}
     \begin{proofc}
         The last term on the left-hand side of \eqref{eq 87} has been obtained by using Theorem \eqref{thm 7.2}, while the term on the right-hand side has been attained by application of Theorem \eqref{thm 7.5}. An integration by parts shows that \eqref{eq 87} is a variational formulation associated with the following homogenized system:
     \end{proofc}
 \end{frame}
-\begin{frame}
+\begin{frame}{Proof for \(m=1\) VII}
     \begin{proofc}
         \begin{align}
-        &-\operatorname{div}_{y}\left[d_{1}\left(\nabla_{x} u_{1}(t, x)+\nabla_{y} u_{1}^{1}(t, x, y)\right)\right]=0, \quad \text { in }[0, T] \times \Omega \times Y^{*},
-        \label{eq 88}\\
-        &{\left[\nabla_{x} u_{1}(t, x)+\nabla_{y} u_{1}^{1}(t, x, y)\right] \cdot n=0, \quad \text { on }[0, T] \times \Omega \times \Gamma},
-        \label{eq 89}\\
         &\begin{split}
-        \theta \frac{\partial u_{1}}{\partial t}(t, x)-\operatorname{div}_{x}\left[d_{1} \int_{Y^{*}}\left(\nabla_{x} u_{1}(t, x)+\nabla_{y} u_{1}^{1}(t, x, y)\right) \, d  y\right] \\&+\theta u_{1}(t, x) \sum_{j=1}^{M} a_{1, j} u_{j}(t, x)-d_{1} \int_{\Gamma} \psi(t, x, y) \, d  \sigma(y)=0, \quad \text { in }[0, T] \times \Omega,
-        \end{split}
-        \label{eq 90}\\
-        &{\left[\int_{Y^{*}}\left(\nabla_{x} u_{1}(t, x)+\nabla_{y} u_{1}^{1}(t, x, y)\right) \, d  y\right] \cdot n=0, \quad \text { on }[0, T] \times \partial \Omega}.
-        \label{eq 91}
-        \end{align}
+            -\operatorname{div}_{y}\left[d_{1}\left(\nabla_{x} u_{1}(t, x)+\nabla_{y} u_{1}^{1}(t, x, y)\right)\right]=0, \\
+             \quad \text { in }[0, T] \times \Omega \times Y^{*},
+        \end{split}\label{eq 88}\\
+        &\begin{split}
+            \left[\nabla_{x} u_{1}(t, x)+\nabla_{y} u_{1}^{1}(t, x, y)\right] \cdot n=0,\\
+             \quad \text { on }[0, T] \times \Omega \times \Gamma,
+        \end{split} \label{eq 89}
+    \end{align}
+\end{proofc}
+\end{frame}
+\begin{frame}{Proof for \(m=1\) VIII}
+    \begin{proofc}
+        \begin{flalign}
+            &\begin{split}
+            \theta \frac{\partial u_{1}}{\partial t}(t, x)-\operatorname{div}_{x}\left[d_{1} \int_{Y^{*}}\left(\nabla_{x} u_{1}(t, x)+\nabla_{y} u_{1}^{1}(t, x, y)\right) \, d  y\right] \\
+            +\theta u_{1}(t, x) \sum_{j=1}^{M} a_{1, j} u_{j}(t, x)-d_{1} \int_{\Gamma} \psi(t, x, y) \, d  \sigma(y)=0,\\
+            \quad \text { in }[0, T] \times \Omega,
+            \end{split}
+            \label{eq 90}\\
+            &\begin{split}
+                \left[\int_{Y^{*}}\left(\nabla_{x} u_{1}(t, x)+\nabla_{y} u_{1}^{1}(t, x, y)\right) \, d  y\right] \cdot n=0,\\
+                 \quad \text { on }[0, T] \times \partial \Omega.
+            \end{split}
+            \label{eq 91}
+        \end{flalign}
     \end{proofc}
 \end{frame}
-\begin{frame}
+\begin{frame}{Proof for \(m=1\) IX}
     \begin{proofc}
-        
         To conclude, by continuity, one can have that
         $$
         u_{1}(0, x)=U_{1} \quad \text { in } \Omega .
@@ -882,7 +896,7 @@ Let $v^{\epsilon}$ be a bounded sequence belonging in $L^{2}\left(0, T ; H^{1}(\
         \label{eq 93}\end{equation}
         \end{proofc}
 \end{frame}
-\begin{frame}
+\begin{frame}{Proof for \(m=1\) X}
     \begin{proofc}
         Then, $u_{1}^{1}(t, x, y)$ satisfying (92)-(93) can be written as
         \begin{equation}
@@ -894,7 +908,7 @@ Let $v^{\epsilon}$ be a bounded sequence belonging in $L^{2}\left(0, T ; H^{1}(\
         \label{eq 95}\end{equation}
     \end{proofc}
 \end{frame}
-\begin{frame}
+\begin{frame}{Proof for \(m=1\) XI}
     \begin{proofc}
         By using the relation \eqref{eq 94} in Eqs. \eqref{eq 90} and \eqref{eq 91}, it is possible to get
         \begin{equation}
@@ -908,13 +922,26 @@ Let $v^{\epsilon}$ be a bounded sequence belonging in $L^{2}\left(0, T ; H^{1}(\
         \label{eq 97}\end{equation}
     \end{proofc}
 \end{frame}
-\begin{frame}
+\begin{frame}{Proof for \(m=1\) XII}
     \begin{proofe}
         where $A$ is a matrix with constant coefficients defined by
         $$
         A_{i j}=\int_{Y^{*}}\left(\nabla_{y} w_{i}+\hat{e}_{i}\right) \cdot\left(\nabla_{y} w_{j}+\hat{e}_{j}\right) \, d  y .
         $$
         \end{proofe}
+\end{frame}
+
+%------------------------------------------------
+
+\section{Conclusions}   
+
+\begin{frame}
+    \frametitle{Conclusions}
+    \begin{itemize}
+        \item The model presented here can be related to the one introduced in Bertsch et. al. (2016), where the process of diffusion and agglomeration of $\mathrm{A} \beta$ is described on the macroscale by a Smoluchowski system with a source term. 
+        \item Performed a formal derivation, starting from the microscale, of the source term $\mathcal{F}$.
+        \item It's good to notice that the homogenization theory works in every perforated domain so one can follow the previous arguments to homogenize every system in a random perforated domain.
+    \end{itemize}
 \end{frame}
 % %------------------------------------------------------------------------------
 %	TOC
