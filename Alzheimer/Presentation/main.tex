@@ -41,7 +41,6 @@
 % PACKAGES FOR THE APPENDIX
 \usepackage{appendix}
 
-% PACKAGES FOR ITEMIZE & ENUMERATES
 
 % OTHER PACKAGES
 \usepackage{amsthm,thmtools,xcolor} % Coloured "Theorem"
@@ -213,9 +212,9 @@
 \begin{frame}
 \frametitle{A brief introduction to Alzheimer's disease}
 \begin{itemize}
-\item Alzheimer's disease (AD) is a neurodegenerative disease that usually starts slowly and progressively worsens. It is the most common form of senile dementia but the cause of it is still poorly understood.
+\item Alzheimer's disease (AD) is a neurodegenerative disease that usually \textbf{starts slowly and progressively worsens}. It is the most common form of senile dementia but the cause of it is still poorly understood.
 
-\item Inside the brain exists a protein called $\beta$-peptide,which has a substantial role in the process of synaptic degeneration. This protein is produced in monomeric form by every healthy brain, but some problems arise when,  by unknown reasons (partially genetic), some neurons start to present an imbalance between production and clearance of $\mathrm{A} \beta$ amyloid during aging.
+\item Inside the brain exists a protein called $\beta$-peptide,which has a substantial role in the process of synaptic degeneration. \textbf{This protein is produced in monomeric form by every healthy brain}, but some problems arise when, by unknown reasons (partially genetic), some neurons start to present an imbalance between production and clearance of $\mathrm{A} \beta$ amyloid during aging.
 
 \end{itemize}
 \end{frame}
@@ -224,8 +223,8 @@
 \begin{frame}
 \frametitle{The idea}
 \begin{itemize}
-\item Having a mathematical model for Alzheimer's disease is crucial because the highly toxic polymers involved in the disease have a short lifespan and cannot be easily studied experimentally. Therefore, a mathematical model provides the only means to investigate the behavior of amyloid in this context.
-\item The modeling process carried out in this paper starts again from the Smoluchowski equation: a system of PDEs which describes the evolving densities of diffusing particles that coagulate in pairs. In this report it will be studied the application of the Smoluchowski equation to the description of agglomeration of $\mathrm{A} \beta$ peptide.
+\item Having a mathematical model for Alzheimer's disease is crucial because the \textbf{highly toxic polymers} involved in the disease \textbf{have a short lifespan and cannot be easily studied experimentally}. Therefore, a mathematical model provides the only means to investigate the behavior of amyloid in this context.
+\item The modeling process carried out here starts from the \textbf{Smoluchowski equation}: a system of PDEs which describes the evolving densities of diffusing particles that coagulate in pairs. In this report it will be studied the application of the Smoluchowski equation to the description of agglomeration of $\mathrm{A} \beta$ peptide.
 \end{itemize}
 \end{frame}
 
@@ -234,8 +233,8 @@
 \begin{frame}
 \frametitle{The idea}
 \begin{itemize}
-\item The main objective is to derive a macroscopic model starting from a microscopic one.
-\item In Bertsch et al. (2016) the authors present a model for the evolution of AD at a macroscopic scale and over the entire lifetime of the patient. In this case, the process of diffusion and aggregation of $\mathrm{A}\beta$ is modeled by a Smoluchowski system with a source term, coupled with a kinetic-type transport equation that keeps into account the spreading of the disease. Clearly, at this scale, neurons are no more visible so that they can be described mathematically as points.
+\item The main objective is \textbf{to derive a macroscopic model starting from a microscopic one.}
+\item In Bertsch et al. (2016) the authors present a model for the evolution of AD at a macroscopic scale and over the entire lifetime of the patient. In this case, the process of diffusion and aggregation of $\mathrm{A}\beta$ is modeled by a \textbf{Smoluchowski system with a source term}, coupled with a kinetic-type transport equation that keeps into account the spreading of the disease. Clearly, at this scale, neurons are no more visible so that they can be described mathematically as points.
 \end{itemize}
 \end{frame}
 
@@ -244,8 +243,8 @@
 \begin{frame}
 \frametitle{The problem}
 \begin{itemize}
-    \item Passing from the microscopic to the macroscopic scale is not trivial. It involves a sort of ``averaging process'' and it is done using a method called homogenization. It consists in performing the limits of the solutions of PDEs and finding the set of equations of which these limits are solutions.
-    \item To do so, will be used the two-scale convergence theory, which is a powerful tool to pass from the microscopic to the macroscopic scale.
+    \item Passing from the microscopic to the macroscopic scale is not trivial. It involves a sort of \textbf{``averaging process'' and it is done using a method called homogenization}. It consists in performing the limits of the solutions of PDEs and finding the set of equations of which these limits are solutions.
+    \item To do so, will be used the \textbf{two-scale convergence theory}, which is a powerful tool to pass from the microscopic to the macroscopic scale.
 \end{itemize}
 \end{frame}
 
@@ -255,9 +254,9 @@
 %------------------------------------------------
 \begin{frame}
 \frametitle{The Smoluchowski equation}
-The Smoluchowski equation is a system of PDEs which describes the evolving densities of diffusing particles that coagulate in pairs. It has been used to describe a lot of phenomena. In this case, it will be used to describe the agglomeration of $\mathrm{A} \beta$ peptide, starting from monomers.  
+The Smoluchowski equation is a system of PDEs which describes the evolving densities of \textbf{diffusing particles that coagulate in pairs}. It has been used to describe a lot of phenomena. In this case, it will be used to describe the agglomeration of $\mathrm{A} \beta$ peptide, starting from monomers.  
 
-This phenomenon is called coalescence and can be written formally as 
+This phenomenon is called \textbf{coalescence} and can be written formally as 
 \[
     P_i + P_j \rightarrow P_{i+j}
 \]
@@ -302,7 +301,7 @@ An important role is played by the coagulation coefficients $a_{i-j,j}$ which de
 \frametitle{The domain}
 \begin{columns}
     \column{0.5\textwidth}
-    A piece of cerebral tissue is considered as the domain \(\Omega\). Inside this domain it is necessary to find a way to represent the presence of neurons, which is not so straightforward as it may seem. The idea is to represent the neurons as a set of holes in the domain. 
+    A piece of cerebral tissue is considered as the domain \(\Omega\). Inside this domain it is necessary to \textbf{find a way to represent the presence of neurons}, which is not so straightforward as it may seem. The idea is to represent the neurons as a set of holes in the domain. 
     \column{0.5\textwidth}
     \begin{figure}
         \centering
@@ -319,7 +318,7 @@ An important role is played by the coagulation coefficients $a_{i-j,j}$ which de
     \column{0.7\textwidth}
     Let $Y$ be the unit periodicity cell $\left[0,1\left[{ }^{3}\right.\right.$ shown here.
 
-    To represent the neurons, it is necessary to consider them as holes inside the cell.
+    To represent the neurons, it is necessary to consider them as \textbf{holes inside the cell}.
 
     Denote by $T$ an open subset of $Y$ with a smooth boundary $\Gamma$, such that \(\overline{T} \subset \operatorname*{Int}(Y)\).
     
@@ -340,7 +339,7 @@ An important role is played by the coagulation coefficients $a_{i-j,j}$ which de
 \begin{itemize}
     \item The set $T$ represents a generic neuron, and $Y^{*}$ the supporting cerebral tissue.
     \item Define $\tau(\epsilon \overline{T})$ to be the set of all translated images $\epsilon \overline{T}$ of the form $\epsilon(k+\overline{T}), k \in \mathbb{Z}^{3}$.
-    \item Now are defined both the cerebral tissue domain $\Omega$ and the set of all neurons \(\tau(\epsilon \overline(T))\), so it's possible to define the set of neurons inside the domain as 
+    \item Now are defined both the cerebral tissue domain $\Omega$ and the set of all neurons \(\tau(\epsilon \overline(T))\), so it's possible to define \textbf{the set of neurons inside the domain} as 
     \[
         T_\epsilon \coloneqq \Omega \cap \tau(\epsilon \overline{T}).
     \]
@@ -391,8 +390,8 @@ An important role is played by the coagulation coefficients $a_{i-j,j}$ which de
     \frametitle{The Smoluchowski equation in the perforated domain}
    \begin{itemize}
     \item  Consider the vector-valued function $u=(u_1,\dots, u_M)$, where $u_j=u_j(t,x)$ $(t\geq 0, t\in \mathbb{R}$ and $x\in \Omega)$ is the molar concentration at the point $x$ and at the time $t$ of an assembly of $j$ monomers.
-    \item With the definition of $u_M$ it is assumed that `large' assemblies do not aggregate to each other.
-    \item The model is built assuming only binary coagulation.
+    \item With the definition of $u_M$ it is assumed that \textbf{`large' assemblies do not aggregate to each other}.
+    \item The model is built assuming only \textbf{binary coagulation}.
    \end{itemize}
 \end{frame}
 
@@ -455,7 +454,7 @@ An important role is played by the coagulation coefficients $a_{i-j,j}$ which de
 \begin{frame}
     \frametitle{The Smoluchowski equation in the perforated domain}
     In \eqref{eq:u_1_eqs} $\epsilon$ is put in front of $\psi$ to prevent the divergence of the integral in a further passage, in order to avoid singularities. 
-    The variable $x$ is called the slow scale variable, while the variable  $\frac{x}{\epsilon}$ is called the fast scale variable, which represents the microscopic scale.
+    The variable $x$ is called the \textbf{slow scale} variable, while the variable  $\frac{x}{\epsilon}$ is called the \textbf{fast scale} variable, which represents the microscopic scale.
 
     It's assumed that for $t>0$ the brain becomes sick. For technical reasons some regularity is needed on $\psi$ and $U_1$:
     \begin{enumerate}
@@ -471,7 +470,7 @@ An important role is played by the coagulation coefficients $a_{i-j,j}$ which de
 
 \begin{frame}
     \frametitle{Convergence to the macroscopic model}
-    At this point the idea is to go from microscopic to macroscopic, by a sort of ``averaging process''. Indeed, the objective is to perform the homogenization on the set \eqref{eq:u_1_eqs}-\eqref{eq:u_m_eqs} of equations as $\epsilon \rightarrow 0$, however there is not a clear notion of convergence for the sequence $u_j^{\epsilon}$ $1\geq j \geq M$ which is defined on a varying set $\Omega_{\epsilon}$, which also is random perforated.
+    At this point the idea is to go \textbf{from microscopic to macroscopic}, by a sort of ``averaging process''. Indeed, the objective is to perform the homogenization on the set \eqref{eq:u_1_eqs}-\eqref{eq:u_m_eqs} of equations as $\epsilon \rightarrow 0$, however there is not a clear notion of convergence for the sequence $u_j^{\epsilon}$ $1\geq j \geq M$ which is defined on a varying set $\Omega_{\epsilon}$, which also is \textbf{perforated}.
 \end{frame}
 
 \begin{frame}
@@ -498,7 +497,7 @@ An important role is played by the coagulation coefficients $a_{i-j,j}$ which de
 
 \begin{frame}
     \frametitle{Two-scale convergence definition}
-    Two-scale convergence is a powerful tool that can help the study of functions in perforated domains. 
+    Two-scale convergence is a powerful tool that can help the \textbf{study of functions in perforated domains}. 
     \begin{definition}[Two-scale convergence]
         A sequence of functions $ v ^ {\epsilon } $in $ L^2([ 0 ,T]\times\Omega) $ two-scale converges to $v_{0} \in L^2([ 0 ,T]\times\Omega \times Y)$ if
         \begin{equation*}
@@ -516,12 +515,12 @@ An important role is played by the coagulation coefficients $a_{i-j,j}$ which de
 
 \begin{frame}
     \frametitle{Compactness theorem}
-    This definition makes sense because of the next compactness theorem 
+    This definition makes sense because of the next \textbf{compactness theorem} 
     \begin{theorem}[Compactness Theorem]
     If $v^{\epsilon}$ is a bounded sequence in $ L^2([ 0 ,T]\times\Omega) $, then there exist a function $v_{0}(t,x,y) \in   L^2([0,T]\times\Omega \times Y)$ s.t. $v^{\epsilon}$ two-scale converges to $v_{0}$, we write: 
     $v^{\epsilon} \overset{2s}{\rightharpoonup} v_{0}$.
     \label{thm 7.1}\end{theorem}
-    This theorem is important because it shows that the minimal requirement to have two-scale convergence is that $v$ must be bounded.
+    This theorem is important because it shows that the minimal requirement to have two-scale convergence is that $v$ must be \textbf{bounded}.
     \end{frame}
 
 \begin{frame}
@@ -534,13 +533,13 @@ An important role is played by the coagulation coefficients $a_{i-j,j}$ which de
         =\int_{\Omega} \left[\int_{\textrm{Y}} v(x,y)dy\right]\psi(x)dx.
     \end{split}
     \end{equation*}
-    This shows that, in this specific case, the two-scale convergence coincides with the weak convergence. Therefore, the two-scale convergence and the weak convergence are strictly related: the main difference between them is that in the first one the oscillations are captured due to the extra variable $y$.
+    This shows that, in this specific case, the \textbf{two-scale convergence coincides with the weak convergence}. Therefore, the two-scale convergence and the weak convergence are strictly related: the main difference between them is that in the first one the oscillations are captured due to the extra variable $y$.
     \end{remark}
 \end{frame}
 
 \begin{frame}[allowframebreaks]
     \frametitle{Two-scale convergence of products}
-    The next theorems yield a characterization of the two-scale limit of the gradients of bounded sequences $v^{\epsilon}$ which is a critical result in order to apply the homogenization on problems. This theorem shows that, under specific hypotheses, the limit of the product coincides with the product of the limits.
+    The next theorems yield a characterization of the two-scale limit of the gradients of bounded sequences $v^{\epsilon}$ which is a critical result in order to apply the homogenization on problems. This theorem shows that, under specific hypotheses, \textbf{the limit of the product coincides with the product of the limits}.
     \begin{theorem}
     Let $v^{\epsilon}$ be a sequence of functions in $L^{2}([0, T] \times \Omega)$ which two-scale converges to a limit $v_{0} \in L^{2}([0, T] \times \Omega \times Y)$. Suppose, furthermore, that
     $$
@@ -559,7 +558,7 @@ An important role is played by the coagulation coefficients $a_{i-j,j}$ which de
 
 \begin{frame}
     \frametitle{Sobolev spaces}
-    Here's a brief introduction to the Sobolev spaces, which can be ``improperly'' defined as \(L^p\) spaces with \(L^p\) derivatives. Formally
+    Here's a brief introduction to the \textbf{Sobolev spaces}, which can be ``improperly'' defined as \(L^p\) spaces with \(L^p\) derivatives. Formally
     \begin{definition}
         The Sobolev space $W^{1, p}(\Omega)$ is defined by
         $$
@@ -573,7 +572,7 @@ An important role is played by the coagulation coefficients $a_{i-j,j}$ which de
 
 \begin{frame}[allowframebreaks]
     \frametitle{Managing gradients}
-    When the limit is performed it appears an extra variable and one needs a theorem that defines how to manage the gradient of this variable.
+    When the limit is performed it appears an \textbf{extra variable} and one needs a theorem that defines \textbf{how to manage the gradient of this variable}.
 \begin{theorem}
 Let $v^{\epsilon}$ be a bounded sequence belonging in $L^{2}\left(0, T ; H^{1}(\Omega)\right)$ such that $v_{\epsilon}(t,x)\rightharpoonup v(t,x)$  in $L^{2}\left(0, T ; H^{1}(\Omega)\right)$. Then $v^{\epsilon} \overset{2s}{\rightharpoonup} v(t, x)$, and there exists a function $v_{1}(t, x, y)$ in $L^{2}\left([0, T] \times \Omega ; H_{\#}^{1}(Y) / \mathbb{R}\right)$ such that, up to a subsequence, $\nabla v^{\epsilon}  \overset{2s}{\rightharpoonup} \left(\nabla_{x} v(t, x)+\nabla_{y} v_{1}(t, x, y)\right)$. 
 \label{thm 7.3}\end{theorem}
@@ -678,7 +677,7 @@ Let $v^{\epsilon}$ be a bounded sequence belonging in $L^{2}\left(0, T ; H^{1}(\
 
 \begin{frame}[allowframebreaks]
     \frametitle{Extension lemma}
-    The proofs of the previous Lemmas rely on a generalization to perforated domains of the main inequalities valid in \(\Omega\), through the following extension Lemma:
+    The proofs of the previous Lemmas rely on a generalization to perforated domains of the main inequalities valid in \(\Omega\), through the following \textbf{extension lemma}:
     \begin{lemma}
   
         Suppose that the domain $\Omega_{\epsilon}$ is such that assumption \eqref{eq:security_zone} is satisfied. Then, there exists a family of linear continuous extension operators
@@ -711,8 +710,8 @@ Let $v^{\epsilon}$ be a bounded sequence belonging in $L^{2}\left(0, T ; H^{1}(\
 \begin{frame}[allowframebreaks]
     \frametitle{Statement of the main theorem}
         \begin{itemize}
-        \item     Now that all the necessary result are obtained, it's possible to state the main theorem of the homogenization of the Smoluchowski equation in perforated domains.
-        \item Theorem \eqref{thm 5.1} shows that the macroscale (homogenized) model, obtained from Eqs. \eqref{eq:u_1_eqs}-\eqref{eq:u_M_eqs} as $\epsilon \rightarrow 0$, is asymptotically consistent with the original model and resolves both the coarse and the small scale. 
+        \item Now that all the necessary result are obtained, it's possible to state the main theorem of the homogenization of the Smoluchowski equation in perforated domains.
+        \item Theorem \eqref{thm 5.1} shows that the macroscale (homogenized) model, obtained from Eqs. \eqref{eq:u_1_eqs}-\eqref{eq:u_M_eqs} as $\epsilon \rightarrow 0$, is \textbf{asymptotically consistent} with the original model and resolves both the coarse and the small scale. 
         \item The information given on the microscale, by the non-homogeneous Neumann boundary condition in \eqref{eq:u_1_eqs}, is transferred into the source term in the first equation of \eqref{eq 16}, describing the limit model. 
         \end{itemize}
 
@@ -936,17 +935,28 @@ Let $v^{\epsilon}$ be a bounded sequence belonging in $L^{2}\left(0, T ; H^{1}(\
 \section{Conclusions}   
 
 \begin{frame}
-    \frametitle{Conclusions}
+    \frametitle{Some conclusions}
     \begin{itemize}
-        \item The model presented here can be related to the one introduced in Bertsch et. al. (2016), where the process of diffusion and agglomeration of $\mathrm{A} \beta$ is described on the macroscale by a Smoluchowski system with a source term. 
-        \item Performed a formal derivation, starting from the microscale, of the source term $\mathcal{F}$.
+        \item The model presented here can be related to the one introduced in Bertsch et. al. (2016), where the process of diffusion and agglomeration of $\mathrm{A} \beta$ is described on the macroscale by a Smoluchowski system with a source term.
+        \item Performed a \textbf{formal derivation}, starting from the microscale, of the source term $\mathcal{F}$.
         \item It's good to notice that the homogenization theory works in every perforated domain so one can follow the previous arguments to homogenize every system in a random perforated domain.
     \end{itemize}
 \end{frame}
 % %------------------------------------------------------------------------------
 %	TOC
 %------------------------------------------------------------------------------
+\section{}
+\begin{frame}
+    \centering
+    { \Huge Thanks for your attention!}
+\end{frame}
 
 
-
+\begin{frame}
+    \frametitle{References}
+    \begin{enumerate}[(1.)]
+        \item Michiel Bertsch, Bruno Franchi, Norina Marcello, Maria Carla Tesi, and Andrea Tosin. Alzheimer's disease: a mathematical model for onset and progression. Mathematical Medicine and Biology: A Journal of the IMA, April 2016. arXiv:1503.04669 [physics, q-bio].
+        \item Bruno Franchi and Silvia Lorenzani. From a microscopic to a macroscopic model for Alzheimer disease: Two-scale homogenization of the Smoluchowski equation in perforated domains. Journal of Nonlinear Science, 26(3):717-753, June 2016.
+    \end{enumerate}
+\end{frame}
 \end{document}
