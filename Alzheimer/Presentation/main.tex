@@ -453,7 +453,6 @@ An important role is played by the coagulation coefficients $a_{i-j,j}$ which de
 
 \begin{frame}
     \frametitle{The Smoluchowski equation in the perforated domain}
-    In \eqref{eq:u_1_eqs} $\epsilon$ is put in front of $\psi$ to prevent the divergence of the integral in a further passage, in order to avoid singularities. 
     The variable $x$ is called the \textbf{slow scale} variable, while the variable  $\frac{x}{\epsilon}$ is called the \textbf{fast scale} variable, which represents the microscopic scale.
 
     It's assumed that for $t>0$ the brain becomes sick. For technical reasons some regularity is needed on $\psi$ and $U_1$:
@@ -470,13 +469,13 @@ An important role is played by the coagulation coefficients $a_{i-j,j}$ which de
 
 \begin{frame}
     \frametitle{Convergence to the macroscopic model}
-    At this point the idea is to go \textbf{from microscopic to macroscopic}, by a sort of ``averaging process''. Indeed, the objective is to perform the homogenization on the set \eqref{eq:u_1_eqs}-\eqref{eq:u_m_eqs} of equations as $\epsilon \rightarrow 0$, however there is not a clear notion of convergence for the sequence $u_j^{\epsilon}$ $1\geq j \geq M$ which is defined on a varying set $\Omega_{\epsilon}$, which also is \textbf{perforated}.
+    At this point the idea is to go \textbf{from microscopic to macroscopic}, by a sort of ``averaging process''. Indeed, the objective is to perform the homogenization on the set \eqref{eq:u_1_eqs}-\eqref{eq:u_M_eqs} of equations as $\epsilon \rightarrow 0$, however there is not a clear notion of convergence for the sequence $u_j^{\epsilon}$ $1\geq j \geq M$ which is defined on a varying set $\Omega_{\epsilon}$, which also is \textbf{perforated}.
 \end{frame}
 
 \begin{frame}
     \frametitle{Convergence to the macroscopic model}
     \begin{theorem} 
-    If $\epsilon>0$, the system \eqref{eq:u_1_eqs}-\eqref{eq:u_m_eqs} has a unique solution
+    If $\epsilon>0$, the system \eqref{eq:u_1_eqs}-\eqref{eq:u_M_eqs} has a unique solution
     $$
     \left(u_{1}^{\epsilon}, \ldots, u_{M}^{\epsilon}\right) \in C^{1+\alpha / 2,2+\alpha}\left([0, T] \times \Omega_{\epsilon}\right) \quad(\alpha \in(0,1))
     $$
@@ -607,7 +606,7 @@ Let $v^{\epsilon}$ be a bounded sequence belonging in $L^{2}\left(0, T ; H^{1}(\
 
 %------------------------------------------------
 
-\section{Homogenization of the Smoluchowsky equation}
+\section{Homogenization of the Smoluchowski equation}
 
 \begin{frame}[allowframebreaks]
     \frametitle{Estimates on \(u_m^\epsilon, \nabla_x u_m^\epsilon\)}
@@ -897,7 +896,7 @@ Let $v^{\epsilon}$ be a bounded sequence belonging in $L^{2}\left(0, T ; H^{1}(\
 \end{frame}
 \begin{frame}{Proof for \(m=1\) X}
     \begin{proofc}
-        Then, $u_{1}^{1}(t, x, y)$ satisfying (92)-(93) can be written as
+        Then, $u_{1}^{1}(t, x, y)$ satisfying \eqref{eq 92}-\eqref{eq 93} can be written as
         \begin{equation}
          u_{1}^{1}(t, x, y)=\sum_{i=1}^{N} w_{i}(y) \frac{\partial u_{1}}{\partial x_{i}}(t, x),
         \label{eq 94}\end{equation}
@@ -927,6 +926,7 @@ Let $v^{\epsilon}$ be a bounded sequence belonging in $L^{2}\left(0, T ; H^{1}(\
         $$
         A_{i j}=\int_{Y^{*}}\left(\nabla_{y} w_{i}+\hat{e}_{i}\right) \cdot\left(\nabla_{y} w_{j}+\hat{e}_{j}\right) \, d  y .
         $$
+        A similar reasoning can be adopted for the generic term $u_m$.
         \end{proofe}
 \end{frame}
 
