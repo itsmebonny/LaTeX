@@ -104,9 +104,11 @@
     \def\svgwidth{\columnwidth}
     \import{./Images/}{#1.pdf_tex}
 }
+\newcommand{\real}{\mathbb{R}}
 \newcommand*{\oldepsilon}{\epsilon}
 \renewcommand*{\epsilon}{\varepsilon}
 \DeclareMathOperator*{\esssup}{ess\,sup}
+
 
 \numberwithin{equation}{section}
 %----------------------------------------------------------------------------
@@ -140,18 +142,15 @@
 
 % Insert here the info that will be displayed into your Title page
 % -> title of your work
-\renewcommand{\title}{\noindent A Mathematical Model for Alzheimer Disease:
-
-from Microscopic to a Macroscopic Model using
-the Two-Scale Homogenization Theory}
+\renewcommand{\title}{\noindent The Fisher-KPP equation over simple graphs} 
 
 % -> author name and surname
 \renewcommand{\author}{Andrea Bonifacio}
 % -> MSc course
 \newcommand\norm[1]{\lVert#1\rVert}
-\newcommand{\course}{Methods and Models for Statistical Mechanics}
+\newcommand{\course}{Reaction Diffusion Equations}
 % -> advisor name and surname
-\newcommand{\advisor}{Silvia Lorenzani}
+\newcommand{\advisor}{Gianmaria Verzini}
 % IF AND ONLY IF you need to modify the co-supervisors you also have to modify the file Configuration_files/title_page.tex (ONLY where it is marked)
 %\newcommand{\firstcoadvisor}{Name Surname} % insert if any otherwise comment
 %\newcommand{\secondcoadvisor}{Name Surname} % insert if any otherwise comment
@@ -172,13 +171,14 @@ the Two-Scale Homogenization Theory}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%     THESIS MAIN TEXT     %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In this work will be presented a mathematical model for Alzheimer's disease (AD) at the microscopic scale. The model will be derived from the Smoluchowski equation, which describes the evolution of the density of diffusing particles that coagulate in pairs. Then will be proved that the model two-scale converges to a macroscopic model asymptotically consistent with the original one. Indeed, the information given on the microscale by the non-homogeneous Neumann boundary condition is transferred into a source term appearing in the limiting (homogenized) equations. Most of this report is based off the work of \cite{Franchi_Lorenzani_2016}, with some additions from \cite{Bertsch}.
+
 
 %-----------------------------------------------------------------------------
 % INTRODUCTION
 %-----------------------------------------------------------------------------
 
 \input{Sections/01_introduction}
+\input{Sections/02_Fisher-KPP.tex}
 
 \input{Sections/08_Conclusions}
 
