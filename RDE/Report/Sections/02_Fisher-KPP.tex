@@ -7,7 +7,7 @@ Fisher-KPP equation is a reaction-diffusion equation that models the spread of a
 where $u = u(x, t)$ is the population density, $r, D$ are positive parameters. It was first introduced by Fisher \cite{Fisher1937} and a similar result was obtained by Kolmogorov, Petrovsky and Piskunov \cite{KPP1937}. It's an example of a semilinear reaction-diffusion equation, which can be used to model phenomena in which some density experience both a diffusive effect (e.g. dispersion) and a reactive one (e.g. growth or decay). Throughout this work, \eqref{eq:fisher-kpp} will be referred to as the Fisher-KPP equation.
 
 \subsection{Boundary value problem}
-To better understand the dynamics of a population, a boundary value problem is considered. Let \(u = u(\bm{x}, t) > 0\) be the (nonnegative) population density at time \(t > 0\) and position \(\bm{x} \in \Omega \subset \real^n\), where \(\Omega\) is a smooth, bounded domain with boundary \(\partial \Omega\). 
+To better understand the dynamics of a population, a boundary value problem (BVP) is considered. Let \(u = u(\bm{x}, t) > 0\) be the (nonnegative) population density at time \(t > 0\) and position \(\bm{x} \in \Omega \subset \real^n\), where \(\Omega\) is a smooth, bounded domain with boundary \(\partial \Omega\). 
 The general form of the KPP-Fisher equation can be expressed as 
 \begin{equation}
     u_t - D \Delta u = f(\bm(x), u) \quad \text{in} \quad Q_T = \Omega \times (0, T),
@@ -18,3 +18,31 @@ with \(D > 0\) as diffusion coefficient, the motility of the population, and \(f
     \item \(f(\bm{x}, 0) = 0\) for all \(\bm{x} \in \Omega\),
     \item for some \(M > 0, f(\bm{x}, u) < 0\) whenever \(u > M\).
 \end{itemize}
+The interpretation of the first assumption is that, in absence of the population, there is no growth or decay. The second assumption states that the population cannot grow indefinitely, there is a maximum population density, called maximal carrying capacity. Any time the population density exceeds this value, the population starts to decay. An example of a reaction term that satisfies these assumptions is the logistic growth term, introduced by Verhulst \cite{Verhulst1847}, 
+\begin{equation}
+    f(\bm{x}, u) = ru(1 - \frac{u}{M}), 
+\end{equation}
+where \(r > 0\) is a growth rate. The second term \(-rM^{-1}u^2\) describes the competition for resources.
+
+A closer look at the domain \(\Omega\) is needed, once one has found a fitting reaction term for his problem. Clearly, boundary conditions are needed. In the case of population dynamics, homogeneous Dirichlet boundary conditions represent a lethal boundary, where the population density drops to zero. If one wants to model its population inside an isolated environment, homogeneous Neumann boundary conditions are necessary, creating a reflecting boundary. 
+
+It is now possible to define a BVP for the Fisher-KPP equation, with homogeneous Neumann boundary conditions, as follows:
+
+\begin{equation}
+    \begin{dcases}
+        u_t - D \Delta u = f(\bm{x}, u) & \text{in} \quad Q_T = \Omega \times (0, T), \\
+        \partial_{n}u = 0 & \text{on} \quad S_T = \partial \Omega \times (0, T), \\
+        u(\bm{x}, 0) = g & \text{in} \quad \Omega,
+    \end{dcases}
+    \label{eq:fisher-kpp-bvp}
+\end{equation}
+where \(g = g(\bm{x})\) is the initial population density.
+
+It is interesting to consider the long-time behavior of the solution of \eqref{eq:fisher-kpp-bvp}, meaning that: does the population survives at all times, or it will eventually die out? This question is related to the existence of nontrivial steady stated \(U = U(\bm{x})\), satisfying:
+\begin{equation}
+    \begin{dcases}
+        -D \Delta U = f(\bm{x}, U) & \text{in} \quad \Omega, \\
+        \partial_{n}U = 0 & \text{on} \quad \partial \Omega.
+    \end{dcases}
+    \label{eq:fisher-kpp-steady} 
+\end{equation}
