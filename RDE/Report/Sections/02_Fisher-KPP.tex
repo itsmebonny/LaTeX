@@ -46,3 +46,23 @@ It is interesting to consider the long-time behavior of the solution of \eqref{e
     \end{dcases}
     \label{eq:fisher-kpp-steady} 
 \end{equation}
+Here, a definition of super/subsolutions is needed. For a more detailed explanation, refer to \cite{SalsaVerziniPDE}. Here \(V = H^1_0(\Omega)\) and the symbols \(\left(\cdot, \cdot\right)_0\) and \(\norm{\cdot}_0\) denote the inner product and norm in \(L^2(\Omega)\) or \(L^2(\Omega, \real^n)\), respectively. 
+\begin{definition}
+    A function \(u \in L^2(0, T; V)\) with \(\dot{u} \in L^2(0, T; L^2(\Omega))\), is a weak supersolution (resp. subsolution) of \eqref{eq:fisher-kpp-bvp} if \(u(\bm{x}, 0) \geq g\) (resp. \(u(\bm{x}, 0) \leq g\)) and
+    \begin{equation}
+        \begin{split}
+            \left(\dot{u}(t), v\right)_0 + D \left(\nabla u(t), \nabla v\right)_0 \geq (f(\bm{x}, u(t)), v)_0 \quad \text{(resp } \leq \text{)} \\ \quad \text{for a.e. } t \in (0, T), \forall v \in V, v \geq 0 \text{ a.e. in } \Omega.
+        \end{split}
+    \end{equation}
+\end{definition}
+Another important result related to supersolutions and subsolutions is the following:
+\begin{theorem}
+    Let \(\overline{u}\) and \(\underline{u}\) be a bounded weak supersolution and subsolution of \eqref{eq:fisher-kpp-bvp}, respectively. Then, \(\exists!\) weak solution \(u = u_g\) such that
+    \begin{equation}
+        \underline{u} \leq u_g \leq \overline{u} \quad \text{a.e. in } \quad Q_T.
+    \end{equation}
+    \label{thm:10.18}
+\end{theorem}
+
+In the case of long-time behavior, it is possible to find time independent supersolutions and subsolutions. Thanks to \ref{thm:10.18}, it is possible to find a solution that is global in time, meaning that it exists for all \(t > 0\). 
+The existence of steady states can be inferred by solving the stationary problem \eqref{eq:fisher-kpp-steady}. These states are quite useful to understand the dynamics of the equation.
