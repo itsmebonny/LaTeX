@@ -20,7 +20,7 @@ with \(D > 0\) as diffusion coefficient, the motility of the population, and \(f
 \end{itemize}
 The interpretation of the first assumption is that, in absence of the population, there is no growth or decay. The second assumption states that the population cannot grow indefinitely, there is a maximum population density, called maximal carrying capacity. Any time the population density exceeds this value, the population starts to decay. An example of a reaction term that satisfies these assumptions is the logistic growth term, introduced by Verhulst \cite{Verhulst1847}, 
 \begin{equation}
-    f(\bm{x}, u) = ru(1 - \frac{u}{M}), 
+    f(\bm{x}, u) = ru\left(1 - \frac{u}{M}\right), 
 \end{equation}
 where \(r > 0\) is a growth rate. The second term \(-rM^{-1}u^2\) describes the competition for resources.
 
@@ -66,3 +66,63 @@ Another important result related to supersolutions and subsolutions is the follo
 
 In the case of long-time behavior, it is possible to find time independent supersolutions and subsolutions. Thanks to \ref{thm:10.18}, it is possible to find a solution that is global in time, meaning that it exists for all \(t > 0\). 
 The existence of steady states can be inferred by solving the stationary problem \eqref{eq:fisher-kpp-steady}. These states are quite useful to understand the dynamics of the equation.
+
+Two important results that help to understand better the relation between these steady states are the following:
+\begin{lemma}
+    Let \(\phi, \psi \in L^\infty(\Omega) \cap H^1(\Omega)\) be time independent subsolution and supersolution of \eqref{eq:fisher-kpp-bvp}, respectively, and let \(u_\phi, u_\psi\) be the corresponding solutions of the same problem, with initial condition \(u_\phi(0) = \phi\) and \(u_\psi(0) = \psi\). Then
+    \begin{enumerate}
+        \item \(u_\phi, u_\psi \text{ and } u_g\) exists for all \(t \geq 0\), and 
+        \begin{equation}
+            \phi(\bm{x}) \leq u_\phi(\bm{x}, t) \leq u_g(\bm{x}, t) \leq u_\psi(\bm{x}, t) \leq \psi(\bm{x}) \quad \text{a.e in } \Omega \times [0, +\infty),
+        \end{equation}
+        for all \(\phi \leq g \leq \psi\);
+        \item \(u_\phi(\bm{x}, t_2) \geq u_\phi(\bm{x}, t_1)\) a.e. in \(\Omega\), if \(t_2 > t_1\);
+        \item \(u_\psi(\bm{x}, t_2) \leq u_\psi(\bm{x}, t_1)\) a.e. in \(\Omega\), if \(t_2 < t_1\).
+    \end{enumerate}
+    \label{lem:10.21}
+\end{lemma}
+\begin{theorem}
+    Let \(\phi, \psi\) be as in \ref{lem:10.21} and define 
+    \[
+        \Phi(\bm{x}) = \lim_{t \to +\infty} u_\phi(\bm{x}, t) \quad \text{and} \quad \Psi(\bm{x}) = \lim_{t \to +\infty} u_\psi(\bm{x}, t),
+    \]
+    a.e. in \(\Omega\). Then \(\Phi, \Psi \) solve \eqref{eq:fisher-kpp-steady} and any other steady state \(U\), with \(\phi \leq U \leq \psi\), satisfies \(\Phi \leq U \leq \Psi\).
+    
+    In particular, if \(\Phi = \Psi\) a.e. in \(\Omega\), then such a steady state is unique and 
+    \[
+        u_g(t) \to \Phi \quad \text{as } t \to +\infty.
+    \]
+    a.e. and in \(L^2(\Omega)\) for every initial datum \(\phi \leq g \leq \psi\).
+    \label{thm:10.22}
+\end{theorem}
+
+A brief discussion about persistence and extinction of the population will be introduced here. 
+The assumptions on the reaction term were:
+\begin{itemize}
+    \item \(f(\bm{x}, 0) = 0\) for all \(\bm{x} \in \Omega\),
+    \item for some \(M > 0, f(\bm{x}, u) < 0\) whenever \(u > M\).
+\end{itemize}
+Indeed, \(\underline{u}(\bm{x}, t) \equiv 0\) solves the problem, and if \(g \geq 0\), then \(\underline{u}(\bm{x}, t)\) is a subsolution of \eqref{eq:fisher-kpp-bvp}. Also, taking \(\overline{u}(\bm{x}, t) \equiv M'\) where \(M' = \max\{M, \norm{g}_\infty\}\), one obtains
+\[
+    \left(\partial_t - D\Delta\right)\overline{u} = 0 \geq f(\bm{x}, \overline{u}) 
+\]
+and \(\overline{u}\) is a supersolution of \eqref{eq:fisher-kpp-bvp}. 
+
+Thanks to Theorem \ref{thm:10.22} it is possible to note that, if \(\Phi(\bm{x}) \equiv 0\) is the only nonnegative steady state, then \(\Phi = \Psi\) and the population will eventually die out as \(t \to +\infty\), for every initial datum \(g\). In the case, \(\Phi > 0\) in \(\Omega\), there is at least one initial datum \(g\) such that the population will survive for all times. 
+
+Clearly, more precise assumptions on the reaction term are needed. For example, one can assume that local relative growth rate is strictly decreasing:
+\begin{equation}
+    \frac{f(\bm{x}, u_2)}{u_2} < \frac{f(\bm{x}, u_1)}{u_1} \quad \text{whenever } u_2 > u_1 > 0.
+    \label{eq:10.69}
+\end{equation}
+Since \(f\) is at least of class \(C^1\), taking the limits as \(u_1 \to 0\) one obtains
+\[
+    \frac{f(\bm{x}, u_2)}{u_2} < \lim_{u_1 \to 0} \frac{f(\bm{x}, u_1)}{u_1} = \lim_{u_1 \to 0} \frac{f(\bm{x}, u_1) - f(\bm{x}, 0)}{u_1} = \partial_u f(\bm{x}, 0).
+\]
+It is possible to define 
+\begin{equation}
+    m(\bm{x}) = \partial_u f(\bm{x}, 0)
+\end{equation}
+For a complete discussion on the eigenvalue problem, refer to \cite{SalsaVerziniPDE}. Here will be only presented the most interesting result.
+
+It turns out that the persistence and existence of the population are completely characterized by the sign of the principal eigenvalue \(\lambda_1[m, D]\).

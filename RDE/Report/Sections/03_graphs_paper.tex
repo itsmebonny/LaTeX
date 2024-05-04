@@ -1,0 +1,17 @@
+\section{KPP-Fisher equation over simple graphs}
+After a brief recap on the main results on the KPP-Fisher equation, it is possible to introduce the main topic of this report, the graph-based approach to the domain \(\Omega\). 
+\subsection{Introduction}
+The authors consider the evolution of a population living in a river, and observe what happens if the river taken into account has two branches, either because of a bifurcation or a confluence. In such a case, the river can be considered as a graph, where the nodes are the junctions and the edges are the branches of the river. One of the novel ideas proposed is to work with infinite graphs, instead of finite ones. If one wants to model the dynamics of an invasive species, usually unbounded spatial regions are better suited for the problem.
+
+One can model the population with the following Cauchy problem:
+\begin{equation}
+    \begin{dcases}
+        u_t - Du_{xx} + \beta u_x = f(u) & \text{for } x \in \real, t > 0, \\
+        u(x, 0) = u_0(x) & \text{for } x \in \real,
+    \end{dcases}
+    \label{eq:fisher-kpp-nobdd-domain}
+\end{equation}
+where \(u = u(x, t)\) is the population density, \(D > 0\) is the diffusion coefficient, \(\beta \in \real\) is the advection coefficient denoting the flow of the river, \(f(u)\) is the reaction term, and \(u_0(x)\) is the initial population density.
+
+The solution of \eqref{eq:fisher-kpp-nobdd-domain} \(u(x, t)\) is a travelling wave with a certain speed. The idea is to answer some questions about what happens if the river is split in branches, in a way that each branch has infinite length. 
+
