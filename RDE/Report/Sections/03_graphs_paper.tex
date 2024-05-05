@@ -9,9 +9,174 @@ One can model the population with the following Cauchy problem:
         u_t - Du_{xx} + \beta u_x = f(u) & \text{for } x \in \real, t > 0, \\
         u(x, 0) = u_0(x) & \text{for } x \in \real,
     \end{dcases}
-    \label{eq:fisher-kpp-nobdd-domain}
+    \label{eq:1.1}
 \end{equation}
 where \(u = u(x, t)\) is the population density, \(D > 0\) is the diffusion coefficient, \(\beta \in \real\) is the advection coefficient denoting the flow of the river, \(f(u)\) is the reaction term, and \(u_0(x)\) is the initial population density.
 
-The solution of \eqref{eq:fisher-kpp-nobdd-domain} \(u(x, t)\) is a travelling wave with a certain speed. The idea is to answer some questions about what happens if the river is split in branches, in a way that each branch has infinite length. 
+The solution of \eqref{eq:1.1} \(u(x, t)\) is a travelling wave with a certain speed. The idea is to answer some questions about what happens if the river is split in branches, in a way that each branch has infinite length. 
 
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt 
+\begin{figure}
+    \centering
+    \begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Straight Lines [id:da06835250339153032] 
+\draw    (27.17,139.58) -- (116.96,139.51) ;
+\draw [shift={(77.06,139.54)}, rotate = 179.95] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+%Shape: Circle [id:dp006568808299004081] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (114.63,139.51) .. controls (114.63,138.22) and (115.67,137.18) .. (116.96,137.18) .. controls (118.25,137.18) and (119.3,138.22) .. (119.3,139.51) .. controls (119.3,140.8) and (118.25,141.84) .. (116.96,141.84) .. controls (115.67,141.84) and (114.63,140.8) .. (114.63,139.51) -- cycle ;
+%Straight Lines [id:da5818375484660003] 
+\draw    (456.92,139.33) -- (551.24,139.67) ;
+\draw [shift={(509.08,139.52)}, rotate = 180.2] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+%Straight Lines [id:da41798667092826824] 
+\draw    (120,139.58) -- (210.03,139.58) ;
+\draw [shift={(170.01,139.58)}, rotate = 180] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+%Shape: Circle [id:dp9495741628591831] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (548.91,139.67) .. controls (548.91,138.38) and (549.95,137.33) .. (551.24,137.33) .. controls (552.53,137.33) and (553.57,138.38) .. (553.57,139.67) .. controls (553.57,140.96) and (552.53,142) .. (551.24,142) .. controls (549.95,142) and (548.91,140.96) .. (548.91,139.67) -- cycle ;
+%Shape: Boxed Line [id:dp3634037576105641] 
+\draw    (551.24,139.67) -- (632.76,187.12) ;
+\draw [shift={(596.32,165.91)}, rotate = 210.2] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+%Shape: Boxed Line [id:dp5855966408278438] 
+\draw    (551.24,139.67) -- (633.09,92.79) ;
+\draw [shift={(596.5,113.75)}, rotate = 150.2] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+%Straight Lines [id:da7091000862619046] 
+\draw    (319.92,139.33) -- (414.24,139.67) ;
+\draw [shift={(372.08,139.52)}, rotate = 180.2] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+%Shape: Boxed Line [id:dp8564221650100632] 
+\draw    (240.73,91.88) -- (322.25,139.33) ;
+\draw [shift={(285.81,118.12)}, rotate = 210.2] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+%Shape: Circle [id:dp5640763569876212] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (319.92,139.33) .. controls (319.92,138.04) and (320.96,137) .. (322.25,137) .. controls (323.54,137) and (324.58,138.04) .. (324.58,139.33) .. controls (324.58,140.62) and (323.54,141.67) .. (322.25,141.67) .. controls (320.96,141.67) and (319.92,140.62) .. (319.92,139.33) -- cycle ;
+%Shape: Boxed Line [id:dp8885765217793992] 
+\draw    (240.4,186.21) -- (322.25,139.33) ;
+\draw [shift={(285.66,160.28)}, rotate = 150.2] [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.08]  [draw opacity=0] (8.93,-4.29) -- (0,0) -- (8.93,4.29) -- cycle    ;
+
+
+% Text Node
+\draw (35,115.4) node [anchor=north west][inner sep=0.75pt]    {$R_{U}{}{}$};
+% Text Node
+\draw (465,115.4) node [anchor=north west][inner sep=0.75pt]    {$R_{U}{}{}$};
+% Text Node
+\draw (169,115.4) node [anchor=north west][inner sep=0.75pt]    {$R_{L}{}{}$};
+% Text Node
+\draw (378,115.4) node [anchor=north west][inner sep=0.75pt]    {$R_{L}{}{}$};
+% Text Node
+\draw (592,76.4) node [anchor=north west][inner sep=0.75pt]    {$R_{L_{1}}{}{}$};
+% Text Node
+\draw (592,173.4) node [anchor=north west][inner sep=0.75pt]    {$R_{L_{2}}{}{}$};
+% Text Node
+\draw (252,76.4) node [anchor=north west][inner sep=0.75pt]    {$R_{U_{1}}{}{}$};
+% Text Node
+\draw (254,177.4) node [anchor=north west][inner sep=0.75pt]    {$R_{U_{2}}{}{}$};
+% Text Node
+\draw (28,200) node [anchor=north west][inner sep=0.75pt]   [align=left] {a)};
+% Text Node
+\draw (240,200) node [anchor=north west][inner sep=0.75pt]   [align=left] {b)};
+% Text Node
+\draw (458,200) node [anchor=north west][inner sep=0.75pt]   [align=left] {c)};
+
+
+\end{tikzpicture}
+    \caption{Graph representation of the river. a) The river is split in an upper branch \(R_U\) and a lower branch \(R_L\). b) The upper branch is split in two branches \(R_{U_1}\) and \(R_{U_2}\). c) The lower branch is split in two branches \(R_{L_1}\) and \(R_{L_2}\).}
+    \label{fig:river-graph}
+\end{figure}
+
+The main results presented in the paper take into account the existence of steady states and the relationship between those states and the domain topology and will be discussed in the next sections.
+In Figure \ref{fig:river-graph} it is possible to see the possible configurations of the river that will be studied here. 
+
+If the reaction term present in \eqref{eq:1.1} is assumed to be the logistic law presented in the previous section, \(f(u) = u(1 - u)\) and one defines \(v(x, t) \coloneqq u(x + \beta t, t)\), then the equation becomes
+\begin{equation}
+    \begin{dcases}
+        v_t - Dv_{xx} = v(1 - v) & \text{for } x \in \real, t > 0, \\
+        v(x, 0) = u_0(x) & \text{for } x \in \real.
+    \end{dcases}
+    \label{eq:1.2}
+\end{equation}
+
+Clearly, \eqref{eq:1.2} is the KPP-Fisher equation already introduced. One well known result is that 
+\begin{equation*}
+    \lim_{t \to +\infty} v(x, t) = 1 \quad \text{locally uniform in } x \in \real.
+\end{equation*}
+This means that the population will eventually occupy all the available space.
+It is also possible to define \(c_* \coloneqq 2\sqrt{D} \) as the speed at which the population invades the space. It is possible to see that 
+\[
+    \lim_{t \to +\infty} u(x, t) = 0 \quad \text{locally uniform in } x \in \real \text{ if } \beta \geq c_*,
+\]
+and
+\[
+    \lim_{t \to +\infty} u(x, t) = 1 \quad \text{locally uniform in } x \in \real \text{ if } \beta < c_*.
+\]
+\eqref{eq:1.1} has two positive steady states, \(\phi_\beta\) and \(1\) if \(\beta \geq c_*\), and only one positive steady state, \(1\), if \(\beta < c_*\). 
+This means that the population will eventually die out if the river is too fast, and will occupy all the available space if the river is slow enough.
+
+One of the differences that arises when considering the domain as a graph is that the long-time behavior of the solution is not the same. If \eqref{eq:1.1} has a finite number of steady states when studied over \(\real\), if the domain has a graph structure, whenever a steady state exists, infinitely many of them exist. However, only one of those states can be a global attractor. 
+
+Global attractors are always nonnegative steady states, and they can be classified in three categories:
+\begin{enumerate}[label=(\roman*)]
+    \item \textbf{washing out:} the population will be washed out by the river in every branch. It happens if the speed of the river \(\beta\) is greater than the speed of the population proliferation \(c_*\) in every branch;
+    \item \textbf{persistence at carrying capacity:} the population will survive in all of the branches. It happens if the speed of the river \(\beta\) is smaller than the speed of the population proliferation \(c_*\) in every branch;
+    \item \textbf{persistence below carrying capacity:} the population will survive in some branches, but not in all of them. It happens if the speed of the river \(\beta\) is smaller than the speed of the population proliferation \(c_*\) in some branches, but not in all of them.
+\end{enumerate}
+
+From a biological point of view, assuming that the flow of the river is fixed in time and that the volume of the river is constant, then the speed of the water is completely determined by the topological structure of the river. If every branch in Figure \ref{fig:river-graph} has a small enough cross-sectional area, then the speed of the river will be greater than \(c_*\) in every branch, and the population will be washed out. On the other hand, if the cross-sectional area of the branches is large enough, then the population will survive in all the branches.
+
+A little more counterintuitive is the case in which the cross-sectional area of the upper branches is big enough to let the river flow slower than \(c_*\), the population will survive in all the branches, regardless of the speed of the river in the lower branches. This is due to the fact that the population can invade the lower branches from the upper ones, but not the other way around.
+
+One can ask how those global attractors should be chosen from the infinitely many steady states existing. The mechanism that determines the global attractor is the compact support of the initial datum. The positive steady state that is selected as the global attractor is the one that decays to \(0\) the fastest at the proper end of the graph at infinity. The purpose of this report is to understand the dynamics of the population starting from a bounded area, so only initial data with compact support will be considered.
+
+\subsection{One upper branch and one lower branch}
+
+Here will be observed the behavior of the population when the river is split in two branches, an upper branch and a lower branch. This is the same configuration that can be seen in Figure \ref{fig:river-graph}a. While this configuration may seem a little artificial, since it is not common to see a river split in two branches, unless there is a man-made intervention, like a dam or a gate, which clearly need a different treatment of the junction, it is a good starting point to understand the dynamics of the population in a river network.
+
+Let \(\real_L \coloneqq (0, +\infty)\) and \(\real_U \coloneqq (-\infty, 0)\) be the lower and upper branches. The densities of the population in the lower and upper branches are denoted by \(w_L = w_L(x, t)\) and \(w_U = w_U(x, t)\), respectively. The equation that describes the evolution of the population in the system is
+\begin{equation}
+    \begin{dcases}
+        \partial_t w_L - D \partial_{xx}w_L + \beta_L \partial_x w_L = f_L(w_L) & \text{for } x \in \real_L, t > 0, \\
+        \partial_t w_U - D \partial_{xx}w_U + \beta_U \partial_x w_U = f_U(w_U) & \text{for } x \in \real_U, t > 0, \\
+        w_L(0, t) = w_U(0, t) & \text{for } t > 0, \\
+        D_L a_L \partial_x w_L(0, t) = D_U a_U \partial_x w_U(0, t) & \text{for } t > 0, \\
+        w_L(x, 0) = w_{0}(x) & \text{for } x \in \real_L, \\
+        w_U(x, 0) = w_{0}(x) & \text{for } x \in \real_U,
+    \end{dcases}
+    \label{eq:1.4}
+\end{equation}
+where the parameters \(D_L, D_U > 0\) are the diffusion coefficients, \(\beta_L, \beta_U > 0\) are the advection coefficients, \(a_L, a_U > 0\) are the cross-sectional areas of the branches. The nonlinear reaction terms are \(f_L(w_L), f_U(w_U)\) and are assumed to be locally Lipschitz on \([0, +\infty)\). As already the initial datum \(w_0(x)\) is assumed to have compact support, so it belongs to \(C_{comp}(\real)\), the space of continuous functions on \(\real\) with compact support.
+
+Another assumption is that the volume of the river is constant, so the flow at the junction is the same in both branches, \(a_L \beta_L = a_U \beta_U\). The third line of \eqref{eq:1.4} is the natural continuity connection condition, while the fourth line is the Kirchhoff law, which follows from the natural continuity connection condition and the constant volume assumption.
+\[
+    a_L \left(D_L \partial_x w_L(0, t) - \beta_L w_L(0, t)\right) = a_U \left(D_U \partial_x w_U(0, t) - \beta_U w_U(0, t)\right).
+\]
+Without loss of generality, one can assume that \(D_L = D_U = 1\). Also, it is possible to define the reaction terms as \(f_L(w_L) = w_L(1 - w_L)\) and \(f_U(w_U) = w_U(1 - w_U)\).
+With these assumptions, the system \eqref{eq:1.4} becomes
+\begin{equation}
+    \begin{dcases}
+        \partial_t w_L - \partial_{xx}w_L + \beta_L \partial_x w_L = w_L(1 - w_L) & \text{for } x \in \real_L, t > 0, \\
+        \partial_t w_U - \partial_{xx}w_U + \beta_U \partial_x w_U = w_U(1 - w_U) & \text{for } x \in \real_U, t > 0, \\
+        w_L(0, t) = w_U(0, t) & \text{for } t > 0, \\
+        a_L \partial_x w_L(0, t) = a_U \partial_x w_U(0, t) & \text{for } t > 0, \\
+        w_L(x, 0) = w_{0}(x) & \text{for } x \in \real_L, \\
+        w_U(x, 0) = w_{0}(x) & \text{for } x \in \real_U.
+    \end{dcases}
+    \label{eq:1.6}
+\end{equation}
+Given any nonnegative initial datum \(w_0(x) \in C_{comp}(\real)\), the system \eqref{eq:1.6} has a unique nonnegative classical solution.
+
+Let now \((\phi_L, \phi_U)\) be the stationary solutions of the system \eqref{eq:1.6}. They are determined by the following system
+\begin{equation}
+    \begin{dcases}
+        - \ddot{\phi}_L + \beta_L \dot{\phi}_L = \phi_L(1 - \phi_L), & 0 < \phi_L < 1, x \in \real_L, \\
+        - \ddot{\phi}_U + \beta_U \dot{\phi}_U = \phi_U(1 - \phi_U), & 0 < \phi_U < 1, x \in \real_U, \\
+        \phi_L(0) = \phi_U(0) = \alpha \in [0, 1], \\
+        a_L \dot{\phi}_L(0) = a_U \dot{\phi}_U(0).
+    \end{dcases}
+    \label{eq:1.8}
+\end{equation}
+By the maximum principle, \(\alpha = 0\) implies \((\phi_L, \phi_U) = (0, 0)\), while \(\alpha = 1\) implies \((\phi_L, \phi_U) = (1, 1)\). 
+The interesting part is when \(\alpha \in (0, 1)\), which implies 
+\[
+    0 < \phi_L(x) < 1 \quad \text{for } x \geq 0, \quad \text{and} \quad 0 < \phi_U(x) < 1 \quad \text{for } x \leq 0.
+\]
+It is possible to rewrite the system \eqref{eq:1.8} in a way that \(\alpha \in (0, 1)\), and from now on it will be considered in this way. 
+
+A complete description of all the results
