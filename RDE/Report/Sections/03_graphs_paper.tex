@@ -1,4 +1,4 @@
-\section{KPP-Fisher equation over simple graphs}
+\section{General overview of the paper} 
 After a brief recap on the main results on the KPP-Fisher equation, it is possible to introduce the main topic of this report, the graph-based approach to the domain \(\Omega\). 
 \subsection{Introduction}
 The authors consider the evolution of a population living in a river, and observe what happens if the river taken into account has two branches, either because of a bifurcation or a confluence. In such a case, the river can be considered as a graph, where the nodes are the junctions and the edges are the branches of the river. One of the novel ideas proposed is to work with infinite graphs, instead of finite ones. If one wants to model the dynamics of an invasive species, usually unbounded spatial regions are better suited for the problem.
@@ -298,6 +298,40 @@ Same as before, a complete description of all the solutions of the system \eqref
                 \label{eq:1.18}
             \end{equation}
         \end{enumerate} 
-        \item If \(\max\{\beta_{U_1}, \beta_{U_2}\} \geq 2 >  \min\{\beta_{U_1}, \beta_{U_2}\}\), then there exists \(\alpha^{**} \in (0,1)\) such that \eqref{eq:1.14} has a unique solution for each \(\alpha \in (\alpha^{**}, 1)\) and no solution for \(\alpha \in (0, \alpha^{**})\). Moreover, when \(\alpha \in (\alpha^{**}, 1)\), and \(\beta_{U_j} =\max\{\beta_{U_1}, \beta_{U_2}\}\), the solution \((\phi_{U_1}, \phi_{U_2}, \phi_L)\) satisfies \eqref{eq:1.16} for \(i = 1,2\) and \(j = 3 - i\). Also, as \(x \to -\infty\), \eqref{label{eq:1.17}} holds for \(\phi_{U_j}\) when \(\alpha \in (\alpha^{**}, 1)\), and \eqref{label{eq:1.18}} holds for \(\phi_{U_j}\) when \(\alpha = \alpha^{**}\).
+        \item If \(\max\{\beta_{U_1}, \beta_{U_2}\} \geq 2 >  \min\{\beta_{U_1}, \beta_{U_2}\}\), then there exists \(\alpha^{**} \in (0,1)\) such that \eqref{eq:1.14} has a unique solution for each \(\alpha \in (\alpha^{**}, 1)\) and no solution for \(\alpha \in (0, \alpha^{**})\). Moreover, when \(\alpha \in (\alpha^{**}, 1)\), and \(\beta_{U_j} =\max\{\beta_{U_1}, \beta_{U_2}\}\), the solution \((\phi_{U_1}, \phi_{U_2}, \phi_L)\) satisfies \eqref{eq:1.16} for \(i = 1,2\) and \(j = 3 - i\). Also, as \(x \to -\infty\), \eqref{eq:1.17} holds for \(\phi_{U_j}\) when \(\alpha \in (\alpha^{**}, 1)\), and \eqref{eq:1.18} holds for \(\phi_{U_j}\) when \(\alpha = \alpha^{**}\).
     \end{enumerate}
+    \label{thm:1.3}
 \end{theorem}
+There is a lot to unpack here, the stationary solutions of the system \eqref{eq:1.11} are rather complex as Theorem \ref{thm:1.3} shows. However, the long-time behavior of the solutions is easier to understand. The following theorem describes the long-time behavior of the solutions of the system \eqref{eq:1.11}.
+\begin{remark}
+    The behaviour of the solution at \(x \to -\infty\) plays a crucial role in determining the long-time dynamics.
+\end{remark}
+\begin{theorem}
+    Assuming that \((w_{U_1, 0}, w_{U_2, 0}, w_{L, 0})\) satisfies \eqref{eq:1.13} and \(w_{i,0}\) is nontrivial for some \(i = U_1, U_2, L\). Let \((w_{U_1}, w_{U_2}, w_L)\) be the solution of \eqref{eq:1.11}. Then the following holds:
+    \begin{enumerate}[label=(\roman*)]
+        \item If \(\beta_{U_1}, \beta_{U_2} < 2\), then \((w_{U_1}(\cdot, t), w_{U_2}(\cdot, t), w_L(\cdot, t)) \to (1, 1, 1)\) locally uniformly as \(t \to +\infty\).
+        \item If \(\beta_{U_1}, \beta_{U_2}, \beta_L \geq 2\), then \((w_{U_1}(\cdot, t), w_{U_2}(\cdot, t), w_L(\cdot, t)) \to (0, 0, 0)\) locally uniformly as \(t \to +\infty\). Also, \(\norm{w_{U_1}(\cdot, t)}_{L^\infty(\real_{U_1})} \to 0\), \(\norm{w_{U_2}(\cdot, t)}_{L^\infty(\real_{U_2})} \to 0\), and \(\norm{w_L(\cdot, t)}_{L^\infty(\real_L)} \to 1\) as \(t \to +\infty\).
+        \item 
+        \item If \(\beta_{U_1}, \beta_{U_2} \geq 2 > \beta_L\), then 
+        \[
+            (w_{U_1}(\cdot, t), w_{U_2}(\cdot, t), w_L(\cdot, t)) \to (\phi_{U_1}(\cdot; \alpha^{*}), \phi_{U_2}(\cdot; \alpha^{*}), \phi_L(\cdot; \alpha^{*}))
+        \]
+        locally uniformly as \(t \to +\infty\).
+        \item If \(\beta_{U_1} \geq 2 > \beta_{U_2}\) (same reasoning if \(\beta_{U_2} \geq 2 > \beta_{U_1}\)), then
+        \[
+            (w_{U_1}(\cdot, t), w_{U_2}(\cdot, t), w_L(\cdot, t)) \to (\phi_{U_1}(\cdot; \alpha^{**}), \phi_{U_2}(\cdot; \alpha^{**}), \phi_L(\cdot; \alpha^{**}))
+        \]
+        locally uniformly as \(t \to +\infty\).
+    \end{enumerate}
+    \label{thm:1.4}
+\end{theorem}
+The long-time behavior of the solutions of the system \eqref{eq:1.11} have different behaviours in cases (iii) and (iv). In case (iii) both the upper branches have a flow speed higher than the critical speed \(c_*\), but the lower branch doesn't. This means that the population persists but stabilizes at a function which is increasing in the water direction. In case (iv) one of the upper branches has a flow speed higher than the critical speed \(c_*\), while the other one doesn't. In first branch the population will follow the same dynamics as in case (iii), while in the latter branch it will stabilize at a function that is increasing in the direction opposite to the water flow.
+
+\begin{remark}
+    It is possible to sum up the long-time behaviour of the solutions in all the different topologies in three cases:
+    \begin{enumerate}[label=(\roman*)]
+        \item \textbf{washing out:} if the flow speed in all the branches is higher than the critical speed \(c_*\), then the population will eventually be washed out.
+        \item \textbf{persistence at carrying capacity:} if the flow speed in every upper branch is lower than the critical speed \(c_*\), then the population will reach the normalized carrying capacity \(1\) in every branch of the network.
+        \item \textbf{persistence below carrying capacity:} if the flow speed in some upper branches is lower than the critical speed \(c_*\), but not in all of them, then the population in every branch of the network will reach a positive steady state strictly below the carrying capacity.
+    \end{enumerate}
+\end{remark}

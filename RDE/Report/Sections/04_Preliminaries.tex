@@ -1,0 +1,57 @@
+\section{Preliminaries}
+Here will be presented some preliminaries that are useful to understand the main results of this work. Everything will be developed for the systems of equations \ref{eq:1.11}, but can be adapted to any kind of topology of the river network.
+
+The first result is a comparison principle for parabolic problems in a network.
+\begin{lemma}
+    Assume that \(c_i(x,t)\) is bounded on \(\real_i \times [0, T]\) for \(i = U_1, U_2, L\) for some \(0 < T < +\infty\). Let \(w_i \in C(\overline{\real}_i \times [0, T]) \cap C^{1,2}(\real_i \times (0, T])\) satisfy
+    \begin{equation*}
+        \begin{dcases}
+            \partial_t w_i - \partial_{xx} w_i + \beta_i \partial_x w_i + c_i(x,t)w_i \leq 0, & x \in \real_i, 0 < t < T, \\
+            w_L(0, t) = w_{U_1}(0, t) = w_{U_2}(0, t), & t > 0 \\
+            a_{U_1} \partial_x w_{U_1}(0, t) + a_{U_2} \partial_x w_{U_2}(0, t) = a_L \partial_x w_L(0, t), & 0 < t < T, \\
+            w_i(x, 0) \leq 0, & x \in \real_i,
+        \end{dcases}
+    \end{equation*}
+    and 
+    \begin{equation}
+        \liminf_{R \to +\infty} e^{-cR^2}\left[\max_{\substack{0\leq t\leq T \\ \lvert x \rvert = R}} w_i(x,t)\right] \leq 0
+        \label{eq:2.1}
+    \end{equation}
+    for some \(c > 0\). Then
+    \[
+        w_i(x,t) \leq 0 \quad \text{for all } x \in \real_i, 0 \leq t \leq T.
+    \]
+    Additionally, if \(w_j(x,0)\) is strictly lower than zero for some \(j = U_1, U_2, L\), then
+    \begin{equation*}
+        w_i(x,t) < 0 \quad \text{for all } x \in \real_i, 0 < t \leq T.
+    \end{equation*}
+    \label{lem:2.1}
+\end{lemma}
+As seen in the section about KPP-Fisher equation, it is possible to introduce the definition of supersolutions and subsolutions.
+\begin{definition}
+    If \((\tilde{w}_L, \tilde{w}_{U_1}, \tilde{w}_{U_2})\) with \(w_i \in C(\overline{\real}_i \times [0, T]) \cap C^{1,2}(\real_i \times (0, T])\) satisfies 
+    \begin{equation}
+        \begin{dcases}
+            \partial_t \tilde{w}_i - \partial_{xx} \tilde{w}_i + \beta_i \partial_x \tilde{w}_i \geq (\leq) f_i(\tilde{w}_i), & x \in \real_i, 0 < t < T, \\
+            \tilde{w}_L(0, t) = \tilde{w}_{U_1}(0, t) = \tilde{w}_{U_2}(0, t), & t > 0 \\
+            a_{U_1} \partial_x \tilde{w}_{U_1}(0, t) + a_{U_2} \partial_x \tilde{w}_{U_2}(0, t) - a_L \partial_x \tilde{w_L}(0, t) \geq (\leq) 0, & 0 < t < T, \\
+        \end{dcases}
+        \label{eq:2.2}
+    \end{equation}
+    then \((\tilde{w}_L, \tilde{w}_{U_1}, \tilde{w}_{U_2})\) is a supersolution (subsolution) of \ref{eq:2.2}
+    \label{def:2.1}
+\end{definition}
+
+By using Lemma \ref{lem:2.1} and Definition \ref{def:2.1}, it is possible to prove the following result.
+
+\begin{lemma}
+    Assume \(f_i(s)\) is locally Lipschitz \((i = U_1, U_2, L)\). Let \((\underline{w}_L, \underline{w}_{U_1}, \underline{w}_{U_2})\) and \((\overline{w}_L, \overline{w}_{U_1}, \overline{w}_{U_2})\) be, respectively, a bounded subsolution and bounded supersolution of \ref{eq:2.2} satisfying \(\underline{w}_i(\cdot, 0) \leq \overline{w}_i(\cdot, 0)\) for \(i = U_1, U_2, L\). Then, \(\underline{w}_i \leq \overline{w}_i\) for \(i = U_1, U_2, L\). Additionally, if \(\underline{w}_j(x,0) < \overline{w}_j(x,0)\) in a strict sense for some \(j = U_1, U_2, L\), then \(\underline{w}_i < \overline{w}_i\) for \(i = U_1, U_2, L\).
+    \label{lem:2.2} 
+\end{lemma}
+Existence and uniqueness of solutions for the system \ref{eq:1.11} follows from the following theorem.
+\begin{theorem}
+    For any nonnegative initial data \((w_{L,0}, w_{U_1,0}, w_{U_2,0})\) satisfying \eqref{eq:1.13}, the problem \eqref{eq:1.11} has a unique classical solution \((w_L, w_{U_1}, w_{U_2})\) which is defined and uniformly for all \(t > 0\).
+    \label{thm:2.4}
+\end{theorem}
+The proof of this theorem is rather convoluted and will not be presented here. For a detailed proof, refer to \cite{du2019fisherkpp}.
+
