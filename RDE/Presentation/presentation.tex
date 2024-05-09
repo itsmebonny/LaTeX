@@ -1,0 +1,232 @@
+\documentclass{beamer}
+
+\usetheme{polimi}
+
+
+
+
+%------------------------------------------------------------------------------
+%	REQUIRED PACKAGES AND  CONFIGURATIONS
+%------------------------------------------------------------------------------
+% PACKAGES FOR TITLES
+\usepackage{color}
+
+% PACKAGES FOR LANGUAGE AND FONT
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc} % Font encoding
+% PACKAGES FOR IMAGES
+\usepackage{graphicx}
+\graphicspath{{Images/}} % Path for images' folder
+\usepackage{eso-pic} % For the background picture on the title page
+\usepackage{subfig} % Numbered and caption subfigures using \subfloat
+\usepackage{caption} % Coloured captions
+\usepackage{transparent}
+
+% STANDARD MATH PACKAGES
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage[overload]{empheq}  % For braced-style systems of equations
+
+% PACKAGES FOR TABLES
+\usepackage{tabularx}
+\usepackage{longtable} % tables that can span several pages
+\usepackage{colortbl}
+
+% PACKAGES FOR ALGORITHMS (PSEUDO-CODE)
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+% PACKAGES FOR THE APPENDIX
+\usepackage{appendix}
+
+
+% OTHER PACKAGES
+\usepackage{amsthm,thmtools,xcolor} % Coloured "Theorem"
+\usepackage{comment} % Comment part of code
+\usepackage{lipsum} % Insert dummy text
+\usepackage{tcolorbox} % Create coloured boxes (e.g. the one for the key-words)
+\usepackage{stfloats} % Correct position of the tables
+\usepackage{multirow}
+\usepackage{multicol}
+
+
+
+
+
+%-------------------------------------------------------------------------
+%	NEW COMMANDS DEFINED
+%-------------------------------------------------------------------------
+% EXAMPLES OF NEW COMMANDS -> here you see how to define new commands
+\newcommand{\bea}{\begin{eqnarray}} % Shortcut for equation arrays
+\newcommand{\eea}{\end{eqnarray}}
+\newcommand{\e}[1]{\times 10^{#1}}  % Powers of 10 notation
+\newcommand{\mathbbm}[1]{\text{\usefont{U}{bbm}{m}{n}#1}} % From mathbbm.sty
+\newcommand{\pdev}[2]{\frac{\partial#1}{\partial#2}}
+% NB: you can also override some existing commands with the keyword \renewcommand
+
+
+
+% \setbeamertemplate{theorem begin}
+% {%
+%   \par\vskip\medskipamount%
+%   \begin{beamercolorbox}[colsep*=.75ex]{block title}
+%     \usebeamerfont*{block title}%
+%       \inserttheoremname
+%       \ifx\inserttheoremaddition\empty\else\ (\inserttheoremaddition)\fi%
+%   \end{beamercolorbox}%
+%   {\parskip0pt\par}%
+%   \ifbeamercolorempty[bg]{block title}
+%   {}
+%   {\ifbeamercolorempty[bg]{block body}{}{\nointerlineskip\vskip-0.5pt}}%
+%   \usebeamerfont{block body}%
+%   \vskip-.25ex\vbox{}%
+% }
+% \setbeamertemplate{theorem end}{}
+
+
+
+
+\newcommand*{\theorembreak}{\(\downarrow\)\usebeamertemplate{theorem end}\framebreak\usebeamertemplate{theorem begin}\rotatebox[origin=c]{180}{$\Lsh$}}
+
+
+
+
+
+\makeatletter
+\newenvironment<>{proofs}[1][\proofname]{%
+    \par
+    \def\insertproofname{#1\@addpunct{.}}%
+    \usebeamertemplate{proof begin}#2}
+  {\usebeamertemplate{proof end}}
+\newenvironment<>{proofc}{%
+  \setbeamertemplate{proof begin}{\begin{block}{}}
+    \par
+    \usebeamertemplate{proof begin}}
+  {\usebeamertemplate{proof end}}
+\newenvironment<>{proofe}{%
+    \par
+    \pushQED{\qed}
+    \setbeamertemplate{proof begin}{\begin{block}{}}
+    \usebeamertemplate{proof begin}}
+  {\popQED\usebeamertemplate{proof end}}
+
+
+
+
+
+
+%----------------------------------------------------------------------------
+%	ADD YOUR PACKAGES (be careful of package interaction)
+%----------------------------------------------------------------------------
+\usepackage{amsfonts} 
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+
+%----------------------------------------------------------------------------
+%	ADD YOUR DEFINITIONS AND COMMANDS (be careful of existing commands)
+%----------------------------------------------------------------------------
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{wrapfig}
+\usepackage{dsfont}
+\usepackage{tikz}
+\usepackage{pgfplots}
+
+
+\parindent=0pt
+
+\newcommand{\incfig}[1]{%
+    \def\svgwidth{\columnwidth}
+    \import{./Images/}{#1.pdf_tex}
+}
+\newcommand{\real}{\mathbb{R}}
+\newcommand*{\oldepsilon}{\epsilon}
+\renewcommand*{\epsilon}{\varepsilon}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\DeclareMathOperator*{\essinf}{ess\,inf}
+
+\newcommand{\oldphi}{\phi}
+\renewcommand{\phi}{\varphi}
+
+\newcommand{\oldrho}{\rho}
+\renewcommand{\rho}{\varrho}
+
+\numberwithin{equation}{section}
+%----------------------------------------------------------------------------
+%	CONFIGURATION OF THEOREM ENVIRONMENTS
+
+
+% \newtheoremstyle{break}
+%     {\partopsep}{\topsep}%  
+%     {\normalfont}{}
+%     {\bfseries}{}%
+%     {\newline}{}%
+% \theoremstyle{break}
+% \newtheorem{theorem}{Theorem}[section]
+% \newtheorem{corollary}{Corollary}[section]
+% \newtheorem{proposition}{Proposition}[section]
+% \newtheorem{remark}{Remark}[section]
+% \newtheorem{lemma}{Lemma}[section]
+% \newtheorem{notation}{Notation}[section]
+% \newtheorem{definition}{Definition}[section]
+
+% \newtheorem{definition}{Definition}[section]
+
+\newtheorem*{remark}{Remark}
+
+
+\setbeamertemplate{theorems}[numbered]
+
+% %----------------------------------------------------------------------------
+
+% Do not change Configuration_files/config.tex file unless you really know what you are doing.
+% This file ends the configuration procedures (e.g. customizing commands, definition of new commands)
+\input{Configuration_files/config}
+
+% Insert here the info that will be displayed into your Title page
+% -> title of your work
+% -> author name and surname
+% -> MSc course
+\newcommand\norm[1]{\lVert#1\rVert}
+
+
+
+
+
+%------------------------------------------------------------------------------
+%	TITLE PAGE
+
+%------------------------------------------------------------------------------
+\title{The KPP-Fisher equation over simple graphs}
+\author{Andrea Bonifacio}
+
+\date{}
+
+
+\begin{document}
+
+\begin{frame}[plain]
+\titlepage
+\end{frame}
+
+%------------------------------------------------------------------------------
+%	PRESENTATION SLIDES
+%------------------------------------------------------------------------------
+
+%------------------------------------------------
+\input{Sections/01_Introduction}
+
+%------------------------------------------------
+
+\input{Sections/02_Fisher-KPP}
+
+%------------------------------------------------
+
+\input{Sections/03_graphs_paper}
+
+%------------------------------------------------
+
+\end{document}
