@@ -1,0 +1,27 @@
+\section{Two branches problem} 
+Here a brief sketch of the proof of Theorem \ref{thm:1.2} is presented. It is possible to prove Theorem \ref{thm:1.2} with the help of Theorem \ref{thm:1.1}
+
+The theorem can be divided into three separate cases:
+\begin{enumerate}[label=(\roman*)]
+    \item \(\beta_U < 2\);
+    \item \(\beta_U, \beta_L \geq 2\);
+    \item \(\beta_U \geq 2 > \beta_L\).
+\end{enumerate}
+In case (i), it is necessary to prove that
+\begin{theorem}
+    Assume that \(\beta_U < 2\) and the initial datum has compact support \(w_{0} \in C_{comp}(\real)\), nontrivial and nonnegative. Let \((w_L, w_{U})\) be the solution of \eqref{eq:1.6}. Then,
+    \[
+        (w_L(\cdot, t), w_{U}(\cdot, t)) \to (1, 1) \quad \text{locally uniformly as } t \to +\infty.
+    \]
+    \label{thm:3.1}
+\end{theorem}
+Here is presented a sketch of the proof of this theorem:
+\begin{proof}[Sketch of the proof]
+    From Theorem \ref{thm:2.4} is known that 
+    \begin{equation}
+        0 \leq w_{i} \leq 1 + \sup_{\real} w_{0}, \quad i = U, L.
+        \label{eq:3.2}
+    \end{equation}
+    As \(\norm{w_{0}}_{L^{\infty}(\real)} > 0\), take \(\overline{u}(t) = 1 + \norm{w_{0}}_{L^{\infty}(\real)}e^{t}\). 
+    It is possible to prove that \((\overline{u}, \overline{u})\) is a supersolution of \eqref{eq:1.6}.
+\end{proof}

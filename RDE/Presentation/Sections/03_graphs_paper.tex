@@ -84,3 +84,112 @@
         \item \textbf{persistence below carrying capacity:} the population density goes to a value below the carrying capacity in some branches.
     \end{enumerate}
 \end{frame}
+
+% ======================== Third Frame ========================
+
+\begin{frame}
+    \frametitle{One upper branch and one lower branch I}
+    Consider the case where the river is split in an upper branch \(R_U\) and a lower branch \(R_L\). The system of equations is given by
+    \begin{equation}
+        \begin{dcases}
+            \partial_t w_L - \partial_{xx}w_L + \beta_L \partial_x w_L = w_L(1 - w_L) &  x \in \real_L, t > 0, \\
+            \partial_t w_U - \partial_{xx}w_U + \beta_U \partial_x w_U = w_U(1 - w_U) & x \in \real_U, t > 0, \\
+            w_L(0, t) = w_U(0, t) &  t > 0, \\
+            a_L \partial_x w_L(0, t) = a_U \partial_x w_U(0, t) &  t > 0, \\
+            w_L(x, 0) = w_{0}(x) &  x \in \real_L, \\
+            w_U(x, 0) = w_{0}(x) &  x \in \real_U.
+        \end{dcases}
+        \label{eq:1.6}
+    \end{equation}
+\end{frame}
+
+% ======================== Fourth Frame ========================
+
+\begin{frame}
+    \frametitle{One upper branch and one lower branch II}
+    In Equation \eqref{eq:1.6} the parameters \(\beta_L\) and \(\beta_U\) are the diffusion coefficients in the lower and upper branches, respectively. The parameters \(a_L\) and \(a_U\) are the coefficients of the advection terms in the lower and upper branches, respectively. The initial condition is the same for both branches and is given by \(w_0(x) \in C_{comp}(\real)\), where \(C_{comp}(\real)\) is the set of continuous functions with compact support in \(\real\).
+
+    The compactness of the support of the initial condition is crucial to determine the long-time behavior of the solution. In fact, the steady state chosen as the global attractor is the one that decays to zero faster at infinity.
+\end{frame}
+
+% ======================== Fifth Frame ========================
+
+\begin{frame}
+    \frametitle{One upper branch and one lower branch III}
+    The long-time behavior of the solution of \eqref{eq:1.6} is related to the solutions of the stationary problem
+    \begin{equation}
+        \begin{dcases}
+            - \ddot{\phi}_L + \beta_L \dot{\phi}_L = \phi_L(1 - \phi_L), & 0 < \phi_L < 1, x \in \real_L, \\
+            - \ddot{\phi}_U + \beta_U \dot{\phi}_U = \phi_U(1 - \phi_U), & 0 < \phi_U < 1, x \in \real_U, \\
+            \phi_L(0) = \phi_U(0) = \alpha \in [0, 1], \\
+            a_L \dot{\phi}_L(0) = a_U \dot{\phi}_U(0).
+        \end{dcases}
+        \label{eq:1.8}
+    \end{equation}
+\end{frame}
+
+% ======================== Sixth Frame ========================
+
+\begin{frame}[allowframebreaks]
+    \frametitle{Behaviour of solutions}
+    The following theorems shed some light on the behavior of the solutions of \eqref{eq:1.6} and their long-time dynamics.
+    \begin{theorem}
+        Since the assumption is that \(D_L = D_U = 1\), the maximum speed of the population invasion is \(c_* = 2\). 
+        
+        (i) If \(0 < \beta_U < 2\), then \eqref{eq:1.8} has no solution for \(\alpha \in (0, 1)\). 
+
+
+        (ii) If \(\beta_L, \beta_U \geq 2\), then for every \(\alpha \in (0, 1)\) \eqref{eq:1.8} has a unique solution.
+
+
+        (iii) If \(\beta_U \geq 2 > \beta_L > 0\), then there exists \(\alpha_0 \in (0, 1)\) such that \eqref{eq:1.8} has a unique solution for each \(\alpha \in [\alpha_0, 1)\), and no solution for \(\alpha \in (0, \alpha_0)\).
+
+        \theorembreak
+        (iv)  Whenever \eqref{eq:1.8} has a solution \((\phi_L, \phi_U)\), it is true that 
+            \[
+                \dot{\phi}_L > 0, \quad \dot{\phi}_U > 0, \quad \phi_L(\infty) = 1, \quad \phi_U(-\infty) = 0.
+            \]
+            Moreover, in case (ii) and (iii) with \(\alpha \in [\alpha_0, 1)\), as \(x \to -\infty\), there exists some \(c = c(\alpha) > 0\) such that
+            \begin{equation}
+                \phi_U(x) = \begin{cases}
+                    (c + o(1))e^{\frac{1}{2}(\beta_U - \sqrt{\beta_U^2 - 4})x} & \text{if } \beta_U > 2, \\
+                    (c + o(1))\lvert x\rvert e^{x} & \text{if } \beta_U = 2, \\
+                \end{cases} 
+                \label{eq:1.9}
+            \end{equation}
+        \theorembreak
+            while in case (iii) with \(\alpha = \alpha_0\), as \(x \to -\infty\), there exists some \(c > 0\) such that
+            \begin{equation}
+                \phi_U(x) = (c + o(1))e^{\frac{1}{2}(\beta_U - \sqrt{\beta_U^2 - 4})x}.
+                \label{eq:1.10}
+            \end{equation}
+        \label{thm:1.1}
+    \end{theorem}
+\end{frame}
+
+% ======================== Seventh Frame ========================
+
+\begin{frame}[allowframebreaks]
+    \frametitle{Long-time dynamics}
+    \begin{theorem}
+        Assuming that \(w_0 \in C_{comp}(\real)\) is nonnegative and nontrivial, let \((w_L, w_U)\) be the solution of \eqref{eq:1.6}. Then the following holds:
+
+            (i) If \(0 < \beta_U < 2\), then \((w_L(\cdot, t), w_U(\cdot, t)) \to (1, 1)\) locally uniformly as \(t \to +\infty\).
+
+            (ii) If \(\beta_U, \beta_L \geq 2\), then \((w_L(\cdot, t), w_U(\cdot, t)) \to (0, 0)\) locally uniformly as \(t \to +\infty\). Also, \(\norm{w_L(\cdot, t)}_{L^\infty(\real_L)} \to 1\) and \(\norm{w_U(\cdot, t)}_{L^\infty(\real_U)} \to 0\) as \(t \to +\infty\).
+            \theorembreak
+            (iii) If \(\beta_U \geq 2 > \beta_L > 0\), then \((w_L(\cdot, t), w_U(\cdot, t)) \to (\phi_L(\cdot; \alpha_0), \phi_U(\cdot; \alpha_0))\)\footnote{\((\phi_L(\cdot; \alpha_0), \phi_U(\cdot; \alpha_0))\) is the unique solution of \eqref{eq:1.8} with \(\alpha = \alpha_0\).} locally uniformly as \(t \to +\infty\).
+        \label{thm:1.2}
+    \end{theorem}
+\end{frame}
+
+% ======================== Eighth Frame ========================
+
+\begin{frame}
+    \frametitle{Long-time dynamics III}
+    In case (ii) of Theorem \ref{thm:1.2}, the population density goes to zero locally in all the branches, because the river's flow is too strong for the population to survive. However, the \(L^\infty\) norm of the population density in the lower branch goes to \(1\), meaning that the population is not out of the network.
+
+    In case (i) and (ii) it is clear that it's far more important the advection coefficient of the upper branch.
+
+    The last case shows that the steady state solution is increasing in both branches, and its limit at \(x \to -\infty\) is 0, while at \(x \to +\infty\) is 1. This is the selected steady state because it decays to zero faster at infinity.
+\end{frame}

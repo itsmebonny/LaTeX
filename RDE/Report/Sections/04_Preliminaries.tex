@@ -53,5 +53,19 @@ Existence and uniqueness of solutions for the system \ref{eq:1.11} follows from 
     For any nonnegative initial data \((w_{L,0}, w_{U_1,0}, w_{U_2,0})\) satisfying \eqref{eq:1.13}, the problem \eqref{eq:1.11} has a unique classical solution \((w_L, w_{U_1}, w_{U_2})\) which is defined and uniformly for all \(t > 0\).
     \label{thm:2.4}
 \end{theorem}
-The proof of this theorem is rather convoluted and will not be presented here. For a detailed proof, refer to \cite{du2019fisherkpp}.
+
+A sketch of the proof of Theorem \ref{thm:2.4} is as follows:
+\begin{proof}[Sketch of the proof]
+    It is possible to transform the system \ref{eq:1.11} into an equivalent half-line problem with compactly supported initial data. Then, the standard theory guarantees the existence and uniqueness of a classical solution. The only remaining step is to show the uniform boundedness of \(w_i\) for \(i = U_1, U_2, L\).
+    It is possible to prove that the half-line problem has a unique solution \(w_L^l, w_{U_1}^l, w_{U_2}^l\), where the superscript \(l\) stands for the extremum of the domain \((0, l)\). Those solutions are nondecreasing in \(l\), and it holds 
+    \begin{equation}
+        0 \leq w_i^l(x,t) \leq 1 + \sup_{\real_L} w_{L,0} + \sup_{\real_{U_1}} w_{U_1,0} + \sup_{\real_{U_2}} w_{U_2,0}, \quad i = U_1, U_2, L.
+        \label{eq:2.4}
+    \end{equation}
+    So, the limit \(l \to +\infty\) exists, denoted as \(w_i^\infty\).
+
+    It is possible to show that \(w_i^l\) converges to \(w_i^\infty\), and that \(w_i^\infty\) is a solution of the original problem \ref{eq:1.11}. 
+    At this point, by uniqueness, \(w_i = w_i^\infty\), and thanks to \eqref{eq:2.4}, the solution is uniformly bounded.
+\end{proof}
+
 
