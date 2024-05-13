@@ -85,3 +85,33 @@ Here is presented a sketch of the proof of this theorem:
     \end{equation}
     Combining \eqref{eq:3.2} and \eqref{eq:3.5} concludes the proof.
 \end{proof}
+In case (ii), by Theorem \ref{thm:1.1}(iii), for any \(\alpha \in (0, 1)\), \eqref{eq:1.14} has a unique solution \(\phi_L(\cdot; \alpha), \phi_U(\cdot; \alpha)\) and both \(\phi_L(x; \alpha), \phi_U(x; \alpha)\) are increasing in \(x\). These solutions will be used to construct a suitable supersolution to estabilish the desired asymptotic behavior of \((w_L, w_U)\). 
+
+\begin{theorem}
+    Assume that \(\beta_U, \beta_L \geq 2\) and the initial datum has compact support \(w_{0} \in C_{comp}(\real)\), nontrivial and nonnegative. Let \((w_L, w_{U})\) be the solution of \eqref{eq:1.6}. Then,
+    \[
+        (w_L(\cdot, t), w_{U}(\cdot, t)) \to (0, 0) \quad \text{locally uniformly as } t \to +\infty.
+    \]
+    Moreover, \(\norm{w_L(\cdot, t)}_{L^{\infty}(\real)} \to 1\) and \(\norm{w_U(\cdot, t)}_{L^{\infty}(\real)} \to 0\) as \(t \to +\infty\).
+\end{theorem}
+As above, a sketch of the proof is presented:
+\begin{proof}[Sketch of the proof]
+    Fix \(\alpha \in (0, 1)\) and define a supersolution \((\overline{w}_L, \overline{w}_U)\) as
+    \begin{align*}
+        \overline{w}_L(x, t) & \coloneqq \phi_L(x; \alpha) + M e^{-\lambda t} e^{\frac{\beta_L}{2}x} \quad x \in \real_L, t \geq 0, \\
+        \overline{w}_U(x, t) & \coloneqq \phi_U(x; \alpha) + M e^{-\lambda t} e^{\frac{\beta_U}{2}x} \quad x \in \real_U, t \geq 0,
+    \end{align*}
+    where \(M\) and \(\lambda\) will be determined later. Now, having defined 
+    \[
+        v(x) \coloneqq M e^{kx} \quad \text{with } k = \frac{1}{2}\beta_U^ + \sqrt{\beta_U^2 - 4}.
+    \]
+    Clearly,
+    \[
+        \ddot{v} + \beta_U \dot{v} = v \geq v - v^2.
+    \]
+    Thanks to Theorem \ref{thm:1.1}(iv), as \(x \to -\infty\), \(\phi_U(x; \alpha)\) satisfies \eqref{eq:1.9}. Therefore, it exists \(l = l_\alpha > 0\) such that
+    \[
+        \phi_U(x; \alpha) \geq v(x) \quad \text{for } x \leq -l.
+    \]
+    PAGINA 16
+\end{proof}
