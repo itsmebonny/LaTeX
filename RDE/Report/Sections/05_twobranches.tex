@@ -151,9 +151,10 @@ As above, a sketch of the proof is presented:
 In case (iii), by Theorem \ref{thm:1.1}(iii), there exists a constant \(\alpha_0 \in (0, 1)\) such that \eqref{eq:1.8} has a unique solution \(\phi_L(x; \alpha_0), \phi_U(x; \alpha_0)\) when \(\alpha \in [\alpha_0, 1)\) and no solution when \(\alpha \in (0, \alpha_0)\). 
 \begin{theorem}
     Assume that \(\beta_U \geq 2 > \beta_L\) and the initial datum has compact support \(w_{0} \in C_{comp}(\real)\), nontrivial and nonnegative. Let \((w_L, w_{U})\) be the solution of \eqref{eq:1.6}. Then,
-    \[
+    \begin{equation}
         (w_L(\cdot, t), w_{U}(\cdot, t)) \to (\phi_L(\cdot; \alpha_0), \phi_U(\cdot; \alpha_0)) \quad \text{locally uniformly as } t \to +\infty.
-    \]
+        \label{eq:3.6}
+    \end{equation}
     \label{thm:3.3}
 \end{theorem}
 
@@ -173,5 +174,41 @@ In case (iii), by Theorem \ref{thm:1.1}(iii), there exists a constant \(\alpha_0
    \[
          (\overline{\phi}_L(\cdot, t), \overline{\phi}_U(\cdot, t)) \to (\hat{\phi}_L(\cdot), \hat{\phi}_U(\cdot)) \quad \text{locally uniformly},
    \]
-   and \((\hat{\phi}_L, \hat{\phi}_U)\) is a nonnegative stationary solution of \eqref{eq:1.6}.
+   and \((\hat{\phi}_L, \hat{\phi}_U)\) is a nonnegative stationary solution of \eqref{eq:1.6}. Clearly,
+   \begin{align*}
+    \hat{\phi}_U(x) \leq \overline{\phi}_{U,0}(x) = M e^{kx} \quad \text{for } x \in \real_U, \\
+    \hat{\phi}_L(x) \leq \overline{\phi}_{L,0}(x) = M \quad \text{for } x \in \real_L.
+   \end{align*}
+   Defining 
+   \begin{align*}
+         \underline{\phi}_{U,0} \coloneqq 0, \quad x \in \real_U, \\
+            \underline{\phi}_{L,0} \coloneqq \phi_l(x), \quad x \in \real_L,
+   \end{align*}
+   where \(\phi_l(x)\) is the unique solution of
+   \begin{equation*}
+    \begin{cases}
+        -\ddot{\phi} + \beta_L \dot{\phi} = \phi(1 - \phi), & x \in (0, l), \\
+        \phi(0) = \phi(l) = 0.
+    \end{cases}
+   \end{equation*}
+    It is possible to prove that \((\underline{\phi}_L, \underline{\phi}_U)\) is a subsolution of the elliptic problem of \eqref{eq:1.6}, and again it follows that the unique solution \((\underline{\phi}_L, \underline{\phi}_U)\) of \eqref{eq:1.6} with initial datum \((\underline{\phi}_{L,0}, \underline{\phi}_{U,0})\) is nondecreasing in \(t\). As \(t \to +\infty\),
+    \[
+        (\underline{\phi}_L(\cdot, t), \underline{\phi}_U(\cdot, t)) \to (\tilde{\phi}_L(\cdot), \tilde{\phi}_U(\cdot)) \quad \text{locally uniformly},
+    \]
+    and \((\tilde{\phi}_L, \tilde{\phi}_U)\) is a nonnegative stationary solution of \eqref{eq:1.6}. Since
+    \[
+        \underline{\phi}_{U,0}(x) < \hat{\phi}_U(x), \quad \underline{\phi}_{L,0}(x) < \hat{\phi}_L(x)
+    \]
+    it's easy to see
+    \begin{align*}
+        0 < \tilde{\phi}_U(x) \leq \hat{\phi}_U(x)  \leq M e^{kx} \quad \text{for } x \in \real_U, \\
+        \phi_l(x) \leq \tilde{\phi}_L(x) \leq \hat{\phi}_L(x) \leq M \quad \text{for } x \in \real_L.
+    \end{align*}
+    Then \((\tilde{\phi}_L, \tilde{\phi}_U)\) and \((\hat{\phi}_L, \hat{\phi}_U)\) must be solutions of \eqref{eq:1.8} with some \(\hat{\alpha}, \tilde{\alpha} \in (0,1)\), with \(\hat{\alpha} \geq \tilde{\alpha}\). With Theorem \ref{thm:1.1}(iv) it is possible to prove that \(\hat{\alpha} = \tilde{\alpha} = \alpha_0\), and therefore the two solutions coincide and can be defined as \(\phi_L(\cdot; \alpha_0), \phi_U(\cdot; \alpha_0)\).
+    With the same arguments as in the previous cases, it is possible to conclude that
+    \begin{align*}
+        \liminf_{t \to +\infty} w_U(x, t) \geq \phi_U(x; \alpha_0) \quad \text{locally uniformly for } x \in \real_U, \\
+        \limsup_{t \to +\infty} w_L(x, t) \leq \phi_L(x; \alpha_0) \quad \text{locally uniformly for } x \in \real_L.
+    \end{align*}
+    Therefore, \eqref{eq:3.6} holds.
 \end{proof}
