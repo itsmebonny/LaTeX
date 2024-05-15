@@ -1,10 +1,10 @@
-\section{The Fisher-KPP equation}
-Fisher-KPP equation is a reaction-diffusion equation that models the spread of an advantageous gene in a population in a given environment \cite{SalsaVerziniPDE}. The equation is given by
+\section{The KPP-Fisher equation}
+KPP-Fisher equation is a reaction-diffusion equation that models the spread of an advantageous gene in a population in a given environment \cite{SalsaVerziniPDE}. The equation is given by
 \begin{equation}
     u_t = Du_{xx} + ru(1-u) \quad t > 0, x \in \real,
     \label{eq:fisher-kpp}
 \end{equation}
-where $u = u(x, t)$ is the population density, $r, D$ are positive parameters. It was first introduced by Fisher \cite{Fisher1937} and a similar result was obtained by Kolmogorov, Petrovsky and Piskunov \cite{KPP1937}. It's an example of a semilinear reaction-diffusion equation, which can be used to model phenomena in which some density experience both a diffusive effect (e.g. dispersion) and a reactive one (e.g. growth or decay). Throughout this work, \eqref{eq:fisher-kpp} will be referred to as the Fisher-KPP equation.
+where $u = u(x, t)$ is the population density, $r, D$ are positive parameters. It was first introduced by Fisher \cite{Fisher1937} and a similar result was obtained by Kolmogorov, Petrovsky and Piskunov \cite{KPP1937}. It's an example of a semilinear reaction-diffusion equation, which can be used to model phenomena in which some density experience both a diffusive effect (e.g. dispersion) and a reactive one (e.g. growth or decay). Throughout this work, \eqref{eq:fisher-kpp} will be referred to as the KPP-Fisher equation.
 
 \subsection{Boundary value problem}
 To better understand the dynamics of a population, a boundary value problem (BVP) is considered. Let \(u = u(\bm{x}, t) > 0\) be the (nonnegative) population density at time \(t > 0\) and position \(\bm{x} \in \Omega \subset \real^n\), where \(\Omega\) is a smooth, bounded domain with boundary \(\partial \Omega\). 
@@ -26,7 +26,7 @@ where \(r > 0\) is a growth rate. The second term \(-rM^{-1}u^2\) describes the 
 
 A closer look at the domain \(\Omega\) is needed, once one has found a fitting reaction term for his problem. Clearly, boundary conditions are needed. In the case of population dynamics, homogeneous Dirichlet boundary conditions represent a lethal boundary, where the population density drops to zero. If one wants to model its population inside an isolated environment, homogeneous Neumann boundary conditions are necessary, creating a reflecting boundary. 
 
-It is now possible to define a BVP for the Fisher-KPP equation, with homogeneous Neumann boundary conditions, as follows:
+It is now possible to define a BVP for the KPP-Fisher equation, with homogeneous Neumann boundary conditions, as follows:
 
 \begin{equation}
     \begin{dcases}
