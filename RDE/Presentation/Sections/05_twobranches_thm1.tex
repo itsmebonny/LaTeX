@@ -1,0 +1,152 @@
+\section{One upper branch and one lower branch}
+
+
+% ========================= First Frame =========================
+\begin{frame}
+    \frametitle{Proof of Theorem \ref{thm:1.2}}
+    Now it is possible to prove Theorem \ref{thm:1.2} using Theorem \ref{thm:1.1}.
+    
+    Each part of the theorem will be proved separately with a sketch of the proof.
+
+    The proof of Theorem \ref{thm:1.1} is not provided here, but it's based on a phase-plane analysis approach.
+
+\end{frame}
+
+% ========================= Second Frame =========================
+
+\begin{frame}
+    \frametitle{Theorem \ref{thm:1.2}: \texorpdfstring{\(\beta_U < 2\)}{betaU < 2}}
+    \begin{theorem}
+        Assume that \(\beta_U < 2\) and the initial datum has compact support \(w_{0} \in C_{comp}(\real)\), nontrivial and nonnegative. Let \((w_L, w_{U})\) be the solution of \eqref{eq:1.6}. Then,
+        \[
+            (w_L(\cdot, t), w_{U}(\cdot, t)) \to (1, 1) \quad \text{locally uniformly as } t \to +\infty.
+        \]
+        \label{thm:3.1} 
+    \end{theorem}
+\end{frame}
+
+% ========================= Third Frame =========================
+
+\begin{frame}
+    \frametitle{Proof of Theorem \ref{thm:3.1} I}
+    \begin{proofs}[Sketch of the proof]
+        rom Theorem \ref{thm:2.4} is known that 
+    \begin{equation}
+        0 \leq w_{i} \leq 1 + \sup_{\real} w_{0}, \quad i = U, L.
+        \label{eq:3.1}
+    \end{equation}
+    As \(\norm{w_{0}}_{L^{\infty}(\real)} > 0\), take \(\overline{u}(t) = 1 + \norm{w_{0}}_{L^{\infty}(\real)}e^{t}\). 
+    It is possible to prove that \((\overline{u}, \overline{u})\) is a supersolution of \eqref{eq:1.6}. Using Lemma \ref{lem:2.2} and \eqref{eq:3.1}, it is possible to obtain 
+    \begin{equation}
+        1 = \lim_{t \to +\infty} \overline{u}(t) \geq \limsup_{t \to +\infty} \norm{w_i(\cdot, t)}_{L^{\infty}(\real)}, \quad i = U, L.
+        \label{eq:3.2}
+    \end{equation}
+    \end{proofs}
+\end{frame}
+
+% ========================= Fourth Frame =========================
+\begin{frame}
+    \frametitle{Proof of Theorem \ref{thm:3.1} II}
+    \begin{proofc}
+        From the assumptions, \(w_0\) is nontrivial and nonnegative, so \(w_U(x, 1) > 0\) for \(x \in \real_U\). Since \(0 < \beta_U < 2\), it is possible to prove, using standard results on the logistic equation, that there exists a unique constant \(l_0 > 0\) such that the following problem
+        \begin{equation}
+            \begin{dcases}
+                -\ddot{w} + \beta_U \dot{w} = w(1 - w), & x \in (-l, 0), \\
+                w(0) = w(-l) = 0
+            \end{dcases}
+            \label{eq:3.3}
+        \end{equation}
+        has a positive solution if and only if \(l > l_0\), and the positive solution \(w_l\) is unique and satisfies \(\norm{w_l}_\infty \to 0\) as \(l \to l_0\). Fixing \(l > l_0\) close to \(l_0\), it is possible to ensure that the unique solution \(w_l\) of \eqref{eq:3.3} satisfies \(w_l(x) < w_U(x, 1)\) for \(x \in [-l, 0]\).
+    \end{proofc}
+\end{frame}
+
+% ========================= Fifth Frame =========================
+\begin{frame}
+    \frametitle{Proof of Theorem \ref{thm:3.1} III}
+    \begin{proofc}
+        Now set 
+    \begin{equation*}
+        w_l^0(x) \coloneqq \begin{cases}
+            w_l & \text{if } x \in [-l, 0], \\
+            0 & \text{if } x \in (-\infty, -l).
+        \end{cases}
+    \end{equation*}
+    Then, let \((\underline{w}_L. \underline{w}_U)\) be the solution of \eqref{eq:1.6} with initial datum \((0, w_l^0)\). Clearly,
+    \begin{align*}
+        \underline{w}_U(x, t) > 0 & \text{ for } x \in \real_U, t > 0, \\
+        \underline{w}_L(x, t) > 0 & \text{ for } x \in \real_L, t > 0.
+    \end{align*}
+    By the parabolic comparison principle it is possible to conclude that \(\underline{w}_U \geq w_0^l\) for all \((x,t) \in [-l, 0] \times [0, +\infty)\).
+    \end{proofc}
+\end{frame}
+
+% ========================= Sixth Frame =========================
+
+\begin{frame}
+    \frametitle{Proof of Theorem \ref{thm:3.1} IV}
+    \begin{proofc}
+        Hence,
+        \begin{equation*}
+            (\underline{w}_L(\cdot, t), \underline{w}_U(\cdot, t)) \geq (0, w_l^0) \quad \text{for all } t > 0.
+        \end{equation*}
+        Thus, for any \(\delta > 0\), 
+        \begin{equation*}
+            (\underline{w}_L(\cdot, \delta), \underline{w}_U(\cdot, \delta)) \geq (0, w_l^0).
+        \end{equation*}
+        Using Lemma \ref{lem:2.2} it follows
+        \begin{equation*}
+            (\underline{w}_L(\cdot, t + \delta), \underline{w}_U(\cdot, t + \delta)) \geq (\underline{w}_L(\cdot, t), \underline{w}_U(\cdot, t)) \quad \text{for all } t > 0,
+        \end{equation*}
+        meaning that \((\underline{w}_L, \underline{w}_U)\) is nondecreasing in \(t\). 
+    \end{proofc}
+\end{frame}
+
+% ========================= Seventh Frame =========================
+
+\begin{frame}
+    \frametitle{Proof of Theorem \ref{thm:3.1} V}
+    \begin{proofc}
+        By denoting 
+        \[
+            (\underline{w}_{L, \infty}(x), \underline{w}_{U, \infty}(x)) \coloneqq (\lim_{t \to +\infty} \underline{w}_L(x, t), \lim_{t \to +\infty} \underline{w}_U(x, t)), 
+        \]
+        it is possible to use a similar argument as in proof of Theorem \ref{thm:2.4} to conclude that
+        \[
+            (\underline{w}_{L}(\cdot, t), \underline{w}_{U}(\cdot, t)) \to (\underline{w}_{L, \infty}(\cdot), \underline{w}_{U, \infty}(\cdot)),
+        \]
+        locally uniformly as \(t \to +\infty\) and that \((\underline{w}_{L, \infty}(x), \underline{w}_{U, \infty}(x))\) is a positive stationary solution of \eqref{eq:1.6}. 
+    \end{proofc}
+\end{frame}
+
+% ========================= Eighth Frame =========================
+
+\begin{frame}
+    \frametitle{Proof of Theorem \ref{thm:3.1} VI}
+    \begin{proofc}
+        By Theorem \ref{thm:1.1}, the only possible positive stationary solution is \((1, 1)\), therefore
+        \begin{equation}
+            (\underline{w}_{L}(\cdot, t), \underline{w}_{U}(\cdot, t)) \to (1, 1) \quad \text{locally uniformly as } t \to +\infty.
+            \label{eq:3.4}
+        \end{equation}
+        On the other hand, as \(w_l^0(x) < w_U(x, 1)\) for \(x \in (-\infty, 0)\), thanks to Lemma \ref{lem:2.2},
+        \[
+            (\underline{w}_L(\cdot, t), \underline{w}_U(\cdot, t)) \leq (\underline{w}_L(\cdot, t + 1), \underline{w}_U(\cdot, t + 1)) \quad \text{for all } t > 0.
+        \]
+    \end{proofc}
+\end{frame}
+
+% ========================= Ninth Frame =========================
+
+\begin{frame}
+    \frametitle{Proof of Theorem \ref{thm:3.1} VII}
+    \begin{proofe}
+        This and \eqref{eq:3.4} imply that
+        \begin{equation}
+            (\liminf_{t \to +\infty} w_L(\cdot, t), \liminf_{t \to +\infty} w_U(\cdot, t)) \to (1, 1),
+            \label{eq:3.5}
+        \end{equation}
+        locally uniformly as \(t \to +\infty\).
+        Combining \eqref{eq:3.2} and \eqref{eq:3.5} concludes the proof.
+    \end{proofe}
+\end{frame}
+        

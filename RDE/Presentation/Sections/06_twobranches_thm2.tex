@@ -1,0 +1,103 @@
+% ================== First Frame =========================
+
+\begin{frame}
+    \frametitle{Theorem \ref{thm:1.2}: \texorpdfstring{\(\beta_U, \beta_L\geq 2\)}{betaU, betaL >= 2}}
+    \begin{theorem}
+        Assume that \(\beta_U, \beta_L \geq 2\) and the initial datum has compact support \(w_{0} \in C_{comp}(\real)\), nontrivial and nonnegative. Let \((w_L, w_{U})\) be the solution of \eqref{eq:1.6}. Then,
+        \[
+            (w_L(\cdot, t), w_{U}(\cdot, t)) \to (0, 0) \quad \text{locally uniformly as } t \to +\infty.
+        \]
+        Moreover, \(\norm{w_L(\cdot, t)}_{L^{\infty}(\real)} \to 1\) and \(\norm{w_U(\cdot, t)}_{L^{\infty}(\real)} \to 0\) as \(t \to +\infty\).
+        \label{thm:3.2}
+    \end{theorem}
+\end{frame}
+
+% ================== Second Frame =========================
+
+\begin{frame}
+    \frametitle{Proof of Theorem \ref{thm:3.2} I}
+    \begin{proofs}[Sketch of the proof]
+        Fix \(\alpha \in (0, 1)\) and define a supersolution \((\overline{w}_L, \overline{w}_U)\) as
+        \begin{align*}
+            \overline{w}_L(x, t) & \coloneqq \phi_L(x; \alpha) + M e^{-\lambda t} e^{\frac{\beta_L}{2}x} \quad x \in \real_L, t \geq 0, \\
+            \overline{w}_U(x, t) & \coloneqq \phi_U(x; \alpha) + M e^{-\lambda t} e^{\frac{\beta_U}{2}x} \quad x \in \real_U, t \geq 0,
+        \end{align*}
+        where \(M\) and \(\lambda\) will be determined later. Now, having defined 
+        \[
+            v(x) \coloneqq M e^{kx} \quad \text{with } k = \frac{1}{2}\beta_U^ + \sqrt{\beta_U^2 - 4}.
+        \]
+        
+    \end{proofs}
+\end{frame}
+
+% ================== Third Frame =========================
+
+\begin{frame}
+    \frametitle{Proof of Theorem \ref{thm:3.2} II}
+    \begin{proofc}
+        Clearly,
+        \[
+            \ddot{v} + \beta_U \dot{v} = v \geq v - v^2.
+        \]
+        Thanks to Theorem \ref{thm:1.1}(iv), as \(x \to -\infty\), \(\phi_U(x; \alpha)\) satisfies \eqref{eq:1.9}. Therefore, it exists \(l = l_\alpha > 0\) such that
+        \[
+            \phi_U(x; \alpha) \geq v(x) \quad \text{for } x \leq -l.
+        \]
+        Fix now \(l = l_\alpha\). Because \(\beta_U, \beta_L \geq 2\), \(\phi_L(0;\alpha) = \alpha > 0\) and \(2\phi_U(-l;\alpha) > 0\) it is always possible to find a sufficiently small \(\lambda(l) > 0\) such that 
+        \begin{align*}
+            \partial_t \overline{w}_L - \partial_{xx} \overline{w}_L + \beta_L \partial_x \overline{w}_L - \overline{w}_L + \overline{w}_L^2 \geq 0, \quad x \in (0, +\infty), t > 0, \\
+            \partial_t \overline{w}_U - \partial_{xx} \overline{w}_U + \beta_U \partial_x \overline{w}_U - \overline{w}_U + \overline{w}_U^2 \geq 0, \quad x \in [-l, 0), t > 0.
+        \end{align*}
+    \end{proofc}
+\end{frame}
+
+% ================== Fourth Frame =========================
+
+\begin{frame}
+    \frametitle{Proof of Theorem \ref{thm:3.2} III}
+    \begin{proofc}
+        Since \(w_0 \in C_{comp}(\real)\), \(M\) can be chosen as \(M > \max{1, \norm{w_0}_{L^{\infty}(\real)}}\) such that \(v(x) > w_0(x)\) in \(\real\) and 
+        \[
+            \overline{w}_i(x, 0) \geq w_i(x, 0) \quad \text{for } x \in \real, i = L, U.
+        \] 
+        Since \(v(0) = M > \max{1, \norm{w_0}_{L^{\infty}(\real)}} \geq w_U(0, t)\) for all \(t \geq 0\), by the comparison principle
+        \[
+            w_U(x, t) \leq v(x) \quad \text{for } x \in \real_U, t \geq 0.
+        \]
+        Let now \(\xi(t) \coloneqq \frac{2\lambda}{\beta_L} t\). Then 
+        \[
+            \overline{w}_L(\xi(t), t) > M \geq w_L(\xi(t), t) \quad \text{for all } t > 0.
+        \]
+    \end{proofc}
+\end{frame}
+
+% ================== Fifth Frame =========================
+
+\begin{frame}
+    \frametitle{Proof of Theorem \ref{thm:3.2} IV}
+    \begin{proofc}
+        Then, \((\overline{w}_L, \overline{w}_U)\) is a supersolution of \eqref{eq:1.6} in the region \(x \in [-l, \xi(t)]\) for all \(t \geq 0\). It's possible to conclude that
+        \[
+            w_U(x, t) \leq \overline{w}_U(x, t) \quad \text{for } x \in \real_U, t \geq 0,
+        \]
+        Therefore,
+        \[
+            \limsup_{t \to +\infty} w_i(x, t) \leq \lim \overline{w}_i(x, t) = \phi_i(x; \alpha) = 0 \quad \text{for } x \in \real_i, i = L, U.
+        \]
+        Since \(\alpha\) is arbitrary, it is possible to conclude that
+        \[
+            \lim_{t \to +\infty} w_i(x, t) = 0 \quad \text{locally uniformly for } x \in \real_i, i = L, U.
+        \]
+    \end{proofc}
+\end{frame}
+
+% ================== Sixth Frame =========================
+
+\begin{frame}
+    \frametitle{Proof of Theorem \ref{thm:3.2} V}
+    \begin{proofe}
+        Since \(\overline{w}_U\) is increasing in \(x\), it is easily concluded that \(\norm{w_U(\cdot, t)}_{L^{\infty}(\real)} \to 0\) as \(t \to +\infty\).
+
+        By creating a problem similar to \eqref{eq:1.6} and constructing a subsolution for that problem it is possible to prove that \(\norm{w_L(\cdot, t)}_{L^{\infty}(\real)} \to 1\) as \(t \to +\infty\).
+    \end{proofe}
+\end{frame}
