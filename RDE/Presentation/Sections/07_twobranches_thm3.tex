@@ -1,13 +1,14 @@
 % =================== First Frame ===================
 
 \begin{frame}
-    \frametitle{Theorem \ref{thm:1.3}: \texorpdfstring{\(\beta_U \geq 2 > \beta_L\)}{betaU >= 2 > betaL}}
+    \frametitle{Theorem \ref{thm:1.2}: \texorpdfstring{\(\beta_U \geq 2 > \beta_L\)}{betaU >= 2 > betaL}}
     \begin{theorem}
         Assume that \(\beta_U \geq 2 > \beta_L\) and the initial datum has compact support \(w_{0} \in C_{comp}(\real)\), nontrivial and nonnegative. Let \((w_L, w_{U})\) be the solution of \eqref{eq:1.6}. Then,
         \begin{equation}
-            (w_L(\cdot, t), w_{U}(\cdot, t)) \to (\phi_L(\cdot; \alpha_0), \phi_U(\cdot; \alpha_0)) \quad \text{locally uniformly as } t \to +\infty.
+            (w_L(\cdot, t), w_{U}(\cdot, t)) \to (\phi_L(\cdot; \alpha_0), \phi_U(\cdot; \alpha_0))
             \label{eq:3.6}
         \end{equation}
+        locally uniformly as \(t \to +\infty\).
         \label{thm:3.3}
     \end{theorem}
 \end{frame}
@@ -19,7 +20,7 @@
     \begin{proofs}[Sketch of the proof]
         For \(M > 1\), set 
         \begin{align*}
-            &k \coloneqq \frac{1\beta_U + \sqrt{\beta_U^2 - 4}}{2}, \\
+            &k \coloneqq \frac{\beta_U + \sqrt{\beta_U^2 - 4}}{2}, \\
             &\overline{\phi}_{U,0} \coloneqq M e^{kx}, \quad x \in \real_U, \\
             &\overline{\phi}_{L,0} \coloneqq M, \quad x \in \real_L.
         \end{align*}
@@ -99,9 +100,10 @@
         Then \((\tilde{\phi}_L, \tilde{\phi}_U)\) and \((\hat{\phi}_L, \hat{\phi}_U)\) must be solutions of \eqref{eq:1.8} with some \(\hat{\alpha}, \tilde{\alpha} \in (0,1)\), with \(\hat{\alpha} \geq \tilde{\alpha}\). With Theorem \ref{thm:1.1}(iv) it is possible to prove that \(\hat{\alpha} = \tilde{\alpha} = \alpha_0\), and therefore the two solutions coincide and can be defined as \(\phi_L(\cdot; \alpha_0), \phi_U(\cdot; \alpha_0)\).
         With the same arguments as in the previous cases, it is possible to conclude that
         \begin{align*}
-            \liminf_{t \to +\infty} w_U(x, t) \geq \phi_U(x; \alpha_0) \quad \text{locally uniformly for } x \in \real_U, \\
-            \limsup_{t \to +\infty} w_L(x, t) \leq \phi_L(x; \alpha_0) \quad \text{locally uniformly for } x \in \real_L.
+            \liminf_{t \to +\infty} w_i(x, t) \geq \phi_i(x; \alpha_0) \quad \text{locally uniformly for } x \in \real_i, \\
+            \limsup_{t \to +\infty} w_i(x, t) \leq \phi_i(x; \alpha_0) \quad \text{locally uniformly for } x \in \real_i,
         \end{align*}
+        for \(i = U, L\).
         Therefore, \eqref{eq:3.6} holds.
     \end{proofe}
 \end{frame}

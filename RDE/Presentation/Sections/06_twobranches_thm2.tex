@@ -24,7 +24,7 @@
         \end{align*}
         where \(M\) and \(\lambda\) will be determined later. Now, having defined 
         \[
-            v(x) \coloneqq M e^{kx} \quad \text{with } k = \frac{1}{2}\beta_U^ + \sqrt{\beta_U^2 - 4}.
+            v(x) \coloneqq M e^{kx} \quad \text{with } k = \frac{1}{2}\beta_U^2 + \sqrt{\beta_U^2 - 4}.
         \]
         
     \end{proofs}
@@ -56,11 +56,11 @@
 \begin{frame}
     \frametitle{Proof of Theorem \ref{thm:3.2} III}
     \begin{proofc}
-        Since \(w_0 \in C_{comp}(\real)\), \(M\) can be chosen as \(M > \max{1, \norm{w_0}_{L^{\infty}(\real)}}\) such that \(v(x) > w_0(x)\) in \(\real\) and 
+        Since \(w_0 \in C_{comp}(\real)\), \(M\) can be chosen as \(M > \max\{1, \norm{w_0}_{L^{\infty}(\real)}\}\) such that \(v(x) > w_0(x)\) in \(\real\) and 
         \[
             \overline{w}_i(x, 0) \geq w_i(x, 0) \quad \text{for } x \in \real, i = L, U.
         \] 
-        Since \(v(0) = M > \max{1, \norm{w_0}_{L^{\infty}(\real)}} \geq w_U(0, t)\) for all \(t \geq 0\), by the comparison principle
+        Since \(v(0) = M > \max\{1, \norm{w_0}_{L^{\infty}(\real)}\} \geq w_U(0, t)\) for all \(t \geq 0\), by the comparison principle
         \[
             w_U(x, t) \leq v(x) \quad \text{for } x \in \real_U, t \geq 0.
         \]

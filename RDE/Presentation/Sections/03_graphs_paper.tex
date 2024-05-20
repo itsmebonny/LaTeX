@@ -131,10 +131,8 @@
 % ======================== Sixth Frame ========================
 
 \begin{frame}[allowframebreaks]
-    \frametitle{Behaviour of solutions}
-    The following theorems shed some light on the behavior of the solutions of \eqref{eq:1.6} and their long-time dynamics.
+    \frametitle{Long-time dynamics}
     \begin{theorem}
-        Since the assumption is that \(D_L = D_U = 1\), the maximum speed of the population invasion is \(c_* = 2\). 
         
         (i) If \(0 < \beta_U < 2\), then \eqref{eq:1.8} has no solution for \(\alpha \in (0, 1)\). 
 
@@ -144,11 +142,12 @@
 
         (iii) If \(\beta_U \geq 2 > \beta_L > 0\), then there exists \(\alpha_0 \in (0, 1)\) such that \eqref{eq:1.8} has a unique solution for each \(\alpha \in [\alpha_0, 1)\), and no solution for \(\alpha \in (0, \alpha_0)\).
 
-        \theorembreak
+        
         (iv)  Whenever \eqref{eq:1.8} has a solution \((\phi_L, \phi_U)\), it is true that 
             \[
                 \dot{\phi}_L > 0, \quad \dot{\phi}_U > 0, \quad \phi_L(\infty) = 1, \quad \phi_U(-\infty) = 0.
             \]
+        \theorembreak
             Moreover, in case (ii) and (iii) with \(\alpha \in [\alpha_0, 1)\), as \(x \to -\infty\), there exists some \(c = c(\alpha) > 0\) such that
             \begin{equation}
                 \phi_U(x) = \begin{cases}
@@ -157,7 +156,6 @@
                 \end{cases} 
                 \label{eq:1.9}
             \end{equation}
-        \theorembreak
             while in case (iii) with \(\alpha = \alpha_0\), as \(x \to -\infty\), there exists some \(c > 0\) such that
             \begin{equation}
                 \phi_U(x) = (c + o(1))e^{\frac{1}{2}(\beta_U - \sqrt{\beta_U^2 - 4})x}.
@@ -169,16 +167,16 @@
 
 % ======================== Seventh Frame ========================
 
-\begin{frame}[allowframebreaks]
-    \frametitle{Long-time dynamics}
+\begin{frame}
+    \frametitle{Behaviour of solutions}
     \begin{theorem}
         Assuming that \(w_0 \in C_{comp}(\real)\) is nonnegative and nontrivial, let \((w_L, w_U)\) be the solution of \eqref{eq:1.6}. Then the following holds:
 
             (i) If \(0 < \beta_U < 2\), then \((w_L(\cdot, t), w_U(\cdot, t)) \to (1, 1)\) locally uniformly as \(t \to +\infty\).
 
-            (ii) If \(\beta_U, \beta_L \geq 2\), then \((w_L(\cdot, t), w_U(\cdot, t)) \to (0, 0)\) locally uniformly as \(t \to +\infty\). Also, \(\norm{w_L(\cdot, t)}_{L^\infty(\real_L)} \to 1\) and \(\norm{w_U(\cdot, t)}_{L^\infty(\real_U)} \to 0\) as \(t \to +\infty\).
-            \theorembreak
-            (iii) If \(\beta_U \geq 2 > \beta_L > 0\), then \((w_L(\cdot, t), w_U(\cdot, t)) \to (\phi_L(\cdot; \alpha_0), \phi_U(\cdot; \alpha_0))\)\footnote{\((\phi_L(\cdot; \alpha_0), \phi_U(\cdot; \alpha_0))\) is the unique solution of \eqref{eq:1.8} with \(\alpha = \alpha_0\).} locally uniformly as \(t \to +\infty\).
+            (ii) If \(\beta_U, \beta_L \geq 2\), then \((w_L(\cdot, t), w_U(\cdot, t)) \to (0, 0)\) locally uniformly as \(t \to +\infty\). Also, \(\norm{w_L(\cdot, t)}_{L^\infty(\real_L)} \to 1\) and \(\norm{w_U(\cdot, t)}_{L^\infty(\real_U)} \to 0\).
+
+            (iii) If \(\beta_U \geq 2 > \beta_L > 0\), then \((w_L(\cdot, t), w_U(\cdot, t)) \to (\phi_L(\cdot; \alpha_0), \phi_U(\cdot; \alpha_0))\)\footnote{\((\phi_L(\cdot; \alpha_0), \phi_U(\cdot; \alpha_0))\) is the unique solution of \eqref{eq:1.8} with \(\alpha = \alpha_0\).} locally uniformly.
         \label{thm:1.2}
     \end{theorem}
 \end{frame}
@@ -186,7 +184,7 @@
 % ======================== Eighth Frame ========================
 
 \begin{frame}
-    \frametitle{Long-time dynamics III}
+    \frametitle{Behaviour of solutions II}
     In case (ii) of Theorem \ref{thm:1.2}, the population density goes to zero locally in all the branches, because the river's flow is too strong for the population to survive. However, the \(L^\infty\) norm of the population density in the lower branch goes to \(1\), meaning that the population is not out of the network.
 
     In case (i) and (ii) it is clear that it's far more important the advection coefficient of the upper branch.
