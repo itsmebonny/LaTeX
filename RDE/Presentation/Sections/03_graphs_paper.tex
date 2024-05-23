@@ -4,7 +4,7 @@
 
 \begin{frame}
     \frametitle{The river network}
-    Instead of considering a river as a continuous line, here it will be taken into consideration the fact that rivers can divide into smaller rivers and merge into larger rivers. This can be modeled as a graph, where the edges are the rivers and the nodes are the junctions between rivers.
+    Instead of considering a river as a continuous line, here it will be taken into consideration the fact that rivers can divide into smaller rivers and merge into larger rivers. 
     \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt 
 \begin{figure}[H]
     \centering
@@ -68,7 +68,7 @@
 
 
 \end{tikzpicture}}
-    \caption{Graph representation of the river. a) The river is split in an upper branch \(R_U\) and a lower branch \(R_L\). b) The upper branch is split in two branches \(R_{U_1}\) and \(R_{U_2}\). c) The lower branch is split in two branches \(R_{L_1}\) and \(R_{L_2}\).}
+    % \caption{Graph representation of the river. a) The river is split in an upper branch \(R_U\) and a lower branch \(R_L\). b) The upper branch is split in two branches \(R_{U_1}\) and \(R_{U_2}\). c) The lower branch is split in two branches \(R_{L_1}\) and \(R_{L_2}\).}
     \label{fig:river-graph}
 \end{figure}
 \end{frame}
@@ -77,7 +77,7 @@
 
 \begin{frame}
     \frametitle{Steady states}
-    With the graph based approach, infinitely many steady states can exist. However, only one of them can be a global attractor. And these global attractors can be summed up in three types:
+    With the graph based approach, \textbf{infinitely many steady states }can exist. However, only one of them can be a global attractor. And these global attractors can be summed up in three types:
     \begin{enumerate}
         \item \textbf{washing out:} the population density goes to zero in all the branches;
         \item \textbf{persistence at carrying capacity:} the population survives in all the branches;
@@ -109,7 +109,7 @@
     \frametitle{One upper branch and one lower branch II}
     In Equation \eqref{eq:1.6} the initial condition is the same for both branches and is given by \(w_0(x) \in C_{comp}(\real)\), where \(C_{comp}(\real)\) is the set of continuous functions with compact support in \(\real\).
 
-    The compactness of the support of the initial condition is crucial to determine the long-time behavior of the solution. In fact, the steady state chosen as the global attractor is the one that decays to zero faster at infinity.
+    The \textbf{compactness of the support} of the initial condition is \textbf{crucial} to determine the long-time behavior of the solution. In fact, the steady state chosen as the global attractor is the one that \textbf{decays to zero faster} at infinity.
 \end{frame}
 
 % ======================== Fifth Frame ========================
@@ -185,9 +185,9 @@
 
 \begin{frame}
     \frametitle{Behaviour of solutions II}
-    In case (ii) of Theorem \ref{thm:1.2}, the population density goes to zero locally in all the branches, because the river's flow is too strong for the population to survive. However, the \(L^\infty\) norm of the population density in the lower branch goes to \(1\), meaning that the population is not out of the network.
+    In case (ii) of Theorem \ref{thm:1.2}, the population density \textbf{goes to zero locally} in all the branches. However, the \(L^\infty\) norm of the population density in the lower branch goes to \(1\).
 
-    In case (i) and (ii) it is clear that it's far more important the advection coefficient of the upper branch.
+    In case (i) and (ii) it is clear that it's far more important the \textbf{advection coefficient of the upper branch}.
 
-    The last case shows that the steady state solution is increasing in both branches, and its limit at \(x \to -\infty\) is 0, while at \(x \to +\infty\) is 1. This is the selected steady state because it decays to zero faster at infinity.
+    The last case shows that the steady state solution is increasing in both branches, and its limit at \(x \to -\infty\) is 0, while at \(x \to +\infty\) is 1. This is the selected steady state because it \textbf{decays to zero faster} at infinity.
 \end{frame}

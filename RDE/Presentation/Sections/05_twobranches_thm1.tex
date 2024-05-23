@@ -2,15 +2,15 @@
 
 
 % ========================= First Frame =========================
-\begin{frame}
-    \frametitle{Proof of Theorem \ref{thm:1.2}}
-    Now it is possible to prove Theorem \ref{thm:1.2} using Theorem \ref{thm:1.1}.
+% \begin{frame}
+%     \frametitle{Proof of Theorem \ref{thm:1.2}}
+%     Now it is possible to prove Theorem \ref{thm:1.2} using Theorem \ref{thm:1.1}.
     
-    Each part of the theorem will be proved separately with a sketch of the proof.
+%     Each part of the theorem will be proved separately with a sketch of the proof.
 
-    The proof of Theorem \ref{thm:1.1} is not provided here, but it's based on a phase-plane analysis approach.
+%     The proof of Theorem \ref{thm:1.1} is not provided here, but it's based on a phase-plane analysis approach.
 
-\end{frame}
+% \end{frame}
 
 % ========================= Second Frame =========================
 
@@ -48,15 +48,15 @@
 \begin{frame}
     \frametitle{Proof of Theorem \ref{thm:3.1} II}
     \begin{proofc}
-        From the assumptions, \(w_0\) is nontrivial and nonnegative, so \(w_U(x, 1) > 0\) for \(x \in \real_U\). Since \(0 < \beta_U < 2\), it is possible to prove, using standard results on the logistic equation, that there exists a unique constant \(l_0 > 0\) such that the following problem
+        From the assumptions, \(w_0\) is nontrivial and nonnegative, so \(w_U(x, 1) > 0\) for \(x \in \real_U\). Since \(0 < \beta_U < 2\), there exists a unique constant \(\ell_0 > 0\) such that the following problem
         \begin{equation}
             \begin{dcases}
-                -\ddot{w} + \beta_U \dot{w} = w(1 - w), & x \in (-l, 0), \\
-                w(0) = w(-l) = 0
+                -\ddot{w} + \beta_U \dot{w} = w(1 - w), & x \in (-\ell, 0), \\
+                w(0) = w(-\ell) = 0
             \end{dcases}
             \label{eq:3.3}
         \end{equation}
-        has a positive solution if and only if \(l > l_0\), and the positive solution \(w_l\) is unique and satisfies \(\norm{w_l}_\infty \to 0\) as \(l \to l_0\). Fixing \(l > l_0\) close to \(l_0\), it is possible to ensure that the unique solution \(w_l\) of \eqref{eq:3.3} satisfies \(w_l(x) < w_U(x, 1)\) for \(x \in [-l, 0]\).
+        has a positive solution iff \(\ell > \ell_0\), and the positive solution \(w_\ell\) is unique. Fixing \(\ell\), it is possible to ensure that the unique solution \(w_\ell\) of \eqref{eq:3.3} satisfies \(w_\ell(x) < w_U(x, 1)\) for \(x \in [-\ell, 0]\).
     \end{proofc}
 \end{frame}
 
@@ -66,17 +66,17 @@
     \begin{proofc}
         Now set 
     \begin{equation*}
-        w_l^0(x) \coloneqq \begin{cases}
-            w_l & \text{if } x \in [-l, 0], \\
-            0 & \text{if } x \in (-\infty, -l).
+        w_\ell^0(x) \coloneqq \begin{cases}
+            w_\ell & \text{if } x \in [-\ell, 0], \\
+            0 & \text{if } x \in (-\infty, -\ell).
         \end{cases}
     \end{equation*}
-    Then, let \((\underline{w}_L. \underline{w}_U)\) be the solution of \eqref{eq:1.6} with initial datum \((0, w_l^0)\). Clearly,
+    Then, let \((\underline{w}_L. \underline{w}_U)\) be the solution of \eqref{eq:1.6} with initial datum \((0, w_\ell^0)\). Clearly,
     \begin{align*}
         \underline{w}_U(x, t) > 0 & \text{ for } x \in \real_U, t > 0, \\
         \underline{w}_L(x, t) > 0 & \text{ for } x \in \real_L, t > 0.
     \end{align*}
-    By the parabolic comparison principle it is possible to conclude that \(\underline{w}_U \geq w_0^l\) for all \((x,t) \in [-l, 0] \times [0, +\infty)\).
+    By the parabolic comparison principle it is possible to conclude that \(\underline{w}_U \geq w_0^l\) for all \((x,t) \in [-\ell, 0] \times [0, +\infty)\).
     \end{proofc}
 \end{frame}
 
@@ -87,11 +87,7 @@
     \begin{proofc}
         Hence,
         \begin{equation*}
-            (\underline{w}_L(\cdot, t), \underline{w}_U(\cdot, t)) \geq (0, w_l^0) \quad \text{for all } t > 0.
-        \end{equation*}
-        Thus, for any \(\delta > 0\), 
-        \begin{equation*}
-            (\underline{w}_L(\cdot, \delta), \underline{w}_U(\cdot, \delta)) \geq (0, w_l^0).
+            (\underline{w}_L(\cdot, t), \underline{w}_U(\cdot, t)) \geq (0, w_\ell^0) \quad \text{for all } t > 0.
         \end{equation*}
         Using Lemma \ref{lem:2.2} it follows
         \begin{equation*}
@@ -108,7 +104,7 @@
     \begin{proofc}
         By denoting 
         \[
-            (\underline{w}_{L, \infty}(x), \underline{w}_{U, \infty}(x)) \coloneqq (\lim_{t \to +\infty} \underline{w}_L(x, t), \lim_{t \to +\infty} \underline{w}_U(x, t)), 
+            \left(\underline{w}_{L, \infty}(x), \underline{w}_{U, \infty}(x)\right) \coloneqq \left(\lim_{t \to +\infty} \underline{w}_L(x, t), \lim_{t \to +\infty} \underline{w}_U(x, t)\right), 
         \]
         it is possible to use a similar argument as in proof of Theorem \ref{thm:2.4} to conclude that
         \[
@@ -128,7 +124,7 @@
             (\underline{w}_{L}(\cdot, t), \underline{w}_{U}(\cdot, t)) \to (1, 1) \quad \text{locally uniformly as } t \to +\infty.
             \label{eq:3.4}
         \end{equation}
-        On the other hand, as \(w_l^0(x) < w_U(x, 1)\) for \(x \in (-\infty, 0)\), thanks to Lemma \ref{lem:2.2},
+        On the other hand, as \(w_\ell^0(x) < w_U(x, 1)\) for \(x \in (-\infty, 0)\), thanks to Lemma \ref{lem:2.2},
         \[
             (\underline{w}_L(\cdot, t), \underline{w}_U(\cdot, t)) \leq (\underline{w}_L(\cdot, t + 1), \underline{w}_U(\cdot, t + 1)) \quad \text{for all } t > 0.
         \]
