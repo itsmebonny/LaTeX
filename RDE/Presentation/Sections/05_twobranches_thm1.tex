@@ -45,24 +45,24 @@
 \end{frame}
 
 % ========================= Fourth Frame =========================
-\begin{frame}
-    \frametitle{Proof of Theorem \ref{thm:3.1} II}
-    \begin{proofc}
-        From the assumptions, \(w_0\) is nontrivial and nonnegative, so \(w_U(x, 1) > 0\) for \(x \in \real_U\). Since \(0 < \beta_U < 2\), there exists a unique constant \(\ell_0 > 0\) such that the following problem
-        \begin{equation}
-            \begin{dcases}
-                -\ddot{w} + \beta_U \dot{w} = w(1 - w), & x \in (-\ell, 0), \\
-                w(0) = w(-\ell) = 0
-            \end{dcases}
-            \label{eq:3.3}
-        \end{equation}
-        has a positive solution iff \(\ell > \ell_0\), and the positive solution \(w_\ell\) is unique. Fixing \(\ell\), it is possible to ensure that the unique solution \(w_\ell\) of \eqref{eq:3.3} satisfies \(w_\ell(x) < w_U(x, 1)\) for \(x \in [-\ell, 0]\).
-    \end{proofc}
-\end{frame}
+% \begin{frame}
+%     \frametitle{Proof of Theorem \ref{thm:3.1} II}
+%     \begin{proofc}
+%         From the assumptions, \(w_0\) is nontrivial and nonnegative, so \(w_U(x, 1) > 0\) for \(x \in \real_U\). Since \(0 < \beta_U < 2\), there exists a unique constant \(\ell_0 > 0\) such that the following problem
+%         \begin{equation}
+%             \begin{dcases}
+%                 -\ddot{w} + \beta_U \dot{w} = w(1 - w), & x \in (-\ell, 0), \\
+%                 w(0) = w(-\ell) = 0
+%             \end{dcases}
+%             \label{eq:3.3}
+%         \end{equation}
+%         has a positive solution iff \(\ell > \ell_0\), and the positive solution \(w_\ell\) is unique. Fixing \(\ell\), it is possible to ensure that the unique solution \(w_\ell\) of \eqref{eq:3.3} satisfies \(w_\ell(x) < w_U(x, 1)\) for \(x \in [-\ell, 0]\).
+%     \end{proofc}
+% \end{frame}
 
 % ========================= Fifth Frame =========================
 \begin{frame}
-    \frametitle{Proof of Theorem \ref{thm:3.1} III}
+    \frametitle{Proof of Theorem \ref{thm:3.1} II}
     \begin{proofc}
         Now set 
     \begin{equation*}
@@ -83,13 +83,13 @@
 % ========================= Sixth Frame =========================
 
 \begin{frame}
-    \frametitle{Proof of Theorem \ref{thm:3.1} IV}
+    \frametitle{Proof of Theorem \ref{thm:3.1} III}
     \begin{proofc}
         Hence,
         \begin{equation*}
             (\underline{w}_L(\cdot, t), \underline{w}_U(\cdot, t)) \geq (0, w_\ell^0) \quad \text{for all } t > 0.
         \end{equation*}
-        Using Lemma \ref{lem:2.2} it follows
+        Using Lemma \ref{lem:2.2} it follows, with \(\delta > 0\):
         \begin{equation*}
             (\underline{w}_L(\cdot, t + \delta), \underline{w}_U(\cdot, t + \delta)) \geq (\underline{w}_L(\cdot, t), \underline{w}_U(\cdot, t)) \quad \text{for all } t > 0,
         \end{equation*}
@@ -100,7 +100,7 @@
 % ========================= Seventh Frame =========================
 
 \begin{frame}
-    \frametitle{Proof of Theorem \ref{thm:3.1} V}
+    \frametitle{Proof of Theorem \ref{thm:3.1} IV}
     \begin{proofc}
         By denoting 
         \[
@@ -117,7 +117,7 @@
 % ========================= Eighth Frame =========================
 
 \begin{frame}
-    \frametitle{Proof of Theorem \ref{thm:3.1} VI}
+    \frametitle{Proof of Theorem \ref{thm:3.1} V}
     \begin{proofc}
         By Theorem \ref{thm:1.1}, the only possible positive stationary solution is \((1, 1)\), therefore
         \begin{equation}
@@ -134,7 +134,7 @@
 % ========================= Ninth Frame =========================
 
 \begin{frame}
-    \frametitle{Proof of Theorem \ref{thm:3.1} VII}
+    \frametitle{Proof of Theorem \ref{thm:3.1} VI}
     \begin{proofe}
         This and \eqref{eq:3.4} imply that
         \begin{equation}
