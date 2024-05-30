@@ -35,10 +35,10 @@
         0 \leq w_{i} \leq 1 + \sup_{\real} w_{0}, \quad i = U, L.
         \label{eq:3.1}
     \end{equation}
-    As \(\norm{w_{0}}_{L^{\infty}(\real)} > 0\), take \(\overline{u}(t) = 1 + \norm{w_{0}}_{L^{\infty}(\real)}e^{-t}\). 
-    It is possible to prove that \((\overline{u}, \overline{u})\) is a supersolution of \eqref{eq:1.6}. Using Lemma \ref{lem:2.2} and \eqref{eq:3.1}, it is possible to obtain 
+    As \(\norm{w_{0}}_{L^{\infty}(\real)} > 0\), take \(\overline{w}_i(t) = 1 + \norm{w_{0}}_{L^{\infty}(\real)}e^{-t}\). 
+    It is possible to prove that \((\overline{w}_L, \overline{w}_U)\) is a supersolution of \eqref{eq:1.6}. Using Lemma \ref{lem:2.2} and \eqref{eq:3.1}, it is possible to obtain 
     \begin{equation}
-        1 = \lim_{t \to +\infty} \overline{u}(t) \geq \limsup_{t \to +\infty} \norm{w_i(\cdot, t)}_{L^{\infty}(\real)}, \quad i = U, L.
+        1 = \lim_{t \to +\infty} \overline{w}_i(t) \geq \limsup_{t \to +\infty} \norm{w_i(\cdot, t)}_{L^{\infty}(\real)}, \quad i = U, L.
         \label{eq:3.2}
     \end{equation}
     \end{proofs}
@@ -66,17 +66,17 @@
     \begin{proofc}
         Now set 
     \begin{equation*}
-        w_\ell^0(x) \coloneqq \begin{cases}
+        w_0^\ell(x) \coloneqq \begin{cases}
             w_\ell & \text{if } x \in [-\ell, 0], \\
             0 & \text{if } x \in (-\infty, -\ell).
         \end{cases}
     \end{equation*}
-    Then, let \((\underline{w}_L. \underline{w}_U)\) be the solution of \eqref{eq:1.6} with initial datum \((0, w_\ell^0)\). Clearly,
+    Then, let \((\underline{w}_L. \underline{w}_U)\) be the solution of \eqref{eq:1.6} with initial datum \((0, w_0^\ell)\). Clearly,
     \begin{align*}
         \underline{w}_U(x, t) > 0 & \text{ for } x \in \real_U, t > 0, \\
         \underline{w}_L(x, t) > 0 & \text{ for } x \in \real_L, t > 0.
     \end{align*}
-    By the parabolic comparison principle it is possible to conclude that \(\underline{w}_U \geq w_0^l\) for all \((x,t) \in [-\ell, 0] \times [0, +\infty)\).
+    By the parabolic comparison principle it is possible to conclude that \(\underline{w}_U \geq w_0^\ell\) for all \((x,t) \in [-\ell, 0] \times [0, +\infty)\).
     \end{proofc}
 \end{frame}
 
@@ -87,7 +87,7 @@
     \begin{proofc}
         Hence,
         \begin{equation*}
-            (\underline{w}_L(\cdot, t), \underline{w}_U(\cdot, t)) \geq (0, w_\ell^0) \quad \text{for all } t > 0.
+            (\underline{w}_L(\cdot, t), \underline{w}_U(\cdot, t)) \geq (0, w_0^\ell) \quad \text{for all } t > 0.
         \end{equation*}
         Using Lemma \ref{lem:2.2} it follows, with \(\delta > 0\):
         \begin{equation*}
@@ -124,10 +124,10 @@
             (\underline{w}_{L}(\cdot, t), \underline{w}_{U}(\cdot, t)) \to (1, 1) \quad \text{locally uniformly as } t \to +\infty.
             \label{eq:3.4}
         \end{equation}
-        On the other hand, as \(w_\ell^0(x) < w_U(x, 1)\) for \(x \in (-\infty, 0)\), thanks to Lemma \ref{lem:2.2},
-        \[
-            (\underline{w}_L(\cdot, t), \underline{w}_U(\cdot, t)) \leq (\underline{w}_L(\cdot, t + 1), \underline{w}_U(\cdot, t + 1)) \quad \text{for all } t > 0.
-        \]
+        On the other hand, as \(w_0^\ell(x) < w_U(x, 1)\) for \(x \in (-\infty, 0)\), thanks to Lemma \ref{lem:2.2},
+    \[
+        (\underline{w}_L(\cdot, t), \underline{w}_U(\cdot, t)) \leq ({w}_L(\cdot, t + 1), {w}_U(\cdot, t + 1)) \quad \text{for all } t > 0.
+    \]
     \end{proofc}
 \end{frame}
 
@@ -138,10 +138,9 @@
     \begin{proofe}
         This and \eqref{eq:3.4} imply that
         \begin{equation}
-            (\liminf_{t \to +\infty} w_L(\cdot, t), \liminf_{t \to +\infty} w_U(\cdot, t)) \to (1, 1),
+            (\liminf_{t \to +\infty} w_L(\cdot, t), \liminf_{t \to +\infty} w_U(\cdot, t)) \geq (1, 1).
             \label{eq:3.5}
         \end{equation}
-        locally uniformly as \(t \to +\infty\).
         Combining \eqref{eq:3.2} and \eqref{eq:3.5} concludes the proof.
     \end{proofe}
 \end{frame}
