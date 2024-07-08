@@ -20,14 +20,14 @@
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage[T1]{fontenc} % Font encoding
+\usepackage{lmodern} % Latin Modern font
 % PACKAGES FOR IMAGES
 \usepackage{graphicx}
 \graphicspath{{Images/}} % Path for images' folder
 \usepackage{eso-pic} % For the background picture on the title page
 \usepackage{subfig} % Numbered and caption subfigures using \subfloat
 \usepackage{caption} % Coloured captions
-\usepackage{subcaption}
-
+%\usepackage{subcaption}
 \usepackage{transparent}
 
 % STANDARD MATH PACKAGES
@@ -44,11 +44,13 @@
 % PACKAGES FOR ALGORITHMS (PSEUDO-CODE)
 \usepackage{algorithm}
 \usepackage{algorithmic}
-
 % PACKAGES FOR REFERENCES & BIBLIOGRAPHY
+\usepackage{cite} % For citations
 \usepackage[colorlinks=true,linkcolor=black,anchorcolor=black,citecolor=black,filecolor=black,menucolor=black,runcolor=black,urlcolor=black]{hyperref} % Adds clickable links at references
 \usepackage{cleveref}
 \usepackage[square, numbers, sort&compress]{natbib} % Square brackets, citing references with numbers, citations sorted by appearance in the text and compressed
+\usepackage{bookmark} % Add this package to fix the reported errors
+\bibliographystyle{plain} % You may use a different style adapted to your field
 \bibliographystyle{plain} % You may use a different style adapted to your field
 
 % PACKAGES FOR THE APPENDIX
@@ -141,27 +143,28 @@
 
 % Insert here the info that will be displayed into your Title page
 % -> title of your work
-\renewcommand{\title}{\noindent A Mathematical Model for Alzheimer Disease:
+\renewcommand{\title}{\noindent Accelerating Numerical Simulation:
 
-from Microscopic to a Macroscopic Model using
-the Two-Scale Homogenization Theory}
+a Data-Driven correction of Finite Element Methods}
 
 % -> author name and surname
 \renewcommand{\author}{Andrea Bonifacio}
 % -> MSc course
 \newcommand\norm[1]{\lVert#1\rVert}
-\newcommand{\course}{Methods and Models for Statistical Mechanics}
+\newcommand{\course}{Mimesis Team}
 % -> advisor name and surname
-\newcommand{\advisor}{Silvia Lorenzani}
+\newcommand{\advisor}{Stéphane Cotin}
 % IF AND ONLY IF you need to modify the co-supervisors you also have to modify the file Configuration_files/title_page.tex (ONLY where it is marked)
 %\newcommand{\firstcoadvisor}{Name Surname} % insert if any otherwise comment
 %\newcommand{\secondcoadvisor}{Name Surname} % insert if any otherwise comment
 % -> academic year
 \newcommand{\YEAR}{2023-2024}
 
+
 %-------------------------------------------------------------------------
 %	BEGIN OF YOUR DOCUMENT
-%-------------------------------------------------------------------------
+\usepackage{bookmark} % Add this package to fix the reported errors
+
 \begin{document}
 %-----------------------------------------------------------------------------
 % TITLE PAGE
@@ -173,7 +176,7 @@ the Two-Scale Homogenization Theory}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%     THESIS MAIN TEXT     %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-In this work will be presented a mathematical model for Alzheimer's disease (AD) at the microscopic scale. The model will be derived from the Smoluchowski equation, which describes the evolution of the density of diffusing particles that coagulate in pairs. Then will be proved that the model two-scale converges to a macroscopic model asymptotically consistent with the original one. Indeed, the information given on the microscale by the non-homogeneous Neumann boundary condition is transferred into a source term appearing in the limiting (homogenized) equations. Most of this report is based off the work of \cite{Franchi_Lorenzani_2016}, with some additions from \cite{Bertsch}.
+
 
 %-----------------------------------------------------------------------------
 % INTRODUCTION
@@ -181,7 +184,8 @@ In this work will be presented a mathematical model for Alzheimer's disease (AD)
 
 \input{Sections/01_introduction}
 
-\input{Sections/08_Conclusions}
+\input{Sections/02_Problem_setting.tex}
+
 
 %-----------------------------------------------------------------------------
 % CONCLUSION

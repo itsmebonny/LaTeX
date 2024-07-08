@@ -1,0 +1,57 @@
+\documentclass[10pt]{beamer}
+\usetheme{Montpellier}
+\beamertemplatenavigationsymbolsempty
+
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\graphicspath{{/home/andrea/Documents/Internship/Codes/Beam/Sofa_Playground/images}}
+
+\begin{document}
+\begin{frame}
+    \frametitle{Methodology}
+    Here are the results of testing the model trained on a mesh with \(n\) nodes and tested on a set of meshes with varying number of nodes. The set of meshes has the following number of nodes \(n\):
+    \[
+        \begin{split}
+            Mesh = \{36, 56, 60, 75, 80, 96, 109, 128, 143, 168, 177, 183,\\ 272, 318, 345, 431, 501, 576, 660, 902\}.
+        \end{split}
+    \]
+
+    The model was trained on the mesh with 56, 75, 128, 183 nodes in different runs. The testing was made by running a simulation with all the meshes simultaneously and comparing the results of the model with the ground truth.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Model trained on 56 nodes}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\textwidth]{/home/andrea/Documents/Internship/Codes/Beam/Sofa_Playground/images/beam_error_56_nodes.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Model trained on 75 nodes}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\textwidth]{/home/andrea/Documents/Internship/Codes/Beam/Sofa_Playground/images/beam_error_75_nodes.png}
+    \end{figure}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Model trained on 128 nodes}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\textwidth]{/home/andrea/Documents/Internship/Codes/Beam/Sofa_Playground/images/beam_error_128_nodes.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Model trained on 183 nodes}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\textwidth]{/home/andrea/Documents/Internship/Codes/Beam/Sofa_Playground/images/beam_error_183_nodes.png}
+    \end{figure}
+\end{frame}
+
+\end{document}

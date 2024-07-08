@@ -1,3 +1,41 @@
 \section{Problem setting}
+In this section will be outlined a mathematical description of the problem. It will be divided in the two case under study: the static case and the dynamic case.
 
-The problem consists 
+\subsection{Static case}
+The static case is the simplest one. In this case we have a domain $\Omega \subset \mathbb{R}^d$ with $d=2,3$ and a force $f$ acting on it. A Lagrangian description of the problem is considered, where the material coordinates are given by the vector $\bm{X}$ and the deformed state of the solid is given by
+\begin{equation}
+    \bm{x} = \bm{X} + \bm{u}
+\label{eq:deformation}
+\end{equation}
+where $\bm{u}$ is the displacement field. The model used to describe the linear relation between the stress tensor $\bm{\sigma} \in \mathbb{R}^{3\times 3}$ and the strain tensor $\bm{\varepsilon} \in \mathbb{R}^{3\times 3}$ is the linear elasticity model, which is given by
+\begin{equation}
+    \bm{\sigma} = \bm{C} : \bm{\varepsilon}
+\label{eq:linear_elasticity}
+\end{equation}
+where $\bm{C}$ is the stiffness tensor. The strain tensor is given by 
+\begin{equation}
+    \bm{\varepsilon} = \frac{1}{2} \left( \nabla \bm{u} + (\nabla \bm{u})^T \right)
+\label{eq:strain_tensor}
+\end{equation}
+and the stress tensor is given by
+\begin{equation}
+    \bm{\sigma} =  2 \mu \bm{\varepsilon} + \lambda \text{tr}(\bm{\varepsilon}) \bm{I}
+\label{eq:stress_tensor}
+\end{equation}
+where $\mu$ is the shear modulus, $\lambda$ is the Lamé parameter and $\bm{I}$ is the identity matrix. The shear modulus and the Lamé parameter are related to the Young's modulus $E$ and the Poisson's ratio $\nu$ by the relations
+\begin{equation}
+    \mu = \frac{E}{2(1+\nu)}
+\end{equation}
+and
+\begin{equation}
+    \lambda = \frac{E\nu}{(1+\nu)(1-2\nu)}
+\end{equation}
+The boundary \( \partial \Omega \) is divided in two parts: the Dirichlet boundary \( \Gamma_D \) and the Neumann boundary \( \Gamma_N \), where \(\Gamma_D \cup \Gamma_N = \partial \Omega \) and \(\Gamma_D \cap \Gamma_N = \emptyset \). The imposition of the Dirichlet boundary conditions is given by
+\begin{equation}
+    \bm{u} = \bm{u}_D \quad \text{on} \quad \Gamma_D
+\end{equation}
+and the imposition of the Neumann boundary conditions is given by
+\begin{equation}
+    \bm{\sigma} \cdot \bm{n} = \bm{t} \quad \text{on} \quad \Gamma_N
+\end{equation}
+where \( \bm{n} \) is the outward unit normal to the boundary and \( \bm{t} \) is the traction vector. 
