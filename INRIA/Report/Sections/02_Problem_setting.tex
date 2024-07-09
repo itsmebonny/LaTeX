@@ -39,3 +39,25 @@ and the imposition of the Neumann boundary conditions is given by
     \bm{\sigma} \cdot \bm{n} = \bm{t} \quad \text{on} \quad \Gamma_N
 \end{equation}
 where \( \bm{n} \) is the outward unit normal to the boundary and \( \bm{t} \) is the traction vector. 
+At this point, the problem can be formulated as the set of equations
+\begin{equation}
+    \begin{cases}
+        -\nabla \cdot \bm{\sigma} = \bm{f} \quad \text{in} \quad \Omega \\
+        \bm{u} = \bm{u}_D \quad \text{on} \quad \Gamma_D \\
+        \bm{\sigma} \cdot \bm{n} = \bm{t} \quad \text{on} \quad \Gamma_N
+    \end{cases}
+\label{eq:static_problem}
+\end{equation}
+where \( \bm{f} \) is the body force. 
+Since in this case \(u_D = 0\), it is possible to select \(V = H^1_0(\Omega)\) as the space of test functions, where \(H^1_0(\Omega)\) is the Sobolev space of functions with square integrable derivatives and zero trace on the boundary. To obtain the weak formulation of the problem, integrate both sides of the equation \eqref{eq:static_problem} by a test function \( \bm{v} \in V \) obtaining 
+\begin{equation}
+    \int_{\Omega} -\nabla \cdot \bm{\sigma} \cdot \bm{v} \, d\Omega = \int_{\Omega} \bm{f} \cdot \bm{v} \, d\Omega
+\end{equation}
+and, thanks to the divergence theorem, the equation becomes
+\begin{equation}
+    \int_{\Omega} \bm{\sigma} : \nabla \bm{v} \, d\Omega = \int_{\Omega} \bm{f} \cdot \bm{v} \, d\Omega + \int_{\Gamma_N} \bm{t} \cdot \bm{v} \, ds.
+\end{equation}
+The numerical solution of this problem can be obtained by the Finite Element Method (FEM) thanks to the SOFA framework.
+
+\subsection{Dynamic case}
+TO DO

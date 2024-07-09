@@ -1,0 +1,8 @@
+\section{Data driven correction}
+\label{sec:neural_network}
+
+In this section will be presented the idea behind the method proposed to solve this problem. It is something that it's been already explored in the CFD world, although with some differences. 
+
+It will be taken into account two discretization of the domain \(\Omega\), called \(\Omega_c\) and \(\Omega_f\) where the subscript \(c\) stands for ``coarse'' and the subscript \(f\) stands for ``fine''. The final goal is to have a solution on the coarse grid that is as close as possible to the solution on the fine grid. One possibility is to find a map \(G: \Omega_f \rightarrow \Omega_c\) that maps the solution on the fine grid to the coarse grid. 
+
+The first solution that comes to mind is to use a neural network to find this map. So find an approximation \(\mathcal{NN}(\bm{u}) \approx G(\bm{u})\), by training the neural network on a dataset of pairs of solutions on the fine and coarse grid. This method has some drawbacks, the main one is that the neural network is trained on a fixed set of nodes, so if the coarse discretization changes, the method is not working anymore. 
