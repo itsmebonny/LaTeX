@@ -2,4 +2,16 @@
 \label{sec:neural_network}
 
 Neural networks are ubiquitous these days, every field of science or engineering is using them to solve problems in some way. Here will be given a short introduction to their inner workings. 
-In its most basic configuration, a neural network is composed of three layers: the input layer, the hidden layer and the output layer. The input layer receives the data and pass them to the hidden layer, which is the core of the network. The hidden layer is composed of neurons, which are the basic unit of computation of the network. Each neuron receives the data from the previous layer, applies a (nonlinear) function to it and passes the result to the next layer. 
+In its most basic configuration, a neural network is composed of three layers: the input layer, the hidden layer and the output layer. The input layer receives the data and pass them to the hidden layer, which is the core of the network. The hidden layer is composed of neurons, which are the basic unit of computation of the network. Each neuron receives the data from the previous layer, applies a (nonlinear) function to it and passes the result to the next layer. The output layer receives the data from the hidden layer and produces the final output of the network. 
+
+To do so, the network can be modeled as a function $f$ with two inputs: the data $x$ and the parameters $\theta$. The training is done on a dataset \(\mathcal{D} = \{(x_i, y_i)\}_{i=1}^N\), where \(x_i\) is the input and \(y_i\) is the output. The goal is to find the parameters \(\theta\) that minimize the loss function \(\mathcal{L}\) between the output of the network and the true output. 
+
+Given a network with \(L\) layers, the output of the network is given by the following equation:
+\begin{equation}
+    f(x, \theta) = f_L(f_{L-1}(\ldots f_1(x, \theta_1) \ldots, \theta_{L-1}), \theta_L)
+\end{equation}
+where \(f_i\) is the function of the \(i\)-th layer and \(\theta_i\) are the parameters of the \(i\)-th layer. \(f_i\) is defined as follows:
+\begin{equation}
+    f_i(x, \theta_i) = act(W_i x + b_i)
+\end{equation}
+where \(act\) is the activation function, \(W_i\) is the weight matrix and \(b_i\) is the bias vector of the \(i\)-th layer. The activation function is a nonlinear function that allows the network to learn complex patterns. 
