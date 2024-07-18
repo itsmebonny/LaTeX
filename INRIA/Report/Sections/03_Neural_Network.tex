@@ -15,3 +15,5 @@ where \(f_i\) is the function of the \(i\)-th layer and \(\theta_i\) are the par
     f_i(x, \theta_i) = act(W_i x + b_i)
 \end{equation}
 where \(act\) is the activation function, \(W_i\) is the weight matrix and \(b_i\) is the bias vector of the \(i\)-th layer. The activation function is a nonlinear function that allows the network to learn complex patterns. 
+
+Clearly, since the model parameters are set starting from the data, the model itself can only be good as the data. This will be matter of discussion, because how the data are captured in this kind of problem is sort of an open problem by itself, meaning that maybe it could not be necessary to sample random data, but using data sampled regularly could vastly reduce the amount of simulation time needed for a very small reduction in accuracy of the model.
