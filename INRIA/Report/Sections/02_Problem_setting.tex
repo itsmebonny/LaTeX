@@ -57,10 +57,39 @@ and, thanks to the divergence theorem, the equation becomes
 \begin{equation}
     \int_{\Omega} \bm{\sigma} : \nabla \bm{v} \, d\Omega = \int_{\Omega} \bm{f} \cdot \bm{v} \, d\Omega + \int_{\Gamma_N} \bm{t} \cdot \bm{v} \, ds.
 \end{equation}
-The numerical solution of this problem can be obtained by the Finite Element Method (FEM) thanks to the SOFA framework.
+At this point, keeping in mind that \(\sigma(u) = \lambda(\nabla \cdot u)I + \mu (\nabla u + (\nabla u)^T)\), the formulation is obtained as: find \(u \in V\) such that
+\begin{equation}
+    a(u,v) = L(v) \quad \forall v \in V
+\end{equation}
+where
+\begin{equation}
+    a(u,v) = \int_{\Omega} \sigma(u) : \nabla v \, d\Omega
+\end{equation}
+and
+\begin{equation}
+    L(v) = \int_{\Omega} f \cdot v \, d\Omega + \int_{\Gamma_N} t \cdot v \, ds.
+\end{equation}
+From this weak formulation, it is possible to derive the finite element formulation of the problem, which will be used to solve the problem numerically.
 
 \subsection{Dynamic case}
 In the dynamic case, the problem is more complex, because there is also a temporal dependency in the problem, which will need to be addressed. The domain is the same as in the case of the static problem. Same for the boundary conditions. It is possible to describe the problem as done for the static case, adding a time derivative.
-The equation that describes the dynamic case is the following
-
+The equation that describes the dynamic case is the following:
+\begin{equation}
+    \begin{cases}
+        \rho \frac{\partial^2 \bm{u}}{\partial t^2} - \nabla \cdot \bm{\sigma} = \bm{f} \quad \text{in} \quad \Omega \\
+        \bm{u} = \bm{u}_D \quad \text{on} \quad \Gamma_D \\
+        \bm{\sigma} \cdot \bm{n} = \bm{t} \quad \text{on} \quad \Gamma_N
+    \end{cases}
+\label{eq:dynamic_problem}
+\end{equation}
+where \( \rho \) is the density of the material. The weak formulation of the problem is obtained by multiplying the equation by a test function \( \bm{v} \in V \) and integrating over the domain, obtaining
+\begin{equation}
+    \int_{\Omega} \rho \frac{\partial^2 \bm{u}}{\partial t^2} \cdot \bm{v} \, d\Omega + \int_{\Omega} \sigma : \nabla \bm{v} \, d\Omega = \int_{\Omega} \bm{f} \cdot \bm{v} \, d\Omega + \int_{\Gamma_N} \bm{t} \cdot \bm{v} \, ds.
+    \label{eq:dynamic_weak_formulation}
+\end{equation}
+The weak formulation of the problem is then: find \(u \in V\) such that
+\begin{equation}
+    \int_{\Omega} \rho \frac{\partial^2 u}{\partial t^2} \cdot v \, d\Omega +  a(u,v) = L(v) \quad \forall v \in V
+\end{equation}
+which can be 
          
