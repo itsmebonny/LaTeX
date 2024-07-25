@@ -127,7 +127,20 @@ To solve it numerically, the domain is discretized into two meshes: a coarse mes
         \item A 2D beam
         \item A 3D beam
     \end{itemize}
-    Forse metto due foto qua
+    \begin{columns}
+        \column{0.5\textwidth}
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.8\textwidth]{Images/2D_beam.png}
+            \caption{2D Beam}
+        \end{figure}
+        \column{0.5\textwidth}
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.8\textwidth]{Images/2D_beam.png}
+            \caption{3D Beam}
+        \end{figure}
+    \end{columns}
 \end{frame}
 
 \begin{frame}
@@ -146,6 +159,73 @@ To solve it numerically, the domain is discretized into two meshes: a coarse mes
             \hline
         \end{tabular}
     \end{table}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Numerical Results - 2D Beam}
+    Here is an example of the corrected solution for a random simulation colored by the error:
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\textwidth]{Images/output_2D_beam.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Numerical Results - 3D Beam}
+    In this case \( \Omega = [0, 10] \times [-1, 1] \times [-1, 1] \) with Dirichlet boundary conditions on \(\{0\} \times [-1, 1] \times [-1, 1]\) and a Neumann boundary condition on a random part of the remaining boundary.
+    \vspace{0.5cm}
+
+    The metric used to evaluate the performance of the method is the Root Mean Squared Error (RMSE) between the corrected solution and the fine solution.
+    Here is a table with the results, testing the method on 100 different random simulations:
+    \begin{table}
+        \centering
+        \begin{tabular}{|c|c|}
+            \hline
+            RMSE & 0.007981 ± 0.008958 m \\
+            Extrema & 0.000255 \(\rightarrow\) 0.06638 m \\
+            \hline
+        \end{tabular}
+    \end{table}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Numerical Results - 3D Beam}
+    Here is an example of the corrected solution for a random simulation colored by the error:
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.8\textwidth]{Images/output_3D_beam.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Dynamic case}
+    The final goal is to extend the method to the dynamic case. In that case some problems arise.
+    \begin{itemize}
+        \item Differences accumulate over time.
+        \item The static model is not able to capture the dynamic behavior.
+        \item How to capture data?
+    \end{itemize}
+    When the dynamic system behaves similarly to the static one, the static model works reasonably well.
+\end{frame}
+
+\begin{frame}
+    \frametitle{Dynamic case - Ideas}
+    Some ideas for the dynamic case:
+    \begin{itemize}
+        \item Create a new dataset containing both the solution and its time derivative, but keeping the same error as target.
+        \item Creating two different datasets: one for the solution and one for the time derivative.
+        \item Use a different network architecture capturing the time evolution. (But that would mean creating a black-box model).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Conclusions}
+    \begin{itemize}
+        \item The method works well for static problems (given a suitable dataset).
+        \item Maybe there is a way to efficiently sample the dataset.
+        \item Probably GNNs could further improve the results (slower computations?).
+        \item The dynamic case has still some open questions.
+    \end{itemize}
 \end{frame}
 \end{document}
 
