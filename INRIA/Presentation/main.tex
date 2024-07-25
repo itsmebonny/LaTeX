@@ -6,6 +6,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{graphicx}
+
 \usepackage{subfigure}
 \usepackage{multirow}
 \usepackage{multicol}
@@ -15,6 +16,8 @@
 \usepackage{listings}
 \usepackage{algorithm}
 \usepackage{physics}
+% add image path
+\graphicspath{{../Images/}}
 
 \title{Accelerating Numerical Simulations using Data-Driven Correction}
 \author{Andrea Bonifacio}
@@ -130,6 +133,19 @@ To solve it numerically, the domain is discretized into two meshes: a coarse mes
 \begin{frame}
     \frametitle{Numerical Results - 2D Beam}
     In this case \( \Omega = [0, 10] \times [-1, 1] \) with Dirichlet boundary conditions on \(\{0\} \times [-1, 1]\) and a Neumann boundary condition on a random part of the remaining boundary.
+    \vspace{0.5cm}
+
     The metric used to evaluate the performance of the method is the Root Mean Squared Error (RMSE) between the corrected solution and the fine solution.
+    Here is a table with the results, testing the method on 100 different random simulations:
+    \begin{table}
+        \centering
+        \begin{tabular}{|c|c|}
+            \hline
+            RMSE & 0.007981 ± 0.008958 m \\
+            Extrema & 0.000255 \(\rightarrow\) 0.06638 m \\
+            \hline
+        \end{tabular}
+    \end{table}
 \end{frame}
 \end{document}
+
