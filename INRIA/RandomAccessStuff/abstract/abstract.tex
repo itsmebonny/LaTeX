@@ -1,0 +1,17 @@
+\documentclass{article}
+
+\usepackage{abstract}
+
+\begin{document}
+
+\title{Accelerating Numerical Simulations with Data-Driven Correction}
+
+\author{Andrea Bonifacio}
+
+\maketitle
+
+\begin{abstract}
+  In this work, a method for accelerating numerical simulations with the help of deep learning techniques is proposed. The idea is to minimize the discrepancy between a numerical solution obtained with a coarse discretization of the domain and a reference solution obtained with a fine discretization. A common grid is created on both domains and the solutions are interpolated on that grid. By computing the difference between the two solutions, a correction term is obtained and used as the target for training a deep learning model which is used to correct the solution on a coarse domain, thus reducing the computational cost of the simulation. This method has been tested on a linear elasticity problem and has shown promising results in the static case, both in two dimensions and in three dimensions. With some adjustments, it could be extended to the time-dependent case. The method avoids the black-box nature of deep learning models by using the numerical solver first and then correcting the solution, which will avoid the accumulation of errors in the time dependent case. By using a small neural network, the inference time for the correction is very low, making the method suitable for real-time applications. 
+\end{abstract}
+
+\end{document}

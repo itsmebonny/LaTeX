@@ -88,7 +88,7 @@ To solve it numerically, the domain is discretized into two meshes: a coarse mes
 \begin{frame}
 \frametitle{Methodology}
 \begin{itemize}
-    \item A dataset \(\mathcal{D} = \{u_G^c, e\}\) is created.
+    \item A dataset \(\mathcal{D} = \{{u_G^c}_i, e_i\}_{i=1}^N\) is created by solving the problem on \(N\) different random simulations.
     \item A neural network is trained on the dataset.
     \item On a new simulation, the coarse solution is computed and its correction is obtained as: 
     \[
@@ -137,7 +137,7 @@ To solve it numerically, the domain is discretized into two meshes: a coarse mes
         \column{0.5\textwidth}
         \begin{figure}
             \centering
-            \includegraphics[width=0.8\textwidth]{Images/2D_beam.png}
+            \includegraphics[width=0.8\textwidth]{Images/3D_beam.png}
             \caption{3D Beam}
         \end{figure}
     \end{columns}
@@ -181,8 +181,8 @@ To solve it numerically, the domain is discretized into two meshes: a coarse mes
         \centering
         \begin{tabular}{|c|c|}
             \hline
-            RMSE & 0.007981 ± 0.008958 m \\
-            Extrema & 0.000255 \(\rightarrow\) 0.06638 m \\
+            RMSE & 0.025656 ± 0.027414 m \\
+            Extrema & 0.000382 \(\rightarrow\) 0.136971 m \\
             \hline
         \end{tabular}
     \end{table}
