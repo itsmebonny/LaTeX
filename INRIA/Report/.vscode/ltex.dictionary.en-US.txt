@@ -1,0 +1,4 @@
+PINNs
+PDEs
+MeshGraphNet
+GNNs

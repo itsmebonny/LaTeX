@@ -43,7 +43,7 @@
 
 % PACKAGES FOR ALGORITHMS (PSEUDO-CODE)
 \usepackage{algorithm}
-\usepackage{algorithmic}
+\usepackage{algpseudocode}
 % PACKAGES FOR REFERENCES & BIBLIOGRAPHY
 \usepackage{biblatex} %Imports biblatex package
 \addbibresource{mimesis.bib}
@@ -101,6 +101,8 @@
 \usepackage{wrapfig}
 \usepackage{dsfont}
 \usepackage{shadethm}
+\usepackage{tikz}
+\def\layersep{2.5cm}
 
 \parindent=0pt
 
@@ -111,6 +113,8 @@
 \newcommand*{\oldepsilon}{\epsilon}
 \renewcommand*{\epsilon}{\varepsilon}
 \DeclareMathOperator*{\esssup}{ess\,sup}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
 
 \numberwithin{equation}{section}
 %----------------------------------------------------------------------------
