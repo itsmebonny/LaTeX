@@ -29,20 +29,43 @@
 \titlepage
 \end{frame}
 
-\begin{frame}
-\frametitle{Introduction}
-\begin{itemize}
-    \item The main drawback of numerical simulations is the computational cost.
-    \item More accurate simulations \(\Rightarrow\) more computational cost.
-    \item Idea: find a way to insert information from a more accurate simulation into a less accurate one.
-\end{itemize}
-\end{frame}
+
+\begin{frame}{Introduction}
+
+    \textbf{Why This Matters}
+    \begin{itemize}
+        \item \textbf{Challenge}: High-fidelity numerical simulations are computationally expensive, limiting their use in real-time and large-scale scenarios.
+        \item \textbf{Trade-off}: Higher accuracy $\rightarrow$ Increased computational cost.
+    \end{itemize}
+    
+    \vspace{0.5cm}
+    
+    \textbf{Our Idea}
+    \begin{itemize}
+        \item Integrate insights from accurate simulations into less accurate ones to achieve:
+        \begin{itemize}
+            \item Comparable accuracy.
+            \item Drastically reduced computational time.
+        \end{itemize}
+    \end{itemize}
+    
+    \vspace{0.5cm}
+    
+    \begin{itemize}
+        \item \textbf{Generalizable}: Independent of geometry and topology.
+        \item \textbf{Transparent}: Avoids black-box methodologies.
+        \item \textbf{Efficient}: Prioritizes speed and computational feasibility.
+    \end{itemize}
+    
+    \vspace{0.5cm}
+    
+    \end{frame}
 
 \begin{frame}
 \frametitle{Goal}
 \begin{columns}
     \column{0.5\textwidth}
-    The ideal method should be:
+    The \textbf{ideal} method should be:
     \begin{itemize}
     \item Geometry-independent.
     \item Topology-independent.
@@ -59,6 +82,21 @@
     \end{itemize}
 \end{columns}
 \end{frame}
+
+\begin{frame}
+\frametitle{Similar Works}
+Even though we are not aware of any work that uses the same methodology in the field of computational mechanics, there are some works that are related to ours:
+\begin{itemize}
+    \item \href{https://www.sciencedirect.com/science/article/abs/pii/S0045793023001962}{Data-driven correction of coarse CFD grids}: This is the \textbf{most similar work} to ours and also the inspiration for our work. The authors use various ML techniques to correct the solution obtained on a coarse mesh.
+    \item \href{https://arxiv.org/pdf/2109.09491}{A physics-aware framework for real time simulation}: While the approach is different, the \textbf{goal is similar} to ours and can be used as a \textbf{reference}.
+    \item \href{https://arxiv.org/abs/1904.06197}{Simulation of hyperelastic materials in real-time using Deep Learning}: This is a similar work to the previous one, in which the author uses a neural network to \textbf{predict the deformation} of a hyperelastic material. Due to missing implementation in our numerical solver, we stick to \textbf{linear elasticity}.
+\end{itemize}
+\end{frame}
+
+
+
+
+
 
 \begin{frame}
 \frametitle{Methodology}
@@ -103,6 +141,18 @@ To solve it numerically, the domain is discretized into two meshes: a coarse mes
 \end{frame}
 
 \begin{frame}
+\frametitle{Boundary Conditions}
+Even though the information about the boundary conditions could be already included in the solution, we tried to enforce them explicitly.
+\begin{itemize}
+    \item Given the vector of the solution \( u_G^c \), we take the vector of the boundary conditions \( b \) and concatenate them.
+    \item The vector \( b \) contains the direction of the force, its magnitude and the boundaries of the box where the force is applied.
+    \item In the case of a graph dataset, the boundary conditions are included in the node features.
+    \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
 \frametitle{Pros and Cons}
 \begin{columns}
     \column{0.5\textwidth}
@@ -116,7 +166,7 @@ To solve it numerically, the domain is discretized into two meshes: a coarse mes
     Cons:
     \begin{itemize}
         \item This method is still geometry dependent.
-        \item Needs a large dataset to train the model (for now).
+        \item Need a large dataset to train the model (for now).
     \end{itemize}
 \end{columns}
 \end{frame}
