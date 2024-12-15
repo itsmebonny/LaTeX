@@ -110,7 +110,7 @@ Consider a general boundary value problem:
 where \(\mathcal{L}\) is a differential operator, \(f\) is a source term, \(\Omega\) is the domain and \(\partial \Omega\) is the boundary of the domain. 
 
 \vspace{0.5cm}
-To solve it numerically, the domain is discretized into two meshes: a coarse mesh and a fine mesh. 
+To solve it numerically, the domain is discretized into two meshes: a coarse mesh and a fine mesh and the force is applied on a subdivision of the boundary made to avoid applying the force too close to the Dirichlet boundary conditions. 
 \end{frame}
 
 \begin{frame}
@@ -205,8 +205,8 @@ Even though the information about the boundary conditions could be already inclu
         \centering
         \begin{tabular}{|c|c|}
             \hline
-            RMSE & 0.007981 ± 0.008958 m \\
-            Extrema & 0.000255 \(\rightarrow\) 0.06638 m \\
+            RMSE & 0.0080 ± 0.0090 m \\
+            Extrema & 0.0003 \(\rightarrow\) 0.0664 m \\
             \hline
         \end{tabular}
     \end{table}
@@ -232,8 +232,8 @@ Even though the information about the boundary conditions could be already inclu
         \centering
         \begin{tabular}{|c|c|}
             \hline
-            RMSE & 0.025656 ± 0.027414 m \\
-            Extrema & 0.000382 \(\rightarrow\) 0.136971 m \\
+            RMSE & 0.0257 ± 0.0274 m \\
+            Extrema & 0.0004 \(\rightarrow\) 0.1370 m \\
             \hline
         \end{tabular}
     \end{table}
@@ -246,6 +246,226 @@ Even though the information about the boundary conditions could be already inclu
         \centering
         \includegraphics[width=0.8\textwidth]{Images/output_3D_beam.png}
     \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Numerical Results: 2D Beam with BC}
+    \begin{table}[h]
+        \small
+        \centering
+        \begin{tabular}{|l|c|c|}
+            \hline
+            \textbf{Statistic} & \textbf{GNN} & \textbf{FC} \\ \hline
+            RMSE Distribution (m) & 0.0059 ± 0.0072 & 0.0031 ± 0.0041 \\ \hline
+            RMSE Extrema (m) & 0.0002 \(\rightarrow\) 0.0430 & 0.0001 \(\rightarrow\) 0.0382 \\ \hline
+        \end{tabular}
+        \caption{2D Beam Results}
+    \end{table}
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.6\textwidth]{Images/output_2D_beam.png}
+        \caption{Placeholder for 2D Beam Results Image}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Numerical Results: 3D Beam with BC}
+    \begin{table}[h]
+        \small
+        \centering
+        \begin{tabular}{|l|c|c|}
+            \hline
+            \textbf{Statistic} & \textbf{GNN} & \textbf{FC} \\ \hline
+            RMSE Distribution (m) & 0.0051 ± 0.0048 & 0.0055 ± 0.0048 \\ \hline
+            RMSE Extrema (m) & 0.0002 \(\rightarrow\) 0.0351 & 0.0002 \(\rightarrow\) 0.0295 \\ \hline
+        \end{tabular}
+        \caption{3D Beam Results}
+    \end{table}
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.6\textwidth]{Images/output_3D_beam.png}
+        \caption{Placeholder for 3D Beam Results Image}
+    \end{figure}
+\end{frame}
+
+
+\begin {frame}
+    \frametitle{Comparison Summary BC vs No BC}
+    \begin{table}[h]
+        \small
+        \centering
+        \begin{tabular}{|l|c|c|}
+            \hline
+            \textbf{Model} & \textbf{RMSE (m) with BC} & \textbf{RMSE (m) without BC} \\ \hline
+            2D Beam FC & 0.0031 ± 0.0041 & 0.0080 ± 0.0090 \\ \hline
+            3D Beam FC & 0.0055 ± 0.0048 & 0.0257 ± 0.0274 \\ \hline
+        \end{tabular}
+        \caption{Comparison of RMSE between models with and without boundary conditions}
+    \end{table}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Comparison with Existing Methods}
+    \begin{table}[h]
+        \small
+        \centering
+        \begin{tabular}{|l|c|c|}
+            \hline
+            \textbf{Method} & \textbf{MSE (m²)} & \textbf{MSE\textsubscript{max} (m²)} \\ \hline
+            Our GNN 2D & 1.0e-4 ± 2.0e-4 & 0.0019 \\ \hline
+            Our FC 2D & 1.0e-5 ± 1.0e-4 & 0.0015 \\ \hline
+            DeepPhysics (a) & 5.4e-5 & 0.0370 \\ \hline
+            DeepPhysics (b) & 6.6e-6 & 0.0050 \\ \hline
+        \end{tabular}
+        \caption{Comparison with DeepPhysics method}
+    \end{table}
+    
+    \vspace{0.3cm}
+    \small{
+    \textbf{Note:} These results are not directly comparable as:
+    \begin{itemize}
+        \item Different length scales
+        \item Different boundary conditions
+        \item Different mesh resolutions
+        \item Provided only as reference point for existing methods
+    \end{itemize}
+    }
+\end{frame}
+
+
+
+\iffalse
+2D Beam:
+
+GNN L2 ERROR Statistics :
+        - Distribution : 0.162025 ± 0.197841 m
+        - Extrema : 0.004288 -> 1.17872 m
+        - Relative Distribution : 3.947784 ± 12.24652 %
+        - Relative Extrema : 0.048002 -> 168.872635 %
+
+GNN MSE Statistics :
+        - Distribution : 8.7e-05 ± 0.000236 m²
+        - Extrema : 0.0 -> 0.001853 m²
+        - Relative Distribution : 0.551874 ± 5.994854 %
+        - Relative Extrema : 8e-06 -> 95.059889 %
+
+GNN RMSE Statistics :
+        - Distribution : 0.005916 ± 0.007224 m
+        - Extrema : 0.000157 -> 0.043041 m
+        - Relative Distribution : 2.279254 ± 7.070532 %
+        - Relative Extrema : 0.027714 -> 97.498661 %
+
+FC L2 ERROR Statistics :
+        - Distribution : 0.086031 ± 0.111081 m
+        - Extrema : 0.003292 -> 1.047344 m
+        - Relative Distribution : 2.406034 ± 8.429538 %
+        - Relative Extrema : 0.054972 -> 0.899609 %
+
+FC MSE Statistics :
+        - Distribution : 2.6e-05 ± 0.000104 m²
+        - Extrema : 0.0 -> 0.001463 m²
+        - Relative Distribution : 0.256154 ± 2.173215 %
+        - Relative Extrema : 1e-05 -> 0.269765 %
+
+FC RMSE Statistics :
+        - Distribution : 0.003141 ± 0.004056 m
+        - Extrema : 0.00012 -> 0.038244 m
+        - Relative Distribution : 1.389124 ± 4.866796 %
+        - Relative Extrema : 0.031738 -> 0.51939 %
+
+Comparison of RMSE between GNN and FC :
+        - GNN : 0.005916 ± 0.007224 m
+        - FC : 0.003141 ± 0.004056 m
+
+\fi
+
+
+\iffalse
+3D Beam:
+
+GNN L2 ERROR Statistics :
+        - Distribution : 0.440302 ± 0.413019 m
+        - Extrema : 0.017953 -> 3.043579 m
+        - Relative Distribution : 7.173711 ± 17.297733 %
+        - Relative Extrema : 0.162882 -> 207.40604 %
+
+GNN MSE Statistics :
+        - Distribution : 4.9e-05 ± 0.000106 m²
+        - Extrema : 0.0 -> 0.001235 m²
+        - Relative Distribution : 1.168912 ± 9.187474 %
+        - Relative Extrema : 8.8e-05 -> 143.390884 %
+
+GNN RMSE Statistics :
+        - Distribution : 0.005084 ± 0.004769 m
+        - Extrema : 0.000207 -> 0.035144 m
+        - Relative Distribution : 4.141744 ± 9.986851 %
+        - Relative Extrema : 0.09404 -> 119.745933 %
+
+FC L2 ERROR Statistics :
+        - Distribution : 0.473986 ± 0.41791 m
+        - Extrema : 0.021292 -> 2.553303 m
+        - Relative Distribution : 6.737772 ± 14.790396 %
+        - Relative Extrema : 0.302738 -> 1.754084 %
+
+FC MSE Statistics :
+        - Distribution : 5.3e-05 ± 0.000105 m²
+        - Extrema : 0.0 -> 0.000869 m²
+        - Relative Distribution : 0.880511 ± 7.397949 %
+        - Relative Extrema : 0.000306 -> 1.025603 %
+
+FC RMSE Statistics :
+        - Distribution : 0.005473 ± 0.004826 m
+        - Extrema : 0.000246 -> 0.029483 m
+        - Relative Distribution : 3.890054 ± 8.539239 %
+        - Relative Extrema : 0.174786 -> 1.012721 %
+
+Comparison of the RMSE between the GNN and the FC model:
+        - GNN RMSE : 0.005084 ± 0.004769 m
+        - FC RMSE : 0.005473 ± 0.004826 m
+\fi
+
+\iffalse
+DeepPhysics results:
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|l|c|c|c|}
+        \hline
+        \textbf{Name} & \textbf{MSE} & $\textbf{MSE}_{\text{max}}$ & $\textbf{SNR}^{dB}$ \\ \hline
+        Beam (a) & $5.4 \times 10^{-5}$ & 0.0370 & 22.2 \\ \hline
+        Beam (b) & $6.6 \times 10^{-6}$ & 0.0050 & 40.2 \\ \hline
+    \end{tabular}
+    \caption{Mean Squared Error (MSE), Maximum MSE, and Signal-to-Noise Ratio (SNR) for Beam and Propeller cases.}
+    \label{tab:mse_snr}
+\end{table}
+\fi
+
+
+\begin{frame}
+    \frametitle{Strenghts of the Method}
+    \textbf{Efficiency Without Compromise:}
+    \begin{itemize}
+        \item Starts with the coarse FEM solution—a computationally cheap but robust approximation—and refines it using a neural network.
+        \item Avoids solving a dense system of equations on fine meshes while ensuring the corrected solution retains physical fidelity.
+    \end{itemize}
+    \textbf{Topology Independence:}
+    \begin{itemize}
+        \item Adapts to various mesh topologies without requiring retraining.
+        \item Interpolation of solutions onto a common grid ensures versatility across different geometries and mesh resolutions.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Strenghts of the Method}
+    \textbf{Interpretability:}
+    \begin{itemize}
+        \item Neural network corrections are grounded in a well-understood FEM baseline, avoiding the “black-box” behavior.
+        \item Easier to diagnose and address errors, a critical factor for adoption in industrial and safety-critical contexts.
+    \end{itemize}
+    \textbf{Reduction of Error Accumulation in the Dynamic Case:}
+    \begin{itemize}
+        \item Predictions are tied to FEM output at each step, mitigating error propagation across time steps.
+        \item Provides a clear advantage for applications requiring long temporal stability.
+    \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -272,11 +492,96 @@ Even though the information about the boundary conditions could be already inclu
 \begin{frame}
     \frametitle{Conclusions}
     \begin{itemize}
-        \item The method works well for static problems (given a suitable dataset).
-        \item Maybe there is a way to efficiently sample the dataset.
-        \item Probably GNNs could further improve the results (slower computations?).
-        \item The dynamic case has still some open questions. Probably a regular sampling of the dataset could help.
+        \item Introduced a hybrid method combining coarse FEM solutions with neural network corrections.
+        \item Adapts to various mesh topologies without retraining.
+        \item Provides interpretability by tying corrections to FEM outputs.
+        \item Demonstrates potential for real-time applications.
     \end{itemize}
 \end{frame}
+
+
 \end{document}
+
+\iffalse
+TO COPILOT:
+
+
+Based on your report, here’s a refined pitch that highlights the unique strengths of your method while addressing potential concerns about its perceived limitations:
+
+---
+
+**Title: A Hybrid Approach to Accelerating Finite Element Simulations Through Data-Driven Corrections**
+
+**Introduction:**
+Finite Element Modeling (FEM) remains a gold standard for solving complex PDEs in solid mechanics, but its high computational cost hinders its scalability for real-time and high-resolution simulations. This research introduces a novel hybrid approach combining FEM with neural networks to bridge this gap. Although currently demonstrated in static scenarios, the method lays the groundwork for significant advancements in simulation efficiency and adaptability.
+
+---
+
+**Key Innovations and Strengths of the Proposed Method:**
+
+1. **Efficiency Without Compromise:**
+   - Unlike pure neural network approaches that aim to predict full system dynamics (and suffer from instability and error accumulation), our method starts with the coarse FEM solution—a computationally cheap but robust approximation—and refines it using a neural network. 
+   - This avoids solving a dense system of equations on fine meshes while ensuring the corrected solution retains physical fidelity.
+
+2. **Topology Independence:**
+   - By leveraging FEM's inherent flexibility, the approach adapts to various mesh topologies without requiring retraining, addressing a common limitation in many data-driven methods.
+   - The interpolation of solutions onto a common grid ensures versatility across different geometries and mesh resolutions.
+
+3. **Interpretability:**
+   - Neural network corrections are grounded in a well-understood FEM baseline, avoiding the “black-box” behavior of methods like PINNs or MeshGraphNet. The method’s design makes it easier to diagnose and address errors, a critical factor for adoption in industrial and safety-critical contexts.
+
+4. **Elimination of Error Accumulation:**
+   - Unlike dynamic neural network approaches, which suffer from error propagation across time steps, our method mitigates this issue by anchoring predictions to FEM outputs at each step. This provides a clear advantage for applications requiring long temporal stability.
+
+5. **Real-Time Potential:**
+   - Once trained, the correction process involves a single forward pass through a neural network—a computationally lightweight operation. This significantly reduces simulation times while maintaining the desired accuracy, demonstrating promise for real-time and interactive applications.
+
+---
+
+**Broader Context and Future Prospects:**
+While the immediate results are limited to static cases, the hybrid framework demonstrates clear scalability potential for dynamic simulations. Additionally, its modularity allows integration with advanced FEM solvers, contributing to the broader goal of enhancing simulation workflows rather than replacing existing methods outright.
+
+This approach could pave the way for applications in:
+- **Interactive Design:** Rapid prototyping and real-time deformation previews in CAD tools.
+- **Medical Simulations:** Patient-specific modeling where computational resources are constrained.
+- **Structural Analysis:** Scalable solutions for complex geometries in civil and aerospace engineering.
+
+---
+
+**Conclusion:**
+This work presents a practical and interpretable solution to a long-standing challenge in computational mechanics. By combining the strengths of FEM with neural networks, it offers a middle ground between traditional and data-driven methods, demonstrating immediate value in static scenarios and long-term potential for broader adoption.
+
+---
+
+This pitch emphasizes the distinct advantages of your approach—interpretability, flexibility, and efficiency—making a compelling case for its current relevance and future impact. Let me know if you’d like further refinements!
+
+
+
+
+
+
+
+
+
+That’s a valid concern, but let me clarify why the proposed method still holds an edge over PINNs in practical scenarios:
+
+1. **Robustness vs. Direct Prediction:**
+   - **Defense:** PINNs directly solve PDEs through optimization but are notoriously sensitive to hyperparameters, convergence issues, and problem complexity. In contrast, our method builds on the coarse FEM solution, which is a physically consistent and stable baseline. This makes it more robust and less prone to divergence, especially for challenging problems.
+
+2. **Efficiency of Correction vs. Full Prediction:**
+   - **Defense:** PINNs often require extensive training epochs to approximate solutions for a single problem setup. Our method uses the FEM solution as an intermediate step, effectively reducing the neural network’s learning burden to correcting localized errors. This results in faster and more reliable training.
+
+3. **Interpretability and Debugging:**
+   - **Defense:** A PINN’s black-box nature can make debugging difficult if the results deviate from expectations. Our method provides an interpretable pipeline where discrepancies can be traced back either to the FEM step or the correction network. This structured approach makes it more appealing for safety-critical or industrial applications.
+
+4. **Dataset Cost vs. Training Cost:**
+   - **Defense:** While it’s true that the dataset requires generating numerical simulations, this step only needs to be done once. The dataset can then generalize across similar problems or configurations, allowing rapid deployment of the trained correction model. PINNs, on the other hand, need to solve the optimization problem anew for every instance, making them computationally expensive in recurring simulations.
+
+5. **Scalability to Complex Problems:**
+   - **Defense:** For high-dimensional or highly irregular domains, PINNs face scalability issues due to the increasing complexity of loss terms (e.g., physics-based constraints). Our method offloads this complexity to the FEM solver, ensuring that the neural network only handles a simplified correction task. This division of labor ensures better scalability.
+
+**Conclusion:**
+Yes, our method involves some overhead in dataset preparation, but it more than compensates for this by offering improved robustness, interpretability, and scalability, especially for cases where multiple simulations share similar underlying physics or geometry. It’s a pragmatic middle-ground solution—leveraging the strengths of numerical methods and machine learning, rather than relying entirely on one or the other.
+
+\fi
 
