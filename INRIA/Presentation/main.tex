@@ -5,6 +5,7 @@
 
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{bm} % For bold math symbols
 \usepackage{graphicx}
 
 
@@ -22,6 +23,7 @@
 
 \title{Accelerating Numerical Simulations using Data-Driven Correction}
 \author{Andrea Bonifacio}
+\date{}
 
 \begin{document}
 
@@ -32,7 +34,7 @@
 
 \begin{frame}{Introduction}
 
-    \textbf{Why This Matters}
+    \textbf{The problem}
     \begin{itemize}
         \item \textbf{Challenge}: High-fidelity numerical simulations are computationally expensive, limiting their use in real-time and large-scale scenarios.
         \item \textbf{Trade-off}: Higher accuracy $\rightarrow$ Increased computational cost.
@@ -47,11 +49,6 @@
             \item Comparable accuracy.
             \item Drastically reduced computational time.
         \end{itemize}
-    \end{itemize}
-    
-    \vspace{0.5cm}
-    
-    \begin{itemize}
         \item \textbf{Generalizable}: Independent of geometry and topology.
         \item \textbf{Transparent}: Avoids black-box methodologies.
         \item \textbf{Efficient}: Prioritizes speed and computational feasibility.
@@ -61,27 +58,27 @@
     
     \end{frame}
 
-\begin{frame}
-\frametitle{Goal}
-\begin{columns}
-    \column{0.5\textwidth}
-    The \textbf{ideal} method should be:
-    \begin{itemize}
-    \item Geometry-independent.
-    \item Topology-independent.
-    \item Not a black-box.
-    \item Fast.
-    \end{itemize}
-    \column{0.5\textwidth}
-    The proposed method is:
-    \begin{itemize}
-    \item[] X
-    \item[] \checkmark
-    \item[] \checkmark
-    \item[] \checkmark
-    \end{itemize}
-\end{columns}
-\end{frame}
+% \begin{frame}
+% \frametitle{Goal}
+% \begin{columns}
+%     \column{0.5\textwidth}
+%     The \textbf{ideal} method should be:
+%     \begin{itemize}
+%     \item Geometry-independent.
+%     \item Topology-independent.
+%     \item Not a black-box.
+%     \item Fast.
+%     \end{itemize}
+%     \column{0.5\textwidth}
+%     The proposed method is:
+%     \begin{itemize}
+%     \item[] X
+%     \item[] \checkmark
+%     \item[] \checkmark
+%     \item[] \checkmark
+%     \end{itemize}
+% \end{columns}
+% \end{frame}
 
 \begin{frame}
 \frametitle{Similar Works}
@@ -170,6 +167,34 @@ Even though the information about the boundary conditions could be already inclu
     \end{itemize}
 \end{columns}
 \end{frame}
+
+\begin{frame}{Static Case: Problem Setting}
+
+    \frametitle{Problem Description}
+    \begin{itemize}
+        \item Domain: \( \Omega \subset \mathbb{R}^d, \, d = 2,3 \)
+        \item Governing equations:
+        \[
+        \begin{cases}
+            -\nabla \cdot \bm{\sigma} = \bm{f} & \text{in } \Omega, \\
+            \bm{u} = \bm{u}_D & \text{on } \Gamma_D, \\
+            \bm{\sigma} \cdot \bm{n} = \bm{t} & \text{on } \Gamma_N
+        \end{cases}
+        \]
+        \item Stress-Strain Relation:
+        \[
+        \bm{\sigma} = 2\mu \bm{\varepsilon} + \lambda \text{tr}(\bm{\varepsilon}) \bm{I}, \quad 
+        \bm{\varepsilon} = \frac{1}{2} \left( \nabla \bm{u} + (\nabla \bm{u})^T \right)
+        \]
+        \item Material Properties:
+        \[
+        \mu = \frac{E}{2(1+\nu)}, \quad \lambda = \frac{E\nu}{(1+\nu)(1-2\nu)}
+        \]
+    \end{itemize}
+    
+\end{frame}
+    
+            
 
 \begin{frame}
     \frametitle{Numerical Results}
@@ -469,33 +494,56 @@ DeepPhysics results:
 \end{frame}
 
 \begin{frame}
-    \frametitle{Dynamic case}
-    The final goal is to extend the method to the dynamic case. In that case some problems arise.
+
+    \frametitle{Static case - Ideas}
+    
+    \begin{block}{Machine Learning-Enhanced DDMs}
+        - Neural networks are increasingly used to replace classical subdomain solvers in domain decomposition methods (DDMs).
+        - These approaches combine the strengths of machine learning and numerical techniques, enhancing scalability and adaptability.
+    \end{block}
+    
+    \vspace{0.3cm}
+    
+    \begin{block}{Subdomains Data-Driven Corrections}
+        - Use the data-driven correction method as a \textbf{local subdomain solver}:
+        \begin{itemize}
+            \item Train the neural network on fine-mesh corrections for each subdomain.
+            \item Replace traditional solvers (finite elements, finite differences) with the trained model.
+        \end{itemize}
+    \end{block}
+    
+    
+    \end{frame}
+    
+
+\begin{frame}
+    \frametitle{Dynamic Case}
+    The final goal is to extend the method to the dynamic case. In that case, some problems arise:
     \begin{itemize}
-        \item Differences accumulate over time.
-        \item The static model is not able to capture the dynamic behavior.
-        \item How to capture data?
+        \item \textbf{Differences accumulate over time.}
+        \item The static model is not able to capture the \textbf{dynamic behavior}.
+        \item \textbf{How to capture data?}
     \end{itemize}
     When the dynamic system behaves similarly to the static one, the static model works reasonably well.
 \end{frame}
 
 \begin{frame}
-    \frametitle{Dynamic case - Ideas}
+    \frametitle{Dynamic Case - Ideas}
     Some ideas for the dynamic case:
     \begin{itemize}
-        \item Create a new dataset containing both the solution and its time derivative, but keeping the same error as target.
-        \item Creating two different datasets: one for the solution and one for the time derivative.
-        \item Use a different network architecture capturing the time evolution. (But that would mean creating a black-box model).
+        \item Create a new dataset containing both the \textbf{solution and its time derivative}, but keeping the same error as the target.
+        \item Create two different datasets: one for the \textbf{solution} and one for the \textbf{time derivative}.
+        \item Use a different network architecture capturing the \textbf{time evolution} (but that would mean creating a black-box model).
     \end{itemize}
 \end{frame}
 
 \begin{frame}
     \frametitle{Conclusions}
     \begin{itemize}
-        \item Introduced a hybrid method combining coarse FEM solutions with neural network corrections.
-        \item Adapts to various mesh topologies without retraining.
-        \item Provides interpretability by tying corrections to FEM outputs.
-        \item Demonstrates potential for real-time applications.
+        \item Introduced a \textbf{hybrid method} combining coarse FEM solutions with neural network corrections.
+        \item Adapts to various \textbf{mesh topologies} without retraining.
+        \item Provides \textbf{interpretability} by tying corrections to FEM outputs.
+        \item Demonstrates potential for \textbf{real-time applications}.
     \end{itemize}
 \end{frame}
 
