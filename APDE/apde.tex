@@ -8,6 +8,7 @@
 \usepackage[margin=2cm]{geometry}
 
 \usepackage{amsthm}
+\usepackage{chngcntr}
 
 \usepackage{tabularx}
 \usepackage{graphicx}
@@ -29,8 +30,13 @@
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{corollary}{Corollary}[section]
 \newtheorem{proposition}{Proposition}[section]
-\newtheorem{remark}{Remark}[section]
+\newtheorem{remark}{Remark}
 \newtheorem{lemma}{Lemma}[section]
+\newtheorem{exercise}{Exercise}
+\counterwithin*{exercise}{subsection}
+\counterwithin*{remark}{subsection}
+
+
 \renewcommand*{\proofname}{\textbf{Proof}}
 \renewcommand\qedsymbol{$\bigstar$}
 \renewcommand*{\grad}{\nabla}
@@ -86,23 +92,37 @@
 \numberwithin{equation}{section}
 
 
+\usepackage[many]{tcolorbox}
+
+
+\tcolorboxenvironment{exercise}{
+  breakable,
+  colback=green!15!white,
+  boxrule=0pt,
+  boxsep=1pt,
+  left=2pt,right=2pt,top=5pt,bottom=5pt,
+  oversize=2pt,
+  before skip=\topsep,
+  after skip=\topsep,
+}
+\tcolorboxenvironment{remark}{
+  breakable,
+  colback=blue!20!white,
+  boxrule=0pt,
+  boxsep=1pt,
+  left=2pt,right=2pt,top=2pt,bottom=2pt,
+  oversize=2pt,
+  before skip=\topsep,
+  after skip=\topsep,
+}
 
 
 
 \begin{document}
-\title{Advanced Partial Differential Equations}
+\title{Advanced Partial Differential Equations \\ Exams}
 \author{Andrea Bonifacio}
 \date{\today}
 \maketitle
-\newpage
-\section{Sobolev Spaces in \texorpdfstring{\(\real, \real^n\)}{R, Rn}}
-\subsection{Sobolev space}
-\(\mathcal{C}^k\) spaces are Banach, but not Hilbert spaces. So how can one apply Lax-Milgram?
-\begin{equation}
-    \begin{cases}
-        -u''+u = f & f \in \mathcal{C}^0([a,b]) \\
-        u(a) = u(b) = 0 
-    \end{cases}
-\end{equation}
+\include{Sections/TDE21.tex}
 
 \end{document}

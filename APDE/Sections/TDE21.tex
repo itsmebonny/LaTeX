@@ -1,0 +1,284 @@
+\section{Exams 2021/22}
+\subsection{June 2021}
+\begin{exercise}
+    For \(a, \gamma \in \real\), consider the Cauchy problem for the wave equation
+    \begin{equation*}
+        \begin{cases}
+            u_{tt} - 4u_{xx} = 0 & (x,t) \in \real \times (0, \infty) \\
+            u(x, 0) = e^{-x^2} + \gamma e^{-(x-a)^2} & x \in \real \\
+            u_t(x, 0) = 0 & x \in \real
+        \end{cases}
+    \end{equation*}
+    Show that the mass M of the solution is constant, then find the couples \((a, \gamma)\) such that:
+    \begin{itemize}
+        \item \(M = 0.\)
+        \item The solution \(u(x,1)\) at \(t=1\) consists of only two ``bumps''.
+    \end{itemize}
+\end{exercise}
+
+To show that the mass \(M\) of the solution is constant we need to define such a mass, and then check its behavior over time.
+
+
+The mass \(M\) of the solution is defined as \(M(t) \coloneqq \int_\real u(x,t) \, dx\).
+
+\[M''(t) = \frac{\partial^2}{\partial^2 t} \int_\real u(x,t) \, dx = \int_\real u_{tt} \, dx = \int_\real 4 u_{xx}\, dx = 4 \underbrace{\int_\real (u_x)_x\, dx}_{\text{div. form} = 0} = 0\]
+
+So \(M(t) = A + Bt\). But \(M'(t) = B\), and also \(M'(t) = \int_\real u_t(x,t)\, dx\). Since \(M'(t)\) is constant we take \(M'(0) = \int_\real u_t(x,0)\, dx = 0 \Rightarrow B = 0\).
+
+Then we conclude that \(M(t) = A\) is constant too, and \(M(0) = \int_\real e^{-x^2} + \gamma e^{-(x-a)^2} \, dx\)
+
+\[
+    \int_\real e^{-x^2} + \underbrace{\gamma e^{-(x-a)^2}}_{\substack{x-a=y \\ dx = dy}} \, dx = (1+ \gamma) \int_\real e^{-y^2} \, dy = \sqrt{\pi} (1 + \gamma)
+\]
+
+After that we need to show that \(M = 0\), so \(\sqrt{\pi}(1 + \gamma) = 0 \iff \gamma = -1\)
+
+Then we look for the values of \(a\) such that the solution consists of two ``bumps''. 
+
+\begin{remark}
+    For a hyperbolic equation, we know that the solution \(u(x,t) = \frac{1}{2}(g(x+ct) + g(x-ct))\)
+\end{remark}
+In this case we have \(u(x, t) = \frac{1}{2}(\overbrace{g(x+2t)}^{\substack{\text{c is }2 \\\text{bc }4u_{xx}}} + g(x -2t))\), which becomes
+\[
+    u_{a, \gamma}(x, t) = \frac{1}{2}\left(e^{-(x+2t)^2} + \gamma e^{-(x-a+2t)^2} + e^{-(x-2t)^2} + \gamma e^{-(x-a-2t)^2} \right)
+\]
+that, for \(\gamma = - 1\) and \(t = 1\) 
+\[
+    u_{a, \gamma}(x, 1) = \frac{1}{2}\left(e^{-(x+2)^2} - e^{-(x-a+2)^2} + e^{-(x-2)^2} - e^{-(x-a-2)^2}\right)
+\]
+We can see that this solution has four ``bumps'' in \(x = -2, x = 2, x = a - 2, x = a + 2\). To obtain two bumps we manipulate \(a\) and see that 
+\begin{itemize}
+    \item \(-2 = a - 2 \Rightarrow a = 0 \Rightarrow u_{0, \gamma}(x, 1) = \frac{1}{2}(e^{-(x+2)^2} - e^{-(x+2)^2} + e^{-(x-2)^2} - e^{-(x-2)^2}) = 0\) 
+    \item \(-2 = a + 2 \Rightarrow a = -4 \Rightarrow u_{-4, \gamma}(x, 1) = \frac{1}{2}(e^{-(x+2)^2} - e^{-(x+6)^2} + e^{-(x-2)^2} - e^{-(x+2)^2}) =\frac{1}{2}(- e^{-(x+6)^2} + e^{-(x-2)^2}) \) 
+    \item \(2 = a -2 \Rightarrow a = 4 \Rightarrow u_{-4, \gamma}(x, 1) = \frac{1}{2}(e^{-(x+2)^2} - e^{-(x-2)^2} + e^{-(x-2)^2} - e^{-(x-6)^2}) =\frac{1}{2}(- e^{-(x-6)^2} + e^{-(x+2)^2})\) 
+    \item \(-2 = a - 2 \Rightarrow a = 0 \Rightarrow u_{0, \gamma}(x, 1) = \frac{1}{2}(e^{-(x+2)^2} - e^{-(x+2)^2} + e^{-(x-2)^2} - e^{-(x-2)^2}) = 0\) 
+\end{itemize}
+
+We can see that the solution has only two ``bumps'' in the cases \(a = \pm 4\), so we conclude that the desired couples of \((a, \gamma)\) are 
+\[
+    \begin{cases}
+        \gamma = -1\\
+        a = -4
+    \end{cases}
+    \vee
+    \begin{cases}
+        \gamma = -1 \\ 
+        a = 4
+    \end{cases}
+\]
+\newpage
+\begin{exercise}
+Let \(\Omega \subset \real^n (n \geq 2)\) be a bounded smooth domain, let \(a\) be a measurable function in \(\Omega\).
+Consider the problem
+\[
+    \begin{cases}
+        - \Delta u = a(x) u^3 & \Omega \\
+        u = 0 & \partial\Omega
+    \end{cases}
+    \tag*{(P)}
+\]
+Under which assumptions on the space dimension n can we write a variational formulation of problem (P) in
+\(H^1_0(\Omega)\)? For each of these dimensions find the most general assumptions on \(a\) that allow to write the variational formulation. Finally, write the variational formulation.
+\end{exercise}
+
+First, a quick reminder on Sobolev embedding, which will be very useful a.e. in this document
+\begin{remark}\label{sobolev_embedding}
+    Let \(\Omega \subseteq \real^n\) open with \(\partial\Omega \in \text{Lip}\), \(s \geq 0\),
+    \[
+        H^s(\Omega) \subset 
+        \begin{cases}
+            L^p(\Omega) \qquad \forall \, 2 \leq p \leq 2^* & \text{if } n > 2s \\
+            L^p(\Omega) \qquad \forall \, 2 \leq p < \infty & \text{if } n = 2s \\
+            C^0(\bar{\Omega})  & \text{if } n < 2s
+        \end{cases}
+    \]
+    Increasing \(s\) increases the regularity, while increasing \(n\) decreases it.
+
+    The exponent \(2^*\) is called critical exponent and is defined as \(2^* \coloneqq \frac{2n}{n - 2s}\).
+
+    If \(Omega\) is bounded, all these embeddings are compact except \(H^s(\Omega) \subset L^{2^*}\) when \(n > s\).
+\end{remark}
+
+Since we want to know the variational formulation in \(H^1_0\) we have \(s = 1\) and need to check \(n = 2, n \geq 3\). Remember a variational formulation makes sense if \(\int_\Omega fv < \infty\).
+\begin{itemize}
+    \item[\(n = 2\).] In this case we have \(u^3, v \in H^1_0(\Omega)\), so by Sobolev embedding we know \(u^3, v \in L^p(\Omega)\) for \(2 \leq p < \infty\). 
+    \[
+        \abs{\int_\Omega a(x) u^3 v}  \, dx \leq \int_\Omega \abs{a(x)} \abs{u^3} \abs{v} \, dx \underset{Holder}{\leq} \left(\int_\Omega \abs{a(x)}^r\right)^{\frac{1}{r}} \left(\int_\Omega \abs{u^3}^p \right)^{\frac{1}{p}} \left(\int_\Omega \abs{v}^q \right)^{\frac{1}{q}} < \infty.
+    \]
+    To use Holder inequality we need to find \(r, p, q\) such that \(\frac{1}{r} + \frac{1}{p} + \frac{1}{q} = 1\). We see that, 
+    \[
+        \frac{1}{r} + \frac{1}{p} + \frac{1}{q} = 1 \iff a(x) \in L^r(\Omega) \qquad \text{with } r > 1
+    \]
+    \item[\(n \geq 3\).] In this case we have \(u^3, v \in H^1_0(\Omega)\), so by Sobolev embedding we know \(u^3, v \in L^p(\Omega)\) for \(2 \leq p \leq 2^*\).
+    We proceed as before, using Holder inequality, but decide to use \(p = \frac{2^*}{3}\) and \(q = \frac{1}{2^*}.\)
+    \[
+        \abs{\int_\Omega a(x) u^3 v}  \, dx \leq \int_\Omega \abs{a(x)} \abs{u^3} \abs{v} \, dx \underset{\mathclap{Holder}}{\leq} \left(\int_\Omega \abs{a(x)}^r\right)^{\frac{1}{r}} \left(\int_\Omega \abs{u^3}^{2^*} \right)^{\frac{3}{2^*}} \left(\int_\Omega \abs{v}^{2^*} \right)^{\frac{1}{2^*}} < \infty.
+    \]
+    In this case Holder inequality gives us 
+    \[
+        \frac{1}{r} + \frac{3}{2^*} + \frac{1}{2^*} = 1 \iff \frac{1}{r} = 1 - \frac{4}{2^*} \iff r = \frac{2^* - 4}{2^*}
+    \]
+    Substituting \(2^* = \frac{2n}{n - 2}\) we get \(r = \frac{n}{-n + 4}\). Since \(r > 0\) we need \(n < 4\).
+    In this case we have \(a(x) \in L^3(\Omega)\) for \(n = 3\), but also \(a(x) \in L^\infty(\Omega)\) for \(n = 4\).
+\end{itemize}
+
+At this point we can write the weak formulation of the problem. We multiply the equation by a test function \(v \in H^1_0(\Omega)\) and obtain 
+\[
+    \int_\Omega - \Delta u v \, dx = \int_\Omega a(x) u^3 v \, dx \qquad \forall v \in H^1_0(\Omega)
+\]
+We integrate by parts the left hand side and obtain
+\[
+    \int_\Omega \nabla u \nabla v \, dx = \int_\Omega a(x) u^3 v \, dx \qquad \forall v \in H^1_0(\Omega)
+\]
+This is the weak formulation of the problem. This is well posed if 
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        Dimension & Assumptions on $a(x)$ \\
+        \hline
+        $n = 2$ & $a \in L^r(\Omega)$, $r > 1$ \\
+        $n = 3$ & $a \in L^3(\Omega)$ \\
+        $n = 4$ & $a \in L^\infty(\Omega)$ \\
+        $n \geq 5$ & No variational formulation \\
+        \hline
+    \end{tabular}
+\end{table}
+\newpage
+
+\begin{exercise}
+    Let \(\Omega \subset \real^n\) be a bounded open set of class \(C^1\), and let \(u\) be a sufficiently regular solution of the problem
+    \[
+        \begin{cases}
+            u_t - \Delta u = 0 & \Omega \times (0, \infty) \\
+            u = 0 & \partial\Omega \times (0, \infty) \\
+            u(x, 0) = \alpha(x) & x \in \Omega
+        \end{cases}
+    \]
+    Study monotonicity/boundedness properties of the energy \(E_u(t) = \int_\Omega \abs{\nabla u}^2 \, dx\).
+\end{exercise}
+The energy functional is defined as \(E_u(t) = \int_\Omega \abs{\nabla u}^2 \, dx = \norm{\nabla u}^2_{L^2(\Omega)}\). We want to study its behavior over time, so we need to compute its derivative with respect to time.
+\[
+    \begin{split}
+        \frac{d}{dt} E_u(t) = \frac{d}{dt} \int_\Omega \abs{\nabla u}^2 \, dx = \int_\Omega \frac{d}{dt} \abs{\nabla u}^2 \, dx = \int_\Omega 2 \nabla u \cdot \nabla u_t \, dx = \\
+        = \int_{\partial\Omega} 2 \underbrace{u \cdot \nu}_{=0} u_t - \int_\Omega 2 \Delta u u_t \, dx = - \int_\Omega 2 (\Delta u)^2 \, dx \leq 0.
+    \end{split}
+    \Rightarrow E \text{ is non-increasing}
+\]
+We see that the energy is non-increasing, since we obtain a positive quantity with a negative sign. Now we want to study the boundedness of the energy. We start by multiplying the equation by \(u\)  
+
+\[
+    \int_\Omega u_t u \, dx - \int_\Omega \Delta u u \, dx = 0
+\]
+Integrating by parts the second term we obtain
+\[
+    \int_\Omega u_t u \, dx - \int_{\partial\Omega} u \nabla u \cdot \nu \, dS + \int_\Omega (\nabla u)^2 \, dx = 0
+\]
+Since \(u = 0\) on the boundary we have
+\[
+    \int_\Omega u_t u \, dx = - \int_\Omega (\nabla u)^2 \, dx 
+\]
+We can rewrite the energy as
+\[
+    E_u(t) = \int_\Omega \abs{\nabla u}^2 \, dx = - \int_\Omega u_t u \, dx = - \frac{1}{2} \int_\Omega (u^2)_t \, dx
+\]
+Since the energy is non-increasing, we have that \(E_u(t) \leq E_u(0) \forall t \geq 0\), so we have 
+\[
+    E_u(t) = - \frac{1}{2} \int_\Omega (u^2)_t \, dx \leq - \frac{1}{2} \int_\Omega (u(x, 0)^2)_t \, dx = - \frac{1}{2} \int_\Omega \alpha(x)^2 \, dx
+\]
+Since \(\alpha(x)\) is bounded (is a function in \(H^1_0\)) we have that the energy is bounded too.
+
+\newpage
+\begin{exercise}
+    Let \((X, \normdot)\) be a Banach space, and let \(u \in C^1([0, T]; X)\). Using the following abstract version of the \textit{Fundamental Theorem of Calculus}:
+    \[
+        \int_0^T u'(t) \, dt = u(T) - u(0)
+    \]
+    prove that \(\Lambda_{u'} = (\Lambda_u)' \in \mathcal{D}(0, T; X)\) where 
+    \[
+        \Lambda_f(\phi) = \int_0^T \phi(t) f(t) \, dt \qquad \forall f \in L^1(0, T; X)
+    \]
+\end{exercise}
+
+By the definition of distributional derivative we have
+\[
+    (\Lambda_u(\phi))' = - \Lambda_u(\phi') \forall \phi \in \mathcal{D}(0, T)
+\]
+where 
+\[
+    \Lambda_u(\phi)' = - \int_0^T \phi'(t) u(t) \, dt
+\]
+We can integrate by parts the above expression
+\[
+    \begin{split}
+        (\Lambda_u(\phi))' = - \int_0^T \phi'(t) u(t) \, dt =  \underbrace{\left. - \phi(t) u(t) \right|_0^T}_{=0} + \int_0^T \phi(t) u'(t) \, dt = \int_0^T \phi(t) u'(t) \, dt = \Lambda_{u'}(\phi)
+    \end{split}
+\]
+We have shown that \(\Lambda_{u'} = (\Lambda_u)'\) in \(\mathcal{D}(0, T; X)\).
+
+\newpage
+\subsection{July 2021}
+\begin{exercise}
+    Let \(\Omega \subseteq \real^2\) be a bounded open set of class \(C^\infty\), let \(f \in L^2(\Omega)\). Consider the Dirichlet problem
+    \[
+        \begin{cases}
+            2\partial^2_{x} u + 3\partial^2_{y} u + 2\partial_{xy} u = f & \Omega \\
+            u = 0 & \partial\Omega
+        \end{cases}
+        \tag*{(P)}
+    \]
+    \begin{enumerate}
+        \item Prove that (P) admits a unique solution \(u \in H^1_0(\Omega)\).
+        \item What is the minimum \(m \in \natural\) for which \(f \in H^m(\Omega)\) implies \(u \in H^5(\Omega)\)?
+    \end{enumerate}
+\end{exercise}
+We can rewrite the equation in the form \(\div( A \grad u)\) with \(A = \begin{pmatrix} 2 & 1 \\ 1 & 3 \end{pmatrix}\). Let's check if \(A\) is the correct matrix.
+\[
+    \begin{split}
+        \div(A \grad u) = \div\left(\begin{pmatrix} 2 & 1 \\ 1 & 3 \end{pmatrix} \begin{pmatrix} u_x \\ u_y \end{pmatrix}\right) = \div\left(\begin{pmatrix} 2u_x + u_y \\ u_x + 3u_y \end{pmatrix}\right) = 2u_{xx} + 3u_{yy} + 2u_{xy}
+    \end{split}
+\]
+Our Hilbert triplet is \(H^1_0(\Omega) \subset L^2(\Omega) \subset H^{-1}(\Omega)\). We define \(V = H^1_0(\Omega)\), \(H = L^2(\Omega)\), \(V' = H^{-1}(\Omega)\). We can now write the weak formulation of the problem. We multiply the equation by a test function \(v \in V\) and obtain
+\[
+    \int_\Omega \div(A \grad u) v \, dx = \int_\Omega f v \, dx \qquad \forall v \in V
+\]
+We integrate by parts the left-hand side and obtain
+\[
+    \int_\Omega A \grad u \cdot \grad v \, dx = \int_\Omega f v \, dx \qquad \forall v \in V
+\]
+This is the weak formulation of the problem. Now we use Lax-Milgram theorem to prove the existence and uniqueness of the solution. We need to check the coercivity and boundedness of the bilinear form. We have that the bilinear form is 
+\[
+    a(u, v) = \int_\Omega A \grad u \cdot \grad v \, dx
+\]
+A bilinear form is continuous if there exists a constant \(C > 0\) such that
+\[
+    \abs{a(u, v)} \leq C \norm{u}_V \norm{v}_V
+\]
+\begin{remark}
+    In \(H^1_0(\Omega)\) we have the norm \(\norm{u}_V = \norm{\grad u}_{L^2}\)
+\end{remark}
+We write the bilinear form explicitly and bound it
+\[
+    \begin{split}
+        \abs{a(u, v)} = \abs{\int_\Omega A \grad u \cdot \grad v \, dx} \leq \int_\Omega \abs{A} \abs{\grad u} \abs{\grad v} \, dx \leq \abs{A} \norm{\grad u}_{L^2} \norm{\grad v}_{L^2} = \abs{A} \norm{u}_V \norm{v}_V
+    \end{split}
+\]
+We have that the bilinear form is continuous. We need to check the coercivity of the bilinear form. A bilinear form is coercive if there exists a constant \(c > 0\) such that
+\[
+    a(u, u) \geq c \norm{u}_V^2
+\]
+We write the bilinear form explicitly 
+\[
+    \begin{split}
+        a(u, u) = \int_\Omega A \grad u \cdot \grad u \, dx = \int_\Omega \abs{A} \abs{\grad u}^2 \, dx = \abs{A} \norm{\grad u}_{L^2}^2 \geq \norm{\grad u}_{L^2}^2 = \norm{u}_V^2
+    \end{split}
+\]
+We have that the bilinear form is coercive. By Lax-Milgram theorem we have that the problem admits a unique solution \(u \in V\).
+
+The second request is about the minimum \(m\) such that \(f \in H^m(\Omega)\) implies \(u \in H^5(\Omega)\). 
+\begin{remark}
+    We know that if \(f \in H^m(\Omega)\) then \(u \in H^{m+2}(\Omega)\).
+\end{remark}
+We have that \(f \in H^m(\Omega)\) implies \(u \in H^{m+2}(\Omega)\), so we need \(m+2 \geq 5 \Rightarrow m \geq 3\). The minimum \(m\) is 3.
+
+\newpage
