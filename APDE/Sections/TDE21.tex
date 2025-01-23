@@ -650,14 +650,15 @@ For the second part we have
 \[
     \begin{split}
         6 \int_\real u^2 u_t \, dx = 6 \int_\real u^2 (-u_{xxx} - 6 u u_x) \, dx = -\int_\real 6 u^2 u_{xxx} - \int_\real 36 \underbrace{u^3 u_x}_{=\left(\frac{u^4}{4}\right)_x} \, dx = \\ 
-        = \cancel{\left. - 6 u^2 u_{xx} \right|_\real} + 6 \int_\real 2 u u_{x} u_{xx} - 9 \int_\real \underbrace{(u^4)_x}_{=0} \, dx = 12 \int_\real u u_x u_{xx} \, dx = 12 \int_\real u\left(\frac{u^2}{2}\right)_x \, dx = \cancel{\left. 6 u u_x^2 \right|_\real} - 6 \int_\real u_x u^2_x \, dx = - 6 \int_\real u_x^3 \, dx
+        = \cancel{\left. - 6 u^2 u_{xx} \right|_\real} + 6 \int_\real 2 u u_{x} u_{xx} - 9 \int_\real \underbrace{(u^4)_x}_{=0} \, dx = 12 \int_\real u u_x u_{xx} \, dx = \\
+        =12 \int_\real u\left(\frac{u^2}{2}\right)_x \, dx = \cancel{\left. 6 u u_x^2 \right|_\real} - 6 \int_\real u_x u^2_x \, dx = - 6 \int_\real u_x^3 \, dx
     \end{split}
 \]
 To recap, we have
 \begin{align*}
-    E'(t) &= \int_\real 2 u_x u_{xt} \, dx - 6 \int_\real u^2 u_t \, dx  \\
-    \int_\real 2 u_x u_{xt} \, dx &= - 6 \int_\real u_x^3 \, dx \\
-    \int_\real 6 u^2 u_t \, dx &= - 6 \int_\real u_x^3 \, dx
+    E'(t) &= 2\int_\real u_x u_{xt} \, dx - 6 \int_\real u^2 u_t \, dx  \\
+    2\int_\real  u_x u_{xt} \, dx &= - 6 \int_\real u_x^3 \, dx \\
+    6\int_\real  u^2 u_t \, dx &= - 6 \int_\real u_x^3 \, dx
 \end{align*} 
 We can now substitute these results in the derivative of the energy
 \[
