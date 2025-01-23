@@ -557,7 +557,7 @@ Now we can rewrite the Laplacian operator as
 While the two derivatives are
 \[
     \begin{split}
-        u_x = -m cos(mx) \sin\left(\frac{n \pi y}{\ell}\right) \qquad u_{xx} = -m^2 \sin(mx) \sin\left(\frac{n \pi y}{\ell}\right) 
+        u_x = -m \cos(mx) \sin\left(\frac{n \pi y}{\ell}\right) \qquad u_{xx} = -m^2 \sin(mx) \sin\left(\frac{n \pi y}{\ell}\right) 
     \end{split}
 \]
 so \(u_{xx} = -m^2 u_{m,n}\). As for the bi-Laplacian operator we have
@@ -574,3 +574,167 @@ We have obtained an explicit expression for \(\lambda\)
 \[
     \lambda = \frac{1}{m^2} \left(m^2 + \frac{n^2 \pi^2}{\ell^2}\right)^2
 \] 
+Putting this expression equal to \(1\) we obtain
+\[
+    \begin{split}
+        m^2 = \left(m^2 + \frac{n^2 \pi^2}{\ell^2}\right)^2 \Rightarrow  m = m^2 + \frac{n^2 \pi^2}{\ell^2} \Rightarrow m - m^2 = \frac{n^2 \pi^2}{\ell^2}
+    \end{split}
+\]
+Then, since \(m, n \in \natural\) we have
+\[
+    \begin{split}
+        n^2 = \frac{\pi^2}{\ell^2} \left(m - m^2\right) > 0 \Rightarrow (m - m^2) > 0 \Rightarrow m(m - 1) < 0 \Rightarrow m \in (0,1)
+    \end{split}
+\]
+Since \(m \in \natural\) we have that this is impossible, so \(\lambda = 1\) is not an eigenvalue of (P).
+
+Now we want to find the values of \(\ell\) for which the least eigenvalue is double. To do so we fix \(n = 1\), since we know that the smallest eigenvalue is \(\lambda_{1,1} = \left(1 + \frac{\pi^2}{\ell^2}\right)^2\), and obtain
+\[
+    \lambda_{m, n}^2 \geq \lambda_{m, 1}^2 = \left( m^2 + \frac{\pi^2}{\ell^2} \right)^2 \qquad \forall m \in \natural
+\]
+Since we are looking for the least eigenvalue, we are looking at a minimization problem. 
+\[
+    \begin{split}
+        \min_{m \in \natural} \lambda_{m, 1}^2 = \min_{m \in \natural} \left( m + \frac{\pi^2}{\ell^2 m} \right)^2 = \mu^*
+    \end{split}
+\]
+This is the same as minimizing the function \(f(x) = (x + \frac{a^2}{x})^2\) with \(a = \frac{\pi}{\ell}\).
+What we know about \(f\)?
+\begin{itemize}
+    \item \(f : [1, \infty) \to \real\)
+    \item \(f \in C^\infty\)
+    \item \(f'(x) = \geq 0 \iff x \geq a\)
+    \item \(\lim_{x \to \infty} f(x) = \infty\)
+\end{itemize}
+If \(a > 1, a \in \natural\) means that \(\mu^*\) can have multiplicity greater than \(1\). We choose \(1 < a < 2\) so that \((\ell < \pi < 2\ell)\) and \(\mu^* = \min\left\{\lambda_{1,1}^2, \lambda_{2,1}^2\right\}\). We define \(\mu_{m,n} = \lambda_{m,n}^2\) and we have 
+\[
+    \begin{split}
+        \mu_{1,1} = \left(1 + \frac{\pi^2}{\ell^2}\right)^2 \qquad \mu_{2,1} = \left(2 + \frac{\pi^2}{2 \ell^2}\right)^2.
+    \end{split}
+\]
+To have them ordered \(\mu_{1,1} < \mu_{2,1} \iff \pi \leq \ell \sqrt{2}\). Then we have three cases:
+\begin{itemize}
+    \item \(\ell \leq \pi < \ell \sqrt{2} \Rightarrow \mu^* = \mu_{1,1}\) which is simple;
+    \item \(\ell \sqrt{2} < \pi < 2\ell \Rightarrow \mu^* = \mu_{2,1}\) which is simple;
+    \item \(\pi = \ell \sqrt{2} \Rightarrow \mu^* = \mu_{1,1} = \mu_{2,1}\) which is double.
+\end{itemize}
+So, the value of \(\ell\) for which the least eigenvalue is double is \(\ell = \frac{\pi}{\sqrt{2}}\).
+
+\newpage
+\subsection{January 2022}
+\begin{exercise}
+    For the Korteweg-de Vries equation
+    \[
+        \begin{cases}
+            u_t + u_{xxx} + 6 u u_x = 0 & \real \times (0, \infty) \\
+            u(x, 0) = g(x) & x \in \real
+        \end{cases}
+        \tag*{(P)}
+    \]
+    prove that the ``energy'' \(E(t) = \int_\real (u_x^2 - 2 u^3) \, dx\) is conserved for general solutions \(u \in S(\real)\) of (P).
+\end{exercise}
+We start by computing the derivative of the energy
+\[
+    \begin{split}
+        E'(t) = \frac{d}{dt} \int_\real (u_x^2 - 2 u^3) \, dx = \int_\real 2 u_x u_{xt} - 6 u^2 u_t \, dx = \int_\real 2 u_x u_{xt} \, dx - 6 \int_\real u^2 u_t \, dx
+    \end{split}
+\]
+Dividing the problem in two parts we have
+\[
+    \begin{split}
+        \int_\real 2 u_x u_{xt} \, dx = \cancel{\left.2 u_x u_t \right|_\real} - \int_\real 2u_{xx} u_t \, dx = - \int_\real 2u_{xx} ( - u_{xxx} - 6 u u_x) \, dx = \\
+        = \int_\real 2u_{xx} u_{xxx} + 12 u \underbrace{u_x u_{xx}}_{=\left(\frac{u_x^2}{2}\right)_x} \, dx = \int_\real \underbrace{(u_{xx}^2)_x}_{=0} + \cancel{\left. 12 u \frac{u_x^2}{2} \right|_\real} - 12 \int_\real u_x \frac{u_x^2}{2} \, dx = - 6 \int_\real u_x^3 \, dx
+    \end{split}
+\]
+For the second part we have
+\[
+    \begin{split}
+        6 \int_\real u^2 u_t \, dx = 6 \int_\real u^2 (-u_{xxx} - 6 u u_x) \, dx = -\int_\real 6 u^2 u_{xxx} - \int_\real 36 \underbrace{u^3 u_x}_{=\left(\frac{u^4}{4}\right)_x} \, dx = \\ 
+        = \cancel{\left. - 6 u^2 u_{xx} \right|_\real} + 6 \int_\real 2 u u_{x} u_{xx} - 9 \int_\real \underbrace{(u^4)_x}_{=0} \, dx = 12 \int_\real u u_x u_{xx} \, dx = 12 \int_\real u\left(\frac{u^2}{2}\right)_x \, dx = \cancel{\left. 6 u u_x^2 \right|_\real} - 6 \int_\real u_x u^2_x \, dx = - 6 \int_\real u_x^3 \, dx
+    \end{split}
+\]
+To recap, we have
+\begin{align*}
+    E'(t) &= \int_\real 2 u_x u_{xt} \, dx - 6 \int_\real u^2 u_t \, dx  \\
+    \int_\real 2 u_x u_{xt} \, dx &= - 6 \int_\real u_x^3 \, dx \\
+    \int_\real 6 u^2 u_t \, dx &= - 6 \int_\real u_x^3 \, dx
+\end{align*} 
+We can now substitute these results in the derivative of the energy
+\[
+    \begin{split}
+        E'(t) = - 6 \int_\real u_x^3 \, dx + 6 \int_\real u_x^3 \, dx = 0
+    \end{split}
+\]
+We have that the energy is conserved for general solutions \(u \in S(\real)\) of (P).
+
+\newpage
+\begin{exercise}
+    Let \(\Omega \subset \real^n\) be a bounded domain of class \(C^1\), and let \(f \in L^2(0, T; L^2(\Omega))\). Moreover, let \(u_0 \in H^1(\Omega)\) and \(u_1 \in L^2(\Omega)\). Prove that, for every \(\gamma > 0\), the Galerkin method can be applied to the problem
+    \[
+        \begin{cases}
+            u_{tt} - \Delta u + \gamma u = f & \Omega \times (0, T) \\
+            \partial_\nu u = 0 & \partial\Omega \times (0, T) \\
+            u = u_0 & \Omega \times \{0\} \\
+            u_t = u_1 & \Omega \times \{0\}
+        \end{cases}
+        \tag*{(P)}
+    \]
+    which, therefore, admits a unique solution.
+\end{exercise}
+We start by writing the weak formulation of the problem, choosing adequate function spaces. We define the spaces
+\[
+    \begin{split}
+        V = H^1(\Omega) \subseteq H = L^2(\Omega) \qquad V' = \left(H^1(\Omega)\right)'
+    \end{split}
+\]
+We also need to introduce the space of weakly continuous functions over \([0, T]\).
+\begin{remark}
+    Let \(H\) be a Hilbert space. The space of weakly continuous functions over \([0, T]\) is defined as
+    \[
+        \begin{split}
+            C_w^0([0, T]; H) = \left\{ u \in L^\infty(0, T; H) \mid \lim_{t \to t_0} (u(t) - u(t_0), v)_H = 0, \quad \forall t_0 \in [0, T], \forall v \in H \right\}
+        \end{split}
+    \] 
+\end{remark}
+We can now write the weak formulation of the problem (P), by multiplying the equation by a test function \(v \in V\) and integrating over \(\Omega\)
+\begin{align*}
+    \int_\Omega f(t) v \, dx &= \int_\Omega u_{tt} v \, dx + \int_\Omega (-\Delta u  + \gamma u)v \, dx =\\
+    &= \int_\Omega u_{tt} v \, dx - \cancel{\int_{\partial\Omega} \partial_\nu u v \, d\sigma} + \int_\Omega \left[\grad u \cdot \grad v + \gamma u v\right] \, dx =
+    &= \int_\Omega u_{tt} v \, dx + \int_\Omega \underbrace{\grad u \cdot \grad v + \gamma u v}_{B(u, v)} \, dx
+\end{align*}
+To write it more compactly we have 
+\[
+    \begin{split}
+        \frac{d^2}{dt^2} (u, v)_{L^2} + B(u, v) = (f, v)_{L^2} \qquad \forall v \in V
+    \end{split}
+\]
+Another important abstract result is the following
+\begin{remark}
+    If \(B(u, v)\) is continuous and coercive, \(u_0 \in V\) and \(u_1 \in H\) and \(f \in L^2(0, T; V')\), then we know that 
+    \[
+        \exists! u \in C_w^0([0, T]; V) \cap C^0([0, T]; H) \text{ with } u_t \in C_w^0([0, T]; H), \quad u_{tt} \in L^2(0, T; V') \text{ for (P).}
+    \]
+\end{remark}
+So, we need to check if \(B(u, v)\) is continuous and coercive. We start by checking the continuity of \(B(u, v)\)
+\[
+    \begin{split}
+        \abs{B(u, v)} \leq \int_\Omega \abs{\grad u \cdot \grad v} + \abs{\gamma} \abs{u} \abs{v} \overset{\text{CS + H}}{\leq} \underbrace{\norm{\grad u}_{L^2}}_{\leq \norm{u}_V} \norm{\grad v}_{L^2} + \abs{\gamma} \norm{u}_{L^2} \norm{v}_{L^2} \leq \\ 
+        \leq (1 + \abs{\gamma}) \norm{u}_V \norm{v}_V \leq C \norm{u}_V \norm{v}_V
+    \end{split}
+\]
+We have that \(B(u, v)\) is continuous. We now check if it is coercive
+\[
+    \begin{split}
+        B(u, u) = \int_\Omega \abs{\grad u}^2 + \abs{\gamma} \abs{u}^2 = (1 + \abs{\gamma}) \int_\real \abs{\grad u}^2  + \abs{u}^2 \geq (1 + \abs{\gamma}) \norm{u}_V^2
+    \end{split}
+\]
+We need that \(\alpha \geq 0\) to obtain \(B(u,u) \geq \min\{\alpha, 1\} \norm{u}_V^2\). Since \(\gamma > 0\) by hypothesis, we have that \(B(u, v)\) is coercive. We can now apply the abstract result and conclude that the solution of (P) exists and is unique.
+
+\newpage
+\begin{exercise}
+    Let \(\Omega \coloneqq B(0, 1) \subset \real^n\), and let 
+    \[
+        f(x) \coloneqq \frac{e^{\abs{x}}-1}{\abs{x}^\alpha}, \quad \text{with } \alpha > 0
+    \]
+    Find the values of \(\alpha\) for which \(f \in H^1(\Omega)\).
+\end{exercise}
