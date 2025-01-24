@@ -78,7 +78,11 @@ Consider the problem
     \tag*{(P)}
 \]
 Under which assumptions on the space dimension n can we write a variational formulation of problem (P) in
-\(H^1_0(\Omega)\)? For each of these dimensions find the most general assumptions on \(a\) that allow to write the variational formulation. Finally, write the variational formulation.
+\(H^1_0(\Omega)\)? 
+
+For each of these dimensions find the most general assumptions on \(a\) that allow to write the variational formulation. 
+
+Finally, write the variational formulation.
 \end{exercise}
 
 First, a quick reminder on Sobolev embedding, which will be very useful a.e. in this document
@@ -112,7 +116,7 @@ Since we want to know the variational formulation in \(H^1_0\) we have \(s = 1\)
     \item[\(n \geq 3\).] In this case we have \(u^3, v \in H^1_0(\Omega)\), so by Sobolev embedding we know \(u^3, v \in L^p(\Omega)\) for \(2 \leq p \leq 2^*\).
     We proceed as before, using Holder inequality, but decide to use \(p = \frac{2^*}{3}\) and \(q = \frac{1}{2^*}.\)
     \[
-        \abs{\int_\Omega a(x) u^3 v}  \, dx \leq \int_\Omega \abs{a(x)} \abs{u^3} \abs{v} \, dx \underset{\mathclap{Holder}}{\leq} \left(\int_\Omega \abs{a(x)}^r\right)^{\frac{1}{r}} \left(\int_\Omega \abs{u^3}^{2^*} \right)^{\frac{3}{2^*}} \left(\int_\Omega \abs{v}^{2^*} \right)^{\frac{1}{2^*}} < \infty.
+        \abs{\int_\Omega a(x) u^3 v}  \, dx \leq \int_\Omega \abs{a(x)} \abs{u^3} \abs{v} \, dx \underset{\mathclap{Holder}}{\leq} \left(\int_\Omega \abs{a(x)}^r\right)^{\frac{1}{r}} \left(\int_\Omega \abs{u}^{2^*} \right)^{\frac{3}{2^*}} \left(\int_\Omega \abs{v}^{2^*} \right)^{\frac{1}{2^*}} < \infty.
     \]
     In this case Holder inequality gives us 
     \[
@@ -126,7 +130,7 @@ At this point we can write the weak formulation of the problem. We multiply the 
 \[
     \int_\Omega - \Delta u v \, dx = \int_\Omega a(x) u^3 v \, dx \qquad \forall v \in H^1_0(\Omega)
 \]
-We integrate by parts the left hand side and obtain
+We integrate by parts the left-hand side and obtain
 \[
     \int_\Omega \nabla u \nabla v \, dx = \int_\Omega a(x) u^3 v \, dx \qquad \forall v \in H^1_0(\Omega)
 \]
@@ -739,3 +743,474 @@ We need that \(\alpha \geq 0\) to obtain \(B(u,u) \geq \min\{\alpha, 1\} \norm{u
     \]
     Find the values of \(\alpha\) for which \(f \in H^1(\Omega)\).
 \end{exercise}
+To check that a function is in \(H^1(\Omega)\) we need that
+\begin{remark}
+    \[
+        H^1(\Omega) = \left\{ f \in L^2(\Omega) \mid \grad f \in L^2(\Omega) \right\}
+    \]  
+\end{remark}
+We start by checking if \(f \in L^2(\Omega)\), so we check \(f(x) \in L^2(\Omega) \iff \int_\Omega \abs{f(x)}^2 \, dx < \infty\).
+\[
+    \begin{split}
+        \int_\Omega \abs{f(x)}^2 \, dx = \int_\Omega \abs{\frac{e^{\abs{x}}-1}{\abs{x}^\alpha}}^2 \, dx
+    \end{split}
+\]
+Since our domain is a ball, we can use spherical coordinates to compute the integral
+\[
+    \begin{split}
+        \int_\Omega \abs{\frac{e^{\abs{x}}-1}{\abs{x}^\alpha}}^2 \, dx = \int_0^1 \int_{\left\{\norm{x} = \rho\right\}} \abs{\frac{e^{\abs{\rho}}-1}{\rho^\alpha}}^2 \, d\sigma \, d\rho = \\
+        = \sigma_n \int_0^1 \abs{\frac{e^{\abs{\rho}}-1}{\rho^\alpha}}^2 \rho^{n-1} \, d\rho = \sigma_n \int_0^1 \abs{\frac{(e^{\abs{\rho}}-1)^2}{\rho^{2\alpha - n +1}}} \, d\rho
+    \end{split}
+\]
+At this point we know 
+\[
+    \begin{split}
+        e^{\abs{\rho}} -1 \overset{\rho \to 0}{\longrightarrow} \rho \Rightarrow \int_0^1 \abs{\frac{\rho^2}{\rho^{2\alpha - n + 1}}} \, d\rho < \infty \iff 2 \alpha - n + 1 -2 < 1 \iff \alpha < \frac{n + 2}{2}
+    \end{split}
+\]
+So we have that \(f \in L^2(\Omega)\) if \(\alpha < \frac{n + 2}{2}\). We now need to check if \(\grad f \in L^2(\Omega)\). We start by computing the gradient of \(f\)
+\[
+    \begin{split}
+        \partial x_i f &= \frac{e^{\abs{x}} \abs{x}^{\alpha} - \left(e^{\abs{x}} - 1\right) \alpha \abs{x}^{\alpha - 1} x_i}{\abs{x}^{2\alpha}} \frac{x_i}{\abs{x}} = \frac{e^{\abs{x}} \abs{x} - \left(e^{\abs{x}} - 1\right) \alpha}{\abs{x}^{2\alpha + 1}} \frac{x_i}{\abs{x}} \\
+        \norm{\grad f}^2 &= \frac{\norm{\abs{x} e^{\abs{x}} - \alpha e^{\abs{x}} + \alpha}}{\abs{x}^{\alpha + 1}}
+    \end{split}
+\]
+Now we need to check if this function is in \(L^2(\Omega)\)
+\[
+    \begin{split}
+        \int_\Omega \norm{\grad f}^2 \, dx = \int_\Omega \left(\frac{\norm{\abs{x} e^{\abs{x}} - \alpha e^{\abs{x}} + \alpha}}{\abs{x}^{2\alpha + 1}}\right)^2 \, dx = \\
+        = \int_0^1 \int_{\left\{\norm{x} = \rho\right\}} \left(\frac{\rho e^{\rho} - \alpha e^{\rho} + \alpha}{\rho^{\alpha + 1}}\right)^2 \, d\sigma \, d\rho = \sigma_n \int_0^1 \frac{\left(\rho e^{\rho} - \alpha e^{\rho} + \alpha\right)^2}{\rho^{2\alpha + 2}} \rho^{n-1} \, d\rho = \\
+    \end{split}
+\]
+We can now check if this integral is finite
+\[
+    \begin{split}
+        \rho e^{\rho} - \alpha e^{\rho} + \alpha \overset{\rho \to 0}{\longrightarrow} \rho \cancel{-\alpha} + \cancel{\alpha} = \rho \\
+        \Rightarrow \int_0^1 \frac{\rho^2}{\rho^{2\alpha + 2 - n + 1}} \, d\rho < \infty \iff 2\alpha + 2 - n + 1 - 2 < 1 \iff \alpha < \frac{n}{2}
+    \end{split}
+\]
+Now that we have checked that \(\grad f \in L^2(\Omega)\) and \(f \in L^2(\Omega)\) we only need to check that the weak derivative of \(f\) exists, since if it exists it is equal to the classical one. We have that the weak derivative of \(f\) exists if
+\[
+    \begin{split}
+        \int_\Omega f \partial x_i \phi \, dx = - \int_\Omega \partial x_i f \phi \, dx \qquad \forall \phi \in \mathcal{D}(\Omega)
+    \end{split}
+    \tag*{E1}
+\]
+To check that this condition is satisfied we need to cut off the singularity of \(f\) in the origin. We can do this by defining
+\[
+    \Omega_\epsilon = B(0, 1) \setminus B(0, \epsilon) = B_1 \setminus B_\epsilon = \left\{ x \in \real^n \mid \epsilon < \norm{x} < 1 \right\}
+\]
+Since \(f \in C^1(\Omega_\epsilon)\) we can apply the divergence theorem to the weak derivative definition and obtain
+\[
+    \begin{split}
+        \int_{\Omega_\epsilon} f \partial x_i \phi \, dx = \int_{\Omega_\epsilon} \partial x_i f \phi \, dx - \int_{\partial\Omega_\epsilon} f \phi \nu_i \, d\sigma
+    \end{split}
+    \tag*{E2}
+\]
+We want check that taking the limit \(\epsilon \to 0\) in (E2) we obtain (E1). To do so we need to check that the boundary term goes to zero, and the other two terms are equal at the ones in (E1). We start with the first term
+\[
+    \begin{split}
+        \int_{\Omega_\epsilon} f \partial x_i \phi \, dx = \int_{B_1} f \partial x_i \phi \chi_{\Omega_\epsilon} \, dx
+    \end{split}
+\]
+We want to claim that 
+\[
+    \begin{split}
+        \lim_{\epsilon \to 0^+} \int_{\Omega_\epsilon} f \partial x_i \phi \, dx = \int_{B_1} f \partial x_i \phi \, dx
+    \end{split}
+\]
+To do so we need to swap the limit and the integral. We see that 
+\begin{itemize}
+    \item \(f \partial x_i \phi \chi_{\Omega_\epsilon} \underset{\epsilon \to 0}{\longrightarrow} f \partial x_i \phi\) a.e. in \(B_1\)
+    \item \(\abs{f \partial x_i \phi \chi_{\Omega_\epsilon}} \leq \underbrace{\abs{f}}_{\in L^p(B_1)} \overbrace{\abs{\partial x_i \phi}}^{\in L^q(B_1)} \in L^1(B_1)\)
+\end{itemize}
+We can now apply the Dominated Convergence Theorem and obtain the desired result. 
+The same process can be applied to
+\[
+    \begin{split}
+        \int_{\Omega_\epsilon} \partial x_i f \phi \, dx = \int_{B_1} \partial x_i f \phi \chi_{\Omega_\epsilon} \, dx
+    \end{split}
+\]
+Then we have shown that 
+\[
+    \begin{split}
+        \int_{B_1} f \partial x_i \phi \, dx = \int_{\partial\Omega_\epsilon} f \phi \nu_i \, d\sigma + \int_{B_1} \partial x_i f \phi \, dx
+    \end{split}
+\]
+It is clear that we need to check that the boundary term goes to zero. Since we know that \(\text{supp } \phi \subseteq B_\epsilon\).
+\[
+    \begin{split}
+        \int_{\partial\Omega_\epsilon} f \phi \nu_i \, d\sigma = \cancel{\int_{\partial B_1} f \phi \nu_i \, d\sigma} + \int_{\partial B_\epsilon} f \phi \nu_i \, d\sigma
+    \end{split}
+\]
+Moreover,
+\[
+    \begin{split}
+        \abs{\int_{\partial B_\epsilon} f \phi \nu_i \, d\sigma} \leq \int_{\partial B_\epsilon} \abs{f} \abs{\phi} \underbrace{\abs{\nu_i}}_{=1} \, d\sigma \leq \max_{\partial B_\epsilon} \abs{\phi} \int_{\{ \norm{x} = \epsilon \}} \abs{f} \, d\sigma = \\
+        \max_{\partial B_\epsilon} \abs{\phi} \frac{e^{\epsilon} - 1}{\epsilon^\alpha} \mu{\norm{x} = \epsilon} \leq \max_{\partial B_\epsilon} \abs{\phi} \frac{e^{\epsilon} - 1}{\epsilon^\alpha} \epsilon^{n-1} 
+    \end{split}
+\]
+We have that 
+\[
+    \begin{split}
+        \lim_{\epsilon \to 0^+} \max_{\partial B_\epsilon} \abs{\phi} \frac{e^{\epsilon} - 1}{\epsilon^\alpha} \epsilon^{n-1} = 0 \iff \alpha - 1 - n + 1 > 1 \iff \alpha < n + 1
+    \end{split}
+\]
+
+Quick recap of the values of \(\alpha\) for which \(f \in H^1(\Omega)\) %in a table 
+\begin{table}[h]
+    \centering
+        \begin{tabular}{c|c}
+            \(\alpha \in (0, \frac{n + 2}{2})\) & \(f \in L^2(\Omega)\) \\
+            \(\alpha \in (0, \frac{n}{2})\) & \(\grad f \in L^2(\Omega)\) \\
+            \(\alpha \in (0, n + 1)\) & \(\text{weak derivative of } f \text{ exists}\)
+        \end{tabular}
+\end{table}
+
+Since all three conditions are necessary, we have that \(\alpha \in (0, \min\{\frac{n + 2}{2}, \frac{n}{2}, n + 1\}) = (0, \frac{n}{2})\).
+
+\newpage
+\begin{exercise}
+Let \(\Omega \coloneqq (0,2) \subseteq \real\),and let 
+\[
+    f(x) \coloneqq \begin{cases}
+        x & x \in (0, 1) \\
+        1 & x \in [1, 2)
+    \end{cases}
+\]
+Find the values of \(m\) for which \(f \in H^m(\Omega)\).
+\end{exercise}
+For a function to be in \(H^m(\Omega)\) we need that its weak derivative exists up to order \(m\) and belongs to \(L^2(\Omega)\). 
+\begin{remark}
+    \[
+        H^m(\Omega) = \left\{ f \in L^2(\Omega) \mid D^\alpha f \in L^2(\Omega) \quad \forall \alpha \leq m \right\}
+    \]
+\end{remark}
+We start by computing the classical derivatives of \(f\)
+\[
+    \begin{split}
+        f'(x) = \begin{cases}
+            1 & x \in (0, 1) \\
+            0 & x \in [1, 2)
+        \end{cases} \qquad f''(x) = f'''(x)  = \ldots = f^{(m)}(x) = 0 \quad \forall m \geq 2
+    \end{split}
+\]
+Let's now check if \(f \in L^2(\Omega)\).
+\[
+    \begin{split}
+        \int_\Omega \abs{f(x)}^2 \, dx = \int_0^1 x^2 \, dx + \int_1^2 1 \, dx = \frac{1}{3} + 2 - 1 = \frac{4}{3} < \infty \Rightarrow f \in L^2(\Omega)
+    \end{split}
+\]
+Now check if, for \(m = 1\), \(f^{(m)} \in L^2(\Omega)\), since it is the only non-trivial derivative of \(f\).
+\[
+    \begin{split}
+        \int_\Omega \abs{f'(x)}^2 \, dx = \int_0^1 1 \, dx = 1 < \infty \Rightarrow f' \in L^2(\Omega)
+    \end{split}
+\] 
+At this point let's see if the weak derivative of \(f\) exists. We need to check if
+\[
+    \begin{split}
+        \int_\Omega f \phi' \, dx = - \int_\Omega f' \phi \, dx \qquad \forall \phi \in \mathcal{D}(\Omega)
+    \end{split}
+\]
+Substituting both \(f\) and \(f'\) we have
+\[
+    \begin{split}
+        \int_0^1 x \phi' \, dx + \int_1^2 \phi' \, dx = - \int_0^1 \phi \, dx \qquad \forall \phi \in \mathcal{D}(\Omega)
+    \end{split}
+\]
+Check by integrating by parts
+\begin{align*}
+    \int_0^1 x \phi' \, dx &= \left. x \phi \right|_0^1 - \int_0^1 \phi \, dx = \phi(1) - \int_0^1 \phi \, dx \\
+    \int_1^2 \phi' \, dx &= \left. \phi \right|_1^2 = \phi(2) - \phi(1) \underset{\phi \in (0,2)}{=} - \phi(1)
+\end{align*}
+Let's put everything together
+\[
+    \begin{split}
+        \int_\Omega f \phi' \, dx = \cancel{\phi(1)} - \int_0^1 \phi \, dx - \cancel{\phi(1)} = - \int_0^1 \phi \, dx \qquad \forall \phi \in \mathcal{D}(\Omega)
+    \end{split}
+\]
+We have shown that the weak derivative of \(f\) exists and is equal to the classical one. We have shown that \(f \in H^1(\Omega)\).
+
+Now let's see if the weak derivative of \(f'\) exists. We need to check if
+\[
+    \begin{split}
+        \int_\Omega f' \phi' \, dx = - \int_\Omega f'' \phi \, dx \qquad \forall \phi \in \mathcal{D}(\Omega)
+    \end{split}
+\]
+Substituting both \(f'\) and \(f''\) we have
+\[
+    \begin{split}
+        \int_0^1 \phi' \, dx = - \int_0^1 0 \, dx \qquad \forall \phi \in \mathcal{D}(\Omega)
+    \end{split}
+\]
+Computing both integrals we have
+\begin{align*}
+    \int_0^1 \phi' \, dx &= \left. \phi \right|_0^1 = \phi(1) - \phi(0) = \phi(1) \\
+    \int_0^1 0 \, dx &= 0
+\end{align*}
+As we can see the two integrals are not equal, so the weak derivative of \(f'\) does not exist. So the only weak derivative of \(f\) that exists is the first one, and we have shown that \(f \in H^1(\Omega)\).
+
+\newpage
+\subsection{February 2022}
+\begin{exercise}
+    Let \(\Omega \subset \real^n (n \geq 2)\) be a bounded smooth domain, let \(a\) be a measurable function in \(\Omega\).
+    Consider the problem
+    \[
+        \begin{cases}
+            - \Delta u = a(x) u^5 & \Omega \\
+            u = 0 & \partial\Omega
+        \end{cases}
+        \tag*{(P)}
+    \]
+    Under which assumptions on the space dimension n can we write a variational formulation of problem (P) in
+    \(H^1_0(\Omega)\)? 
+    
+    For each of these dimensions find the most general assumptions on \(a\) that allow to write the variational formulation. 
+    
+    Finally, write the variational formulation.
+    \end{exercise}
+
+    Since we want to know the variational formulation in \(H^1_0\) we have \(s = 1\) and need to check \(n = 2, n \geq 3\). 
+    
+    Remember a variational formulation makes sense if \(\int_\Omega fv < \infty\).
+    \begin{itemize}
+        \item[\(n = 2\).] In this case we have \(u^5, v \in H^1_0(\Omega)\), so by Sobolev embedding we know \(u^5, v \in L^p(\Omega)\) for \(2 \leq p < \infty\). 
+        \[
+            \abs{\int_\Omega a(x) u^5 v}  \, dx \leq \int_\Omega \abs{a(x)} \abs{u^5} \abs{v} \, dx \underset{Holder}{\leq} \left(\int_\Omega \abs{a(x)}^r\right)^{\frac{1}{r}} \left(\int_\Omega \abs{u^5}^p \right)^{\frac{1}{p}} \left(\int_\Omega \abs{v}^q \right)^{\frac{1}{q}} < \infty.
+        \]
+        To use Holder inequality we need to find \(r, p, q\) such that \(\frac{1}{r} + \frac{1}{p} + \frac{1}{q} = 1\). We see that, 
+        \[
+            \frac{1}{r} + \frac{1}{p} + \frac{1}{q} = 1 \iff a(x) \in L^r(\Omega) \qquad \text{with } r > 1
+        \]
+        \item[\(n \geq 3\).] In this case we have \(u^5, v \in H^1_0(\Omega)\), so by Sobolev embedding we know \(u^5, v \in L^p(\Omega)\) for \(2 \leq p \leq 2^*\).
+        We proceed as before, using Holder inequality, but decide to use \(p = \frac{2^*}{5}\) and \(q = \frac{1}{2^*}.\)
+        \[
+            \begin{split}
+                \abs{\int_\Omega a(x) u^5 v}  \, dx \leq \int_\Omega \abs{a(x)} \abs{u^5} \abs{v} \, dx \underset{{Holder}}{\leq} \\
+                \leq \left(\int_\Omega \abs{a(x)}^r\right)^{\frac{1}{r}} \left(\int_\Omega \abs{u}^{2^*} \right)^{\frac{5}{2^*}} \left(\int_\Omega \abs{v}^{2^*} \right)^{\frac{1}{2^*}} < \infty.
+            \end{split}
+        \]
+        In this case Holder inequality gives us 
+        \[
+            \frac{1}{r} + \frac{5}{2^*} + \frac{1}{2^*} = 1 \iff \frac{1}{r} = 1 - \frac{6}{2^*} \iff r = \frac{2^* - 6}{2^*}
+        \]
+        Substituting \(2^* = \frac{2n}{n - 2}\) we get \(r = \frac{n}{-2n + 6}\). Since \(r > 0\) we need \(n < 3\).
+        In this case we only have \(a(x) \in L^\infty(\Omega)\) for \(n = 3\).
+    \end{itemize}
+    \newpage
+    
+    At this point we can write the weak formulation of the problem. We multiply the equation by a test function \(v \in H^1_0(\Omega)\) and obtain 
+    \[
+        \int_\Omega - \Delta u v \, dx = \int_\Omega a(x) u^3 v \, dx \qquad \forall v \in H^1_0(\Omega)
+    \]
+    We integrate by parts the left-hand side and obtain
+    \[
+        \int_\Omega \nabla u \nabla v \, dx = \int_\Omega a(x) u^3 v \, dx \qquad \forall v \in H^1_0(\Omega)
+    \]
+    This is the weak formulation of the problem. This is well posed if 
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{|c|c|}
+            \hline
+            Dimension & Assumptions on $a(x)$ \\
+            \hline
+            $n = 2$ & $a \in L^r(\Omega)$, $r > 1$ \\
+            $n = 3$ & $a \in L^\infty(\Omega)$ \\
+            $n \geq 4$ & No variational formulation \\
+            \hline
+        \end{tabular}
+    \end{table}
+    
+    \newpage
+\begin{exercise}
+    Let \(B = \left\{ x \in \real^n \mid \abs{x} < 1 \right\}\). For which values of \(p \in [1, \infty) \) is the function
+    \[
+        f(x) = \frac{e^{-\abs{x}^2}}{\abs{x}^2}
+    \]
+    in \(L^p(B)\) and in \(W^{1, p}(B)\)?
+\end{exercise}
+The strategy for this exercise remain the same as before.
+\begin{remark}
+    A function belong to \(W^{1, p}(B)\) if its weak derivative exists and belongs to \(L^p(B)\).
+\end{remark}
+We start by checking if \(f \in L^p(B)\)
+\[
+    \begin{split}
+        \int_B \abs{f(x)}^p \, dx = \int_B \abs{\frac{e^{-\abs{x}^2}}{\abs{x}^2}}^p \, dx = \int_B \frac{e^{-\abs{x}^2p}}{\abs{x}^{2p}} \, dx = \\
+        = \int_0^1 \int_{\left\{\abs{x} = \rho\right\}} \frac{e^{-\rho^2 p}}{\rho^{2p}} \, d\sigma \, d\rho = \sigma_n \int_0^1 \frac{e^{-\rho^2 p}}{\rho^{2p}} \rho^{n-1} \, d\rho
+    \end{split}
+\]
+Since \(e^{-\rho^2 p} \overset{\rho \to 0}{\longrightarrow} 1\) we have that the integral is finite if
+\[
+    \begin{split}
+        \int_0^1 \abs{\frac{1}{\rho^{2p}} \rho^{n-1}} \, d\rho < \infty \iff 2p - n + 1 < 1 \iff 1 \leq p < \frac{n}{2}
+    \end{split}
+\]
+We have that \(f \in L^p(B)\) if \(p \in [1, \frac{n}{2})\). We now need to check if \(f \in W^{1, p}(B)\). We start by computing the gradient of \(f\)
+\[
+    \begin{split}
+        \partial x_i f = \frac{-2 \abs{x} e^{-\abs{x}^2} \abs{x}^2 - e^{-\abs{x}^2} 2\abs{x}}{\abs{x}^4} \frac{x_i}{\abs{x}} = \frac{-2 \abs{x}^2 e^{-\abs{x}^2} - 2 e^{-\abs{x}^2}}{\abs{x}^3} \frac{x_i}{\abs{x}} 
+    \end{split}
+\]
+with 
+\[
+    \begin{split}
+        \norm{\grad f} = \frac{2 e^{-\abs{x}^2} \left(\abs{x}^2 + 1\right)}{\abs{x}^3}
+    \end{split}
+\]
+Now we need to check if \(\grad f \in L^p(B)\)
+\[
+    \begin{split}
+        \int_B \abs{\grad f}^p \, dx = \int_B \abs{\frac{2 e^{-\abs{x}^2} \left(\abs{x}^2 + 1\right)}{\abs{x}^3}}^p \, dx = \int_B  \frac{2e^{-\abs{x}^2p} \left(\abs{x}^2 + 1\right)^p} {\abs{x}^{-3p}} \, dx = \\
+        \int_0^1 \int_{\left\{\abs{x} = \rho\right\}}  \frac{2e^{-\rho^2 p} \left(\rho^2 + 1\right)^p} {\rho^{-3p}} \, d\sigma \, d\rho = \sigma_n \int_0^1  \frac{2e^{-\rho^2 p} \left(\rho^2 + 1\right)^p} {\rho^{-3p}} \rho^{n-1} \, d\rho
+    \end{split}
+\]
+Also in this case we have \(e^{-\rho^2 p} \overset{\rho \to 0}{\longrightarrow} 1\) and \(\rho^2 + 1 \overset{\rho \to 0}{\longrightarrow} 1\), so we need that
+\[
+    \begin{split}
+        \int_0^1 \abs{\frac{2 \left(\rho^2 + 1\right)^p} {\rho^{-3p}} \rho^{n-1}} \, d\rho < \infty \iff 3p - n + 1 < 1 \iff 1 \leq p < \frac{n}{3}
+    \end{split}
+\]
+Now that we have checked that \(\grad f \in L^2(\Omega)\) and \(f \in L^2(\Omega)\) we only need to check that the weak derivative of \(f\) exists, since if it exists it is equal to the classical one. We have that the weak derivative of \(f\) exists if
+\[
+    \begin{split}
+        \int_\Omega f \partial x_i \phi \, dx = - \int_\Omega \partial x_i f \phi \, dx \qquad \forall \phi \in \mathcal{D}(\Omega)
+    \end{split}
+    \tag*{E1}
+\]
+To check that this condition is satisfied we need to cut off the singularity of \(f\) in the origin. We can do this by defining
+\[
+    \Omega_\epsilon = B(0, 1) \setminus B(0, \epsilon) = B_1 \setminus B_\epsilon = \left\{ x \in \real^n \mid \epsilon < \norm{x} < 1 \right\}
+\]
+Since \(f \in C^1(\Omega_\epsilon)\) we can apply the divergence theorem to the weak derivative definition and obtain
+\[
+    \begin{split}
+        \int_{\Omega_\epsilon} f \partial x_i \phi \, dx = \int_{\Omega_\epsilon} \partial x_i f \phi \, dx - \int_{\partial\Omega_\epsilon} f \phi \nu_i \, d\sigma
+    \end{split}
+    \tag*{E2}
+\]
+We want check that taking the limit \(\epsilon \to 0\) in (E2) we obtain (E1). To do so we need to check that the boundary term goes to zero, and the other two terms are equal at the ones in (E1). We start with the first term
+\[
+    \begin{split}
+        \int_{\Omega_\epsilon} f \partial x_i \phi \, dx = \int_{B_1} f \partial x_i \phi \chi_{\Omega_\epsilon} \, dx
+    \end{split}
+\]
+We want to claim that 
+\[
+    \begin{split}
+        \lim_{\epsilon \to 0^+} \int_{\Omega_\epsilon} f \partial x_i \phi \, dx = \int_{B_1} f \partial x_i \phi \, dx
+    \end{split}
+\]
+To do so we need to swap the limit and the integral. We see that 
+\begin{itemize}
+    \item \(f \partial x_i \phi \chi_{\Omega_\epsilon} \underset{\epsilon \to 0}{\longrightarrow} f \partial x_i \phi\) a.e. in \(B_1\)
+    \item \(\abs{f \partial x_i \phi \chi_{\Omega_\epsilon}} \leq \underbrace{\abs{f}}_{\in L^p(B_1)} \overbrace{\abs{\partial x_i \phi}}^{\in L^q(B_1)} \in L^1(B_1)\)
+\end{itemize}
+We can now apply the Dominated Convergence Theorem and obtain the desired result. 
+The same process can be applied to
+\[
+    \begin{split}
+        \int_{\Omega_\epsilon} \partial x_i f \phi \, dx = \int_{B_1} \partial x_i f \phi \chi_{\Omega_\epsilon} \, dx
+    \end{split}
+\]
+Then we have shown that 
+\[
+    \begin{split}
+        \int_{B_1} f \partial x_i \phi \, dx = \int_{\partial\Omega_\epsilon} f \phi \nu_i \, d\sigma + \int_{B_1} \partial x_i f \phi \, dx
+    \end{split}
+\]
+It is clear that we need to check that the boundary term goes to zero. Since we know that \(\text{supp } \phi \subseteq B_\epsilon\).
+\[
+    \begin{split}
+        \int_{\partial\Omega_\epsilon} f \phi \nu_i \, d\sigma = \cancel{\int_{\partial B_1} f \phi \nu_i \, d\sigma} + \int_{\partial B_\epsilon} f \phi \nu_i \, d\sigma
+    \end{split}
+\]
+Moreover,
+\[
+    \begin{split}
+        \abs{\int_{\partial B_\epsilon} f \phi \nu_i \, d\sigma} \leq \int_{\partial B_\epsilon} \abs{f} \abs{\phi} \underbrace{\abs{\nu_i}}_{=1} \, d\sigma \leq \max_{\partial B_\epsilon} \abs{\phi} \int_{\{ \norm{x} = \epsilon \}} \abs{f} \, d\sigma = \\
+        \max_{\partial B_\epsilon} \abs{\phi} \frac{e^{\epsilon^2}}{\epsilon^2} \mu{\norm{x} = \epsilon} \leq \max_{\partial B_\epsilon} \abs{\phi} \frac{e^{\epsilon^2}}{\epsilon^2} \epsilon^{n-1}
+    \end{split}
+\]
+We have that 
+\[
+    \begin{split}
+        \lim_{\epsilon \to 0^+} \max_{\partial B_\epsilon} \abs{\phi} \frac{e^{\epsilon^2}}{\epsilon^2} \epsilon^{n-1} = 0 \iff 2 - 1 - n + 1 < 1 \iff n > 1
+    \end{split}
+\]
+
+So we have shown that \(f \in W^{1, p}(B) \iff n > 1 \land 1 \leq p < \frac{n}{3}\).
+
+\newpage
+\begin{exercise}
+    Let \((X, \norm{\cdot})\) be a Banach space and let \(v \in X\) such that \(\norm{v} = 1\). Moreover, let \(T > 0\) and let \(t_0 \in (0, T)\) be fixed. Prove that the map 
+    \begin{align*}
+        \Lambda_{t_0, v} \colon \mathcal{D}([0, T]) &\to X \\
+        \Lambda_{t_0, v}(\phi) &\coloneqq \phi(t_0) v \in X
+    \end{align*}
+    belongs to \(\mathcal{D}'([0, T], X)\).
+\end{exercise}
+To show that \(\Lambda_{t_0, v} \in \mathcal{D}'([0, T], X)\) we need to show that it is a continuous linear functional on \(\mathcal{D}([0, T])\). 
+Before we start, a quick reminder on the properties of series of functions in \(\mathcal{D}([0, T])\).
+\begin{remark}
+    Let \(\left\{ \phi_n \right\}_{n} \subseteq \mathcal{D}([0, T])\) be a sequence of functions that converges to \(\phi \in \mathcal{D}([0, T])\). Then we have that
+    \begin{itemize}
+        \item \(\exists \text{ compact }[a, b] \subseteq [0, T] \colon \text{supp } \phi_n \subset [a, b] \quad \forall n \in \natural\)
+        \item \(\phi_n^{(k)} \to \phi^{(k)}\) uniformly on \([a, b]\) for all \(k \in \natural\)
+    \end{itemize}
+\end{remark}
+Checking if \(\Lambda_{t_0, v}\) is linear we need to show that \(\Lambda_{t_0, v}(\alpha \phi + \beta \psi) = \alpha \Lambda_{t_0, v}(\phi) + \beta \Lambda_{t_0, v}(\psi)\). We have that
+\[
+    \begin{split}
+        \Lambda_{t_0, v}(\alpha \phi + \beta \psi) = \alpha \phi(t_0) v + \beta \psi(t_0) v = \alpha \Lambda_{t_0, v}(\phi) + \beta \Lambda_{t_0, v}(\psi)
+    \end{split}
+\]
+So our map is linear. Now we need to show that it is continuous. 
+To do that we take advantage of the properties of the sequence of functions in \(\mathcal{D}([0, T])\). Let \(\left\{ \phi_n \right\}_{n} \subseteq \mathcal{D}([0, T])\) be a sequence of functions that converges to \(\phi \in \mathcal{D}([0, T])\). 
+
+We have that \(\norm{\phi_n - \phi} \to 0\) as \(n \to \infty\). We can now compute the norm of the difference of the images of the functions
+\[
+    \begin{split}
+        \norm{\Lambda_{t_0, v}(\phi_n) - \Lambda_{t_0, v}(\phi)}_X = \norm{\phi_n(t_0) v - \phi(t_0) v}_X =\\
+        = \norm{(\phi_n(t_0) - \phi(t_0)) v}_X \leq \abs{\phi_n(t_0) - \phi(t_0)} \norm{v}_X \underset{n \to \infty}{\longrightarrow} 0
+    \end{split}
+\]
+So our map is also continuous. We have shown that \(\Lambda_{t_0, v} \in \mathcal{D}'([0, T], X)\).
+
+\newpage
+\begin{exercise}
+    Let \(\Omega \subset \real^n\) be a bounded open set. Prove that exists no solutions \(u \in C^2(\Omega) \cap C(\overline{\Omega})\) of the problem
+    \[
+        \begin{cases}
+            \Delta u = 1 - u^2 & \Omega \\
+            u = 0 & \partial\Omega
+        \end{cases}
+    \]
+    which satisfy the a-priori estimate \(0 \leq u \leq 1\) in \(\Omega\).
+\end{exercise}
+To solve this we will need the maximum principle. 
+\begin{remark}
+    Let \(u \in C^2(\Omega) \cap C(\overline{\Omega})\), then 
+    \[
+        \begin{cases}
+            \Delta u \geq 0 & \Omega \\
+            u \leq 0 & \partial\Omega
+        \end{cases} \Rightarrow u \leq 0 \text{ in } \Omega
+    \]
+    Which means the sign of \(u\) on the boundary is preserved in the interior. Also \(\max_{\overline{\Omega}} u = \max_{\partial\Omega} u\).
+\end{remark}
+In this case we have an a-priori estimate on \(u\), which means that \(0 \leq u \leq 1 \Rightarrow 1 - u^2 \geq 0\). We can now apply the maximum principle to the equation
+\[
+    \begin{cases}
+        \Delta u = 1 - u^2 \geq 0 & \Omega \\
+        u = 0 & \partial\Omega
+    \end{cases}
+\]
+Since the maximum of \(u\) is on the boundary, we have that \(u \leq 0\) in \(\Omega\). By our estimate this means that \(0 \leq u \leq 1 \cap u \leq 0 \Rightarrow u = 0\). But this is not a solution to the equation, because
+\[
+    \begin{split}
+        \Delta 0 = 1 - 0 = 1 \neq 0
+    \end{split}
+\]
+So we have shown that there are no solutions \(u \in C^2(\Omega) \cap C(\overline{\Omega})\) of the problem which satisfy the a-priori estimate \(0 \leq u \leq 1\) in \(\Omega\).
