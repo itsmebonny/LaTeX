@@ -1,0 +1,191 @@
+\section{Exams 2022/23}
+\subsection{July 2022}
+\begin{exercise}
+  Let \(\Omega \subseteq \real^2\) be a bounded open set of class \(C^1\), and let \(f \in L^2(\Omega)\). Consider the Dirichlet problem
+    \begin{equation*}
+        \begin{cases}
+        -\left(2\partial_{x}^2 u + \partial_{y}^2 u + \partial_{xy} u\right) = f & \text{in } \Omega, \\
+        u = 0 & \text{on } \partial \Omega.
+        \end{cases}
+        \tag*{(P)}
+    \end{equation*}
+\begin{itemize}
+    \item For a suitable symmetric matrix \(A\), write the PDE appearing in (P) in the form \(\div(A \cdot \grad u) = f\).
+    \item Write the variational formulation of (P) and show that there exists a unique solution \(u \in H_0^1(\Omega)\) using Lax-Milgram's theorem.
+\end{itemize}
+\end{exercise}
+First, we choose a suitable symmetric matrix \(A\). In \(n = 2\) we have that the PDE can be written as \(A_{11} \partial_{x}^2 u + A_{22} \partial_{y}^2 u + 2A_{12} \partial_{xy} u\), so a suitable choice is
+\[
+A = \begin{pmatrix}
+2 & 1/2 \\
+1/2 & 1
+\end{pmatrix}.
+\]
+Then, the PDE can be written as
+\[
+ - \div(A \cdot \grad u) = f.
+\]
+Now we write the variational formulation of (P). We start by choosing an appropriate Hilbert triple. Since we are dealing with a Dirichlet problem, we choose \(V = H_0^1(\Omega)\) and \(V' = H^{-1}(\Omega)\), with \(H = L^2(\Omega)\) to have \(V \subseteq H \subseteq V'\), and multiply the PDE by a test function \(v \in V\), integrate by parts, and obtain
+\[
+\int_{\Omega} - \div(A \cdot \grad u) v \, dx = \int_{\Omega} \, dx f \forall v \in V.
+\]
+Now we integrate by parts and obtain
+\[
+\int_{\Omega} A \cdot \grad u \cdot \grad v \, dx + \cancel{\int_{\partial \Omega} A \cdot \grad u \cdot \vect{n} v \, d\sigma}= \int_{\Omega} f v \, dx \forall v \in V.
+\]
+We define the bilinear form \(a(u,v) = \int_{\Omega} A \cdot \grad u \cdot \grad v \, dx\) and apply Lax-Milgram's theorem. Then we need to check that \(a\) is continuous and coercive. First we check continuity:
+\[
+\abs{a(u,v)} = \abs{\int_{\Omega} A \cdot \grad u \cdot \grad v \, dx} \leq \abs{A} \norm{\grad u}_{L^2} \norm{\grad v}_{L^2} \leq \norm{A} \norm{u}_{V} \norm{v}_{V}.
+\]
+Now we check coercivity, taking advantage of these two facts (\(\norm{u}_{L^2} \leq C_p \norm{\grad u}_{L^2}\) and \(\norm{u}_{V} = \norm{\grad u}_{L^2}\)):
+\[
+a(u,u) = \int_{\Omega} A \cdot \grad u \cdot \grad u \, dx \geq \abs{A} \norm{\grad u}_{L^2}^2 = \abs{A} \frac{1}{1 + C_p^2} \norm{u}_{V}^2 = \alpha \norm{u}_{V}^2.
+\]
+Therefore, we have that the bilinear form is continuous and coercive, and by Lax-Milgram's theorem, there exists a unique solution \(u \in V\) to the variational formulation of (P).
+
+\newpage
+\begin{exercise}
+    Find solitary waves for the problem
+    \[
+        \begin{cases}
+            u_t - 2u_{xx} - u_x^3 = 0 & \real \times (0, \infty) \\
+            u(x, 0) = g(x) & x \in \real
+        \end{cases}
+    \]
+    Moreover, discuss mass and momentum conservation for general solutions \(u \in S(\real)\) of (P).
+\end{exercise}
+Quick reminder about the solitary waves for parabolic equations. 
+\begin{remark}
+    In the case of a parabolic equation, we have that the solution \(u(x,t) =  g(x + ct)\) where \(c\) is the speed of the wave.
+\end{remark}
+We are working with solution of the form \(u(x,t) = g(x + ct)\), so we substitute this solution in the equation and obtain
+\[
+    \begin{split}
+        cg'(x+ct) - 2g''(x+ct) - (g'(x+ct))^3 = 0 \Rightarrow cg'(x+ct) - g''(x+ct) = (g'(x+ct))^3
+    \end{split}
+\]
+We perform a change of variable \(s = x + ct\) and obtain
+\[
+    \begin{split}
+        cg'(s) - 2g''(s) = (g'(s))^3
+    \end{split}
+\]
+At this point we are working with an ODE, so we can solve it. We start by defining \(y(s) = g'(s)\) and obtain
+\[
+    \begin{split}
+        cy(s) - 2y'(s) = y(s)^3 \Rightarrow 2y'(s) = cy(s) - y(s)^3 
+    \end{split}
+\]
+To solve this we introduce 
+\[
+    z(s) = \frac{1}{y(s)^2} \Rightarrow z'(s) = -2 \frac{y'(s)}{y(s)^3} 
+\]
+We substitute \(y'(s)\) and obtain
+\[
+    \begin{split}
+        z'(s) = -2 \frac{y(s)^2 - cy(s)}{y(s)^3} = -c \frac{1}{y(s)^2} + 1 = -c z(s) + 1
+    \end{split}
+\]
+Solving this ODE we obtain
+\[
+    \begin{split}
+        z(s) = e^{-cs} \left(k + \int_0^s e^{ct} \, dt\right) = e^{-cs} \left(k + \left. \frac{e^{ct}}{c} \right|_0^s\right) = e^{-cs} \left(k + \frac{e^{cs} - 1}{c}\right) = k e^{-cs} + \frac{1}{c} - \frac{e^{-cs}}{c} = \\
+        = e^{-cs} \left(k - \frac{1}{c}\right) + \frac{1}{c} = k_0 e^{-cs} + \frac{1}{c}
+    \end{split}
+\]
+At this point we use the definition of \(z(s)\) and obtain
+\[
+    \begin{split}
+        y(s)^2 = \frac{1}{z(s)} = \frac{1}{k_0 e^{-cs} + \frac{1}{c}} = \frac{c e^{cs}}{c k_0 + e^{cs}} = \frac{c e^{cs}}{k_1 + e^{cs}}
+    \end{split}
+\]
+Then we compute the square root of this expression and obtain
+\[
+    \begin{split}
+        y(s) = \pm \sqrt{\frac{c e^{cs}}{k_1 + e^{cs}}} = g'(s)
+    \end{split}
+\]
+Since 
+\[
+    \begin{split}
+        g'(s) = \pm \sqrt{\frac{c e^{cs}}{k_1 + e^{cs}}} 
+    \end{split}
+\]
+At this point we can conclude \(\nexists \text{ solitary waves}\) for the problem and then \(\nexists \text{ global solutions}\) for the problem.
+
+Now we can discuss mass and momentum conservation for general solutions \(u \in S(\real)\) of (P). We start by defining the mass and momentum of the solution
+\[
+    M(t) = \int_\real u(x,t) \, dx
+\]
+\[
+    \mathcal{M}(t) = \int_\real u(x,t)^3 \, dx
+\]
+We compute the derivative of the mass
+\[
+    \begin{split}
+        M'(t) = \frac{d}{dt} \int_\real u(x,t) \, dx = \int_\real u_t(x,t) \, dx = \int_\real 2u_{xx}(x,t) + u_x(x,t)^3 \, dx =\\ 
+        = \int_\real \underbrace{2(u_x)_x}_{\text{div. form} = 0} + u_x^3 \, dx = \int_\real u_x^3 \, dx
+    \end{split}
+\]
+We do not have mass conservation, since mass is not constant over time. 
+
+We compute the derivative of the momentum
+\[
+    \begin{split}
+        \mathcal{M}'(t) = \frac{d}{dt} \int_\real u(x,t)^2 \, dx = \int_\real 2 u(x,t) u_t(x,t) \, dx = \int_\real 2 u(x,t) 2u_{xx} + 2u u_x^3 \, dx= \\
+         = \int_\real 4 u u_{xx} + \underbrace{2u u_x^3}_{= 2 u u_x u_x^2} \, dx =  \cancel{\left. 4 u u_x \right|_\real} - \int_\real 4 u_x^2 \, dx + \cancel{\left. u^2 u_x^2 \right|_\real} - \int_\real u^2 2 u_x u_{xx} \, dx =\\
+         = - \int_\real u_x (4 u_x - 2 u^2 u_{xx}) \, dx
+    \end{split}
+\]
+As we can see, the momentum is not conserved either.
+
+\newpage
+\begin{exercise}
+    Let \(f : \real \to \real\) be the function defined by
+    \[
+        f(x) = \begin{cases}
+            1 - \abs{x} & \text{if } \abs{x} < 1, \\
+            0 &  \text{if } \abs{x} \geq 1.
+        \end{cases}
+    \]
+    Prove that \(f \in H^s(\real)\) for all \(s < 3/2\). Hint: use the Fourier transform.
+\end{exercise}
+We start by recalling the defintion of \(H^s(\real)\).
+\begin{remark}
+    Let \(s \in \real\). We define the Sobolev space \(H^s(\real)\) as 
+    \[
+        H^s(\real) = \left\{ f \in L^2(\real) : (1 + \abs{\xi}^2)^{\frac{s}{2}} \hat{f}(\xi) \in L^2(\real) \right\}
+    \]
+\end{remark}
+We start by computing the Fourier transform of \(f\). We have that
+\[
+    \begin{split}
+        \hat{f}(\xi) = \int_\real f(x) e^{-i x \xi} \, dx = \int_{-1}^0 (1 + x) e^{-i x \xi} \, dx + \int_0^1 (1 - x) e^{-i x \xi} \, dx = \\
+        = \int_{-1}^0 e^{-i x \xi} \, dx + \int_0^1 e^{-i x \xi} \, dx + \int_{-1}^0 x e^{-i x \xi} \, dx - \int_0^1 x e^{-i x \xi} \, dx = \\
+        = \left.  \frac{e^{-i x \xi}}{-i \xi} \right|_{-1}^0 + \left. \frac{e^{-i x \xi}}{-i \xi} \right|_0^1 + \int_{-1}^0 x e^{-i x \xi} \, dx - \int_0^1 x e^{-i x \xi} \, dx = \\
+        = \cancel{\frac{1}{- i \xi}} - \frac{e^{i \xi}}{- i \xi} + \frac{e^{-i \xi}}{- i \xi} - \cancel{\frac{1}{- i \xi}} + \left. x \frac{e^{-i x \xi}}{-i \xi} \right|_{-1}^0 - \int_{-1}^0 \frac{e^{-i x \xi}}{-i \xi} \, dx - \left. x \frac{e^{-i x \xi}}{-i \xi} \right|_0^1 + \int_0^1 \frac{e^{-i x \xi}}{-i \xi} \, dx = \\
+        = \cancel{- \frac{e^{i \xi}}{- i \xi}} + \cancel{\frac{e^{-i \xi}}{- i \xi}} + \cancel{\frac{e^{i \xi}}{- i \xi}} - \left. \frac{e^{-i x \xi}}{(-i \xi)^2} \right|_{-1}^0 - \cancel{\frac{e^{-i \xi}}{- i \xi}} + \left. \frac{e^{-i x \xi}}{(-i \xi)^2} \right|_0^1 = \\ 
+        = -\frac{1}{\xi^2} + \frac{e^{i \xi}}{\xi^2} + \frac{e^{-i \xi}}{\xi^2} - \frac{1}{\xi^2} = \frac{e^{i \xi} + e^{-i \xi} - 2}{\xi^2}  
+    \end{split}
+\]
+Remembering that \(\cos(\xi) = \frac{e^{i \xi} + e^{-i \xi}}{2}\) and \(\sin(\xi) = \frac{e^{i \xi} - e^{-i \xi}}{2i}\), we can rewrite the Fourier transform as
+\[
+    \begin{split}
+        \hat{f}(\xi) = \frac{(e^{i \xi} + e^{-i \xi} - 2)}{\xi^2} = \frac{2 \cos(\xi) - 2}{\xi^2} 
+    \end{split}
+\]
+Now to check that \(f \in H^s(\real)\) for all \(s < 3/2\), we need to check that \((1 + \abs{\xi}^2)^{\frac{s}{2}} \hat{f}(\xi) \in L^2(\real)\). We have that
+\[
+    \begin{split}
+        \left(1 + \abs{\xi}^2\right)^{\frac{s}{2}} \frac{2 \cos(\xi) - 2}{\xi^2}  \in L^2(\real) \iff \int_\real \left(1 + \abs{\xi}^2\right)^{s} \abs{\frac{2 \cos(\xi) - 2}{\xi^2}}^2 \, d\xi < \infty
+    \end{split}
+\]
+We know that \( 0 \leq \cos(\xi) -1 \leq 2\) and that \(\left(1 + \abs{\xi}^2\right) \overset{\xi \to \infty}{\longrightarrow} \abs{\xi}^2\), so we can write
+\[
+    \begin{split}
+        \int_\real \left(1 + \abs{\xi}^2\right)^{s} \abs{\frac{2 \cos(\xi) - 2}{\xi^2}}^2 \, d\xi  \leq
+        \int_\real \abs{\frac{2 \xi^{s}}{\xi^2}}^2 \, d\xi = \int_\real \frac{4 \xi^{2s}}{\xi^4} \, d\xi  
+        = 4 \int_\real \frac{1}{\xi^{4 - 2s}} \, d\xi
+    \end{split}
+\]
+We know that the integral \(\int_\real \frac{1}{\xi^{4 - 2s}} \, d\xi\) converges if \(4 - 2s > 1 \Rightarrow s < 3/2\), so we have that \(f \in H^s(\real)\) for all \(s < 3/2\). 
