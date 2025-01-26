@@ -536,7 +536,7 @@ Since the bilinear form \(a(u, v)\) is continuous and coercive, all the requirem
 
 \newpage
 \begin{exercise}
-    Let \(\Omega in \real^n (n \geq 2)\) be a bounded open domain with \(\partial\Omega \in C^\infty\). Consider the problem
+    Let \(\Omega \in \real^n (n \geq 2)\) be a bounded open domain with \(\partial\Omega \in C^\infty\). Consider the problem
     \[
         \begin{cases}
             -\Delta u = f & \Omega \\
@@ -550,3 +550,168 @@ Since the bilinear form \(a(u, v)\) is continuous and coercive, all the requirem
         \item What are the minimal regularity assumptions on \(f\) and \(g\) that guarantee \(u \in H^2(\Omega)\)?
     \end{enumerate}
 \end{exercise}
+\begin{enumerate}
+    \item We start by writing the weak formulation of the problem. First we define a suitable function space, since \(f \in H^{-1}(\Omega, g \in H^{1/2}(\Omega))\) and \(\alpha = 0 > -\lambda_1\) \(\exists u_0 \in H^1(\Omega)\) such that \(\gamma_0(u_0) = g\), where \(\gamma_0\) is the trace operator. We define the function space
+    \[
+        K = \left\{ u \in H^1(\Omega) \mid u - u_0 \in H^1_0(\Omega) \right\}
+    \]
+    Then we multiply the equation by a test function \(v \in H^1_0(\Omega)\) and obtain
+    \[
+        \begin{split}
+            -\int_\Omega \Delta u v \, dx = \int_\Omega f v \, dx \qquad \forall v \in H^1_0(\Omega)
+        \end{split}
+    \]
+    We integrate by parts the left-hand side and obtain
+    \[
+        \begin{split}
+            \int_\Omega \grad u \grad v \, dx = \int_\Omega f v \, dx \qquad \forall v \in H^1_0(\Omega)
+        \end{split}
+    \]
+    Then we obtain the weak formulation of the problem
+    \[
+        \begin{split}
+            \text{Find } u \in K \text{ such that } \int_\Omega \grad u \grad v \, dx =  \langle f, v \rangle \qquad \forall v \in H^1_0(\Omega)
+        \end{split}
+    \]
+    \item We now need to prove that the problem admits a unique solution and characterize its regularity. The Dirichlet principle states that 
+    \begin{remark}
+        Let \(\alpha > -\lambda_1\) and \(f \in H^{-1}(\Omega)\), \(g \in H^{\frac{1}{2}}(\partial\Omega)\). Then the problem (P) admits a unique solution \(u \in K\), Moreover \(u\) is a weak solution if and only if minimizes the functional
+        \[
+            J(u) = \frac{1}{2} \int_\Omega \abs{\grad u}^2 \, dx - \langle f, u \rangle
+        \]
+    \end{remark}
+    We provide a sketch of the proof of the uniqueness of the solution. We start by letting \(u_0 \in H^1(\Omega)\) be such that \(\gamma_0(u_0) = g \in H^{1/2}(\partial\Omega)\). Now let \(u = z + u_0 \iff z = u - u_0\). We have that \(z \in H^1_0(\Omega)\). 
+    \[
+        \begin{split}
+            u \in K \text{ is weak solution of (P)} \iff \int_\Omega \grad u \grad v \, dx = \langle f, v \rangle \qquad \forall v \in H^1_0(\Omega) \\
+            \iff \int_\Omega \grad z \grad v \, dx = \langle f, v \rangle - \int_\Omega \grad u_0 \grad v \, dx \qquad \forall v \in H^1_0(\Omega) 
+        \end{split}
+    \]
+    Now we define the functional
+    \begin{align*}
+        \Lambda: H^1_0(\Omega) &\longrightarrow \real \\
+        v &\longmapsto \langle f, v \rangle - \int_\Omega \grad u_0 \grad v \, dx
+    \end{align*}
+    We have that \(\Lambda\) is a linear and continuous functional. 
+
+    Then we take a look at \(a(z, v) = \int_\Omega \grad z \grad v \, dx\). We have that \(a(z, v)\) is a continuous and coercive bilinear form since \(\alpha = 0 > -\lambda_1\). Then, by the Lax-Milgram theorem, we have that there exists a unique solution \(z \in H^1_0(\Omega)\) such that
+    \[
+        \begin{split}
+            a(z, v) = \Lambda(v) \qquad \forall v \in H^1_0(\Omega)
+        \end{split}
+    \]
+    Since \(z\) is the unique solution of the problem we have that \(u = z + u_0\) is the unique solution of the problem (P).
+\end{enumerate}
+
+\newpage
+\begin{exercise}
+    Write the weak formulation of the stationary Navier-Stokes equations under Dirichlet boundary conditions in a smooth bounded domain \(\Omega \subset \real^n\) and explain why the assumption \(n \leq 4\) is necessary.
+\end{exercise}
+We start by writing the stationary Navier-Stokes equations
+\[
+    \begin{cases}
+        - \eta \Delta u + \left( u \cdot \grad \right) u + \grad p = f & \Omega \\
+        \div u = 0 & \Omega \\
+        u = 0 & \partial\Omega
+    \end{cases}
+\]
+where \(\Omega \subset \real^n\), \(\partial\Omega \in C^1\), and \(n \leq 4\).
+\begin{remark}
+    About the term \(\left( u \cdot \grad \right) u\), we have that (\(n = 3\))
+    \[
+        u = \begin{pmatrix}
+            u_1 \\
+            u_2 \\
+            u_3
+        \end{pmatrix} \quad \text{and} \quad \grad = \begin{pmatrix}
+            \partial_1 \\
+            \partial_2 \\
+            \partial_3
+        \end{pmatrix}
+    \]
+    So combining the two we have
+    \[
+        \begin{split}
+            \left( u \cdot \grad \right) u = \begin{pmatrix}
+                u_1 \partial_1 + u_2 \partial_2 + u_3 \partial_3
+            \end{pmatrix} \begin{pmatrix}
+                u_1 \\
+                u_2 \\
+                u_3
+            \end{pmatrix} = \begin{pmatrix}
+                u_1 \partial_1 u_1 + u_2 \partial_2 u_1 + u_3 \partial_3 u_1 \\
+                u_1 \partial_1 u_2 + u_2 \partial_2
+                u_2 + u_3 \partial_3 u_2 \\
+                u_1 \partial_1 u_3 + u_2 \partial_2 u_3 + u_3 \partial_3 u_3
+            \end{pmatrix}
+        \end{split}
+    \]
+    which is the so-called convective term.
+\end{remark}
+As functional spaces we choose the spaces introduced in the previous exercise about the Stokes problem \(\bm{V}, \bm{G_1}, \bm{G_2}, \bm{G_3}\). 
+\begin{remark}
+    \(\bm{V} \coloneqq \left\{ f \in \bm{H}^1_0(\Omega) \mid \grad \cdot f = 0 \right\}\) is the space of divergence-free functions.
+    We also introduce three spaces:
+    \begin{itemize}
+        \item \(\bm{G}_1 \coloneqq \left\{ f \in \bm{L}^2(\Omega) \mid \grad \cdot f = 0, \gamma_\nu f = 0 \right\}\)
+        \item \(\bm{G}_2 \coloneqq \left\{ f \in \bm{L}^2(\Omega) \mid \grad \cdot f = 0, \exists g \in H^1(\Omega) \text{ s.t. } f = \grad g \right\}\)
+        \item \(\bm{G}_3 \coloneqq \left\{ f \in \bm{L}^2(\Omega) \mid \exists g \in H^1_0(\Omega) \text{ s.t. } f = \grad g \right\}\)
+    \end{itemize}
+\end{remark}
+We now multiply the equation by a test function \(v \in \bm{V}\) and obtain
+\[
+    \begin{split}
+        - \eta \int_\Omega \Delta u v \, dx + \int_\Omega \left( u \cdot \grad \right) u v \, dx + \int_\Omega \grad p \cdot v \, dx = \int_\Omega f v \, dx
+    \end{split}
+\]
+We integrate by parts the first term and obtain
+\[
+    \begin{split}
+        \eta \int_\Omega \grad u : \grad v \, dx + \int_\Omega \left( u \cdot \grad \right) u \cdot v \, dx + \underbrace{\int_\Omega \grad p \cdot v \, dx}_{=0} = \int_\Omega f v \, dx
+    \end{split}
+\]
+The term \(\int_\Omega \grad p v \, dx\) is zero because \(v \in \bm{V} \subseteq \bm{G_1}\) and \(\grad p \in \bm{G_2} \oplus \bm{G_3} = \bm{G_1}^\perp\). We can now write the weak formulation of the problem
+\[
+    \begin{split}
+        \text{Find } u \in \bm{V} \text{ such that } \eta \int_\Omega \grad u : \grad v \, dx + \int_\Omega \left( u \cdot \grad \right) u \cdot v \, dx = \langle f, v \rangle \qquad \forall v \in \bm{V}
+    \end{split}
+\]
+Now we need to explain why the assumption \(n \leq 4\) is necessary. We need to understand in which space the convective term lies and that \(v \in \bm{V} \Rightarrow \grad v \in \bm{L}^2(\Omega)\).  
+\begin{itemize}
+    \item[\(n = 2\)] In the bidimensional case, we have that \(u \in \bm{V} \Rightarrow u \in \bm{L}^p(\Omega) \, \forall 1 \leq p < \infty\). Since \(u \cdot \grad u\) is a product of a function in \(\bm{L}^p(\Omega)\) and a function in \(\bm{L}^2(\Omega)\), we have that \(u \cdot \grad u \in \bm{L}^2(\Omega) \, \forall q < 2\).
+    \[
+        \begin{pmatrix*}
+            \bm{H}^1_0(\Omega) \subset \bm{L}^p{(\Omega)} & \forall 1 \leq p < \infty \\
+            \bm{L}^{p'}(\Omega) \subset \bm{H}^{-1}(\Omega) & \forall 1 < p \leq \infty
+        \end{pmatrix*}
+        \Rightarrow u \cdot \grad u \in \bm{H}^{-1}(\Omega)
+    \]
+    \item[\(n = 3\)] In the tridimensional case, Sobolev embedding gives us \(u \in \bm{V} \Rightarrow u \in \bm{L}^6(\Omega)\). In this case we have that \(u \cdot \grad u \in \bm{L}^{3/2}(\Omega)\), because we have that \(u \in \bm{L}^6(\Omega)\) and \(\grad u \in \bm{L}^2(\Omega)\), and by Holder's inequality \(\frac{1}{6} + \frac{1}{2} + \frac{1}{r} = 1 \Rightarrow r = 3\) and the dual of \(\bm{L}^{3}(\Omega)\) is \(\bm{L}^{3/2}(\Omega)\).
+    \[
+        \begin{pmatrix*}
+            \bm{H}^1_0(\Omega) \subset \bm{L}^6{(\Omega)}  \\
+            \bm{L}^{6/5}(\Omega) \subset \bm{H}^{-1}(\Omega)
+        \end{pmatrix*}
+        \Rightarrow u \cdot \grad u \in \bm{L}^{3/2}(\Omega) \subset \bm{L}^{6/5}(\Omega) \subset \bm{H}^{-1}(\Omega)
+    \]
+    \item[\(n = 4\)] In the four-dimensional case, we have that \(u \in \bm{V} \Rightarrow u \in \bm{L}^4(\Omega)\). In this case we have that \(u \cdot \grad u \in \bm{L}^{4/3}(\Omega)\), because we have that \(u \in \bm{L}^4(\Omega)\) and \(\grad u \in \bm{L}^2(\Omega)\), and by Holder's inequality \(\frac{1}{4} + \frac{1}{2} + \frac{1}{r} = 1 \Rightarrow r = 4\) and the dual of \(\bm{L}^{4}(\Omega)\) is \(\bm{L}^{4/3}(\Omega)\).
+    \[
+        \begin{pmatrix*}
+            \bm{H}^1_0(\Omega) \subset \bm{L}^4{(\Omega)}  \\
+            \bm{L}^{4/3}(\Omega) \subset \bm{H}^{-1}(\Omega)
+        \end{pmatrix*}
+        \Rightarrow u \cdot \grad u \in \bm{H}^{-1}(\Omega)
+    \]
+    \item[\(n = 5\)] In the five-dimensional case, we have that \(u \in \bm{V} \Rightarrow u \in \bm{L}^{10/3}(\Omega)\). In this case we have that \(u \cdot \grad u \in \bm{L}^{5/4}(\Omega)\), because we have that \(u \in \bm{L}^{10/3}(\Omega)\) and \(\grad u \in \bm{L}^2(\Omega)\), and by Holder's inequality \(\frac{3}{10} + \frac{1}{2} + \frac{1}{r} = 1 \Rightarrow r = 5\) and the dual of \(\bm{L}^{5}(\Omega)\) is \(\bm{L}^{5/4}(\Omega)\).
+    \[
+        \begin{pmatrix*}
+            \bm{H}^1_0(\Omega) \subset \bm{L}^{10/3}{(\Omega)}  \\
+            \bm{L}^{10/7}(\Omega) \subset \bm{H}^{-1}(\Omega)
+        \end{pmatrix*}
+        \nRightarrow u \cdot \grad u \in \bm{L}^{10/7}(\Omega) \subset \bm{H}^{-1}(\Omega) \text{ because } \frac{5}{4} < \frac{10}{7}
+    \]
+    Because \(L^q \subset L^p\) if \(p < q\), in \(n = 5\) we do not have that \(u \cdot \grad u \in \bm{H}^{-1}(\Omega)\).
+\end{itemize}
+
+\newpage
+\subsection{January 2023}
