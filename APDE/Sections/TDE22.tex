@@ -1,5 +1,5 @@
 \section{Exams 2022/23}
-\subsection{July 2022}
+\subsection{June 2022}
 \begin{exercise}
   Let \(\Omega \subseteq \real^2\) be a bounded open set of class \(C^1\), and let \(f \in L^2(\Omega)\). Consider the Dirichlet problem
     \begin{equation*}
@@ -180,12 +180,373 @@ Now to check that \(f \in H^s(\real)\) for all \(s < 3/2\), we need to check tha
         \left(1 + \abs{\xi}^2\right)^{\frac{s}{2}} \frac{2 \cos(\xi) - 2}{\xi^2}  \in L^2(\real) \iff \int_\real \left(1 + \abs{\xi}^2\right)^{s} \abs{\frac{2 \cos(\xi) - 2}{\xi^2}}^2 \, d\xi < \infty
     \end{split}
 \]
-We know that \( 0 \leq \cos(\xi) -1 \leq 2\) and that \(\left(1 + \abs{\xi}^2\right) \overset{\xi \to \infty}{\longrightarrow} \abs{\xi}^2\), so we can write
+We know that \(\left(1 + \abs{\xi}^2\right) \overset{\xi \to \infty}{\longrightarrow} \abs{\xi}^2\), and we can bound \(2 \cos(\xi) - 2\), so we have that
 \[
     \begin{split}
         \int_\real \left(1 + \abs{\xi}^2\right)^{s} \abs{\frac{2 \cos(\xi) - 2}{\xi^2}}^2 \, d\xi  \leq
-        \int_\real \abs{\frac{2 \xi^{s}}{\xi^2}}^2 \, d\xi = \int_\real \frac{4 \xi^{2s}}{\xi^4} \, d\xi  
-        = 4 \int_\real \frac{1}{\xi^{4 - 2s}} \, d\xi
+        \int_\real \abs{\frac{\xi^{s}}{\xi^2}}^2 \, d\xi = \int_\real \frac{\xi^{2s}}{\xi^4} \, d\xi  
+        = \int_\real \frac{1}{\xi^{4 - 2s}} \, d\xi
     \end{split}
 \]
 We know that the integral \(\int_\real \frac{1}{\xi^{4 - 2s}} \, d\xi\) converges if \(4 - 2s > 1 \Rightarrow s < 3/2\), so we have that \(f \in H^s(\real)\) for all \(s < 3/2\). 
+
+\newpage
+\subsection{July 2022}
+\begin{exercise}
+    Let \(\Omega \subset \real^n (n \geq 2)\) be a bounded smooth domain, let \(a\) be a measurable function in \(\Omega\).
+    Consider the problem
+    \[
+        \begin{cases}
+            - \Delta u = a(x) u^4 & \Omega \\
+            u = 0 & \partial\Omega
+        \end{cases}
+        \tag*{(P)}
+    \]
+    Under which assumptions on the space dimension n can we write a variational formulation of problem (P) in
+    \(H^1_0(\Omega)\)? 
+    
+    For each of these dimensions find the most general assumptions on \(a\) that allow to write the variational formulation. 
+    
+    Finally, write the variational formulation.
+    \end{exercise}
+
+    Since we want to know the variational formulation in \(H^1_0\) we have \(s = 1\) and need to check \(n = 2, n \geq 3\). 
+    
+    Remember a variational formulation makes sense if \(\int_\Omega fv < \infty\).
+    \begin{itemize}
+        \item[\(n = 2\).] In this case we have \(u^4 v \in H^1_0(\Omega)\), so by Sobolev embedding we know \(u^4, v \in L^p(\Omega)\) for \(2 \leq p < \infty\). 
+        \[
+            \abs{\int_\Omega a(x) u^4 v}  \, dx \leq \int_\Omega \abs{a(x)} \abs{u^4} \abs{v} \, dx \underset{Holder}{\leq} \left(\int_\Omega \abs{a(x)}^r\right)^{\frac{1}{r}} \left(\int_\Omega \abs{u^4}^p \right)^{\frac{1}{p}} \left(\int_\Omega \abs{v}^q \right)^{\frac{1}{q}} < \infty.
+        \]
+        To use Holder inequality we need to find \(r, p, q\) such that \(\frac{1}{r} + \frac{1}{p} + \frac{1}{q} = 1\). We see that, 
+        \[
+            \frac{1}{r} + \frac{1}{p} + \frac{1}{q} = 1 \iff a(x) \in L^r(\Omega) \qquad \text{with } r > 1
+        \]
+        \item[\(n \geq 3\).] In this case we have \(u^4, v \in H^1_0(\Omega)\), so by Sobolev embedding we know \(u^4, v \in L^p(\Omega)\) for \(2 \leq p \leq 2^*\).
+        We proceed as before, using Holder inequality, but decide to use \(p = \frac{2^*}{4}\) and \(q = \frac{1}{2^*}.\)
+        \[
+            \begin{split}
+                \abs{\int_\Omega a(x) u^4 v}  \, dx \leq \int_\Omega \abs{a(x)} \abs{u^4} \abs{v} \, dx \underset{{Holder}}{\leq} \\
+                \leq \left(\int_\Omega \abs{a(x)}^r\right)^{\frac{1}{r}} \left(\int_\Omega \abs{u}^{2^*} \right)^{\frac{4}{2^*}} \left(\int_\Omega \abs{v}^{2^*} \right)^{\frac{1}{2^*}} < \infty.
+            \end{split}
+        \]
+        In this case Holder inequality gives us 
+        \[
+            \frac{1}{r} + \frac{4}{2^*} + \frac{1}{2^*} = 1 \iff \frac{1}{r} = 1 - \frac{5}{2^*} \iff r = \frac{2^*}{2^* - 5}
+        \]
+        Substituting \(2^* = \frac{2n}{n - 2}\) we get \(r = \frac{2n}{-3n + 10}\). Since \(r > 0\) we need \(n < 10/3\), so we have that the variational formulation is well posed if \(n < 3\).
+        In this case we have that \(2^* = \frac{2n}{n - 2} = \frac{2 \cdot 3}{3 - 2} = 6\), so we have that \(r = \frac{6}{6 - 5} = 6\), so we need \(a(x) \in L^6(\Omega)\).
+    \end{itemize}
+    \newpage
+    
+    At this point we can write the weak formulation of the problem. We multiply the equation by a test function \(v \in H^1_0(\Omega)\) and obtain 
+    \[
+        \int_\Omega - \Delta u v \, dx = \int_\Omega a(x) u^4 v \, dx \qquad \forall v \in H^1_0(\Omega)
+    \]
+    We integrate by parts the left-hand side and obtain
+    \[
+        \int_\Omega \nabla u \nabla v \, dx = \int_\Omega a(x) u^4 v \, dx \qquad \forall v \in H^1_0(\Omega)
+    \]
+    This is the weak formulation of the problem. This is well posed if 
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{|c|c|}
+            \hline
+            Dimension & Assumptions on $a(x)$ \\
+            \hline
+            $n = 2$ & $a \in L^r(\Omega)$, $r > 1$ \\
+            $n = 3$ & $a \in L^6(\Omega)$ \\
+            $n \geq 4$ & No variational formulation \\
+            \hline
+        \end{tabular}
+    \end{table}
+
+\newpage
+\begin{exercise}
+    Explain how to proceed in order to find solitary waves for the Korteweg-de Vries equation
+    \[
+        \begin{cases}
+            u_t + u_{xxx} + 6 u u_x = 0 & \real \times (0, \infty) \\
+            u(x, 0) = g(x) & x \in \real
+        \end{cases}
+    \]
+    Derive the related couple of first order ODEs, without solving them.
+\end{exercise}
+We start by recalling the definition of solitary waves for the KdV equation.
+\begin{remark}
+    In the case of the KdV equation, we have that the solution \(u(x,t) =  g(x - ct)\) where \(c\) is the speed of the wave.
+\end{remark}
+As always, we substitute this solution in the equation and obtain
+\[
+    \begin{split}
+        -c g'(x - ct) + g'''(x - ct) + 6 g(x - ct) g'(x - ct) = 0
+    \end{split}
+\]
+We perform a change of variable \(s = x - ct\) and obtain
+\[
+    \begin{split}
+        -c g'(s) + g'''(s) + 6 g(s) g'(s) = 0
+    \end{split}
+\]
+We can see that this equation can be rewritten as
+\[
+    \begin{split}
+        \frac{d}{ds}\left[-c g(s) + g''(s) + 3 g(s)^2\right] = 0
+    \end{split}
+\]
+By integrating this equation we obtain
+\[
+    \begin{split}
+        -c g(s) + g''(s) + 3 g(s)^2 = \frac{a}{2} \qquad \text{with } a \in \real
+    \end{split}
+\]
+where we choose the constant of integration equal to \(a/2\) to simplify the calculations. Now we multiply this equation by \(g'(s)\) and obtain
+\[
+    \begin{split}
+        -c g(s) g'(s) + g''(s) g'(s) + 3 g(s)^2 g'(s) = \frac{a}{2} g'(s)
+    \end{split}
+\]
+Again this can be rewritten as
+\[
+    \begin{split}
+        \frac{d}{ds}\left[-\frac{c}{2} g(s)^2 + \frac{1}{2} g'(s)^2 + g(s)^3 - \frac{a}{2} g(s)\right] = 0
+    \end{split}
+\]
+A second integration gives us
+\[
+    \begin{split}
+        -\frac{c}{2} g(s)^2 + \frac{1}{2} g'(s)^2 + g(s)^3 - \frac{a}{2} g(s) = \frac{b}{2} \qquad \text{with } b \in \real
+    \end{split}
+\]
+In the end the equation looks like
+\[
+    \begin{split}
+        g'(s)^2 = -2 g(s)^3 + c g(s)^2 + a g(s) + b
+    \end{split}
+\]
+We can see that 
+\[
+    g'(s)^2 = P_3(g(s)) 
+\]
+where \(P_3\) is a polynomial of degree 3, with the coefficients depending on \(c, a, b\), where \(c\) is the speed of the wave, and \(a, b\) are constants of integration.
+
+Then by taking the square root of this equation we obtain the couple of first order ODEs
+\[
+    \begin{cases}
+        g'(s) = \sqrt{-2 g(s)^3 + c g(s)^2 + a g(s) + b} \\
+        g'(s) = -\sqrt{-2 g(s)^3 + c g(s)^2 + a g(s) + b}
+    \end{cases}
+\]
+
+\newpage
+\begin{exercise}
+        Let \(B = \left\{ x \in \real^n \mid \abs{x} < 1 \right\}\). For which values of \(p \in [1, \infty) \) is the function
+        \[
+            f(x) = \frac{\sin\left(\abs{x}\right)}{\abs{x}^3}
+        \]
+        in \(W^{1, p}(B)\)?
+\end{exercise}
+The strategy for this exercise remain the same as before.
+\begin{remark}
+    A function belong to \(W^{1, p}(B)\) if its weak derivative exists and belongs to \(L^p(B)\).
+\end{remark}
+We start by checking if \(f \in L^p(B)\)
+\[
+    \begin{split}
+        \int_B \abs{f}^p \, dx = \int_B \abs{\frac{\sin\left(\abs{x}\right)}{\abs{x}^3}}^p \, dx = \int_B \frac{\abs{\sin\left(\abs{x}\right)}^p}{\abs{x}^{3p}} \, dx = \int_0^1 \int_{\left\{\abs{x} = \rho\right\}} \frac{\abs{\sin\left(\rho\right)}^p}{\rho^{3p}} \, d\sigma \, d\rho = \\
+        = \sigma_n \int_0^1 \frac{\abs{\sin\left(\rho\right)}^p}{\rho^{3p}} \rho^{n-1} \, d\rho
+    \end{split}
+\]
+Since \(\sin\left(\rho\right) \overset{\rho \to 0}{\longrightarrow} 1\) we have that the integral is finite if
+\[
+    \begin{split}
+        \int_0^1 \abs{\frac{1}{\rho^{3p}} \rho^{n-1}} \, d\rho < \infty \iff 3p - n + 1 < 1 \iff 1 \leq p < \frac{n}{3} \Rightarrow n \geq 4
+    \end{split}
+\]
+We have that \(f \in L^p(B)\) if \(p \in [1, \frac{n}{2})\). We now need to check if \(f \in W^{1, p}(B)\). We start by computing the gradient of \(f\)
+\[
+    \begin{split}
+        \partial_{x_i} f = \frac{\cos\left(\abs{x}\right) \abs{x}^3 - 3 \sin\left(\abs{x}\right) \abs{x}^2}{\abs{x}^6} \frac{x_i}{\abs{x}} = \frac{\cos\left(\abs{x}\right) \abs{x} - 3 \sin\left(\abs{x}\right)}{\abs{x}^4} \frac{x_i}{\abs{x}}
+    \end{split}
+\]
+with 
+\[
+    \begin{split}
+        \norm{\grad f} = \frac{\cos\left(\abs{x}\right) \abs{x} - 3 \sin\left(\abs{x}\right)}{\abs{x}^4} 
+    \end{split}
+\]
+Now we need to check if \(\grad f \in L^p(B)\)
+\[
+    \begin{split}
+        \int_B \abs{\grad f}^p \, dx = \int_B \abs{\frac{\cos\left(\abs{x}\right) \abs{x} - 3 \sin\left(\abs{x}\right)}{\abs{x}^4}}^p \, dx = \int_B  \frac{\left[\cos\left(\abs{x}\right) \abs{x} - 3 \sin\left(\abs{x}\right)\right]^p} {\abs{x}^{4p}} \, dx = \\
+        \int_0^1 \int_{\left\{\abs{x} = \rho\right\}}  \frac{\left[\cos\left(\abs{\rho}\right) \abs{\rho} - 3 \sin\left(\abs{\rho}\right)\right]^p} {\rho^{4p}} \, d\sigma \, d\rho = \sigma_n \int_0^1  \frac{\left[\cos\left(\abs{\rho}\right) \abs{\rho} - 3 \sin\left(\abs{\rho}\right)\right]^p} {\rho^{4p}} \rho^{n-1} \, d\rho
+    \end{split}
+\]
+Also in this case we have \(\cos\left(\abs{\rho}\right) \abs{\rho} - 3 \sin\left(\abs{\rho}\right) \overset{\rho \to 0}{\longrightarrow} -1\), so we need that
+\[
+    \begin{split}
+        \int_0^1 \abs{\frac{1} {\rho^{4p}} \rho^{n-1}} \, d\rho < \infty \iff 4p - n + 1 < 1 \iff 1 \leq p < \frac{n}{4} \Rightarrow n \geq 5
+    \end{split}
+\]
+Now that we have checked that \(\grad f \in L^2(\Omega)\) and \(f \in L^2(\Omega)\) we only need to check that the weak derivative of \(f\) exists, since if it exists it is equal to the classical one. The weak derivative of \(f\) exists if
+\[
+    \begin{split}
+        \int_\Omega f \partial x_i \phi \, dx = - \int_\Omega \partial x_i f \phi \, dx \qquad \forall \phi \in \mathcal{D}(\Omega)
+    \end{split}
+    \tag*{E1}
+\]
+To check that this condition is satisfied we need to cut off the singularity of \(f\) in the origin. We can do this by defining
+\[
+    \Omega_\epsilon = B(0, 1) \setminus B(0, \epsilon) = B_1 \setminus B_\epsilon = \left\{ x \in \real^n \mid \epsilon < \norm{x} < 1 \right\}
+\]
+Since \(f \in C^1(\Omega_\epsilon)\) we can apply the divergence theorem to the weak derivative definition and obtain
+\[
+    \begin{split}
+        \int_{\Omega_\epsilon} f \partial x_i \phi \, dx = \int_{\Omega_\epsilon} \partial x_i f \phi \, dx - \int_{\partial\Omega_\epsilon} f \phi \nu_i \, d\sigma
+    \end{split}
+    \tag*{E2}
+\]
+We want check that taking the limit \(\epsilon \to 0\) in (E2) we obtain (E1). To do so we need to check that the boundary term goes to zero, and the other two terms are equal at the ones in (E1). We start with the first term
+\[
+    \begin{split}
+        \int_{\Omega_\epsilon} f \partial x_i \phi \, dx = \int_{B_1} f \partial x_i \phi \chi_{\Omega_\epsilon} \, dx
+    \end{split}
+\]
+We want to claim that 
+\[
+    \begin{split}
+        \lim_{\epsilon \to 0^+} \int_{\Omega_\epsilon} f \partial x_i \phi \, dx = \int_{B_1} f \partial x_i \phi \, dx
+    \end{split}
+\]
+To do so we need to swap the limit and the integral. We see that 
+\begin{itemize}
+    \item \(f \partial x_i \phi \chi_{\Omega_\epsilon} \underset{\epsilon \to 0}{\longrightarrow} f \partial x_i \phi\) a.e. in \(B_1\)
+    \item \(\abs{f \partial x_i \phi \chi_{\Omega_\epsilon}} \leq \underbrace{\abs{f}}_{\in L^p(B_1)} \overbrace{\abs{\partial x_i \phi}}^{\in L^q(B_1)} \in L^1(B_1)\)
+\end{itemize}
+We can now apply the Dominated Convergence Theorem and obtain the desired result. 
+The same process can be applied to
+\[
+    \begin{split}
+        \int_{\Omega_\epsilon} \partial x_i f \phi \, dx = \int_{B_1} \partial x_i f \phi \chi_{\Omega_\epsilon} \, dx
+    \end{split}
+\]
+Then we have shown that 
+\[
+    \begin{split}
+        \int_{B_1} f \partial x_i \phi \, dx = \int_{\partial\Omega_\epsilon} f \phi \nu_i \, d\sigma + \int_{B_1} \partial x_i f \phi \, dx
+    \end{split}
+\]
+It is clear that we need to check that the boundary term goes to zero. Since we know that \(\text{supp } \phi \subseteq B_\epsilon\).
+\[
+    \begin{split}
+        \int_{\partial\Omega_\epsilon} f \phi \nu_i \, d\sigma = \cancel{\int_{\partial B_1} f \phi \nu_i \, d\sigma} + \int_{\partial B_\epsilon} f \phi \nu_i \, d\sigma
+    \end{split}
+\]
+Moreover,
+\[
+    \begin{split}
+        \abs{\int_{\partial B_\epsilon} f \phi \nu_i \, d\sigma} \leq \int_{\partial B_\epsilon} \abs{f} \abs{\phi} \underbrace{\abs{\nu_i}}_{=1} \, d\sigma \leq \max_{\partial B_\epsilon} \abs{\phi} \int_{\{ \norm{x} = \epsilon \}} \abs{f} \, d\sigma = \\
+        = \max_{\partial B_\epsilon} \abs{\phi} \int_{\{ \norm{x} = \epsilon \}} \abs{\frac{\sin\left(\abs{x}\right)}{\abs{x}^3}} \, d\sigma = \max_{\partial B_\epsilon} \abs{\phi}  \abs{\frac{\sin\left(\epsilon\right)}{\epsilon^3}} \mu\left\{\norm{x} = \epsilon\right\} \leq \max_{\partial B_\epsilon} \abs{\phi} \frac{1}{\epsilon^3} \epsilon^{n-1} = \\ 
+    \end{split}
+\]
+We have that 
+\[
+    \begin{split}
+        \lim_{\epsilon \to 0^+} \max_{\partial B_\epsilon} \abs{\phi} \frac{1}{\epsilon^3} \epsilon^{n-1} = \lim_{\epsilon \to 0^+} \max_{\partial B_\epsilon} \abs{\phi} \epsilon^{n-4} = 0 \text{ since } n \geq 5
+    \end{split}
+\]
+
+So we have shown that \(f \in W^{1, p}(B) \iff n > 4 \land 1 \leq p < \frac{n}{4}\).
+
+\newpage
+\subsection{September 2022}
+\begin{exercise}
+    Let \(\Omega \subset \real^2\) be a bounded open set of class \(C^1\), \(u_0 \in L^2(\Omega)\). Moreover, let \(T > 0\) be a fixed time and let \(f \in L^2(0, T; L^2(\Omega))\). Prove that there exists a unique weak solution \(u\) for the problem
+    \[
+        \begin{cases}
+            u_t - \left( 3\partial_{x}^2 u + 2\partial_{y}^2 u - 4 \partial_{xy} u \right) = f & \Omega \times (0, T) \\
+            u = 0 & \partial\Omega \times (0, T) \\
+            u(x, 0) = u_0(x) & \Omega
+        \end{cases}
+    \]
+\end{exercise}
+We start by finding an adequate matrix \(A\) such that the equation can be written as
+\[
+    u_t - \div(A \grad u) = f
+\]
+We choose the matrix
+\[
+    A = \begin{pmatrix}
+        3 & -2 \\
+        -2 & 2
+    \end{pmatrix}
+\]
+Now we are dealing with the problem
+\[
+    \begin{cases}
+        u_t - \div(A \grad u) = f & \Omega \times (0, T) \\
+        u = 0 & \partial\Omega \times (0, T) \\
+        u(x, 0) = u_0(x) & \Omega
+    \end{cases}
+    \tag*{(P)}
+\]
+To obtain its weak formulation we multiply the equation by a test function \(\phi \in \mathcal{D}(\Omega)\) 
+\begin{align*}
+    \int_\Omega u_t \phi - \div(A \grad u) \phi \, dx &= \int_\Omega f \phi \, dx \qquad \forall \phi \in \mathcal{D}(\Omega) \\
+    \Updownarrow &\text{ using the divergence theorem} \\
+    \frac{d}{dt} \underbrace{\int_\Omega u \phi \, dx}_{(u, \phi)_{L^2}} + \underbrace{\int_\Omega A \grad u \grad \phi \, dx}_{a(u,\phi)} &= \underbrace{\int_\Omega f \phi \, dx}_{(f, \phi)_{L^2}} \qquad \forall \phi \in \mathcal{D}(\Omega) \\
+\end{align*}
+Taking into account that \(u = 0\) on the boundary, we choose an adequate triplet of Hilbert spaces
+\[
+    V = H^1_0(\Omega) \subseteq H = L^2(\Omega) \subseteq V' = H^{-1}(\Omega)
+\]
+We can now write the weak formulation of the problem
+\[
+    \begin{split}
+        \text{Find } u \in L^2(0, T; V) \cap C^0([0, T]; H) \text{ such that } u(0) = u_0 \text{ and }\\
+        \frac{d}{dt} (u, v)_{L^2} + a(u, v) = (f, v)_{H} \qquad \forall v \in V
+    \end{split}
+\]
+For the existence and uniqueness of the solution we need the following:
+\begin{itemize}
+    \item \(a(u, v)\) is continuous and coercive
+    \item \(f \in L^2(0, T; H)\)
+    \item \(u_0 \in H\)
+\end{itemize}
+We see that the third condition is satisfied, since \(u_0 \in L^2(\Omega)\), and also the second condition is satisfied because \(f \in L^2(0, T; L^2(\Omega)) \subseteq L^2(0, T; H)\). We need to check the first condition. We start by checking for continuity
+\[
+    \begin{split}
+        \abs{a(u, v)} = \abs{\int_\Omega A \grad u \grad v \, dx} \leq \abs{A} \norm{\grad u}_{L^2} \norm{\grad v}_{L^2} \leq \abs{A} \norm{u}_{V} \norm{v}_{V} 
+    \end{split}
+\]
+We can see that \(a(u, v)\) is continuous. We now need to check for coercivity. We have that
+\[
+    \begin{split}
+        a(u, u) = \int_\Omega A \grad u \grad u \, = \abs{A} \norm{\grad u}_{L^2}^2 \geq \frac{\abs{A}}{1 + C_p^2} \norm{u}_{V}^2
+    \end{split}
+\]
+where \(C_p\) is the Poincaré constant.
+
+Since the bilinear form \(a(u, v)\) is continuous and coercive, all the requirements are met and, by abstract results we can conclude that
+\[
+    \begin{split}
+        \exists! u \in L^2(0, T; V) \cap C^0([0, T]; H) \text{ such that is a weak solution of (P)}
+    \end{split}
+\]
+
+\newpage
+\begin{exercise}
+    Let \(\Omega in \real^n (n \geq 2)\) be a bounded open domain with \(\partial\Omega \in C^\infty\). Consider the problem
+    \[
+        \begin{cases}
+            -\Delta u = f & \Omega \\
+            u = g & \partial\Omega
+        \end{cases}
+        \tag*{(P)}
+    \]
+    \begin{enumerate}
+        \item Assuming that \(f \in H^{-1}(\Omega)\) and \(g \in H^{\frac{1}{2}}(\partial\Omega)\), write the weak formulation of problem (P).
+        \item Prove that this problem admits a unique solution and characterize its regularity.
+        \item What are the minimal regularity assumptions on \(f\) and \(g\) that guarantee \(u \in H^2(\Omega)\)?
+    \end{enumerate}
+\end{exercise}

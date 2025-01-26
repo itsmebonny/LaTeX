@@ -120,7 +120,7 @@ Since we want to know the variational formulation in \(H^1_0\) we have \(s = 1\)
     \]
     In this case Holder inequality gives us 
     \[
-        \frac{1}{r} + \frac{3}{2^*} + \frac{1}{2^*} = 1 \iff \frac{1}{r} = 1 - \frac{4}{2^*} \iff r = \frac{2^* - 4}{2^*}
+        \frac{1}{r} + \frac{3}{2^*} + \frac{1}{2^*} = 1 \iff \frac{1}{r} = 1 - \frac{4}{2^*} \iff r = \frac{2^*}{2^* - 4}
     \]
     Substituting \(2^* = \frac{2n}{n - 2}\) we get \(r = \frac{n}{-n + 4}\). Since \(r > 0\) we need \(n < 4\).
     In this case we have \(a(x) \in L^3(\Omega)\) for \(n = 3\), but also \(a(x) \in L^\infty(\Omega)\) for \(n = 4\).
@@ -359,7 +359,8 @@ Now we can discuss mass and momentum conservation for general solutions \(u \in 
 We compute the derivative of the mass
 \[
     \begin{split}
-        M'(t) = \frac{d}{dt} \int_\real u(x,t) \, dx = \int_\real u_t(x,t) \, dx = \int_\real u_{xx}(x,t) + u_x(x,t)^2 \, dx = \int_\real \underbrace{(u_x)_x}_{\text{div. form} = 0} + u_x^2 \, dx = \int_\real u_x^2 \, dx \geq 0
+        M'(t) = \frac{d}{dt} \int_\real u(x,t) \, dx = \int_\real u_t(x,t) \, dx = \int_\real u_{xx}(x,t) + u_x(x,t)^2 \, dx =\\
+        = \int_\real \underbrace{(u_x)_x}_{\text{div. form} = 0} + u_x^2 \, dx = \int_\real u_x^2 \, dx \geq 0
     \end{split}
 \]
 We do not have mass conservation, since mass is not constant over time. 
@@ -369,7 +370,7 @@ We compute the derivative of the momentum
     \begin{split}
         \mathcal{M}'(t) = \frac{d}{dt} \int_\real u(x,t)^2 \, dx = \int_\real 2 u(x,t) u_t(x,t) \, dx = \int_\real 2 u u_{xx} + 2 u(x,t) u_x^2 \, dx =  \\
         = \int_\real 2 u u_{xx} + \int_\real 2 u u_x^2 \, dx = 2\left(\cancel{\left. u u_x \right|_\real} - \int_\real u_x^2 \, dx\right) + \int_\real 2 u u_x^2 \, dx = \\
-        = 2 \int_real (u - 1) u_x^2 \, dx
+        = 2 \int_\real (u - 1) u_x^2 \, dx
     \end{split}
 \]
 As we can see, the momentum is not conserved either.
@@ -704,7 +705,7 @@ We also need to introduce the space of weakly continuous functions over \([0, T]
 We can now write the weak formulation of the problem (P), by multiplying the equation by a test function \(v \in V\) and integrating over \(\Omega\)
 \begin{align*}
     \int_\Omega f(t) v \, dx &= \int_\Omega u_{tt} v \, dx + \int_\Omega (-\Delta u  + \gamma u)v \, dx =\\
-    &= \int_\Omega u_{tt} v \, dx - \cancel{\int_{\partial\Omega} \partial_\nu u v \, d\sigma} + \int_\Omega \left[\grad u \cdot \grad v + \gamma u v\right] \, dx =
+    &= \int_\Omega u_{tt} v \, dx - \cancel{\int_{\partial\Omega} \partial_\nu u v \, d\sigma} + \int_\Omega \left[\grad u \cdot \grad v + \gamma u v\right] \, dx = \\
     &= \int_\Omega u_{tt} v \, dx + \int_\Omega \underbrace{\grad u \cdot \grad v + \gamma u v}_{B(u, v)} \, dx
 \end{align*}
 To write it more compactly we have 
@@ -847,7 +848,7 @@ Moreover,
 \[
     \begin{split}
         \abs{\int_{\partial B_\epsilon} f \phi \nu_i \, d\sigma} \leq \int_{\partial B_\epsilon} \abs{f} \abs{\phi} \underbrace{\abs{\nu_i}}_{=1} \, d\sigma \leq \max_{\partial B_\epsilon} \abs{\phi} \int_{\{ \norm{x} = \epsilon \}} \abs{f} \, d\sigma = \\
-        \max_{\partial B_\epsilon} \abs{\phi} \frac{e^{\epsilon} - 1}{\epsilon^\alpha} \mu{\norm{x} = \epsilon} \leq \max_{\partial B_\epsilon} \abs{\phi} \frac{e^{\epsilon} - 1}{\epsilon^\alpha} \epsilon^{n-1} 
+        \max_{\partial B_\epsilon} \abs{\phi} \frac{e^{\epsilon} - 1}{\epsilon^\alpha} \mu\{\norm{x} = \epsilon\} \leq \max_{\partial B_\epsilon} \abs{\phi} \frac{e^{\epsilon} - 1}{\epsilon^\alpha} \epsilon^{n-1} 
     \end{split}
 \]
 We have that 
@@ -993,7 +994,7 @@ As we can see the two integrals are not equal, so the weak derivative of \(f'\) 
         \]
         In this case Holder inequality gives us 
         \[
-            \frac{1}{r} + \frac{5}{2^*} + \frac{1}{2^*} = 1 \iff \frac{1}{r} = 1 - \frac{6}{2^*} \iff r = \frac{2^* - 6}{2^*}
+            \frac{1}{r} + \frac{5}{2^*} + \frac{1}{2^*} = 1 \iff \frac{1}{r} = 1 - \frac{6}{2^*} \iff r = \frac{2^*}{2^*-6}
         \]
         Substituting \(2^* = \frac{2n}{n - 2}\) we get \(r = \frac{n}{-2n + 6}\). Since \(r > 0\) we need \(n < 3\).
         In this case we only have \(a(x) \in L^\infty(\Omega)\) for \(n = 3\).
@@ -1002,11 +1003,11 @@ As we can see the two integrals are not equal, so the weak derivative of \(f'\) 
     
     At this point we can write the weak formulation of the problem. We multiply the equation by a test function \(v \in H^1_0(\Omega)\) and obtain 
     \[
-        \int_\Omega - \Delta u v \, dx = \int_\Omega a(x) u^3 v \, dx \qquad \forall v \in H^1_0(\Omega)
+        \int_\Omega - \Delta u v \, dx = \int_\Omega a(x) u^5 v \, dx \qquad \forall v \in H^1_0(\Omega)
     \]
     We integrate by parts the left-hand side and obtain
     \[
-        \int_\Omega \nabla u \nabla v \, dx = \int_\Omega a(x) u^3 v \, dx \qquad \forall v \in H^1_0(\Omega)
+        \int_\Omega \nabla u \nabla v \, dx = \int_\Omega a(x) u^5 v \, dx \qquad \forall v \in H^1_0(\Omega)
     \]
     This is the weak formulation of the problem. This is well posed if 
     \begin{table}[h]
@@ -1044,7 +1045,7 @@ We start by checking if \(f \in L^p(B)\)
 Since \(e^{-\rho^2 p} \overset{\rho \to 0}{\longrightarrow} 1\) we have that the integral is finite if
 \[
     \begin{split}
-        \int_0^1 \abs{\frac{1}{\rho^{2p}} \rho^{n-1}} \, d\rho < \infty \iff 2p - n + 1 < 1 \iff 1 \leq p < \frac{n}{2}
+        \int_0^1 \abs{\frac{1}{\rho^{2p}} \rho^{n-1}} \, d\rho < \infty \iff 2p - n + 1 < 1 \iff 1 \leq p < \frac{n}{2} \Rightarrow n \geq 3
     \end{split}
 \]
 We have that \(f \in L^p(B)\) if \(p \in [1, \frac{n}{2})\). We now need to check if \(f \in W^{1, p}(B)\). We start by computing the gradient of \(f\)
@@ -1063,16 +1064,16 @@ Now we need to check if \(\grad f \in L^p(B)\)
 \[
     \begin{split}
         \int_B \abs{\grad f}^p \, dx = \int_B \abs{\frac{2 e^{-\abs{x}^2} \left(\abs{x}^2 + 1\right)}{\abs{x}^3}}^p \, dx = \int_B  \frac{2e^{-\abs{x}^2p} \left(\abs{x}^2 + 1\right)^p} {\abs{x}^{-3p}} \, dx = \\
-        \int_0^1 \int_{\left\{\abs{x} = \rho\right\}}  \frac{2e^{-\rho^2 p} \left(\rho^2 + 1\right)^p} {\rho^{-3p}} \, d\sigma \, d\rho = \sigma_n \int_0^1  \frac{2e^{-\rho^2 p} \left(\rho^2 + 1\right)^p} {\rho^{-3p}} \rho^{n-1} \, d\rho
+        \int_0^1 \int_{\left\{\abs{x} = \rho\right\}}  \frac{2e^{-\rho^2 p} \left(\rho^2 + 1\right)^p} {\rho^{3p}} \, d\sigma \, d\rho = \sigma_n \int_0^1  \frac{2e^{-\rho^2 p} \left(\rho^2 + 1\right)^p} {\rho^{3p}} \rho^{n-1} \, d\rho
     \end{split}
 \]
 Also in this case we have \(e^{-\rho^2 p} \overset{\rho \to 0}{\longrightarrow} 1\) and \(\rho^2 + 1 \overset{\rho \to 0}{\longrightarrow} 1\), so we need that
 \[
     \begin{split}
-        \int_0^1 \abs{\frac{2 \left(\rho^2 + 1\right)^p} {\rho^{-3p}} \rho^{n-1}} \, d\rho < \infty \iff 3p - n + 1 < 1 \iff 1 \leq p < \frac{n}{3}
+        \int_0^1 \abs{\frac{1} {\rho^{3p}} \rho^{n-1}} \, d\rho < \infty \iff 3p - n + 1 < 1 \iff 1 \leq p < \frac{n}{3} \Rightarrow n \geq 4
     \end{split}
 \]
-Now that we have checked that \(\grad f \in L^2(\Omega)\) and \(f \in L^2(\Omega)\) we only need to check that the weak derivative of \(f\) exists, since if it exists it is equal to the classical one. We have that the weak derivative of \(f\) exists if
+Now that we have checked that \(\grad f \in L^2(\Omega)\) and \(f \in L^2(\Omega)\) we only need to check that the weak derivative of \(f\) exists, since if it exists it is equal to the classical one. The weak derivative of \(f\) exists if
 \[
     \begin{split}
         \int_\Omega f \partial x_i \phi \, dx = - \int_\Omega \partial x_i f \phi \, dx \qquad \forall \phi \in \mathcal{D}(\Omega)
@@ -1130,17 +1131,17 @@ Moreover,
 \[
     \begin{split}
         \abs{\int_{\partial B_\epsilon} f \phi \nu_i \, d\sigma} \leq \int_{\partial B_\epsilon} \abs{f} \abs{\phi} \underbrace{\abs{\nu_i}}_{=1} \, d\sigma \leq \max_{\partial B_\epsilon} \abs{\phi} \int_{\{ \norm{x} = \epsilon \}} \abs{f} \, d\sigma = \\
-        \max_{\partial B_\epsilon} \abs{\phi} \frac{e^{\epsilon^2}}{\epsilon^2} \mu{\norm{x} = \epsilon} \leq \max_{\partial B_\epsilon} \abs{\phi} \frac{e^{\epsilon^2}}{\epsilon^2} \epsilon^{n-1}
+        \max_{\partial B_\epsilon} \abs{\phi} \frac{e^{\epsilon^2}}{\epsilon^2} \mu\{\norm{x} = \epsilon\} \leq \max_{\partial B_\epsilon} \abs{\phi} \frac{e^{\epsilon^2}}{\epsilon^2} \epsilon^{n-1}
     \end{split}
 \]
 We have that 
 \[
     \begin{split}
-        \lim_{\epsilon \to 0^+} \max_{\partial B_\epsilon} \abs{\phi} \frac{e^{\epsilon^2}}{\epsilon^2} \epsilon^{n-1} = 0 \iff 2 - 1 - n + 1 < 1 \iff n > 1
+        \lim_{\epsilon \to 0^+} \max_{\partial B_\epsilon} \abs{\phi} \frac{e^{\epsilon^2}}{\epsilon^2} \epsilon^{n-1} = \lim_{\epsilon \to 0^+} \max_{\partial B_\epsilon} \abs{\phi} e^{\epsilon^2} \epsilon^{n-3} = 0 \text{ since } n \geq 4
     \end{split}
 \]
 
-So we have shown that \(f \in W^{1, p}(B) \iff n > 1 \land 1 \leq p < \frac{n}{3}\).
+So we have shown that \(f \in W^{1, p}(B) \iff n > 3 \land 1 \leq p < \frac{n}{3}\).
 
 \newpage
 \begin{exercise}
