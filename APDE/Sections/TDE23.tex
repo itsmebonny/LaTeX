@@ -1,0 +1,168 @@
+\section{Exams 2023/24}
+\subsection{June 2023}
+\begin{exercise}
+    Write the strong formulation of the initial-value problem under Dirichlet boundary conditions for the evolution Navier-Stokes equations in a smooth bounded domain $\Omega \subset \mathbb{R}^d$ with $d=2,3$. Then explain why the argument used for the proof of uniqueness of solution for \(n = 2\) cannot be extended to \(n = 3\).
+\end{exercise}
+First we write the strong formulation of evolutional Navier-Stokes equations
+\begin{equation*}
+    \begin{cases}
+        \partial_t u - \nu \Delta u + (u \cdot \nabla)u + \nabla p = f, & \text{in } \Omega \times (0,T), \\
+        \nabla \cdot u = 0, & \text{in } \Omega \times (0,T), \\
+        u = 0, & \text{on } \partial \Omega \times (0,T), \\
+        u(\cdot,0) = u_0, & \text{in } \Omega,
+    \end{cases}
+\end{equation*}
+
+\begin{remark}[Weak formulation]
+    We choose \(\bm{V}, \bm{H} = \bm{G_1}, \bm{V'}\). By choosing a test function \(v \in \bm{V}\), doing the usual integration by parts, and using the boundary condition, we obtain the weak formulation
+    \begin{equation*}
+        \text{Find } u \in \bm{L}^2(0,T;\bm{V}) \text{ s.t. }
+        \begin{cases}
+            \begin{aligned}
+                \frac{d}{dt}(u(t), v)_H + \nu \int_\Omega \nabla u(t) : \nabla v \, dx +\\
+                + \int_\Omega \left[ (u(t) \cdot \grad) u(t)\right] \cdot v \, dx = \langle f, v \rangle,
+            \end{aligned} & \forall v \in \bm{V} \qquad \text{in } \mathcal{D}(0,T) \\
+            u(0) = u_0.
+        \end{cases}
+    \end{equation*}
+    This is the weakest possible formulation of the Navier-Stokes equations, we have no information on \(u\). We start with the least possible assumptions and we gain more informations step by step.
+\end{remark}
+For \(n=2\) we have global uniqueness for the solution, thanks to Ladyzhenskaya's inequality. 
+\begin{itemize}
+    \item[\(n=2\)] We have the following inequality
+    \[
+        \norm{v}^2_{\bm{L}^4} \sqrt{2} \norm{v}_{\bm{L}^2} \norm{\grad v}_{\bm{L}^2} \qquad \forall v \in \bm{H}^1_0(\Omega).
+    \]
+    This is an interpolation inequality: \(\bm{L}^4\) has a better regularity than \(\bm{L}^2\), but it is worse than \(\bm{H}^1\), so we can bound the \(\bm{L}^4\) norm with the \(\bm{H}^1\) and \(\bm{L}^2\) norms. 
+    \item[\(n=3\)] In this case Ladyzhenskaya's inequality states
+    \[
+        \norm{v}^2_{\bm{L}^4} \leq 2 \norm{v}_{\bm{L}^2}^{1/2} \norm{\grad v}_{\bm{L}^2}^{3/2} \qquad \forall v \in \bm{H}^1_0(\Omega).
+    \]
+    Due to Sobolev embeddings, increasing dimensions reduces the regularity of the solution. This inequality is not enough to prove uniqueness of the solution.
+\end{itemize}
+Since we know that if a solution satisfies \(u \in L^s(0,T;\bm{L}^r) \text{ with } \frac{2}{s}+\frac{n}{r} \leq 1\), then it is the unique solution. We can immediately see that for \(n=2\) we have \(s=4, r=4\), but increasing \(n\) breaks the inequality. This results means the we always have the existence of a solution, but only if we guarantee \(u \in L^s(0,T;\bm{L}^r)\) with the correct regularity we can have uniqueness.
+
+\newpage
+\begin{exercise}
+    Consider the conservation law with two different initial conditions
+    \begin{equation*}
+        a)\,\begin{cases}
+            u_t - \log(u) u_x = 0, & x \in \real, t > 0, \\
+            u(x,0) = e^{-x}, & x \in \real,
+        \end{cases}
+        \qquad 
+        b)\,\begin{cases}
+            u_t - \log(u) u_x = 0, & x \in \real, t > 0, \\
+            u(x,0) = \begin{cases}
+                1, & x < 0, \\
+                e, & x \geq 0.
+            \end{cases}
+        \end{cases}
+    \end{equation*}
+    Discuss existence and uniqueness of classical and weak solutions for Cauchy problems. Then estabilish whether the found solutions satisfy the entropy condition.
+\end{exercise}
+\begin{itemize}
+    \item[\textbf{a)}] We look for solutions \(u(, t) \in C^1(\real \times (0, \infty))\) that satisfy the conservation law and the initial condition. 
+    We start with existence and uniqueness of solutions, by rewriting the conservation law as
+    \[
+        u_t + [F(u)] u_x = 0, \quad F(u) = -\log(u).
+    \]
+    Its characteristics are given by
+    \[
+        \frac{du}{dt} = \frac{dt}{ds} \frac{du}{dt} + \frac{dx}{ds} \frac{du}{dx} = 0
+    \]
+    means that \(u\) is constant along the characteristics and then 
+    \[
+        u(x,t) = u(x_0,0) = e^{-x_0}.
+    \]
+    with \(t=s\) since the initial condition is given at \(t=0\). 
+    \[
+        \frac{dx}{ds} = -\log(u_0) \quad \Rightarrow \quad x(s) = x_0 - s \log(u_0).
+    \]
+    Since \(\log(u_0) = \log(e^{-x_0}) = -x_0\), we have
+    \[
+        x(s) = x_0 + s x_0 = x_0(1+s) \quad \Rightarrow \quad x_0 = \frac{x}{1+s}.
+    \]
+    The solution is then
+    \[
+        u(x,t) = e^{-x/(1+t)}.
+    \]
+    This is a classical solution and, thanks to the method of characteristics, we have uniqueness. A classical solution is also a weak solution. Moreover, the solution satisfies the entropy condition, since it is a global solution.
+    \item[\textbf{b)}] We have two different initial conditions, so we have to solve the conservation law for both cases. 
+    \begin{enumerate}
+        \item For \(x < 0\) we have
+        \[
+            u(x,0) = 1
+        \]
+        By the method of characteristics we have again 
+        \[
+            \frac{dx}{ds} = -\log(u_0) \quad \Rightarrow \quad x(s) = -\log(1)s = x_0.
+        \]
+        which is a constant. Therefore the characteristics are vertical lines and the solution is constant 
+        \[
+            u(x,t) = 1 \quad \forall x < 0.
+        \]
+        \item For \(x > 0\) we have
+        \[
+            u(x,0) = e
+        \]
+        By the method of characteristics we have
+        \[
+            \frac{dx}{ds} = -\log(u_0) \quad \Rightarrow \quad x(s) = -\log(e)s = -s + x_0.
+        \]
+        therefore the characteristics are given by
+        \[
+            u(x,t) = e \quad \forall x > 0.
+        \]
+        The solution is then
+        \[
+            u(x,t) = \begin{cases}
+                1, & x < 0, \\
+                e, & x > 0.
+            \end{cases}
+        \]
+        This cannot be a classical solution, since it is not differentiable at \(x=0\). However, it is a weak solution. 
+        Now we have to check the entropy condition, since there is a discontinuity. We first verify the Rankine-Hugoniot condition
+        \[
+            s = \frac{f(u_r) - f(u_l)}{u_r - u_l} = \frac{\log(e) - \log(1)}{e - 1} = -1.frac{e}{e-1}.
+        \]
+        To satisfy the entropy condition we need to have that the characteristics on both sides of the shock point towards the shock. To ensure this the condition \(s\) should be less than the speed of the characteristic on the right side and greater than the speed of the characteristic on the left side. 
+        \[
+            \begin{aligned}
+                \text{Left side:} \quad & u_l = 1, \quad f(u_l) = -\log(1) = 0 \quad \Rightarrow \quad -\frac{1}{e-1} > 0 \qquad \text{True} \\
+                \text{Right side:} \quad & u_r = e, \quad f(u_r) = -\log(e) = -1 \quad \Rightarrow \quad -\frac{1}{e-1} < -1 \qquad \text{False}
+            \end{aligned}
+        \]
+        The entropy condition is not satisfied.
+    \end{enumerate}
+\end{itemize}
+
+\newpage
+\begin{exercise}
+    Let \(\Omega \subset \real^3\) be a bounded Lipschitz domain. Prove that the problem
+    \begin{equation*}
+        \begin{cases}
+            \grad \cdot u = 0, & \text{in } \Omega, \\
+            u  = 0, & \text{on } \partial \Omega,
+        \end{cases}
+    \end{equation*}
+    has infinitely many solutions in \(C^\infty(\Omega) \cap C^0(\overline{\Omega})\).
+\end{exercise}
+We can prove this with the help of Helmoltz decomposition. We can write any vector field \(u\) as the sum of a solenoidal and an irrotational part
+\[
+    u = \grad \phi + \grad \times \psi.
+\]
+where \(\phi\) is the scalar potential and \(\psi\) is the vector potential. Our constraint is that the divergence of \(u\) is zero, so we have
+\[
+    \grad \cdot u = \grad \cdot \grad \phi + \grad \cdot \grad \times \psi = \Delta \phi = 0 \quad \Rightarrow \quad \phi = \text{const.}
+\]
+This means that the scalar potential is constant and we can rewrite the decomposition
+\[
+    u = \grad \phi + \grad \times \psi = \grad \times \psi.
+\]
+Now, choosing \(\psi\) such that satisfies the boundary condition, we can have infinitely many solutions, since 
+\[
+    \grad \cdot u = \grad \cdot \grad \times \psi = 0 \quad \forall \psi \in C^\infty(\Omega) \cap C^0(\overline{\Omega}).
+\]
+
+\newpage
