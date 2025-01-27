@@ -601,6 +601,22 @@ Since the bilinear form \(a(u, v)\) is continuous and coercive, all the requirem
         \end{split}
     \]
     Since \(z\) is the unique solution of the problem we have that \(u = z + u_0\) is the unique solution of the problem (P).
+    \item We now need to define the minimal regularity assumptions on \(f\) and \(g\) that guarantee \(u \in H^2(\Omega)\). 
+    \begin{remark}
+        Regularity theory states that given an elliptic problem \(Lu = f\) with a smooth boundary \(\partial\Omega\) and Dirichlet boundary conditions \(u = g\) on \(\partial\Omega\), the regularity of the solution \(u\) is given by
+        \[
+            \text{Reg}(u) = \min\left\{\text{Reg}(f) + 2, \text{Reg}(g) + 1/2\right\}
+        \]
+        For Neumann boundary conditions the regularity is given by
+        \[
+            \text{Reg}(u) = \min\left\{\text{Reg}(f) + 2, \text{Reg}(g) + 3/2\right\}
+        \]
+    \end{remark}
+    Since we have Dirichlet boundary conditions and we want \(u \in H^2(\Omega)\) we need to have that
+    \begin{itemize}
+        \item \(\text{Reg}(f) + 2 \geq 2 \iff \text{Reg}(f) \geq 0 \Rightarrow f \in H^0(\Omega) = L^2(\Omega)\)
+        \item \(\text{Reg}(g) + 1/2 \geq 2 \iff \text{Reg}(g) \geq 3/2 \Rightarrow g \in H^{3/2}(\partial\Omega)\)
+    \end{itemize}
 \end{enumerate}
 
 \newpage
@@ -715,3 +731,354 @@ Now we need to explain why the assumption \(n \leq 4\) is necessary. We need to 
 
 \newpage
 \subsection{January 2023}
+\begin{exercise}
+    Find solitary waves for the problem 
+    \[
+        \begin{cases}
+            u_{tt} + u_t + u_{xxx} = 0 & x \in \real, t > 0 \\
+            u(x, 0) = g(x) & x \in \real \\
+            u_t(x, 0) = 0 & x \in \real
+        \end{cases}
+        \tag{(P)}
+    \]
+    Moreover, prove that the solution is unique.
+\end{exercise}
+Solitary waves for an hyperbolic equation are in the form \(u(x, t) = \frac{1}{2} \left( g(x - ct) + g(x + ct) \right)\). We start by substituting the ansatz in the equation
+\[
+    \begin{split}
+        \frac{1}{2} \left[c^2 g''(x - ct) + c^2 g''(x + ct) -c g'(x - ct) + c g'(x + ct)  + g'''(x - ct) + g'''(x + ct) \right] = 0
+    \end{split}
+\]
+So, we are tasked with finding the common solutions to the system
+\[
+    \begin{cases}
+        c^2 g''(x - ct) - c g'(x - ct) + g'''(x - ct) = 0 \\
+        c^2 g''(x + ct) + c g'(x + ct) + g'''(x + ct) = 0
+    \end{cases}
+\]
+Substituting \(\lambda = g(x - ct)\) and \(\mu = g(x + ct)\) we obtain the system
+\[
+    \begin{cases}
+        c^2 \lambda^2 - c \lambda + \lambda^3 = 0 \\
+        c^2 \mu^2 + c \mu + \mu^3 = 0
+    \end{cases}
+\]
+which can be rewritten as
+\[
+    \begin{cases}
+        \lambda\left( c^2 \lambda - c + \lambda^2 \right) = 0 \\
+        \mu\left( c^2 \mu + c + \mu^2 \right) = 0
+    \end{cases}
+\]
+In the first case we have three solutions
+\[
+    \begin{cases}
+        \lambda = 0 \\
+        c^2 \lambda - c + \lambda^2 = 0 \Rightarrow \lambda = \frac{-c^2 \pm \sqrt{c^4 - 4c}}{2}
+    \end{cases}
+\]
+In the second case we have three solutions
+\[
+    \begin{cases}
+        \mu = 0 \\
+        c^2 \mu + c + \mu^2 = 0 \Rightarrow \mu = \frac{-c^2 \pm \sqrt{c^4 + 4c}}{2}
+    \end{cases}
+\]
+So the only solution is \(\lambda = \mu = 0\), which means that there are no solitary waves for the problem.
+
+Now we discuss mass conservation for this system. We start by defining the mass of the system
+\[
+    \begin{split}
+        M(t) = \int_\real u(x, t) \, dx
+    \end{split}
+\]
+We now differentiate the mass with respect to time
+\[
+    \begin{split}
+        \frac{d^2}{dt^2} M(t) = \int_\real u_{tt}(x, t) \, dx = \int_\real u_t + u_{xxx} \, dx = \int_\real u_t \, dx + \int_\real \underbrace{(u_{xx})_x}_{div. form = 0} \, dx = \int_\real u_t \, dx
+    \end{split}
+\]
+So we have that \(M''(t) = M'(t)\). Solving this leads to
+\[
+    \begin{split}
+        M'(t) = k_1 e^t
+    \end{split}
+\]
+We also know that \(M'(0) = \int_\real u_t(x, 0) \, dx = k_1 e^0 = k_1 = 0\). So we have that \(k_1 = 0\) and \(M'(t) = 0\), which means that the mass is conserved.
+
+\newpage
+\begin{exercise}
+    Write both the strong and the weak formulation of the stationary Stokes problem in a bounded domain \(\Omega \subset \real^n\). Then, by using the Helmhotz-Weyl theorem, explain why the pressure does not appear in the weak formulation.
+\end{exercise}
+\begin{remark}
+    We introduce three spaces:
+    \begin{itemize}
+        \item \(\bm{G}_1 \coloneqq \left\{ f \in \bm{L}^2(\Omega) \mid \grad \cdot f = 0, \gamma_\nu f = 0 \right\}\)
+        \item \(\bm{G}_2 \coloneqq \left\{ f \in \bm{L}^2(\Omega) \mid \grad \cdot f = 0, \exists g \in H^1(\Omega) \text{ s.t. } f = \grad g \right\}\)
+        \item \(\bm{G}_3 \coloneqq \left\{ f \in \bm{L}^2(\Omega) \mid \exists g \in H^1_0(\Omega) \text{ s.t. } f = \grad g \right\}\)
+    \end{itemize}
+    We also introduce the space \(\bm{V} \coloneqq \left\{ f \in \bm{H}^1_0(\Omega) \mid \grad \cdot f = 0 \right\}\) which is the space of divergence-free functions.
+    We know that \(\bm{V}\) is dense in \(\bm{G}_1\).
+
+    A famous result by Helmoltz and Weyl states that the spaces \(\bm{G}_1, \bm{G}_2, \bm{G}_3\) are mutually orthogonal in \(\bm{L}^2(\Omega)\) and that \(\bm{L}^2(\Omega) = \bm{G}_1 \oplus \bm{G}_2 \oplus \bm{G}_3\).
+\end{remark}
+
+We start by writing the strong formulation of the Stokes problem with \(f \in \bm{L}^2(\Omega)\)
+\[
+    \begin{cases}
+        - \eta \Delta u + \grad p = f & \Omega \\
+        \grad \cdot u = 0 & \Omega \\
+        u = 0 & \partial\Omega
+    \end{cases}
+    \tag*{(S)}
+\]
+Then we multiply the equation by a test function \(v \in \bm{V}\) to obtain the weak formulation
+\[
+    \int_\Omega - \eta \grad u : \grad v + \int_\Omega p \grad \cdot v = \int_\Omega f v \qquad \forall v \in \bm{V}
+\]
+By the Helmoltz-Weyl theorem we know that \(\grad p \in \bm{G}_2 \oplus \bm{G}_3\), so when we multiply the equation by a test function \(v \in V\) we have
+\[
+    \int_\Omega \grad p \cdot v = 0
+\]
+since \(\bm{V}\) is dense in \(\bm{G}_1\) and \(\bm{G_1}\) is orthogonal to \(\bm{G}_2 \oplus \bm{G}_3\). We can now write the variational formulation of the Stokes problem
+\[
+    \int_\real - \eta \grad u : \grad v = \int_\Omega f v \qquad \forall v \in \bm{V}
+\]
+Now we observe that for every \(f \in \bm{L}^2\) the function \(v \mapsto \int_\Omega f v\) is a bounded linear functional on \(\bm{V}\). Then, by Lax-Milgram corollary we obtain 
+\[
+    \forall f \in \bm{L}^2 \quad \exists! u \in \bm{V} \text{ s.t. } \int_\Omega - \eta \grad u : \grad v = \int_\Omega f v \qquad \forall v \in \bm{V}
+\]
+Also, thanks to elliptic regularity we have that \(u \in \bm{H}^2(\Omega)\), so we have 
+\[
+    \forall f \in \bm{L}^2 \quad \exists! u \in \bm{H}^2 \cap \bm{V} \text{ s.t. } \int_\Omega - \eta \grad u : \grad v = \int_\Omega f v \qquad \forall v \in \bm{V}
+\]
+Since \(\bm{V}\) is dense in \(\bm{G}_1\) we rewrite it as 
+\[
+    \forall f \in \bm{L}^2 \quad \exists! u \in \bm{H}^2 \cap \bm{V} \text{ s.t. } \int_\Omega (\eta \Delta u + f) v = 0 \qquad \forall v \in \bm{G}_1
+\]
+As for \(\grad p\), this means that \((\eta \Delta u + f) \in \bm{G}_2 \oplus \bm{G}_3\).
+Thanks to this finding we can write 
+\[
+    \exists! p \in \bm{H}^1/\real \text{ s.t. } -\grad p = \eta \Delta u + f
+\]
+where the space \(\bm{H}^1/\real\) is the space of functions in \(\bm{H}^1\) up to a constant. 
+
+So we have \(\underbrace{-\eta \Delta u}_{\in \bm{G}_1 \oplus \bm{G}_2} + \underbrace{\grad p}_{\in \bm{G}_2 \oplus \bm{G}_3} = \underbrace{f}_{{\qquad   \mathclap{\in \bm{G}_1 \oplus \bm{G}_2 \oplus \bm{G}_3}}} \in \bm{L}^2\). This means that the role of the pressure is to satisfy the equation projected on \(\bm{G}_2\).
+
+\newpage
+\begin{exercise}
+    Let \(\Omega \coloneqq B(0, 1) \subset \real^n\) with \(n \geq 2\), and let \(f \in H^2(\Omega)\). Justify or confute the following statements:
+    \begin{enumerate}
+        \item one can surely conclude that \(f \in C(\Omega)\);
+        \item one can surely conclude that \(\gamma_1(f) \in H^{1/2}(\partial\Omega)\);
+        \item one can surely exclude that \(\gamma_0(f) \in H^{1}(\partial\Omega)\);
+        \item if \(n = 6\), then \(f \in L^{6}(\Omega)\).
+    \end{enumerate}
+\end{exercise}
+We start by recalling the Sobolev embeddings with \(2s = 4\)
+\begin{align*}
+    H^2(\Omega) &\subset C(\Omega) && \text{ if } n < 4 \\
+    H^2(\Omega) &\subset L^p(\Omega) \qquad \forall 2 \leq p < \infty && \text{ if } n = 4 \\
+    H^2(\Omega) &\subset L^p(\Omega) \qquad \forall 2 \leq p \leq \frac{2n}{n - 4} && \text{ if } n > 4
+\end{align*}
+Then we check the statements
+\begin{enumerate}
+    \item In this case we have that \(f \in C(\Omega)\) if \(n < 4\). Since \(n \geq 2\) we cannot surely conclude that \(f \in C(\Omega)\).
+    \item In this case we recall that \(\gamma_j(f) \in H^{s - j - 1/2}(\partial\Omega)\). In the case of \(f \in H^2(\Omega)\) we have that \(\gamma_1(f) \in H^{2 - 1 - 1/2}(\partial\Omega) = H^{1/2}(\partial\Omega)\). We can surely conclude that \(\gamma_1(f) \in H^{1/2}(\partial\Omega)\).
+    \item In this case we proceed as before, but with \(j = 0\). We have that \(\gamma_0(f) \in H^{2 - 0 - 1/2}(\partial\Omega) = H^{3/2}(\partial\Omega)\). Since \(H^{3/2} \subset H^1\) we cannot surely exclude that \(\gamma_0(f) \in H^{1}(\partial\Omega)\).
+    \item In this case we have \(n = 6\) so we need to check if \(f \in L^p(\Omega)\) with \(2\leq p \leq 2^*\). The critical exponent is \(p = \frac{2\cdot 6}{6 - 4} = 6\). Since \(6 \leq 6\) we can surely conclude that \(f \in L^{6}(\Omega)\). 
+\end{enumerate}
+
+\newpage
+\subsection{February 2023}
+\begin{exercise}
+    Let \(\Omega \subset \real^n\) \(n \geq 2\) be a bounded open domain with \(\partial\Omega \in C^\infty\) and let \(f \in H^{-1}(\Omega)\). State and prove the Dirichlet principle for the problem
+    \[
+        \begin{cases}
+            -\Delta u = f & \Omega \\
+            u = 0 & \partial\Omega
+        \end{cases}
+        \tag*{(P)}
+    \]
+\end{exercise}
+We start by writing the weak formulation of the problem. First we define a suitable function space, in this case we have \(V \in H^1_0(\Omega)\). We multiply the equation by a test function \(v \in V\) and obtain
+\[
+    \begin{split}
+        -\int_\Omega \Delta u v \, dx = \int_\Omega f v \, dx \qquad \forall v \in V
+    \end{split}
+\]
+We integrate by parts the left-hand side and obtain
+\[
+    \begin{split}
+        \int_\Omega \grad u \grad v \, dx = \underbrace{\langle f, v \rangle}_{\text{bc } f \in H^{-1}} \qquad \forall v \in V
+    \end{split}
+\]
+Then we obtain the weak formulation of the problem
+\[
+    \begin{split}
+        \text{Find } u \in H^1_0(\Omega) \text{ such that } \int_\Omega \grad u \grad v \, dx =  \langle f, v \rangle \qquad \forall v \in V
+    \end{split}
+\]
+Then we state the Dirichlet principle for the homogeneous Dirichlet problem
+\begin{remark}
+    Let \(\Omega \subset \real^n\) be a bounded and Lipschitz domain and let \(f \in H^{-1}(\Omega), \alpha \geq 0\). Then the problem (P) admits a unique solution \(u \in V\) such that 
+    \[
+        \int_\Omega \grad u \grad v \, dx = \langle f, v \rangle \qquad \forall v \in V
+    \]
+    Moreover, \(u\) is the unique minimizer of the functional
+    \[
+        J(u) = \frac{1}{2} \int_\Omega \abs{\grad u}^2 \, dx - \langle f, u \rangle
+    \]
+\end{remark}
+A sketch of the proof goes as follows. We start by defining the functional
+\begin{align*}
+    a: V \times V &\longrightarrow \real \\
+    (u, v) &\longmapsto \int_\Omega \grad u \grad v \, dx
+\end{align*}
+We have that \(a(u,v)\) is a continuous and coercive bilinear form. Then we can apply the Lax-Milgram theorem to obtain the existence of a unique solution \(u \in V\).
+
+To prove that the solution is the unique minimizer of the functional we need to observe that the functional \(J(u)\) is convex.
+
+\newpage
+\begin{exercise}
+    For some \(g \in C^4(\real)\), consider the beam equation
+    \[
+        \begin{cases}
+            u_{tt} + u_{xxxx} = 0 & (x, t) \in \real \times (0, \infty) \\
+            u(x, 0) = g(x) & x \in \real \\
+            u_t(x, 0) = 0 & x \in \real
+        \end{cases}
+    \]
+    \begin{enumerate}
+        \item Formally prove that the energy \(E(t) = \int_\real \left( u_t^2 + u_{xx}^2 \right) \, dx\) is conserved; then find assumptions on \(u\) that justify the formal computations.
+        \item Formally prove that the momentum \(\mathcal{M}(t) = \int_\real u^2 \, dx\) is conserved if and only if \(\int_\real u_{t}^2 \, dx \equiv \int_\real u_{xx}^2 \, dx\); then find assumptions on \(u\) that justify the formal computations.
+    \end{enumerate}
+\end{exercise}
+\begin{enumerate}
+    \item We start by computing the derivative of the energy
+    \[
+        \begin{split}
+            \frac{d}{dt} E(t) = \frac{\partial}{\partial t} \int_\real \left( u_t^2 + u_{xx}^2 \right) \, dx = \int_\real 2u_t u_{tt} + \int_\real 2u_{xx} u_{xxt} \, dx = \\ = \int_\real 2u_t u_{tt} + \cancel{\left. 2 u_{xx} u_{xt} \right|_\real} - \int_\real 2u_{xxx} u_{xt} \, dx = \int_\real 2u_t u_{tt} - \cancel{\left. 2 u_{xxx} u_t \right|_\real} + \int_\real 2 u_{xxxx} u_t \, dx = \\
+            = \int_\real 2u_t u_{tt} + 2 u_t u_{xxxx} \, dx = 2 \int_\real u_t \underbrace{\left( u_{tt} + u_{xxxx} \right)}_{\text{\small beam eq.}} \, dx = 0 
+        \end{split}    
+    \]
+    In this calculations we integrated by parts the term \(\int_\real u_{xx} u_{xxt} \, dx\) and \(\int_\real u_{xxx} u_{xt} \, dx\), and deleted the boundary terms because of the assumptions
+    \[
+        \begin{array}{l}
+            u_{xx} u_{xt} = 0 \text{ at } \pm \infty \\
+            u_{xxx} u_t = 0 \text{ at } \pm \infty
+        \end{array}
+        \Rightarrow \begin{array}{l}
+            u  \in C^4_c(\real) \\
+            u \in \mathcal{S}(\real)
+        \end{array}
+    \]
+    \item We start by computing the derivative of the momentum and also assume that \(\int_\real u_{t}^2 \, dx \equiv \int_\real u_{xx}^2 \, dx\)
+    \[
+        \begin{split}
+            \frac{d}{dt} \mathcal{M}(t) = \frac{\partial}{\partial t} \int_\real u^2 \, dx = \int_\real 2 u u_t \, dx
+        \end{split}
+    \]
+    Let's now compute the derivative of \(\mathcal{M}'(t)\)
+    \[
+        \begin{split}
+            \frac{d}{dt} \mathcal{M}'(t) = \frac{\partial}{\partial t} \int_\real 2 u u_t \, dx = \int_\real 2 u_t u_t + 2 u u_{tt} \, dx = \int_\real 2 u_t u_t - 2 u u_{xxxx} \, dx = \\
+            = \int_\real 2 u_t^2 - \cancel{\left. 2 u u_{xxx} \right|_\real} + \int_\real 2 u_{xxx} u_x \, dx = \int_\real 2 u_t^2 + \cancel{\left. 2 u_{xx} u_x \right|_\real} - \int_\real 2 u_{xx} u_{xx} \, dx = \\  
+            = 2 \left(\int_\real u_t^2 \, dx - \int_\real u_{xx}^2 \, dx \right)
+        \end{split}
+    \]
+    If we apply the assumption \(\int_\real u_{t}^2 \, dx \equiv \int_\real u_{xx}^2 \, dx\) we obtain that 
+    \[
+        \mathcal{M}''(t) = 0 \Rightarrow \mathcal{M}(t) = At + b
+    \]
+    Since \(\mathcal{M}'(0) = \int_\real 2\,  g \,u_t(0) \, dx = 0\) we have that \(A = 0\) and \(\mathcal{M}(t) = b\), so it is a conserved quantity.
+\end{enumerate}
+
+\newpage
+\begin{exercise}
+    Let \(\Omega \subset \real^n\) be a bounded open set. Prove that there exist no classical solutions \(u \in C^4(\Omega) \cap C^2(\overline{\Omega})\) to the problem
+    \[
+        \begin{cases}
+            -\Delta^2 u = e^u & \Omega \\
+            u \geq \Omega & \Omega \\
+            u = \Delta u = 0 & \partial\Omega
+        \end{cases}
+    \]
+\end{exercise}
+Since \(u \geq 0\) we can say that \(e^u \geq 0\). So \(- \Delta^2 u = e^u \geq 0 \Rightarrow \Delta^2 u \leq 0\). Now we will try to prove that for the problem (which is the same as the one in the exercise) 
+\[
+    \begin{cases}
+        \Delta^2 u \leq 0 & \Omega \\
+        u = \Delta u = 0 & \partial\Omega
+    \end{cases}
+    \tag*{(P)}
+\]
+exists a solution \(u \leq 0\). We start by defining the function \(v \coloneqq -\Delta u\). 
+Now our problem can be rewritten as
+\[
+    \begin{cases}
+        -\Delta u = v & \Omega \\
+        -\Delta v \leq 0 & \Omega \\
+        u = v = 0 & \partial\Omega
+    \end{cases}
+\]
+Quick recall of the maximum principle for the Laplace operator
+\begin{remark}
+    Let \(\Omega \subset \real^n\) be a smooth bounded domain and let \(u \in C^2(\Omega) \cap C(\overline{\Omega})\) be such that \[-\Delta u \overset{(\leq)}{\geq} 0 \text{ in } \Omega \Rightarrow \overset{\max}{\min_{\overline{\Omega}}} u = \overset{\max}{\min_{\partial\Omega}} u\]
+\end{remark}
+By the maximum principle 
+\[
+    \begin{cases}
+        -\Delta v = \Delta (- v) \leq 0 & \Omega \\
+        v = 0 & \partial\Omega
+    \end{cases}
+    \Rightarrow v \leq 0
+\]
+Since \(v = -\Delta u \leq 0\) we by the maximum principle
+\[
+    \begin{cases}
+        -\Delta u = \Delta(-u) \leq 0 & \Omega \\
+        u = 0 & \partial\Omega
+    \end{cases}
+    \Rightarrow u \leq 0
+\]
+So we have that \(u \leq 0\) for the problem (P). Since our initial assumption was that \(u \geq 0\) we have that the only solution to the problem is \(u = 0\). But 
+\[
+        -\Delta^2 0 = e^0 = 1 
+\]
+which is a contradiction. So there are no classical solutions to the problem.
+
+\newpage
+\begin{exercise}
+    Let \((X, \norm{\cdot})\) be a Banach space and let \(v \in X\) be such that \(\norm{v} = 1\). Moreover, let \(T > 0\) and let \(t_0 \in (0, T)\) be fixed. Prove that the map
+    \begin{align*}
+        \Lambda_{t_0, v}: \mathcal{D}(0, T) &\longrightarrow X \\
+        \phi &\longmapsto 2 \phi''(t_0) v
+    \end{align*}
+    is an element of \(\mathcal{D}'(0, T; X)\).
+\end{exercise}
+We start by showing that \(\Lambda_{t_0, v}\) is a linear map. Let \(\phi, \psi \in \mathcal{D}(0, T)\) and \(\alpha, \beta \in \real\). We have
+\[
+    \begin{split}
+        \Lambda_{t_0, v}(\alpha \phi + \beta \psi) = 2 (\alpha \phi + \beta \psi)''(t_0) v =\\
+        = 2 (\alpha \phi''(t_0) + \beta \psi''(t_0)) v = \alpha 2 \phi''(t_0) v + \beta 2 \psi''(t_0) v = \alpha \Lambda_{t_0, v}(\phi) + \beta \Lambda_{t_0, v}(\psi)
+    \end{split}
+\]
+\begin{remark}
+    Let \(\left\{ \phi_n \right\}_{n} \subseteq \mathcal{D}([0, T])\) be a sequence of functions that converges to \(\phi \in \mathcal{D}([0, T])\). Then we have that
+    \begin{itemize}
+        \item \(\exists \text{ compact }[a, b] \subseteq [0, T] \colon \text{supp } \phi_n \subset [a, b] \quad \forall n \in \natural\)
+        \item \(\phi_n^{(k)} \to \phi^{(k)}\) uniformly on \([a, b]\) for all \(k \in \natural\)
+    \end{itemize}
+\end{remark}
+We now choose a sequence \(\left\{\phi_n\right\}_n \subset \mathcal{D}(0, T)\) such that \(\phi_n \to \phi\) in \(\mathcal{D}(0, T)\). We have that \(\norm{\phi_n - \phi}_{\mathcal{D}(0, T)} \to 0\) and \(\norm{\phi_n'' - \phi''}_{\mathcal{D}(0, T)} \to 0\) because the second derivative is a continuous operator. We now compute the norm of \(\Lambda_{t_0, v}(\phi_n) - \Lambda_{t_0, v}(\phi)\)
+\[
+    \begin{split}
+        \norm{\Lambda_{t_0, v}(\phi_n) - \Lambda_{t_0, v}(\phi)}_X = \norm{2 \phi_n''(t_0) v - 2 \phi''(t_0) v}_X = \norm{2 (\phi_n''(t_0) - \phi''(t_0)) v}_X \leq \\
+        \leq 2 \norm{\phi_n''(t_0) - \phi''(t_0)}_\mathcal{D} \norm{v}_X = 2 \norm{\phi_n''(t_0) - \phi''(t_0)}_\mathcal{D} \to 0
+    \end{split} 
+\]
+We have shown that \(\Lambda_{t_0, v}\) is a continuous linear map, so it is an element of \(\mathcal{D}'(0, T; X)\).
+
+\newpage
+    
