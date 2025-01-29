@@ -63,10 +63,7 @@ Since we know that if a solution satisfies \(u \in L^s(0,T;\bm{L}^r) \text{ with
 \end{exercise}
 \begin{itemize}
     \item[\textbf{a)}] We look for solutions \(u(, t) \in C^1(\real \times (0, \infty))\) that satisfy the conservation law and the initial condition. 
-    We start with existence and uniqueness of solutions, by rewriting the conservation law as
-    \[
-        u_t + [F(u)] u_x = 0, \quad F(u) = -\log(u).
-    \]
+    We start with existence and uniqueness of solutions of the conservation law.
     Its characteristics are given by
     \[
         \frac{du}{dt} = \frac{dt}{ds} \frac{du}{dt} + \frac{dx}{ds} \frac{du}{dx} = 0
@@ -124,13 +121,13 @@ Since we know that if a solution satisfies \(u \in L^s(0,T;\bm{L}^r) \text{ with
         This cannot be a classical solution, since it is not differentiable at \(x=0\). However, it is a weak solution. 
         Now we have to check the entropy condition, since there is a discontinuity. We first verify the Rankine-Hugoniot condition
         \[
-            s = \frac{f(u_r) - f(u_l)}{u_r - u_l} = \frac{\log(e) - \log(1)}{e - 1} = -1.frac{e}{e-1}.
+            s = \frac{f(u_r) - f(u_l)}{u_r - u_l} = \frac{\log(e) - \log(1)}{e - 1} = \frac{1}{e-1}.
         \]
-        To satisfy the entropy condition we need to have that the characteristics on both sides of the shock point towards the shock. To ensure this the condition \(s\) should be less than the speed of the characteristic on the right side and greater than the speed of the characteristic on the left side. 
+        To satisfy the entropy condition we need to have that the characteristics on both sides of the shock point towards the shock. To ensure this the condition \(s\) should be greater than the speed of the characteristic on the right side and less than the speed of the characteristic on the left side, \(u_L > s > u_R\) 
         \[
             \begin{aligned}
-                \text{Left side:} \quad & u_l = 1, \quad f(u_l) = -\log(1) = 0 \quad \Rightarrow \quad -\frac{1}{e-1} > 0 \qquad \text{True} \\
-                \text{Right side:} \quad & u_r = e, \quad f(u_r) = -\log(e) = -1 \quad \Rightarrow \quad -\frac{1}{e-1} < -1 \qquad \text{False}
+                \text{Left side:} \quad & u_l = 1,  \quad \Rightarrow \quad \frac{1}{e-1} < 1 \qquad \text{True} \\
+                \text{Right side:} \quad & u_r = e,  \quad \Rightarrow \quad \frac{1}{e-1} > e \qquad \text{False}
             \end{aligned}
         \]
         The entropy condition is not satisfied.
@@ -164,5 +161,784 @@ Now, choosing \(\psi\) such that satisfies the boundary condition, we can have i
 \[
     \grad \cdot u = \grad \cdot \grad \times \psi = 0 \quad \forall \psi \in C^\infty(\Omega) \cap C^0(\overline{\Omega}).
 \]
+
+\newpage
+\begin{exercise}
+    Let \(\Omega \subset \real^n\) be a smooth bounded open set. Prove that the problem
+    \begin{equation*}
+        \begin{cases}
+            \Delta u = u^3, & \text{in } \Omega, \\
+            u = 0, & \text{on } \partial \Omega,
+        \end{cases}
+    \end{equation*}
+    admits a unique classical solution and determine it.
+\end{exercise}
+We can prove the uniqueness of the solution by using the energy method. We multiply the equation by \(u\) and integrate over \(\Omega\)
+\[
+    \int_\Omega u \Delta u \, dx = \int_\Omega u^4 \, dx.
+\]
+Using the divergence theorem we have
+\[
+    -\int_\Omega \abs{\grad u}^2 \, dx = \int_\Omega u^4 \, dx.
+\]
+We have that the left side is negative, while the right side is positive, so the only way to have a solution is to have \(u = 0\). This is the unique solution to the problem.
+
+\newpage
+\subsection{July 2023}
+\begin{exercise}
+    Consider the two second order sobolev spaces \(H^2_0(-1, 1)\) and \(H^2(-1, 1) \cap H^1_0(-1, 1)\). 
+    \begin{enumerate}
+        \item Prove that the map 
+        \[
+            (u, v) \longmapsto \int_{-1}^1 \left[ u''(x) v''(x) + u'(x) v'(x) + u(x) v(x) \right] \, dx
+        \]
+        defines a scalar product that turns both Sobolev spaces into Hilbert spaces.
+        \item Prove that the map
+        \[
+            (u, v) \longmapsto \int_{-1}^1 u''(x) v''(x) \, dx
+            \tag{(M)}
+        \]
+        defines a scalar product that turns both Sobolev spaces into Hilbert spaces.
+        \item Determine a basis of the orthogonal complement of \(H^2_0(-1, 1)\) into \(H^2(-1, 1)\cap H^1_0(-1, 1)\) with respect to the scalar product \((M)\).
+    \end{enumerate}
+\end{exercise}
+We start by checking the properties of the scalar product
+\begin{remark}
+    Let \(X\) be a vector space and we define a function
+    \[
+        \begin{aligned}
+            \langle \cdot, \cdot \rangle : X \times X &\longrightarrow \real \\
+            (u, v) &\longmapsto \langle u, v \rangle
+        \end{aligned}
+    \]
+    such that for all \(u, v, w \in X\) and \(\alpha \in \real\) we have
+    \begin{enumerate}
+        \item \(\langle u, u \rangle \leq 0\), and \(\langle u, u \rangle = 0 \iff u = 0\) (non-degeneracy),
+        \item \(\langle u, v \rangle = \langle v, u \rangle\) (symmetry),
+        \item \(\langle \alpha u + \beta v, w \rangle = \alpha \langle u, w \rangle + \beta \langle v, w \rangle\) (linearity),
+    \end{enumerate}
+    then \(\langle \cdot, \cdot \rangle\) is a scalar product. 
+\end{remark}
+Now we check if the given scalar products satisfy the properties. 
+\begin{enumerate}
+    \item Starting with the first one
+    \[
+        \begin{aligned}
+            \langle u, u \rangle &= \int_{-1}^1 \left[ u''(x)^2 + u'(x)^2 + u(x)^2 \right] \, dx \geq 0, \\
+            \langle u, u \rangle &= 0 \iff u''(x) = u'(x) = u(x) = 0 \quad \forall x \in (-1, 1).
+        \end{aligned}
+    \]
+    is true because in the first case is the sum of squares, and in the second case we have that \(u = 0\) means that all its derivatives are zero. 
+
+    For the symmetry property we see that is defined as sum of products, so it is symmetric.
+
+    Then we check the linearity 
+    \[
+        \begin{aligned}
+            \langle \alpha u + \beta v, w \rangle &= \int_{-1}^1 \left[ (\alpha u + \beta v)''(x) w''(x) + (\alpha u + \beta v)'(x) w'(x) + (\alpha u + \beta v)(x) w(x) \right] \, dx \\
+            &= \alpha \int_{-1}^1 \left[ u''(x) w''(x) + u'(x) w'(x) + u(x) w(x) \right] \, dx +\\
+            &+ \beta \int_{-1}^1 \left[ v''(x) w''(x) + v'(x) w'(x) + v(x) w(x) \right] \, dx \\
+            &= \alpha \langle u, w \rangle + \beta \langle v, w \rangle.
+        \end{aligned}
+    \]
+    This is true because derivatives and integrals are linear operators, and we can say that this map defines a scalar product.
+    \item For the second scalar product we have
+    \[
+        \begin{aligned}
+            \langle u, u \rangle &= \int_{-1}^1 u''(x)^2 \, dx \geq 0, \\
+            \langle u, u \rangle &= 0 \iff u''(x) = 0 \quad \forall x \in (-1, 1).
+        \end{aligned}
+    \]
+    Same reasoning as before, also for the symmetry and linearity properties, so also this map defines a scalar product.
+    \item We now need to determine a basis of the orthogonal complement of \(H^2_0(-1, 1)\) into \(H^2(-1, 1)\cap H^1_0(-1, 1)\) with respect to the scalar product \((M)\). 
+    To do so, we need to find all the functions \(v \in H^2_0(-1, 1)\) such that
+    \[
+        \int_{-1}^1 u''(x) v''(x) \, dx = 0 \quad \forall u \in H^2(-1, 1)\cap H^1_0(-1, 1).
+    \]
+    Integrating by parts we have
+    \[
+        \int_{-1}^1 u''(x) v''(x) \, dx = \cancel{\left. v'(x) u''(x) \right|_{-1}^1} - \int_{-1}^1 u'''(x) v'(x) \, dx = 0.
+    \]
+    Again integrating by parts we have
+    \[
+        -\int_{-1}^1 u'''(x) v'(x) \, dx = -\cancel{\left. v(x) u'''(x) \right|_{-1}^1} + \int_{-1}^1 u''''(x) v(x) \, dx = 0. 
+    \]
+    So we have obtained 
+    \[
+        \int_{-1}^1 u''''(x) v(x) \, dx = 0 \quad \forall u \in H^2(-1, 1)\cap H^1_0(-1, 1).
+    \]
+    Which is the weak formulation of the problem
+    \[
+        \begin{cases}
+            u''''(x) = 0, & \text{in } (-1, 1), \\
+            u = 0 & \text{on } \partial (-1, 1).
+        \end{cases}
+    \]
+    The general solution of this problem is
+    \[
+        u(x) = a + bx + cx^2 + d x^3.
+    \]
+    Since we have the boundary condition \(u(1) = u(-1) = 0\) we have that 
+    \[
+        \begin{cases}
+            a + b + c + d = 0, \\
+            a - b + c - d = 0.
+        \end{cases}
+    \]
+    Solving this gives us \(b = -d\) and \(a = -c\), so the general solution is
+    \[
+        u(x) = c(x^2 - 1) + d(x^3 - x).
+    \]
+    and the basis of the orthogonal complement is given by
+    \[
+        \left\{ x^2 - 1, x^3 - x \right\}.
+    \]
+\end{enumerate}
+
+\newpage
+\begin{exercise}
+    Write the weak formulation of the forced stationary Navier-Stokes equations under Dirichlet boundary conditions in a smooth bounded domain \(\Omega \subset \real^n\) and explain why the assumption \(n \leq 4\) is needed.
+\end{exercise}
+We start by writing the stationary Navier-Stokes equations
+\[
+    \begin{cases}
+        - \eta \Delta u + \left( u \cdot \grad \right) u + \grad p = f & \Omega \\
+        \div u = 0 & \Omega \\
+        u = 0 & \partial\Omega
+    \end{cases}
+\]
+where \(\Omega \subset \real^n\), \(\partial\Omega \in C^1\), and \(n \leq 4\).
+\begin{remark}
+    About the term \(\left( u \cdot \grad \right) u\), we have that (\(n = 3\))
+    \[
+        u = \begin{pmatrix}
+            u_1 \\
+            u_2 \\
+            u_3
+        \end{pmatrix} \quad \text{and} \quad \grad = \begin{pmatrix}
+            \partial_1 \\
+            \partial_2 \\
+            \partial_3
+        \end{pmatrix}
+    \]
+    So combining the two we have
+    \[
+        \begin{split}
+            \left( u \cdot \grad \right) u = \begin{pmatrix}
+                u_1 \partial_1 + u_2 \partial_2 + u_3 \partial_3
+            \end{pmatrix} \begin{pmatrix}
+                u_1 \\
+                u_2 \\
+                u_3
+            \end{pmatrix} = \begin{pmatrix}
+                u_1 \partial_1 u_1 + u_2 \partial_2 u_1 + u_3 \partial_3 u_1 \\
+                u_1 \partial_1 u_2 + u_2 \partial_2
+                u_2 + u_3 \partial_3 u_2 \\
+                u_1 \partial_1 u_3 + u_2 \partial_2 u_3 + u_3 \partial_3 u_3
+            \end{pmatrix}
+        \end{split}
+    \]
+    which is the so-called convective term.
+\end{remark}
+As functional spaces we choose the spaces introduced in the previous exercise about the Stokes problem \(\bm{V}, \bm{G_1}, \bm{G_2}, \bm{G_3}\). 
+\begin{remark}
+    \(\bm{V} \coloneqq \left\{ f \in \bm{H}^1_0(\Omega) \mid \grad \cdot f = 0 \right\}\) is the space of divergence-free functions.
+    We also introduce three spaces:
+    \begin{itemize}
+        \item \(\bm{G}_1 \coloneqq \left\{ f \in \bm{L}^2(\Omega) \mid \grad \cdot f = 0, \gamma_\nu f = 0 \right\}\)
+        \item \(\bm{G}_2 \coloneqq \left\{ f \in \bm{L}^2(\Omega) \mid \grad \cdot f = 0, \exists g \in H^1(\Omega) \text{ s.t. } f = \grad g \right\}\)
+        \item \(\bm{G}_3 \coloneqq \left\{ f \in \bm{L}^2(\Omega) \mid \exists g \in H^1_0(\Omega) \text{ s.t. } f = \grad g \right\}\)
+    \end{itemize}
+\end{remark}
+We now multiply the equation by a test function \(v \in \bm{V}\) and obtain
+\[
+    \begin{split}
+        - \eta \int_\Omega \Delta u v \, dx + \int_\Omega \left( u \cdot \grad \right) u v \, dx + \int_\Omega \grad p \cdot v \, dx = \int_\Omega f v \, dx
+    \end{split}
+\]
+We integrate by parts the first term and obtain
+\[
+    \begin{split}
+        \eta \int_\Omega \grad u : \grad v \, dx + \int_\Omega \left( u \cdot \grad \right) u \cdot v \, dx + \underbrace{\int_\Omega \grad p \cdot v \, dx}_{=0} = \int_\Omega f v \, dx
+    \end{split}
+\]
+The term \(\int_\Omega \grad p v \, dx\) is zero because \(v \in \bm{V} \subseteq \bm{G_1}\) and \(\grad p \in \bm{G_2} \oplus \bm{G_3} = \bm{G_1}^\perp\). We can now write the weak formulation of the problem
+\[
+    \begin{split}
+        \text{Find } u \in \bm{V} \text{ such that } \eta \int_\Omega \grad u : \grad v \, dx + \int_\Omega \left( u \cdot \grad \right) u \cdot v \, dx = \langle f, v \rangle \qquad \forall v \in \bm{V}
+    \end{split}
+\]
+Now we need to explain why the assumption \(n \leq 4\) is necessary. We need to understand in which space the convective term lies and that \(v \in \bm{V} \Rightarrow \grad v \in \bm{L}^2(\Omega)\).  
+\begin{itemize}
+    \item[\(n = 2\)] In the bidimensional case, we have that \(u \in \bm{V} \Rightarrow u \in \bm{L}^p(\Omega) \, \forall 1 \leq p < \infty\). Since \(u \cdot \grad u\) is a product of a function in \(\bm{L}^p(\Omega)\) and a function in \(\bm{L}^2(\Omega)\), we have that \(u \cdot \grad u \in \bm{L}^2(\Omega) \, \forall q < 2\).
+    \[
+        \begin{pmatrix*}
+            \bm{H}^1_0(\Omega) \subset \bm{L}^p{(\Omega)} & \forall 1 \leq p < \infty \\
+            \bm{L}^{p'}(\Omega) \subset \bm{H}^{-1}(\Omega) & \forall 1 < p \leq \infty
+        \end{pmatrix*}
+        \Rightarrow u \cdot \grad u \in \bm{H}^{-1}(\Omega)
+    \]
+    \item[\(n = 3\)] In the tridimensional case, Sobolev embedding gives us \(u \in \bm{V} \Rightarrow u \in \bm{L}^6(\Omega)\). In this case we have that \(u \cdot \grad u \in \bm{L}^{3/2}(\Omega)\), because we have that \(u \in \bm{L}^6(\Omega)\) and \(\grad u \in \bm{L}^2(\Omega)\), and by Holder's inequality \(\frac{1}{6} + \frac{1}{2} + \frac{1}{r} = 1 \Rightarrow r = 3\) and the dual of \(\bm{L}^{3}(\Omega)\) is \(\bm{L}^{3/2}(\Omega)\).
+    \[
+        \begin{pmatrix*}
+            \bm{H}^1_0(\Omega) \subset \bm{L}^6{(\Omega)}  \\
+            \bm{L}^{6/5}(\Omega) \subset \bm{H}^{-1}(\Omega)
+        \end{pmatrix*}
+        \Rightarrow u \cdot \grad u \in \bm{L}^{3/2}(\Omega) \subset \bm{L}^{6/5}(\Omega) \subset \bm{H}^{-1}(\Omega)
+    \]
+    \item[\(n = 4\)] In the four-dimensional case, we have that \(u \in \bm{V} \Rightarrow u \in \bm{L}^4(\Omega)\). In this case we have that \(u \cdot \grad u \in \bm{L}^{4/3}(\Omega)\), because we have that \(u \in \bm{L}^4(\Omega)\) and \(\grad u \in \bm{L}^2(\Omega)\), and by Holder's inequality \(\frac{1}{4} + \frac{1}{2} + \frac{1}{r} = 1 \Rightarrow r = 4\) and the dual of \(\bm{L}^{4}(\Omega)\) is \(\bm{L}^{4/3}(\Omega)\).
+    \[
+        \begin{pmatrix*}
+            \bm{H}^1_0(\Omega) \subset \bm{L}^4{(\Omega)}  \\
+            \bm{L}^{4/3}(\Omega) \subset \bm{H}^{-1}(\Omega)
+        \end{pmatrix*}
+        \Rightarrow u \cdot \grad u \in \bm{H}^{-1}(\Omega)
+    \]
+    \item[\(n = 5\)] In the five-dimensional case, we have that \(u \in \bm{V} \Rightarrow u \in \bm{L}^{10/3}(\Omega)\). In this case we have that \(u \cdot \grad u \in \bm{L}^{5/4}(\Omega)\), because we have that \(u \in \bm{L}^{10/3}(\Omega)\) and \(\grad u \in \bm{L}^2(\Omega)\), and by Holder's inequality \(\frac{3}{10} + \frac{1}{2} + \frac{1}{r} = 1 \Rightarrow r = 5\) and the dual of \(\bm{L}^{5}(\Omega)\) is \(\bm{L}^{5/4}(\Omega)\).
+    \[
+        \begin{pmatrix*}
+            \bm{H}^1_0(\Omega) \subset \bm{L}^{10/3}{(\Omega)}  \\
+            \bm{L}^{10/7}(\Omega) \subset \bm{H}^{-1}(\Omega)
+        \end{pmatrix*}
+        \nRightarrow u \cdot \grad u \in \bm{L}^{10/7}(\Omega) \subset \bm{H}^{-1}(\Omega) \text{ because } \frac{5}{4} < \frac{10}{7}
+    \]
+    Because \(L^q \subset L^p\) if \(p < q\), in \(n = 5\) we do not have that \(u \cdot \grad u \in \bm{H}^{-1}(\Omega)\).
+\end{itemize}
+
+\newpage
+\begin{exercise}
+    It is known that if \(w(\cdot, t) \in \mathcal{S}(\real)\) satisfies \(w_t + 6(w - \epsilon w^2)w_x + w_{xxx} = 0\) in \(\real \times \real^+\), then, for all \(\epsilon \geq 0\),
+    the function \(u \coloneqq w + \epsilon w_x - \epsilon^2 w^2\) satisfies the Korteweg-de Vries equation
+    \[
+        u_t + 6uu_x + u_{xxx} = 0 \quad \text{in } \real \times \real^+.
+    \]
+    Prove that the Korteweg-de Vries equation has infinitely many conserved quantities.
+\end{exercise}
+We will add the assumptions that we know that mass and momentum, and energy are conserved for the KdV equation. 
+To prove this, we start by rewriting the equation in \(w\) as
+\[
+    w_t + \left(3w^2 - 2\epsilon^2 w^3\right)_x + \left(w_{xx}\right)_x = 0 \Rightarrow u \text{ solves KdV } \Rightarrow \int w \text{ is conserved for all } \epsilon \geq 0.
+\]
+Then we write \(w = w(x, t; \epsilon)\) to highlight the dependence on \(\epsilon\). 
+It can be proved that this dependence \(\epsilon \mapsto w(x, t; \epsilon)\) is analytic, so we can write
+\[
+    w(x, t; \epsilon) = \sum_{n=0}^\infty \epsilon^n w_n(x, t).
+\]
+which is the power series expansion of \(w\) in \(\epsilon\), and 
+\(
+    \frac{d}{dt} \int w_n \, dx = 0  \text{ because mass is conserved.}
+\)
+At this point we rewrite \(u\) as
+\begin{align*}
+    u &= w + \epsilon w_x - \epsilon^2 w^2 = \\
+    &= \sum_{n=0}^\infty \epsilon^n w_n + \sum_{n=0}^\infty \epsilon^{n+1} (w_{n})_x - \sum_{n=0}^\infty \epsilon^{n+2} w_n^2 = \\
+    &= w_0 + \epsilon \left[w_1 + (w_0)_x\right] + \epsilon^2 \left[w_2 + (w_1)_x - w_0^2\right] + \epsilon^3 \left[w_3 + (w_2)_x - 2w_0 w_1\right] + \\
+    &+ \epsilon^4 \left[w_4 + (w_3)_x - 2w_0 w_2 - w_1^2\right] + R_4(\epsilon).
+\end{align*}
+Where in the last step we used the MacLaurin expansion in term of \(\epsilon\). But \(u\) has no dependence on \(\epsilon\), so we have that \((\cdot)\epsilon^n = 0\) for all \(n\).
+\begin{align*}
+    &w_0 = u, \\
+    &w_1 + (w_0)_x = -(w_0)_x = -u_x, \\
+    &w_2 + (w_1)_x - w_0^2 = u^2 - u_{xx}, \\
+    &w_3 + (w_2)_x - 2w_0 w_1 = -u_{xxx} - 4uu_x, \\
+    &w_4 + (w_3)_x - 2w_0 w_2 - w_1^2 = 5 u_x^2 + 6 u u_{xx} + u_{xxxx} + 2 u^3.   
+\end{align*}
+Now we integrate all the equations in \(x\) and we obtain 
+\begin{align*}
+    &\int w_0 \, dx = \int u \, dx = 0, \text{ mass} \\
+    &\int w_1 \, dx = -\underbrace{\int u_x \, dx}_{\text{\tiny div. form}} = 0, \text{ conserved} \\
+    &\int w_2 \, dx = \int u^2 \, dx - \int u_{xx} \, dx = \int u^2 \, dx, \text{ momentum} \\
+    &\int w_3 \, dx = -\int u_{xxx} \, dx - 4 \int u u_x \, dx = - \int \left(2 u^2 + u_{xx}\right)_x \, dx = 0, \text{ conserved} \\
+    &\int w_4 \, dx = 5 \int u_x^2 \, dx + 6 \int u u_{xx} \, dx + \int u_{xxxx} \, dx + 2 \int u^3 \, dx \underset{\text{IPP}}{=} \int \left(2 u^3 - u_x^2\right) \, dx = 0, \text{ energy}.
+\end{align*}
+We find infinitely many conserved quantities for the KdV equation, with an increasing power of \(u\).
+
+\newpage
+\subsection{September 2023}
+\begin{exercise}
+    Let \(\Omega \subset \real^2\) be a bounded open set of class \(C^1\), and let \(f \in L^2(\Omega)\). Consider the Dirichlet problem
+    \begin{equation*}
+        \begin{cases}
+            u_{tt} - \left(\partial_x^2 u + 2 \partial_y^2 u - 2 \partial_{xy} u\right) = f, & \text{in } \Omega \times (0, T), \\
+            u = 0, & \text{on } \partial \Omega \times (0, T), \\
+            u(x,0) = u_0(x), & x \in \Omega, \\
+            u_t(x,0) = u_1(x), & x \in \Omega.
+        \end{cases}
+        \tag{(P)}
+    \end{equation*}
+    \begin{enumerate}
+        \item For a suitable symmetric matrix \(A\), write the PDE appearing in (P) in the form \(u_{tt} - \div(A \grad u) = f\).
+        \item Write the weak formulation of (P).
+        \item Sketch the proof of existence and uniqueness of a solution of (P), explaining to which functional spaces is expected to belong.
+    \end{enumerate}
+\end{exercise}
+\begin{enumerate}
+    \item We start by writing the PDE in the form \(u_{tt} - \div(A \grad u) = f\). We have that
+    \[
+        u_{tt} - \left(A_{11} u_{xx} + A_{22} u_{yy} + 2A_{12} u_{xy}\right) = f.
+    \]
+    We can write the matrix \(A\) as
+    \[
+        A = \begin{pmatrix}
+            2 & -1 \\
+            -1 & 2
+        \end{pmatrix}
+    \]
+    and the PDE becomes
+    \[
+        u_{tt} - \div (A \grad u) = f.
+    \]
+    \item To write the weak formulation of the problem we first recall the space of weakly continuous functions
+    \begin{remark}
+        Let \(H\) be a Hilbert space. The space of weakly continuous functions over \([0, T]\) is defined as
+        \[
+            \begin{split}
+                C_w^0([0, T]; H) = \left\{ u \in L^\infty(0, T; H) \mid \lim_{t \to t_0} (u(t) - u(t_0), v)_H = 0, \quad \forall t_0 \in [0, T], \forall v \in H \right\}
+            \end{split}
+        \] 
+    \end{remark}
+    Then choose an adequate Hilbert triplet, keeping in mind that this problem is equipped with Dirichlet boundary conditions. We can choose the Hilbert triplet
+    \[
+        V = H^1_0(\Omega) \subset H = L^2(\Omega) \subset V' = H^{-1}(\Omega).
+    \]
+    The weak formulation of the problem is then obtained by multiplying the equation by a test function \(v \in V\) and integrating over \(\Omega\)
+    \begin{align*}
+        \int_\Omega f(t) v \, dx &= \int_\Omega u_{tt} v \, dx + \int_\Omega \div(A \grad u)v \, dx =\\
+        &= \int_\Omega u_{tt} v \, dx - \cancel{\int_{\partial\Omega} \partial_\nu u v \, d\sigma} + \int_\Omega \left[A \grad u \cdot \grad v\right] \, dx = \\
+        &= \int_\Omega u_{tt} v \, dx + \int_\Omega \underbrace{A \grad u \cdot \grad v}_{B(u, v)} \, dx
+    \end{align*}
+    The weak formulation of the problem is then
+    \[
+        \begin{split}
+            \text{Find } u(t) \in C^0([0, T]; H) \cap C_w^0([0, T]; V) \text{ such that } \\
+            u' \in C_w^0([0, T]; H), u'' \in L^2(0, T; V') \text{ and } \\
+            \begin{cases}
+                \langle u_{tt}(t), v \rangle + B(u(t), v) = (f(t), v)_H \\
+                u(0) = u_0, \quad u'(0) = u_1
+            \end{cases}\quad \forall v \in V, \text{ in } \mathcal{D}(0, T).
+        \end{split}
+    \]
+    \item To sketch the proof of existence and uniqueness of a solution of the problem we need to use the Galerkin method. The advantage of the Galerkin method is that is finite-dimensional, so we can have as much regularity as we want. Let \(\left\{V_m\right\}\) be a Galerkin sequence for \(V\), and therefore for \(H\). Then, \(\exists \left\{u_0^m\right\} \subset V_m\) and \(\exists \left\{u_1^m\right\} \subset V_m\) such that \(u_0^m \to u_0\) in \(V\) and \(u_1^m \to u_1\) in \(H\). Let \(m = \dim V_m\) and consider a basis \(\left\{w_k^m\right\}\) for \(V_m\) orthonormal in \(H\). We now look for \(u_m = u_m(t)\) such that
+    \[
+        u_m(t) = \sum_{k=1}^m g_k^m(t) w_k^m
+    \]
+    Moreover, for \(1 \leq k \leq m\) we have the system
+    \[
+        \begin{cases}
+            g_m''(t) + B_m g_m(t) = \gamma_m(t) \\
+            g_m(0) = g_0^m, \quad g_m'(0) = g_1^m
+        \end{cases}
+    \]
+    Since \(g_m(t)\) is the unique solution of the system, we have that \(g_m(t)\) uniquely determines \(u_m(t)\). Then it is possible, starting from 
+    \[
+        \frac{1}{2}\frac{d}{dt} \left[\norm{u_m'(t)}_H^2 + \norm{u_m(t)}_V^2\right] = \left(f(t), u_m(t)\right)_H \qquad \text{a.e in } [0, T],
+        \tag*{(E)}
+    \]
+    to obtain the following a priori estimates
+    \[
+        \norm{u_0}_{L^\infty(0, T; V)} \leq C_1 \qquad \norm{u_1}_{L^\infty(0, T; H)} \leq C_2
+    \]
+    And it can be shown that the weak formulation can be recovered up to a subsequence, and that \(u\) admits a weak derivative \(u' \in L^\infty(0, T; H)\), and also that \(u'' \in L^2(0, T; V')\).
+    Since 
+    \[
+    \begin{cases}
+        u \in L^\infty(0, T; V) \\
+        u' \in L^\infty(0, T; H) \\
+    \end{cases}
+    \Rightarrow u \in C^0([0, T]; H) 
+    \]
+    and \(V \subset H\), we have that \(u \in C^0([0, T]; H) \cap C_w^0([0, T]; V)\) and we have existence, by proving the same result for \(u'\).
+    Then we take two solutions \(u_1\) and \(u_2\) and we have that \(w = u_1 - u_2\) . Putting \(w\) in (E) we obtain
+    \[
+        \begin{cases}
+            \frac{1}{2}\frac{d}{dt} \left[\norm{w'(t)}_H^2 + \norm{w(t)}_V^2\right] = 0 \\
+            w(0) = 0, \quad w'(0) = 0
+        \end{cases} 
+        \Rightarrow w = 0 \Rightarrow u_1 = u_2
+    \]
+    and we have uniqueness.
+\end{enumerate}
+
+\newpage
+\begin{exercise}
+    Consider the Burgers' equation
+    \[
+        u_t + u u_x = 0 \quad \text{in } \real \times \real^+.
+    \]
+    By the method of characteristics, find the solution with initial condition
+    \[
+        u(x,0) = \begin{cases}
+            1, & x < 0, \\
+            2 - 2x, & 0 < x < 1, \\
+            0, & x > 1.
+        \end{cases}
+    \]
+    and determine whether it satisfies the entropy condition.
+\end{exercise}
+We start by writing the characteristics equations
+\[
+    \frac{du}{ds} = \frac{dt}{ds} \frac{du}{dt} + \frac{dx}{ds} \frac{du}{dx} = 0
+\]
+we have that \(u\) is constant along the characteristics and \(t=s\) since the initial condition is given at \(t=0\). 
+Now we find the characteristics equations from 
+\[
+    x(t) = x_0 + u(x_0, t) t
+\]
+which gives us
+\[
+    x(t) = \begin{cases}
+        x_0 + t, & u = 1, x_0 < 0, \\
+        x_0 + (2 - 2x_0)t, & 2 - 2x_0 = 0, 0 < x_0 < 1, \\
+        x_0, & u = 0, x_0 > 1.
+    \end{cases}
+\]
+Drawing the characteristics we have
+\begin{center}
+    \begin{tikzpicture}
+        \begin{axis}[
+            xlabel={$x$}, ylabel={$t$},
+            xmin=-1, xmax=2, ymin=0, ymax=1.5,
+            axis lines=middle, grid=major,
+            samples=20, domain=-2:1, legend pos=outer north east
+        ]
+        
+        % Plot characteristics for u_0(x) = 1 for x <= 0
+
+        \addplot[black, thick, domain=-2:-0.6] {x -0.4}; % Characteristic with slope 1
+        \addplot[black, thick, domain=-2:-0.8] {x - 0.2}; % Characteristic with slope 1
+        \addplot[black, thick, domain=-1:1] {x}; % Characteristic with slope 1
+        \addplot[black, thick, domain=-1:0.8] {x + 0.2}; % Characteristic with slope 1
+        \addplot[black, thick, domain=-1:0.6] {x + 0.4}; % Characteristic with slope 1
+        \addplot[black, thick, domain=-1:0.4] {x + 0.6}; % Characteristic with slope 1
+        \addplot[black, thick, domain=-1:0.2] {x + 0.8}; % Characteristic with slope 1
+        \addplot[black, thick, domain=-1:0] {x + 1}; % Characteristic with slope 1
+
+        
+        % Plot characteristics for u_0(x) = 2 - 2x for 0 < x < 1
+        \addplot[black, thick,domain=0:1] {x - (2 - 2*x) * 0.1};
+        \addplot[black, thick,domain=0:1] {x - (2 - 2*x) * 0.2};
+        \addplot[black, thick,domain=0:1] {x - (2 - 2*x) * 0.3};
+        \addplot[black, thick,domain=0:1] {x - (2 - 2*x) * 0.4};
+        \addplot[black, thick,domain=0:1] {x - (2 - 2*x) * 0.5};
+        \addplot[black, thick,domain=0:1] {x - (2 - 2*x) * 0.75};
+        \addplot[black, thick,domain=0:1] {x - (2 - 2*x)};
+        \addplot[black, thick,domain=0:1] {x - (2 - 2*x) * 1.5};
+        \addplot[black, thick,domain=0:1] {x - (2 - 2*x) * 2};
+        \addplot[black, thick,domain=0:1] {x - (2 - 2*x) * 2.5};
+        \addplot[black, thick,domain=0:1] {x - (2 - 2*x) *3};
+    
+        % Plot characteristics for u_0(x) = 0 for x > 1
+        \draw[color=black] 
+                    (axis cs:1.01, 0) -- (axis cs:1.01, 1);
+        \draw[color=black]
+                    (axis cs:1.2, 0) -- (axis cs:1.2, 1);
+        \draw[color=black]
+                    (axis cs:1.4, 0) -- (axis cs:1.4, 1); 
+        \draw[color=black]
+                    (axis cs:1.6, 0) -- (axis cs:1.6, 1);
+        \draw[color=black]
+                    (axis cs:1.8, 0) -- (axis cs:1.8, 1);
+        \draw[color=black]
+                    (axis cs:2, 0) -- (axis cs:2, 1);        
+        \end{axis}
+    \end{tikzpicture}
+\end{center}
+that the shock happens at \(t=1\). 
+Therefore the function \(u(x,t)\) is defined continuous in \(\real \times [0, 1)\) and it is written as
+\[
+    u(x,t) = \begin{cases}
+        1, & x \leq t, \\
+        \frac{1-2x}{1-2t}, & t < x < 1, \\
+        0, & x \geq 1.
+    \end{cases}
+\]
+We want to extend the solution to \(t > 1\). We need the solution to undergo a jump, so given \(x = \eta(t)\) the curve of discontinuity, we have that
+\[
+    u(x, t) = \begin{cases}
+        u_- = 1, & x < \eta(t) \\ 
+        u_+ = 0, & x > \eta(t)
+    \end{cases}
+\]
+The jump conditions states that
+\[
+    \eta'(t) \cdot \left[u_+ - u_-\right] = \left[B(u_+) - B(u_-)\right] \quad \text{on } \Gamma
+\]
+Here we have that \(B(u) = \frac{u^2}{2}\), so the jump condition becomes
+\[
+    \eta'(t) = \frac{u_-^2 - u_+^2}{u_- - u_+} = \frac{1}{2}
+\]
+and the solution is
+\[
+    \eta(t) = \frac{t}{2} + C
+\]
+But, we know that \(\eta(1) = 1\), so \(C = 1/2\) and the solution is
+\[
+    u(x,t) = \begin{cases}
+        1, & x < \frac{1}{2}(t+1), \\
+        0, & x > \frac{1}{2}(t+1).  
+    \end{cases}
+\]
+Which is a discontinuous solution. 
+
+To satisfy the entropy condition we need to have that the characteristics on both sides of the shock point towards the shock. To ensure this the condition \(s = \eta'(t)\) should be less than the speed of the characteristic on the right side and greater than the speed of the characteristic on the left side. We have
+\begin{align*}
+    \text{Left side:} & \quad u_-(x,t) = 1, \Rightarrow \frac{1}{2} < 1, \quad \text{True} \\
+    \text{Right side:} & \quad u_+(x,t) = 0, \Rightarrow \frac{1}{2} > 0, \quad \text{True} 
+\end{align*}
+Therefore the solution satisfies the entropy condition.
+
+\newpage
+\begin{exercise}
+    Let \(\Omega \subset \real^n\) \(n \geq 2\) be a bounded open domain with \(\partial\Omega \in C^\infty\) and consider the boundary value problem
+    \[
+        \begin{cases}
+            -\Delta u = f & \Omega \\
+            u = 0 & \partial\Omega
+        \end{cases}
+        \tag*{(P)}
+    \]
+    \begin{enumerate}
+        \item Assuming that \(f \in H^{-1}(\Omega)\), write the weak formulation of (P).
+        \item Prove that this problem admits a unique weak solution.
+        \item Show that the unique solution \(u\) satisfies the Dirichlet principle.
+        \item If \(f \in L^2(\Omega)\), in which space dimension \(n\) is it guaranteed that the solution \(u\) belongs to \(C^=0(\overline{\Omega})\)?
+    \end{enumerate}
+\end{exercise}
+\begin{enumerate}
+    \item We start by writing the weak formulation of the problem. First we define a suitable function space, in this case we have \(V \in H^1_0(\Omega)\). We multiply the equation by a test function \(v \in V\) and obtain
+    \[
+        \begin{split}
+            -\int_\Omega \Delta u v \, dx = \int_\Omega f v \, dx \qquad \forall v \in V
+        \end{split}
+    \]
+    We integrate by parts the left-hand side and obtain
+    \[
+        \begin{split}
+            \int_\Omega \grad u \grad v \, dx = \underbrace{\langle f, v \rangle}_{\text{bc } f \in H^{-1}} \qquad \forall v \in V
+        \end{split}
+    \]
+    Then we obtain the weak formulation of the problem
+    \[
+        \begin{split}
+            \text{Find } u \in H^1_0(\Omega) \text{ such that } \int_\Omega \grad u \grad v \, dx =  \langle f, v \rangle \qquad \forall v \in V
+        \end{split}
+    \]
+    \item Then we state the Dirichlet principle for the homogeneous Dirichlet problem
+    \begin{remark}
+        Let \(\Omega \subset \real^n\) be a bounded and Lipschitz domain and let \(f \in H^{-1}(\Omega), \alpha \geq 0\). Then the problem (P) admits a unique solution \(u \in V\) such that 
+        \[
+            \int_\Omega \grad u \grad v \, dx = \langle f, v \rangle \qquad \forall v \in V
+        \]
+        Moreover, \(u\) is the unique minimizer of the functional
+        \[
+            J(u) = \frac{1}{2} \int_\Omega \abs{\grad u}^2 \, dx - \langle f, u \rangle
+        \]
+    \end{remark}
+    A sketch of the proof goes as follows. We start by defining the functional
+    \begin{align*}
+        a: V \times V &\longrightarrow \real \\
+        (u, v) &\longmapsto \int_\Omega \grad u \grad v \, dx
+    \end{align*}
+    We have that \(a(u,v)\) is a continuous and coercive bilinear form. Then we can apply the Lax-Milgram theorem to obtain the existence of a unique solution \(u \in V\).
+
+    To prove that the solution is the unique minimizer of the functional we need to observe that the functional \(J(u)\) is convex.
+    \item Now we will prove that the unique solution \(u\) is the minimizer of the functional \(J(u)\). We start by recalling \(J(u)\)
+    \[
+        J(u) = \frac{1}{2} \int_\Omega \abs{\grad u}^2 \, dx - \langle f, u \rangle
+    \]
+    Assume \(\bar{u} \in V\) is a solution of the weak formulation of the problem. Then \(\exists w \in V\) such that \(u = \bar{u} + w\). We have that
+    \[
+        \begin{split}
+            J(u) = J(\bar{u} + w) = \frac{1}{2} \int_\Omega \abs{\grad \bar{u} + \grad w}^2 \, dx - \langle f, \bar{u} + w \rangle = \\
+            =J(\bar{u}) + \underbrace{\frac{1}{2}\int_\Omega \abs{\grad w}^2 \, dx}_{\geq 0} + \underbrace{\int_\Omega \grad \bar{u} \grad w \, dx - \langle f, w \rangle}_{\text{\tiny def. of weak solution } = 0} \geq J(\bar{u})
+        \end{split}
+    \]
+    So, if \(w \neq 0\) we have that \(J(u) > J(\bar{u})\). Then, if \(\bar{u}\) is the weak solution, it is also the minimizer of the functional.
+    \item To prove that the solution \(u\) belongs to \(C^0(\overline{\Omega})\) we need Sobolev embedding. We know that \(f \in H^m(\Omega)\) implies that \(u \in H^{m+2}(\Omega)\). We have that \(f \in L^2 \Rightarrow u \in H^2\) By Sobolev embedding, \(u \in C^0(\overline{\Omega})\) if \(n < 2s\), where \(s\) is the Sobolev exponent. Therefore, if \(n < 4\) we have that the solution \(u\) belongs to \(C^0(\overline{\Omega})\).
+\end{enumerate}
+
+\newpage
+\subsection{January 2024}
+\begin{exercise}
+    For given constants \(\alpha, \beta, \gamma \in \real\), consider the Cauchy problem
+    \[
+        \begin{cases}
+            u_{t} - \alpha u_{xx} - \beta u_{x}^4 + \gamma u^3u_x = 0, & (x,t) \in \real \times (0, \infty), \\
+            u(x,0) = u_0(x), & x \in \real, \\
+        \end{cases}
+        \tag*{(P)}
+    \]
+    \begin{enumerate}
+        \item Find conditions on \(\alpha, \beta, \gamma\) ensuring mass conservation for regular solutions of (P).
+        \item Find conditions on \(\alpha, \beta, \gamma\) ensuring momentum conservation for regular solutions of (P).
+        \item When \(\beta = 0\), find a first-order ODE on \(g\) giving a necessary condition to have solitary wave solutions of (P).
+    \end{enumerate}
+\end{exercise}
+\begin{enumerate}
+    \item To have mass conservation we need \(\frac{\partial}{\partial t}\int_\real u(x,t) \, dx = 0\). We have that
+    \[
+        \begin{split}
+            \frac{\partial}{\partial t}\int_\real u(x,t) \, dx = \int_\real u_t(x,t) \, dx = \int_\real \left(- \alpha u_{xx} - \beta u_{x}^4 - \gamma u^3u_x\right) \, dx = 
+        \end{split}
+    \]
+    Let's see each term separately
+    \[
+        \begin{split}
+            \int_\real - \alpha u_{xx} \, dx = -\alpha \left.u_x\right|_\real = 0
+        \end{split}
+    \]
+    This term goes to zero because we have that \(u \in \mathcal{S}(\real)\), so it is zero \(\forall \alpha\). The third term becomes
+    \[
+        \begin{split}
+            \int_\real - \gamma u^3u_x \, dx = -\frac{\gamma}{4} \left. u^4 \right|_\real = 0
+        \end{split}
+    \]
+    same as before, this term goes to zero because we have that \(u \in \mathcal{S}(\real)\), so it is zero \(\forall \gamma\). The second term becomes
+    \[
+        \begin{split}
+            \int_\real - \beta u_{x}^4 \, dx = 0 \iff \beta = 0
+        \end{split}
+    \]
+    Therefore, the condition for mass conservation is \(\beta = 0\).
+    \item To have momentum conservation we need \(\frac{\partial}{\partial t}\int_\real u(x,t)^2 \, dx = 0\). We have that
+    \[
+        \begin{split}
+            \frac{\partial}{\partial t}\int_\real u(x,t)^2 \, dx = \int_\real 2u(x,t)u_t(x,t) \, dx = \int_\real 2u(x,t)\left(- \alpha u_{xx} - \beta u_{x}^4 - \gamma u^3u_x\right) \, dx 
+        \end{split}
+    \]
+    Let's see each term separately
+    \[
+        \begin{split}
+            -2\alpha \int_\real u u_{xx} \, dx = -\alpha \int_\real (u_x)^2 \, dx = 0 \iff \alpha = 0
+        \end{split}
+    \]
+    The second term becomes
+    \[
+        \begin{split}
+            -2\beta \int_\real u u_{x}^4 \, dx = 0 \iff \beta = 0
+        \end{split}
+    \]
+    The third term becomes
+    \[
+        \begin{split}
+            -2\gamma \int_\real u^4u_x \, dx = -\frac{\gamma}{5} \int_\real (u^5)_x \, dx = 0
+        \end{split}
+    \]
+    Therefore, the condition for momentum conservation is \(\alpha = \beta = 0\).
+    \item When \(\beta = 0\) we have that the equation becomes
+    \[
+        \begin{split}
+            u_{t} - \alpha u_{xx} + \gamma u^3u_x = 0
+        \end{split}
+    \]
+    Solitary waves are solutions of the form \(u(x,t) = g(x + ct)\). We substitute this into the equation and obtain
+    \[
+        \begin{split}
+            cg'(x + ct) - \alpha g''(x + ct) + \gamma g(x + ct)^3g'(x + ct) = 0
+        \end{split}
+    \]
+    We perform the change of variables \(s = x + ct\) and obtain
+    \[
+        \begin{split}
+            cg'(s) - \alpha g''(s) + \gamma g(s)^3g'(s) = 0
+        \end{split}
+    \]
+    We can rewrite this as
+    \[
+        \begin{split}
+            \frac{d}{ds} \left[ cg(s) - \alpha g'(s) + \frac{\gamma}{4} g(s)^4 \right] = 0
+        \end{split}
+    \]
+    Integrating this equation we obtain
+    \[
+        \begin{split}
+            cg(s) - \alpha g'(s) + \frac{\gamma}{4} g(s)^4 = C
+        \end{split}
+    \]
+    where \(C\) is a constant. This is the first-order ODE that gives a necessary condition to have solitary wave solutions of the problem.
+\end{enumerate}
+
+\newpage
+\begin{exercise}
+    Let \(\Omega \subset \real^n (n \geq 2)\) be a bounded smooth domain, let \(a\) be a measurable function in \(\Omega\).
+    Consider the problem
+    \[
+        \begin{cases}
+            - \Delta u = a(x) u^3 & \Omega \\
+            u = 0 & \partial\Omega
+        \end{cases}
+        \tag*{(P)}
+    \]
+    Under which assumptions on the space dimension n can we write a variational formulation of problem (P) in
+    \(H^1_0(\Omega)\)? 
+    
+    For each of these dimensions find the most general assumptions on \(a\) that allow to write the variational formulation. 
+    
+    Finally, write the variational formulation.
+    \end{exercise}
+    
+    First, a quick reminder on Sobolev embedding, which will be very useful a.e. in this document
+    \begin{remark}\label{sobolev_embedding}
+        Let \(\Omega \subseteq \real^n\) open with \(\partial\Omega \in \text{Lip}\), \(s \geq 0\),
+        \[
+            H^s(\Omega) \subset 
+            \begin{cases}
+                L^p(\Omega) \qquad \forall \, 2 \leq p \leq 2^* & \text{if } n > 2s \\
+                L^p(\Omega) \qquad \forall \, 2 \leq p < \infty & \text{if } n = 2s \\
+                C^0(\bar{\Omega})  & \text{if } n < 2s
+            \end{cases}
+        \]
+        Increasing \(s\) increases the regularity, while increasing \(n\) decreases it.
+    
+        The exponent \(2^*\) is called critical exponent and is defined as \(2^* \coloneqq \frac{2n}{n - 2s}\).
+    
+        If \(Omega\) is bounded, all these embeddings are compact except \(H^s(\Omega) \subset L^{2^*}\) when \(n > s\).
+    \end{remark}
+    
+    Since we want to know the variational formulation in \(H^1_0\) we have \(s = 1\) and need to check \(n = 2, n \geq 3\). Remember a variational formulation makes sense if \(\int_\Omega fv < \infty\).
+    \begin{itemize}
+        \item[\(n = 2\).] In this case we have \(u^3, v \in H^1_0(\Omega)\), so by Sobolev embedding we know \(u^3, v \in L^p(\Omega)\) for \(2 \leq p < \infty\). 
+        \[
+            \abs{\int_\Omega a(x) u^3 v}  \, dx \leq \int_\Omega \abs{a(x)} \abs{u^3} \abs{v} \, dx \underset{Holder}{\leq} \left(\int_\Omega \abs{a(x)}^r\right)^{\frac{1}{r}} \left(\int_\Omega \abs{u^3}^p \right)^{\frac{1}{p}} \left(\int_\Omega \abs{v}^q \right)^{\frac{1}{q}} < \infty.
+        \]
+        To use Holder inequality we need to find \(r, p, q\) such that \(\frac{1}{r} + \frac{1}{p} + \frac{1}{q} = 1\). We see that, 
+        \[
+            \frac{1}{r} + \frac{1}{p} + \frac{1}{q} = 1 \iff a(x) \in L^r(\Omega) \qquad \text{with } r > 1
+        \]
+        \item[\(n \geq 3\).] In this case we have \(u^3, v \in H^1_0(\Omega)\), so by Sobolev embedding we know \(u^3, v \in L^p(\Omega)\) for \(2 \leq p \leq 2^*\).
+        We proceed as before, using Holder inequality, but decide to use \(p = \frac{2^*}{3}\) and \(q = \frac{1}{2^*}.\)
+        \[
+            \abs{\int_\Omega a(x) u^3 v}  \, dx \leq \int_\Omega \abs{a(x)} \abs{u^3} \abs{v} \, dx \underset{\mathclap{Holder}}{\leq} \left(\int_\Omega \abs{a(x)}^r\right)^{\frac{1}{r}} \left(\int_\Omega \abs{u}^{2^*} \right)^{\frac{3}{2^*}} \left(\int_\Omega \abs{v}^{2^*} \right)^{\frac{1}{2^*}} < \infty.
+        \]
+        In this case Holder inequality gives us 
+        \[
+            \frac{1}{r} + \frac{3}{2^*} + \frac{1}{2^*} = 1 \iff \frac{1}{r} = 1 - \frac{4}{2^*} \iff r = \frac{2^*}{2^* - 4}
+        \]
+        Substituting \(2^* = \frac{2n}{n - 2}\) we get \(r = \frac{n}{-n + 4}\). Since \(r > 0\) we need \(n < 4\).
+        In this case we have \(a(x) \in L^3(\Omega)\) for \(n = 3\), but also \(a(x) \in L^\infty(\Omega)\) for \(n = 4\).
+    \end{itemize}
+    
+    At this point we can write the weak formulation of the problem. We multiply the equation by a test function \(v \in H^1_0(\Omega)\) and obtain 
+    \[
+        \int_\Omega - \Delta u v \, dx = \int_\Omega a(x) u^3 v \, dx \qquad \forall v \in H^1_0(\Omega)
+    \]
+    We integrate by parts the left-hand side and obtain
+    \[
+        \int_\Omega \nabla u \nabla v \, dx = \int_\Omega a(x) u^3 v \, dx \qquad \forall v \in H^1_0(\Omega)
+    \]
+    This is the weak formulation of the problem. This is well posed if 
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{|c|c|}
+            \hline
+            Dimension & Assumptions on $a(x)$ \\
+            \hline
+            $n = 2$ & $a \in L^r(\Omega)$, $r > 1$ \\
+            $n = 3$ & $a \in L^3(\Omega)$ \\
+            $n = 4$ & $a \in L^\infty(\Omega)$ \\
+            $n \geq 5$ & No variational formulation \\
+            \hline
+        \end{tabular}
+    \end{table}
 
 \newpage
