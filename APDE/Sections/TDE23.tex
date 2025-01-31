@@ -62,7 +62,7 @@ Since we know that if a solution satisfies \(u \in L^s(0,T;\bm{L}^r) \text{ with
     Discuss existence and uniqueness of classical and weak solutions for Cauchy problems. Then estabilish whether the found solutions satisfy the entropy condition.
 \end{exercise}
 \begin{itemize}
-    \item[\textbf{a)}] We look for solutions \(u(, t) \in C^1(\real \times (0, \infty))\) that satisfy the conservation law and the initial condition. 
+    \item[\textbf{a)}] We look for solutions \(u(x, t) \in C^1(\real \times (0, \infty))\) that satisfy the conservation law and the initial condition. 
     We start with existence and uniqueness of solutions of the conservation law.
     Its characteristics are given by
     \[
@@ -445,11 +445,12 @@ Where in the last step we used the MacLaurin expansion in term of \(\epsilon\). 
 \end{align*}
 Now we integrate all the equations in \(x\) and we obtain 
 \begin{align*}
-    &\int w_0 \, dx = \int u \, dx = 0, \text{ mass} \\
-    &\int w_1 \, dx = -\underbrace{\int u_x \, dx}_{\text{\tiny div. form}} = 0, \text{ conserved} \\
-    &\int w_2 \, dx = \int u^2 \, dx - \int u_{xx} \, dx = \int u^2 \, dx, \text{ momentum} \\
-    &\int w_3 \, dx = -\int u_{xxx} \, dx - 4 \int u u_x \, dx = - \int \left(2 u^2 + u_{xx}\right)_x \, dx = 0, \text{ conserved} \\
-    &\int w_4 \, dx = 5 \int u_x^2 \, dx + 6 \int u u_{xx} \, dx + \int u_{xxxx} \, dx + 2 \int u^3 \, dx \underset{\text{IPP}}{=} \int \left(2 u^3 - u_x^2\right) \, dx = 0, \text{ energy}.
+    \int w_0 \, dx &= \int u \, dx = 0, \text{ mass} \\
+    \int w_1 \, dx &= -\underbrace{\int u_x \, dx}_{\text{\tiny div. form}} = 0, \text{ conserved} \\
+    \int w_2 \, dx &= \int u^2 \, dx - \int u_{xx} \, dx = \int u^2 \, dx, \text{ momentum} \\
+    \int w_3 \, dx &= -\int u_{xxx} \, dx - 4 \int u u_x \, dx = - \int \left(2 u^2 + u_{xx}\right)_x \, dx = 0, \text{ conserved} \\
+    \int w_4 \, dx &= 5 \int u_x^2 \, dx + 6 \int u u_{xx} \, dx + \int u_{xxxx} \, dx + 2 \int u^3 \, dx = \\
+    & \underset{\mathclap{\text{IPP}}}{=} \int \left(2 u^3 - u_x^2\right) \, dx = 0, \text{ energy}.
 \end{align*}
 We find infinitely many conserved quantities for the KdV equation, with an increasing power of \(u\).
 
@@ -942,3 +943,506 @@ Therefore the solution satisfies the entropy condition.
     \end{table}
 
 \newpage
+\begin{exercise}
+    Let \(\Omega \subset \real^2\) be a bounded, simply connected, smooth domain and \(\eta > 0\). Consider the inhomogeneous Dirichlet boundary value problem for the unforced Navier-Stokes equations
+    \[
+        \begin{cases}
+            -\eta \Delta u + (u \cdot \grad )u + \grad p = f & \Omega \\
+            \div u = 0 & \Omega \\
+            u = (1,1) & \partial\Omega
+        \end{cases}
+        \tag*{(P)}
+    \]
+    \begin{enumerate}
+        \item Find an explicit solenoidal extension of the boundary datum.
+        \item Prove that (P) admits a unique solution \(u\) for any \(\eta > 0\).
+    \end{enumerate}
+\end{exercise}
+
+\begin{enumerate}
+    \item We start by finding an explicit solenoidal extension of the boundary datum. We have that the boundary datum is \(u = (1,1)\) on \(\partial\Omega\). We can extend this to the whole domain by defining
+    \[
+        \begin{split}
+            u(x) = (1,1) \qquad \forall x \in \Omega
+        \end{split}
+    \]
+    This is a solenoidal extension of the boundary datum because \(\div u = 0\). 
+    \item We will now prove uniqueness thanks to the theorem
+    \begin{remark}[Uniqueness stationary N-S]
+        If \(\exists \gamma > 0\) such that \(\norm{f}_{\bm{V'}} < \gamma\), then the problem (P) admits a unique solution.
+    \end{remark}
+    For the proof we start with the weak formulation of the problem. 
+    \[
+        \begin{split}
+            \eta \int_\Omega \grad u : \grad v \, dx + \int_\Omega (u \cdot \grad) u \cdot v \, dx = \langle f, v \rangle \qquad \forall v \in \bm{V}
+        \end{split}
+    \]
+    and define trilinear form
+    \[
+        \begin{split}
+            b(u, v, w) = \int_\Omega (u \cdot \grad) v \cdot w \, dx
+        \end{split}
+    \]
+    Now we take \(v = u\) and obtain the following a priori bound
+    \[
+        \begin{split}
+            \eta \norm{u}_{\bm{V}}^2 = \langle f, u \rangle - \underbrace{\cancel{b(u, u, u)}}_{=0} \leq \norm{f}_{\bm{V'}} \norm{u}_{\bm{V}} 
+        \end{split}
+    \]
+    Thanks to the Cauchy-Schwarz inequality. We have that 
+    \[
+        \begin{split}
+            \norm{u}_{\bm{V}} \leq \frac{\norm{f}_{\bm{V'}}}{\eta}
+        \end{split}
+    \]
+    Now assume the existence of two solutions \(u_1\) and \(u_2\):
+    \begin{align*}
+        \eta \int_\Omega \grad u_1 : \grad v \, dx + b(u_1, u_1, v) &= \langle f, v \rangle \qquad \forall v \in \bm{V} \\
+        \eta \int_\Omega \grad u_2 : \grad v \, dx + b(u_2, u_2, v) &= \langle f, v \rangle \qquad \forall v \in \bm{V}
+    \end{align*}
+    Subtracting the two equations with \(w = u_1 - u_2\) we obtain
+    \[
+        \begin{split}
+            \eta \int_\Omega \grad w : \grad w \, dx b(u_1, u_1, v) - b(u_2, u_2, v) = 0 \qquad \forall v \in \bm{V}
+        \end{split}
+    \]
+    We see that 
+    \begin{align*}
+        b(u_1, u_1, v) - b(u_2, u_2, v) &= b(u1, u1, v) - b(u1, u2, v) + b(u1, u2, v) - b(u2, u2, v) \\
+        &= b(u1, u1 - u2, v) + b(u1 - u2, u2, v) \\
+        &= b(u1, w, v) + b(w, u2, v) \\
+    \end{align*}
+    We can now rewrite the equation as
+    \[
+        \begin{split}
+            \eta \int_\Omega \grad w : \grad v \, dx= -b(w, u_2, v) - b(u_1, w, v) \qquad \forall v \in \bm{V}
+        \end{split}
+    \]
+    Choosing \(v = w\) we obtain \(\eta \norm{w}_{\bm{V}}^2 = -b(w, u_2, w) - \cancel{b(u_1, w, w)}\). We have that
+    \[
+        \begin{split}
+            \eta \norm{w}_{\bm{V}}^2 = -b(w, u_2, w) \leq C \norm{w}_{\bm{V}}^2 \norm{u_2}_{\bm{V}}
+        \end{split}
+    \]
+    where \(C\) is a constant depending on the domain. Substituting the a priori bound we have that
+    \[
+        \begin{split}
+             \eta \norm{w}_{\bm{V}}^2 \leq C_\Omega \frac{\norm{f}_{\bm{V'}}}{\eta} \norm{w}_{\bm{V}}^2
+        \end{split}
+    \]
+    We can see that if
+    \[
+        \begin{split}
+            C_\Omega \frac{\norm{f}_{\bm{V'}}}{\eta} < \eta \Rightarrow \norm{w}_{\bm{V}} = 0 \Rightarrow w = 0 \Rightarrow \gamma = \frac{\eta^2}{C_\Omega} 
+        \end{split}
+    \]
+    we have that the problem admits a unique solution. 
+\end{enumerate}
+
+\newpage
+\begin{exercise}
+    Prove that there exists at most one smooth solution \(u\) for the beam equation
+    \[
+        \begin{cases}
+            u_{tt} + u_{xxxx} = f & (x,t) \in (0,1) \times (0, T) \\
+            u(0, t) = u(1, t) = u_x(0, t) = u_x(1, t) = 0 & t \in [0, T] \\
+            u(x, 0) = g(x), u_t(x, 0) = h(x) & x \in [0, 1]
+        \end{cases}
+        \tag*{(P)}
+    \]
+    where \(f \in C^1([0,1] \times [0, T])\), \(g, h \in C^1([0,1])\) are given functions.
+\end{exercise}
+
+We start by assuming that there are two solutions \(u_1\) and \(u_2\). We define \(w = u_1 - u_2\). We have that \(w\) satisfies the homogeneous beam equation
+\[
+    \begin{cases}
+        w_{tt} + w_{xxxx} = 0 & (x,t) \in (0,1) \times (0, T) \\
+        w(0, t) = w(1, t) = w_x(0, t) = w_x(1, t) = 0 & t \in [0, T] \\
+        w(x, 0) = 0, w_t(x, 0) = 0 & x \in [0, 1]
+    \end{cases}
+\]
+We multiply the equation by \(w_t\) and integrate over \(x\)
+\[
+    \begin{split}
+        \int_0^1 w_t w_{tt} + w_t w_{xxxx} \, dx = 0
+    \end{split}
+\]
+The first term becomes
+\[
+    \begin{split}
+        \int_0^1 w_t w_{tt} \, dx = \frac{1}{2} \frac{\partial}{\partial t} \int_0^1 w_t^2 \, dx = \frac{1}{2} \frac{\partial}{\partial t} \norm{w_t}_{L^2}^2
+    \end{split}
+\]
+The second term becomes
+\[
+    \begin{split}
+        \int_0^1 w_t w_{xxxx} \, dx = \cancel{\left. w_t w_{xxx} \right|_0^1} - \int_0^1 w_{tx} w_{xxx} \, dx = - \int_0^1 w_{tx} w_{xxx} \, dx = \\
+        = -\cancel{\left. w_{tx} w_{xx} \right|_0^1} + \int_0^1 w_{txx} w_{xx} \, dx = \int_0^1 w_{txx} w_{xx} \, dx
+    \end{split}
+\]
+which can be rewritten as
+\[
+    \begin{split}
+        \int_0^1 w_{txx} w_{xx} \, dx = \frac{1}{2} \frac{\partial}{\partial t} \int_0^1 w_{xx}^2 \, dx = \frac{1}{2} \frac{\partial}{\partial t} \norm{w_{xx}}_{L^2}^2
+    \end{split}
+\]
+Therefore we have that
+\[
+    \begin{split}
+        \frac{1}{2} \frac{\partial}{\partial t} \left(\norm{w_t}_{L^2}^2 + \norm{w_{xx}}_{L^2}^2\right) = 0
+    \end{split}
+\]
+which implies that
+\[
+    \begin{split}
+        \norm{w_t}_{L^2}^2 + \norm{w_{xx}}_{L^2}^2 = \text{ constant} = F(t)
+    \end{split}
+\]
+We have that \(F(t) = \text{ const.}\) and 
+\[
+    \begin{split}
+        F(0) = \norm{w_t(x, 0)}_{L^2}^2 + \norm{w_{xx}(x, 0)}_{L^2}^2 = 0
+    \end{split}
+\]
+Since \(w_t(x, 0) = 0\) and \(w(x,0) = 0 \Rightarrow w_{xx}(x, 0) = 0\). Therefore \(F(0) = 0\). We have that \(F(t) = 0\) for all \(t \in [0, T]\). This implies that \(w_t = 0\) and \(w_{xx} = 0\). Therefore \(w = 0\) and the solution is unique.
+
+
+\newpage
+\subsection{February 2024}
+\begin{exercise}
+    Let \(\Omega \subset \real^2\) be a bounded open set of class \(C^1\), and let \(f \in L^2(\Omega)\). Consider the Dirichlet problem
+    \begin{equation*}
+        \begin{cases}
+            u_{tt} - \left(\partial_x^2 u +  \partial_y^2 u - 2 \partial_{xy} u\right) = f, & \text{in } \Omega \times (0, T), \\
+            u = 0, & \text{on } \partial \Omega \times (0, T), \\
+            u(x,0) = u_0(x), & x \in \Omega, \\
+            u_t(x,0) = u_1(x), & x \in \Omega.
+        \end{cases}
+        \tag{(P)}
+    \end{equation*}
+    \begin{enumerate}
+        \item For a suitable symmetric matrix \(A\), write the PDE appearing in (P) in the form \(u_{tt} - \div(A \grad u) = f\).
+        \item Write the weak formulation of (P).
+        \item Sketch the proof of existence and uniqueness of a solution of (P), explaining to which functional spaces is expected to belong.
+    \end{enumerate}
+\end{exercise}
+\begin{enumerate}
+    \item We start by writing the PDE in the form \(u_{tt} - \div(A \grad u) = f\). We have that
+    \[
+        u_{tt} - \left(A_{11} u_{xx} + A_{22} u_{yy} + 2A_{12} u_{xy}\right) = f.
+    \]
+    We can write the matrix \(A\) as
+    \[
+        A = \begin{pmatrix}
+            2 & 1 \\
+            1 & 1
+        \end{pmatrix}
+    \]
+    and the PDE becomes
+    \[
+        u_{tt} - \div (A \grad u) = f.
+    \]
+    \item To write the weak formulation of the problem we first recall the space of weakly continuous functions
+    \begin{remark}
+        Let \(H\) be a Hilbert space. The space of weakly continuous functions over \([0, T]\) is defined as
+        \[
+            \begin{split}
+                C_w^0([0, T]; H) = \left\{ u \in L^\infty(0, T; H) \mid \lim_{t \to t_0} (u(t) - u(t_0), v)_H = 0, \quad \forall t_0 \in [0, T], \forall v \in H \right\}
+            \end{split}
+        \] 
+    \end{remark}
+    Then choose an adequate Hilbert triplet, keeping in mind that this problem is equipped with Dirichlet boundary conditions. We can choose the Hilbert triplet
+    \[
+        V = H^1_0(\Omega) \subset H = L^2(\Omega) \subset V' = H^{-1}(\Omega).
+    \]
+    The weak formulation of the problem is then obtained by multiplying the equation by a test function \(v \in V\) and integrating over \(\Omega\)
+    \begin{align*}
+        \int_\Omega f(t) v \, dx &= \int_\Omega u_{tt} v \, dx + \int_\Omega \div(A \grad u)v \, dx =\\
+        &= \int_\Omega u_{tt} v \, dx - \cancel{\int_{\partial\Omega} \partial_\nu u v \, d\sigma} + \int_\Omega \left[A \grad u \cdot \grad v\right] \, dx = \\
+        &= \int_\Omega u_{tt} v \, dx + \int_\Omega \underbrace{A \grad u \cdot \grad v}_{B(u, v)} \, dx
+    \end{align*}
+    The weak formulation of the problem is then
+    \[
+        \begin{split}
+            \text{Find } u(t) \in C^0([0, T]; H) \cap C_w^0([0, T]; V) \text{ such that } \\
+            u' \in C_w^0([0, T]; H), u'' \in L^2(0, T; V') \text{ and } \\
+            \begin{cases}
+                \langle u_{tt}(t), v \rangle + B(u(t), v) = (f(t), v)_H \\
+                u(0) = u_0, \quad u'(0) = u_1
+            \end{cases}\quad \forall v \in V, \text{ in } \mathcal{D}(0, T).
+        \end{split}
+    \]
+    \item To sketch the proof of existence and uniqueness of a solution of the problem we need to use the Galerkin method. The advantage of the Galerkin method is that is finite-dimensional, so we can have as much regularity as we want. Let \(\left\{V_m\right\}\) be a Galerkin sequence for \(V\), and therefore for \(H\). Then, \(\exists \left\{u_0^m\right\} \subset V_m\) and \(\exists \left\{u_1^m\right\} \subset V_m\) such that \(u_0^m \to u_0\) in \(V\) and \(u_1^m \to u_1\) in \(H\). Let \(m = \dim V_m\) and consider a basis \(\left\{w_k^m\right\}\) for \(V_m\) orthonormal in \(H\). We now look for \(u_m = u_m(t)\) such that
+    \[
+        u_m(t) = \sum_{k=1}^m g_k^m(t) w_k^m
+    \]
+    Moreover, for \(1 \leq k \leq m\) we have the system
+    \[
+        \begin{cases}
+            g_m''(t) + B_m g_m(t) = \gamma_m(t) \\
+            g_m(0) = g_0^m, \quad g_m'(0) = g_1^m
+        \end{cases}
+    \]
+    Since \(g_m(t)\) is the unique solution of the system, we have that \(g_m(t)\) uniquely determines \(u_m(t)\). Then it is possible, starting from 
+    \[
+        \frac{1}{2}\frac{d}{dt} \left[\norm{u_m'(t)}_H^2 + \norm{u_m(t)}_V^2\right] = \left(f(t), u_m(t)\right)_H \qquad \text{a.e in } [0, T],
+        \tag*{(E)}
+    \]
+    to obtain the following a priori estimates
+    \[
+        \norm{u_0}_{L^\infty(0, T; V)} \leq C_1 \qquad \norm{u_1}_{L^\infty(0, T; H)} \leq C_2
+    \]
+    And it can be shown that the weak formulation can be recovered up to a subsequence, and that \(u\) admits a weak derivative \(u' \in L^\infty(0, T; H)\), and also that \(u'' \in L^2(0, T; V')\).
+    Since 
+    \[
+    \begin{cases}
+        u \in L^\infty(0, T; V) \\
+        u' \in L^\infty(0, T; H) \\
+    \end{cases}
+    \Rightarrow u \in C^0([0, T]; H) 
+    \]
+    and \(V \subset H\), we have that \(u \in C^0([0, T]; H) \cap C_w^0([0, T]; V)\) and we have existence, by proving the same result for \(u'\).
+    Then we take two solutions \(u_1\) and \(u_2\) and we have that \(w = u_1 - u_2\) . Putting \(w\) in (E) we obtain
+    \[
+        \begin{cases}
+            \frac{1}{2}\frac{d}{dt} \left[\norm{w'(t)}_H^2 + \norm{w(t)}_V^2\right] = 0 \\
+            w(0) = 0, \quad w'(0) = 0
+        \end{cases} 
+        \Rightarrow w = 0 \Rightarrow u_1 = u_2
+    \]
+    and we have uniqueness.
+\end{enumerate}
+
+\newpage
+\begin{exercise}
+    Consider the conservation law with two different initial conditions
+    \begin{equation*}
+        a)\,\begin{cases}
+            u_t - u^3 u_x = 0, & x \in \real, t > 0, \\
+            u(x,0) = \sqrt[3]{x}, & x \in \real,
+        \end{cases}
+        \qquad 
+        b)\,\begin{cases}
+            u_t - \log(u) u_x = 0, & x \in \real, t > 0, \\
+            u(x,0) = -\sqrt[3]{x} & x \in \real.
+        \end{cases}
+    \end{equation*}
+    Determine tht maximal domain \(A\) of definition of the solution as continuous function: ecplain if they are also of class \(C^1(A)\) and satisfy the entropy condition.
+\end{exercise}
+\begin{enumerate}
+    \item[\textbf{a)}] We look for solutions \(u(x, t) \in C^1(\real \times (0, \infty))\) that satisfy the conservation law and the initial condition. 
+    Its characteristics are given by
+    \[
+        \frac{du}{dt} = \frac{dt}{ds} \frac{du}{dt} + \frac{dx}{ds} \frac{du}{dx} = 0
+    \]
+    means that \(u\) is constant along the characteristics and then 
+    \[
+        u(x,t) = u(x_0,0) = \sqrt[3]{x_0} 
+    \]
+    with \(t=s\) since the initial condition is given at \(t=0\). 
+    \[
+        \frac{dx}{ds} = u_0^3 \quad \Rightarrow \quad x(s) = x_0 + s u_0^3
+    \]
+    Since \(u_0^3 = (\sqrt[3]{x_0})^3 = x_0\), we have that \(x(s) = x_0 + s x_0 = x_0(1+s)\). We can then write the solution as 
+    \[
+        x(s) = x_0 + s x_0 = x_0(1+s) \quad \Rightarrow \quad x_0 = \frac{x}{1+s}.
+    \]
+    The solution is then
+    \[
+        u(x,t) = \sqrt[3]{\frac{x}{1+t}}.
+    \]
+    This is a classical solution that remains smooth for all \(x \in \real\) and \(t > 0\), so the maximal domain of definition is \(A = \real \times (0, \infty)\). Let's compute the derivatives of \(u\)
+        \begin{align*}
+            u_x(x,t) &= \frac{1}{3} \frac{1}{\sqrt[2]{\frac{x}{1+t}}^2} \\
+            u_t(x,t) &= -\frac{1}{3(1+t)^2} \frac{1}{\sqrt[3]{\frac{x}{1+t}}^2}
+        \end{align*}
+    These are not continuous at \(x=0\), so the solution is not of class \(C^1(A)\). Since we do not have a discontinuity in our solution, the entropy condition is satisfied.
+    \item[\textbf{b)}] Now we look at the second case
+    Its characteristics are given by
+    \[
+        \frac{du}{dt} = \frac{dt}{ds} \frac{du}{dt} + \frac{dx}{ds} \frac{du}{dx} = 0
+    \]
+    means that \(u\) is constant along the characteristics and then 
+    \[
+        u(x,t) = u(x_0,0) = -\sqrt[3]{x_0} 
+    \]
+    with \(t=s\) since the initial condition is given at \(t=0\). 
+    \[
+        \frac{dx}{ds} = u_0^3 \quad \Rightarrow \quad x(s) = x_0 + s u_0^3
+    \]
+    Since \(u_0^3 = (-\sqrt[3]{x_0})^3 = -x_0\), we have that \(x(s) = x_0 - s x_0 = x_0(1-s)\). We can then write the solution as 
+    \[
+        x(s) = x_0 + s x_0 = x_0(1+s) \quad \Rightarrow \quad x_0 = \frac{x}{1-s}.
+    \]
+    The solution is then
+    \[
+        u(x,t) = \sqrt[3]{\frac{x}{1-t}}.
+    \]
+    We can immediately see that this solution present a discontinuity in \(t=1\) so the maximal domain of definition is \(A = \real \times (0, 1)\). Let's compute the derivatives of \(u\)
+        \begin{align*}
+            u_x(x,t) &= -\frac{1}{3} \frac{1}{\sqrt[2]{\frac{x}{1+t}}^2} \\
+            u_t(x,t) &= \frac{1}{3(1+t)^2} \frac{1}{\sqrt[3]{\frac{x}{1+t}}^2}
+        \end{align*}
+    These are not continuous at \(x=0\), so the solution is not of class \(C^1(A)\). No idea about the entropy condition.
+    \end{enumerate}
+
+\newpage
+\begin{exercise}
+    Let \(\Omega \subset \real^n\) with \(n \geq 2\) be a bounded domain with \(\partial \Omega \in C^\infty\) and let \(f \in H^3(\Omega)\). Determine the space dimension \(n\) for which the we can conclude that
+    \begin{enumerate}
+        \item \(f \in L^4(\Omega)\).
+        \item \(f \in C^0(\overline{{Omega}})\).
+        \item \(\gamma_0 f \in H^{5/2}(\Omega)\).
+    \end{enumerate}
+\end{exercise}
+We start by recalling the Sobolev embeddings with \(2s = 6\)
+\begin{align*}
+    H^2(\Omega) &\subset C(\Omega) && \text{ if } n < 6 \\
+    H^2(\Omega) &\subset L^p(\Omega) \qquad \forall 2 \leq p < \infty && \text{ if } n = 6 \\
+    H^2(\Omega) &\subset L^p(\Omega) \qquad \forall 2 \leq p \leq \frac{2n}{n - 6} && \text{ if } n > 6
+\end{align*}
+Then we check the statements
+\begin{enumerate}
+    \item In this case we have that \(f \in L^4(\Omega)\) if \(n = 6\), but we need to check when \(n > 6\). We have that \(2^* = \frac{2n}{n - 6}\) and we need to check if \(4 \leq 2^*\). We have that \(4 \leq \frac{2n}{n - 6}\) if \(n \geq 6\). But since we need \(n > 6\) we can conclude that \(f \in L^4(\Omega) \iff n =6\).
+    \item In this case we need to check if \(f \in C^0(\overline{\Omega})\). We have that \(f \in C^0(\overline{\Omega})\) if \(n < 6\). 
+    \item In this case we proceed as before, but with \(j = 0\). We have that \(\gamma_0(f) \in H^{3 - 0 - 1/2}(\partial\Omega) = H^{5/2}(\partial\Omega)\), this is true for all dimensions \(n\).
+\end{enumerate}
+
+
+\newpage
+
+\begin{exercise}
+    Let \(\Omega \coloneqq B(0, 1) \subset \real^n\), and let 
+    \[
+        f(x) \coloneqq \frac{\log(1+\abs{x}^\alpha)}{\abs{x}^2}, \quad \text{with } \alpha > 0
+    \]
+    Find the values of \(\alpha\) for which \(f \in H^1(\Omega)\).
+\end{exercise}
+To check that a function is in \(H^1(\Omega)\) we need that
+\begin{remark}
+    \[
+        H^1(\Omega) = \left\{ f \in L^2(\Omega) \mid \grad f \in L^2(\Omega) \right\}
+    \]  
+\end{remark}
+We start by checking if \(f \in L^2(\Omega)\), so we check \(f(x) \in L^2(\Omega) \iff \int_\Omega \abs{f(x)}^2 \, dx < \infty\).
+\[
+    \begin{split}
+        \int_\Omega \abs{f(x)}^2 \, dx = \int_\Omega \abs{\frac{\log(1+\abs{x}^\alpha)}{\abs{x}^2}}^2 \, dx
+    \end{split}
+\]
+Since our domain is a ball, we can use spherical coordinates to compute the integral
+\[
+    \begin{split}
+        \int_\Omega \abs{\frac{\log(1+\abs{x}^\alpha)}{\abs{x}^2}}^2 \, dx = \int_0^1 \int_{\left\{\norm{x} = \rho\right\}} \abs{\frac{\log(1+\abs{x}^\alpha)}{\abs{x}^2}}^2 \, d\sigma \, d\rho = \\
+        = \sigma_n \int_0^1 \abs{\frac{\log(1+\abs{\rho}^\alpha)}{\abs{\rho}^2}}^2 \rho^{n-1} \, d\rho = \sigma_n \int_0^1 \abs{\frac{(\log(1+\abs{\rho}^\alpha))}{\rho^{2}}}^2 \rho^{n-1} \, d\rho
+    \end{split}
+\]
+At this point we know 
+\[
+    \begin{split}
+        \frac{2\log(1+\abs{\rho}^\alpha)}{\rho^{\alpha}} \overset{\rho \to 0}{\longrightarrow} 2 \\ \Rightarrow \int_0^1 \abs{\frac{1}{\rho^{4-\alpha}}} \rho^{n-1} \, d\rho < \infty \iff 4 - \alpha - n + 1 < 1 \iff \alpha > 4 - n \Rightarrow n < 4
+    \end{split}
+\]
+So we have that \(f \in L^2(\Omega)\) if \(\alpha > 4 - n\). We now need to check if \(\grad f \in L^2(\Omega)\). We start by computing the gradient of \(f\)
+\[
+    \begin{split}
+        \partial x_i f &= \frac{\abs{x}^2\alpha\abs{x}^{\alpha -1}}{(1 + \abs{x}^\alpha)\abs{x}^4} - \frac{\log(1 + \abs{x}^\alpha)2\abs{x}}{\abs{x}^4} \frac{x_i}{\abs{x}} = \frac{\alpha\abs{x}^{\alpha}}{(1 + \abs{x}^\alpha)\abs{x}^3} - \frac{\log(1 + \abs{x}^\alpha)2}{\abs{x}^3} \frac{x_i}{\abs{x}} \\
+        \abs{\grad f} &= \abs{\frac{\alpha\abs{x}^{\alpha}}{(1 + \abs{x}^\alpha)\abs{x}^3} - \frac{\log(1 + \abs{x}^\alpha)2}{\abs{x}^3}} 
+    \end{split}
+\]
+Now we need to check if this function is in \(L^2(\Omega)\)
+\[
+    \begin{split}
+        \int_\Omega \abs{\grad f}^2 \, dx = \int_\Omega \abs{\frac{\alpha\abs{x}^{\alpha}}{(1 + \abs{x}^\alpha)\abs{x}^3} - \frac{\log(1 + \abs{x}^\alpha)2}{\abs{x}^3}}^2 \, dx = \\
+        = \int_0^1 \int_{\left\{\norm{x} = \rho\right\}} \abs{\frac{\alpha\abs{\rho}^{\alpha}}{(1 + \abs{\rho}^\alpha)\abs{\rho}^3} - \frac{\log(1 + \abs{\rho}^\alpha)2}{\abs{\rho}^3}}^2 \, d\sigma \, d\rho =\\
+        =\sigma_n \int_0^1 \abs{\frac{\alpha\abs{\rho}^{\alpha}}{(1 + \abs{\rho}^\alpha)\abs{\rho}^3} - \frac{\log(1 + \abs{\rho}^\alpha)2}{\abs{\rho}^3}}^2 \rho^{n-1} \, d\rho = \\
+    \end{split}
+\]
+We can now check if this integral is finite
+\begin{align*}
+    \sigma_n &\int_0^1 \abs{\frac{\alpha\abs{\rho}^{\alpha}}{(1 + \abs{\rho}^\alpha)\abs{\rho}^3}}^2 \rho^{n-1} \, d\rho \leq \sigma_n \int_0^1 \abs{\frac{\alpha}{\abs{\rho}^3}}^2 \rho^{n-1} \, d\rho < \infty \iff 6 - n +1 < 1 \iff n > 6  \\
+    \sigma_n &\int_0^1 \abs{\frac{\log(1 + \abs{\rho}^\alpha)2}{\abs{\rho}^3}}^2 \rho^{n-1} \, d\rho \\
+    -2\sigma_n &\int_0^1 \abs{\frac{\alpha\abs{\rho}^{\alpha}2\log(1 + \abs{\rho}^\alpha)}{(1 + \abs{\rho}^\alpha)\abs{\rho}^6}} \rho^{n-1} \, d\rho
+\end{align*}
+Probably wrong not going to do do all this calculations. Assuming \(\grad f \in L^2(\Omega)\).
+
+
+Now that we have checked that \(\grad f \in L^2(\Omega)\) and \(f \in L^2(\Omega)\) we only need to check that the weak derivative of \(f\) exists, since if it exists it is equal to the classical one. We have that the weak derivative of \(f\) exists if
+\[
+    \begin{split}
+        \int_\Omega f \partial x_i \phi \, dx = - \int_\Omega \partial x_i f \phi \, dx \qquad \forall \phi \in \mathcal{D}(\Omega)
+    \end{split}
+    \tag*{E1}
+\]
+To check that this condition is satisfied we need to cut off the singularity of \(f\) in the origin. We can do this by defining
+\[
+    \Omega_\epsilon = B(0, 1) \setminus B(0, \epsilon) = B_1 \setminus B_\epsilon = \left\{ x \in \real^n \mid \epsilon < \norm{x} < 1 \right\}
+\]
+Since \(f \in C^1(\Omega_\epsilon)\) we can apply the divergence theorem to the weak derivative definition and obtain
+\[
+    \begin{split}
+        \int_{\Omega_\epsilon} f \partial x_i \phi \, dx = \int_{\Omega_\epsilon} \partial x_i f \phi \, dx - \int_{\partial\Omega_\epsilon} f \phi \nu_i \, d\sigma
+    \end{split}
+    \tag*{E2}
+\]
+We want check that taking the limit \(\epsilon \to 0\) in (E2) we obtain (E1). To do so we need to check that the boundary term goes to zero, and the other two terms are equal at the ones in (E1). We start with the first term
+\[
+    \begin{split}
+        \int_{\Omega_\epsilon} f \partial x_i \phi \, dx = \int_{B_1} f \partial x_i \phi \chi_{\Omega_\epsilon} \, dx
+    \end{split}
+\]
+We want to claim that 
+\[
+    \begin{split}
+        \lim_{\epsilon \to 0^+} \int_{\Omega_\epsilon} f \partial x_i \phi \, dx = \int_{B_1} f \partial x_i \phi \, dx
+    \end{split}
+\]
+To do so we need to swap the limit and the integral. We see that 
+\begin{itemize}
+    \item \(f \partial x_i \phi \chi_{\Omega_\epsilon} \underset{\epsilon \to 0}{\longrightarrow} f \partial x_i \phi\) a.e. in \(B_1\)
+    \item \(\abs{f \partial x_i \phi \chi_{\Omega_\epsilon}} \leq \underbrace{\abs{f}}_{\in L^p(B_1)} \overbrace{\abs{\partial x_i \phi}}^{\in L^q(B_1)} \in L^1(B_1)\)
+\end{itemize}
+We can now apply the Dominated Convergence Theorem and obtain the desired result. 
+The same process can be applied to
+\[
+    \begin{split}
+        \int_{\Omega_\epsilon} \partial x_i f \phi \, dx = \int_{B_1} \partial x_i f \phi \chi_{\Omega_\epsilon} \, dx
+    \end{split}
+\]
+Then we have shown that 
+\[
+    \begin{split}
+        \int_{B_1} f \partial x_i \phi \, dx = \int_{\partial\Omega_\epsilon} f \phi \nu_i \, d\sigma + \int_{B_1} \partial x_i f \phi \, dx
+    \end{split}
+\]
+It is clear that we need to check that the boundary term goes to zero. Since we know that \(\text{supp } \phi \subseteq B_\epsilon\).
+\[
+    \begin{split}
+        \int_{\partial\Omega_\epsilon} f \phi \nu_i \, d\sigma = \cancel{\int_{\partial B_1} f \phi \nu_i \, d\sigma} + \int_{\partial B_\epsilon} f \phi \nu_i \, d\sigma
+    \end{split}
+\]
+Moreover,
+\[
+    \begin{split}
+        \abs{\int_{\partial B_\epsilon} f \phi \nu_i \, d\sigma} \leq \int_{\partial B_\epsilon} \abs{f} \abs{\phi} \underbrace{\abs{\nu_i}}_{=1} \, d\sigma \leq \max_{\partial B_\epsilon} \abs{\phi} \int_{\{ \norm{x} = \epsilon \}} \abs{f} \, d\sigma = \\
+        \max_{\partial B_\epsilon} \abs{\phi} \frac{\log(1+\epsilon^\alpha)}{\epsilon^2} \mu\{\norm{x} = \epsilon\} \leq \max_{\partial B_\epsilon} \abs{\phi} \frac{\log(1+\epsilon^\alpha)}{\epsilon^2} \epsilon^{n-1} 
+    \end{split}
+\]
+We have that 
+\[
+    \begin{split}
+        \lim_{\epsilon \to 0^+} \max_{\partial B_\epsilon} \abs{\phi} \frac{\log(1+\epsilon^\alpha)}{\epsilon^2} \epsilon^{n-1} = 0 \iff -2 + \alpha - n + 1 > 1 \iff \alpha > n + 2
+    \end{split}
+\]
+
+Quick recap of the values of \(\alpha\) for which \(f \in H^1(\Omega)\) %in a table 
+\begin{table}[h]
+    \centering
+        \begin{tabular}{c|c}
+            \(\alpha \in (0, {4- n})\) & \(f \in L^2(\Omega)\) \\
+            \(?\) & \(\grad f \in L^2(\Omega)\) \\
+            \(\alpha \in (0, n + 1)\) & \(\text{weak derivative of } f \text{ exists}\)
+        \end{tabular}
+\end{table}
+
+Since all three conditions are necessary, we have that \(\alpha \in (0, \min\{4-n, n + 2\}).\)

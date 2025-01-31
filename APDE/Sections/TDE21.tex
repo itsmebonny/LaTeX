@@ -766,21 +766,21 @@ Since our domain is a ball, we can use spherical coordinates to compute the inte
 At this point we know 
 \[
     \begin{split}
-        e^{\abs{\rho}} -1 \overset{\rho \to 0}{\longrightarrow} \rho \Rightarrow \int_0^1 \abs{\frac{\rho^2}{\rho^{2\alpha - n + 1}}} \, d\rho < \infty \iff 2 \alpha - n + 1 -2 < 1 \iff \alpha < \frac{n + 2}{2}
+        e^{\abs{\rho}} -1 \overset{\rho \to 0}{\longrightarrow} -1 \Rightarrow \int_0^1 \abs{\frac{1}{\rho^{2\alpha - n + 1}}} \, d\rho < \infty \iff 2 \alpha - n + 1 < 1 \iff \alpha < \frac{n}{2}
     \end{split}
 \]
-So we have that \(f \in L^2(\Omega)\) if \(\alpha < \frac{n + 2}{2}\). We now need to check if \(\grad f \in L^2(\Omega)\). We start by computing the gradient of \(f\)
+So we have that \(f \in L^2(\Omega)\) if \(\alpha < \frac{n}{2}\). We now need to check if \(\grad f \in L^2(\Omega)\). We start by computing the gradient of \(f\)
 \[
     \begin{split}
         \partial x_i f &= \frac{e^{\abs{x}} \abs{x}^{\alpha} - \left(e^{\abs{x}} - 1\right) \alpha \abs{x}^{\alpha - 1} x_i}{\abs{x}^{2\alpha}} \frac{x_i}{\abs{x}} = \frac{e^{\abs{x}} \abs{x} - \left(e^{\abs{x}} - 1\right) \alpha}{\abs{x}^{2\alpha + 1}} \frac{x_i}{\abs{x}} \\
-        \norm{\grad f}^2 &= \frac{\norm{\abs{x} e^{\abs{x}} - \alpha e^{\abs{x}} + \alpha}}{\abs{x}^{\alpha + 1}}
+        \abs{\grad f} &= \frac{\abs{\abs{x} e^{\abs{x}} - \alpha e^{\abs{x}} + \alpha}}{\abs{x}^{\alpha + 1}}
     \end{split}
 \]
 Now we need to check if this function is in \(L^2(\Omega)\)
 \[
     \begin{split}
-        \int_\Omega \norm{\grad f}^2 \, dx = \int_\Omega \left(\frac{\norm{\abs{x} e^{\abs{x}} - \alpha e^{\abs{x}} + \alpha}}{\abs{x}^{2\alpha + 1}}\right)^2 \, dx = \\
-        = \int_0^1 \int_{\left\{\norm{x} = \rho\right\}} \left(\frac{\rho e^{\rho} - \alpha e^{\rho} + \alpha}{\rho^{\alpha + 1}}\right)^2 \, d\sigma \, d\rho = \sigma_n \int_0^1 \frac{\left(\rho e^{\rho} - \alpha e^{\rho} + \alpha\right)^2}{\rho^{2\alpha + 2}} \rho^{n-1} \, d\rho = \\
+        \int_\Omega \abs{\grad f}^2 \, dx = \int_\Omega \left(\frac{\abs{\abs{x} e^{\abs{x}} - \alpha e^{\abs{x}} + \alpha}}{\abs{x}^{2\alpha + 1}}\right)^2 \, dx = \\
+        = \int_0^1 \int_{\left\{\abs{x} = \rho\right\}} \left(\frac{\rho e^{\rho} - \alpha e^{\rho} + \alpha}{\rho^{\alpha + 1}}\right)^2 \, d\sigma \, d\rho = \sigma_n \int_0^1 \frac{\left(\rho e^{\rho} - \alpha e^{\rho} + \alpha\right)^2}{\rho^{2\alpha + 2}} \rho^{n-1} \, d\rho = \\
     \end{split}
 \]
 We can now check if this integral is finite
@@ -854,7 +854,7 @@ Moreover,
 We have that 
 \[
     \begin{split}
-        \lim_{\epsilon \to 0^+} \max_{\partial B_\epsilon} \abs{\phi} \frac{e^{\epsilon} - 1}{\epsilon^\alpha} \epsilon^{n-1} = 0 \iff \alpha - 1 - n + 1 > 1 \iff \alpha < n + 1
+        \lim_{\epsilon \to 0^+} \max_{\partial B_\epsilon} \abs{\phi} \frac{e^{\epsilon} - 1}{\epsilon^\alpha} \epsilon^{n-1} = 0 \iff n -1 -\alpha >  1 \iff \alpha < n 
     \end{split}
 \]
 
@@ -862,13 +862,13 @@ Quick recap of the values of \(\alpha\) for which \(f \in H^1(\Omega)\) %in a ta
 \begin{table}[h]
     \centering
         \begin{tabular}{c|c}
-            \(\alpha \in (0, \frac{n + 2}{2})\) & \(f \in L^2(\Omega)\) \\
+            \(\alpha \in (0, \frac{n}{2})\) & \(f \in L^2(\Omega)\) \\
             \(\alpha \in (0, \frac{n}{2})\) & \(\grad f \in L^2(\Omega)\) \\
-            \(\alpha \in (0, n + 1)\) & \(\text{weak derivative of } f \text{ exists}\)
+            \(\alpha \in (0, n)\) & \(\text{weak derivative of } f \text{ exists}\)
         \end{tabular}
 \end{table}
 
-Since all three conditions are necessary, we have that \(\alpha \in (0, \min\{\frac{n + 2}{2}, \frac{n}{2}, n + 1\}) = (0, \frac{n}{2})\).
+Since all three conditions are necessary, we have that \(\alpha \in (0, \min\{\frac{n}{2}, \frac{n}{2}, n\}) = (0, \frac{n}{2})\).
 
 \newpage
 \begin{exercise}
