@@ -1,6 +1,231 @@
 \section{Exams 2024/25}
 \subsection{June 2024}
 \begin{exercise}
-    Let \(\Omega \subset \R^2\) be a bounded open set of class \(C^\infty\), let \(f \in \left[H^1(\Omega)\right]'\), \(g \in H^{1/2}(\partial \Omega)\), \(\alpha \in \real\) and \(A = (a_{ij})_{i, j=1,2}\) be a symmetric matrix with 
-
+    Let \(\Omega \subset \real^2\) be a bounded open set of class \(C^\infty\), let \(f \in \left[H^1(\Omega)\right]'\), \(g \in H^{1/2}(\partial \Omega)\), \(\alpha \in \real\) and \(A = (a_{ij})_{i, j=1,2}\) be a symmetric matrix. Write the weak formulation of the inhomogeneous Dirichlet problem
+    \[
+        \begin{cases}
+            -\div(A \grad u) + \alpha u = f & \text{in } \Omega, \\
+            u = g & \text{on } \partial \Omega.
+        \end{cases}
+    \]
+    Then find sufficient conditions on \(A\) and \(\alpha\) such that this problem has a unique solution that can be identified through the Dirichlet principle.
     \end{exercise}
+    The Dirichlet principle for the inhomogeneous Dirichlet problem states that 
+    \begin{remark}
+        Let \(\alpha > -\lambda_1\), where \(\lambda_1\) is the first eigenvalue of \(-\div(A \grad \cdot)\) with Dirichlet boundary conditions, \(f \in H^{-1}(\Omega)\) and \(g \in H^{1/2}(\partial \Omega)\). Then there exists a unique solution \(u \in K\) where \(K = \{u \in H^1(\Omega) : u-u_0 \in H^1_0(\Omega)\}\) and \(u_0 \in H^1(\Omega)\) is the function such that \(\gamma_0(u_0) = g\), for the weak formulation of the inhomogeneous Dirichlet problem
+        \[
+            \begin{split}
+                \text{Find } u \in K \text{ such that } \int_\Omega A \grad u \cdot \grad v + \alpha u v \, dx = \langle f, v \rangle \text{ for all } v \in H^1_0(\Omega)
+            \end{split}
+        \]
+    \end{remark}
+    We first write the weak formulation of the inhomogeneous Dirichlet problem. Let \(u_0 \in H^1(\Omega)\) be the function such that \(\gamma_0(u_0) = g\). Then we define the space \(K = \{u \in H^1(\Omega) : u-u_0 \in H^1_0(\Omega)\}\). The weak formulation of the inhomogeneous Dirichlet problem is then
+    \[
+        \begin{split}
+            \text{Find } u \in K \text{ such that } \int_\Omega A \grad u \cdot \grad v + \alpha u v \, dx = \langle f, v \rangle \text{ for all } v \in H^1_0(\Omega).
+        \end{split}
+    \]
+    For \(\alpha\) to satisfy the Dirichlet principle, we need \(\alpha > -\lambda_1\).
+
+    To find condition on \(A\), we need to check if the bilinear form \(a(u, v) = \int_\Omega A \grad u \cdot \grad v + \alpha u v \, dx\) is continuous and coercive. We have
+    \[
+        \begin{split}
+            |a(u, v)| = \left|\int_\Omega A \grad u \cdot \grad v + \alpha u v \, dx\right| \leq \norm{A}_{L^\infty(\Omega)} \norm{\grad u}_{L^2(\Omega)} \norm{\grad v}_{L^2(\Omega)} + \abs{\alpha} \norm{u}_{L^2(\Omega)} \norm{v}_{L^2(\Omega)} \leq \\
+            \leq C \norm{u}_{H^1(\Omega)} \norm{v}_{H^1(\Omega)}
+        \end{split}
+    \]
+    We used the norm in \(L^\infty\) for \(A\) because we know that \(\grad u, \grad v \in L^2(\Omega)\) and by Holder's inequality we have
+    \[
+        \begin{split}
+            \frac{1}{r} + \frac{1}{p} + \frac{1}{q} = 1 \Rightarrow \frac{1}{r} = 1 - \frac{1}{2} - \frac{1}{2} = 0 \Rightarrow r = \infty
+        \end{split}
+    \]
+    So our first assumption is that \(A \in L^\infty(\Omega)\). We also need to check if the bilinear form is coercive, which means 
+    \[
+        \begin{split}
+            a(u, u) \geq \norm{A} \norm{\grad u}_{L^2(\Omega)}^2 + \abs{\alpha} \norm{u}_{L^2(\Omega)}^2.
+        \end{split}
+    \]
+    For this condition to hold true we choose two vectors \(\xi = \abs{\grad u} \in \real^2\) and we suppose that \(A\) is uniformly elliptic, i.e. there exists \(\lambda_0 > 0\) such that
+    \[
+        \begin{split}
+            (A\xi, \xi) \geq \lambda_0 \abs{\xi}^2, \qquad \forall \xi \in \real^2.
+        \end{split}
+    \]
+    This means we have a lower bound on the eigenvalues of \(A\). We can then write
+    \[
+        \begin{split}
+            a(u, u) = \int_\Omega A \grad u \cdot \grad u + \alpha u^2 \, dx \geq \lambda_0 \norm{\grad u}_{L^2(\Omega)}^2 + \abs{\alpha} \norm{u}_{L^2(\Omega)}^2.
+        \end{split}
+    \]
+    Summing up, we need 
+    \begin{itemize}
+        \item \(\alpha > -\lambda_1\),
+        \item \(A \in L^\infty(\Omega)\),
+        \item \(A\) is uniformly elliptic.
+    \end{itemize}
+
+\newpage
+\begin{exercise}
+    Let \(a \in \real, g \in C^2(\real)\) and consider the Cauchy problem
+    \[
+        \begin{cases}
+            u_{t} + a u_{xx} + 2 u u_{x} = 0 & (x, t) \in \real \times (0, \infty), \\
+            u(x, 0) = g(x) & x \in \real.
+        \end{cases}
+    \]
+    \begin{enumerate}
+        \item Prove the conservation of mass.
+        \item In dependence of \(a\), discuss the conservation of momentum.
+        \item Find solitary waves, if any.
+    \end{enumerate}
+\end{exercise}
+\begin{enumerate}
+    \item We first prove the conservation of mass. We have
+    \[
+        M(t) = \int_\real u(x, t) \, dx.
+    \]
+    In this case 
+    \[
+        \begin{split}
+            \frac{d}{dt} M(t) = \frac{d}{dt} \int_\real u(x, t) \, dx = \int_\real u_t \, dx = -\int_\real (a u_{xx} + 2 u u_x) \, dx = \\ 
+            = \underbrace{\int_\real -a(u_x)_x \, dx}_{\text{div. form} = 0} - \underbrace{\int_\real (u^2)_x}_{=0} \, dx = 0
+        \end{split}
+    \]
+    \item We now discuss the conservation of momentum. We have
+    \[
+        \begin{split}
+            \mathcal{M}(t) = \int_\real u(x, t) ^2 \, dx.
+        \end{split}
+    \]
+    Its conservation is given by
+    \[
+        \begin{split}
+            \frac{d}{dt} \mathcal{M}(t) = \frac{d}{dt} \int_\real u(x, t)^2 \, dx = \int_\real 2 u u_t \, dx 
+        \end{split}
+    \]
+    We substitute the PDE into the integral
+    \[
+        \begin{split}
+            \int_\real 2 u u_t \, dx = \int_\real 2 u (-a u_{xx} - 2 u u_x) \, dx = -2a \int_\real u u_{xx} \, dx - 4 \int_\real u^2 u_x \, dx = \\ 
+            = \cancel{\left. -2a u u_x \right|_\real} + 2a \int_\real u_x^2 \, dx - \frac{4}{3} \underbrace{\int_\real (u^3)_x }_{=0} \, dx = 2a \int_\real u_x^2 \, dx
+        \end{split}
+    \]
+    We have that momentum increases if \(a > 0\) and decreases if \(a < 0\). If \(a = 0\) then momentum is conserved.
+    \item We now find solitary waves. We look for solutions of the form \(u(x, t) = g(x + ct)\). We substitute this into the PDE
+    \[
+        \begin{split}
+            cg'(x + ct) + a g''(x + ct) + 2 g(x + ct) g'(x + ct) = 0
+        \end{split}
+    \]
+    Performing the change of variables \(s = x + ct\) we get
+    \[
+        \begin{split}
+            cg'(s) + a g''(s) + 2 g(s) g'(s) = 0
+        \end{split}
+    \]
+    We can rewrite this as
+    \[
+        \begin{split}
+            cg'(s) + a g''(s) + g(s)^2 = 0
+        \end{split}
+    \]
+    At this point we are working with an ODE, so we can solve it. We start by defining \(y(s) = g'(s)\) and obtain
+    \[
+        \begin{split}
+            cy(s) - ay'(s) = y(s)^2 \Rightarrow ay'(s) = y(s)^2 - cy(s) 
+        \end{split}
+    \]
+    To solve this we introduce 
+    \[
+        z(s) = \frac{a}{y(s)} \Rightarrow z'(s) = - \frac{ay'(s)}{y(s)^2} 
+    \]
+    We substitute \(y'(s)\) and obtain
+    \[
+        \begin{split}
+            z'(s) = - \frac{cy(s) - y(s)^2}{y(s)^2} = -c \frac{1}{y(s)} + 1 \Rightarrow z'(s) = -c z(s) + 1
+        \end{split}
+    \]
+    Solving this ODE we obtain
+    \[
+        \begin{split}
+            z(s) = e^{-cs} \left(k + \int_0^s e^{ct} \, dt\right) = e^{-cs} \left(k + \left. \frac{e^{ct}}{c} \right|_0^s\right) =\\
+            = e^{-cs} \left(k + \frac{e^{cs} - 1}{c}\right) = k e^{-cs} + \frac{1}{c} - \frac{e^{-cs}}{c} = \\
+            = e^{-cs} \left(k - \frac{1}{c}\right) + \frac{1}{c} = k_0 e^{-cs} + \frac{1}{c}
+        \end{split}
+    \]
+    At this point we use the definition of \(z(s)\) and obtain
+    \[
+        \begin{split}
+            y(s) = \frac{a}{z(s)} = \frac{a}{k_0 e^{-cs} + \frac{1}{c}} = \frac{ac e^{cs}}{c k_0 + e^{cs}} = \frac{ac e^{cs}}{k_1 + e^{cs}}
+        \end{split}
+    \]
+    We have found the solution for \(g'(s)\), so we can integrate it to find \(g(s)\)
+    \[
+        \begin{split}
+            g(s) = a\int_0^s \frac{c e^{cs}}{k_1 + e^{cs}} \, ds = a\log(k_1 + e^{cs}) + ak_2
+        \end{split}
+    \]
+    We have found the solution for \(g(s) = a\log(k_1 + e^{cs}) + ak_2\).
+\end{enumerate}
+
+\newpage
+
+\begin{exercise}
+    Prove that exists at most one smooth solution \(u\) for the telegraph equation
+    \[
+        \begin{cases}
+            u_{tt} + d u_t - u_{xx} = f & (x, t) \in (0,1) \times (0, T), \\
+            u(0, t) = u(1, t) = 0 & t \in (0, T), \\
+            u(x, 0) = g(x), \quad u_t(x, 0) = h(x) & x \in (0, 1).
+        \end{cases}
+    \]
+    Where \(d > 0\), \(g, h \in C^([0, 1])\) and \(f \in C([0, 1] \times [0, T])\).
+\end{exercise}
+We start by assuming that there are two solutions \(u_1\) and \(u_2\). We define \(v = u_1 - u_2\). We have the homogeneous problem
+\[
+    \begin{cases}
+        v_{tt} + d v_t - v_{xx} = 0 & (x, t) \in (0,1) \times (0, T), \\
+        v(0, t) = v(1, t) = 0 & t \in (0, T), \\
+        v(x, 0) = 0, \quad v_t(x, 0) = 0 & x \in (0, 1).
+    \end{cases}
+\]
+Now we use the energy method. We multiply the equation by \(v_t\) and integrate over \(x\).
+\[
+    \begin{split}
+        \int_0^1 v_t v_{tt} + d v_t^2 - v_t v_{xx} \, dx = 0
+    \end{split}
+\]
+Let's do each term separately. We have
+\[
+    \begin{split}
+        \int_0^1 v_t v_{tt} \, dx = \frac{1}{2} \frac{d}{dt} \int_0^1 v_t^2 \, dx
+    \end{split}
+\]
+The second term is
+\[
+    \begin{split}
+        \int_0^1 d v_t^2 \, dx = d \int_0^1 v_t^2 \, dx
+    \end{split}
+\]
+The third term is
+\[
+    \begin{split}
+        \int_0^1 v_t v_{xx} \, dx = \cancel{\left. v_t v_x \right|_0^1} - \int_0^1 v_{xt} v_x \, dx = -\int_0^1 v_{xt} v_x \, dx = \frac{1}{2} \frac{d}{dt} \int_0^1 v_x^2 \, dx
+    \end{split}
+\]  
+We can now rewrite the equation as
+\[
+    \begin{split}
+        \frac{1}{2} \frac{d}{dt} \int_0^1 (1 + 2d) v_t^2 - v_x^2 \, dx = 0
+    \end{split}
+\]
+This means that the energy \(E(t)\) is conserved. We have \(E(0)\) as
+\[
+    \begin{split}
+        E(0) = \int_0^1 (1 + 2d) v_t(0)^2 - v_x(0)^2 \, dx = 0
+    \end{split}
+\]
+Since we have \(v_t(x,0) = 0\) and \(v_x(x,0) = 0\), we have \(E(0) = 0\). This means that \(E(t) = 0\) for all \(t\). Then, \(v_t = 0\) and \(v_x = 0\), which means that \(v = 0\). This means that the solution is unique.
+
+\newpage

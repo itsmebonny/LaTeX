@@ -1113,10 +1113,9 @@ Since \(w_t(x, 0) = 0\) and \(w(x,0) = 0 \Rightarrow w_{xx}(x, 0) = 0\). Therefo
     Let \(\Omega \subset \real^2\) be a bounded open set of class \(C^1\), and let \(f \in L^2(\Omega)\). Consider the Dirichlet problem
     \begin{equation*}
         \begin{cases}
-            u_{tt} - \left(\partial_x^2 u +  \partial_y^2 u - 2 \partial_{xy} u\right) = f, & \text{in } \Omega \times (0, T), \\
+            u_{t} - \left(\partial_x^2 u +  \partial_y^2 u - 2 \partial_{xy} u\right) = f, & \text{in } \Omega \times (0, T), \\
             u = 0, & \text{on } \partial \Omega \times (0, T), \\
             u(x,0) = u_0(x), & x \in \Omega, \\
-            u_t(x,0) = u_1(x), & x \in \Omega.
         \end{cases}
         \tag{(P)}
     \end{equation*}
@@ -1140,35 +1139,26 @@ Since \(w_t(x, 0) = 0\) and \(w(x,0) = 0 \Rightarrow w_{xx}(x, 0) = 0\). Therefo
     \]
     and the PDE becomes
     \[
-        u_{tt} - \div (A \grad u) = f.
+        u_{t} - \div (A \grad u) = f.
     \]
-    \item To write the weak formulation of the problem we first recall the space of weakly continuous functions
-    \begin{remark}
-        Let \(H\) be a Hilbert space. The space of weakly continuous functions over \([0, T]\) is defined as
-        \[
-            \begin{split}
-                C_w^0([0, T]; H) = \left\{ u \in L^\infty(0, T; H) \mid \lim_{t \to t_0} (u(t) - u(t_0), v)_H = 0, \quad \forall t_0 \in [0, T], \forall v \in H \right\}
-            \end{split}
-        \] 
-    \end{remark}
-    Then choose an adequate Hilbert triplet, keeping in mind that this problem is equipped with Dirichlet boundary conditions. We can choose the Hilbert triplet
+    \item To write the weak formulation we choose an adequate Hilbert triplet, keeping in mind that this problem is equipped with Dirichlet boundary conditions. We can choose the Hilbert triplet
     \[
         V = H^1_0(\Omega) \subset H = L^2(\Omega) \subset V' = H^{-1}(\Omega).
     \]
     The weak formulation of the problem is then obtained by multiplying the equation by a test function \(v \in V\) and integrating over \(\Omega\)
     \begin{align*}
-        \int_\Omega f(t) v \, dx &= \int_\Omega u_{tt} v \, dx + \int_\Omega \div(A \grad u)v \, dx =\\
-        &= \int_\Omega u_{tt} v \, dx - \cancel{\int_{\partial\Omega} \partial_\nu u v \, d\sigma} + \int_\Omega \left[A \grad u \cdot \grad v\right] \, dx = \\
-        &= \int_\Omega u_{tt} v \, dx + \int_\Omega \underbrace{A \grad u \cdot \grad v}_{B(u, v)} \, dx
+        \int_\Omega f(t) v \, dx &= \int_\Omega u_{t} v \, dx + \int_\Omega \div(A \grad u)v \, dx =\\
+        &= \int_\Omega u_{t} v \, dx - \cancel{\int_{\partial\Omega} \partial_\nu u v \, d\sigma} + \int_\Omega \left[A \grad u \cdot \grad v\right] \, dx = \\
+        &= \int_\Omega u_{t} v \, dx + \int_\Omega \underbrace{A \grad u \cdot \grad v}_{B(u, v)} \, dx
     \end{align*}
     The weak formulation of the problem is then
     \[
         \begin{split}
-            \text{Find } u(t) \in C^0([0, T]; H) \cap C_w^0([0, T]; V) \text{ such that } \\
-            u' \in C_w^0([0, T]; H), u'' \in L^2(0, T; V') \text{ and } \\
+            \text{Find } u(t) \in L^2([0, T]; V) \text{ such that } \\
+            u' \in L^2([0, T];V'H)\text{ and } \\
             \begin{cases}
-                \langle u_{tt}(t), v \rangle + B(u(t), v) = (f(t), v)_H \\
-                u(0) = u_0, \quad u'(0) = u_1
+                \langle u_{t}(t), v \rangle + B(u(t), v) = (f(t), v)_H \\
+                u(0) = u_0,
             \end{cases}\quad \forall v \in V, \text{ in } \mathcal{D}(0, T).
         \end{split}
     \]
@@ -1179,20 +1169,20 @@ Since \(w_t(x, 0) = 0\) and \(w(x,0) = 0 \Rightarrow w_{xx}(x, 0) = 0\). Therefo
     Moreover, for \(1 \leq k \leq m\) we have the system
     \[
         \begin{cases}
-            g_m''(t) + B_m g_m(t) = \gamma_m(t) \\
-            g_m(0) = g_0^m, \quad g_m'(0) = g_1^m
+            g_m'(t) + B_m g_m(t) = \gamma_m(t) \\
+            g_m(0) = g_0^m, 
         \end{cases}
     \]
     Since \(g_m(t)\) is the unique solution of the system, we have that \(g_m(t)\) uniquely determines \(u_m(t)\). Then it is possible, starting from 
     \[
-        \frac{1}{2}\frac{d}{dt} \left[\norm{u_m'(t)}_H^2 + \norm{u_m(t)}_V^2\right] = \left(f(t), u_m(t)\right)_H \qquad \text{a.e in } [0, T],
+        \frac{1}{2}\frac{d}{dt} \left[\norm{u_m(t)}_H^2 + \norm{u_m(t)}_V^2\right] = \left(f(t), u_m(t)\right)_H \qquad \text{a.e in } [0, T],
         \tag*{(E)}
     \]
     to obtain the following a priori estimates
     \[
         \norm{u_0}_{L^\infty(0, T; V)} \leq C_1 \qquad \norm{u_1}_{L^\infty(0, T; H)} \leq C_2
     \]
-    And it can be shown that the weak formulation can be recovered up to a subsequence, and that \(u\) admits a weak derivative \(u' \in L^\infty(0, T; H)\), and also that \(u'' \in L^2(0, T; V')\).
+    And it can be shown that the weak formulation can be recovered up to a subsequence, and that \(u\) admits a weak derivative \(u' \in L^\infty(0, T; H)\).
     Since 
     \[
     \begin{cases}
@@ -1201,12 +1191,12 @@ Since \(w_t(x, 0) = 0\) and \(w(x,0) = 0 \Rightarrow w_{xx}(x, 0) = 0\). Therefo
     \end{cases}
     \Rightarrow u \in C^0([0, T]; H) 
     \]
-    and \(V \subset H\), we have that \(u \in C^0([0, T]; H) \cap C_w^0([0, T]; V)\) and we have existence, by proving the same result for \(u'\).
+    and \(V \subset H\), we have that \(u \in C^0([0, T]; H) \cap C_w^0([0, T]; V)\) and we have existence.
     Then we take two solutions \(u_1\) and \(u_2\) and we have that \(w = u_1 - u_2\) . Putting \(w\) in (E) we obtain
     \[
         \begin{cases}
-            \frac{1}{2}\frac{d}{dt} \left[\norm{w'(t)}_H^2 + \norm{w(t)}_V^2\right] = 0 \\
-            w(0) = 0, \quad w'(0) = 0
+            \frac{1}{2}\frac{d}{dt} \left[\norm{w(t)}_H^2 + \norm{w(t)}_V^2\right] = 0 \\
+            w(0) = 0,
         \end{cases} 
         \Rightarrow w = 0 \Rightarrow u_1 = u_2
     \]
