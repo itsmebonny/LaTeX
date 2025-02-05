@@ -879,7 +879,7 @@ Therefore the solution satisfies the entropy condition.
     \end{exercise}
     
     First, a quick reminder on Sobolev embedding, which will be very useful a.e. in this document
-    \begin{remark}\label{sobolev_embedding}
+    \begin{remark}
         Let \(\Omega \subseteq \real^n\) open with \(\partial\Omega \in \text{Lip}\), \(s \geq 0\),
         \[
             H^s(\Omega) \subset 
@@ -898,7 +898,7 @@ Therefore the solution satisfies the entropy condition.
     
     Since we want to know the variational formulation in \(H^1_0\) we have \(s = 1\) and need to check \(n = 2, n \geq 3\). Remember a variational formulation makes sense if \(\int_\Omega fv < \infty\).
     \begin{itemize}
-        \item[\(n = 2\).] In this case we have \(u^3, v \in H^1_0(\Omega)\), so by Sobolev embedding we know \(u^3, v \in L^p(\Omega)\) for \(2 \leq p < \infty\). 
+        \item[\(n = 2\).] In this case we have \(u, v \in H^1_0(\Omega)\), so by Sobolev embedding we know \(u, v \in L^p(\Omega)\) for \(2 \leq p < \infty\). 
         \[
             \abs{\int_\Omega a(x) u^3 v}  \, dx \leq \int_\Omega \abs{a(x)} \abs{u^3} \abs{v} \, dx \underset{Holder}{\leq} \left(\int_\Omega \abs{a(x)}^r\right)^{\frac{1}{r}} \left(\int_\Omega \abs{u^3}^p \right)^{\frac{1}{p}} \left(\int_\Omega \abs{v}^q \right)^{\frac{1}{q}} < \infty.
         \]
@@ -906,7 +906,7 @@ Therefore the solution satisfies the entropy condition.
         \[
             \frac{1}{r} + \frac{1}{p} + \frac{1}{q} = 1 \iff a(x) \in L^r(\Omega) \qquad \text{with } r > 1
         \]
-        \item[\(n \geq 3\).] In this case we have \(u^3, v \in H^1_0(\Omega)\), so by Sobolev embedding we know \(u^3, v \in L^p(\Omega)\) for \(2 \leq p \leq 2^*\).
+        \item[\(n \geq 3\).] In this case we have \(u, v \in H^1_0(\Omega)\), so by Sobolev embedding we know \(u, v \in L^p(\Omega)\) for \(2 \leq p \leq 2^*\).
         We proceed as before, using Holder inequality, but decide to use \(p = \frac{2^*}{3}\) and \(q = \frac{1}{2^*}.\)
         \[
             \abs{\int_\Omega a(x) u^3 v}  \, dx \leq \int_\Omega \abs{a(x)} \abs{u^3} \abs{v} \, dx \underset{\mathclap{Holder}}{\leq} \left(\int_\Omega \abs{a(x)}^r\right)^{\frac{1}{r}} \left(\int_\Omega \abs{u}^{2^*} \right)^{\frac{3}{2^*}} \left(\int_\Omega \abs{v}^{2^*} \right)^{\frac{1}{2^*}} < \infty.
