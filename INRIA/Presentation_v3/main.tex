@@ -1,0 +1,88 @@
+\documentclass{beamer}
+\usetheme{Pittsburgh}
+\beamertemplatenavigationsymbolsempty
+
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm} % For bold math symbols
+\usepackage{graphicx}
+
+
+\usepackage{subfigure}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{color}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{algorithm}
+\usepackage{physics}
+% add image path
+\graphicspath{{../Images/}}
+
+\title{Weekly Updates\\
+\tiny{Wednesday, 19 February 2025}}
+\author{Andrea Bonifacio}
+\date{}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+\begin{frame}{Issues - Sampling Nodes}
+    \begin{columns}
+        \column{0.5\textwidth}
+        \centering Pros
+        \begin{itemize}
+            \item Exact solution
+            \item Easy comparisons between meshes
+        \end{itemize}
+        \column{0.5\textwidth}
+        \centering Cons
+        \begin{itemize}
+            \item Stops working with complex geometries
+            \item Still need to interpolate back
+        \end{itemize}
+    \end{columns}
+
+    \vspace{1cm}
+
+    Also, they are not really needed when working with a GNN, only for fully connected networks.
+    \begin{itemize}
+        \item A possible solution could be to map the low resolution mesh to the high resolution mesh in the solver to create a comparable ground truth.
+        \item The downside is that we lose a bit of topology indepe
+    \end{itemize}  
+
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Issues - Physics}
+\begin{itemize}
+    \item Impossible to implement the physics in the loss, because the prediction is not physically correct.
+    \item Should somehow take into account the change in the physics of the system.
+    \item In the dynamic case, the solver will never be able to predict the step \(t+1\), because the corrected solution at time \(t\) is ``breaking'' the physics.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Ideas - Neural Operators}
+    \begin{itemize}
+        \item Geometric Neural Operators \href{https://arxiv.org/pdf/2207.05209}{GNO}, where the mesh is deformed to a grid before being fed to the network.
+        \item Super-Resolution Neural Operators \href{https://arxiv.org/pdf/2303.02584}{SRNO}, which is somewhat similar to our problem, but its output is a high-resolution tensor.
+    \end{itemize}
+
+    The main issue with our problem is that our target mesh needs to be of the same size as the input mesh, but our ground truth is a high-resolution mesh.
+    
+
+\end{frame}
+
+
+
+\end{document}
+
