@@ -1,96 +1,56 @@
 \section{Problem setting}
 \label{sec:problem_setting}
-In this section will be outlined a mathematical description of the problem. It will be divided in the two case under study: the static case and the dynamic case.
 
-\subsection{Static case}
-The static case is the simplest one. In this case we have a domain $\Omega \subset \mathbb{R}^d$ with $d=2,3$ and a force $f$ acting on it. A Lagrangian description of the problem is considered, where the material coordinates are given by the vector $\bm{X}$ and the deformed state of the solid is given by
+In this section, we outline the mathematical description of the problem using a Neo-Hookean material model, which is well-suited for large deformations in soft tissues and other hyperelastic materials.
+
+We consider the boundary value problem of computing the deformation of a hyperelastic material under both Dirichlet and Neumann boundary conditions. The solid occupies a domain $\Omega \subset \mathbb{R}^d$ with $d=2,3$, whose boundary is $\partial\Omega = \Gamma_D \cup \Gamma_N$ with $\Gamma_D \cap \Gamma_N = \emptyset$. We assume Dirichlet conditions on $\Gamma_D$ known a priori, while Neumann boundary conditions on $\Gamma_N$ can change at any time step.
+
+We use a Lagrangian description of the deformation with material coordinates given by the vector $\bm{X}$. The deformed state of each point of the solid is given by
 \begin{equation}
     \bm{x} = \bm{X} + \bm{u}
 \label{eq:deformation}
 \end{equation}
-where $\bm{u}$ is the displacement field. The model used to describe the linear relation between the stress tensor $\bm{\sigma} \in \mathbb{R}^{3\times 3}$ and the strain tensor $\bm{\varepsilon} \in \mathbb{R}^{3\times 3}$ is the linear elasticity model, which is given by
-\begin{equation}
-    \bm{\sigma} = \bm{C} : \bm{\varepsilon}
-\label{eq:linear_elasticity}
-\end{equation}
-where $\bm{C}$ is the stiffness tensor. The strain tensor is given by 
-\begin{equation}
-    \bm{\varepsilon} = \frac{1}{2} \left( \nabla \bm{u} + (\nabla \bm{u})^T \right)
-\label{eq:strain_tensor}
-\end{equation}
-and the stress tensor is given by
-\begin{equation}
-    \bm{\sigma} =  2 \mu \bm{\varepsilon} + \lambda \text{tr}(\bm{\varepsilon}) \bm{I}
-\label{eq:stress_tensor}
-\end{equation}
-where $\mu$ is the shear modulus, $\lambda$ is the Lamé parameter and $\bm{I}$ is the identity matrix. The shear modulus and the Lamé parameter are related to the Young's modulus $E$ and the Poisson's ratio $\nu$ by the relations
-\begin{equation}
-    \mu = \frac{E}{2(1+\nu)}
-\end{equation}
-and
-\begin{equation}
-    \lambda = \frac{E\nu}{(1+\nu)(1-2\nu)}
-\end{equation}
-The boundary \( \partial \Omega \) is divided in two parts: the Dirichlet boundary \( \Gamma_D \) and the Neumann boundary \( \Gamma_N \), where \(\Gamma_D \cup \Gamma_N = \partial \Omega \) and \(\Gamma_D \cap \Gamma_N = \emptyset \). The imposition of the Dirichlet boundary conditions is given by
-\begin{equation}
-    \bm{u} = \bm{u}_D \quad \text{on} \quad \Gamma_D
-\end{equation}
-and the imposition of the Neumann boundary conditions is given by
-\begin{equation}
-    \bm{\sigma} \cdot \bm{n} = \bm{t} \quad \text{on} \quad \Gamma_N
-\end{equation}
-where \( \bm{n} \) is the outward unit normal to the boundary and \( \bm{t} \) is the traction vector. 
-At this point, the problem can be formulated as the set of equations
-\begin{equation}
-    \begin{cases}
-        -\nabla \cdot \bm{\sigma} = \bm{f} \quad \text{in} \quad \Omega \\
-        \bm{u} = \bm{u}_D \quad \text{on} \quad \Gamma_D \\
-        \bm{\sigma} \cdot \bm{n} = \bm{t} \quad \text{on} \quad \Gamma_N
-    \end{cases}
-\label{eq:static_problem}
-\end{equation}
-where \( \bm{f} \) is the body force. 
-Since in this case \(u_D = 0\), it is possible to select \(V = H^1_0(\Omega)\) as the space of test functions, where \(H^1_0(\Omega)\) is the Sobolev space of functions with square integrable derivatives and zero trace on the boundary. To obtain the weak formulation of the problem, integrate both sides of the equation \eqref{eq:static_problem} by a test function \( \bm{v} \in V \) obtaining 
-\begin{equation}
-    \int_{\Omega} -\nabla \cdot \bm{\sigma} \cdot \bm{v} \, d\Omega = \int_{\Omega} \bm{f} \cdot \bm{v} \, d\Omega
-\end{equation}
-and, thanks to the divergence theorem, the equation becomes
-\begin{equation}
-    \int_{\Omega} \bm{\sigma} : \nabla \bm{v} \, d\Omega = \int_{\Omega} \bm{f} \cdot \bm{v} \, d\Omega + \int_{\Gamma_N} \bm{t} \cdot \bm{v} \, ds.
-\end{equation}
-At this point, keeping in mind that \(\sigma(u) = \lambda(\nabla \cdot u)I + \mu (\nabla u + (\nabla u)^T)\), the formulation is obtained as: find \(u \in V\) such that
-\begin{equation}
-    a(u,v) = L(v) \quad \forall v \in V
-\end{equation}
-where
-\begin{equation}
-    a(u,v) = \int_{\Omega} \sigma(u) : \nabla v \, d\Omega
-\end{equation}
-and
-\begin{equation}
-    L(v) = \int_{\Omega} f \cdot v \, d\Omega + \int_{\Gamma_N} t \cdot v \, ds.
-\end{equation}
-From this weak formulation, it is possible to derive the finite element formulation of the problem, which will be used to solve the problem numerically.
+where $\bm{u}$ is the displacement field.
 
-\subsection{Dynamic case}
-In the dynamic case, the problem is more complex, because there is also a temporal dependency in the problem, which will need to be addressed. The domain is the same as in the case of the static problem. Same for the boundary conditions. It is possible to describe the problem as done for the static case, adding a time derivative.
-The equation that describes the dynamic case is the following:
+For the Neo-Hookean material model, we first compute the deformation gradient $\bm{F} \in \mathbb{R}^{d\times d}$:
+\begin{equation}
+    \bm{F} = \frac{\partial \bm{x}}{\partial \bm{X}} = \bm{I} + \nabla_X \bm{u}
+\label{eq:deformation_gradient}
+\end{equation}
+where $\bm{I} \in \mathbb{R}^{d\times d}$ is the identity matrix and $\nabla_X$ denotes the gradient with respect to material coordinates. The right Cauchy-Green deformation tensor is then defined as $\bm{C} = \bm{F}^T\bm{F}$, and the first invariant of $\bm{C}$ is $I_C = \text{tr}(\bm{C})$.
+
+The Neo-Hookean strain-energy density function $\Psi$ is given by:
+\begin{equation}
+    \Psi(\bm{F}) = \frac{\mu}{2} (I_C - 3 - 2\ln(J)) + \frac{\lambda}{4} (J^2 - 1 - 2\ln(J))
+\label{eq:neo_hookean_energy}
+\end{equation}
+where $J = \det(\bm{F})$ is the determinant of the deformation gradient (representing the volume change ratio), $\mu$ is the shear modulus, and $\lambda$ is the first Lamé parameter. These material parameters are related to the Young's modulus $E$ and the Poisson's ratio $\nu$ by:
+\begin{equation}
+    \mu = \frac{E}{2(1+\nu)} \quad \text{and} \quad \lambda = \frac{E\nu}{(1+\nu)(1-2\nu)}
+\end{equation}
+
+From the strain energy density function, we derive the first Piola-Kirchhoff stress tensor $\bm{P}$:
+\begin{equation}
+    \bm{P} = \frac{\partial \Psi}{\partial \bm{F}} = \mu \bm{F} - \mu \bm{F}^{-T} + \frac{\lambda}{2}(J^2-1)\bm{F}^{-T}
+\label{eq:piola_stress}
+\end{equation}
+
+For dynamic problems, the equation of motion including inertial forces is:
 \begin{equation}
     \begin{cases}
-        \rho \frac{\partial^2 \bm{u}}{\partial t^2} - \nabla \cdot \bm{\sigma} = \bm{f} \quad \text{in} \quad \Omega \\
+        \rho \frac{\partial^2 \bm{u}}{\partial t^2} - \nabla_X \cdot \bm{P} = \bm{b} \quad \text{in} \quad \Omega \\
         \bm{u} = \bm{u}_D \quad \text{on} \quad \Gamma_D \\
-        \bm{\sigma} \cdot \bm{n} = \bm{t} \quad \text{on} \quad \Gamma_N
+        \bm{P} \cdot \bm{N} = \bm{t} \quad \text{on} \quad \Gamma_N
     \end{cases}
 \label{eq:dynamic_problem}
 \end{equation}
-where \( \rho \) is the density of the material. The weak formulation of the problem is obtained by multiplying the equation by a test function \( \bm{v} \in V \) and integrating over the domain, obtaining
+where $\rho$ is the material density in the reference configuration, $\bm{b}$ is the external body force, $\bm{N}$ is the unit normal to $\Gamma_N$ in the reference configuration, and $\bm{t}$ is the traction applied to the boundary.
+
+The weak form of equation \eqref{eq:dynamic_problem}, obtained from the principle of virtual work, is:
 \begin{equation}
-    \int_{\Omega} \rho \frac{\partial^2 \bm{u}}{\partial t^2} \cdot \bm{v} \, d\Omega + \int_{\Omega} \sigma : \nabla \bm{v} \, d\Omega = \int_{\Omega} \bm{f} \cdot \bm{v} \, d\Omega + \int_{\Gamma_N} \bm{t} \cdot \bm{v} \, ds.
-    \label{eq:dynamic_weak_formulation}
+    \int_{\Omega} \rho \frac{\partial^2 \bm{u}}{\partial t^2} \cdot \bm{\eta} \, d\Omega + \int_{\Omega} \bm{P} : \nabla_X \bm{\eta} \, d\Omega = \int_{\Omega} \bm{b} \cdot \bm{\eta} \, d\Omega + \int_{\Gamma_N} \bm{t} \cdot \bm{\eta} \, d\Gamma
+\label{eq:weak_form}
 \end{equation}
-The weak formulation of the problem is then: find \(u \in V\) such that
-\begin{equation}
-    \int_{\Omega} \rho \frac{\partial^2 u}{\partial t^2} \cdot v \, d\Omega +  a(u,v) = L(v) \quad \forall v \in V
-\end{equation}
-which can be 
-         
+where $\bm{\eta} \in \{\bm{\eta} \in H^1(\Omega) | \bm{\eta} = \bm{0} \text{ on } \Gamma_D\}$ is any vector-valued test function ($H^1(\Omega)$ being a Hilbert space). The first term on the left side represents the inertial forces, the second term denotes the internal virtual work, and the right side represents the virtual work from the applied external loads.
+
+To numerically solve this system, we discretize the domain into finite elements and use the Newton-Raphson method to handle the nonlinearities inherent in the Neo-Hookean model. Due to these nonlinearities, at each time step, we solve iteratively for displacement corrections until convergence is achieved. This approach provides an accurate representation of large deformations in hyperelastic materials, making it suitable for simulating soft tissues and other materials that undergo significant shape changes.

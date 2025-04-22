@@ -1,7 +1,7 @@
 \section{Neural Networks}
 \label{sec:neural_network}
 
-In this section a brief outline on the neural network architectures used in this work is given. It will be explained how the neural network works in general and how it is trained, but also some specific details about the architectures used in this work. 
+In this section, a brief outline of the neural network architectures used in this work is given, with particular emphasis on the Neural Modes approach for simulating deformable objects. It will explain how neural networks work in general and specific details about the architectures employed.
 
 \subsection{Neural Network Basics}
 
@@ -15,7 +15,7 @@ A neural network exists in function of a dataset \( \mathcal{D} = \{(\bm{x}_i, \
 \begin{equation}
     \mathcal{L} = \frac{1}{N} \sum_{i=1}^N L(f(\bm{x}_i; \bm{\theta}), \bm{y}_i)
 \end{equation}
-where \( L \) is the loss function, which can be the various metrics. The loss function is minimized using an optimization algorithm, so that the objective is to find
+where \( L \) is the loss function, which can be various metrics. The loss function is minimized using an optimization algorithm, so that the objective is to find
 \begin{equation}
     \bm{\theta}^* = \argmin_{\bm{\theta}} \mathcal{L}
 \end{equation}
@@ -38,15 +38,74 @@ The full algorithm is the following one:
 \end{algorithm}
 
 \subsection{Neural Network Architectures}
-Inside this work three different architectures were used: a simple fully connected neural network, a convolutional neural network and a graph neural network. Now a brief overview of the three architectures is presented, to better understand their inner mechanisms.
+In this work, we employ a deep feedforward neural network specifically designed for learning nonlinear deformation modes. This architecture builds upon traditional fully connected neural networks but is adapted for the specific task of capturing nonlinear corrections to linear modal displacements.
 
-\subsubsection{Fully Connected Neural Network}
-The simplest architecture is the fully connected neural network. It is composed of a series of layers, where each neuron is connected to all the neurons of the previous layer. 
+\subsubsection{Neural Modes Architecture}
+The Neural Modes architecture is designed to learn nonlinear corrections to linear deformation modes for Neo-Hookean materials. It consists of a feedforward neural network where:
+
+\begin{itemize}
+    \item The input is a modal coordinate vector \( \bm{z} \in \mathbb{R}^m \), where $m$ is the number of modal coordinates.
+    \item The output is a nonlinear correction to the displacement field \( \bm{y} \in \mathbb{R}^n \), where $n$ is the total number of degrees of freedom in the mesh.
+\end{itemize}
+
+The network learns to map from the reduced modal space to full-dimensional correction vectors that improve the accuracy of the linear modal approximation. This architecture can be visualized as:
+
 \begin{figure}
     \centering
-    \includegraphics[width=0.5\textwidth]{fully_connected.png}
-    \caption{Fully connected neural network from \cite{tonello2019machinelearningtipstricks}}
-    \label{fig:fully_connected}
-\end{figure}
-The architecture is shown in \cref{fig:fully_connected}. The input is given by a vector \( \bm{x} \) and the output is given by a vector \( \bm{y} \). 
+    \begin{tikzpicture}
+        % Modal coordinate (z)
+        \draw[fill=green!20] (-3, 1) rectangle (-2.5,2);
+        \node at (-2.75, 1.5) {$\bm{z}$}; % Label inside the rectangle
         
+        % Displacement (u)
+        \draw[fill=green!20] (2.5,0) rectangle (3,3);
+        \node at (2.75, 1.5) {$\bm{y}$}; % Label inside the rectangle
+        
+        % Energy loss transition
+        \draw[fill=blue!60,opacity=0.8] (-2,1) -- (2,-0) -- (2,3) -- (-2,2) -- cycle;
+        \node at (0,1.5) {Neural Network};
+        \node[below] at (0,-0.5) {\textbf{Energy minimization}};
+        
+        % Energy loss arrow
+        \draw[thick,blue,->] (-2,-0.3) -- (2,-0.3);
+    
+    \end{tikzpicture}
+    \caption{Neural Modes architecture for learning nonlinear deformation corrections}
+    \label{fig:neural_modes_arch}
+\end{figure}
+
+\subsubsection{Training the Neural Modes}
+The training process for the Neural Modes network is based on minimizing a combination of physics-based losses, rather than simply minimizing the prediction error against ground truth data. The key losses used in training are:
+
+\begin{enumerate}
+    \item \textbf{Energy Loss}: Minimizes the internal strain energy of the deformed configuration $E(\bm{X} + \bm{l} + \bm{y})$, where $\bm{X}$ is the rest position, $\bm{l}$ is the linear mode displacement given by $\bm{z}$, and $\bm{y}$ is the nonlinear correction.
+    
+    \item \textbf{Orthogonality Loss}: Ensures that the nonlinear correction is orthogonal to the linear mode space: $\bm{y}^T \bm{l} = 0$.
+    
+\end{enumerate}
+
+The total loss function is a weighted sum of these individual losses:
+\begin{equation}
+    \text{Loss} = \text{Energy Loss} + \lambda_1 \text{Orthogonality Loss} + \lambda_2 \text{Origin Loss}
+\end{equation}
+where $\lambda_1$ and $\lambda_2$ are weight parameters that balance the importance of each loss term.
+
+During the training process, it was observed that the network had the tendency to learn a correction when given \(z = 0\) (i.e., the rest position), and that was not intended, because the rest position should not have any correction, meaning that the model prediction should be zero. To avoid this, the network was designed to have zero bias, so that its output was centered at the origin.
+
+\subsubsection{Dynamic Simulation with Neural Modes}
+For dynamic simulations, the Neural Modes framework solves an optimization problem at each time step. Given the current and previous displacement states $\bm{u}_n$ and $\bm{u}_{n-1}$, the modal coordinates for the next time step $\bm{z}_{n+1}$ are computed by:
+\begin{equation}
+    \bm{z}_{n+1} = \underset{\bm{z}}{\argmin} \frac{1}{2h^2} \|\bm{n}(\bm{z}) - 2\bm{u}_n + \bm{u}_{n-1}\|_{\bm{M}}^2 + E(\bm{n}(\bm{z}))
+\end{equation}
+where $\bm{n}(\bm{z})$ represents the complete displacement field (linear modes plus nonlinear correction), $h$ is the time step, $\bm{M}$ is the mass matrix, and $E(\cdot)$ is the internal energy of the configuration. This optimization problem is typically solved using the L-BFGS-B algorithm.
+
+One challenge with this approach is that the optimization problem does not explicitly account for external forces. The network learns to minimize internal energy but lacks direct information about external forces that may be applied during simulation. This limitation can affect the accuracy of dynamic simulations, particularly for large deformations or complex loading conditions.
+
+\subsection{Extensions and Improvements}
+A possible extension to the Neural Modes approach is to incorporate information about external forces directly into the network. This could be achieved by learning a mapping $\Phi: \mathbb{R}^m \rightarrow \mathbb{R}^n$ that relates modal coordinates $\bm{z}$ to the corresponding external forces $\hat{\bm{f}}$ that would produce such deformation. This additional network could be trained on a dataset of deformations and corresponding external forces, and then integrated into the dynamic simulation process to improve accuracy.
+
+The objective function for dynamic simulation could then be extended to:
+\begin{equation}
+    \bm{z}_{n+1} = \underset{\bm{z}}{\argmin} \frac{1}{2h^2} \|\bm{n}(\bm{z}) - 2\bm{u}_n + \bm{u}_{n-1}\|_{\bm{M}}^2 + E(\bm{n}(\bm{z})) + \text{F}(\bm{z}, \bm{f})
+\end{equation}
+where $\text{F}(\bm{z}, \bm{f})$ is a term that accounts for the external forces acting on the system.
