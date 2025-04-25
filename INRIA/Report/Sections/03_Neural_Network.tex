@@ -1,7 +1,28 @@
-\section{Neural Networks}
-\label{sec:neural_network}
+\section{Methods}
+\label{sec:methods}
 
-In this section, a brief outline of the neural network architectures used in this work is given, with particular emphasis on the Neural Modes approach for simulating deformable objects. It will explain how neural networks work in general and specific details about the architectures employed.
+In this section, we present the methods used to solve the problem of learning nonlinear deformation modes. We provide a brief overview of the theoretical background of neural networks, then explain the idea behind subspace learning.
+
+\subsection{Subspace Learning}
+
+Let \( \bm{X} \in \mathbb{R}^{n \times d} \) and \( \bm{x} \in \mathbb{R}^{d} \) be the vectors representing the undeformed and deformed configurations of a mesh, respectively. We can characterize equilibrium configurations of the system by constrained energy minimization principles, such as 
+\begin{align*}
+    \bm{x}^*(\phi, \psi) = \underset{\bm{x}}{\argmin} \quad & E_\phi(\bm{x}) \\
+    \text{s.t.} \quad & C_\psi(\bm{x}) = 0
+\end{align*}
+where \( E_\phi \) is the energy function defined by parameters \(\phi\) and \( C_\psi \) is the constraint function with parameters \(\psi\). The solution set \( \bm{x}^* \) constitutes a subspace of the full-dimensional space \( \mathbb{R}^d \). In a classical finite element framework, sampling from this subspace is achieved by solving a constrained minimization problem for each configuration. Clearly, this approach is computationally expensive, so we need a more efficient way to sample from the subspace.
+
+The idea proposed by \cite{Wang_Du_Coros_Thomaszewski_2024} is to find a neural network \( \bm{x}[\theta^*](\phi, \psi) \) that approximates the solution \( \bm{x}^* \), meaning that the problem becomes:
+\begin{align*}
+    \bm{x}[\theta^*](\phi, \psi) \approx \underset{\theta}{\argmin} \quad & E_\phi(\bm{x}[\theta](\phi, \psi)) \\
+    \text{s.t.} \quad & C_\psi(\bm{x}[\theta](\phi, \psi)) = 0
+\end{align*}
+
+
+
+
+
+
 
 \subsection{Neural Network Basics}
 
