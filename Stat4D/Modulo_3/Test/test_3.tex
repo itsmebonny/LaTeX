@@ -1,0 +1,253 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+\usepackage{parskip}
+\usepackage{enumitem}
+\usepackage{ FiraSans }
+\usepackage{graphicx} % Necessario per \newpage
+\usepackage{bm} % Per simboli grassetto eventuali
+
+% ----- Impostazioni Liste -----
+\setlist[enumerate,1]{label=\arabic*)} % Numeri per domande principali
+\setlist[enumerate,2]{label=(\alph*), leftmargin=*} % Lettere per opzioni
+
+% ----- Macro per simboli comuni -----
+% Modulo 1 & 2
+\newcommand{\popmean}{\mu} % Media popolazione
+\newcommand{\samplemean}{\bar{X}} % Media campione (o M)
+\newcommand{\popvar}{\sigma^2} % Varianza popolazione
+\newcommand{\samplevar}{s^2} % Varianza campione
+\newcommand{\popsd}{\sigma} % Deviazione standard popolazione
+\newcommand{\samplesd}{s} % Deviazione standard campione
+\newcommand{\stderr}{\sigma_{\samplemean}} % Errore standard media singola
+\newcommand{\zscore}{Z} % Punteggio Z
+\newcommand{\tscore}{t} % Punteggio t
+
+
+% Modulo 3
+\newcommand{\alphaerr}{\alpha} % Livello alpha
+\newcommand{\betaerr}{\beta}  % Errore beta
+\newcommand{\power}{1-\betaerr} % Potenza
+\newcommand{\Hnull}{H_0} % Ipotesi nulla
+\newcommand{\Halt}{H_1} % Ipotesi alternativa
+\newcommand{\cohend}{d} % d di Cohen
+\newcommand{\df}{df} % gradi di libertà
+\newcommand{\Spool}{S^2_{\text{combinata}}} % Varianza combinata (FIXED)
+\newcommand{\SEdiff}{S_{\samplemean_1 - \samplemean_2}} % Errore standard differenza (FIXED)
+
+
+
+\begin{document}
+
+\begin{center}
+    \Large\textbf{Test di Autovalutazione Aggiuntivo - Modulo 3} \\
+    \vspace{0.2cm}
+    \large\textit{Tecniche di Ricerca e Analisi dei Dati} \\
+    \vspace{0.5cm}
+    \normalsize{Istruzioni: Scegli l'unica risposta corretta per ogni domanda. Le soluzioni sono disponibili nell'ultima pagina.}
+\end{center}
+\vspace{1cm}
+
+\begin{enumerate} % Inizio elenco domande principali
+    \item Se un ricercatore conclude che un trattamento è efficace (rifiuta $\Hnull$) quando in realtà non lo è ( $\Hnull$ è vera), ha commesso:
+    \begin{enumerate} % Inizio opzioni domanda 1
+        \item Un errore di I tipo ($\alphaerr$).
+        \item Un errore di II tipo ($\betaerr$).
+        \item Una decisione corretta.
+        \item Un errore nella stima della dimensione dell'effetto.
+    \end{enumerate}
+
+    \item La probabilità di commettere un errore di II tipo è indicata con:
+    \begin{enumerate}
+        \item $\alphaerr$
+        \item $1-\alphaerr$
+        \item $\betaerr$
+        \item $1-\betaerr$
+    \end{enumerate}
+
+    \item La Potenza Statistica ($1-\betaerr$) rappresenta la probabilità di:
+    \begin{enumerate}
+        \item Accettare $\Hnull$ quando è vera.
+        \item Rifiutare $\Hnull$ quando è vera.
+        \item Accettare $\Hnull$ quando è falsa.
+        \item Rifiutare $\Hnull$ quando è falsa (cioè, rilevare un effetto reale).
+    \end{enumerate}
+
+    \item Se un ricercatore decide di usare un livello di significatività $\alphaerr$ più basso (es. 0.01 invece di 0.05), cosa accade generalmente alla potenza statistica del test (a parità di altre condizioni)?
+    \begin{enumerate}
+        \item Aumenta.
+        \item Diminuisce.
+        \item Rimane invariata.
+        \item Diventa uguale ad $\alphaerr$.
+    \end{enumerate}
+
+    \item Quale dei seguenti fattori, se aumentato, tende ad \textbf{aumentare} la potenza statistica di un test?
+    \begin{enumerate}
+        \item La probabilità dell'errore di II tipo ($\betaerr$).
+        \item L'ampiezza del campione ($n$).
+        \item La varianza della popolazione ($\sigma^2$).
+        \item Il livello di protezione ($1-\alphaerr$).
+    \end{enumerate}
+
+    \item La Dimensione dell'Effetto ($\cohend$ di Cohen) è un indice che esprime:
+    \begin{enumerate}
+        \item La probabilità che il risultato sia dovuto al caso.
+        \item La numerosità del campione utilizzata nello studio.
+        \item La grandezza standardizzata della differenza tra medie o della forza di un'associazione.
+        \item Il livello di significatività $\alphaerr$ scelto dal ricercatore.
+    \end{enumerate}
+
+    \item Un valore di $\cohend$ di Cohen pari a 0.50 è convenzionalmente considerato indicativo di un effetto:
+    \begin{enumerate}
+        \item Piccolo.
+        \item Medio.
+        \item Grande.
+        \item Nullo.
+    \end{enumerate}
+
+    \item L'analisi della potenza   `a priori' viene condotta solitamente per:
+    \begin{enumerate}
+        \item Calcolare la dimensione dell'effetto dopo aver raccolto i dati.
+        \item Determinare la numerosità campionaria necessaria prima di iniziare lo studio.
+        \item Scegliere il livello di significatività $\alphaerr$.
+        \item Verificare l'assunto di normalità.
+    \end{enumerate}
+
+    \item Il test t per campioni indipendenti è appropriato per confrontare:
+    \begin{enumerate}
+        \item La media di un singolo campione con un valore noto della popolazione.
+        \item Le medie di una variabile quantitativa tra due gruppi di soggetti diversi e non correlati.
+        \item Le medie della stessa variabile misurata due volte sugli stessi soggetti.
+        \item Le frequenze di una variabile categorica tra due gruppi.
+    \end{enumerate}
+
+    \item Qual è l'ipotesi nulla ($\Hnull$) tipica per un test t per campioni indipendenti?
+    \begin{enumerate}
+        \item $\mu_1 \neq \mu_2$
+        \item $\mu_1 = \mu_2$ (o $\mu_1 - \mu_2 = 0$)
+        \item $\bar{X}_1 = \bar{X}_2$
+        \item $\cohend > 0$
+    \end{enumerate}
+
+    \item La distribuzione campionaria di riferimento per il test t per campioni indipendenti è:
+    \begin{enumerate}
+        \item La distribuzione normale standard (Z).
+        \item La distribuzione delle medie campionarie ($\bar{X}$).
+        \item La distribuzione F di Fisher.
+        \item La distribuzione delle differenze tra le medie campionarie.
+    \end{enumerate}
+
+    \item La stima della varianza combinata ($\Spool$) nel test t per campioni indipendenti:
+    \begin{enumerate}
+        \item È necessaria solo se le numerosità dei campioni sono uguali.
+        \item Serve a stimare l'unica varianza comune assunta per le due popolazioni (omoschedasticità).
+        \item È uguale alla media delle due varianze campionarie, indipendentemente dalle numerosità.
+        \item Viene utilizzata solo se l'assunto di normalità è violato.
+    \end{enumerate}
+
+    \item L'errore standard della differenza tra le medie ($S_{\samplemean_1 - \samplemean_2}$):
+    \begin{enumerate}
+        \item Misura la differenza media osservata tra i due campioni.
+        \item È il denominatore nella formula del test t per campioni indipendenti.
+        \item Aumenta all'aumentare della numerosità dei campioni.
+        \item È uguale alla radice quadrata della differenza tra le varianze campionarie.
+    \end{enumerate}
+
+    \item L'assunto di omoschedasticità nel test t per campioni indipendenti richiede che:
+    \begin{enumerate}
+        \item Le medie delle due popolazioni siano uguali.
+        \item Le varianze delle due popolazioni siano uguali.
+        \item Le distribuzioni campionarie siano normali.
+        \item I campioni abbiano la stessa numerosità.
+    \end{enumerate}
+
+    \item Il test di Levene o il test F di Fisher (rapporto tra varianze) sono spesso usati per verificare quale assunto del test t per campioni indipendenti?
+    \begin{enumerate}
+        \item Indipendenza delle osservazioni.
+        \item Normalità della distribuzione della variabile dipendente.
+        \item Omogeneità delle varianze (omoschedasticità).
+        \item Linearità della relazione.
+    \end{enumerate}
+
+    \item Il test t per campioni indipendenti è considerato   `robusto'a moderate violazioni dell'assunto di:
+    \begin{enumerate}
+        \item Indipendenza.
+        \item Normalità (specialmente con campioni grandi).
+        \item Omogeneità delle varianze (solo se le numerosità sono molto diverse).
+        \item Presenza di outlier.
+    \end{enumerate}
+
+    \item Per calcolare la stima della dimensione dell'effetto ($d$ di Cohen) dopo un test t per campioni indipendenti, si utilizza solitamente la differenza tra le medie campionarie divisa per:
+    \begin{enumerate}
+        \item L'errore standard della differenza.
+        \item La radice quadrata della varianza combinata (stima della deviazione standard comune).
+        \item La media delle deviazioni standard dei due campioni.
+        \item Il valore t calcolato.
+    \end{enumerate}
+
+    \item In un test t per campioni indipendenti, i gradi di libertà ($df$) sono calcolati come:
+    \begin{enumerate}
+        \item $N_1 - 1$
+        \item $N_2 - 1$
+        \item $N_1 + N_2 - 1$
+        \item $N_1 + N_2 - 2$
+    \end{enumerate}
+
+    \item Un risultato   `statisticamente significativo'(es. p < 0.05) in un test t per campioni indipendenti indica che:
+    \begin{enumerate}
+        \item La differenza osservata tra le medie campionarie è sicuramente grande e importante.
+        \item È improbabile che una differenza così grande (o più grande) sia dovuta solo al caso, se le medie delle popolazioni fossero uguali.
+        \item L'ipotesi nulla è stata dimostrata vera con certezza.
+        \item L'assunto di omogeneità delle varianze è stato rispettato.
+    \end{enumerate}
+
+     \item L'analisi della potenza   `a posteriori'è utile, ad esempio, quando:
+    \begin{enumerate}
+        \item Si deve decidere quanti soggetti reclutare per uno studio.
+        \item Si ottiene un risultato statisticamente significativo e si vuole confermarlo.
+        \item Si ottiene un risultato non statisticamente significativo e si vuole capire se il test aveva sufficiente   `forza'per rilevare un eventuale effetto reale.
+        \item Si deve calcolare il livello di significatività $\alphaerr$.
+    \end{enumerate}
+
+
+\end{enumerate} % Fine elenco domande principali
+
+\newpage % Inizia una nuova pagina per le soluzioni
+
+\begin{center}
+    \Large\textbf{Griglia delle Soluzioni} \\
+    \vspace{0.5cm}
+    \normalsize{(Test di Autovalutazione Aggiuntivo - Modulo 3)}
+\end{center}
+\vspace{1cm}
+
+\begin{enumerate}[leftmargin=*, label=\arabic*.]
+    \item (a) Un errore di I tipo ($\alphaerr$) (Rifiutare $\Hnull$ quando è vera).
+    \item (c) $\betaerr$.
+    \item (d) Rifiutare $\Hnull$ quando è falsa (cioè, rilevare un effetto reale).
+    \item (b) Diminuisce (Se $\alphaerr$ è più piccolo, la regione di rifiuto si restringe, è più difficile rifiutare $\Hnull$, quindi aumenta la probabilità di errore $\betaerr$ e diminuisce la potenza $1-\betaerr$).
+    \item (b) L'ampiezza del campione ($n$) (Campioni più grandi danno stime più precise e riducono l'errore standard, aumentando la potenza).
+    \item (c) La grandezza standardizzata della differenza tra medie o della forza di un'associazione.
+    \item (b) Medio.
+    \item (b) Determinare la numerosità campionaria necessaria prima di iniziare lo studio.
+    \item (b) Le medie di una variabile quantitativa tra due gruppi di soggetti diversi e non correlati.
+    \item (b) $\mu_1 = \mu_2$ (o $\mu_1 - \mu_2 = 0$) (L'ipotesi nulla postula l'assenza di differenza tra le medie delle popolazioni).
+    \item (d) La distribuzione delle differenze tra le medie campionarie (la cui forma è descritta dalla distribuzione t di Student in questo caso).
+    \item (b) Serve a stimare l'unica varianza comune assunta per le due popolazioni (omoschedasticità).
+    \item (b) È il denominatore nella formula del test t per campioni indipendenti (misura la variabilità attesa della differenza tra medie).
+    \item (b) Le varianze delle due popolazioni siano uguali.
+    \item (c) Omogeneità delle varianze (omoschedasticità).
+    \item (b) Normalità (specialmente con campioni grandi). (È molto sensibile alla violazione dell'indipendenza).
+    \item (b) La radice quadrata della varianza combinata (stima della deviazione standard comune).
+    \item (d) $N_1 + N_2 - 2$.
+    \item (b) È improbabile che una differenza così grande (o più grande) sia dovuta solo al caso, se le medie delle popolazioni fossero uguali. (Non dice nulla sulla grandezza   `pratica'dell'effetto).
+    \item (c) Si ottiene un risultato non statisticamente significativo e si vuole capire se il test aveva sufficiente   `forza'per rilevare un eventuale effetto reale.
+\end{enumerate}
+
+\end{document}
+% ----- FINE DOCUMENTO -----

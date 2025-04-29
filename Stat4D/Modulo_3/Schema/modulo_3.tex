@@ -1,0 +1,309 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+\usepackage{parskip}
+\usepackage{enumitem}
+\usepackage{ FiraSans }
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage{bm}
+\usepackage{tikz}
+\usetikzlibrary{shapes, arrows, positioning, calc} % Per diagrammi
+\usepackage{booktabs} % Per tabelle più professionali
+\usepackage{colortbl} % Per colorare celle tabelle
+\usepackage{multirow} % Per celle che si estendono su più righe
+
+% ----- Definizioni Colori e Stili -----
+\definecolor{boxbgcolor}{rgb}{0.95, 0.95, 1.0} % Azzurrino per reflection
+\definecolor{boxtitlecolor}{rgb}{0.1, 0.1, 0.6} % Blu scuro per reflection title
+\definecolor{examplebgcolor}{rgb}{1.0, 0.98, 0.9}
+\definecolor{examplebordercolor}{rgb}{0.9, 0.8, 0.5}
+\definecolor{diagrambgcolor}{rgb}{0.92, 0.92, 0.92} % Grigio chiaro per sfondi diagrammi
+
+\newenvironment{reflectionbox}{%
+    \medskip
+    \begin{framed}\par\noindent
+    \textbf{\color{boxtitlecolor}Domande per Riflettere (Basate sul Test)} \par
+    \begin{itemize}[leftmargin=*, label=$\blacktriangleright$]
+}{%
+    \end{itemize}\par
+    \end{framed}
+    \medskip
+}
+
+\newenvironment{example}[1][Esempio Pratico]{%
+    \medskip
+    \begin{center}
+    \begin{tikzpicture}
+        \node[rectangle, draw=examplebordercolor, fill=examplebgcolor, rounded corners, inner sep=10pt, text width=0.9\textwidth] (box) \bgroup\medskip
+        \par\noindent{\textbf{#1:}}\par\smallskip\noindent\ignorespaces
+}{%
+        \egroup;
+    \end{tikzpicture}
+    \end{center}
+    \medskip
+}
+
+\setlist{nosep}
+\renewcommand{\labelitemi}{$\bullet$}
+
+% ----- Macro per simboli comuni -----
+\newcommand{\popmean}{\mu}
+\newcommand{\samplemean}{\bar{X}}
+\newcommand{\popvar}{\sigma^2}
+\newcommand{\samplevar}{s^2}
+\newcommand{\popsd}{\sigma}
+\newcommand{\samplesd}{s}
+\newcommand{\stderr}{\sigma_{\samplemean}}
+\newcommand{\zscore}{Z}
+\newcommand{\tscore}{t}
+\newcommand{\alphaerr}{\alpha} % Livello alpha
+\newcommand{\betaerr}{\beta}  % Errore beta
+\newcommand{\power}{1-\betaerr} % Potenza
+\newcommand{\Hnull}{H_0} % Ipotesi nulla
+\newcommand{\Halt}{H_1} % Ipotesi alternativa
+\newcommand{\cohend}{d} % d di Cohen
+\newcommand{\df}{gl} % gradi di libertà
+\newcommand{\Spool}{S^2_{\text{combinata}}} % Varianza combinata
+\newcommand{\SEdiff}{S_{\samplemean_1 - \samplemean_2}} % Errore standard differenza
+
+% ----- INIZIO DOCUMENTO -----
+\begin{document}
+
+\begin{center}
+    \Large\textbf{Modulo 3: Significatività, Potenza e Confronto tra Due Campioni} \\
+    \vspace{0.5cm}
+    \large\textit{(Errori Decisionali, Effect Size, Power Analysis e t-test per Campioni Indipendenti)}
+\end{center}
+
+\section*{Parte 1: Dare un Senso alla Significatività Statistica}
+
+\subsection*{1. Gli Errori Decisionali nella Verifica delle Ipotesi}
+Poiché la verifica delle ipotesi si basa su dati campionari (informazione parziale) per trarre conclusioni sulla popolazione, esiste sempre un rischio intrinseco di commettere errori.
+
+\begin{center}
+\textbf{Tabella delle Decisioni e degli Errori}
+\medskip
+{\renewcommand{\arraystretch}{1.5} % Aumenta spaziatura verticale righe
+\begin{tabular}{cc|c|c|}
+    \multicolumn{2}{c}{} & \multicolumn{2}{c}{\textbf{Decisione Basata sul Test Statistico}} \\
+    \multicolumn{2}{c}{} & \multicolumn{1}{c}{Rifiuto $\Hnull$} & \multicolumn{1}{c}{Accetto $\Hnull$} \\
+    \cline{3-4}
+    \multirow{2}{*}{\rotatebox[origin=c]{90}{\textbf{Realtà nella Popolazione}}}
+    & \textbf{$\Hnull$ è Vera} & \cellcolor{red!15} Errore di I Tipo ($\alphaerr$) & \cellcolor{green!15} Decisione Corretta \\
+    & & \small{(Rifiuto $\Hnull$ vera)} & \small{(Probabilità = $1-\alphaerr$)} \\
+    & & \small{P = $\alphaerr$} & \small{\textit{Livello di Protezione}} \\
+    \cline{3-4}
+    & \textbf{$\Hnull$ è Falsa} & \cellcolor{green!15} Decisione Corretta & \cellcolor{red!15} Errore di II Tipo ($\betaerr$) \\
+    & & \small{(Rifiuto $\Hnull$ falsa)} & \small{(Accetto $\Hnull$ falsa)} \\
+     & & \small{Probabilità = $1-\betaerr$} & \small{P = $\betaerr$} \\
+    & & \small{\textbf{\textit{Potenza Statistica}}} & \\
+    \cline{3-4}
+\end{tabular}
+}
+\end{center}
+\medskip
+
+\begin{itemize}
+    \item \textbf{Errore di I Tipo ($\alphaerr$):} Rifiutare l'ipotesi nulla ($\Hnull$) quando essa è \textbf{vera} nella realtà. La probabilità di commetterlo è pari al livello di significatività ($\alphaerr$) scelto dal ricercatore (es. 0.05). È considerato l'errore più grave da controllare (atteggiamento conservatore).
+    \item \textbf{Errore di II Tipo ($\betaerr$):} Non rifiutare (accettare) l'ipotesi nulla ($\Hnull$) quando essa è \textbf{falsa} nella realtà (cioè, quando $\Halt$ è vera). Significa non rilevare un effetto che esiste realmente.
+    \item \textbf{Relazione $\alphaerr$-$\betaerr$:} A parità di altre condizioni (soprattutto $n$), esiste una relazione inversa:
+        \begin{itemize}
+            \item Se \textbf{diminuisco $\alphaerr$} (es. da 0.05 a 0.01, scelta più conservativa), rendo più difficile rifiutare $\Hnull$. Questo \textbf{aumenta} la probabilità di commettere un errore di II tipo ($\betaerr$) e \textbf{riduce} la potenza del test. La regione di rifiuto si restringe.
+            \item Se \textbf{aumento $\alphaerr$} (es. da 0.05 a 0.10), rendo più facile rifiutare $\Hnull$. Questo \textbf{diminuisce} $\betaerr$ e \textbf{aumenta} la potenza, ma a scapito di un maggior rischio di errore di I tipo.
+        \end{itemize}
+\end{itemize}
+
+\begin{reflectionbox}
+    \item Come si definisce l'errore di I tipo? (Vedi Q1)
+    \item Con quale simbolo greco è indicata la probabilità di commettere un errore di I tipo? (Vedi Q2)
+    \item Se un ricercatore rifiuta $\Hnull$ quando $\Hnull$ è effettivamente falsa, che tipo di decisione ha preso? (Vedi Q3)
+    \item Cosa rappresenta $\betaerr$? (Vedi Q4)
+    \item Se si sceglie un $\alphaerr$ molto piccolo (es. 0.001), cosa succede alla probabilità di commettere un errore di II tipo ($\betaerr$)? (Vedi Q24)
+    \item Se si sceglie un $\alphaerr$ molto piccolo (es. 0.01), cosa succede alla dimensione della regione di rifiuto di $\Hnull$? (Vedi Q29)
+     \item Se si sceglie un $\alphaerr$ molto piccolo (es. 0.001), cosa succede alla probabilità di commettere un errore di I tipo ($\alphaerr$)? (Vedi Q31)
+    \item Gli errori decisionali sono sempre possibili nel processo di verifica delle ipotesi? (Vedi Q30)
+\end{reflectionbox}
+
+\subsection*{2. La Dimensione dell'Effetto (Effect Size)}
+\begin{itemize}
+    \item \textbf{Problema:} Un risultato \textbf{statisticamente significativo} (p < $\alphaerr$) indica solo che l'effetto osservato nel campione è improbabile se $\Hnull$ fosse vera, ma \textbf{non dice quanto è grande} o importante l'effetto nella popolazione.
+    \item \textbf{Definizione:} La dimensione dell'effetto (effect size) è un indice \textbf{standardizzato} che misura la \textbf{grandezza} dell'effetto di una variabile indipendente, la forza dell'associazione tra variabili, o la differenza tra medie a livello di popolazione. Quantifica la `rilevanza pratica' o `clinica' dell'effetto, indipendentemente dalla numerosità campionaria.
+    \item \textbf{Misura Comune (d di Cohen): Usata per confrontare due medie.}
+        \begin{itemize}
+            \item Formula (concettuale): $\cohend = \frac{\text{Differenza tra le medie delle popolazioni}}{\text{Deviazione standard della popolazione}} = \frac{\mu_1 - \mu_0}{\popsd}$
+            \item \textbf{Stima} dai dati campionari (es. per t-test camp. indip.): $\text{stima di } \cohend = \frac{\samplemean_1 - \samplemean_2}{\sqrt{\Spool}}$ (si usa la radice della varianza combinata come stima di $\popsd$).
+            \item \textbf{Interpretazione (Convenzioni di Cohen):}
+                \begin{itemize}
+                    \item $d \approx 0.20$: Effetto \textbf{piccolo} (sovrapposizione tra le distribuzioni circa 85\%).
+                    \item $d \approx 0.50$: Effetto \textbf{medio} (sovrapposizione circa 67\%).
+                    \item $d \approx 0.80$: Effetto \textbf{grande} (sovrapposizione circa 53\%).
+                \end{itemize}
+            \item \textbf{Vantaggio:} Essendo standardizzato, permette di confrontare la grandezza degli effetti tra studi diversi, anche con scale di misura differenti. 
+        \end{itemize}
+\end{itemize}
+
+\begin{reflectionbox}
+    \item Cosa misura principalmente la dimensione dell'effetto? (Vedi Q5)
+    \item Quale tecnica è comunemente usata per calcolare la dimensione dell'effetto tra due medie? (Vedi Q6)
+    \item Qual è il limite principale nel considerare solo la differenza tra medie in punteggi grezzi come misura dell'effetto? (Vedi Q7)
+    \item Secondo Cohen, un valore di $d = 0.80$ indica un effetto di quale grandezza? (Vedi Q8)
+    \item Un risultato statisticamente significativo (p < $\alphaerr$) implica necessariamente un effetto sostanziale (grande dimensione dell'effetto)? (Vedi Q16)
+\end{reflectionbox}
+
+\subsection*{3. La Potenza Statistica}
+\begin{itemize}
+    \item \textbf{Definizione:} La potenza di un test statistico ($1-\betaerr$) è la \textbf{probabilità di rifiutare correttamente l'ipotesi nulla ($\Hnull$) quando essa è effettivamente falsa} nella popolazione. In altre parole, è la probabilità di \textbf{rilevare un effetto reale}, se esiste.
+    \item \textbf{Importanza:} Un test con bassa potenza rischia di commettere molti errori di II tipo ($\betaerr$), portando a concludere erroneamente che non c'è un effetto quando invece c'è (falso negativo).
+    \item \textbf{Fattori che influenzano la Potenza:}
+        \begin{enumerate}
+            \item \textbf{Livello di Significatività ($\alphaerr$):} Un $\alphaerr$ \textbf{più alto} (meno conservativo, es. 0.10) \textbf{aumenta} la potenza (ma aumenta anche il rischio di errore di I tipo).
+            \item \textbf{Ampiezza del Campione ($n$):} Un campione \textbf{più grande} \textbf{aumenta} la potenza (riduce l'errore standard, rende più facile rilevare effetti). È il fattore più controllabile dal ricercatore.
+            \item \textbf{Dimensione dell'Effetto ($\cohend$):} Un effetto \textbf{più grande} nella popolazione è più facile da rilevare, quindi \textbf{aumenta} la potenza.
+            \item (La potenza stessa, $1-\betaerr$, è influenzata dagli altri tre).
+        \end{enumerate}
+    \item \textbf{Valore Convenzionale Desiderato:} Spesso si punta a una potenza di almeno \textbf{0.80} (cioè, si accetta una probabilità $\betaerr = 0.20$ di errore di II tipo).
+\end{itemize}
+
+\begin{reflectionbox}
+    \item Quale fattore \textbf{non} incide particolarmente sulla potenza, secondo le opzioni del test? (Vedi Q9 - Attenzione: la tipologia di variabili *influenza* la scelta del test e indirettamente la potenza, ma $\alphaerr$, n, d sono i fattori diretti principali).
+    \item La potenza statistica aumenta o diminuisce all'aumentare della dimensione dell'effetto? (Vedi Q10)
+    \item Il complemento di beta ($1-\betaerr$) a cosa corrisponde? (Vedi Q15)
+    \item All'aumentare della numerosità del campione ($n$), cosa succede alla potenza statistica? (Vedi Q28)
+\end{reflectionbox}
+
+\subsection*{4. L'Analisi della Potenza (Power Analysis)}
+Utilizzo pratico dei concetti di potenza.
+\begin{itemize}
+    \item \textbf{Analisi a Posteriori:} \textbf{Dopo} aver condotto uno studio, si calcola la potenza ottenuta, dati $\alphaerr$, $n$, e la stima di $d$ ottenuta dai dati. Serve a interpretare risultati non significativi (potrebbero essere dovuti a bassa potenza?).
+    \item \textbf{Analisi a Priori:} \textbf{Prima} di condurre uno studio, si stabilisce la potenza desiderata (es. 0.80), si sceglie $\alphaerr$ (es. 0.05), e si stima (o si ipotizza) la dimensione dell'effetto $d$ che ci si aspetta di trovare. L'analisi permette di calcolare la \textbf{numerosità campionaria ($n$) necessaria} per raggiungere quella potenza. Fondamentale per pianificare ricerche efficienti.
+    \item \textbf{Strumenti:} Si usano tabelle specifiche o software statistici (es. G*Power).
+\end{itemize}
+
+\begin{reflectionbox}
+    \item L'analisi della potenza `a priori' è utile principalmente per determinare...? (Vedi Q11)
+    \item Per calcolare la potenza `a posteriori', quali informazioni sono necessarie? (Vedi Q17)
+\end{reflectionbox}
+
+\clearpage % Separa le due parti del modulo
+
+\section*{Parte 2: La Verifica delle Ipotesi sulle Medie di Popolazioni (t-test Campioni Indipendenti)}
+
+\subsection*{5. Introduzione al test t per campioni indipendenti}
+\begin{itemize}
+    \item \textbf{Scopo:} Confrontare le medie di una variabile dipendente \textbf{quantitativa} tra \textbf{due gruppi indipendenti}. I gruppi sono definiti dai due livelli di una variabile indipendente \textbf{qualitativa} (nominale o ordinale).
+    \item \textbf{Obiettivo Inferenziale:} Stabilire se la differenza osservata tra le medie dei due campioni ($\samplemean_1$ vs $\samplemean_2$) è statisticamente significativa, cioè abbastanza grande da poter concludere che proviene da popolazioni con medie diverse ($\popmean_1 \neq \popmean_2$), oppure se è probabilmente dovuta al caso (errore di campionamento, $\popmean_1 = \popmean_2$).
+    \item \textbf{Esempi:} Confrontare l'efficacia di un trattamento vs placebo sul livello d'ansia; confrontare la velocità di lettura tra maschi e femmine.
+    \item \textbf{Indipendenza:} Cruciale che i soggetti di un gruppo siano diversi e non correlati a quelli dell'altro gruppo.
+\end{itemize}
+
+\begin{reflectionbox}
+    \item A cosa serve il test t per campioni indipendenti? (Vedi Q12)
+    \item In un test t per campioni indipendenti, la variabile indipendente (che definisce i gruppi) che caratteristiche deve avere? (Vedi Q14)
+    \item In un test t per campioni indipendenti, la variabile dipendente (quella misurata e confrontata) che caratteristiche deve avere? (Vedi Q18)
+    \item Questo test è adatto per quale tipo di disegno di ricerca (between o within)? (Vedi Q20)
+\end{reflectionbox}
+
+\subsection*{6. La Distribuzione Campionaria delle Differenze tra le Medie}
+\begin{itemize}
+    \item \textbf{Logica:} Poiché testiamo la differenza tra due medie campionarie ($\samplemean_1 - \samplemean_2$), la distribuzione di riferimento non è quella delle singole medie, ma quella di \textbf{tutte le possibili differenze} tra medie campionarie estraibili dalle due popolazioni.
+    \item \textbf{Media (sotto $\Hnull$):} Se $\Hnull$ è vera ($\popmean_1 = \popmean_2$), la media di questa distribuzione di differenze è \textbf{zero}.
+    \item \textbf{Deviazione Standard (Errore Standard della Differenza, $\SEdiff$):} Misura la variabilità "tipica" delle differenze tra medie campionarie. Serve al denominatore del test t.
+        \begin{itemize}
+            \item \textbf{Assunto Chiave (Omoschedasticità):} Per calcolarlo correttamente, si assume che le varianze delle due popolazioni siano uguali ($\popvar_1 = \popvar_2$).
+            \item \textbf{Stima della Varianza Combinata ($\Spool$):} Poiché $\popvar_1$ e $\popvar_2$ non sono note, si calcola una stima "media ponderata" basata sulle varianze dei due campioni ($\samplevar_1, \samplevar_2$) e le loro numerosità ($N_1, N_2$):
+              $$ \Spool = \frac{(N_1-1)\samplevar_1 + (N_2-1)\samplevar_2}{N_1+N_2-2} $$
+            \item \textbf{Formula dell'Errore Standard Stimato:}
+              $$ \SEdiff = \sqrt{\Spool \left( \frac{1}{N_1} + \frac{1}{N_2} \right)} $$
+            \item L'errore standard diminuisce all'aumentare delle numerosità campionarie $N_1$ e $N_2$.
+        \end{itemize}
+\end{itemize}
+
+\begin{reflectionbox}
+    \item Qual è la distribuzione campionaria di riferimento nel confronto tra due medie di campioni indipendenti? (Vedi Q13)
+\end{reflectionbox}
+
+\subsection*{7. La Verifica delle Ipotesi con un test t per campioni indipendenti}
+
+Ecco un diagramma di flusso semplificato del processo:
+
+\begin{center}
+\begin{tikzpicture}[node distance=1.2cm, auto, >=latex,
+    block/.style={rectangle, draw, fill=blue!10, text centered, rounded corners, minimum height=2.5em, text width=15em}, % Adjusted width
+    decision/.style={diamond, draw, fill=green!10, text centered, aspect=2, inner sep=1pt, text width=9em}, % Adjusted aspect and width
+    line/.style={draw, -latex'},
+    cloud/.style={ellipse, draw, fill=red!10, text centered, minimum height=2.5em, text width=10em}] % Adjusted width
+
+    % Combine initial steps
+    \node [block] (start_calc) {1. Definisci $\Hnull, \Halt$, scegli $\alphaerr$. \\ Calcola medie e varianze campionarie.};
+    \node [block, below=of start_calc] (calc_t) {2. Calcola la varianza combinata ($\Spool$), l'errore standard della differenza ($\SEdiff$), e il valore $t_{\text{test}}$.};
+    \node [block, below=of calc_t] (find_tcrit) {3. Calcola i gradi di libertà ($\df$). \\ Trova $t_{\text{critico}}$ (da tavola t con $\alphaerr, \df$)};
+
+    % Decision and outcomes
+    \node [decision, below=1.5cm of find_tcrit] (compare) {4. $|t_{\text{test}}| > |t_{\text{critico}}|$ ?};
+    \node [cloud, below left=1cm and 0.5cm of compare] (reject) {5a. Rifiuta $\Hnull$ \\ (Significativo)}; % Positioned closer
+    \node [cloud, below right=1cm and 0.5cm of compare] (accept) {5b. Non Rifiutare $\Hnull$ \\ (Non Significativo)}; % Positioned closer
+
+    % Optional follow-up steps
+    \node [block, below=0.8cm of reject, text width=10em] (effect1) {6a. Calcola Effect Size (d)}; % Adjusted width
+    \node [block, below=0.8cm of accept, text width=10em] (effect2) {6b. Valuta Potenza}; % Adjusted width
+
+    % Arrows
+    \path [line] (start_calc) -- (calc_t);
+    \path [line] (calc_t) -- (find_tcrit);
+    \path [line] (find_tcrit) -- (compare);
+    \path [line] (compare) -- node[pos=0.4, left] {Sì} (reject);
+    \path [line] (compare) -- node[pos=0.4, right] {No} (accept);
+    \path [line, dashed] (reject) -- (effect1);
+    \path [line, dashed] (accept) -- (effect2);
+
+\end{tikzpicture}
+\end{center}
+
+\begin{reflectionbox}
+    \item In un test t per campioni indipendenti, cosa predice l'ipotesi nulla ($\Hnull$) riguardo alla differenza tra le medie delle popolazioni? (Vedi Q27)
+    \item Per identificare il valore critico nella distribuzione t, quali informazioni sono necessarie? (Vedi Q26)
+    \item Se il valore della statistica t calcolata è maggiore (in valore assoluto) del valore t critico, quale decisione si prende? (Vedi Q23)
+\end{reflectionbox}
+
+\subsection*{8. Gli Assunti del Test t per Campioni Indipendenti}
+Affinché i risultati del test t siano validi, devono essere rispettati alcuni presupposti:
+\begin{enumerate}
+    \item \textbf{Indipendenza delle Osservazioni:} Le osservazioni all'interno di ciascun gruppo e tra i gruppi devono essere indipendenti. Fondamentale e legata al disegno di ricerca.
+    \item \textbf{Normalità:} La variabile dipendente dovrebbe essere distribuita normalmente all'interno di \textbf{entrambe} le popolazioni da cui provengono i campioni. Il test t è considerato \textbf{robusto} a violazioni moderate di questo assunto, specialmente se i campioni sono sufficientemente grandi ($N_1, N_2 \ge 30$).
+    \item \textbf{Omoschedasticità (Omogeneità delle Varianze):} Le varianze della variabile dipendente nelle due popolazioni devono essere uguali ($\popvar_1 = \popvar_2$).
+        \begin{itemize}
+            \item Si può verificare usando test specifici come il \textbf{Test F di Fisher} (o il semplice rapporto F = varianza maggiore / varianza minore, confrontato con F critico).
+            \item Se $F_{\text{test}} < F_{\text{critico}}$, l'assunto è considerato rispettato.
+            \item Se l'assunto è violato (specialmente con numerosità campionarie diverse), i risultati del test t standard possono essere inaffidabili. Esistono versioni modificate del test t (es. Welch) per questi casi, oppure si può ricorrere a test non parametrici (Modulo 6).
+        \end{itemize}
+\end{enumerate}
+
+\begin{reflectionbox}
+    \item Quale tra questi è un assunto fondamentale del test t per campioni indipendenti? (Vedi Q19)
+    \item Quale test si utilizza per valutare l'assunto dell'omoschedasticità (omogeneità delle varianze)? (Vedi Q22)
+    \item Quali sono i tre assunti principali del test t per campioni indipendenti? (Vedi Q25)
+\end{reflectionbox}
+
+\subsection*{9. Dimensione dell'Effetto e Potenza nel Test t per Campioni Indipendenti}
+\begin{itemize}
+    \item \textbf{Dimensione dell'Effetto (stima di d di Cohen):} Si calcola usando le medie campionarie e la \textbf{deviazione standard combinata} (radice quadrata di $\Spool$):
+      $$ \text{stima di } \cohend = \frac{|\samplemean_1 - \samplemean_2|}{\sqrt{\Spool}} $$
+      Si interpreta usando le convenzioni di Cohen (0.20 piccolo, 0.50 medio, 0.80 grande).
+    \item \textbf{Analisi della Potenza:} Valgono le stesse regole generali. Si può fare a posteriori per interpretare un risultato o a priori per determinare la numerosità campionaria necessaria ($N_1, N_2$), usando software come G*Power o tabelle specifiche, inserendo $\alphaerr$, $d$ (stimato o ipotizzato) e la potenza desiderata.
+\end{itemize}
+
+\begin{reflectionbox}
+    \item È possibile applicare il calcolo della dimensione dell'effetto (es. d di Cohen) al test t per campioni indipendenti? (Vedi Q21 - Attenzione: la domanda del test sembra errata, le dispense mostrano che è possibile e raccomandato).
+\end{reflectionbox}
+
+
+
+\end{document}
+% ----- FINE DOCUMENTO -----
