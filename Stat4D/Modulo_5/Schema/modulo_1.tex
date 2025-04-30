@@ -1,0 +1,240 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb} % Per spunte e simboli
+\usepackage{graphicx} % Per includere immagini (se servisse)
+\usepackage{geometry}
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm} % Margini leggermente più ampi
+\usepackage{parskip}
+\usepackage{enumitem}
+\usepackage{tikz} % Per eventuali diagrammi futuri semplici
+\usepackage{framed} % Per i box delle domande
+\usepackage{ FiraSans } % Un font più moderno e leggibile
+\usepackage{xcolor} % Per colori
+
+% ----- Definizioni Colori e Stili -----
+\definecolor{boxbgcolor}{rgb}{0.95, 0.95, 1.0} % Azzurrino chiaro per i box
+\definecolor{boxtitlecolor}{rgb}{0.1, 0.1, 0.6} % Blu scuro per titoli box
+\newenvironment{reflectionbox}{%
+    \begin{framed}\par\medskip\noindent
+    \textbf{\color{boxtitlecolor}Domande per Riflettere (Basate sul Test)} \par
+    \begin{itemize}[leftmargin=*, label=$\blacktriangleright$]
+}{%
+    \end{itemize}\par\medskip
+    \end{framed}
+}
+
+\setlist{nosep}
+\renewcommand{\labelitemi}{$\bullet$}
+
+% ----- INIZIO DOCUMENTO -----
+\begin{document}
+
+\begin{center}
+    \Large\textbf{Schemino Modulo 1: Introduzione alla Ricerca e all'Analisi Dati} \\
+    \vspace{0.5cm}
+    \large\textit{(Concetti chiave e spunti dal test di autovalutazione)}
+\end{center}
+
+\section*{1. Introduzione alla Ricerca in Psicologia}
+\begin{itemize}
+    \item \textbf{Oggetto:} Studio del \textbf{comportamento} umano (come varia, cause, previsione).
+    \item \textbf{Tipi Principali:}
+        \begin{itemize}
+            \item \textbf{Ricerca di Base (Pura):} Aumentare la \textbf{conoscenza teorica}. (Es: Come funziona la memoria?)
+            \item \textbf{Ricerca Applicata:} Trovare \textbf{soluzioni pratiche} a problemi. (Es: Quale terapia è più efficace?)
+        \end{itemize}
+    \item \textbf{Metodologia:} Insieme delle regole e procedure usate.
+    \item \textbf{Carattere Scientifico:} Basato su \textbf{dati empirici} (osservabili, misurabili) e \textbf{metodo sperimentale} (controllo ipotesi).
+\end{itemize}
+
+\begin{reflectionbox}
+    \item Qual è l'obiettivo principale della \textbf{ricerca di base}? (Vedi Q16)
+\end{reflectionbox}
+
+\section*{2. Il Processo di Ricerca}
+Percorso \textbf{circolare} standard (vedi Fig 1.1, pag 5):
+\begin{enumerate}
+    \item \textbf{Identificazione del problema:} Trovare la domanda di ricerca, basata su teorie o lacune esistenti. (\textbf{Prima fase!})
+    \item \textbf{Pianificazione del disegno:} Come condurre lo studio (chi, cosa, come misurare).
+    \item \textbf{Osservazioni/Raccolta Dati:} Mettere in atto il piano e raccogliere i dati.
+    \item \textbf{Analisi dei Dati:} Usare la statistica per elaborare i dati.
+    \item \textbf{Interpretazione dei Dati:} Dare un significato ai risultati (supportano l'ipotesi?).
+    \item \textbf{Comunicazione dei Risultati:} Condividere le scoperte (articoli, report).
+\end{enumerate}
+
+\begin{reflectionbox}
+    \item Qual è la \textbf{primissima fase} del processo di ricerca? (Vedi Q1)
+    \item Come può essere descritta la relazione tra le varie fasi (specialmente tra campione e popolazione)? (Vedi Q19)
+\end{reflectionbox}
+
+\section*{3. Popolazione, Campione, Parametri, Indici}
+\begin{itemize}
+    \item \textbf{Popolazione (N):} \textbf{TUTTO} l'insieme di individui/elementi che interessano al ricercatore. (Es: Tutti gli studenti UniCusano). Spesso troppo grande da studiare interamente (\textit{Indagine Totale}).
+    \item \textbf{Campione (n):} Un \textbf{sottoinsieme selezionato} dalla popolazione, che viene effettivamente studiato (\textit{Indagine Campionaria}). (Es: 100 studenti UniCusano).
+    \item \textbf{Rappresentatività:} Il campione deve "assomigliare" alla popolazione per poter generalizzare i risultati. Si ottiene meglio con estrazione \textbf{casuale}.
+    \item \textbf{Parametro:} Valore numerico che descrive una caratteristica della \textbf{Popolazione} (Es: Età media di \textit{tutti} gli studenti UniCusano). \textit{Obiettivo della ricerca, spesso sconosciuto.}
+    \item \textbf{Indice Statistico (o Statistica):} Valore numerico calcolato sul \textbf{Campione} (Es: Età media dei \textit{100 studenti} studiati). \textit{Si calcola per stimare il parametro.}
+    \item \textbf{Errore di Campionamento:} Differenza naturale e inevitabile tra indice statistico (campione) e parametro (popolazione). \textbf{Non è uno sbaglio!}, ma variazione casuale dovuta al fatto di studiare solo una parte. Si verifica nelle \textit{indagini campionarie}.
+    \item \textbf{Modalità di Estrazione Campione:}
+        \begin{itemize}
+            \item \textit{Casuale Semplice:} Ogni individuo ha la stessa probabilità di essere scelto.
+            \item \textit{Casuale Stratificata:} Popolazione divisa in sottogruppi (strati, es. per età), poi estrazione casuale da ogni strato.
+        \end{itemize}
+\end{itemize}
+
+\begin{reflectionbox}
+    \item Un indice statistico (es. la media del campione) a cosa si riferisce? (Vedi Q3)
+    \item Qual è la relazione corretta tra parametri e indici statistici? (Vedi Q4)
+    \item Per essere rappresentativo, come dovrebbe essere idealmente scelto un campione? (Vedi Q5)
+    \item L'errore di campionamento è tipico di quale tipo di indagine? (Vedi Q6)
+    \item Le indagini che studiano l'intera popolazione come si chiamano? (Vedi Q11)
+\end{reflectionbox}
+
+\section*{4. Statistica Descrittiva e Inferenziale}
+\begin{itemize}
+    \item \textbf{Statistica Descrittiva:}
+        \begin{itemize}
+            \item \textbf{Scopo:} \textbf{Riassumere, organizzare, descrivere} i dati raccolti (del campione o popolazione). Rendere i dati comprensibili.
+            \item \textbf{Strumenti:} Tabelle, \textbf{grafici}, indici numerici (media, mediana, moda, deviazione standard, ecc.).
+        \end{itemize}
+    \item \textbf{Statistica Inferenziale:}
+        \begin{itemize}
+            \item \textbf{Scopo:} Usare i dati del campione per fare \textbf{inferenze} (deduzioni, generalizzazioni) sulla \textbf{popolazione}.
+            \item \textbf{Strumenti:} Stima dei parametri, verifica delle ipotesi.
+            \item \textbf{Logica:} Aiuta a capire se le differenze/relazioni osservate nel campione sono "reali" (generalizzabili alla popolazione) o dovute solo all'errore di campionamento (caso).
+        \end{itemize}
+\end{itemize}
+
+\begin{reflectionbox}
+    \item Quale strumento \textbf{non} è tipicamente usato per fare inferenze sulla popolazione? (Vedi Q20)
+    \item Qual è l'utilità principale della statistica \textbf{inferenziale}? (Vedi Q29)
+\end{reflectionbox}
+
+\section*{5. Variabili e Costrutti}
+\begin{itemize}
+    \item \textbf{Variabile:} Caratteristica o condizione che \textbf{varia} (assume valori diversi) tra individui o situazioni. (Es: Età, altezza, voto, sesso, tipo di trattamento).
+    \item \textbf{Costrutto:} Concetto \textbf{teorico/astratto}, non direttamente osservabile (Es: Intelligenza, ansia, motivazione).
+    \item \textbf{Operazionalizzazione:} Processo fondamentale per definire un costrutto in termini di \textbf{comportamenti/indicatori osservabili e misurabili} (variabili). Trasforma l'astratto in concreto. (Es: Operazionalizzo l'"ansia" misurando il battito cardiaco).
+\end{itemize}
+
+\begin{reflectionbox}
+    \item L'"età anagrafica" è una variabile o un costrutto? (Vedi Q9)
+    \item Per rendere misurabile un costrutto (es. "felicità"), a cosa devo riferirmi? (Vedi Q24)
+\end{reflectionbox}
+
+\section*{6. Misurazione e Scale di Misura}
+\begin{itemize}
+    \item \textbf{Misurazione:} Assegnare valori (numeri o categorie) a eventi/individui secondo regole precise.
+    \item \textbf{Scale di Misura} (determinano le analisi statistiche possibili):
+        \begin{itemize}
+            \item \textbf{Nominale (Qualitativa):} Categorie con nomi diversi, solo classificazione (\textit{uguaglianza/differenza}). No ordine. (Es: Sesso, Colore occhi, Nazionalità).
+            \item \textbf{Ordinale (Qualitativa):} Categorie ordinate (\textit{uguaglianza/differenza + ordine}). Distanza tra categorie non definita/costante. (Es: Titolo di studio, Classifica, Livello di soddisfazione "poco/medio/alto").
+            \item \textbf{A Intervalli (Quantitativa):} Valori numerici ordinati con \textbf{intervalli uguali}. Si possono fare somme/sottrazioni di differenze. Lo \textbf{zero è arbitrario} (non indica assenza). (Es: Temperatura °C, QI).
+            \item \textbf{A Rapporti (Quantitativa):} Come intervalli, ma con uno \textbf{zero assoluto} (indica assenza totale). Permette tutte le operazioni, inclusi i \textbf{rapporti} (doppio, metà). (Es: Altezza, Peso, Età, Tempo di reazione, Numero di errori).
+        \end{itemize}
+\end{itemize}
+
+\begin{reflectionbox}
+    \item Quale scala ha solo le proprietà di "differenza" e "ordine"? (Vedi Q10)
+    \item La variabile "colore degli occhi" su che tipo di scala si misura? (Vedi Q23)
+    \item In quale scala lo zero significa veramente "quantità nulla"? (Vedi Q25)
+    \item La scala a intervalli permette di dire che un valore è "il doppio" di un altro? (Vedi Q30)
+\end{reflectionbox}
+
+\section*{7. Classificazione delle Variabili}
+Oltre alla scala di misura, le variabili si classificano per:
+\begin{itemize}
+    \item \textbf{Precisione/Natura:}
+        \begin{itemize}
+            \item \textbf{Discrete:} Valori separati, "a salti" (spesso numeri interi, ma anche categorie). Non ci sono valori intermedi possibili. (Es: Numero figli, Numero esami superati, Sesso, Professione). Possono essere sia Qualitative (nominale, ordinale) che Quantitative (intervalli, rapporti).
+            \item \textbf{Continue:} Possono assumere qualsiasi valore in un intervallo (anche con decimali), dipende solo dalla precisione dello strumento. (Es: Altezza, Peso, Tempo). Sono Quantitative (intervalli, rapporti).
+        \end{itemize}
+    \item \textbf{Ruolo nella Ricerca:}
+        \begin{itemize}
+            \item \textbf{Variabile Indipendente (VI):} Quella che il ricercatore \textbf{manipola} (negli esperimenti) o usa per definire i gruppi da confrontare. È la presunta \textbf{causa}. Può essere sia qualitativa (es. tipo di terapia) che quantitativa (es. dose di farmaco).
+            \item \textbf{Variabile Dipendente (VD):} Quella che viene \textbf{osservata e misurata} per vedere l'effetto della VI. È il presunto \textbf{effetto}. Solitamente quantitativa.
+            \item \textbf{Variabili Confuse/Confondenti Operazionali:} Non previste, ma \textbf{intrinsecamente legate} alla VI o alla sua operazionalizzazione (covariano con essa). Creano ambiguità nell'interpretazione.
+            \item \textbf{Variabili di Disturbo/Confondenti Procedurali:} Estranee alla VI, ma \textbf{covariano} con essa per errori metodologici (artefatti), influenzando la VD. Devono essere controllate.
+        \end{itemize}
+\end{itemize}
+
+\begin{reflectionbox}
+    \item La Variabile Indipendente può essere solo quantitativa? (Vedi Q2)
+    \item Le variabili limitate a numeri interi (come "numero di gatti posseduti") come si chiamano? (Vedi Q13)
+    \item Le variabili discrete possono essere sia qualitative che quantitative? (Vedi Q26)
+    \item Le Variabili Indipendenti sono quelle misurate o quelle manipolate? (Vedi Q14)
+    \item In uno studio sull'effetto di una nuova dieta (VI) sul peso (VD), l'attività fisica non controllata che differenza tra i gruppi potrebbe essere una variabile...? (Vedi Q15 - Attenzione alla definizione esatta del testo!)
+    \item Se studio l'effetto di un farmaco (VI) sulla pressione sanguigna (VD), cos'è la pressione sanguigna? E il farmaco? (Ispirato a Q21)
+\end{reflectionbox}
+
+\section*{8. I Disegni di Ricerca in Psicologia}
+Classificati in base al \textbf{grado di controllo} del ricercatore:
+\begin{itemize}
+    \item \textbf{Metodi Descrittivi:} Descrivono le variabili così come sono. Controllo minimo/nullo. (Es: Sondaggi, osservazione naturalistica).
+    \item \textbf{Metodo Correlazionale:} Misura due (o più) variabili per vedere se esiste una \textbf{relazione} (covariazione) tra loro. \textbf{Non stabilisce causa-effetto}. (Es: C'è relazione tra ore di studio e voti?).
+    \item \textbf{Metodo Sperimentale:} Obiettivo: stabilire relazioni \textbf{causa-effetto}. Massimo controllo. Caratteristiche chiave:
+        \begin{itemize}
+            \item \textbf{Manipolazione} della VI (il ricercatore crea i diversi livelli/condizioni).
+            \item \textbf{Controllo} delle variabili estranee (disturbo, concorrenti, ambientali) per evitare confusioni. Tecniche: \textbf{assegnazione casuale} dei partecipanti alle condizioni, mantenere costanti le condizioni ambientali.
+        \end{itemize}
+    \item \textbf{Metodo Quasi-Sperimentale:} Simile all'esperimento (confronto tra gruppi), ma il ricercatore \textbf{non può manipolare} pienamente la VI (es. è una caratteristica pre-esistente come sesso, età) o non può fare l'assegnazione casuale. Controllo minore, più difficile stabilire causa-effetto certa.
+    \item \textbf{Disegni Specifici:}
+        \begin{itemize}
+            \item \textbf{Between-subjects (o Tra Gruppi):} Gruppi diversi di partecipanti sono assegnati a condizioni diverse.
+            \item \textbf{Within-subjects (o Entro Gruppi / Misure Ripetute):} Gli stessi partecipanti sono sottoposti a tutte le condizioni (o misurati più volte, es. prima e dopo un trattamento).
+        \end{itemize}
+    \item \textbf{Condizione di Controllo:} Gruppo/condizione che non riceve il trattamento sperimentale (o riceve un placebo), serve come baseline per il confronto.
+\end{itemize}
+
+\begin{reflectionbox}
+    \item Quale disegno di ricerca offre il maggior livello di controllo? (Vedi Q8)
+    \item Quali sono le due caratteristiche fondamentali di un vero esperimento? (Vedi Q17)
+    \item Quale tecnica aiuta a controllare le differenze individuali tra partecipanti (variabili concorrenti) in un esperimento? (Vedi Q18)
+    \item Se misuro l'ansia e la depressione in un gruppo per vedere se sono associate, che studio sto facendo? (Vedi Q27)
+    \item Se testo la memoria degli stessi anziani prima e dopo un training cognitivo, che disegno sto usando (between o within)? (Vedi Q22)
+\end{reflectionbox}
+
+\section*{9. L'Errore di Misurazione}
+Ogni misura contiene una parte "vera" e una parte di errore: $X_i = V_i + e_i$. L'errore \textbf{non è uno sbaglio}, ma imprecisione intrinseca.
+\begin{itemize}
+    \item \textbf{Errore Sistematico:} Costante, influenza tutte le misure nello \textbf{stesso modo} (es. bilancia starata che aggiunge sempre 0.5 kg). Legato a difetti dello strumento/metodo. Riducibile identificando la causa.
+    \item \textbf{Errore Casuale (o Accidentale):} Imprevedibile, varia da misura a misura (a volte in eccesso, a volte in difetto). Dovuto a fattori incontrollabili (ambientali, fluttuazioni attenzione). Non eliminabile totalmente, ma tende a compensarsi su molte misure. La statistica inferenziale ne tiene conto.
+\end{itemize}
+
+\begin{reflectionbox}
+    \item Quale affermazione sugli errori di misura è corretta riguardo alla loro eliminazione? (Vedi Q28)
+\end{reflectionbox}
+
+\section*{10. La Presentazione della Ricerca}
+Comunicare i risultati è fondamentale per il progresso scientifico (replicabilità, confronto). Struttura tipica di un articolo scientifico:
+\begin{itemize}
+    \item \textbf{Introduzione:} Background teorico, letteratura, ipotesi, obiettivi.
+    \item \textbf{Materiali e Metodi:} Descrizione \textbf{dettagliatissima} di partecipanti, strumenti, procedure, disegno, analisi statistiche. \textbf{Cruciale per la replicabilità!}
+    \item \textbf{Risultati:} Presentazione oggettiva dei dati e delle analisi (indici descrittivi, test inferenziali, tabelle, grafici).
+    \item \textbf{Discussione:} Interpretazione dei risultati alla luce delle ipotesi e della letteratura, conclusioni, limiti, prospettive future.
+\end{itemize}
+
+\begin{reflectionbox}
+    \item Quale sezione dell'articolo deve essere descritta nel minimo dettaglio per permettere ad altri di rifare lo studio? (Vedi Q12)
+\end{reflectionbox}
+
+\section*{11. Cenni di Notazione Statistica}
+Simboli comuni:
+\begin{itemize}
+    \item \textbf{X, Y:} Indicano le variabili misurate.
+    \item \textbf{N:} Numero totale di soggetti/osservazioni nella \textbf{Popolazione}.
+    \item \textbf{n:} Numero totale di soggetti/osservazioni nel \textbf{Campione}.
+    \item \textbf{X\textsubscript{i} (o Y\textsubscript{i}):} Rappresenta il punteggio/valore dell'\textit{i}-esimo soggetto (individuo) sulla variabile X (o Y). L'indice 'i' varia da 1 a N (o n).
+\end{itemize}
+
+\begin{reflectionbox}
+    \item Con quale lettera si indica solitamente la numerosità (quanti soggetti) di un campione? (Vedi Q7)
+\end{reflectionbox}
+
+
+
+\end{document}
+% ----- FINE DOCUMENTO -----

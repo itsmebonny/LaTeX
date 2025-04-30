@@ -1,0 +1,225 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+\usepackage{parskip}
+\usepackage{enumitem}
+\usepackage{ FiraSans }
+\usepackage{graphicx} % Necessario per \newpage
+
+% ----- Impostazioni Liste -----
+\setlist[enumerate,1]{label=\arabic*)} % Numeri per domande principali
+\setlist[enumerate,2]{label=(\alph*), leftmargin=*} % Lettere per opzioni
+
+\begin{document}
+
+\begin{center}
+    \Large\textbf{Test di Autovalutazione Aggiuntivo - Modulo 2} \\
+    \vspace{0.2cm}
+    \large\textit{Tecniche di Ricerca e Analisi dei Dati} \\
+    \vspace{0.5cm}
+    \normalsize{Istruzioni: Scegli l'unica risposta corretta per ogni domanda. Le soluzioni sono disponibili nell'ultima pagina.}
+\end{center}
+\vspace{1cm}
+
+\begin{enumerate} % Inizio elenco domande principali
+    \item Considerando i seguenti punteggi: 10, 15, 12, 15, 18, 11. Qual è la Mediana?
+    \begin{enumerate} % Inizio opzioni domanda 1
+        \item 15
+        \item 13.5
+        \item 12
+        \item 14
+    \end{enumerate}
+
+    \item In una distribuzione fortemente asimmetrica negativa (con coda a sinistra), quale relazione è generalmente vera tra media, mediana e moda?
+    \begin{enumerate}
+        \item Media < Mediana < Moda
+        \item Moda < Mediana < Media
+        \item Media = Mediana = Moda
+        \item Mediana < Moda < Media
+    \end{enumerate}
+
+    \item La somma dei quadrati degli scarti dalla media ($\sum (X_i - \bar{X})^2$) è nota come:
+    \begin{enumerate}
+        \item Varianza
+        \item Deviazione Standard
+        \item Devianza (o Somma dei Quadrati)
+        \item Errore Standard
+    \end{enumerate}
+
+    \item Perché nella formula della varianza campionaria ($s^2$) si usa (n-1) al denominatore invece di n?
+    \begin{enumerate}
+        \item Per semplificare i calcoli.
+        \item Perché la varianza del campione è sempre maggiore di quella della popolazione.
+        \item Per ottenere una stima più accurata (non distorta) della varianza della popolazione.
+        \item Perché n-1 rappresenta i gradi di libertà della moda.
+    \end{enumerate}
+
+    \item Un punteggio Z di -1.00 indica che il punteggio grezzo originale si trova:
+    \begin{enumerate}
+        \item Esattamente sulla media della distribuzione.
+        \item Una deviazione standard sopra la media.
+        \item Una deviazione standard sotto la media.
+        \item A una distanza di 1 punto dalla media.
+    \end{enumerate}
+
+    \item Qual è il principale vantaggio della trasformazione dei punteggi grezzi in punteggi Z?
+    \begin{enumerate}
+        \item Rende tutti i punteggi positivi.
+        \item Permette di confrontare punteggi provenienti da scale o distribuzioni diverse.
+        \item Elimina gli outlier dalla distribuzione.
+        \item Aumenta la media della distribuzione.
+    \end{enumerate}
+
+    \item Secondo la teoria classica della probabilità, qual è la probabilità di estrarre una pallina rossa da un'urna contenente 3 palline rosse e 7 palline blu?
+    \begin{enumerate}
+        \item 0.7
+        \item 0.3
+        \item 3/7 (circa 0.43)
+        \item 7/10
+    \end{enumerate}
+
+    \item In una distribuzione normale standard (Z), qual è approssimativamente l'area (probabilità) compresa tra Z = 0 e Z = +2?
+    \begin{enumerate}
+        \item 68%
+        \item 95%
+        \item 47.5% (metà del 95% circa)
+        \item 34% (metà del 68% circa)
+    \end{enumerate}
+
+    \item Cosa afferma il Teorema del Limite Centrale riguardo alla forma della distribuzione campionaria della media?
+    \begin{enumerate}
+        \item È sempre identica alla forma della popolazione da cui sono estratti i campioni.
+        \item È sempre asimmetrica positiva.
+        \item Tende alla normalità all'aumentare della dimensione del campione (n>=30), indipendentemente dalla forma della popolazione.
+        \item Ha sempre media 0 e deviazione standard 1.
+    \end{enumerate}
+
+    \item L'Errore Standard ($\sigma_{\bar{X}}$) misura:
+    \begin{enumerate}
+        \item La variabilità dei singoli punteggi nella popolazione.
+        \item L'errore commesso nel calcolare la media del campione.
+        \item La variabilità media delle medie campionarie attorno alla media della popolazione.
+        \item La differenza tra la media del campione e la media della popolazione.
+    \end{enumerate}
+
+    \item Cosa succede all'Errore Standard ($\sigma_{\bar{X}} = \sigma / \sqrt{n}$) se la dimensione del campione (n) aumenta?
+    \begin{enumerate}
+        \item Aumenta.
+        \item Diminuisce.
+        \item Rimane invariato.
+        \item Diventa uguale alla deviazione standard della popolazione ($\sigma$).
+    \end{enumerate}
+
+    \item Nel processo di verifica delle ipotesi, l'ipotesi alternativa ($H_1$) solitamente afferma:
+    \begin{enumerate}
+        \item Che non c'è alcun effetto o differenza nella popolazione.
+        \item Che l'effetto osservato nel campione è dovuto al caso.
+        \item Che esiste un effetto o una differenza significativa nella popolazione.
+        \item Che la media del campione è uguale alla media della popolazione.
+    \end{enumerate}
+
+    \item Commettere un Errore di I Tipo significa:
+    \begin{enumerate}
+        \item Accettare $H_0$ quando è falsa.
+        \item Rifiutare $H_0$ quando è vera.
+        \item Accettare $H_1$ quando è falsa.
+        \item Rifiutare $H_1$ quando è vera.
+    \end{enumerate}
+
+    \item Il livello di significatività $\alpha$ rappresenta:
+    \begin{enumerate}
+        \item La probabilità di accettare $H_0$ quando è vera.
+        \item La probabilità di commettere un Errore di I Tipo (rifiutare $H_0$ vera).
+        \item La probabilità che $H_1$ sia vera.
+        \item Il valore della statistica test calcolata.
+    \end{enumerate}
+
+    \item Se, in un test di ipotesi, il valore della statistica test calcolata (es. Z = 2.50) è maggiore del valore critico (es. Z critico = 1.96) per $\alpha=0.05$:
+    \begin{enumerate}
+        \item Si accetta l'ipotesi nulla $H_0$.
+        \item Si rifiuta l'ipotesi nulla $H_0$.
+        \item Non si può prendere una decisione.
+        \item Si deve aumentare il livello di significatività $\alpha$.
+    \end{enumerate}
+
+    \item La distribuzione t di Student viene utilizzata al posto della distribuzione Z nella verifica di ipotesi sulla media quando:
+    \begin{enumerate}
+        \item La varianza della popolazione ($\sigma^2$) è nota e il campione è grande (n>=30).
+        \item La varianza della popolazione ($\sigma^2$) non è nota e/o il campione è piccolo (n<30).
+        \item La distribuzione della popolazione è asimmetrica.
+        \item Si vuole calcolare la moda invece della media.
+    \end{enumerate}
+
+    \item Rispetto alla distribuzione normale standard, la distribuzione t di Student (specialmente per bassi gradi di libertà):
+    \begin{enumerate}
+        \item È più appuntita al centro e ha code più leggere.
+        \item È identica.
+        \item È più appiattita al centro e ha code più pesanti (maggior variabilità).
+        \item È asimmetrica.
+    \end{enumerate}
+
+    \item Quanti gradi di libertà (gl) ha la distribuzione t utilizzata per un test t su un campione singolo di 25 soggetti?
+    \begin{enumerate}
+        \item 25
+        \item 24 (n-1)
+        \item 30
+        \item Non ha gradi di libertà.
+    \end{enumerate}
+
+    \item Se un ricercatore ottiene un risultato con p-value = 0.03 e aveva fissato $\alpha = 0.05$, cosa dovrebbe concludere?
+    \begin{enumerate}
+        \item Accettare $H_0$ perché p > $\alpha$.
+        \item Rifiutare $H_0$ perché p < $\alpha$.
+        \item Accettare $H_0$ perché p < $\alpha$.
+        \item Rifiutare $H_0$ perché p > $\alpha$.
+    \end{enumerate}
+
+    \item Quale indice di tendenza centrale è più appropriato usare se la distribuzione dei dati è fortemente asimmetrica e si vuole un indice non influenzato dagli outlier?
+    \begin{enumerate}
+        \item Media
+        \item Moda
+        \item Mediana
+        \item Deviazione Standard
+    \end{enumerate}
+
+\end{enumerate} % Fine elenco domande principali
+
+\newpage % Inizia una nuova pagina per le soluzioni
+
+\begin{center}
+    \Large\textbf{Griglia delle Soluzioni} \\
+    \vspace{0.5cm}
+    \normalsize{(Test di Autovalutazione Aggiuntivo - Modulo 2)}
+\end{center}
+\vspace{1cm}
+
+\begin{enumerate}[leftmargin=*, label=\arabic*.]
+    \item (b) 13.5 (Dati ordinati: 10, 11, \textbf{12}, \textbf{15}, 15, 18. N=6 è pari. Mediana = (12+15)/2 = 27/2 = 13.5).
+    \item (a) Media < Mediana < Moda (La media è "trascinata" verso la coda lunga a sinistra).
+    \item (c) Devianza (o Somma dei Quadrati).
+    \item (c) Per ottenere una stima più accurata (non distorta) della varianza della popolazione (la varianza campionaria tende a sottostimare quella della popolazione).
+    \item (c) Una deviazione standard sotto la media. (Segno negativo = sotto la media; Valore 1.00 = 1 DS).
+    \item (b) Permette di confrontare punteggi provenienti da scale o distribuzioni diverse.
+    \item (b) 0.3 (Casi favorevoli = 3 rosse; Casi possibili = 3 rosse + 7 blu = 10 totali. P = 3/10 = 0.3).
+    \item (c) 47.5% (L'area tra -2 e +2 è circa 95%. Essendo simmetrica, l'area tra 0 e +2 è metà di 95%, cioè circa 47.5%).
+    \item (c) Tende alla normalità all'aumentare della dimensione del campione (n>=30), indipendentemente dalla forma della popolazione.
+    \item (c) La variabilità media delle medie campionarie attorno alla media della popolazione.
+    \item (b) Diminuisce (Essendo n al denominatore sotto radice, se n aumenta, il denominatore aumenta e la frazione diminuisce).
+    \item (c) Che esiste un effetto o una differenza significativa nella popolazione.
+    \item (b) Rifiutare $H_0$ quando è vera. (È l'errore del "falso allarme").
+    \item (b) La probabilità di commettere un Errore di I Tipo.
+    \item (b) Si rifiuta l'ipotesi nulla $H_0$. (Il valore calcolato cade nella regione di rifiuto, essendo più estremo del valore critico).
+    \item (b) La varianza della popolazione ($\sigma^2$) non è nota e/o il campione è piccolo (n<30). (Se $\sigma^2$ non è nota ma n>=30 si può ancora usare Z approssimato).
+    \item (c) È più appiattita al centro e ha code più pesanti (maggior variabilità).
+    \item (b) 24 (gl = n - 1 = 25 - 1 = 24).
+    \item (b) Rifiutare $H_0$ perché p < $\alpha$ (0.03 è minore di 0.05).
+    \item (c) Mediana (È l'indice di tendenza centrale meno sensibile ai valori estremi).
+\end{enumerate}
+
+\end{document}
+% ----- FINE DOCUMENTO -----
