@@ -25,7 +25,7 @@
 \newenvironment{reflectionbox}{%
     \medskip % Spazio prima del box
     \begin{framed}\par\noindent
-    \textbf{\color{boxtitlecolor}Domande per Riflettere (Basate sul Test)} \par
+    \textbf{\color{boxtitlecolor}Domande} \par
     \begin{itemize}[leftmargin=*, label=$\blacktriangleright$]
 }{%
     \end{itemize}\par
@@ -86,7 +86,7 @@
 \end{itemize}
 
 \begin{reflectionbox}
-    \item Gli indici che misurano quanto i dati sono dispersi attorno al valore centrale appartengono a quale branca della statistica (descrittiva o inferenziale)? (Vedi Q2)
+    \item Gli indici che misurano quanto i dati sono dispersi attorno al valore centrale appartengono a quale branca della statistica (descrittiva o inferenziale)? (Vedere Domanda 2)
 \end{reflectionbox}
 
 \section*{2. Indici di Tendenza Centrale (Dove sta il centro?)}
@@ -211,72 +211,99 @@ La posizione di Media, Mediana e Moda dipende dalla forma della distribuzione de
 \clearpage % Forza inizio nuova pagina per non sovrapporre troppo
 
 \begin{reflectionbox}
-    \item Quale indice di tendenza centrale si può calcolare per \textbf{qualsiasi} tipo di scala di misura, inclusa quella nominale? (Vedi Q1)
-    \item Come si definisce la Mediana? (Vedi Q3)
-    \item Quale lettera greca si usa per la media della \textbf{popolazione}? (Vedi Q4)
-    \item Quale proprietà fondamentale ha la somma degli scarti dalla media? (Vedi Q6)
-    \item Quale indice è più influenzato da un valore molto anomalo (outlier) in una distribuzione? (Vedi Q7)
+    \item Quale indice di tendenza centrale si può calcolare per \textbf{qualsiasi} tipo di scala di misura, inclusa quella nominale? (Vedere Domanda 1)
+    \item Come si definisce la Mediana? (Vedere Domanda 3)
+    \item Quale lettera greca si usa per la media della \textbf{popolazione}? (Vedere Domanda 4)
+    \item Quale proprietà fondamentale ha la somma degli scarti dalla media? (Vedere Domanda 6)
+    \item Quale indice è più influenzato da un valore molto anomalo (outlier) in una distribuzione? (Vedere Domanda 7)
 \end{reflectionbox}
 
-% --- Le sezioni successive (Variabilità, Punti Z, Inferenza, etc.) rimangono come prima ---
-% --- Ho omesso il resto del codice per brevità, ma andrebbe reinserito qui ---
-% --- da "3. Indici di Variabilità e Dispersione" in poi ---
 
-\section*{3. Indici di Variabilità e Dispersione (Quanto sono sparpagliati?)}
-Misurano quanto i punteggi si discostano dal valore centrale (solitamente la media).
+
+\section*{3. Indici di Variabilità: Quanto sono "sparpagliati" i dati?}
+Dopo aver trovato il "centro" dei dati (con media, mediana, moda), è fondamentale capire quanto i dati siano \textbf{dispersi} o \textbf{concentrati} attorno a quel centro. Questi indici misurano la variabilità.
+
 \begin{itemize}
-    \item \textbf{Scarto dalla Media (o Deviazione):} $D_i = X_i - \samplemean$. Distanza di un singolo punteggio dalla media.
-    \item \textbf{Devianza (o Somma dei Quadrati, SS):} Somma degli scarti elevati al quadrato: $SS = \sum (X_i - \samplemean)^2$. Serve per calcolare la varianza.
-    \item \textbf{Varianza:}
+    \item \textbf{Lo Scarto dalla Media (o Deviazione):} Il punto di partenza è capire quanto \textit{ogni singolo dato} si allontana dalla media. Questo scarto ($X_i - \samplemean$) ci dice se un valore è sopra o sotto la media e di quanto.
         \begin{itemize}
-            \item \textbf{Definizione:} La \textbf{media dei quadrati degli scarti}. Misura la dispersione media quadratica.
-            \item \textbf{Formule:}
-                \begin{itemize}
-                    \item Popolazione: $\popvar = \frac{SS}{N} = \frac{\sum (X_i - \popmean)^2}{N}$
-                    \item Campione (stima della pop.): $\samplevar = \frac{SS}{n-1} = \frac{\sum (X_i - \samplemean)^2}{n-1}$ (Si usa \textbf{n-1} al denominatore per una stima più accurata della varianza della popolazione).
-                \end{itemize}
-            \item \textbf{Caratteristiche:} Unità di misura al quadrato (difficile interpretazione diretta). Usata molto in inferenza (es. ANOVA).
+            \item \textit{Esempio:} Se la media dei voti è 6 e uno studente ha preso 8, il suo scarto è $8 - 6 = +2$. Se un altro ha preso 5, lo scarto è $5 - 6 = -1$.
         \end{itemize}
-    \item \textbf{Deviazione Standard (DS o SD):}
+
+    \item \textbf{Il Problema degli Scarti:} Se sommassimo tutti gli scarti, quelli positivi e quelli negativi si annullerebbero a vicenda (la somma è sempre zero, come visto prima). Questo non ci aiuta a misurare la dispersione totale.
+
+    \item \textbf{La Soluzione: Elevare al Quadrato (Devianza):} Per eliminare il problema dei segni (+/-) e dare più peso agli scarti maggiori (chi è molto lontano dalla media "pesa" di più nella misura della dispersione), eleviamo al quadrato ogni scarto. La somma di tutti questi scarti al quadrato si chiama \textbf{Devianza} (o Somma dei Quadrati, SS): $SS = \sum (X_i - \samplemean)^2$.
         \begin{itemize}
-            \item \textbf{Definizione:} La \textbf{radice quadrata della varianza}. Misura la dispersione media "tipica" dei punteggi attorno alla media.
+            \item \textit{Interpretazione:} La Devianza rappresenta la \textit{dispersione totale} dei dati attorno alla media, ma è espressa in un'unità di misura "al quadrato" (es. punti al quadrato, euro al quadrato), rendendola difficile da interpretare direttamente. È un passo intermedio cruciale.
+        \end{itemize}
+
+    \item \textbf{La Varianza: Dispersione Media Quadratica}
+        \begin{itemize}
+            \item \textbf{Definizione:} Per ottenere una misura \textit{media} della dispersione, dividiamo la Devianza (dispersione totale) per il numero di osservazioni (o quasi). Questa è la \textbf{Varianza}.
             \item \textbf{Formule:}
                 \begin{itemize}
-                    \item Popolazione: $\popsd = \sqrt{\popvar} = \sqrt{\frac{\sum (X_i - \popmean)^2}{N}}$
-                    \item Campione (stima della pop.): $\samplesd = \sqrt{\samplevar} = \sqrt{\frac{\sum (X_i - \samplemean)^2}{n-1}}$
+                    \item Popolazione: $\popvar = \frac{SS}{N} = \frac{\sum (X_i - \popmean)^2}{N}$ (Media esatta degli scarti quadrati).
+                    \item Campione (stima della pop.): $\samplevar = \frac{SS}{n-1} = \frac{\sum (X_i - \samplemean)^2}{n-1}$. Si usa $n-1$ (invece di $n$) quando si lavora con un campione, per ottenere una stima più affidabile della varianza dell'intera popolazione da cui il campione proviene. È una correzione tecnica per migliorare l'inferenza.
                 \end{itemize}
-            \item \textbf{Caratteristiche:} Indice di variabilità più usato in descrittiva. Stessa unità di misura dei dati originali (facile interpretazione). Indica quanto "mediamente" i dati si discostano dalla media.
+            \item \textbf{Limite:} La Varianza è una misura media della dispersione, ma è ancora espressa nell'\textbf{unità di misura al quadrato}, rendendo difficile collegarla intuitivamente ai dati originali.
+        \end{itemize}
+
+    \item \textbf{La Deviazione Standard (DS o SD): La Dispersione Tipica}
+        \begin{itemize}
+            \item \textbf{Definizione:} Per risolvere il problema dell'unità di misura al quadrato, si calcola la \textbf{radice quadrata della Varianza}. Questa è la \textbf{Deviazione Standard}.
+            \item \textbf{Formule:}
+                \begin{itemize}
+                    \item Popolazione: $\popsd = \sqrt{\popvar}$
+                    \item Campione (stima della pop.): $\samplesd = \sqrt{\samplevar}$
+                \end{itemize}
+            \item \textbf{Interpretazione (Fondamentale):} La Deviazione Standard è l'indice di variabilità più utilizzato e interpretabile. Ritorna all'\textbf{unità di misura originale} dei dati (es. punti, euro, anni). Ci dice, \textit{in media}, di quanto i singoli dati tendono a discostarsi dalla media. Una DS piccola indica dati molto concentrati attorno alla media; una DS grande indica dati molto sparpagliati.
         \end{itemize}
 \end{itemize}
+In sintesi, per misurare la dispersione partiamo dagli scarti individuali, li rendiamo positivi e pesati elevandoli al quadrato (Devianza), ne calcoliamo una media (Varianza) e infine torniamo all'unità di misura originale con la radice quadrata (Deviazione Standard), ottenendo una misura della dispersione "tipica".
 
 \begin{reflectionbox}
-    \item Come si chiama la distanza tra un punteggio e la media della sua distribuzione? (Vedi Q5)
-    \item Cos'è la Deviazione Standard in relazione alla Varianza? (Vedi Q8)
+    \item Come si chiama la distanza tra un punteggio e la media della sua distribuzione? (Vedere Domanda 5)
+    \item Cos'è la Deviazione Standard in relazione alla Varianza? (Vedere Domanda 8)
 \end{reflectionbox}
 
-\section*{4. Trasformazione dei Dati Grezzi (Punteggi Z)}
-Standardizzare significa trasformare i punteggi grezzi (X) in una scala standard comune (Z) con Media = 0 e Deviazione Standard = 1.
+\section*{4. Standardizzazione dei Dati: I Punteggi Z}
+Spesso ci troviamo a dover confrontare valori che provengono da contesti diversi, come il punteggio di un esame di storia e quello di un esame di matematica, che potrebbero avere medie e dispersioni differenti. Un punteggio grezzo, preso isolatamente, non ci dice molto sulla sua posizione relativa all'interno del suo gruppo. Per superare questo limite e rendere i confronti significativi, si ricorre alla \textbf{standardizzazione}, un processo che trasforma i dati originali in una scala comune, priva dell'unità di misura originale.
+
+Il risultato più comune di questa trasformazione è il \textbf{Punteggio Z} (o z-score). Un punteggio Z esprime la posizione di un dato valore (X) rispetto alla media del suo gruppo, misurata in unità di deviazione standard. In altre parole, ci dice \textit{quante deviazioni standard} quel valore si discosta dalla media. Una distribuzione di punteggi Z ha sempre Media = 0 e Deviazione Standard = 1.
+
 \begin{itemize}
-    \item \textbf{Scopi dei Punteggi Z (o z-score):}
+    \item \textbf{Come si Calcola:} La formula per calcolare un punteggio Z è:
+        \begin{equation*}
+            z = \frac{\text{Valore Osservato} - \text{Media del Gruppo}}{\text{Deviazione Standard del Gruppo}} \quad \text{ovvero} \quad z = \frac{X - \mu}{\sigma} \quad (\text{o } \frac{X - \bar{X}}{s})
+        \end{equation*}
+        Dove:
+        \begin{itemize}
+            \item $(X - \mu)$ o $(X - \bar{X})$ rappresenta lo \textbf{scarto}: la distanza tra il valore specifico (X) e la media ($\mu$ o $\bar{X}$) del suo gruppo.
+            \item $\sigma$ (o $s$) è la \textbf{deviazione standard}: la misura della dispersione "tipica" dei valori in quel gruppo.
+        \end{itemize}
+        Dividendo lo scarto per la deviazione standard, si `relativizza' la distanza dalla media rispetto alla variabilità generale del gruppo, ottenendo una misura standard.
+
+    \item \textbf{Interpretazione del Punteggio Z:} Interpretare un punteggio Z è diretto:
+        \begin{itemize}
+            \item \textbf{Il segno (+ o -):} Indica se il valore originale (X) si trova \textit{sopra} (+) o \textit{sotto} (-) la media del suo gruppo.
+            \item \textbf{Il valore numerico:} Indica \textit{quante deviazioni standard} il valore si discosta dalla media. Ad esempio:
+                \begin{itemize}
+                    \item Z = 0: Il valore coincide esattamente con la media.
+                    \item Z = +1.0: Il valore è una deviazione standard sopra la media (meglio della media, se "meglio" significa punteggio più alto).
+                    \item Z = -2.0: Il valore è due deviazioni standard sotto la media (peggio della media, nello stesso senso).
+                    \item Valori Z più lontani da 0 (sia positivi che negativi) indicano posizioni più "estreme" o "inusuali" rispetto alla media del gruppo.
+                \end{itemize}
+        \end{itemize}
+
+    \item \textbf{Principali Vantaggi e Usi:} I punteggi Z sono estremamente utili per due scopi principali:
         \begin{enumerate}
-            \item Descrivere la \textbf{posizione esatta} di un punteggio X all'interno della sua distribuzione (quante DS è sopra/sotto la media).
-            \item \textbf{Confrontare} punteggi provenienti da distribuzioni diverse (con medie e DS diverse).
+            \item \textbf{Localizzare un valore:} Permettono di comprendere la posizione relativa di un singolo punteggio all'interno della sua distribuzione di riferimento. Ci dicono se un valore è nella media, sopra la media, sotto la media e di quanto, in termini standardizzati.
+            \item \textbf{Confrontare valori su scale diverse:} Consentono di confrontare in modo equo punteggi che provengono da misurazioni o contesti differenti (es. prestazioni in test diversi, misurazioni con unità diverse). Trasformando tutto in Z-score, si utilizza una metrica comune (la deviazione standard come unità di misura) per valutare le prestazioni relative.
         \end{enumerate}
-    \item \textbf{Formula:} $z = \frac{X - \samplemean}{\samplesd}$ (per campioni) o $z = \frac{X - \popmean}{\popsd}$ (per popolazioni).
-        \begin{itemize}
-            \item Il numeratore ($X - \samplemean$) è lo scarto.
-            \item Si divide per la deviazione standard ($\samplesd$ o $\popsd$).
-        \end{itemize}
-    \item \textbf{Interpretazione del Punteggio Z:}
-        \begin{itemize}
-            \item \textbf{Segno (+/-):} Indica se il punteggio X è sopra (+) o sotto (-) la media.
-            \item \textbf{Valore assoluto:} Indica la distanza dalla media in \textbf{numero di deviazioni standard}. (Es: Z = +2.00 significa 2 DS sopra la media).
-        \end{itemize}
 \end{itemize}
 
 \begin{reflectionbox}
-    \item Per calcolare il punteggio Z di un valore X, cosa devi conoscere della distribuzione? (Vedi Q9)
-    \item Quale delle seguenti NON è una funzione principale della trasformazione in punteggi Z? (Vedi Q10)
+    \item Per calcolare il punteggio Z di un valore X, cosa devi conoscere della distribuzione? (Vedere Domanda 9)
+    \item Quale delle seguenti NON è una funzione principale della trasformazione in punteggi Z? (Vedere Domanda 10)
 \end{reflectionbox}
 
 \section*{5. Introduzione alla Statistica Inferenziale e Probabilità}
@@ -288,7 +315,7 @@ Standardizzare significa trasformare i punteggi grezzi (X) in una scala standard
 \end{itemize}
 
 \begin{reflectionbox}
-    \item Come si calcola la frequenza relativa secondo la teoria frequentista? (Vedi Q11)
+    \item Come si calcola la frequenza relativa secondo la teoria frequentista? (Vedere Domanda 11)
 \end{reflectionbox}
 
 \section*{6. Distribuzioni Teoriche di Probabilità (Focus: Normale)}
@@ -379,35 +406,66 @@ Questo è il modello di distribuzione più comune e ampiamente utilizzato, parti
 
 
 \begin{reflectionbox}
-    \item Da quali parametri è definita la funzione della distribuzione normale? (Vedi Q12)
-    \item Quali sono le caratteristiche principali della curva normale (simmetria, modalità)? (Vedi Q13)
-    \item Quanta percentuale di osservazioni cade circa tra -1 e +1 deviazione standard in una distribuzione normale? (Vedi Q14)
-    \item Quale parametro definisce l'altezza (e la larghezza) della curva normale? (Vedi Q30)
+    \item Da quali parametri è definita la funzione della distribuzione normale? (Vedere Domanda 12)
+    \item Quali sono le caratteristiche principali della curva normale (simmetria, modalità)? (Vedere Domanda 13)
+    \item Quanta percentuale di osservazioni cade circa tra -1 e +1 deviazione standard in una distribuzione normale? (Vedere Domanda 14)
+    \item Quale parametro definisce l'altezza (e la larghezza) della curva normale? (Vedere Domanda 30)
 \end{reflectionbox}
+\section*{7. La Distribuzione Campionaria della Media: Il Ponte tra Campione e Popolazione}
 
-\section*{7. Distribuzione Campionaria della Media}
-Distribuzione \textbf{teorica} di tutte le \textbf{medie ($\samplemean$)} calcolabili da infiniti campioni (di stessa ampiezza $n$) estratti dalla stessa popolazione. Fondamentale per l'inferenza sulla media.
+Quando studiamo una popolazione (es. tutti gli studenti universitari italiani), spesso non possiamo analizzarla interamente. Lavoriamo quindi con un \textbf{campione} (es. 100 studenti) e calcoliamo statistiche come la media campionaria ($\samplemean$). Tuttavia, campioni diversi daranno medie leggermente diverse. La statistica inferenziale ha bisogno di capire \textit{come variano queste medie campionarie} per poter trarre conclusioni affidabili sulla media dell'intera popolazione ($\popmean$).
+
+La \textbf{Distribuzione Campionaria della Media} è la distribuzione \textbf{teorica} di probabilità di \textit{tutte le possibili medie campionarie} ($\samplemean$) che potremmo ottenere estraendo infiniti campioni della stessa dimensione ($n$) dalla stessa popolazione. È un concetto cruciale perché ci permette di quantificare l'incertezza associata alla stima della media della popolazione basata su un singolo campione.
+
+\subsection*{Caratteristiche Fondamentali}
+
+Questa distribuzione teorica ha tre proprietà chiave:
+
 \begin{itemize}
-    \item \textbf{Media della Distribuzione Campionaria ($\mu_{\samplemean}$):} È \textbf{uguale} alla media della popolazione ($\popmean$). $\mu_{\samplemean} = \popmean$.
-    \item \textbf{Deviazione Standard della Distr. Camp. (Errore Standard, $\stderr$):}
+    \item \textbf{La Media della Distribuzione Campionaria ($\mu_{\samplemean}$):}
         \begin{itemize}
-            \item Misura la variabilità delle medie campionarie attorno alla media della popolazione.
-            \item È \textbf{minore} della DS della popolazione ($\popsd$).
-            \item Formula: $\stderr = \frac{\popsd}{\sqrt{n}}$.
-            \item Indica l'"errore medio" che si commette stimando $\popmean$ usando $\samplemean$.
-            \item Diminuisce all'aumentare della dimensione del campione ($n$).
+            \item \textbf{Definizione:} È la media di tutte le possibili medie campionarie ($\samplemean$).
+            \item \textbf{Valore:} Coincide \textbf{esattamente} con la media della popolazione da cui i campioni sono estratti.
+                \begin{equation*}
+                    \mu_{\samplemean} = \popmean
+                \end{equation*}
+            \item \textbf{Significato:} Questo ci dice che la media campionaria ($\samplemean$) è uno \textit{stimatore non distorto} (o corretto) della media della popolazione ($\popmean$). In media, le medie campionarie "centrano" il vero valore della popolazione.
         \end{itemize}
-    \item \textbf{Forma della Distribuzione Campionaria (Teorema Limite Centrale):}
+
+    \item \textbf{La Deviazione Standard della Distribuzione Campionaria (Errore Standard, $\stderr$):}
         \begin{itemize}
-            \item È \textbf{normale} se la popolazione originale è normale.
-            \item È \textbf{approssimativamente normale} se la dimensione del campione è sufficientemente grande ($n \ge 30$), \textit{anche se la popolazione originale non è normale}.
+            \item \textbf{Definizione:} È la deviazione standard di tutte le possibili medie campionarie ($\samplemean$). Misura quanto, in media, le singole medie campionarie si discostano dalla media della popolazione ($\popmean$).
+            \item \textbf{Formula:} Dipende dalla deviazione standard della popolazione ($\popsd$) e dalla dimensione del campione ($n$):
+                \begin{equation*}
+                    \stderr = \frac{\popsd}{\sqrt{n}}
+                \end{equation*}
+            \item \textbf{Significato ("Errore Standard"):} Il termine "errore" si riferisce alla variabilità dovuta al campionamento. $\stderr$ quantifica la \textit{precisione} della media campionaria ($\samplemean$) come stima della media della popolazione ($\popmean$). Un errore standard piccolo indica che le medie campionarie tendono ad essere molto vicine alla media della popolazione (stima più precisa).
+            \item \textbf{Proprietà Importanti:}
+                \begin{itemize}
+                    \item È sempre \textbf{minore} della deviazione standard della popolazione ($\popsd$), assumendo $n>1$. Le medie campionarie sono meno disperse dei singoli punteggi.
+                    \item \textbf{Diminuisce all'aumentare della dimensione del campione ($n$):} Campioni più grandi portano a stime ($\samplemean$) più precise e meno variabili della media della popolazione ($\popmean$). Questo è uno dei motivi principali per cui si preferiscono campioni più numerosi.
+                \end{itemize}
+        \end{itemize}
+
+    \item \textbf{La Forma della Distribuzione Campionaria (Teorema del Limite Centrale - TLC):}
+        \begin{itemize}
+            \item \textbf{Importanza:} Conoscere la forma della distribuzione campionaria è fondamentale per calcolare le probabilità associate a una data media campionaria, passo essenziale nella verifica delle ipotesi.
+            \item \textbf{Teorema del Limite Centrale (TLC):} Questo potente teorema afferma quanto segue riguardo alla forma della distribuzione campionaria della media:
+                \begin{enumerate}
+                    \item \textbf{Se la popolazione originale ha una distribuzione normale}, allora la distribuzione campionaria della media sarà \textbf{esattamente normale}, indipendentemente dalla dimensione del campione ($n$).
+                    \item \textbf{Se la popolazione originale NON ha una distribuzione normale} (o la sua forma è sconosciuta), la distribuzione campionaria della media \textbf{tenderà comunque ad approssimare una distribuzione normale} man mano che la dimensione del campione ($n$) aumenta. Convenzionalmente, si considera che l'approssimazione sia buona per $n \ge 30$.
+                \end{enumerate}
+            \item \textbf{Significato del TLC:} È estremamente utile perché ci assicura che, per campioni sufficientemente grandi, possiamo usare le proprietà della distribuzione normale (come la curva Z) per fare inferenze sulla media della popolazione, anche se non conosciamo la forma della distribuzione originale dei dati.
         \end{itemize}
 \end{itemize}
 
+\subsection*{Rilevanza per l'Inferenza Statistica}
+La distribuzione campionaria della media è il fondamento teorico per molte tecniche inferenziali, come la costruzione di intervalli di confidenza e la verifica di ipotesi sulla media della popolazione. Ci fornisce il modello probabilistico necessario per valutare quanto sia "probabile" o "improbabile" osservare una certa media campionaria ($\samplemean$) se una determinata ipotesi sulla media della popolazione ($\popmean$) fosse vera.
+
 \begin{reflectionbox}
-    \item Come si chiama la deviazione standard della distribuzione campionaria della media? (Vedi Q15)
-    \item La dispersione delle medie campionarie è maggiore, minore o uguale a quella dei punteggi nella popolazione? (Vedi Q16)
-    \item Quale affermazione sulla forma della distribuzione campionaria della media è FALSA secondo il Teorema del Limite Centrale? (Vedi Q19)
+    \item Come si chiama la deviazione standard della distribuzione campionaria della media? (Vedere Domanda 15)
+    \item La dispersione delle medie campionarie è maggiore, minore o uguale a quella dei punteggi nella popolazione? (Vedere Domanda 16)
+    \item Quale affermazione sulla forma della distribuzione campionaria della media è FALSA secondo il Teorema del Limite Centrale? (Vedere Domanda 19)
 \end{reflectionbox}
 
 \section*{8. La Verifica delle Ipotesi (Logica Generale)}
@@ -436,14 +494,14 @@ Procedura \textbf{probabilistica} per decidere se i dati campionari forniscono p
 \end{enumerate}
 
 \begin{reflectionbox}
-    \item Cosa predice l'ipotesi nulla ($\Hnull$) riguardo all'effetto della variabile indipendente? (Vedi Q17)
-    \item Quale ipotesi viene effettivamente testata nel processo di verifica? (Vedi Q18)
-    \item La verifica delle ipotesi è un processo deterministico o probabilistico? (Vedi Q20)
-    \item Cosa delimita il valore critico in una distribuzione campionaria? (Vedi Q21)
-    \item A cosa è uguale l'area della regione di rifiuto? (Vedi Q22)
-    \item Quale tra 0.01, 0.005, 0.001 NON è un tipico livello di significatività ($\alphaerr$)? (Vedi Q23)
-    \item Se la statistica test calcolata è più estrema del valore critico, cosa si decide riguardo a $\Hnull$? (Vedi Q25)
-    \item Come si definisce il livello di significatività ($\alphaerr$) in termini di probabilità e ipotesi nulla? (Vedi Q29)
+    \item Cosa predice l'ipotesi nulla ($\Hnull$) riguardo all'effetto della variabile indipendente? (Vedere Domanda 17)
+    \item Quale ipotesi viene effettivamente testata nel processo di verifica? (Vedere Domanda 18)
+    \item La verifica delle ipotesi è un processo deterministico o probabilistico? (Vedere Domanda 20)
+    \item Cosa delimita il valore critico in una distribuzione campionaria? (Vedere Domanda 21)
+    \item A cosa è uguale l'area della regione di rifiuto? (Vedere Domanda 22)
+    \item Quale tra 0.01, 0.005, 0.001 NON è un tipico livello di significatività ($\alphaerr$)? (Vedere Domanda 23)
+    \item Se la statistica test calcolata è più estrema del valore critico, cosa si decide riguardo a $\Hnull$? (Vedere Domanda 25)
+    \item Come si definisce il livello di significatività ($\alphaerr$) in termini di probabilità e ipotesi nulla? (Vedere Domanda 29)
 \end{reflectionbox}
 
 \section*{9. Verifica Ipotesi sulla Media di una Popolazione ($\popmean$)}
@@ -455,7 +513,7 @@ Questa sezione applica la logica generale della verifica delle ipotesi per valut
             \item In questa situazione, si utilizza la \textbf{Statistica Test Z}.
             \item La formula per calcolare Z è: $Z = \frac{\samplemean - \mu_0}{\stderr} = \frac{\samplemean - \mu_0}{\popsd / \sqrt{n}}$
             \item La distribuzione di riferimento per confrontare il valore Z calcolato è la Normale Standard N(0,1).
-            \item Ad esempio, per un livello di significatività $\alphaerr=0.05$ in un test a due code, i valori critici di Z sono $\pm 1.96$.
+            \item Ad esempio, per un livello di significatività $\alphaerr=0.05$ in un test Z, i valori critici di Z sono $\pm 1.96$.
         \end{itemize}
     \item \textbf{Caso B: Varianza della Popolazione ($\popvar$) Non Nota, Campione Grande ($n \ge 30$)}
         \begin{itemize}
@@ -470,11 +528,10 @@ Questa sezione applica la logica generale della verifica delle ipotesi per valut
             \item Quando la varianza della popolazione non è nota e il campione è piccolo, la stima di $\popsd$ con $\samplesd$ introduce maggiore incertezza. Pertanto, si impiega la \textbf{Statistica Test t}.
             \item L'errore standard viene stimato come nel caso precedente: $S_{\samplemean} = \frac{\samplesd}{\sqrt{n}}$.
             \item La formula per calcolare t è: $t = \frac{\samplemean - \mu_0}{S_{\samplemean}} = \frac{\samplemean - \mu_0}{\samplesd / \sqrt{n}}$
-            \item La distribuzione di riferimento è la \textbf{distribuzione t di Student} con $df = n-1$ gradi di libertà.
+            \item La distribuzione di riferimento è la \textbf{distribuzione t di Student} con $gl = n-1$ gradi di libertà.
             \item \textbf{Caratteristiche della Distribuzione t:} È simile alla distribuzione normale (simmetrica attorno a 0, unimodale, a forma di campana), ma presenta una maggiore variabilità (è più "schiacciata" e ha code più "pesanti"). Questa maggiore dispersione riflette l'incertezza aggiuntiva dovuta alla stima di $\popsd$ con $\samplesd$ basata su un campione piccolo. La forma esatta della distribuzione t dipende dai gradi di libertà ($gl$): all'aumentare di $gl$, la distribuzione t si avvicina sempre di più alla distribuzione normale standard.
         \end{itemize}
 \end{itemize}
-\newpage
 
 \begin{figure}
 \centering
@@ -490,7 +547,7 @@ Questa sezione applica la logica generale della verifica delle ipotesi per valut
     \node [decision, below=of start] (sigma_known) {Varianza Popolazione $\popvar$ Nota?};
     \node [block, below left=of sigma_known] (z_test_known) {Usa \textbf{Test Z} \\ Formula: $Z = \frac{\samplemean - \mu_0}{\popsd / \sqrt{n}}$ \\ Distribuzione: N(0,1)};
     \node [decision, below right=of sigma_known] (n_large) {Campione $n \ge 30$?};
-    \node [block, below left=of n_large] (t_test) {Usa \textbf{Test t} \\ Formula: $t = \frac{\samplemean - \mu_0}{\samplesd / \sqrt{n}}$ (o $s/\sqrt{n-1}$) \\ Distribuzione: t con $df=n-1$};
+    \node [block, below left=of n_large] (t_test) {Usa \textbf{Test t} \\ Formula: $t = \frac{\samplemean - \mu_0}{\samplesd / \sqrt{n}}$ \\ Distribuzione: t con $gl=n-1$};
     \node [block, below right=of n_large] (z_test_approx) {Usa \textbf{Test Z} \\ Formula: $Z \approx \frac{\samplemean - \mu_0}{\samplesd / \sqrt{n}}$ \\ Distribuzione: Approx. N(0,1)};
 
     % Edges - Adjusted label positioning using pos and anchor
@@ -507,10 +564,10 @@ Questa sezione applica la logica generale della verifica delle ipotesi per valut
 
 
 \begin{reflectionbox}
-    \item La verifica di ipotesi sulla media serve a valutare se un campione proviene da una popolazione con una media specifica? (Vedi Q24)
-    \item Quando si usa il test t di Student per la verifica delle ipotesi sulla media? (Considera sia la conoscenza della varianza sia la numerosità) (Vedi Q26)
-    \item La distribuzione t di Student è simmetrica o asimmetrica? (Vedi Q27)
-    \item Se la varianza della popolazione ($\popvar$) non è nota, possiamo stimare l'errore standard usando la deviazione standard del campione ($\samplesd$)? (Vedi Q28)
+    \item La verifica di ipotesi sulla media serve a valutare se un campione proviene da una popolazione con una media specifica? (Vedere Domanda 24)
+    \item Quando si usa il test t di Student per la verifica delle ipotesi sulla media? (Considera sia la conoscenza della varianza sia la numerosità) (Vedere Domanda 26)
+    \item La distribuzione t di Student è simmetrica o asimmetrica? (Vedere Domanda 27)
+    \item Se la varianza della popolazione ($\popvar$) non è nota, possiamo stimare l'errore standard usando la deviazione standard del campione ($\samplesd$)? (Vedere Domanda 28)
 \end{reflectionbox}
 
 
