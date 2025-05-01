@@ -1,0 +1,555 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+\usepackage{parskip} % Spazio tra paragrafi invece di indentazione
+\usepackage{enumitem} % Per personalizzare elenchi
+\usepackage{ FiraSans } % Font più moderno
+\usepackage{xcolor} % Per colori
+\usepackage{framed} % Per i box
+\usepackage{bm} % Per grassetto matematico (se serve)
+\usepackage{tikz} % Per diagrammi
+\usetikzlibrary{shapes, arrows.meta, positioning, calc, shadows, backgrounds} % Librerie TikZ utili (aggiunto backgrounds, arrows.meta)
+\usepackage{booktabs} % Per tabelle professionali
+\usepackage{colortbl} % Per colorare celle tabelle
+\usepackage{multirow} % Per celle multi-riga
+\usepackage{appendix} % Per gestire le appendici
+
+% ----- Definizioni Colori e Stili -----
+\definecolor{boxbgcolor}{rgb}{0.95, 0.95, 1.0} % Azzurrino per reflection
+\definecolor{boxtitlecolor}{rgb}{0.1, 0.1, 0.6} % Blu scuro per reflection title
+\definecolor{examplebgcolor}{rgb}{1.0, 0.98, 0.9} % Giallo pallido per esempi
+\definecolor{examplebordercolor}{rgb}{0.9, 0.8, 0.5} % Bordo ocra per esempi
+\definecolor{diagrambgcolor}{rgb}{0.92, 0.92, 0.92} % Grigio chiaro per sfondi diagrammi
+\definecolor{decisioncolor}{rgb}{0.9, 1.0, 0.9} % Verde pallido per decisioni flowchart
+\definecolor{testcolor}{rgb}{1.0, 0.9, 0.9} % Rosso pallido per test flowchart
+\definecolor{startcolor}{rgb}{0.9, 0.9, 1.0} % Blu pallido per inizio flowchart
+
+% Environment per Reflection Box
+\newenvironment{reflectionbox}{%
+    \medskip
+    \begin{framed}\par\noindent
+    \textbf{\color{boxtitlecolor}Domande per Riflettere (Basate sul Test)} \par
+    \begin{itemize}[leftmargin=*, label=$\blacktriangleright$]
+}{%
+    \end{itemize}\par
+    \end{framed}
+    \medskip
+}
+
+% Environment per Esempi
+\newenvironment{example}[1][Esempio Pratico]{%
+    \medskip
+    \begin{center}
+    \begin{tikzpicture}
+        \node[rectangle, draw=examplebordercolor, fill=examplebgcolor, rounded corners, inner sep=10pt, text width=0.9\textwidth] (box) \bgroup\medskip
+        \par\noindent{\textbf{#1:}}\par\smallskip\noindent\ignorespaces
+}{%
+        \egroup;
+    \end{tikzpicture}
+    \end{center}
+    \medskip
+}
+
+\setlist{nosep}
+\renewcommand{\labelitemi}{$\bullet$}
+
+% ----- Macro per simboli comuni -----
+\newcommand{\popmean}{\mu}
+\newcommand{\samplemean}{\bar{X}}
+\newcommand{\popvar}{\sigma^2}
+\newcommand{\samplevar}{s^2}
+\newcommand{\popsd}{\sigma}
+\newcommand{\samplesd}{s}
+\newcommand{\stderr}{\sigma_{\samplemean}}
+\newcommand{\zscore}{Z}
+\newcommand{\tscore}{t}
+\newcommand{\Fscore}{F} % Statistica F
+\newcommand{\alphaerr}{\alpha} % Livello alpha
+\newcommand{\betaerr}{\beta}  % Errore beta
+\newcommand{\power}{1-\betaerr} % Potenza
+\newcommand{\Hnull}{H_0} % Ipotesi nulla
+\newcommand{\Halt}{H_1} % Ipotesi alternativa
+\newcommand{\cohend}{d} % d di Cohen
+\newcommand{\etasq}{\eta^2} % Eta quadro
+\newcommand{\etasqpart}{\eta_p^2} % Eta quadro parziale
+\newcommand{\df}{gl} % gradi di libertà
+\newcommand{\SSb}{SS_{\text{tra}}} % Devianza Between (Tra Gruppi)
+\newcommand{\SSw}{SS_{\text{entro}}} % Devianza Within (Entro Gruppi)
+\newcommand{\SStot}{SS_{\text{tot}}} % Devianza Totale
+\newcommand{\MSb}{MS_{\text{tra}}} % Varianza Between (Mean Square)
+\newcommand{\MSw}{MS_{\text{entro}}} % Varianza Within (Mean Square)
+\newcommand{\kgr}{k} % Numero gruppi/livelli
+\newcommand{\Ntot}{N_{\text{tot}}} % N totale
+\newcommand{\niind}{n_i} % n per gruppo i
+\newcommand{\dfb}{\df_{\text{tra}}} % gl Between
+\newcommand{\dfw}{\df_{\text{entro}}} % gl Within
+\newcommand{\dftot}{\df_{\text{tot}}} % gl Totale
+
+% ----- Stili per Flowchart TikZ -----
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=startcolor, text width=4cm]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, aspect=2, fill=decisioncolor, text width=3.5cm]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, text width=4cm, draw=black, fill=testcolor]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+% ----- INIZIO DOCUMENTO -----
+\begin{document}
+
+\begin{center}
+    \Large\textbf{Modulo 4: Analisi della Varianza (ANOVA) e Confronto tra Campioni Dipendenti} \\
+    \vspace{0.5cm}
+    \large\textit{(ANOVA Indipendente, ANOVA Fattoriale, t-test e ANOVA per Misure Ripetute)}
+\end{center}
+
+% #####################################################################
+\section*{Parte 1: L'Analisi della Varianza (ANOVA) per Campioni Indipendenti}
+% #####################################################################
+
+% ... (contenuto della Parte 1 come nel codice precedente) ...
+\subsection*{1. Introduzione all'Analisi della Varianza}
+\begin{itemize}
+    \item \textbf{Scopo:} Estende la logica del t-test per campioni indipendenti, permettendo di confrontare le medie di una variabile dipendente quantitativa tra \textbf{due o più} gruppi (definiti da una o più variabili indipendenti qualitative).
+    \item \textbf{Origine del Nome:} Si chiama Analisi della Varianza perché, per decidere se le medie dei gruppi sono diverse, analizza (scompone) la \textbf{variabilità totale} dei dati in diverse fonti.
+    \item \textbf{Problema dei Confronti Multipli:} Perché non fare tanti t-test a coppie se ho più di due gruppi (es. Gruppo A vs B, A vs C, B vs C)?
+        \begin{itemize}
+            \item Ogni test ha una probabilità $\alphaerr$ (es. 0.05) di commettere un Errore di I Tipo (rifiutare $\Hnull$ vera).
+            \item Facendo molti test, la probabilità \textit{complessiva} di fare almeno un errore di I tipo aumenta notevolmente (inflazione dell'errore alfa).
+            \item L'ANOVA esegue un \textbf{test omnibus} (unico) che confronta tutte le medie simultaneamente, mantenendo la probabilità di errore di I tipo sotto controllo al livello $\alphaerr$ prefissato.
+        \end{itemize}
+    \item \textbf{Tipi di ANOVA Univariata (una VD):}
+        \begin{itemize}
+            \item \textbf{ANOVA a una via (One-Way ANOVA):} Una sola variabile indipendente (fattore) con 3 o più livelli (gruppi). Es: Effetto di 3 dosaggi di caffeina (placebo, basso, alto) sul voto.
+            \item \textbf{ANOVA Fattoriale:} Due o più variabili indipendenti (fattori). Es: Effetto del dosaggio di caffeina (3 livelli) E del sesso (2 livelli) sul voto. Permette di studiare gli \textbf{effetti principali} di ciascun fattore e la loro \textbf{interazione}.
+        \end{itemize}
+    \item \textbf{ANOVA Multivariata (MANOVA):} Studia l'effetto di una o più VI su \textbf{più variabili dipendenti} contemporaneamente. (Accennata, non trattata in dettaglio qui).
+    \item \textbf{Disegni di Ricerca:} L'ANOVA può essere usata sia in disegni \textbf{tra gruppi (between-subjects)} che \textbf{entro i gruppi (within-subjects)} (vedi Parte 2).
+\end{itemize}
+
+\begin{reflectionbox}
+    \item Il termine analisi della varianza identifica tecniche utilizzabili in quali tipi di disegni? (Vedere Domanda 1 - Risposta: In entrambe le tipologie)
+    \item L'analisi della varianza univariata (ANOVA) consente di studiare quante variabili dipendenti alla volta? (Vedere Domanda 2)
+    \item L'analisi della varianza confronta le medie analizzando cosa? (Vedere Domanda 3)
+    \item Nell'analisi della varianza, la variabile dipendente che caratteristiche deve avere? (Vedere Domanda 8 - Risposta: Sempre quantitativa)
+    \item Nell'analisi della varianza, la variabile indipendente può avere quanti livelli? (Vedere Domanda 22)
+    \item L'analisi della varianza multivariata (MANOVA) studia gli effetti di...? (Vedere Domanda 27)
+    \item In disegni di ricerca between, quale parametro definisce il numero di campioni da reclutare? (Vedere Domanda 29 - Risposta: I livelli dalla variabile indipendente)
+\end{reflectionbox}
+
+\subsection*{2. Logica della Verifica delle Ipotesi nell'ANOVA a Una Via}
+\begin{itemize}
+    \item \textbf{Ipotesi:}
+        \begin{itemize}
+            \item $\Hnull$: Le medie delle popolazioni da cui provengono i campioni sono \textbf{tutte uguali} tra loro ($\popmean_1 = \popmean_2 = \dots = \popmean_k$). Qualsiasi differenza tra le medie campionarie è dovuta solo al caso (errore campionario).
+            \item $\Halt$: \textbf{Almeno una} media delle popolazioni è diversa dalle altre. Non dice quali medie differiscono, ma solo che non sono tutte uguali. È sempre \textbf{bilaterale}.
+        \end{itemize}
+    \item \textbf{Scomposizione della Varianza:} L'idea centrale è scomporre la variabilità totale dei dati in due fonti principali:
+        \begin{itemize}
+            \item \textbf{Varianza TRA Gruppi ($\MSb$ - Mean Square Between):} Misura quanto le medie di ciascun gruppo ($\samplemean_k$) differiscono dalla media generale ($\bar{X}_{tot}$). Rappresenta la variabilità \textbf{spiegata} dalla variabile indipendente (effetto del trattamento) + l'errore casuale (differenze individuali, errore di misura).
+            \item \textbf{Varianza ENTRO Gruppi ($\MSw$ - Mean Square Within):} Misura quanto i punteggi individuali all'interno di ciascun gruppo variano attorno alla media del proprio gruppo. Rappresenta la variabilità \textbf{non spiegata} dalla variabile indipendente, dovuta solo all'errore casuale (differenze individuali, errore di misura). È considerata una stima della varianza d'errore della popolazione.
+        \end{itemize}
+    \item \textbf{Il Rapporto F (Statistica Test):} L'ANOVA calcola il rapporto tra queste due varianze:
+        $$ \Fscore = \frac{\text{Varianza TRA Gruppi}}{\text{Varianza ENTRO Gruppi}} = \frac{\MSb}{\MSw} $$
+        \begin{itemize}
+            \item Se $\Hnull$ è \textbf{vera} ($\popmean_1 = \dots = \popmean_k$): La VI non ha effetto. La varianza TRA gruppi riflette solo l'errore casuale, così come la varianza ENTRO gruppi. Quindi $\MSb \approx \MSw$, e il rapporto $\Fscore$ sarà \textbf{vicino a 1}.
+            \item Se $\Hnull$ è \textbf{falsa} (c'è un effetto della VI): La varianza TRA gruppi rifletterà l'effetto della VI \textit{più} l'errore casuale, mentre la varianza ENTRO riflette solo l'errore. Quindi $\MSb > \MSw$, e il rapporto $\Fscore$ sarà \textbf{maggiore di 1}.
+            \item Più $\Fscore$ è grande (maggiore di 1), più è probabile che la differenza tra le medie sia reale (statisticamente significativa) e non dovuta al caso.
+        \end{itemize}
+    \item \textbf{Distribuzione F di Fisher:} Per prendere una decisione, il valore $\Fscore$ calcolato ($\Fscore_{test}$) viene confrontato con un valore critico ($\Fscore_{critico}$) sulla \textit{distribuzione F di Fisher}.
+        \begin{itemize}
+            \item È una distribuzione teorica di probabilità \textbf{asimmetrica positiva} (definita solo per valori $\ge 0$).
+            \item La sua forma dipende da \textbf{due parametri}: i gradi di libertà della varianza TRA gruppi ($\dfb$) e i gradi di libertà della varianza ENTRO gruppi ($\dfw$).
+        \end{itemize}
+    \item \textbf{Decisione:}
+        \begin{itemize}
+            \item Se $\Fscore_{test} > \Fscore_{critico}$ (o se $p \le \alphaerr$): Si \textbf{rifiuta $\Hnull$}. Si conclude che c'è una differenza significativa tra almeno due delle medie dei gruppi.
+            \item Se $\Fscore_{test} \le \Fscore_{critico}$ (o se $p > \alphaerr$): Si \textbf{non rifiuta $\Hnull$}. Non c'è evidenza sufficiente per dire che le medie delle popolazioni siano diverse.
+        \end{itemize}
+    \item \textbf{Confronti Post-Hoc o Pianificati:} Se l'ANOVA risulta significativa (si rifiuta $\Hnull$), indica che c'è una differenza \textit{da qualche parte}, ma non dice \textit{dove}. Per scoprire quali coppie di medie specifiche differiscono significativamente, si usano test aggiuntivi:
+        \begin{itemize}
+            \item \textbf{Test Post-Hoc} (es. Tukey, Bonferroni, Scheffé): Si usano dopo aver trovato un F significativo, per confrontare tutte le possibili coppie di medie, controllando l'errore alfa complessivo.
+            \item \textbf{Confronti Pianificati (o a priori):} Ipotesi specifiche su quali medie differiranno, formulate prima di raccogliere i dati. Hanno maggiore potenza dei post-hoc.
+            \item Questi test si usano \textbf{solo se} l'ANOVA generale è risultata significativa.
+        \end{itemize}
+\end{itemize}
+
+\begin{reflectionbox}
+    \item Nell'analisi della varianza, cosa predice l'ipotesi nulla ($\Hnull$)? (Vedere Domanda 5)
+    \item L'ipotesi alternativa ($\Halt$) nell'analisi della varianza può essere...? (Vedere Domanda 6 - Risposta: Esclusivamente bilaterale)
+    \item In un disegno between-groups, la varianza ENTRO i gruppi da quali fattori è influenzata? (Vedere Domanda 7 - Risposta: differenze individuali e errori residui)
+    \item Nella verifica delle ipotesi con ANOVA, a quale distribuzione teorica si fa riferimento per il valore critico? (Vedere Domanda 11)
+    \item Quando $\Hnull$ è vera, la stima della varianza TRA gruppi è...? (Vedere Domanda 14 - Risposta: Uguale alla stima della varianza entro i gruppi)
+    \item La distribuzione F di Fisher è...? (Vedere Domanda 16 - Risposta: Asimmetrica)
+    \item Quando $\Hnull$ è vera, il rapporto F tra varianza TRA e varianza ENTRO è...? (Vedere Domanda 17 - Risposta: Uguale a 1 circa)
+    \item L'ANOVA prevede che la varianza totale sia scomposta in...? (Vedere Domanda 19)
+    \item Se $\Fscore_{test} > \Fscore_{critico}$, quale decisione si prende? (Vedere Domanda 24)
+    \item Da cosa è definita la distribuzione F di Fisher? (Vedere Domanda 25 - Risposta: I gradi di libertà)
+    \item La statistica test F è uguale al rapporto tra...? (Vedere Domanda 28)
+    \item I test post-hoc si usano...? (Vedere Domanda 4)
+\end{reflectionbox}
+
+\subsection*{3. Calcolo dell'ANOVA a Una Via (Cenni)}
+Anche se il calcolo viene fatto dal software, è utile capire i passaggi:
+\begin{enumerate}
+    \item \textbf{Calcolare le Devianze (Somme dei Quadrati, SS):}
+        \begin{itemize}
+            \item \textbf{Devianza Totale ($\SStot$):} Somma degli scarti al quadrato di ogni singolo punteggio ($X_i$) dalla media generale ($\bar{X}_{tot}$). Misura la variabilità totale.
+              $$ \SStot = \sum (X_i - \bar{X}_{tot})^2 $$
+            \item \textbf{Devianza TRA Gruppi ($\SSb$):} Somma degli scarti al quadrato della media di ciascun gruppo ($\bar{X}_k$) dalla media generale ($\bar{X}_{tot}$), ponderata per la numerosità ($n_k$) di ciascun gruppo. Misura la variabilità dovuta alle differenze tra le medie dei gruppi.
+              $$ \SSb = \sum n_k (\bar{X}_k - \bar{X}_{tot})^2 $$
+            \item \textbf{Devianza ENTRO Gruppi ($\SSw$):} Somma degli scarti al quadrato di ogni punteggio ($X_{ik}$) dalla media del proprio gruppo ($\bar{X}_k$). Si può ottenere sommando le devianze interne a ciascun gruppo, oppure per differenza: $\SSw = \SStot - \SSb$. Misura la variabilità residua/errore.
+        \end{itemize}
+    \item \textbf{Calcolare i Gradi di Libertà ($\df$):}
+        \begin{itemize}
+            \item $\dftot = \Ntot - 1$ (dove $\Ntot$ è il numero totale di soggetti)
+            \item $\dfb = \kgr - 1$ (dove $\kgr$ è il numero di gruppi/livelli della VI)
+            \item $\dfw = \Ntot - \kgr$ (oppure $\dfw = \dftot - \dfb$)
+        \end{itemize}
+    \item \textbf{Calcolare le Varianze (Mean Squares, MS):} Si ottengono dividendo ogni devianza per i rispettivi gradi di libertà.
+        \begin{itemize}
+            \item $\MSb = \frac{\SSb}{\dfb}$ (Varianza TRA)
+            \item $\MSw = \frac{\SSw}{\dfw}$ (Varianza ENTRO)
+        \end{itemize}
+    \item \textbf{Calcolare il Rapporto F:}
+        $$ \Fscore = \frac{\MSb}{\MSw} $$
+    \item \textbf{Tabella Riassuntiva ANOVA:} I risultati vengono solitamente presentati in una tabella standard:
+        \begin{center}
+        \begin{tabular}{lcccc} % Rimossa colonna p-value per semplificare
+            \toprule
+            Fonte Variazione & SS (Devianza) & gl (df) & MS (Varianza) & F  \\
+            \midrule
+            TRA Gruppi (Effetto VI) & $\SSb$ & $\dfb$ & $\MSb$ & \multirow{2}{*}{$\frac{\MSb}{\MSw}$}  \\
+            ENTRO Gruppi (Errore) & $\SSw$ & $\dfw$ & $\MSw$ &    \\
+            \midrule
+            Totale & $\SStot$ & $\dftot$ & &  \\
+            \bottomrule
+        \end{tabular}
+        \end{center}
+\end{enumerate}
+
+\begin{reflectionbox}
+    \item Nell'ANOVA a una via, quante variabili indipendenti è possibile studiare? (Vedere Domanda 15)
+    \item La varianza totale può essere calcolata come rapporto tra...? (Vedere Domanda 26 - Risposta: Devianza totale e gradi di libertà totali)
+\end{reflectionbox}
+
+\subsection*{4. La Verifica delle Ipotesi nell'ANOVA Fattoriale}
+\begin{itemize}
+    \item \textbf{Scopo:} Studiare l'effetto di \textbf{due o più VI (fattori)} su una VD quantitativa. Permette di analizzare:
+        \begin{itemize}
+            \item \textbf{Effetti Principali:} L'effetto medio di ciascun fattore sulla VD, considerato isolatamente (ignorando l'altro fattore). C'è un effetto principale per ogni VI.
+            \item \textbf{Effetto di Interazione:} Se l'effetto di un fattore sulla VD \textbf{dipende dal livello} dell'altro fattore. L'interazione indica che i fattori agiscono congiuntamente in modo non semplicemente additivo.
+        \end{itemize}
+    \textbf{Esempio (2x3):} Studio sull'effetto del Sesso (Fattore A: M, F) e del Dosaggio Caffeina (Fattore B: Placebo, Basso, Alto) sul voto. % Aggiunto itemize per chiarezza esempio
+    \begin{itemize}
+        \item Effetto Principale A (Sesso): In media, i maschi hanno voti diversi dalle femmine, indipendentemente dal dosaggio?
+        \item Effetto Principale B (Dosaggio): In media, i diversi dosaggi portano a voti diversi, indipendentemente dal sesso?
+        \item Interazione AxB: L'effetto del dosaggio sul voto è diverso per maschi e femmine? (Es: la caffeina aiuta solo i maschi ma non le femmine, o viceversa).
+    \end{itemize}
+    \item \textbf{Logica della Scomposizione (estesa):} La Varianza TRA gruppi viene ulteriormente scomposta:
+        $$ \SSb = SS_{\text{Fattore A}} + SS_{\text{Fattore B}} + SS_{\text{Interazione AxB}} $$
+        La Varianza ENTRO gruppi ($\SSw$) rimane la misura dell'errore.
+    \item \textbf{Verifica delle Ipotesi:} Si conducono test F separati per ogni effetto:
+        \begin{itemize}
+            \item Test F per Effetto Principale A: $F_A = MS_A / MS_W$
+            \item Test F per Effetto Principale B: $F_B = MS_B / MS_W$
+            \item Test F per Interazione AxB: $F_{AxB} = MS_{AxB} / MS_W$
+        \end{itemize}
+        Ognuno viene valutato con i propri gradi di libertà e confrontato con $\Fscore_{critico}$. Si possono avere effetti principali significativi senza interazione, interazione significativa senza effetti principali, o entrambi.
+    \item \textbf{Importanza dell'Interazione:} Quando l'interazione è significativa, interpretare gli effetti principali richiede cautela, perché l'effetto di un fattore non è costante, ma varia a seconda dei livelli dell'altro.
+\end{itemize}
+
+\subsection*{5. Dimensione dell'Effetto nell'Analisi della Varianza}
+Un F significativo dice che c'è un effetto, ma non quanto è grande. Si usano indici di effect size:
+\begin{itemize}
+    \item \textbf{Eta Quadro ($\etasq$):} Usato principalmente nell'ANOVA a una via.
+        $$ \etasq = \frac{\SSb}{\SStot} $$
+        \begin{itemize}
+            \item \textbf{Interpretazione:} Indica la \textbf{proporzione di varianza totale} della VD che è \textbf{spiegata} dalla VI (dal fattore). Varia da 0 a 1 (o 0\% a 100\%).
+            \item \textbf{Convenzioni (Cohen, per psicologia):}
+                \begin{itemize}
+                    \item $\etasq \approx 0.01$ (1\%): Effetto piccolo
+                    \item $\etasq \approx 0.06$ (6\%): Effetto medio
+                    \item $\etasq \approx 0.14$ (14\%): Effetto grande
+                \end{itemize}
+            \item \textbf{Limite:} Tende a sovrastimare la dimensione dell'effetto nella popolazione, specialmente con campioni piccoli.
+        \end{itemize}
+    \item \textbf{Eta Quadro Parziale ($\etasqpart$):} Usato nell'ANOVA Fattoriale (e spesso riportato anche per l'ANOVA a una via dai software).
+        $$ \etasqpart (\text{per un effetto}) = \frac{SS_{\text{effetto}}}{SS_{\text{effetto}} + SS_{\text{errore}}} $$
+        (Dove $SS_{\text{errore}} = \SSw$)
+        \begin{itemize}
+            \item \textbf{Interpretazione:} Indica la proporzione di varianza della VD \textbf{spiegata da un singolo effetto} (un fattore o un'interazione), dopo aver rimosso la variabilità spiegata dagli altri effetti inclusi nel modello. Varia da 0 a 1.
+            \item Le convenzioni per piccolo/medio/grande sono le stesse di $\etasq$.
+            \item Permette di valutare l'importanza relativa di ciascun effetto principale e interazione.
+        \end{itemize}
+\end{itemize}
+
+\begin{reflectionbox}
+    \item Quale indice si usa per calcolare la dimensione dell'effetto in ANOVA? (Vedere Domanda 21)
+\end{reflectionbox}
+
+\subsection*{6. Assunti dell'Analisi della Varianza per Campioni Indipendenti}
+Perché i risultati dell'ANOVA (il valore F e il p-value) siano validi, devono essere soddisfatti alcuni assunti:
+\begin{enumerate}
+    \item \textbf{Indipendenza delle Osservazioni:} I punteggi dei soggetti all'interno di un gruppo devono essere indipendenti da quelli degli altri soggetti nello stesso gruppo e nei gruppi diversi. È un assunto legato al disegno di ricerca (assegnazione casuale, ecc.) e non può essere testato statisticamente facilmente, ma è cruciale.
+    \item \textbf{Normalità:} La variabile dipendente deve essere distribuita normally all'interno di \textit{ciascuna} popolazione da cui provengono i campioni.
+        \begin{itemize}
+            \item Si può verificare con test come Shapiro-Wilk o Kolmogorov-Smirnov (se $p > 0.05$, l'assunto è rispettato) o con ispezione visiva (istogrammi, Q-Q plot).
+            \item L'ANOVA è considerata \textbf{robusta} a violazioni moderate di questo assunto, specialmente se i gruppi hanno numerosità simili e sufficientemente grandi (es. $n \ge 20-30$ per gruppo).
+        \end{itemize}
+    \item \textbf{Omoschedasticità (Omogeneità delle Varianze):} Le varianze della variabile dipendente devono essere uguali in tutte le popolazioni da cui sono estratti i campioni ($\popvar_1 = \popvar_2 = \dots = \popvar_k$).
+        \begin{itemize}
+            \item Si verifica con il \textbf{Test di Levene} (preferito) o il test di Bartlett. Se il test \textit{non} è significativo ($p > 0.05$), l'assunto è rispettato (le varianze sono omogenee).
+            \item Se l'assunto è violato ($p \le 0.05$), specialmente con numerosità dei gruppi diverse, l'F test standard può essere inaffidabile. Si possono usare correzioni (es. F di Welch o Brown-Forsythe nell'ANOVA a una via) o test non parametrici (es. Kruskal-Wallis).
+        \end{itemize}
+    \item \textbf{Additività degli Effetti (per ANOVA Fattoriale):} Gli effetti dei fattori si sommano. Violazioni gravi possono emergere come interazioni significative.
+\end{enumerate}
+
+\clearpage % Inizia nuova pagina per la Parte 2
+
+% ##############################################################
+\section*{Parte 2: Il Confronto tra Campioni Dipendenti (Misure Ripetute)}
+% ##############################################################
+
+\subsection*{7. La Logica dei Disegni di Ricerca a Misure Ripetute}
+\begin{itemize}
+    \item \textbf{Contrapposizione con Disegni Indipendenti (Between):} Nei disegni between-subjects, gruppi diversi di partecipanti sono assegnati a condizioni diverse (es. Gruppo A fa trattamento, Gruppo B fa placebo). Le differenze individuali tra i partecipanti contribuiscono alla varianza d'errore ($\MSw$).
+    \item \textbf{Disegni a Misure Ripetute (Within-Subjects):} Gli \textbf{stessi partecipanti} vengono sottoposti a \textbf{tutte} le condizioni sperimentali o vengono misurati più volte nel tempo (es. pre-test, post-test, follow-up).
+    \item \textbf{Vantaggi:}
+        \begin{itemize}
+            \item \textbf{Controllo delle Differenze Individuali:} Poiché ogni partecipante fa da controllo a se stesso, la variabilità dovuta alle differenze stabili tra persone viene eliminata o ridotta dalla componente d'errore. Questo rende il test \textbf{più potente} (più facile rilevare effetti reali).
+            \item \textbf{Efficienza:} Richiedono meno partecipanti rispetto ai disegni between per ottenere la stessa potenza statistica.
+        \end{itemize}
+    \item \textbf{Svantaggi Potenziali:}
+        \begin{itemize}
+            \item \textbf{Effetti dell'Ordine (o di Trascinamento):} La partecipazione a una condizione può influenzare la performance nelle condizioni successive (es. apprendimento, fatica, noia). Si controllano con il \textit{controbilanciamento} delle condizioni.
+            \item Non sempre applicabili (es. se il trattamento ha effetti permanenti).
+        \end{itemize}
+    \item \textbf{Struttura Dati:} I dati sono "appaiati": per ogni soggetto abbiamo più misurazioni (una per ogni condizione/tempo).
+    \item \textbf{Numero di Misure:} Definito dai \textbf{livelli della variabile indipendente} (es. 2 livelli = 2 misure; 3 tempi = 3 misure).
+\end{itemize}
+
+\begin{reflectionbox}
+    \item In un disegno within (entro i gruppi), il numero di misurazioni è definito da...? (Vedere Domanda 23)
+    \item Relativamente all'ANOVA per misure ripetute, quale fattore NON è una fonte di variabilità dei dati nei disegni within (nel senso che viene controllato/rimosso)? (Vedere Domanda 30 - Risposta: Le differenze individuali, anche se presenti, sono separate dall'errore)
+\end{reflectionbox}
+
+
+\subsection*{8. Il test t per Misure Ripetute (o Campioni Appaiati)}
+\begin{itemize}
+    \item \textbf{Scopo:} Confrontare le medie di una VD quantitativa misurata in \textbf{due sole} occasioni (due condizioni, due tempi) sugli \textbf{stessi soggetti} (o su coppie appaiate).
+    \item \textbf{Logica:} Invece di confrontare direttamente le medie delle due misurazioni ($\bar{X}_1$ vs $\bar{X}_2$), il test lavora sulle \textbf{differenze} tra le due misurazioni calcolate per \textbf{ciascun soggetto}.
+        \begin{enumerate}
+            \item Si calcola il punteggio differenza ($d = X_{post} - X_{pre}$ o $d = X_{cond1} - X_{cond2}$) per ogni partecipante.
+            \item Si ottiene così una \textbf{singola distribuzione di punteggi differenza}.
+            \item Il test verifica se la \textbf{media di queste differenze} ($\bar{d}$) nella popolazione ($\mu_d$) è significativamente diversa da zero.
+        \end{enumerate}
+    \item \textbf{Ipotesi:}
+        \begin{itemize}
+            \item $\Hnull: \mu_d = 0$ (Non c'è differenza media tra le due misurazioni nella popolazione; il trattamento/condizione non ha avuto effetto).
+            \item $\Halt: \mu_d \neq 0$ (C'è una differenza media significativa tra le due misurazioni nella popolazione).
+        \end{itemize}
+    \item \textbf{Statistica Test (t):} Si calcola un test t su singolo campione applicato ai punteggi differenza:
+        $$ t = \frac{\bar{d} - \mu_{d0}}{S_{\bar{d}}} = \frac{\bar{d} - 0}{s_d / \sqrt{n}} $$
+        Dove:
+        \begin{itemize}
+            \item $\bar{d}$ è la media dei punteggi differenza nel campione.
+            \item $s_d$ è la deviazione standard dei punteggi differenza nel campione.
+            \item $n$ è il numero di partecipanti (coppie di misure).
+            \item $S_{\bar{d}} = s_d / \sqrt{n}$ è l'errore standard della media delle differenze.
+        \end{itemize}
+    \item \textbf{Gradi di Libertà:} $\df = n - 1$.
+    \item \textbf{Decisione:} Si confronta il $t_{test}$ con il $t_{critico}$ dalla distribuzione t di Student con $n-1$ gradi di libertà e $\alphaerr$ scelto. Se $|t_{test}| > |t_{critico}|$ (o $p \le \alphaerr$), si rifiuta $\Hnull$.
+\end{itemize}
+
+\begin{reflectionbox}
+    \item Un ricercatore misura l'ansia prima e dopo un trattamento su 50 persone. Quale test usa per vedere se c'è differenza significativa? (Vedere Domanda 10)
+\end{reflectionbox}
+
+\subsection*{9. L'Analisi della Varianza per Misure Ripetute (ANOVA RM)}
+\begin{itemize}
+    \item \textbf{Scopo:} Estensione del test t per misure ripetute. Confronta le medie di una VD quantitativa misurata in \textbf{tre o più} occasioni (condizioni/tempi) sugli \textbf{stessi soggetti}.
+    \item \textbf{Logica Simile all'ANOVA Indipendente:} Si basa sempre sulla scomposizione della varianza e sul calcolo di un rapporto F.
+        $$ \Fscore = \frac{\text{Varianza TRA le Misure (Spiegata)}}{\text{Varianza Residua (Errore)}} $$
+    \item \textbf{Differenza Chiave nella Scomposizione:} La variabilità totale viene scomposta diversamente per tener conto della dipendenza delle misure:
+        \begin{itemize}
+            \item \textbf{Varianza TRA Soggetti:} Variabilità dovuta alle differenze medie tra i partecipanti (viene calcolata ma poi "ignorata" o rimossa dal test F principale).
+            \item \textbf{Varianza ENTRO Soggetti:} Variabilità all'interno dei punteggi di ciascun soggetto. Questa viene ulteriormente scomposta in:
+                   \begin{itemize}
+                       \item \textbf{Varianza TRA Misure (o Effetto Tempo/Condizione):} Misura quanto le medie delle diverse misurazioni/condizioni ($\bar{X}_k$) differiscono tra loro. Rappresenta l'effetto della VI (tempo, trattamento, ecc.) + errore residuo. Corrisponde a $\MSb$ dell'ANOVA indipendente.
+                       \item \textbf{Varianza Residua (o Errore):} Misura la variabilità rimanente dopo aver tolto l'effetto delle condizioni e le differenze individuali. Rappresenta l'interazione Soggetto x Condizione (cioè, quanto l'effetto della condizione varia da soggetto a soggetto) e funge da termine di errore. Corrisponde a $\MSw$ dell'ANOVA indipendente.
+                   \end{itemize}
+        \end{itemize}
+    \item \textbf{Calcolo del Rapporto F:}
+        $$ F = \frac{MS_{\text{TRA Misure}}}{MS_{\text{Residua}}} $$
+            \item \textbf{Gradi di Libertà:}
+                \begin{itemize}
+                    \item $\df_{\text{TRA Misure}} = k - 1$ (dove $k$ è il numero di misure/livelli VI)
+                    \item $\df_{\text{Residua}} = (n - 1)(k - 1)$ (dove $n$ è il numero di soggetti)
+                \end{itemize}
+    \item \textbf{Decisione e Post-Hoc:} Come per l'ANOVA indipendente. Se F è significativo, si rifiuta $\Hnull$ ($\mu_1=\mu_2=\dots=\mu_k$) e si procede con test post-hoc (es. Bonferroni) per confronti a coppie tra le medie delle misure, usando $MS_{Residua}$ come stima dell'errore.
+\end{itemize}
+
+\begin{reflectionbox}
+    \item Per confrontare 3 misurazioni consecutive sugli stessi soggetti, quale test si usa? (Vedere Domanda 18)
+    \item Nell'ANOVA per misure ripetute, la variabile dipendente può essere...? (Vedere Domanda 12 - Risposta: Esclusivamente quantitativa)
+\end{reflectionbox}
+
+\subsection*{10. Dimensione dell'Effetto per Misure Ripetute}
+\begin{itemize}
+    \item \textbf{Test t per Misure Ripetute:} Si può calcolare il \textbf{d di Cohen} basato sulle differenze:
+      $$ d = \frac{|\bar{d}|}{s_d} $$
+      Interpretazione standard (0.2 piccolo, 0.5 medio, 0.8 grande).
+    \item \textbf{ANOVA per Misure Ripetute:} Si usa l'\textbf{Eta Quadro ($\etasq$) o Eta Quadro Parziale ($\etasqpart$)}. La logica è simile all'ANOVA indipendente, ma le formule usano le SS specifiche del disegno RM.
+        \begin{itemize}
+            \item $\etasq = \frac{SS_{\text{TRA Misure}}}{SS_{\text{Totale}}}$ (proporzione della variabilità totale dovuta all'effetto).
+            \item $\etasqpart = \frac{SS_{\text{TRA Misure}}}{SS_{\text{TRA Misure}} + SS_{\text{Residua}}}$ (proporzione della variabilità "entro soggetti" dovuta all'effetto).
+            \item Le convenzioni (0.01, 0.06, 0.14) rimangono le stesse.
+            \item L'Eta quadro parziale è spesso preferito perché non è influenzato dalla variabilità tra soggetti.
+        \end{itemize}
+\end{itemize}
+\textbf{Nota Importante:} La Domanda 20 del test afferma che non è possibile calcolare l'effect size nei disegni within. Questo è \textbf{errato} secondo le dispense (p. 29-30) e la pratica comune, dove si calcolano sia $d$ per il t-test RM che $\etasq / \etasqpart$ per l'ANOVA RM.
+
+\begin{reflectionbox}
+    \item Nei disegni sperimentali within (entro i gruppi), è possibile calcolare la dimensione dell'effetto? (Vedere Domanda 20 - Nota: La risposta corretta basata sulle dispense è SÌ (Vero), anche se il test indica Falso. Si calcolano d di Cohen o Eta Quadro).
+\end{reflectionbox}
+
+\subsection*{11. Assunti dell'Analisi della Varianza per Misure Ripetute}
+Oltre agli assunti comuni a molte procedure parametriche:
+\begin{enumerate}
+    \item \textbf{Scala di Misura:} La VD deve essere quantitativa (intervalli o rapporti).
+    \item \textbf{Normalità:} La VD dovrebbe essere distribuita normalmente ad \textit{ogni} livello della VI (ad ogni tempo/condizione). Oppure, nel caso del t-test RM, le \textit{differenze} tra le misure dovrebbero essere distribuite normalmente. Il test è relativamente robusto, specialmente con $n$ grande.
+    \item \textbf{Indipendenza delle Osservazioni (tra soggetti):} Le osservazioni \textit{tra} soggetti diversi devono essere indipendenti. (Le osservazioni \textit{dello stesso} soggetto sono ovviamente dipendenti).
+\end{enumerate}
+Assume particolare importanza un assunto specifico dei disegni RM con 3 o più livelli (ANOVA RM):
+\begin{enumerate}
+    \setcounter{enumi}{3}
+    \item \textbf{Sfericità (o Circolarità):} Le \textbf{varianze delle differenze} tra tutte le possibili coppie di livelli della VI (misure ripetute) devono essere uguali nella popolazione. Es: $\text{Var}(X_1-X_2) = \text{Var}(X_1-X_3) = \text{Var}(X_2-X_3)$. È l'analogo dell'omoschedasticità per i disegni RM.
+        \begin{itemize}
+            \item \textbf{Verifica:} Si usa il \textbf{Test di Mauchly}.
+            \begin{itemize}
+                \item Se il test di Mauchly \textbf{NON} è significativo ($p > 0.05$), l'assunto di sfericità è rispettato. Si può usare l'output standard dell'ANOVA RM.
+                \item Se il test di Mauchly \textbf{è} significativo ($p \le 0.05$), l'assunto è violato. L'F test standard tende ad essere troppo liberale (troppi errori di I tipo).
+            \end{itemize}
+            \item \textbf{Correzioni se violato:} Si usano valori F corretti, aggiustando i gradi di libertà ($\df_{\text{TRA Misure}}$ e $\df_{\text{Residua}}$) usando un fattore di correzione chiamato epsilon ($\epsilon$). I p-value associati saranno più conservativi. Correzioni comuni (ordinate dalla più conservativa):
+            \begin{itemize}
+                \item \textit{Lower-bound} ($\epsilon$ stimato al minimo possibile)
+                \item \textit{Greenhouse-Geisser} ($\epsilon_{GG}$ stimato dai dati, conservativa)
+                \item \textit{Huynh-Feldt} ($\epsilon_{HF}$ stimato dai dati, meno conservativa)
+                \item La scelta tra GG e HF dipende da quanto $\epsilon$ stimato è lontano da 1 (se $\epsilon > 0.75$, HF è preferita, altrimenti GG).
+            \end{itemize}
+        \end{itemize}
+\end{enumerate}
+
+\begin{reflectionbox}
+    \item Nell'ANOVA per misure ripetute, il test di Mauchly è utile per valutare quale assunto? (Vedere Domanda 9)
+    \item Quale dei seguenti NON è un assunto dell'ANOVA per misure ripetute? (Vedere Domanda 13 - Risposta: Indipendenza dei campioni, perché il campione è uno solo)
+\end{reflectionbox}
+
+
+% ##############################################################
+% #############           APPENDICE             ################
+% ##############################################################
+\newpage % Inizia l'appendice in una nuova pagina
+\appendix
+\section*{Appendice: Diagramma di Flusso per la Scelta del Test di Ipotesi (Confronto Medie)}
+\label{sec:appendice_flowchart}
+
+Questo diagramma aiuta a scegliere il test statistico appropriato per confrontare le medie, basandosi sulle caratteristiche principali del disegno di ricerca e delle variabili coinvolte. Si assume che la \textbf{Variabile Dipendente (VD)} sia sempre \textbf{quantitativa} (scala a intervalli o rapporti) per questi test.
+
+\begin{center}
+    \begin{tikzpicture}[
+        node distance=1.8cm and 1.5cm, % Vertical and Horizontal distance
+        >=latex,
+        startstop/.style={rectangle, rounded corners, minimum width=2.5cm, minimum height=1cm, text centered, draw=black, fill=startcolor},
+        decision/.style={diamond, minimum width=2cm, minimum height=1cm, text centered, draw=black, aspect=2, fill=decisioncolor, inner sep=1pt},
+        process/.style={rectangle, minimum width=3cm, minimum height=1cm, text centered, text width=4cm, draw=black, fill=testcolor, rounded corners},
+        arrow/.style={thick,->,>=stealth},
+        connector/.style={coordinate} % Style for invisible connector nodes
+    ]
+    
+        % Nodi - Starting top-left
+        \node (start) [startstop] {Inizio: Confronto Medie?};
+    
+        \node (q_ngroups) [decision, below=of start] {Quanti Gruppi/ Misure?};
+    
+        % --- Path 1: One Group ---
+        \node (test_1group) [process, left=2cm of q_ngroups] {Test Z o t per campione singolo (Modulo 2)};
+    
+        % --- Path 2: Two Groups/Measures ---
+        \node (q_indep2) [decision, below left=1.5cm and 0.5cm of q_ngroups] {Indipendenti o Dipendenti?};
+        \node (test_t_ind) [process, below left=1.5cm and 0.2cm of q_indep2] {t-test campioni indipendenti (Modulo 3)};
+        \node (test_t_dep) [process, below=1.0cm of test_t_ind] {t-test misure ripetute (Modulo 4)};
+    
+        % --- Path 3: Three+ Groups/Measures ---
+        % Position this branch further down and right
+        \node (connector3) [connector, right=3cm of q_indep2] {}; % Helper node for positioning
+        \node (q_indep3) [decision, below=of connector3] {Indipendenti o Dipendenti?};
+    
+        % Sub-branch: 3+ Independent
+        \node (q_factors_ind) [decision, below=1.0cm of test_t_dep] {Quanti Fattori (VI)?};
+        \node (anova_1way) [process, below=of q_factors_ind, yshift=-0.5cm] {ANOVA a una via (Modulo 4)};
+        \node (anova_fact) [process, right=1cm of anova_1way] {ANOVA Fattoriale (Modulo 4)};
+    
+        % Sub-branch: 3+ Dependent
+        \node (q_factors_dep) [decision, below right=2.5cm and 0.2cm of q_indep3] {Quanti Fattori (VI)?};
+        \node (anova_rm) [process, below=of q_factors_dep, yshift=-0.5cm] {ANOVA misure ripetute (Modulo 4)};
+        \node (anova_rm_fact) [process, right=1cm of anova_rm] {ANOVA RM Fattoriale / Mista (Avanzato)};
+    
+    
+        % Frecce
+        \draw [arrow] (start) -- (q_ngroups);
+    
+        % Ramo 1 gruppo
+            \draw [arrow] (q_ngroups.west) -- node[above, pos=0.6] {Uno} (test_1group);
+        % Ramo 2 gruppi/misure
+        \draw [arrow] (q_ngroups.south) -- node[above, sloped, pos=0.4] {Due} (q_indep2);
+        \draw [arrow] (q_indep2.west) -- node[above, sloped, pos=0.4] {Indipendenti} (test_t_ind);
+        \draw [arrow] (q_indep2.south) |- node[pos=0.35, left] {Dipendenti} (test_t_dep.east);
+    
+        % Ramo 3+ gruppi/misure - Use orthogonal paths for clarity (Down then Right)
+        \draw [arrow] (q_ngroups.east) -- node[right, pos=0.25] {Tre o più} (q_indep3.north);
+
+        \draw [arrow] (q_indep3.west) |- node[above, sloped, pos=0.4] {Indipendenti} (q_factors_ind);
+        \draw [arrow] (q_indep3.south) -- node[above, sloped, pos=0.4] {Dipendenti} (q_factors_dep);
+    
+        % Sotto-rami ANOVA Indipendente
+        \draw [arrow] (q_factors_ind.west) -- node[above, sloped, pos=0.4] {Una} (anova_1way);
+        \draw [arrow] (q_factors_ind.east) -- node[above, sloped, pos=0.4] {Due+} (anova_fact);
+    
+        % Sotto-rami ANOVA Dipendente
+        \draw [arrow] (q_factors_dep.west) -- node[above, sloped, pos=0.4] {Una} (anova_rm);
+        \draw [arrow] (q_factors_dep.east) -- node[above, sloped, pos=0.4] {Due+} (anova_rm_fact);
+    
+    \end{tikzpicture}
+    \end{center}
+
+
+\textbf{Legenda e Spiegazioni:}
+\begin{itemize}
+    \item \textbf{Obiettivo:} Il diagramma si focalizza sui test per confrontare le medie ($\mu$) di una variabile dipendente (VD) quantitativa.
+    \item \textbf{Numero Gruppi/Misure:}
+        \begin{itemize}
+            \item \textbf{Uno:} Confronti la media del tuo campione con un valore noto o ipotizzato ($\mu_0$). La scelta tra Z e t dipende dalla conoscenza della varianza della popolazione ($\sigma^2$) e dalla numerosità ($n$) (vedi Modulo 2).
+            \item \textbf{Due:} Confronti le medie di due gruppi o due misure.
+            \item \textbf{Tre o più:} Confronti le medie di tre o più gruppi o tre o più misure.
+        \end{itemize}
+    \item \textbf{Indipendenti (Between) vs Dipendenti (Within):}
+        \begin{itemize}
+            \item \textbf{Indipendenti:} I partecipanti in un gruppo sono diversi da quelli negli altri gruppi (es. maschi vs femmine; gruppo trattamento vs gruppo controllo). Si usano t-test per campioni indipendenti o ANOVA per campioni indipendenti (a una via o fattoriale).
+            \item \textbf{Dipendenti/Appaiati (Within):} Gli stessi partecipanti sono misurati più volte (es. pre-test vs post-test; condizione A vs condizione B fatte dagli stessi soggetti) o i partecipanti sono appaiati in base a caratteristiche rilevanti. Si usano t-test per misure ripetute o ANOVA per misure ripetute.
+        \end{itemize}
+    \item \textbf{Numero di Variabili Indipendenti (Fattori):}
+        \begin{itemize}
+            \item \textbf{Una:} Hai una sola variabile che definisce i gruppi (es. tipo di trattamento con 3 livelli) o le misure (es. tempo con 3 livelli). Usi ANOVA a una via (between) o ANOVA RM (within).
+            \item \textbf{Due o più:} Hai due o più variabili che definiscono i gruppi/misure (es. tipo di trattamento E sesso). Usi ANOVA Fattoriale (between) o ANOVA RM Fattoriale/Mista (within/mista).
+        \end{itemize}
+    \item \textbf{Nota:} Questo diagramma non copre test per variabili dipendenti non quantitative (es. Chi-quadro) o analisi di relazione/associazione (es. Correlazione, Regressione) che verranno trattate nei prossimi moduli.
+\end{itemize}
+
+
+\end{document}
+% ----- FINE DOCUMENTO -----
