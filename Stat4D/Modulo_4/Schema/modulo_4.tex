@@ -434,13 +434,7 @@ Assume particolare importanza un assunto specifico dei disegni RM con 3 o più l
                 \item Se il test di Mauchly \textbf{NON} è significativo ($p > 0.05$), l'assunto di sfericità è rispettato. Si può usare l'output standard dell'ANOVA RM.
                 \item Se il test di Mauchly \textbf{è} significativo ($p \le 0.05$), l'assunto è violato. L'F test standard tende ad essere troppo liberale (troppi errori di I tipo).
             \end{itemize}
-            \item \textbf{Correzioni se violato:} Si usano valori F corretti, aggiustando i gradi di libertà ($\df_{\text{TRA Misure}}$ e $\df_{\text{Residua}}$) usando un fattore di correzione chiamato epsilon ($\epsilon$). I p-value associati saranno più conservativi. Correzioni comuni (ordinate dalla più conservativa):
-            \begin{itemize}
-                \item \textit{Lower-bound} ($\epsilon$ stimato al minimo possibile)
-                \item \textit{Greenhouse-Geisser} ($\epsilon_{GG}$ stimato dai dati, conservativa)
-                \item \textit{Huynh-Feldt} ($\epsilon_{HF}$ stimato dai dati, meno conservativa)
-                \item La scelta tra GG e HF dipende da quanto $\epsilon$ stimato è lontano da 1 (se $\epsilon > 0.75$, HF è preferita, altrimenti GG).
-            \end{itemize}
+      
         \end{itemize}
 \end{enumerate}
 
@@ -469,63 +463,63 @@ Questo diagramma aiuta a scegliere il test statistico appropriato per confrontar
         process/.style={rectangle, minimum width=3cm, minimum height=1cm, text centered, text width=4cm, draw=black, fill=testcolor, rounded corners},
         arrow/.style={thick,->,>=stealth},
         connector/.style={coordinate} % Style for invisible connector nodes
-    ]
-    
+        ]
+
         % Nodi - Starting top-left
         \node (start) [startstop] {Inizio: Confronto Medie?};
-    
+
         \node (q_ngroups) [decision, below=of start] {Quanti Gruppi/ Misure?};
-    
+
         % --- Path 1: One Group ---
         \node (test_1group) [process, left=2cm of q_ngroups] {Test Z o t per campione singolo (Modulo 2)};
-    
+
         % --- Path 2: Two Groups/Measures ---
-        \node (q_indep2) [decision, below left=1.5cm and 0.5cm of q_ngroups] {Indipendenti o Dipendenti?};
+        \node (q_indep2) [decision, below left=1.5cm and 0.5cm of q_ngroups] {Gruppi o Misure?}; % Changed
         \node (test_t_ind) [process, below left=1.5cm and 0.2cm of q_indep2] {t-test campioni indipendenti (Modulo 3)};
         \node (test_t_dep) [process, below=1.0cm of test_t_ind] {t-test misure ripetute (Modulo 4)};
-    
+
         % --- Path 3: Three+ Groups/Measures ---
         % Position this branch further down and right
-        \node (connector3) [connector, right=3cm of q_indep2] {}; % Helper node for positioning
-        \node (q_indep3) [decision, below=of connector3] {Indipendenti o Dipendenti?};
-    
+        \node (connector3) [connector, right=2cm of q_indep2] {}; % Helper node for positioning
+        \node (q_indep3) [decision, below=of connector3] {Gruppi o Misure?}; % Changed
+
         % Sub-branch: 3+ Independent
         \node (q_factors_ind) [decision, below=1.0cm of test_t_dep] {Quanti Fattori (VI)?};
-        \node (anova_1way) [process, below=of q_factors_ind, yshift=-0.5cm] {ANOVA a una via (Modulo 4)};
-        \node (anova_fact) [process, right=1cm of anova_1way] {ANOVA Fattoriale (Modulo 4)};
-    
+        \node (anova_1way) [process, below=1cm of q_factors_ind] {ANOVA a una via (Modulo 4)};
+        \node (anova_fact) [process, below=1cm of anova_1way] {ANOVA Fattoriale (Modulo 4)};
+
         % Sub-branch: 3+ Dependent
-        \node (q_factors_dep) [decision, below right=2.5cm and 0.2cm of q_indep3] {Quanti Fattori (VI)?};
-        \node (anova_rm) [process, below=of q_factors_dep, yshift=-0.5cm] {ANOVA misure ripetute (Modulo 4)};
-        \node (anova_rm_fact) [process, right=1cm of anova_rm] {ANOVA RM Fattoriale / Mista (Avanzato)};
-    
-    
+        \node (q_factors_dep) [decision, below=3cm  of q_indep3] {Quanti Fattori (VI)?};
+        \node (anova_rm) [process, right=of anova_1way] {ANOVA misure ripetute (Modulo 4)};
+        \node (anova_rm_fact) [process, right=1cm of anova_fact] {ANOVA RM Fattoriale / Mista};
+
+
         % Frecce
         \draw [arrow] (start) -- (q_ngroups);
-    
+
         % Ramo 1 gruppo
             \draw [arrow] (q_ngroups.west) -- node[above, pos=0.6] {Uno} (test_1group);
         % Ramo 2 gruppi/misure
         \draw [arrow] (q_ngroups.south) -- node[above, sloped, pos=0.4] {Due} (q_indep2);
-        \draw [arrow] (q_indep2.west) -- node[above, sloped, pos=0.4] {Indipendenti} (test_t_ind);
-        \draw [arrow] (q_indep2.south) |- node[pos=0.35, left] {Dipendenti} (test_t_dep.east);
-    
-        % Ramo 3+ gruppi/misure - Use orthogonal paths for clarity (Down then Right)
-        \draw [arrow] (q_ngroups.east) -- node[right, pos=0.25] {Tre o più} (q_indep3.north);
+        \draw [arrow] (q_indep2.west) -- node[above, sloped, pos=0.4] {Gruppi} (test_t_ind); % Changed
+        \draw [arrow] (q_indep2.south) |- node[pos=0.35, left] {Misure} (test_t_dep.east); % Changed
 
-        \draw [arrow] (q_indep3.west) |- node[above, sloped, pos=0.4] {Indipendenti} (q_factors_ind);
-        \draw [arrow] (q_indep3.south) -- node[above, sloped, pos=0.4] {Dipendenti} (q_factors_dep);
-    
+        % Ramo 3+ gruppi/misure - Use orthogonal paths for clarity (Down then Right)
+        \draw [arrow] (q_ngroups.south) -- node[right, pos=0.25] {Tre o più} (q_indep3.north);
+
+        \draw [arrow] (q_indep3.west) |- node[above, sloped, pos=0.4] {Gruppi} (q_factors_ind); % Changed
+        \draw [arrow] (q_indep3.south) -- node[above, sloped, pos=0.4] {Misure} (q_factors_dep); % Changed
+
         % Sotto-rami ANOVA Indipendente
-        \draw [arrow] (q_factors_ind.west) -- node[above, sloped, pos=0.4] {Una} (anova_1way);
-        \draw [arrow] (q_factors_ind.east) -- node[above, sloped, pos=0.4] {Due+} (anova_fact);
-    
+        \draw [arrow] (q_factors_ind.south) -- node[above, sloped, pos=0.4] {Una} (anova_1way);
+        \draw [arrow] (q_factors_ind.west) |- node[above, sloped, pos=0.4] {Due+} (anova_fact.west);
+
         % Sotto-rami ANOVA Dipendente
         \draw [arrow] (q_factors_dep.west) -- node[above, sloped, pos=0.4] {Una} (anova_rm);
-        \draw [arrow] (q_factors_dep.east) -- node[above, sloped, pos=0.4] {Due+} (anova_rm_fact);
-    
-    \end{tikzpicture}
-    \end{center}
+        \draw [arrow] (q_factors_dep.east) |- node[above, sloped, pos=0.4] {Due+} (anova_rm_fact.east);
+
+        \end{tikzpicture}
+        \end{center}
 
 
 \textbf{Legenda e Spiegazioni:}
