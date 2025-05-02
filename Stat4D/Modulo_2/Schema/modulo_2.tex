@@ -16,6 +16,11 @@
 \usepackage{tikz} % Pacchetto per disegnare
 \usetikzlibrary{shapes, arrows, positioning} % Librerie TikZ utili
 
+\definecolor{decisioncolor}{rgb}{0.9, 1.0, 0.9} % Verde pallido per decisioni flowchart
+\definecolor{testcolor}{rgb}{1.0, 0.9, 0.9} % Rosso pallido per test flowchart
+\definecolor{startcolor}{rgb}{0.9, 0.9, 1.0} % Blu pallido per inizio flowchart
+
+
 % ----- Definizioni Colori e Stili -----
 \definecolor{boxbgcolor}{rgb}{0.95, 1.0, 0.95}
 \definecolor{boxtitlecolor}{rgb}{0.1, 0.5, 0.1}
@@ -533,24 +538,24 @@ Questa sezione applica la logica generale della verifica delle ipotesi per valut
         \end{itemize}
 \end{itemize}
 
-\begin{figure}
+\begin{figure}[ht]
 \centering
-% Reduced horizontal node distance and adjusted label positioning
-\begin{tikzpicture}[node distance=1.5cm and 0.8cm, auto, >=latex, % Reduced horizontal distance from 2cm to 1cm
-    decision/.style={diamond, draw, text width=5em, text badly centered, inner sep=1pt},
-    block/.style={rectangle, draw, text width=10em, text centered, rounded corners, minimum height=3em},
+% Adjusted styles to use color names from modulo_4.tex
+\begin{tikzpicture}[node distance=1.5cm and 0.8cm, auto, >=latex,
+    decision/.style={diamond, draw, text width=5em, text badly centered, inner sep=1pt, fill=decisioncolor}, % Use decisioncolor
+    block/.style={rectangle, draw, text width=10em, text centered, rounded corners, minimum height=3em, fill=testcolor}, % Use testcolor
     line/.style={draw, -latex'},
-    cloud/.style={ellipse, draw, text centered, minimum height=2em} % Start/End
+    cloud/.style={ellipse, draw, text centered, minimum height=2em, fill=startcolor} % Use startcolor
 ]
-    % Nodes
+    % Nodes (content remains the same)
     \node [cloud] (start) {Inizio: Test su $\popmean$};
     \node [decision, below=of start] (sigma_known) {Varianza Popolazione $\popvar$ Nota?};
-    \node [block, below left=of sigma_known] (z_test_known) {Usa \textbf{Test Z} \\ Formula: $Z = \frac{\samplemean - \mu_0}{\popsd / \sqrt{n}}$ \\ Distribuzione: N(0,1)};
+    \node [block, below left=of sigma_known] (z_test_known) {Usa \textbf{Test Z} \\ Formula: $Z = \frac{\samplemean - \mu_0}{\popsd / \sqrt{n}}$};
     \node [decision, below right=of sigma_known] (n_large) {Campione $n \ge 30$?};
-    \node [block, below left=of n_large] (t_test) {Usa \textbf{Test t} \\ Formula: $t = \frac{\samplemean - \mu_0}{\samplesd / \sqrt{n}}$ \\ Distribuzione: t con $gl=n-1$};
-    \node [block, below right=of n_large] (z_test_approx) {Usa \textbf{Test Z} \\ Formula: $Z \approx \frac{\samplemean - \mu_0}{\samplesd / \sqrt{n}}$ \\ Distribuzione: Approx. N(0,1)};
+    \node [block, below left=of n_large] (t_test) {Usa \textbf{Test t} \\ Formula: $t = \frac{\samplemean - \mu_0}{\samplesd / \sqrt{n}}$};
+    \node [block, below right=of n_large] (z_test_approx) {Usa \textbf{Test Z} \\ Formula: $Z \approx \frac{\samplemean - \mu_0}{\samplesd / \sqrt{n}}$};
 
-    % Edges - Adjusted label positioning using pos and anchor
+    % Edges (remain the same)
     \path [line] (start) -- (sigma_known);
     \path [line] (sigma_known) -- node [pos=0.4, anchor=east] {Sì} (z_test_known);
     \path [line] (sigma_known) -- node [pos=0.4, anchor=west] {No} (n_large);
@@ -560,7 +565,6 @@ Questa sezione applica la logica generale della verifica delle ipotesi per valut
 \caption{Diagramma di flusso per la scelta del test (Z o t) sulla media di una popolazione.}
 \label{fig:test_choice_flowchart}
 \end{figure}
-
 
 
 \begin{reflectionbox}

@@ -15,16 +15,36 @@
 \usepackage{xcolor} % Per colori
 
 % ----- Definizioni Colori e Stili -----
-\definecolor{boxbgcolor}{rgb}{0.95, 0.95, 1.0} % Azzurrino chiaro per i box
-\definecolor{boxtitlecolor}{rgb}{0.1, 0.1, 0.6} % Blu scuro per titoli box
+\definecolor{boxbgcolor}{rgb}{0.95, 1.0, 0.95}
+\definecolor{boxtitlecolor}{rgb}{0.1, 0.5, 0.1}
+\definecolor{examplebgcolor}{rgb}{1.0, 0.98, 0.9} % Giallo pallido per esempi
+\definecolor{examplebordercolor}{rgb}{0.9, 0.8, 0.5} % Bordo ocra per esempi
+
 \newenvironment{reflectionbox}{%
-    \begin{framed}\par\medskip\noindent
+    \medskip % Spazio prima del box
+    \begin{framed}\par\noindent
     \textbf{\color{boxtitlecolor}Domande} \par
     \begin{itemize}[leftmargin=*, label=$\blacktriangleright$]
 }{%
-    \end{itemize}\par\medskip
+    \end{itemize}\par
     \end{framed}
+    \medskip % Spazio dopo il box
 }
+
+% Environment per gli esempi
+\newenvironment{example}[1][Esempio Pratico]{%
+    \medskip
+    \begin{center} % Centra il box dell'esempio
+    \begin{tikzpicture}
+        \node[rectangle, draw=examplebordercolor, fill=examplebgcolor, rounded corners, inner sep=10pt, text width=0.9\textwidth] (box) \bgroup\medskip % Inizia il nodo TikZ
+        \par\noindent{\textbf{#1:}}\par\smallskip\noindent\ignorespaces % Titolo dell'esempio
+}{%
+        \egroup; % Chiude il nodo TikZ
+    \end{tikzpicture}
+    \end{center}
+    \medskip
+}
+
 
 \setlist{nosep}
 \renewcommand{\labelitemi}{$\bullet$}
@@ -170,12 +190,25 @@ Oltre alla scala di misura, le variabili si classificano per:
         \end{itemize}
     \item \textbf{Ruolo nella Ricerca:}
         \begin{itemize}
-            \item \textbf{Variabile Indipendente (VI):} Quella che il ricercatore \textbf{manipola} (negli esperimenti) o usa per definire i gruppi da confrontare. È la presunta \textbf{causa}. Può essere sia qualitativa (es. tipo di terapia) che quantitativa (es. dose di farmaco).
-            \item \textbf{Variabile Dipendente (VD):} Quella che viene \textbf{osservata e misurata} per vedere l'effetto della VI. È il presunto \textbf{effetto}. Solitamente quantitativa.
-            \item \textbf{Variabili Confuse/Confondenti Operazionali:} Non previste, ma \textbf{intrinsecamente legate} alla VI o alla sua operazionalizzazione (covariano con essa). Creano ambiguità nell'interpretazione.
-            \item \textbf{Variabili di Disturbo/Confondenti Procedurali:} Estranee alla VI, ma \textbf{covariano} con essa per errori metodologici (artefatti), influenzando la VD. Devono essere controllate.
-        \end{itemize}
-\end{itemize}
+                    \item \textbf{Variabile Indipendente (VI):} Quella che il ricercatore \textbf{manipola} (negli esperimenti) o usa per definire i gruppi da confrontare. È la presunta \textbf{causa}. Può essere sia qualitativa (es. tipo di terapia) che quantitativa (es. dose di farmaco).
+                    \item \textbf{Variabile Dipendente (VD):} Quella che viene \textbf{osservata e misurata} per vedere l'effetto della VI. È il presunto \textbf{effetto}. Solitamente quantitativa.
+                    \item \textbf{Variabili Confuse/Confondenti Operazionali:} Non previste, ma \textbf{intrinsecamente legate} alla VI o alla sua operazionalizzazione (covariano con essa). Creano ambiguità nell'interpretazione.
+                    \item \textbf{Variabili di Disturbo/Confondenti Procedurali:} Estranee alla VI, ma \textbf{covariano} con essa per errori metodologici (artefatti), influenzando la VD. Devono essere controllate.
+              \end{itemize}
+                        % --- Esempio Box Inserito Qui ---
+                        \begin{example} % Usa l'ambiente personalizzato
+                            Supponiamo di voler studiare se il consumo di \textit{caffeina} migliora il \textit{tempo di reazione} in un compito al computer.
+                            \begin{itemize}[leftmargin=*, label=-]
+                                \item \textbf{VI (Causa Manipolata):} Quantità di Caffeina somministrata. Il ricercatore crea due o più livelli (gruppi): es. Gruppo A (0mg - placebo), Gruppo B (100mg).
+                                \item \textbf{VD (Effetto Misurato):} Tempo di Reazione (in millisecondi) al compito. Si misura questa variabile per vedere se cambia in base al gruppo (livello di caffeina).
+                                \item \textbf{Possibile Confondente Operazionale:} Se il Gruppo B riceve la caffeina in un caffè zuccherato e il Gruppo A solo acqua, non sappiamo se l'eventuale miglioramento è dovuto alla caffeina o allo zucchero (o entrambi). Lo zucchero è \textit{confuso} con la caffeina nell'operazionalizzazione della VI.
+                                \item \textbf{Possibile Confondente Procedurale (di Disturbo):} Se testiamo il Gruppo B al mattino (quando sono più freschi) e il Gruppo A al pomeriggio (quando sono più stanchi), l'ora del giorno (variabile estranea) \textit{covaria} con la VI (caffeina) e potrebbe influenzare la VD (tempo di reazione), indipendentemente dalla caffeina. Bisognerebbe testare tutti alla stessa ora o bilanciare le ore tra i gruppi.
+                            \end{itemize}
+                            \end{example}
+                            % --- Fine Esempio Box ---
+                 
+
+    \end{itemize}
 
 \begin{reflectionbox}
     \item La Variabile Indipendente può essere solo quantitativa? (Vedere Domanda 2)
