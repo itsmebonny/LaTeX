@@ -18,7 +18,27 @@ The idea proposed by \cite{Wang_Du_Coros_Thomaszewski_2024} is to find a neural 
     \text{s.t.} \quad & C_\psi(\bm{x}[\theta](\phi, \psi)) = 0
 \end{align*}
 
+Now, defining the nonlinear modes as 
+\begin{align}
+    \bm{n}(\bm{z}) = \bm{l} + \argmin_{\bm{y}} \quad & E_\phi(\bm{X} + \bm{l} + \bm{y}) \\ 
+    \text{s.t.} \quad & \bm{l}^T \bm{y} = 0
+\end{align}
+where \( \bm{l} \) is the linear mode displacement obtained as
+\begin{equation}
+    \bm{l} = \sum_{i=1}^m z_i \bm{e}_i
+\end{equation}
+where \( \bm{e}_i \) is the $i$-th linear mode and \( z_i \) is the corresponding modal coordinate, we can rewrite the problem as
+\begin{align*}
+    \bm{n}[\theta^*](\bm{z}) &= \bm{l} + \bm{y}[\theta^*](\bm{z}) \\
+    \theta^* = \underset{\theta}{\argmin} \quad & E_\phi(\bm{X} + \bm{l} + \bm{y}[\theta](\bm{z})) \\
+    \text{s.t.} \quad & \bm{l}^T \bm{y}[\theta](\bm{z}) = 0
+\end{align*}
 
+Now we define a suitable function that will serve as a loss function for the self-supervised training of the neural network. The loss function is defined as:
+\begin{equation}
+    \mathcal{L}(\theta) = \mathbb{E}_{\bm{z}} \left[ E(\bm{X} + \bm{l} + \bm{y}[\theta](\bm{z})) + \lambda_1 \bm{l}^T \bm{y}[\theta](\bm{z}) + \lambda_2 \|\bm{y}[\theta](\bm{z})\|^2 \right]
+\end{equation}
+where \( \lambda_1 \) and \( \lambda_2 \) are hyperparameters that control the importance of the orthogonality and origin loss terms, respectively. The first term is the energy loss, which minimizes the internal strain energy of the deformed configuration, while the second term ensures that the nonlinear correction is orthogonal to the linear mode space. The third term is a term that ensures that the neural network is centered at the origin.
 
 
 
@@ -130,3 +150,4 @@ The objective function for dynamic simulation could then be extended to:
     \bm{z}_{n+1} = \underset{\bm{z}}{\argmin} \frac{1}{2h^2} \|\bm{n}(\bm{z}) - 2\bm{u}_n + \bm{u}_{n-1}\|_{\bm{M}}^2 + E(\bm{n}(\bm{z})) + \text{F}(\bm{z}, \bm{f})
 \end{equation}
 where $\text{F}(\bm{z}, \bm{f})$ is a term that accounts for the external forces acting on the system.
+
