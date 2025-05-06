@@ -1,0 +1,245 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+\usepackage{parskip} % Spazio tra paragrafi invece di indentazione
+\usepackage{enumitem} % Per personalizzare elenchi
+\usepackage{ FiraSans } % Font più moderno
+\usepackage{graphicx} % Necessario per \newpage
+\usepackage{bm} % Per simboli grassetto eventuali
+\usepackage{array} % Per tabelle più avanzate (es. m{} per allineamento verticale)
+\usepackage{longtable} % Per tabelle che possono spezzarsi su più pagine
+\usepackage{booktabs} % Per tabelle con linee professionali
+
+% ----- Impostazioni Liste -----
+\setlist[enumerate,1]{label=\arabic*)} % Numeri per domande principali
+\setlist[enumerate,2]{label=(\alph*), leftmargin=*} % Lettere per opzioni
+
+% ----- Macro per simboli comuni (Modulo 6) -----
+\newcommand{\chisq}{\chi^2} % Chi-quadrato
+\newcommand{\Hnull}{H_0} % Ipotesi nulla
+\newcommand{\Halt}{H_1} % Ipotesi alternativa
+\newcommand{\df}{df} % gradi di libertà (o gl)
+\newcommand{\fo}{f_o} % frequenze osservate
+\newcommand{\fa}{f_a} % frequenze attese (o f_e)
+\newcommand{\phiCoeff}{\phi} % Coefficiente Phi
+\newcommand{\phiCramer}{\phi_C} % Phi di Cramér (o V di Cramér)
+\newcommand{\Umann}{U} % U di Mann-Whitney
+\newcommand{\Hkruskal}{H} % H di Kruskal-Wallis
+\newcommand{\FrFried}{F_r} % Fr di Friedman (o \chi^2_r)
+\newcommand{\Ntot}{N_{\text{tot}}} % N totale
+
+\begin{document}
+
+\begin{center}
+    \Large\textbf{Test di Autovalutazione Aggiuntivo - Modulo 6} \\
+    \vspace{0.2cm}
+    \large\textit{Tecniche di Ricerca e Analisi dei Dati} \\
+    \vspace{0.5cm}
+    \normalsize{Istruzioni: Scegli l'unica risposta corretta per ogni domanda. Le soluzioni sono disponibili nell'ultima pagina.}
+\end{center}
+\vspace{1cm}
+
+\begin{enumerate} % Inizio elenco domande principali
+    \item I test non parametrici sono particolarmente utili quando:
+    \begin{enumerate} % Inizio opzioni domanda 1
+        \item I campioni sono molto grandi e i dati perfettamente normali.
+        \item Si lavora con variabili misurate su scala nominale o ordinale.
+        \item Si vuole stimare con precisione la media e la varianza della popolazione.
+    \end{enumerate}
+    \vspace{0.5cm}
+
+    \item Quale delle seguenti affermazioni descrive meglio un vantaggio dei test non parametrici?
+    \begin{enumerate}
+        \item Hanno sempre una potenza statistica superiore ai test parametrici.
+        \item Richiedono meno assunzioni sulla distribuzione dei dati nella popolazione.
+        \item Sono più adatti per analizzare interazioni complesse in disegni fattoriali.
+    \end{enumerate}
+    \vspace{0.5cm}
+
+    \item Il termine "distribution-free" riferito ai test non parametrici significa che:
+    \begin{enumerate}
+        \item Non utilizzano alcuna distribuzione campionaria per la verifica delle ipotesi.
+        \item Non fanno ipotesi specifiche sulla forma della distribuzione della popolazione (es. normalità).
+        \item I risultati del test sono sempre distribuiti uniformemente.
+    \end{enumerate}
+    \vspace{0.5cm}
+
+    \item Nel test Chi-quadrato per la bontà di adattamento, l'ipotesi nulla afferma tipicamente che:
+    \begin{enumerate}
+        \item Le frequenze osservate sono significativamente diverse da quelle attese.
+        \item Esiste un'associazione significativa tra due variabili categoriali.
+        \item Le frequenze delle categorie nel campione si conformano a una distribuzione teorica attesa.
+    \end{enumerate}
+    \vspace{0.5cm}
+
+    \item Per calcolare le frequenze attese ($\fa$) nel test Chi-quadrato per la bontà di adattamento, se si ipotizza che tre categorie siano equiprobabili in un campione di 90 persone, quale sarà $\fa$ per ciascuna categoria?
+    \begin{enumerate}
+        \item 90
+        \item 30
+        \item Non si può determinare senza conoscere le frequenze osservate.
+    \end{enumerate}
+    \vspace{0.5cm}
+
+    \item Il test Chi-quadrato per l'indipendenza è usato per:
+    \begin{enumerate}
+        \item Verificare se un campione proviene da una popolazione con una distribuzione di frequenze nota.
+        \item Valutare se esiste una relazione (associazione) tra due variabili qualitative.
+        \item Confrontare le medie di due o più gruppi.
+    \end{enumerate}
+    \vspace{0.5cm}
+
+    \item In una tabella di contingenza 3x4 (3 righe, 4 colonne) usata per un test Chi-quadrato per l'indipendenza, quanti gradi di libertà avrà il test?
+    \begin{enumerate}
+        \item 2
+        \item 6
+        \item 12
+    \end{enumerate}
+    \vspace{0.5cm}
+
+    \item Se il risultato di un test Chi-quadrato per l'indipendenza è statisticamente significativo, cosa possiamo concludere?
+    \begin{enumerate}
+        \item Le due variabili sono sicuramente causa l'una dell'altra.
+        \item Le due variabili sono associate (non indipendenti) nella popolazione.
+        \item Le medie delle categorie sono significativamente diverse.
+    \end{enumerate}
+    \vspace{0.5cm}
+
+    \item Il coefficiente Phi ($\phiCoeff$) è una misura di dimensione dell'effetto per il test Chi-quadrato per l'indipendenza. Quando è appropriato usarlo?
+    \begin{enumerate}
+        \item Per qualsiasi tabella di contingenza, indipendentemente dalle dimensioni.
+        \item Specificamente per tabelle di contingenza 2x2.
+        \item Solo quando il test Chi-quadrato non è significativo.
+    \end{enumerate}
+    \vspace{0.5cm}
+
+    \item Il test U di Mann-Whitney è considerato l'alternativa non parametrica a quale test parametrico?
+    \begin{enumerate}
+        \item ANOVA a una via.
+        \item t-test per campioni appaiati.
+        \item t-test per campioni indipendenti.
+    \end{enumerate}
+    \vspace{0.5cm}
+
+    \pagebreak % Inizia le domande successive su una nuova pagina se necessario
+
+    \item Quale indice di tendenza centrale è tipicamente confrontato dal test U di Mann-Whitney quando si formulano le ipotesi?
+    \begin{enumerate}
+        \item La media.
+        \item La moda.
+        \item La mediana.
+    \end{enumerate}
+    \vspace{0.5cm}
+
+    \item Il test H di Kruskal-Wallis è utilizzato per confrontare:
+    \begin{enumerate}
+        \item Le mediane di due campioni indipendenti.
+        \item Le mediane di tre o più campioni indipendenti.
+        \item Le frequenze di tre o più categorie.
+    \end{enumerate}
+    \vspace{0.5cm}
+
+    \item Se un ricercatore vuole confrontare i livelli di soddisfazione (misurati su scala ordinale) tra quattro gruppi diversi di dipendenti, quale test non parametrico sarebbe più indicato?
+    \begin{enumerate}
+        \item Test U di Mann-Whitney.
+        \item Test di Wilcoxon.
+        \item Test H di Kruskal-Wallis.
+    \end{enumerate}
+    \vspace{0.5cm}
+
+    \item Il metodo del bootstrap è una tecnica che permette di:
+    \begin{enumerate}
+        \item Aumentare artificialmente la numerosità del campione originale.
+        \item Stimare la distribuzione campionaria di una statistica ricampionando dai dati originali.
+        \item Trasformare sempre dati non normali in dati normali.
+    \end{enumerate}
+    \vspace{0.5cm}
+
+    \item Nel test dei ranghi con segno di Wilcoxon, su cosa si basa principalmente il calcolo della statistica test?
+    \begin{enumerate}
+        \item Sulla differenza tra le medie delle due misurazioni.
+        \item Sui ranghi delle differenze assolute tra coppie di osservazioni, considerando il segno.
+        \item Sulle frequenze osservate in ciascuna delle due condizioni.
+    \end{enumerate}
+    \vspace{0.5cm}
+
+    \item Un ricercatore misura l'ansia in un gruppo di pazienti prima (T1), subito dopo (T2) e a un mese dalla fine (T3) di una terapia. Se i dati non rispettano gli assunti per un'ANOVA RM, quale test non parametrico è più adatto?
+    \begin{enumerate}
+        \item Test H di Kruskal-Wallis.
+        \item Test Chi-quadrato per l'indipendenza.
+        \item Test di Friedman.
+    \end{enumerate}
+    \vspace{0.5cm}
+
+    \item Qual è uno dei principali limiti dei test non parametrici rispetto ai test parametrici, quando questi ultimi sono applicabili?
+    \begin{enumerate}
+        \item Sono più difficili da calcolare manually.
+        \item Hanno generalmente una minore potenza nel rilevare un effetto.
+        \item Non permettono di calcolare la dimensione dell'effetto.
+    \end{enumerate}
+    \vspace{0.5cm}
+
+    \item La trasformazione dei dati in ranghi, comune in molti test non parametrici, ha lo scopo di:
+    \begin{enumerate}
+        \item Rendere i dati più vicini a una distribuzione normale.
+        \item Ridurre l'impatto di valori anomali (outlier) e della forma specifica della distribuzione.
+        \item Aumentare la varianza dei dati per rendere gli effetti più evidenti.
+    \end{enumerate}
+    \vspace{0.5cm}
+
+    \item Se un test non parametrico produce un risultato statisticamente significativo (es. p < 0.05), cosa significa?
+    \begin{enumerate}
+        \item L'effetto osservato è sicuramente di grande importanza pratica.
+        \item È improbabile che l'effetto osservato nel campione sia dovuto solo al caso, assumendo l'ipotesi nulla vera.
+        \item Il test parametrico corrispondente avrebbe dato lo stesso risultato.
+    \end{enumerate}
+    \vspace{0.5cm}
+
+    \item Quando si sceglie tra un test parametrico e uno non parametrico per confrontare due gruppi, quale fattore è MENO determinante se il campione è molto piccolo (es. n < 10 per gruppo)?
+    \begin{enumerate}
+        \item La scala di misura della variabile dipendente.
+        \item La robustezza del test parametrico alla violazione dell'assunto di normalità.
+        \item La dimensione dell'effetto attesa.
+    \end{enumerate}
+    \vspace{0.5cm}
+
+\end{enumerate} % Fine elenco domande principali
+
+\newpage % Inizia una nuova pagina per le soluzioni
+
+\begin{center}
+    \Large\textbf{Griglia delle Soluzioni} \\
+    \vspace{0.5cm}
+    \normalsize{(Test di Autovalutazione Aggiuntivo - Modulo 6)}
+\end{center}
+\vspace{1cm}
+
+\begin{enumerate}[leftmargin=*, label=\arabic*.]
+    \item (b) Si lavora con variabili misurate su scala nominale o ordinale. (I non parametrici sono ideali per dati categoriali/ordinali o quantitativi non normali).
+    \item (b) Richiedono meno assunzioni sulla distribuzione dei dati nella popolazione. (Questo li rende più flessibili, soprattutto con campioni piccoli o dati "difficili").
+    \item (b) Non fanno ipotesi specifiche sulla forma della distribuzione della popolazione (es. normalità). (Sono "liberi dalla distribuzione").
+    \item (c) Le frequenze delle categorie nel campione si conformano a una distribuzione teorica attesa. (Verifica se il campione "si adatta" al modello teorico).
+    \item (b) 30 (Con equiprobabilità, la frequenza attesa per ogni categoria è il totale diviso il numero di categorie: $\fa = N/k = 90/3 = 30$).
+    \item (b) Valutare se esiste una relazione (associazione) tra due variabili qualitative. (Verifica se le categorie di una variabile variano al variare delle categorie dell'altra).
+    \item (b) 6 (I gradi di libertà si calcolano come $(righe - 1) \times (colonne - 1) = (3-1) \times (4-1) = 2 \times 3 = 6$).
+    \item (b) Le due variabili sono associate (non indipendenti) nella popolazione. (Si rifiuta l'ipotesi di indipendenza; la significatività non implica causalità).
+    \item (b) Specificamente per tabelle di contingenza 2x2. (Per tabelle più grandi si usa la V di Cramér o $\phiCramer$).
+    \item (c) t-test per campioni indipendenti. (Entrambi confrontano due gruppi indipendenti, ma il Mann-Whitney non assume normalità e usa ranghi/mediane).
+    \item (c) La mediana. (I test non parametrici basati sui ranghi sono sensibili alla posizione centrale, rappresentata dalla mediana).
+    \item (b) Le mediane di tre o più campioni indipendenti. (È l'estensione non parametrica dell'ANOVA a una via).
+    \item (c) Test H di Kruskal-Wallis. (Adatto per confrontare più di due gruppi indipendenti quando la VD è ordinale).
+    \item (b) Stimare la distribuzione campionaria di una statistica ricampionando dai dati originali. (È una tecnica di simulazione basata sui dati osservati).
+    \item (b) Sui ranghi delle differenze assolute tra coppie di osservazioni, considerando il segno. (Combina informazione sull'ordine delle differenze e sulla loro direzione).
+    \item (c) Test di Friedman. (È l'alternativa non parametrica all'ANOVA per misure ripetute con più di due misurazioni).
+    \item (b) Hanno generalmente una minore potenza nel rilevare un effetto. (Quando gli assunti parametrici sono soddisfatti, i test parametrici sono più efficienti).
+    \item (b) Ridurre l'impatto di valori anomali (outlier) e della forma specifica della distribuzione. (I ranghi preservano l'ordine ma non la magnitudo esatta delle distanze).
+    \item (b) È improbabile che l'effetto osservato nel campione sia dovuto solo al caso, assumendo l'ipotesi nulla vera. (Questa è l'interpretazione standard del p-value).
+    \item (b) La robustezza del test parametrico alla violazione dell'assunto di normalità. (Con campioni molto piccoli, la robustezza è bassa; quindi, la violazione della normalità diventa un problema più serio e spinge verso i test non parametrici, rendendo la robustezza un fattore meno determinante nella scelta *tra* i due).
+\end{enumerate}
+
+\end{document}
+% ----- FINE DOCUMENTO -----

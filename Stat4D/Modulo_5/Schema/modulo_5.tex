@@ -1,0 +1,457 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+\usepackage{parskip} % Spazio tra paragrafi invece di indentazione
+\usepackage{enumitem} % Per personalizzare elenchi
+\usepackage{ FiraSans } % Font più moderno
+\usepackage{xcolor} % Per colori
+\usepackage{framed} % Per i box
+\usepackage{bm} % Per grassetto matematico (se serve)
+\usepackage{tikz} % Per diagrammi
+\usetikzlibrary{shapes, arrows.meta, positioning, calc} % Librerie TikZ utili
+\usepackage{booktabs} % Per tabelle professionali
+\usepackage{colortbl} % Per colorare celle tabelle
+\usepackage{multirow} % Per celle multi-riga
+\usepackage{appendix} % Per gestire le appendici
+
+% ----- Definizioni Colori e Stili -----
+\definecolor{boxbgcolor}{rgb}{1.0, 0.98, 0.9} % Giallo pallido per reflection (diverso da Mod 4 per distinguerli?)
+\definecolor{boxtitlecolor}{rgb}{0.6, 0.4, 0.1} % Ocra scuro per reflection title
+\definecolor{examplebgcolor}{rgb}{0.95, 1.0, 0.95} % Verdino pallido per esempi
+\definecolor{examplebordercolor}{rgb}{0.5, 0.8, 0.5} % Bordo verde per esempi
+\definecolor{diagrambgcolor}{rgb}{0.92, 0.92, 0.92} % Grigio chiaro per sfondi diagrammi
+
+% Environment per Reflection Box (Nuovi colori per Mod 5)
+\newenvironment{reflectionbox}{%
+    \medskip
+    \begin{framed}\par\noindent
+    \textbf{\color{boxtitlecolor}Domande per Riflettere (Basate sul Test)} \par
+    \begin{itemize}[leftmargin=*, label=$\blacktriangleright$]
+}{%
+    \end{itemize}\par
+    \end{framed}
+    \medskip
+}
+
+% Environment per Esempi (Nuovi colori per Mod 5)
+\newenvironment{example}[1][Esempio Pratico]{%
+    \medskip
+    \begin{center}
+    \begin{tikzpicture}
+        \node[rectangle, draw=examplebordercolor, fill=examplebgcolor, rounded corners, inner sep=10pt, text width=0.9\textwidth] (box) \bgroup\medskip
+        \par\noindent{\textbf{#1:}}\par\smallskip\noindent\ignorespaces
+}{%
+        \egroup;
+    \end{tikzpicture}
+    \end{center}
+    \medskip
+}
+
+\setlist{nosep}
+\renewcommand{\labelitemi}{$\bullet$}
+
+% ----- Macro per simboli comuni -----
+% Generali
+\newcommand{\alphaerr}{\alpha} % Livello alpha
+\newcommand{\Hnull}{H_0} % Ipotesi nulla
+\newcommand{\Halt}{H_1} % Ipotesi alternativa
+\newcommand{\df}{gl} % gradi di libertà
+\newcommand{\Ntot}{N} % N totale (usiamo N come nelle dispense)
+\newcommand{\niind}{n} % n campione (usiamo n)
+
+% Correlazione
+\newcommand{\rpearson}{r} % r di Pearson
+\newcommand{\poprho}{\rho} % rho popolazione
+\newcommand{\rsq}{r^2} % r quadro
+\newcommand{\cov}{\text{cov}} % Covarianza
+
+% Regressione
+\newcommand{\Yhat}{\hat{Y}} % Y predetto
+\newcommand{\bcoeff}{b} % coeff b (pendenza) campione
+\newcommand{\acoeff}{a} % intercetta a campione
+\newcommand{\popbeta}{\beta} % beta popolazione
+\newcommand{\popalpha}{\alpha} % alpha popolazione
+\newcommand{\resid}{e} % errore/residuo
+\newcommand{\ErrStdEst}{s_{Y \cdot X}} % Errore Standard Stima (sample)
+\newcommand{\VarResid}{\sigma^2_{\text{residua}}} % Varianza residua
+\newcommand{\VarSpieg}{\sigma^2_{\text{spiegata}}} % Varianza spiegata
+\newcommand{\Rsq}{R^2} % R quadro (in regressione, spesso maiuscolo)
+
+% ----- INIZIO DOCUMENTO -----
+\begin{document}
+
+\begin{center}
+    \Large\textbf{Modulo 5: Correlazione e Regressione Lineare} \\
+    \vspace{0.5cm}
+    \large\textit{(Analisi dell'associazione e della predizione tra variabili quantitative)}
+\end{center}
+
+% #####################################################################
+\section*{Parte 1: La Correlazione Lineare}
+% #####################################################################
+
+\subsection*{1. La Relazione Lineare tra Due Variabili}
+\begin{itemize}
+    \item \textbf{Scopo:} L'analisi della correlazione studia la \textbf{relazione} (o associazione, covariazione) tra \textbf{due variabili quantitative} misurate sugli stessi soggetti (es. altezza e peso, ore di studio e voto).
+    \item \textbf{Non implica Causalità:} La correlazione indica che le variabili tendono a variare insieme, ma \textbf{non} stabilisce un rapporto di causa-effetto.
+    \item \textbf{Caratteristiche della Relazione:} Una relazione lineare può essere descritta da:
+        \begin{itemize}
+            \item \textbf{Forma:} La disposizione dei punti nel grafico di dispersione. Si focalizza sulla forma \textbf{lineare} (punti tendono a disporsi lungo una retta). Esistono anche relazioni \textbf{non lineari} (curvilinee).
+            \item \textbf{Direzione:}
+                \begin{itemize}
+                    \item \textit{Positiva (+):} All'aumentare di una variabile, aumenta anche l'altra (e viceversa). La "retta" immaginaria va dal basso a sinistra all'alto a destra.
+                    \item \textit{Negativa (-):} All'aumentare di una variabile, l'altra diminuisce (e viceversa). La "retta" va dall'alto a sinistra al basso a destra.
+                \end{itemize}
+            \item \textbf{Forza (o Intensità):} Quanto i punti sono vicini alla retta immaginaria. Indica quanto è forte il legame tra le variabili. Va da "nulla" (punti sparsi, nuvola) a "perfetta" (punti esattamente sulla retta).
+        \end{itemize}
+    \item \textbf{Grafico di Dispersione (Scatterplot):} Strumento visivo fondamentale per valutare forma, direzione e forza della relazione, e per identificare eventuali \textbf{outlier} (valori anomali).
+        \begin{itemize}
+            \item Ogni soggetto è un punto nel grafico, con coordinate date dai suoi valori sulle due variabili (X, Y).
+        \end{itemize}
+\end{itemize}
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[scale=0.6, every node/.style={scale=0.8}]
+    % Positiva Forte
+    \begin{scope}[xshift=-6cm]
+        \draw[->] (-2.5,0) -- (2.5,0) node[right] {X}; \draw[->] (0,-2.5) -- (0,2.5) node[above] {Y};
+        \foreach \x/\y in {-2/{-1.8+rnd*0.4}, -1.5/{-1.3+rnd*0.4}, -1/{-0.8+rnd*0.4}, -0.5/{-0.3+rnd*0.4}, 0/{0.2+rnd*0.4}, 0.5/{0.7+rnd*0.4}, 1/{1.2+rnd*0.4}, 1.5/{1.7+rnd*0.4}, 2/{2.2+rnd*0.4}}
+            \filldraw[blue] (\x,\y) circle (2pt);
+        \draw[red, dashed] (-2,-1.8) -- (2,2.2); % Linea tendenza
+        \node[below] at (0,-2.5) {Positiva Forte};
+    \end{scope}
+    % Negativa Debole
+    \begin{scope}[xshift=0cm]
+        \draw[->] (-2.5,0) -- (2.5,0) node[right] {X}; \draw[->] (0,-2.5) -- (0,2.5) node[above] {Y};
+         \foreach \x/\y in {-2/{1.5+rnd*1.2}, -1.5/{1.1+rnd*1.2}, -1/{-0.1+rnd*1.2}, -0.5/{0+rnd*1.2}, 0/{-0.2+rnd*1.2}, 0.5/{-0.5+rnd*1.2}, 1/{-1.0+rnd*1.2}, 1.5/{-1.2+rnd*1.2}, 2/{-1.8+rnd*1.2}}
+            \filldraw[blue] (\x,\y) circle (2pt);
+        \draw[red, dashed] (-2,1.5) -- (2,-1.8); % Linea tendenza
+        \node[below] at (0,-2.5) {Negativa Debole};
+    \end{scope}
+    % Nulla
+    \begin{scope}[xshift=6cm]
+        \draw[->] (-2.5,0) -- (2.5,0) node[right] {X}; \draw[->] (0,-2.5) -- (0,2.5) node[above] {Y};
+         \foreach \x/\y in {-2/{-1+rnd*2}, -1.5/{0.5+rnd*2}, -1/{1+rnd*2}, -0.5/{-0.5+rnd*2}, 0/{0+rnd*2}, 0.5/{1+rnd*2}, 1/{-1+rnd*2}, 1.5/{0.5+rnd*2}, 2/{0+rnd*2}}
+            \filldraw[blue] (\x,\y) circle (2pt);
+        \node[below] at (0,-2.5) {Nulla};
+    \end{scope}
+\end{tikzpicture}
+\caption{Esempi di grafici di dispersione e tipi di relazione lineare.}
+\label{fig:scatterplots}
+\end{figure}
+
+\begin{reflectionbox}
+    \item La relazione tra variabili può essere descritta in termini di...? (Vedere Domanda 1)
+    \item Quale grafico è utile per rappresentare la relazione tra due variabili? (Vedere Domanda 2)
+    \item Relativamente alla caratteristica "forma", la correlazione tra due variabili può essere...? (Vedere Domanda 26)
+\end{reflectionbox}
+
+\subsection*{2. Il Coefficiente di Correlazione (r di Pearson)}
+\begin{itemize}
+    \item \textbf{Scopo:} Quantificare la \textbf{forza} e la \textbf{direzione} della relazione \textbf{lineare} tra due variabili quantitative (scala a intervalli o rapporti).
+    \item \textbf{Simbolo:} $\rpearson$ per il campione, $\poprho$ (rho) per la popolazione.
+    \item \textbf{Formula Concettuale:} Rapporto tra la covarianza (quanto le variabili variano insieme) e il prodotto delle loro deviazioni standard (quanto variano separatamente).
+      $$ \rpearson = \frac{\cov(X, Y)}{s_X s_Y} $$
+      (dove $\cov(X, Y) = \frac{\sum (X_i - \bar{X})(Y_i - \bar{Y})}{n-1}$ o $n$ a seconda della definizione)
+    \item \textbf{Formula con Punteggi Z:} Modo semplice per calcolare r se i dati sono standardizzati:
+      $$ \rpearson = \frac{\sum (z_X z_Y)}{n} $$
+      (o $n-1$ al denominatore)
+    \item \textbf{Valori Possibili:} Varia sempre tra \textbf{-1.00 e +1.00}.
+        \begin{itemize}
+            \item $\rpearson = +1.00$: Correlazione lineare positiva perfetta.
+            \item $\rpearson = -1.00$: Correlazione lineare negativa perfetta.
+            \item $\rpearson = 0$: Assenza di relazione \textbf{lineare}. Potrebbe esistere una relazione non lineare (curvilinea).
+            \item Valori vicini a $\pm 1$ indicano relazione forte, valori vicini a 0 indicano relazione debole o assente.
+        \end{itemize}
+    \item \textbf{Interpretazione della Forza (Convenzioni Psicologia):}
+        \begin{itemize}
+            \item $|\rpearson| \approx 0.20 - 0.40$: Debole/Modesta
+            \item $|\rpearson| \approx 0.40 - 0.60$: Considerevole
+            \item $|\rpearson| \approx 0.60 - 0.80$: Intensa
+            \item $|\rpearson| > 0.80$: Molto Intensa
+        \end{itemize}
+    \item \textbf{Altri Coefficienti (Cenni):}
+        \begin{itemize}
+            \item \textit{Rho di Spearman ($r_s$ o $\rho_s$):} Per variabili su scala ordinale (o per relazioni non lineari ma monotone).
+            \item \textit{r punto-biseriale ($r_{pb}$):} Tra una variabile dicotomica (nominale con 2 livelli, es. Maschio/Femmina) e una quantitativa.
+            \item \textit{Phi ($\phi$):} Tra due variabili dicotomiche.
+        \end{itemize}
+\end{itemize}
+
+\begin{reflectionbox}
+    \item Quale indice è calcolato come rapporto tra covarianza e grado di variazione separata? (Vedere Domanda 3)
+    \item Il coefficiente di correlazione punto-biseriale si usa per...? (Vedere Domanda 4)
+    \item Il valore numerico del coefficiente r di Pearson indica...? (Vedere Domanda 5)
+    \item Per convenzione, un valore di r=0.80 è interpretato come indicativo di una relazione...? (Vedere Domanda 6)
+    \item Per indicare la correlazione in una popolazione, si usa la lettera greca...? (Vedere Domanda 10)
+    \item Il coefficiente di correlazione di Pearson può variare tra...? (Vedere Domanda 19)
+    \item Nel coefficiente di correlazione di Pearson, il segno (+ o -) indica...? (Vedere Domanda 28)
+    \item Il coefficiente r di Pearson calcolato in un campione è identificato con la lettera...? (Vedere Domanda 22)
+\end{reflectionbox}
+
+\subsection*{3. L'Interpretazione del Coefficiente r di Pearson}
+Attenzione ad alcuni aspetti chiave:
+\begin{itemize}
+    \item \textbf{Linearità:} r misura solo la relazione \textit{lineare}. Un valore di r vicino a 0 non esclude una forte relazione \textit{curvilinea}. È sempre fondamentale guardare lo scatterplot!
+    \item \textbf{Outlier Bivariati:} Valori estremi su entrambe le variabili possono influenzare drasticamente (gonfiare o sgonfiare) il valore di r. Vanno identificati (tramite scatterplot) e gestiti con cautela (verificare errori, eventualmente rimuovere se giustificato o usare metodi robusti).
+    \item \textbf{Campo di Variazione (Range Restriction):} Se i punteggi su una o entrambe le variabili coprono un range molto limitato (ristretto), il coefficiente r tenderà ad essere più basso (sottostimato) rispetto a quello che si otterrebbe con un range più ampio.
+    \item \textbf{Correlazione $\neq$ Causalità:} Ribadito: una correlazione, anche forte, non permette di concludere che una variabile causi l'altra. Potrebbe essere X causa Y, Y causa X, oppure entrambe sono causate da una terza variabile (relazione spuria). Per inferire causalità servono disegni sperimentali con manipolazione della VI.
+\end{itemize}
+
+\begin{reflectionbox}
+    \item Nell'ambito della correlazione lineare, per identificare outlier bivariati è utile...? (Vedere Domanda 16)
+    \item Quando i punteggi hanno un campo di variazione molto ristretto, r tende a...? (Vedere Domanda 23)
+\end{reflectionbox}
+
+\subsection*{4. Verifica delle Ipotesi per il Coefficiente r di Pearson}
+\begin{itemize}
+    \item \textbf{Scopo Inferenziale:} Verificare se la correlazione $\rpearson$ osservata nel campione è statisticamente significativa, cioè se è sufficientemente diversa da zero da poter generalizzare l'esistenza di una relazione lineare anche nella popolazione ($\poprho \neq 0$).
+    \item \textbf{Ipotesi:}
+        \begin{itemize}
+            \item $\Hnull: \poprho = 0$ (Nella popolazione non c'è relazione lineare tra le due variabili).
+            \item $\Halt: \poprho \neq 0$ (Nella popolazione esiste una relazione lineare tra le due variabili).
+        \end{itemize}
+    \item \textbf{Statistica Test (t):} Si usa la distribuzione t di Student per testare l'ipotesi nulla. La formula per convertire r in t è:
+      $$ t = \frac{\rpearson \sqrt{n-2}}{\sqrt{1-\rsq}} $$
+    \item \textbf{Gradi di Libertà:} $\df = n - 2$ (si perdono 2 gl, uno per ogni variabile).
+    \item \textbf{Decisione:} Si confronta il $t_{test}$ calcolato con il $t_{critico}$ dalla tavola t (con $\alphaerr$ scelto e $n-2$ df).
+        \begin{itemize}
+            \item Se $|t_{test}| > |t_{critico}|$ (o $p \le \alphaerr$): Si rifiuta $\Hnull$. Si conclude che la correlazione è statisticamente significativa.
+            \item Se $|t_{test}| \le |t_{critico}|$ (o $p > \alphaerr$): Non si rifiuta $\Hnull$. Non c'è evidenza sufficiente per generalizzare la relazione alla popolazione.
+        \end{itemize}
+\end{itemize}
+
+\begin{reflectionbox}
+    \item Nella verifica delle ipotesi per r di Pearson, quale test statistico si usa? (Vedere Domanda 25)
+\end{reflectionbox}
+
+\subsection*{5. Dimensione dell'Effetto e Assunti per il Coefficiente r di Pearson}
+\begin{itemize}
+    \item \textbf{Dimensione dell'Effetto:} Lo stesso coefficiente $\rpearson$ è già una misura della forza della relazione. Tuttavia, per interpretarlo in termini di varianza condivisa si usa:
+        \begin{itemize}
+            \item \textbf{Coefficiente di Determinazione ($\rsq$):} È il quadrato di r ($\rsq = \rpearson^2$). Indica la \textbf{proporzione di varianza} di una variabile che è \textbf{spiegata} (o condivisa con) l'altra variabile. Varia da 0 a 1 (0\% a 100\%).
+            \item Es: se $r = 0.60$, allora $\rsq = 0.36$. Significa che il 36% della variabilità di Y è associata alla variabilità di X (e viceversa).
+        \end{itemize}
+    \item \textbf{Assunti per l'Inferenza (Verifica Ipotesi su $\poprho$):}
+        \begin{enumerate}
+            \item \textbf{Linearità:} La relazione tra X e Y nella popolazione deve essere lineare. (Verificare con scatterplot).
+            \item \textbf{Normalità Bivariata:} Le variabili X e Y devono seguire congiuntamente una distribuzione normale bivariata nella popolazione (ogni variabile è normale per ogni valore dell'altra, e le distribuzioni condizionate sono normali). Questo assunto è importante soprattutto con campioni piccoli ($n < 30$). Per campioni più grandi, il test è abbastanza robusto.
+            \item \textbf{Indipendenza delle Osservazioni:} Le coppie di osservazioni (X, Y) per ciascun soggetto devono essere indipendenti da quelle degli altri soggetti.
+        \end{enumerate}
+\end{itemize}
+
+\begin{reflectionbox}
+    \item L'analisi di correlazione lineare è subordinata al rispetto di alcuni assunti? (Vedere Domanda 15 - Risposta: Vero)
+\end{reflectionbox}
+
+\clearpage % Inizia nuova pagina per la Parte 2
+
+% #####################################################################
+\section*{Parte 2: La Regressione Lineare}
+% #####################################################################
+
+\subsection*{6. La Previsione e il Coefficiente di Determinazione}
+\begin{itemize}
+    \item \textbf{Scopo della Regressione:} Mentre la correlazione descrive l'associazione, la regressione lineare (bivariata) si usa per \textbf{predire} i valori di una variabile (dipendente, Y, effetto) basandosi sui valori di un'altra variabile (indipendente, X, causa/predittore). Introduce un'ipotesi di \textbf{direzionalità} (X influenza Y).
+    \item \textbf{Modello Matematico:} Si cerca un modello (una retta) che descriva al meglio la relazione tra X e Y per fare previsioni.
+    \item \textbf{Coefficiente di Determinazione ($\rsq$ o $\Rsq$):} Fondamentale anche in regressione.
+        \begin{itemize}
+            \item Rappresenta la \textbf{proporzione di varianza della variabile dipendente (Y)} che viene \textbf{spiegata} dalla variabile indipendente (X) attraverso il modello di regressione.
+            \item $\rsq = \frac{\text{Varianza Spiegata}}{\text{Varianza Totale di Y}}$
+            \item Varia da 0 a 1 (0\% a 100\%). Un $\rsq$ alto indica che X è un buon predittore di Y.
+            \item \textbf{Varianza Residua:} La parte di varianza di Y \textit{non} spiegata da X è $1 - \rsq$. Rappresenta l'errore di previsione del modello.
+        \end{itemize}
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+    % Cerchio Y
+    \draw[fill=blue!20] (0,0) circle (1.5cm);
+    \node at (0,0) {{\tiny Varianza Y $\qquad$}};
+    % Cerchio X
+    \draw[fill=red!20] (2,0) circle (1.5cm);
+    \node at (2,0) {{\tiny $\qquad$ Varianza X}};
+    % Area sovrapposizione (Varianza Spiegata = r^2)
+    \begin{scope}
+        \clip (0,0) circle (1.5cm);
+        \fill[green!30] (2,0) circle (1.5cm);
+    \end{scope}
+    \node at (1,0) {$\rsq$}; % Varianza condivisa/spiegata
+    \node[below] at (1, -2) {Diagramma di Venn: $\rsq$ come varianza condivisa};
+\end{tikzpicture}
+\end{center}
+
+\begin{reflectionbox}
+    \item Il coefficiente di determinazione ($\rsq$) è uguale a...? (Vedere Domanda 14)
+    \item In un modello di regressione, $\rsq$ esprime...? (Vedere Domanda 7)
+    \item La varianza residua è uguale a...? (Vedere Domanda 21)
+    \item Con $\rsq = 0.64$, possiamo sostenere che...? (Vedere Domanda 29 - Risposta: Entrambe le affermazioni sono corrette: spiegata 64%, residua 36%)
+    \item Per descrivere graficamente la proporzione di varianza condivisa si può usare...? (Vedere Domanda 27)
+\end{reflectionbox}
+
+\subsection*{7. La Logica della Regressione Lineare Bivariata}
+\begin{itemize}
+    \item \textbf{Obiettivo:} Trovare l'equazione della \textbf{retta} che meglio si adatta ai punti del diagramma di dispersione, per predire Y conoscendo X.
+    \item \textbf{Equazione della Retta di Regressione:}
+      $$ \Yhat = \acoeff + \bcoeff X $$
+      Dove:
+        \begin{itemize}
+            \item $\Yhat$ è il valore \textbf{predetto} di Y per un dato valore di X.
+            \item $\acoeff$ è l'\textbf{intercetta:} il valore predetto di Y quando $X=0$.
+            \item $\bcoeff$ è il \textbf{coefficiente di regressione (o pendenza):} indica di quante unità cambia $\Yhat$ per ogni cambiamento di un'unità in X. Esprime la \textit{direzione} e l'\textit{entità} dell'effetto di X su Y.
+            \item $X$ è il valore noto della variabile indipendente (predittore).
+        \end{itemize}
+    \item \textbf{Metodo dei Minimi Quadrati (Least Squares):} È il criterio usato per trovare la retta "migliore". La retta di regressione è quella che \textbf{minimizza la somma dei quadrati degli errori di previsione}.
+        \begin{itemize}
+            \item L'\textbf{Errore (o Residuo)} per ogni osservazione è la differenza tra il valore Y osservato e il valore Y predetto: $\resid_i = Y_i - \Yhat_i$.
+            \item Il metodo cerca la retta che rende minima $\sum \resid_i^2 = \sum (Y_i - \Yhat_i)^2$.
+        \end{itemize}
+    \item \textbf{Formule per a e b (Metodo Minimi Quadrati):}
+      $$ \bcoeff = \frac{\cov(X, Y)}{s^2_X} = \rpearson \frac{s_Y}{s_X} $$
+      $$ \acoeff = \bar{Y} - \bcoeff \bar{X} $$
+      La retta di regressione passa sempre per il punto delle medie ($\bar{X}, \bar{Y}$).
+    \item \textbf{Coefficiente b (Pendenza):}
+        \begin{itemize}
+            \item È un coefficiente \textbf{non standardizzato:} il suo valore dipende dalle unità di misura di X e Y.
+            \item Se $\bcoeff > 0$, la relazione è positiva. Se $\bcoeff < 0$, la relazione è negativa. Se $\bcoeff = 0$, non c'è relazione lineare (retta piatta).
+            \item Indica l'effetto di X su Y (quanto cambia Y per 1 unità di X).
+        \end{itemize}
+    \item \textbf{Intercetta a:} Indica il valore atteso di Y quando X è zero. A volte non ha un'interpretazione pratica diretta (es. se X non può essere zero).
+\end{itemize}
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}]
+    \draw[->] (0,0) -- (6,0) node[right] {X};
+    \draw[->] (0,0) -- (0,5) node[above] {Y};
+
+    % Punti dati
+    \coordinate (p1) at (1, 1.5); \coordinate (p2) at (2, 2.5); \coordinate (p3) at (3, 3.5);
+    \coordinate (p4) at (4, 2.5); \coordinate (p5) at (5, 4.0);
+    \foreach \p in {p1, p2, p3, p4, p5} \filldraw[blue] (\p) circle (2pt);
+
+    % Definizioni per la retta di regressione Y_hat = a + bX
+    % La retta originale passa per (0, 0.8) e (5.5, 4.3)
+    \pgfmathsetmacro{\intercept}{0.8}
+    \pgfmathsetmacro{\slope}{(4.3-0.8)/(5.5-0)} % Calcola la pendenza b (circa 0.636)
+    
+    % Disegna la retta di regressione
+    \draw[red, thick] (0, \intercept) -- (5.5, \intercept + \slope * 5.5) node[pos=1, above right, xshift=1pt] {$\Yhat = \acoeff + \bcoeff X$};
+
+    % Intercetta a
+    \filldraw[red] (0, \intercept) circle (2pt); \node[left, xshift=-1pt] at (0, \intercept) {$\acoeff$};
+
+    % Pendenza b (illustrata con un triangolo "rise-over-run")
+    % Scegli un punto X_start per il triangolo (es. X=1.5), per evitare la zona centrale affollata
+    \pgfmathsetmacro{\xZero}{1.0} 
+    \pgfmathsetmacro{\yZero}{\intercept + \slope * \xZero} % Valore Y sulla retta a X_start
+    \pgfmathsetmacro{\xOne}{\xZero + 1} % X_start + 1 (run = 1)
+    \pgfmathsetmacro{\yOne}{\intercept + \slope * \xOne}   % Valore Y sulla retta a X_start + 1 (Y_start + rise)
+
+    \draw[gray, dashed] (\xZero, \yZero) -- (\xOne, \yZero) node[midway, below, black, yshift=-2pt] {$1$}; % "Run" = 1
+    \draw[gray, dashed] (\xOne, \yZero) -- (\xOne, \yOne);   % "Rise"
+    % Freccia e etichetta per b ("rise")
+    \draw[<->, thin] ($(\xOne, \yZero) + (0.15,0)$) -- ($(\xOne, \yOne) + (0.15,0)$) node[midway, right, black, xshift=1pt] {$\bcoeff$};
+
+    % Calcolo di Y_hat per X=3 (che è X_bar per questi dati), necessario per il punto delle medie (M)
+    \pgfmathsetmacro{\yHatThree}{\intercept + \slope * 3} % Valore predetto Y_hat per X=3 (circa 2.709)
+
+    % Residuo e_4 = Y_4 - Yhat_4 per il punto p4
+    % Il punto p4 è definito come \coordinate (p4) at (4, 3.5);
+    \pgfmathsetmacro{\yHatFour}{\intercept + \slope * 4} % Valore predetto Y_hat per X=4 (X di p4)
+    \coordinate (Yhat4coord) at (4, \yHatFour); % Coordinata sulla retta di regressione per X=4
+    
+    \draw[dashed, gray] (p4) -- (Yhat4coord); % Linea del residuo e_4
+    % Etichetta per e_4, posizionata a destra del centro della linea del residuo
+    \node[right=2pt, gray] at ($(p4)!0.5!(Yhat4coord)$) {$e_4 = Y_4 - \Yhat_4$};
+
+    % Punto delle medie (Media X=3, Media Y sulla retta approx 2.709). Questo punto giace sulla retta di regressione.
+    % Usiamo yHatThree (calcolato sopra) perché X_medio = 3.
+    \coordinate (M) at (3, \yHatThree); 
+    \filldraw[black] (M) circle (3pt); 
+    % Etichetta per (X_bar, Y_bar), posizionata in alto a sinistra rispetto a M.
+    % Questa posizione dovrebbe essere ancora valida e non sovrapporsi con e_4 (che è a X=4).
+    \node[above left=1pt, black, xshift=-1pt] at (M) {$(\bar{X}, \bar{Y})$}; 
+
+\end{tikzpicture}
+\caption{Retta di regressione, intercetta (a), pendenza (b) ed errore (e).}
+\label{fig:regression_line}
+\end{figure}
+
+\begin{reflectionbox}
+    \item Nella generale equazione lineare ($Y = a + bX$), la costante b definisce...? (Vedere Domanda 8)
+    \item Nel modello lineare di previsione, la retta che meglio interpola i dati è detta...? (Vedere Domanda 9)
+    \item Il coefficiente di regressione (b) è un coefficiente...? (Vedere Domanda 17)
+    \item Quale indice rappresenta la variazione media di Y per unità di X? (Vedere Domanda 18)
+    \item Nella generale equazione lineare, la costante "a" è conosciuta come...? (Vedere Domanda 20)
+    \item Come è definito il metodo che stima la retta che meglio interpola i dati? (Vedere Domanda 24)
+    \item La retta di regressione passa sempre per...? (Vedere Domanda 30)
+\end{reflectionbox}
+
+\subsection*{8. La Verifica delle Ipotesi per la Regressione Lineare Bivariata}
+Si testano i parametri della popolazione ($\popalpha$, $\popbeta$, $\poprho^2$) basandosi sui coefficienti campionari ($\acoeff$, $\bcoeff$, $\rsq$).
+\begin{itemize}
+    \item \textbf{Test sull'Intercetta ($\popalpha$):}
+        \begin{itemize}
+            \item $\Hnull: \popalpha = 0$ (L'intercetta nella popolazione è zero).
+            \item $\Halt: \popalpha \neq 0$
+            \item Si usa un test t. Meno comune, spesso l'interesse è sulla pendenza.
+        \end{itemize}
+    \item \textbf{Test sulla Pendenza ($\popbeta$):} È il test principale d'interesse. Verifica se esiste una relazione lineare significativa tra X e Y nella popolazione.
+        \begin{itemize}
+            \item $\Hnull: \popbeta = 0$ (La pendenza nella popolazione è zero; X non ha un effetto lineare su Y).
+            \item $\Halt: \popbeta \neq 0$ (Esiste un effetto lineare di X su Y).
+            \item Statistica Test (t):
+              $$ t = \frac{\bcoeff - \popbeta_0}{s_{\bcoeff}} = \frac{\bcoeff - 0}{s_{\bcoeff}} $$
+              dove $s_{\bcoeff}$ è l'errore standard del coefficiente di regressione b.
+            \item Gradi di Libertà: $\df = n - 2$.
+            \item Decisione: Si confronta $t_{test}$ con $t_{critico}$. Se si rifiuta $\Hnull$, si conclude che X è un predittore significativo di Y.
+        \end{itemize}
+    \item \textbf{Test sulla Bontà di Adattamento ($\poprho^2$ o $\rsq$):} Verifica se il modello di regressione nel suo complesso spiega una quota significativa di varianza di Y.
+        \begin{itemize}
+            \item $\Hnull: \poprho^2 = 0$ (Il modello non spiega alcuna varianza di Y nella popolazione; $\rsq$ osservato è dovuto al caso).
+            \item $\Halt: \poprho^2 > 0$ (Il modello spiega una quota significativa di varianza). (Nota: l'alternativa è solitamente monodirezionale qui)
+            \item Statistica Test (F): Si usa un test F (collegato all'ANOVA):
+              $$ F = \frac{\text{Varianza Spiegata dal Modello}}{\text{Varianza Residua}} = \frac{MS_{\text{Regressione}}}{MS_{\text{Residua}}} $$
+            \item Gradi di Libertà: $\df_1 = 1$ (per regressione bivariata), $\df_2 = n - 2$.
+            \item Decisione: Si confronta $F_{test}$ con $F_{critico}$. Se $F$ è significativo, il modello di regressione è utile nel predire Y. (Questo test è equivalente al test t sulla pendenza $\beta$ nella regressione bivariata: $F = t^2$).
+        \end{itemize}
+\end{itemize}
+
+\begin{reflectionbox}
+    \item Nella verifica delle ipotesi per la regressione bivariata, l'ipotesi nulla viene formulata...? (Vedere Domanda 13 - Risposta: Vengono formulate due ipotesi nulle, una per a e una per b)
+    \item La bontà di adattamento del modello di regressione può essere valutata sottoponendo a verifica...? (Vedere Domanda 11)
+\end{reflectionbox}
+
+\subsection*{9. La Bontà dell'Adattamento e l'Errore Standard della Stima}
+\begin{itemize}
+    \item \textbf{Bontà di Adattamento (Goodness of Fit):} Misura quanto bene la retta di regressione rappresenta i dati osservati. Indici principali:
+        \begin{itemize}
+            \item \textbf{$\rsq$ (Coefficiente di Determinazione):} Già discusso, indica la proporzione di varianza spiegata. Più alto è, migliore è l'adattamento.
+            \item \textbf{Errore Standard della Stima ($\ErrStdEst$ o $s_{e}$):} Misura la dispersione "media" dei punti osservati attorno alla retta di regressione, nell'unità di misura originale di Y.
+              $$ \ErrStdEst = \sqrt{\frac{\sum (Y_i - \Yhat_i)^2}{n-2}} = \sqrt{MS_{\text{Residua}}} $$
+            \item Un $\ErrStdEst$ più piccolo indica un errore di previsione minore e un migliore adattamento della retta ai dati.
+            \item Se $r = \pm 1$, allora $\ErrStdEst = 0$. Se $r = 0$, allora $\ErrStdEst$ è uguale alla deviazione standard di Y ($s_Y$).
+        \end{itemize}
+\end{itemize}
+
+\subsection*{10. Gli Assunti della Regressione Lineare (per Inferenza)}
+Perché le verifiche di ipotesi sui parametri ($\popalpha, \popbeta, \poprho^2$) siano valide:
+\begin{enumerate}
+    \item \textbf{Linearità:} La relazione tra X e Y nella popolazione deve essere lineare. (Verificare con scatterplot).
+    \item \textbf{Indipendenza degli Errori (Residui):} Gli errori ($\resid_i = Y_i - \Yhat_i$) devono essere indipendenti tra loro. (Importante soprattutto con dati temporali).
+    \item \textbf{Normalità degli Errori:} Gli errori devono essere distribuiti normalmente, con media zero, per ogni valore di X. (Verificare con istogramma dei residui, Q-Q plot dei residui).
+    \item \textbf{Omoschedasticità (Omogeneità della Varianza degli Errori):} La varianza degli errori deve essere costante per tutti i valori di X. (Verificare guardando lo scatterplot dei residui vs valori predetti $\Yhat$: i punti dovrebbero disperdersi casualmente attorno allo zero, senza forme a imbuto o altre strutture).
+    \item \textbf{Assenza di Multicollinearità (per Regressione Multipla):} Le variabili indipendenti non devono essere troppo correlate tra loro. (Non rilevante per regressione bivariata).
+\end{enumerate}
+La violazione degli assunti può portare a stime distorte o inefficienti e a test di ipotesi inaffidabili. L'ispezione dei grafici dei residui è fondamentale per valutare gli assunti 2, 3 e 4.
+
+\end{document}
+% ----- FINE DOCUMENTO -----

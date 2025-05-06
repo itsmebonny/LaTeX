@@ -1,0 +1,258 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{ FiraSans }
+\usepackage{geometry}
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+\usepackage{enumitem}
+\usepackage{parskip}
+
+% Custom commands
+\newcommand{\rsq}{R^2}
+\newcommand{\bcoeff}{b}
+\newcommand{\Yhat}{\hat{Y}}
+\newcommand{\Hnull}{H_0}
+\newcommand{\poprho}{\rho}
+\newcommand{\popbeta}{\beta}
+
+\setlist{nosep}
+\renewcommand{\labelitemi}{
+
+        
+∘∘
+
+      
+
+} % Pallino vuoto per opzioni
+
+\begin{document}
+
+\begin{center}
+\Large\textbf{Test di Autovalutazione Aggiuntivo} \
+\vspace{0.2cm}
+\large\textbf{Modulo 5: Correlazione e Regressione Lineare}
+\end{center}
+\vspace{0.5cm}
+
+\textit{Scegliere l'opzione che si ritiene più corretta o rispondere Vero/Falso.}
+
+\begin{enumerate}
+
+
+\item Qual è la differenza fondamentale tra l'obiettivo dell'analisi di correlazione e quello dell'analisi di regressione lineare bivariata?
+\begin{itemize}
+    \item[a)] La correlazione confronta le medie, la regressione descrive la variabilità.
+    \item[b)] La correlazione descrive l'associazione tra due variabili, la regressione mira a predire una variabile basandosi sull'altra.
+    \item[c)] La correlazione si usa per variabili qualitative, la regressione per quantitative.
+    \item[d)] Non c'è una differenza fondamentale, sono due modi per fare la stessa cosa.
+\end{itemize}
+\vspace{0.3cm}
+
+\item Se osserviamo una forte correlazione positiva tra il numero di gelati venduti e il numero di incidenti stradali in una città durante l'anno, possiamo concludere che mangiare gelato causa incidenti stradali.
+\begin{itemize}
+    \item[a)] Vero
+    \item[b)] Falso
+\end{itemize}
+\vspace{0.3cm}
+
+\item  Osservando un grafico di dispersione, cosa indica la "direzione" della relazione?
+\begin{itemize}
+    \item[a)] Quanto i punti sono vicini alla linea immaginaria.
+    \item[b)] Se la relazione tra le variabili segue una linea retta o una curva.
+    \item[c)] Se all'aumentare di una variabile, l'altra tende ad aumentare (positiva) o a diminuire (negativa).
+    \item[d)] La presenza di valori anomali nel grafico.
+\end{itemize}
+\vspace{0.3cm}
+
+\item Quale dei seguenti coefficienti di correlazione (r di Pearson) indica l'associazione lineare più forte?
+\begin{itemize}
+    \item[a)] r = +0.50
+    \item[b)] r = -0.80
+    \item[c)] r = +0.10
+    \item[d)] r = -0.25
+\end{itemize}
+\vspace{0.3cm}
+
+\item Se il coefficiente di determinazione ($\rsq$) tra l'altezza (X) e il peso (Y) in un campione è $\rsq = 0.36$, cosa possiamo dire?
+\begin{itemize}
+    \item[a)] L'altezza spiega il 60\% della variabilità del peso.
+    \item[b)] Il 36\% delle persone nel campione ha un peso nella norma.
+    \item[c)] C'è una correlazione negativa tra altezza e peso.
+    \item[d)] L'altezza spiega (o condivide) il 36\% della variabilità del peso.
+\end{itemize}
+\vspace{0.3cm}
+
+\item  In quale situazione il coefficiente r di Pearson potrebbe sottostimare la forza di una relazione esistente tra due variabili?
+\begin{itemize}
+    \item[a)] Quando la relazione è perfettamente lineare.
+    \item[b)] Quando ci sono molti dati (campione grande).
+    \item[c)] Quando la relazione è forte ma curvilinea (non lineare).
+    \item[d)] Quando entrambe le variabili sono misurate su scala a rapporti.
+\end{itemize}
+\vspace{0.3cm}
+
+\item  Cosa può succedere al valore del coefficiente r di Pearson se nel grafico di dispersione è presente un outlier bivariato molto influente?
+\begin{itemize}
+    \item[a)] Il valore di r non viene influenzato dagli outlier.
+    \item[b)] Il valore di r può aumentare o diminuire notevolmente, distorcendo la reale associazione.
+    \item[c)] Il valore di r diventa sempre uguale a zero.
+    \item[d)] Il valore di r si avvicina sempre a +1 o -1.
+\end{itemize}
+\vspace{0.3cm}
+
+\item  In un modello di regressione che predice il livello di stress (Y) in base alle ore di lavoro settimanali (X), un coefficiente di regressione $\bcoeff = +0.5$ suggerisce che:
+\begin{itemize}
+    \item[a)] Per ogni ora di lavoro in più, il livello di stress diminuisce di 0.5 punti.
+    \item[b)] Non c'è relazione tra ore di lavoro e stress.
+    \item[c)] Il 50\% della varianza dello stress è spiegato dalle ore di lavoro.
+    \item[d)] Per ogni ora di lavoro in più, il livello di stress tende ad aumentare mediamente di 0.5 punti.
+\end{itemize}
+\vspace{0.3cm}
+
+\item  Nell'equazione $\Yhat = 10 + 2X$, cosa rappresenta il valore 10?
+\begin{itemize}
+    \item[a)] La pendenza della retta di regressione.
+    \item[b)] Il valore massimo che Y può assumere.
+    \item[c)] Il valore predetto di Y quando X è uguale a 0.
+    \item[d)] Il coefficiente di correlazione tra X e Y.
+\end{itemize}
+\vspace{0.3cm}
+
+\item  L'errore standard della stima in una regressione lineare misura:
+\begin{itemize}
+    \item[a)] Quanto è forte la correlazione tra X e Y.
+    \item[b)] La dispersione media dei valori osservati di Y attorno alla retta di regressione.
+    \item[c)] La probabilità che il modello di regressione sia corretto.
+    \item[d)] Il numero di outlier presenti nei dati.
+\end{itemize}
+\vspace{0.3cm}
+
+\item  La regressione di Y su X produce la stessa retta della regressione di X su Y.
+ \begin{itemize}
+    \item[a)] Vero
+    \item[b)] Falso
+\end{itemize}
+\vspace{0.3cm}
+
+\item  Cosa significa rifiutare l'ipotesi nulla $\Hnull: \poprho = 0$ nel test di significatività per r di Pearson?
+\begin{itemize}
+    \item[a)] Significa che la correlazione nel campione è esattamente uguale a zero.
+    \item[b)] Significa che c'è evidenza statistica per concludere che esiste una relazione lineare (positiva o negativa) tra le due variabili nella popolazione.
+    \item[c)] Significa che la relazione trovata è sicuramente molto forte.
+    \item[d)] Significa che le due variabili sono distribuite normalmente.
+\end{itemize}
+\vspace{0.3cm}
+
+\item  Nel testare la significatività del coefficiente di regressione $\bcoeff$, l'ipotesi nulla $\Hnull: \popbeta = 0$ afferma che:
+\begin{itemize}
+    \item[a)] La variabile indipendente X non ha alcun effetto lineare sulla variabile dipendente Y nella popolazione.
+    \item[b)] L'intercetta della retta di regressione nella popolazione è uguale a zero.
+    \item[c)] Il coefficiente di determinazione $\rsq$ è uguale a 1.
+    \item[d)] I residui del modello sono uguali a zero.
+\end{itemize}
+\vspace{0.3cm}
+
+\item  Quale dei seguenti è un assunto fondamentale sia per la correlazione di Pearson che per la regressione lineare quando si fanno inferenze?
+\begin{itemize}
+    \item[a)] Le variabili devono essere misurate su scala nominale.
+    \item[b)] La relazione tra le variabili nella popolazione deve essere lineare.
+    \item[c)] Non devono esserci errori di misurazione.
+    \item[d)] Il campione deve essere composto da almeno 100 soggetti.
+\end{itemize}
+\vspace{0.3cm}
+
+\item  Il metodo dei minimi quadrati serve a trovare la retta di regressione che massimizza la somma degli errori di previsione.
+ \begin{itemize}
+    \item[a)] Vero
+    \item[b)] Falso
+\end{itemize}
+\vspace{0.3cm}
+
+
+      
+\item  Quale delle seguenti affermazioni descrive meglio una differenza importante tra il coefficiente di correlazione (r) e il coefficiente di regressione (b)?
+    \begin{itemize}
+        \item[a)] Solo 'r' può essere negativo.
+        \item[b)] 'r' è un indice standardizzato (varia tra -1 e +1), mentre 'b' dipende dalle unità di misura delle variabili.
+        \item[c)] Solo 'b' indica la direzione della relazione.
+        \item[d)] 'r' misura la causalità, 'b' misura l'associazione.
+    \end{itemize}
+    \vspace{0.3cm}
+
+\item  Se la correlazione tra ore di sonno (X) e livello di attenzione (Y) è $r = +0.70$, quanto vale il coefficiente di determinazione ($\rsq$) e cosa significa approssimativamente?
+\begin{itemize}
+    \item[a)] $\rsq = 0.70$; il 70\% della varianza dell'attenzione è spiegata dal sonno.
+    \item[b)] $\rsq = 0.49$; circa la metà (49\%) della varianza dell'attenzione è spiegata dal sonno.
+    \item[c)] $\rsq = 1.40$; la relazione è molto forte.
+    \item[d)] $\rsq = 0.70$; significa che la relazione è positiva.
+\end{itemize}
+\vspace{0.3cm}
+
+\item  Cosa implica l'assunto di omoschedasticità nella regressione lineare?
+\begin{itemize}
+    \item[a)] Che la variabile indipendente X deve essere distribuita normalmente.
+    \item[b)] Che la relazione tra X e Y deve essere perfettamente lineare.
+    \item[c)] Che la dispersione degli errori di previsione (residui) è simile per tutti i livelli della variabile indipendente X.
+    \item[d)] Che il coefficiente di correlazione deve essere positivo.
+\end{itemize}
+\vspace{0.3cm}
+
+\item  Quando si usa una retta di regressione ($\Yhat = a + bX$) per fare previsioni, è generalmente sconsigliato:
+\begin{itemize}
+    \item[a)] Usarla se la correlazione r è molto forte (vicina a +/- 1).
+    \item[b)] Fare previsioni per valori di X che cadono all'interno del range dei dati osservati.
+    \item[c)] Fare previsioni per valori di X molto al di fuori del range dei dati originali usati per costruire il modello (estrapolazione).
+    \item[d)] Usarla se il coefficiente b è negativo.
+\end{itemize}
+\vspace{0.3cm}
+
+\item  Se uno studio con un campione molto grande trova una correlazione $r=0.10$ che risulta statisticamente significativa (p < 0.01), cosa possiamo concludere?
+\begin{itemize}
+    \item[a)] La relazione tra le variabili è molto forte e praticamente importante.
+    \item[b)] C'è forte evidenza che la relazione sia esattamente 0.10 nella popolazione.
+    \item[c)] Possiamo essere ragionevolmente sicuri che una relazione lineare (anche se debole) esista nella popolazione, ma non è necessariamente forte o praticamente rilevante.
+    \item[d)] Il risultato non è affidabile a causa della grande dimensione del campione.
+\end{itemize}
+\vspace{0.3cm}
+
+    
+\end{enumerate}
+
+\newpage
+
+\begin{center}
+    \Large\textbf{Soluzioni - Test di Autovalutazione Aggiuntivo} \\
+    \vspace{0.2cm}
+    \large\textbf{Modulo 5: Correlazione e Regressione Lineare}
+\end{center}
+\vspace{0.5cm}
+
+\begin{enumerate}
+    \item[b)]  La correlazione descrive l'associazione tra due variabili, la regressione mira a predire una variabile basandosi sull'altra.
+    \item[b)]  Falso (È un classico esempio di correlazione spuria; entrambe le variabili sono probabilmente influenzate da una terza variabile, la stagione calda).
+    \item[c)]  Se all'aumentare di una variabile, l'altra tende ad aumentare (positiva) o a diminuire (negativa).
+    \item[b)]  r = -0.80 (La forza è data dal valore assoluto, |-0.80| è il più grande).
+    \item[d)]  L'altezza spiega (o condivide) il 36\% della variabilità del peso.
+    \item[c)]  Quando la relazione è forte ma curvilinea (non lineare). (r misura solo la parte lineare).
+    \item[b)]  Il valore di r può aumentare o diminuire notevolmente, distorcendo la reale associazione.
+    \item[d)]  Per ogni ora di lavoro in più, il livello di stress tende ad aumentare mediamente di 0.5 punti.
+    \item[c)]  Il valore predetto di Y quando X è uguale a 0.
+    \item[b)]  La dispersione media dei valori osservati di Y attorno alla retta di regressione.
+    \item[b)]  Falso (La regressione non è simmetrica, dipende da quale variabile è X e quale Y).
+    \item[b)]  Significa che c'è evidenza statistica per concludere che esiste una relazione lineare (positiva o negativa) tra le due variabili nella popolazione.
+    \item[a)]  La variabile indipendente X non ha alcun effetto lineare sulla variabile dipendente Y nella popolazione.
+    \item[b)]  La relazione tra le variabili nella popolazione deve essere lineare.
+    \item[b)]  Falso (Il metodo dei minimi quadrati minimizza la somma dei quadrati degli errori).
+          
+\item[b)]  'r' è un indice standardizzato (varia tra -1 e +1), mentre 'b' dipende dalle unità di misura delle variabili.
+\item[b)]  $\rsq = 0.49$; circa la metà (49\%) della varianza dell'attenzione è spiegata dal sonno. (Calcolo: $0.70^2 = 0.49$).
+\item[c)]  Che la dispersione degli errori di previsione (residui) è simile per tutti i livelli della variabile indipendente X.
+\item[c)]  Fare previsioni per valori di X molto al di fuori del range dei dati originali usati per costruire il modello (estrapolazione).
+\item[c)]  Possiamo essere ragionevolmente sicuri che una relazione lineare (anche se debole) esista nella popolazione, ma non è necessariamente forte o praticamente rilevante. (La significatività statistica è influenzata da n; con n grande, anche effetti piccoli possono essere significativi).
+
+\end{enumerate}
+
+\end{document}

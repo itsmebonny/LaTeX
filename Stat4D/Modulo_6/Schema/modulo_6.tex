@@ -1,0 +1,456 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+\usepackage{parskip} % Spazio tra paragrafi invece di indentazione
+\usepackage{enumitem} % Per personalizzare elenchi
+\usepackage{ FiraSans } % Font più moderno
+\usepackage{xcolor} % Per colori
+\usepackage{framed} % Per i box
+\usepackage{bm} % Per grassetto matematico (se serve)
+\usepackage{tikz} % Per diagrammi
+\usetikzlibrary{shapes, arrows.meta, positioning, calc, shadows, backgrounds} % Librerie TikZ utili
+\usepackage{booktabs} % Per tabelle professionali
+\usepackage{colortbl} % Per colorare celle tabelle
+\usepackage{multirow} % Per celle multi-riga
+\usepackage{array} % Per definire nuove colonne in tabular (es. per centrare verticalmente)
+
+% ----- Definizioni Colori e Stili -----
+\definecolor{boxbgcolor}{rgb}{0.95, 0.95, 1.0} % Azzurrino per reflection
+\definecolor{boxtitlecolor}{rgb}{0.1, 0.1, 0.6} % Blu scuro per reflection title
+\definecolor{examplebgcolor}{rgb}{1.0, 0.98, 0.9} % Giallo pallido per esempi
+\definecolor{examplebordercolor}{rgb}{0.9, 0.8, 0.5} % Bordo ocra per esempi
+\definecolor{diagrambgcolor}{rgb}{0.92, 0.92, 0.92} % Grigio chiaro per sfondi diagrammi
+\definecolor{startcolor}{rgb}{0.7, 0.9, 0.7} % Verde chiaro per start/stop
+\definecolor{decisioncolor}{rgb}{1.0, 0.9, 0.6} % Giallo per decisioni
+\definecolor{testcolor}{rgb}{0.8, 0.9, 1.0} % Azzurro per processi/test
+
+% Environment per Reflection Box
+\newenvironment{reflectionbox}{%
+    \medskip
+    \begin{framed}\par\noindent
+    \textbf{\color{boxtitlecolor}Domande per Riflettere (Basate sul Test)} \par
+    \begin{itemize}[leftmargin=*, label=$\blacktriangleright$]
+}{%
+    \end{itemize}\par
+    \end{framed}
+    \medskip
+}
+
+% Environment per Esempi
+\newenvironment{example}[1][Esempio Pratico]{%
+    \medskip
+    \begin{center}
+    \begin{tikzpicture}
+        \node[rectangle, draw=examplebordercolor, fill=examplebgcolor, rounded corners, inner sep=10pt, text width=0.9\textwidth] (box) \bgroup\medskip
+        \par\noindent{\textbf{#1:}}\par\smallskip\noindent\ignorespaces
+}{%
+        \egroup;
+    \end{tikzpicture}
+    \end{center}
+    \medskip
+}
+
+\setlist{nosep}
+\renewcommand{\labelitemi}{$\bullet$}
+
+% ----- Macro per simboli comuni -----
+\newcommand{\chisq}{\chi^2} % Chi-quadrato
+\newcommand{\Hnull}{H_0} % Ipotesi nulla
+\newcommand{\Halt}{H_1} % Ipotesi alternativa
+\newcommand{\df}{gl} % gradi di libertà
+\newcommand{\fo}{f_o} % frequenze osservate
+\newcommand{\fa}{f_a} % frequenze attese
+\newcommand{\phiCoeff}{\phi} % Coefficiente Phi
+\newcommand{\phiCramer}{\phi_C} % Phi di Cramér (o V di Cramér)
+\newcommand{\Umann}{U} % U di Mann-Whitney
+\newcommand{\Hkruskal}{H} % H di Kruskal-Wallis
+\newcommand{\TWilc}{T} % T di Wilcoxon
+\newcommand{\FrFried}{F_r} % Fr di Friedman (o \chi^2_r)
+\newcommand{\popmean}{\mu} % Media della popolazione
+\newcommand{\popsd}{\sigma} % Deviazione standard della popolazione
+\newcommand{\alphaerr}{\alpha} % Errore di tipo I / Livello di significatività
+
+% ----- INIZIO DOCUMENTO -----
+\begin{document}
+
+\begin{center}
+    \Large\textbf{Modulo 6: Le Statistiche Non Parametriche} \\
+    \vspace{0.5cm}
+    \large\textit{(Test Chi-Quadrato, Test Basati sui Ranghi, Bootstrap)}
+\end{center}
+
+\section*{1. Introduzione alle Statistiche Non Parametriche}
+\begin{itemize}
+    \item \textbf{Statistica Parametrica (Ripasso):} Tecniche come t-test e ANOVA F si basano sull'assunzione che i dati provengano da popolazioni con una specifica distribuzione (solitamente normale), definita da parametri come media ($\popmean$) e deviazione standard ($\popsd$). Richiedono il rispetto di assunti (normalità, omoschedasticità, indipendenza).
+    \item \textbf{Statistiche Non Parametriche (o \textit{Distribution-Free}):}
+        \begin{itemize}
+            \item \textbf{Quando si usano?}
+                \begin{itemize}
+                    \item Quando gli \textbf{assunti dei test parametrici sono violati} (es. dati non normali, varianze non omogenee), specialmente con \textbf{campioni piccoli} dove i test parametrici sono meno robusti.
+                    \item Quando si lavora con variabili misurate su scala \textbf{nominale} o \textbf{ordinale}.
+                    \item Quando non si conosce il modello distributivo della popolazione.
+                \end{itemize}
+            \item \textbf{Caratteristiche Principali:}
+                \begin{itemize}
+                    \item Non fanno riferimento a una specifica forma di distribuzione della popolazione (es. normale).
+                    \item Non implicano la stima di parametri della popolazione (come $\popmean$ o $\popsd$).
+                    \item Spesso si basano su \textbf{ranghi} (posizioni ordinate dei dati) o \textbf{frequenze}.
+                    \item Usano la \textbf{mediana} come indice di tendenza centrale piuttosto che la media.
+                \end{itemize}
+            \item \textbf{Vantaggi:} Maggiore flessibilità, applicabili a più tipi di dati e situazioni.
+            \item \textbf{Svantaggi:}
+                \begin{itemize}
+                    \item Generalmente hanno \textbf{minore potenza statistica} dei test parametrici *se* gli assunti di questi ultimi sono soddisfatti. Cioè, a parità di $n$, sono meno capaci di rilevare un effetto reale se c'è.
+                    \item Possono essere meno adatti per disegni sperimentali complessi (es. ANOVA fattoriali complesse).
+                \end{itemize}
+            \item Nonostante siano "non parametrici", richiedono comunque la \textbf{formulazione di ipotesi} ($\Hnull, \Halt$) e la scelta di un \textbf{livello di significatività ($\alphaerr$)}.
+        \end{itemize}
+\end{itemize}
+
+\begin{reflectionbox}
+    \item I test statistici non parametrici sono anche detti...? (Vedere Domanda 2 - Risposta: Metodi indipendenti dalla forma della distribuzione)
+    \item I test statistici non parametrici, rispetto a quelli parametrici...? (Vedere Domanda 7 - Risposta: Entrambe le risposte (a e b) sono errate, perché richiedono sia formulazione ipotesi sia livello alfa)
+    \item I test statistici non parametrici...? (Vedere Domanda 9 - Risposta: Generalmente si basano sulle statistiche di rango)
+    \item Rispetto alle alternative parametriche, i test non parametrici sono caratterizzati da...? (Vedere Domanda 27 - Risposta: Una minore potenza statistica, se gli assunti parametrici sono rispettati)
+    \item Il test t per campioni indipendenti è classificabile come una statistica...? (Vedere Domanda 24 - Risposta: Parametrica)
+\end{reflectionbox}
+
+\section*{2. Il Test Chi-Quadrato ($\chisq$)}
+Il test $\chisq$ è usato per analizzare dati categoriali (nominali o ordinali), confrontando le frequenze osservate con quelle attese.
+
+\subsection*{2.1. Test Chi-Quadrato per la Bontà di Adattamento (a Una Via)}
+\begin{itemize}
+    \item \textbf{Scopo:} Verificare se la distribuzione di frequenza di una \textbf{singola variabile categorica} osservata in un campione si "adatta" a una distribuzione teorica o attesa nella popolazione. Confronta le frequenze osservate ($\fo$) con le frequenze attese ($\fa$) per ogni categoria della variabile.
+    \item \textbf{Quando si usa:}
+        \begin{itemize}
+            \item Una singola variabile categorica (nominale o ordinale, o quantitativa trasformata in classi).
+            \item Un singolo campione.
+            \item Si vuole vedere se le frequenze nelle categorie seguono un pattern specifico (es. equiprobabilità, o proporzioni note).
+        \end{itemize}
+    \item \textbf{Ipotesi:}
+        \begin{itemize}
+            \item $\Hnull$: Le frequenze osservate nel campione non differiscono significativamente da quelle attese secondo la teoria/modello. (Es: Le preferenze per 3 prodotti sono equamente distribuite; la proporzione di M/F nel campione corrisponde a quella della popolazione).
+            \item $\Halt$: Le frequenze osservate differiscono significativamente da quelle attese.
+        \end{itemize}
+    \item \textbf{Calcolo Frequenze Attese ($\fa$):} Dipende dall'$\Hnull$. Se $\Hnull$ ipotizza equiprobabilità, $\fa = N / k$ per ogni categoria (N=totale campione, k=numero categorie). Se $\Hnull$ ipotizza proporzioni specifiche $P_i$, allora $\fa (\text{cat } i) = P_i \times N$.
+    \item \textbf{Statistica Test $\chisq$:}
+        $$ \chisq = \sum_{i=1}^{k} \frac{({\fo}_i - {\fa}_i)^2}{{\fa}_i} $$
+        Somma le discrepanze quadratiche tra osservate e attese, relativizzate per le attese. Un $\chisq$ grande indica una cattiva corrispondenza.
+    \item \textbf{Distribuzione $\chisq$ e Gradi di Libertà ($\df$):}
+        \begin{itemize}
+            \item La statistica test segue la distribuzione Chi-quadrato, che è \textbf{continua e asimmetrica positiva}.
+            \item $\df = k - 1$ (dove $k$ è il numero di categorie/livelli della variabile).
+        \end{itemize}
+    \item \textbf{Decisione:} Si confronta il $\chisq_{calcolato}$ con un $\chisq_{critico}$ (ottenuto da tavole con $\alphaerr$ e $\df$). Se $\chisq_{calcolato} > \chisq_{critico}$, si rifiuta $\Hnull$.
+\end{itemize}
+
+\begin{reflectionbox}
+    \item Il test chi-quadrato per la bontà di adattamento è anche conosciuto come...? (Vedere Domanda 3 - Risposta: test chi-quadrato ad una via)
+    \item La distribuzione chi-quadrato è definita da quale parametro? (Vedere Domanda 5 - Risposta: I gradi di libertà)
+    \item Quale test non parametrico consente di confrontare le frequenze osservate (fo) in un campione con le frequenze attese (fA) in una popolazione sulla base dell'ipotesi nulla? (Vedere Domanda 6)
+    \item Nei test chi quadrato, l'ipotesi nulla descrive teoricamente come dovrebbero distribuirsi le osservazioni se...? (Vedere Domanda 14 - Risposta: L'ipotesi nulla fosse vera)
+    \item Il test chi-quadrato per la bontà di adattamento può essere utilizzato...? (Vedere Domanda 18 - Risposta: Con variabili sia qualitative nominali che quantitative trasformate in nominali)
+    \item Nel test chi quadrato per la bontà di adattamento, generalmente l'ipotesi nulla stabilisce che...? (Vedere Domanda 28 - Risposta: Le frequenze sono equamente distribuite tra le classi della variabile nominale, o secondo proporzioni specificate)
+    \item Il test chi-quadrato per la bontà di adattamento può essere utilizzato in disegni di ricerca che prevedono...? (Vedere Domanda 30 - Risposta: Una sola variabile osservata in un singolo campione)
+    \item La distribuzione di probabilità chi-quadrato è una distribuzione...? (Vedere Domanda 26 - Risposta: continua e asimmetrica)
+\end{reflectionbox}
+
+\subsection*{2.2. Test Chi-Quadrato per l'Indipendenza (a Due Vie)}
+\begin{itemize}
+    \item \textbf{Scopo:} Verificare se esiste un'\textbf{associazione (o dipendenza) tra due variabili categoriche} (nominali) in un singolo campione. I dati sono presentati in una \textbf{tabella di contingenza} (incrocio righe x colonne).
+    \item \textbf{Ipotesi:}
+        \begin{itemize}
+            \item $\Hnull$: Le due variabili sono \textbf{indipendenti} (non c'è associazione tra loro nella popolazione). La classificazione secondo una variabile non è influenzata dalla classificazione secondo l'altra.
+            \item $\Halt$: Le due variabili sono \textbf{dipendenti} (esiste un'associazione tra loro).
+        \end{itemize}
+    \item \textbf{Calcolo Frequenze Attese ($\fa$) per ogni cella (sotto $\Hnull$ di indipendenza):}
+        $$ \fa (\text{cella}_{rc}) = \frac{(\text{Totale marginale riga } r) \times (\text{Totale marginale colonna } c)}{\text{Numero totale osservazioni } (N)} $$
+    \item \textbf{Statistica Test $\chisq$:} La formula è la stessa del test a una via, ma la somma è estesa a tutte le celle della tabella:
+        $$ \chisq = \sum \frac{({\fo}_{rc} - {\fa}_{rc})^2}{{\fa}_{rc}} $$
+    \item \textbf{Gradi di Libertà ($\df$):}
+        $$ \df = (\text{numero righe} - 1) \times (\text{numero colonne} - 1) = (r-1)(c-1) $$
+    \item \textbf{Decisione:} Come per il test a una via. Se $\chisq_{calcolato} > \chisq_{critico}$, si rifiuta $\Hnull$ (le variabili sono associate).
+    \item \textbf{Dimensione dell'Effetto (se $\chisq$ significativo):}
+        \begin{itemize}
+            \item Per tabelle 2x2: \textbf{Coefficiente Phi ($\phiCoeff$)}
+              $$ \phiCoeff = \sqrt{\frac{\chisq}{N}} $$
+              Varia da 0 (indipendenza) a 1 (associazione perfetta). Interpretazione simile a r di Pearson (0.10 piccolo, 0.30 medio, 0.50 grande).
+            \item Per tabelle più grandi (r x c): \textbf{V di Cramér ($\phiCramer$ o V)}
+              $$ \phiCramer = \sqrt{\frac{\chisq}{N \times (\df_{\text{minimo}})}} $$
+              Dove $\df_{\text{minimo}}$ è il minore tra $(r-1)$ e $(c-1)$. Varia da 0 a 1. L'interpretazione dipende anche da $\df_{\text{minimo}}$.
+        \end{itemize}
+\end{itemize}
+
+\begin{reflectionbox}
+    \item Nel test chi quadrato per l'indipendenza, moltiplicando le frequenze marginali di riga e di colonna, è possibile calcolare...? (Vedere Domanda 10 - Risposta: Le frequenze attese, dopo aver diviso per N)
+    \item Il test chi quadrato per l'indipendenza consente di verificare ipotesi su...? (Vedere Domanda 12 - Risposta: Due variabili nominali in un singolo campione)
+    \item Nel test chi quadrato per l'indipendenza, la dimensione dell'effetto può essere calcolata con quale dei seguenti indici? (Vedere Domanda 15 - Risposta: Coefficiente di correlazione phi, per tabelle 2x2)
+    \item Nel test chi quadrato per l'indipendenza, l'ipotesi nulla predice...? (Vedere Domanda 17 - Risposta: L'indipendenza tra le variabili oggetto di studio)
+    \item Nei test chi quadrato, per schematizzare le frequenze osservate e le frequenze attese, può essere utile costruire...? (Vedere Domanda 20 - Risposta: Una tabella di contingenza)
+    \item Il test chi quadrato per l'indipendenza è anche conosciuto come...? (Vedere Domanda 23 - Risposta: Test chi quadrato a due vie)
+\end{reflectionbox}
+
+\section*{3. Test Non Parametrici per Campioni Indipendenti}
+
+\subsection*{3.1. Test U di Mann-Whitney (per 2 campioni indipendenti)}
+\begin{itemize}
+    \item \textbf{Scopo:} Alternativa non parametrica al t-test per campioni indipendenti. Confronta le distribuzioni (solitamente le mediane) di una variabile dipendente tra \textbf{due gruppi indipendenti}.
+    \item \textbf{Quando si usa:}
+        \begin{itemize}
+            \item Variabile dipendente (VD) almeno ordinale (o quantitativa se gli assunti parametrici sono violati, es. non normalità o campioni piccoli).
+            \item Variabile indipendente (VI) categorica con 2 livelli (che definisce i due gruppi).
+            \item Campioni indipendenti.
+        \end{itemize}
+    \item \textbf{Ipotesi (riferite alle mediane o alle distribuzioni):}
+        \begin{itemize}
+            \item $\Hnull$: Le mediane delle due popolazioni sono uguali (Mediana$_1$ = Mediana$_2$), o più in generale, le due popolazioni sono equidistribuite.
+            \item $\Halt$: Le mediane delle due popolazioni sono diverse (Mediana$_1 \neq$ Mediana$_2$), o le distribuzioni sono diverse.
+        \end{itemize}
+    \item \textbf{Logica di Base:}
+        \begin{enumerate}
+            \item Si combinano i dati dei due gruppi in un unico insieme.
+            \item Si ordinano tutti i punteggi dal più piccolo al più grande, assegnando a ciascuno un \textbf{rango}.
+            \item Si calcola la somma dei ranghi per ciascuno dei due gruppi.
+            \item La statistica test ($\Umann$) si basa su queste somme di ranghi. Se $\Hnull$ è vera, i ranghi dovrebbero essere mescolati casualmente tra i due gruppi. Se $\Hnull$ è falsa, un gruppo tenderà ad avere ranghi sistematicamente più alti (o bassi) dell'altro.
+            \item Se $\Hnull$ è falsa, $\Umann$ tenderà ad essere vicino a 0.
+        \end{enumerate}
+    \item \textbf{Assunti:} VD numerica (ordinabile), VI a 2 livelli, campioni indipendenti. Non richiede normalità o omoschedasticità.
+\end{itemize}
+
+\begin{reflectionbox}
+    \item Il test di Mann-Withney richiede che la variabile dipendente sia...? (Vedere Domanda 8 - Risposta: Numerica, cioè almeno ordinale per poter assegnare ranghi)
+    \item Il test U di Mann-Withney utilizza come indice di tendenza centrale...? (Vedere Domanda 13 - Risposta: La mediana)
+    \item Nel test di Mann-Withney, la variabile indipendente può avere...? (Vedere Domanda 19 - Risposta: Solo due livelli)
+    \item Nel test di Mann-Withney, quando l'ipotesi nulla è falsa, il valore della statistica test...? (Vedere Domanda 21 - Risposta: Tende ad assumere un valore vicino allo 0)
+\end{reflectionbox}
+
+\subsection*{3.2. Test H di Kruskal-Wallis (per K campioni indipendenti)}
+\begin{itemize}
+    \item \textbf{Scopo:} Alternativa non parametrica all'ANOVA a una via. Confronta le distribuzioni (mediane) di una VD tra \textbf{tre o più gruppi indipendenti}.
+    \item \textbf{Quando si usa:}
+        \begin{itemize}
+            \item VD almeno ordinale (o quantitativa con violazione assunti parametrici).
+            \item VI categorica con 3 o più livelli.
+            \item Campioni indipendenti.
+        \end{itemize}
+    \item \textbf{Ipotesi (riferite alle mediane o alle distribuzioni):}
+        \begin{itemize}
+            \item $\Hnull$: Le mediane di tutte le $k$ popolazioni sono uguali (Mediana$_1$ = Mediana$_2$ = ... = Mediana$_k$).
+            \item $\Halt$: Almeno una mediana è diversa dalle altre.
+        \end{itemize}
+    \item \textbf{Logica di Base:} Estensione del test di Mann-Whitney.
+        \begin{enumerate}
+            \item Si combinano i dati di tutti i $k$ gruppi.
+            \item Si assegnano i \textbf{ranghi} a tutti i punteggi combinati.
+            \item Si calcola la somma dei ranghi per ciascun gruppo.
+            \item La statistica test ($\Hkruskal$) valuta se le somme dei ranghi differiscono significativamente tra i gruppi.
+        \end{enumerate}
+    \item \textbf{Distribuzione Test H:} Per campioni sufficientemente grandi (es. $n_i > 5$ per ogni gruppo), la statistica $\Hkruskal$ approssima una distribuzione $\chisq$ con $\df = k-1$ gradi di libertà.
+    \item \textbf{Post-Hoc:} Se $\Hkruskal$ è significativo, si possono fare confronti a coppie (es. test di Mann-Whitney con correzione di Bonferroni) per vedere quali gruppi differiscono.
+    \item \textbf{Dimensione dell'Effetto:} Si può calcolare $\eta^2_H = (\Hkruskal - k + 1) / (N_{tot} - k)$.
+\end{itemize}
+
+\begin{reflectionbox}
+    \item Nel test di Kruskal-Wallis, la variabile indipendente può avere...? (Vedere Domanda 1 - Risposta: Più di due livelli)
+    \item Nel test H di Kruskal-Wallis, la devianza tra i gruppi è calcolata su...? (Vedere Domanda 16 - Risposta: I ranghi)
+    \item Quale dei seguenti test può essere considerato come l'alternativa non parametrica dell'analisi della varianza per campioni indipendenti? (Vedere Domanda 29)
+\end{reflectionbox}
+
+\section*{4. Il Bootstrap}
+\begin{itemize}
+    \item \textbf{Scopo:} Metodo di \textbf{ricampionamento} (resampling) utilizzato per stimare le proprietà di una distribuzione campionaria (es. errore standard, intervalli di confidenza) direttamente dai dati del campione, \textbf{senza fare assunzioni sulla forma della distribuzione della popolazione}.
+    \item \textbf{Logica:}
+        \begin{enumerate}
+            \item Si tratta il campione originale come se fosse la "popolazione".
+            \item Si estraggono \textbf{molti} (es. 1000, 5000) \textbf{campioni bootstrap} dal campione originale. Ogni campione bootstrap ha la stessa numerosità del campione originale ed è estratto \textbf{con reinserimento} (un'osservazione può essere selezionata più volte).
+            \item Per ciascun campione bootstrap, si calcola la statistica di interesse (es. media, mediana, coefficiente di regressione).
+            \item La distribuzione di queste statistiche calcolate sui campioni bootstrap fornisce una stima empirica della distribuzione campionaria della statistica.
+        \end{enumerate}
+    \item \textbf{Vantaggi:}
+        \begin{itemize}
+            \item Utile quando gli assunti dei metodi parametrici (specialmente la normalità) sono violati o quando la distribuzione campionaria teorica di una statistica è complessa o sconosciuta.
+            \item Può fornire stime più accurate dell'errore standard e degli intervalli di confidenza in tali situazioni.
+        \end{itemize}
+    \item \textbf{Applicazioni:} Stima di errori standard, costruzione di intervalli di confidenza, verifica di ipotesi. Può essere usato per "robustificare" test parametrici.
+    \item \textbf{Limitazioni:} Non crea nuova informazione; la sua efficacia dipende dalla rappresentatività del campione originale. Le stime possono variare leggermente ad ogni applicazione a causa della natura casuale del ricampionamento.
+\end{itemize}
+
+\begin{reflectionbox}
+    \item Un approccio per rendere più robusti i metodi parametrici rispetto alla violazione dell'assunto di normalità è...? (Vedere Domanda 25)
+\end{reflectionbox}
+
+\section*{5. Test Non Parametrici per Misure Ripetute (Campioni Dipendenti)}
+
+\subsection*{5.1. Test dei Ranghi con Segno di Wilcoxon (per 2 misure ripetute)}
+\begin{itemize}
+    \item \textbf{Scopo:} Alternativa non parametrica al t-test per misure ripetute (o campioni appaiati). Confronta le distribuzioni (mediane) di una VD misurata in \textbf{due occasioni} sugli stessi soggetti o su coppie appaiate.
+    \item \textbf{Quando si usa:} VD almeno ordinale (o quantitativa con violazione assunti parametrici).
+    \item \textbf{Logica di Base:}
+        \begin{enumerate}
+            \item Si calcolano le \textbf{differenze} ($d_i$) tra le due misure per ogni soggetto.
+            \item Si ignorano le differenze nulle ($d_i=0$).
+            \item Si ordinano i \textbf{valori assoluti} delle differenze non nulle ($|d_i|$), assegnando loro i \textbf{ranghi}.
+            \item Si attribuisce a ciascun rango il segno (+ o -) della differenza originale.
+            \item Si calcola la somma dei ranghi positivi ($T^+$) e la somma dei ranghi negativi ($T^-$).
+            \item La statistica test ($\TWilc$) è la \textbf{più piccola} tra $T^+$ e $T^-$.
+        \end{enumerate}
+    \item \textbf{Ipotesi (sulla mediana delle differenze):}
+        \begin{itemize}
+            \item $\Hnull$: La mediana delle differenze nella popolazione è zero (non c'è differenza sistematica tra le due misure).
+            \item $\Halt$: La mediana delle differenze non è zero.
+        \end{itemize}
+    \item \textbf{Decisione:} Per campioni piccoli ($n < 15-20$), si confronta $\TWilc$ con un valore critico tabulato. Per campioni più grandi, $\TWilc$ può essere approssimato a una distribuzione Z. Se $\TWilc$ (calcolato) è $\le \TWilc{critico}$ (da tabella), si rifiuta $\Hnull$.
+\end{itemize}
+
+\begin{reflectionbox}
+    \item Quale dei seguenti test può essere considerato come l'alternativa non parametrica del test t per misure ripetute? (Vedere Domanda 4)
+    \item Quale dei seguenti test non parametrici può essere utilizzato in disegni di ricerca entro i gruppi (within)? (Vedere Domanda 11 - Risposta: Test di Wilcoxon)
+\end{reflectionbox}
+
+\subsection*{5.2. Test di Friedman (per K misure ripetute)}
+\begin{itemize}
+    \item \textbf{Scopo:} Alternativa non parametrica all'ANOVA per misure ripetute a una via. Confronta le distribuzioni (mediane) di una VD misurata in \textbf{tre o più occasioni} (condizioni/tempi) sugli stessi soggetti.
+    \item \textbf{Quando si usa:} VD almeno ordinale (o quantitativa con violazione assunti parametrici, es. sfericità).
+    \item \textbf{Logica di Base:}
+        \begin{enumerate}
+            \item Per \textbf{ciascun soggetto} separatamente, si ordinano i punteggi ottenuti nelle $k$ condizioni/misure e si assegnano i \textbf{ranghi} da 1 a $k$.
+            \item Si calcola la somma dei ranghi ($R_j$) per ciascuna delle $k$ condizioni/misure (sommando i ranghi attraverso i soggetti).
+            \item La statistica test ($\FrFried$ o $\chi^2_r$) valuta se le somme dei ranghi differiscono significativamente tra le condizioni.
+        \end{enumerate}
+    \item \textbf{Ipotesi (sulle mediane delle $k$ condizioni):}
+        \begin{itemize}
+            \item $\Hnull$: Le mediane delle $k$ condizioni nella popolazione sono uguali.
+            \item $\Halt$: Almeno una mediana è diversa.
+        \end{itemize}
+    \item \textbf{Distribuzione Test $\FrFried$:} Per campioni sufficientemente grandi (es. $N > 10$ soggetti e $k \ge 3$), $\FrFried$ approssima una distribuzione $\chisq$ con $\df = k-1$ gradi di libertà.
+    \item \textbf{Post-Hoc:} Se $\FrFried$ è significativo, si possono fare confronti a coppie (es. test di Wilcoxon con correzione di Bonferroni).
+\end{itemize}
+
+\begin{reflectionbox}
+    \item In campioni sufficientemente numerosi (n>10), la statistica test di Friedman si distribuisce in modo simile a...? (Vedere Domanda 22 - Risposta: La distribuzione chi quadrato)
+\end{reflectionbox}
+
+\section*{6. In Sintesi: Come Scegliere l'Analisi da Condurre (Cenni)}
+La scelta del test dipende da:
+\begin{itemize}
+    \item \textbf{Obiettivo della ricerca:} Confrontare medie/distribuzioni o indagare relazioni?
+    \item \textbf{Tipo di Variabili:}
+        \begin{itemize}
+            \item \textbf{VD Quantitativa (intervalli/rapporti):}
+                \begin{itemize}
+                    \item \textit{Assunti parametrici rispettati:} Test parametrici (Z, t, ANOVA F).
+                    \item \textit{Assunti parametrici violati (o VD ordinale):} Test non parametrici (Mann-Whitney, Kruskal-Wallis, Wilcoxon, Friedman).
+                \end{itemize}
+            \item \textbf{VD Nominale/Categorica (dati di frequenza):} Test Chi-Quadrato.
+        \end{itemize}
+    \item \textbf{Tipo di Confronto/Disegno:}
+        \begin{itemize}
+            \item \textbf{Campione vs Popolazione ($\mu_0$ nota):}
+                \begin{itemize}
+                    \item VD Quantitativa: Z-test (se $\sigma$ nota o $N \ge 30$), t-test campione singolo (se $\sigma$ non nota e $N < 30$).
+                    \item VD Nominale (frequenze): Chi-quadrato bontà di adattamento.
+                \end{itemize}
+            \item \textbf{Confronto tra Medie/Distribuzioni:}
+                \begin{itemize}
+                    \item \textbf{Due gruppi/misure:}
+                        \begin{itemize}
+                            \item \textit{Indipendenti:} t-test campioni indipendenti (parametrico); U di Mann-Whitney (non parametrico).
+                            \item \textit{Dipendenti/Ripetute:} t-test misure ripetute (parametrico); Test di Wilcoxon (non parametrico).
+                        \end{itemize}
+                    \item \textbf{Più di due gruppi/misure:}
+                        \begin{itemize}
+                            \item \textit{Indipendenti (1 VI):} ANOVA a una via (parametrica); Test H di Kruskal-Wallis (non parametrico).
+                            \item \textit{Dipendenti/Ripetute (1 VI):} ANOVA RM (parametrica); Test di Friedman (non parametrico).
+                            \item \textit{Indipendenti (>1 VI):} ANOVA Fattoriale (parametrica).
+                        \end{itemize}
+                \end{itemize}
+            \item \textbf{Indagare Relazione tra Variabili:}
+                \begin{itemize}
+                    \item \textit{Entrambe nominali:} Chi-quadrato per l'indipendenza.
+                    \item \textit{Entrambe quantitative:} Correlazione e Regressione (Modulo 5).
+                \end{itemize}
+        \end{itemize}
+\end{itemize}
+Il diagramma di flusso presente nelle dispense (pag. 25) o nell'appendice del Modulo 4 offre una guida visiva dettagliata.
+\newpage
+\section*{7. Diagramma di Flusso Riepilogativo: Scelta del Test e Rifiuto $\Hnull$}
+
+\begin{figure}[h!]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[
+    node distance=2.2cm and 0.5cm, % Adjusted for potentially wider diagram
+    auto,
+    >=Stealth, % Better arrow tips
+    every node/.style={align=center},
+    startstop/.style={ellipse, draw, fill=startcolor, minimum height=2em, text width=7em},
+    decision/.style={diamond, draw, fill=decisioncolor, aspect=1.5, inner sep=1pt, text width=9em},
+    process/.style={rectangle, draw, fill=testcolor, rounded corners, minimum height=3em, text width=11em},
+    arrow/.style={thick,->},
+    descr/.style={text width=8em, font=\footnotesize, midway} % For descriptions on arrows
+]
+
+% Nodes
+\node (start) [startstop] {Inizio: Obiettivo Ricerca?};
+
+% Branch 1: Confronto Medie/Distribuzioni
+\node (obj_confronto) [decision, below=1.5cm of start] {Confrontare Medie/Distribuzioni?};
+\node (vd_tipo) [decision, below=of obj_confronto] {Tipo VD?};
+
+% VD Quantitativa
+\node (vd_quant) [decision, below left=2cm and 1cm of vd_tipo] {VD Quantitativa (Intervalli/Rapporti)?};
+\node (assunti_par) [decision, below=of vd_quant] {Assunti Parametrici Soddisfatti?};
+
+\node (test_par) [process, below left=2cm and 0.5cm of assunti_par] {Test Parametrici (Z, t, ANOVA F) \\ \textbf{Rifiuta $\Hnull$ se:} \\ Test Stat $\geq$ Valore Critico \\ (o $|Test Stat| \geq |Val Crit|$ per 2 code) \\ (o p-value $\leq \alphaerr$)};
+\node (test_nonpar) [decision, below right=2cm and 0.5cm of assunti_par] {Test Non Parametrici \\ (o VD Ordinale)};
+
+% Non-Parametric Sub-branches
+\node (np_2camp_ind) [process, below=1.8cm of test_nonpar, xshift=-5cm] {2 Camp. Indipendenti: \\ \textbf{U di Mann-Whitney} \\ \textbf{Rifiuta $\Hnull$ se:} \\ $U_{calc} \leq U_{crit}$ \\ (o p-value $\leq \alphaerr$)};
+\node (np_2camp_dip) [process, right=0.5cm of np_2camp_ind] {2 Camp. Dipendenti: \\ \textbf{T di Wilcoxon} \\ (Ranghi con Segno) \\ \textbf{Rifiuta $\Hnull$ se:} \\ $T_{calc} \leq T_{crit}$ \\ (o p-value $\leq \alphaerr$)};
+\node (np_kcamp_ind) [process, right=0.5cm of np_2camp_dip] {K Camp. Indipendenti: \\ \textbf{H di Kruskal-Wallis} \\ \textbf{Rifiuta $\Hnull$ se:} \\ $H_{calc} \geq \chisq_{crit}$ \\ (o p-value $\leq \alphaerr$)};
+\node (np_kcamp_dip) [process, right=0.5cm of np_kcamp_ind] {K Camp. Dipendenti: \\ \textbf{Test di Friedman} \\ \textbf{Rifiuta $\Hnull$ se:} \\ $F_{r,calc} \geq \chisq_{crit}$ \\ (o p-value $\leq \alphaerr$)};
+
+% VD Nominale
+\node (vd_nom) [process, below right=2cm and 1cm of vd_tipo] {VD Nominale (Frequenze): \\ \textbf{Test $\chisq$} \\ (Bontà Adattamento, Indipendenza) \\ \textbf{Rifiuta $\Hnull$ se:} \\ $\chisq_{calc} \geq \chisq_{crit}$ \\ (o p-value $\leq \alphaerr$)};
+
+% Branch 2: Indagare Relazione
+\node (obj_relazione) [decision, right=3cm of obj_confronto] {Indagare Relazione tra Variabili?};
+\node (rel_var_tipi) [decision, below=of obj_relazione] {Tipi di Variabili?};
+\node (rel_nom_nom) [process, below=2cm of vd_nom] {Entrambe Nominali: \\ \textbf{Test $\chisq$ per Indipendenza} \\ \textbf{Rifiuta $\Hnull$ se:} \\ $\chisq_{calc} \geq \chisq_{crit}$ \\ (o p-value $\leq \alphaerr$)};
+\node (rel_quant_quant) [process, below right=2cm and 0.5cm of rel_var_tipi] {Entrambe Quantitative: \\ \textbf{Correlazione / Regressione} \\ (Modulo 5) \\ \textbf{Rifiuta $\Hnull$ se:} \\ p-value $\leq \alphaerr$ \\ (o $|t_{calc}| \geq t_{crit}$ per coeff.)};
+
+% Arrows
+\draw [arrow] (start) -- (obj_confronto);
+\draw [arrow] (obj_confronto) -- node[descr, left] {Sì} (vd_tipo);
+\draw [arrow] (obj_confronto) -- node[descr, above] {No} (obj_relazione);
+
+\draw [arrow] (vd_tipo) -- node[descr, above left] {Quantitativa} (vd_quant);
+\draw [arrow] (vd_tipo) -- node[descr, above right] {Nominale} (vd_nom);
+
+\draw [arrow] (vd_quant) -- (assunti_par);
+\draw [arrow] (assunti_par) -- node[descr, left] {Sì} (test_par);
+\draw [arrow] (assunti_par) -- node[descr, right] {No / VD Ordinale} (test_nonpar);
+
+\draw [arrow] (test_nonpar.west) -- (np_2camp_ind.north);
+\draw [arrow] (test_nonpar) -- (np_2camp_dip); % Adjusted for better flow if needed
+\draw [arrow] (test_nonpar) -- (np_kcamp_ind);
+\draw [arrow] (test_nonpar.east) -- (np_kcamp_dip.north);
+
+
+\draw [arrow] (obj_relazione) -- (rel_var_tipi);
+\draw [arrow] (rel_var_tipi) |- node[descr, right] {Nominali} (rel_nom_nom.east);
+\draw [arrow] (rel_var_tipi) -- node[descr, right] {Quantitative} (rel_quant_quant);
+
+\end{tikzpicture}
+} % End resizebox
+\caption{Diagramma di flusso riepilogativo per la scelta del test e la logica di rifiuto di $\Hnull$. Nota: "Test Stat" si riferisce alla statistica calcolata; "Valore Critico" al valore tabulare per $\alphaerr$ e $\df$ dati. Per U di Mann-Whitney e T di Wilcoxon, la regola $Stat_{calc} \leq Stat_{crit}$ si applica quando si usa la statistica test più piccola e le tavole specifiche; il p-value è sempre una guida affidabile.}
+\label{fig:flowchart_scelta_test_h0}
+\end{figure}
+
+\end{document}
