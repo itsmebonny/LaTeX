@@ -1,0 +1,91 @@
+\label{sec:problem_setting}
+
+Simulating the dynamic behavior of soft tissues is crucial in various applications, from surgical planning to biomechanical analysis. However, accurately capturing the complex, nonlinear deformations of these materials remains a significant computational challenge. In this section, we present our mathematical framework for addressing this challenge. Our approach builds upon three core elements: a hyperelastic mechanical model to represent the material's constitutive behavior, linear modal analysis for efficient dimensionality reduction, and a novel neural modes technique to incorporate nonlinear effects. By integrating these elements, we aim to achieve accurate and computationally tractable simulations of soft tissue deformation.
+
+
+\section{Mechanical Model}
+\label{sec:mechanical_model}
+
+To model the deformation of an object, we start from the vector \(\bm{X}\), which represents the material coordinates in the reference configuration (i.e. its non-deformed state). Any deformation of the object can be described by the displacement vector \(\bm{u}(\bm{X},t)\), which maps the material coordinates to the spatial coordinates \(\bm{x}\) in the deformed configuration. The relationship between these two configurations is given by:
+\begin{equation}
+    \bm{x}(\bm{X},t) = \bm{X} + \bm{u}(\bm{X},t),
+\label{eq:deformation}
+\end{equation}
+where \(\bm{x} \in \mathbb{R}^d\) is the spatial position of a material point at time \(t\), and \(d\) is the spatial dimension (2D or 3D). The displacement vector \(\bm{u}\) describes how the material point has moved from its original position \(\bm{X}\) to its new position \(\bm{x}\).
+
+To model the mechanical behavior of the material, there are many constitutive models available, ranging from linear elastic to hyperelastic models. Since we are interested in soft tissue mechanics, we will focus on the hyperelastic Neo-Hookean material model \textcolor{blue}{ref}. Such a model helps dealing with large deformations and is suitable for biological tissues, which often exhibit nonlinear elastic behavior.
+
+For the Neo-Hookean hyperelastic material model, we first compute the deformation gradient $\bm{F} \in \mathbb{R}^{d\times d}$:
+\begin{equation}
+    \bm{F} = \frac{\partial \bm{x}}{\partial \bm{X}} = \bm{I} + \nabla_X \bm{u},
+\label{eq:deformation_gradient}
+\end{equation}
+where $\bm{I} \in \mathbb{R}^{d\times d}$ is the identity matrix and $\nabla_X$ denotes the gradient with respect to material coordinates. The right Cauchy-Green deformation tensor is then defined as $\bm{C} = \bm{F}^T\bm{F}$, and the first invariant of $\bm{C}$ is $I_{\bm{C}} = \text{tr}(\bm{C})$.
+
+The Neo-Hookean strain-energy density function $\Psi$ is given by:
+\begin{equation}
+    \Psi(\bm{F}) = \frac{\mu}{2} (I_C - 3 - 2\ln(J)) + \frac{\lambda}{4} (J^2 - 1 - 2\ln(J)),
+\label{eq:neo_hookean_energy}
+\end{equation}
+where $J = \det(\bm{F})$ is the determinant of the deformation gradient (representing the volume change ratio), $\mu$ is the shear modulus, and $\lambda$ is the first Lamé parameter. These material parameters are related to the Young's modulus $E$ and the Poisson's ratio $\nu$ by:
+\begin{equation}
+    \mu = \frac{E}{2(1+\nu)} \quad \text{and} \quad \lambda = \frac{E\nu}{(1+\nu)(1-2\nu)}.
+\end{equation}
+
+From the strain energy density function, we derive the first Piola-Kirchhoff stress tensor $\bm{P}$:
+\begin{equation}
+    \bm{P} = \frac{\partial \Psi}{\partial \bm{F}} = \mu \bm{F} - \mu \bm{F}^{-T} + \frac{\lambda}{2}(J^2-1)\bm{F}^{-T}.
+\label{eq:piola_stress}
+\end{equation}
+
+For dynamic problems, the equation of motion including inertial forces is:
+\begin{equation}
+    \begin{cases}
+        \rho \frac{\partial^2 \bm{u}}{\partial t^2} - \nabla_X \cdot \bm{P} = \bm{b} \quad \text{in} \quad \Omega, \\
+        \bm{u} = \bm{u}_D \quad \text{on} \quad \Gamma_D, \\
+        \bm{P} \cdot \bm{N} = \bm{t} \quad \text{on} \quad \Gamma_N,
+    \end{cases}
+\label{eq:dynamic_problem}
+\end{equation}
+where $\rho$ is the material density in the reference configuration, $\bm{b}$ is the external body force, $\bm{N}$ is the unit normal to $\Gamma_N$ in the reference configuration, and $\bm{t}$ is the traction applied to the boundary.
+
+The weak form of equation \eqref{eq:dynamic_problem}, obtained from the principle of virtual work, is:
+\begin{equation}
+    \int_{\Omega} \rho \frac{\partial^2 \bm{u}}{\partial t^2} \cdot \bm{v} \, d\Omega + \int_{\Omega} \bm{P} : \nabla_X \bm{v} \, d\Omega = \int_{\Omega} \bm{b} \cdot \bm{v} \, d\Omega + \int_{\Gamma_N} \bm{t} \cdot \bm{v} \, d\Gamma,
+\label{eq:weak_form}
+\end{equation}
+where $\bm{v} \in \{\bm{v} \in H^1(\Omega) | \bm{v} = \bm{0} \text{ on } \Gamma_D\}$ is any vector-valued test function with $H^1(\Omega)$ being a Hilbert space. The first term on the left side represents the inertial forces, the second term denotes the internal virtual work, and the right side represents the virtual work from the applied external loads.
+
+
+\section{Linear Modal Analysis}
+\label{sec:linear_modes}
+
+Simulating the deformation of mechanical objects in real-time poses significant computational challenges. A common technique to accelerate these simulations, particularly in computer graphics and computational mechanics, is modal analysis \cite{Pentland_Williams_1989}. This approach leverages the idea that the complex deformation of an object can often be well-approximated by a combination of its dominant, low-frequency vibration patterns, known as modes. The modal analysis technique allows us to reduce the dimensionality of the problem by focusing on these low-frequency modes, thus enabling faster simulations while maintaining a reasonable level of accuracy.
+
+
+The core steps of linear modal analysis are as follows:
+
+\begin{enumerate}
+    \item \textbf{Linearize the System}: The first step involves linearizing the governing equations around the undeformed state ($\bm{u}=\bm{0}$). This results in a constant stiffness matrix $\bm{K}$ and a mass matrix $\bm{M}$. The mass matrix $\bm{M}$ captures the inertial properties of the system:
+        \begin{equation}
+            \bm{M} = \int_{\Omega} \rho \bm{\phi}^T \bm{\phi} \, d\Omega, 
+            \label{eq:mass_matrix}
+        \end{equation}
+        where $\bm{\phi}$ represents the shape functions used in the finite element discretization, while the stiffness matrix $\bm{K}$ represents the system's resistance to small deformations around the rest state and is derived from the linearization of the internal forces (i.e., the derivative of the internal force vector with respect to displacement, evaluated at $\bm{u}=\bm{0}$). For a hyperelastic material like Neo-Hookean, this linearization effectively corresponds to the standard linear elastic stiffness matrix at the origin.
+
+    \item \textbf{Solve the Generalized Eigenvalue Problem}: With the linearized system matrices, we solve the generalized eigenvalue problem:
+        \begin{equation}
+            \bm{K} \bm{\phi}_i = \omega_i^2 \bm{M} \bm{\phi}_i.
+            \label{eq:eigenvalue_problem}
+        \end{equation}
+        Here, $\omega_i^2$ are the eigenvalues, representing the squared natural frequencies of vibration, and $\bm{\phi}_i$ are the corresponding eigenvectors, representing the spatial shapes of these vibration modes (mode shapes). The modes are typically ordered by increasing frequency.
+
+    \item \textbf{Modal Decomposition}: A reduced basis is formed by selecting the first $m$ modes (eigenvectors), typically those corresponding to the lowest frequencies, which capture the large-scale deformations. The displacement field $\bm{u}(\bm{X},t)$ can then be approximated as a linear combination of these modes:
+        \begin{equation}
+            \bm{u}(\bm{X},t) \approx \sum_{i=1}^{m} q_i(t) \bm{\phi}_i(\bm{X}),
+            \label{eq:modal_decomposition}
+        \end{equation}
+        where $q_i(t)$ are the time-varying modal coordinates, representing the amplitude or contribution of each mode shape to the overall deformation. The dynamics of the system can then be simulated in the reduced $m$-dimensional space of modal coordinates, significantly reducing computational cost.
+\end{enumerate}
+
+While linear modal analysis provides substantial speedups, its fundamental limitation lies in the initial linearization, done in the first step of this process. This approximation holds well only for small deformations around the rest state. Indeed, when deformations become large and enter the nonlinear regime characteristic of hyperelastic materials like Neo-Hookean, the linear modal approximation breaks down. Specifically, the constant stiffness matrix $\bm{K}$ no longer accurately represents the material's resistance to deformation. It fails to capture the nonlinear effects accurately, often leading to unrealistic behavior such as exaggerated volume changes or inaccurate stress distributions. This limitation motivates the need for methods that can incorporate nonlinear effects while still benefiting from dimensionality reduction, such as the Neural Modes approach that we will discuss later. This approach aims to address the limitations of linear modal analysis by learning a more accurate representation of the deformation space from data.

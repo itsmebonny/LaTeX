@@ -46,7 +46,7 @@
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 % PACKAGES FOR REFERENCES & BIBLIOGRAPHY
-\usepackage{biblatex} %Imports biblatex package
+\usepackage[backend=biber]{biblatex} %Imports biblatex package, specify biber backend
 \addbibresource{mimesis.bib}
 \usepackage[colorlinks=true,linkcolor=black,anchorcolor=black,citecolor=black,filecolor=black,menucolor=black,runcolor=black,urlcolor=black]{hyperref} % Adds clickable links at references
 \usepackage{cleveref}
@@ -161,17 +161,16 @@ a Data-Driven correction of Finite Element Methods}
 \newcommand\norm[1]{\lVert#1\rVert}
 \newcommand{\course}{Mimesis Team}
 % -> advisor name and surname
-\newcommand{\advisor}{Stéphane Cotin, Stefano Pagani}
+\newcommand{\advisor}{Stefano Pagani, Stéphane Cotin}
 % IF AND ONLY IF you need to modify the co-supervisors you also have to modify the file Configuration_files/title_page.tex (ONLY where it is marked)
 %\newcommand{\firstcoadvisor}{Name Surname} % insert if any otherwise comment
 %\newcommand{\secondcoadvisor}{Name Surname} % insert if any otherwise comment
 % -> academic year
-\newcommand{\YEAR}{2023-2024}
+\newcommand{\YEAR}{2024-2025}
 
 
 %-------------------------------------------------------------------------
 %	BEGIN OF YOUR DOCUMENT
-\usepackage{bookmark} % Add this package to fix the reported errors
 
 \begin{document}
 %-----------------------------------------------------------------------------
@@ -196,7 +195,6 @@ a Data-Driven correction of Finite Element Methods}
 
 \input{Sections/03_Neural_Network.tex}
 
-\input{Sections/04_data_driven_correction.tex}
 
 
 %-----------------------------------------------------------------------------
