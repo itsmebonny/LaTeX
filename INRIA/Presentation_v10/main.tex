@@ -47,20 +47,41 @@
 \titlepage
 \end{frame}
 
-\begin{frame}{Recap: Project Goals \& Status (Two Months Ago)}
+\begin{frame}{Recap: Project Goals \& Status}
     \begin{itemize}
-        \item Briefly remind of the main project objectives.
-        \item What was the state of the project before the supervisor's absence?
-        \item Key questions or tasks that were planned.
+        \item Here's a brief recap of what we did up until now.
+        \item In the first half of this project we started implementing a method that uses neural networks to compute the nonlinear correction of the displacement field.
+        \item The idea was interesting, with some already existing methods in the field of CFD, but at some point we realized that the method was not easily applicable to our case, especially for the dynamic case.
+        \item We decided to explore a different method, which is based on the idea of using a neural network to ``correct'' the linear modes of a structure.
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Overview of Work Done (Last Two Months)}
+\begin{frame}{Overview of Work Done}
     \begin{itemize}
-        \item High-level summary of the major areas you focused on.
-        \item (e.g., Implemented X, Explored Y, Investigated Z)
+        \item While the first part of the project was not very successful, helped us a lot to understand the problem and create the necessary tools to implement the new method.
+        \item We learned the limitations and strengths of the numerical solver we are using (SOFA).
+        \item The main idea is still to somehow correct a displacement field, but this new method is based on a self-supervised approach, removing the need for a dataset.
     \end{itemize}
 \end{frame}
+
+\begin{frame}{Neural Modes Paper - Key Ideas}
+    \begin{itemize}
+        \item The paper wants to extend the concept of linear modes to ``neural modes''.
+        \item The idea is to compute a non-linear correction of the displacement field, by having the network minimize the energy of the system.
+        \item Once the network has been trained and learned the non-linear modes for any modal coordinate in the subspace, it can be extended to dynamics by using a finite difference scheme.
+    \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Neural Modes Paper - Our Implementation}
+    \begin{itemize}
+        \item We developed a fully differentiable energy calculator for both StVenant-Kirchhoff and Neo-Hookean materials, completely written in PyTorch, that helps with the training speed.
+        \item Most of the deformation is already captured by the linear modes (the nonlinear correction is small, around 1\%).
+        \item I am having problem with changing the material properties during the simulation.
+    \end{itemize}
+\end{frame}
+
 
 \begin{frame}{Detailed Progress: Task/Area 1}
     \frametitle{Detailed Progress: [Specific Task/Area 1 Name]}
