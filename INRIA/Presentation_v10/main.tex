@@ -358,6 +358,79 @@
     \end{itemize}
 \end{frame}
 
+\begin{frame}{Dynamic Simulation with Neural Modes}
+    \begin{itemize}
+        \item At each time step \(n+1\), solve for modal coordinates \(\bm{z}_{n+1}\):
+        \begin{equation*}
+            \bm{z}_{n+1} = \underset{\bm{z}}{\argmin} \frac{1}{2h^2} \|\bm{n}(\bm{z}) - 2\bm{u}_n + \bm{u}_{n-1}\|_{\bm{M}}^2 + E(\bm{n}(\bm{z}))
+        \end{equation*}
+        \begin{itemize}
+            \item \(\bm{n}(\bm{z}) = \bm{l}(\bm{z}) + \bm{y}(\bm{z})\): Full displacement (linear + NN correction).
+            \item \(h\): time step, \(\bm{M}\): mass matrix.
+            \item Solved using L-BFGS-B.
+        \end{itemize}
+        \item \textbf{Challenge:} Current formulation doesn't explicitly account for external forces.
+        \begin{itemize}
+            \item Network minimizes internal energy.
+            \item May affect accuracy for large deformations or complex external loads.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Critique: Minimizing Only Internal Energy}
+    \begin{itemize}
+        \item The original "Neural Modes" paper proposes minimizing only the internal elastic energy \(E(\bm{n}(\bm{z}))\) during the dynamic step.
+        \item \textbf{Question:} Is this sufficient when significant external forces or prescribed displacements are present?
+        \begin{itemize}
+            \item The system should find a state that balances internal forces with external influences.
+            \item Minimizing only internal energy might lead to unrealistic behavior if external work is not considered.
+            \item For example, a constant external force should lead to a static equilibrium where internal and external forces balance, not necessarily the absolute minimum internal energy.
+        \end{itemize}
+        \item \textbf{Our Observation:} This formulation seems more suited for free vibration or scenarios where the primary goal is to find low-energy configurations, rather than accurately tracking deformations under arbitrary loads.
+        \item This was a key motivation for exploring extensions to include external work terms.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Determining the Number of Modes (\(m\))}
+    \begin{itemize}
+        \item The choice of \(m\) (number of linear modes to form the subspace) is crucial.
+        \begin{itemize}
+            \item Too few: May not capture enough of the object's deformation behavior, even with NN correction.
+            \item Too many: Increases the dimensionality of \(\bm{z}\), potentially making NN training harder and dynamic optimization slower.
+        \end{itemize}
+        \item \textbf{Empirical Approach (as in the paper and our tests):}
+        \begin{itemize}
+            \item Start with a reasonable number (e.g., 10-20).
+            \item Observe the energy spectrum of linear modes: how much deformation energy is captured by the first \(m\) modes for typical scenarios.
+            \item Evaluate reconstruction error of linear modes for target deformations.
+            \item Test NN performance (training loss, validation accuracy) with different \(m\).
+            \item For our beam examples, \(m \approx 6-12\) modes often provided a good balance.
+        \end{itemize}
+        \item \textbf{Consideration:} The optimal \(m\) can be problem-dependent (geometry, material, expected deformations).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Optimal Sampling of Modal Coordinates (\(\bm{z}\))}
+    \begin{itemize}
+        \item During NN training, we need to sample modal coordinates \(\bm{z}\) to generate linear displacements \(\bm{l}(\bm{z})\) for the loss function.
+        \item \textbf{Simple Approach (Uniform/Gaussian Sampling):}
+        \begin{itemize}
+            \item Sample each component \(z_i\) from a uniform distribution (e.g., \([-A, A]\)) or a Gaussian distribution (e.g., \(\mathcal{N}(0, \sigma^2)\)).
+            \item Easy to implement.
+            \item May not efficiently cover regions of \(\bm{z}\)-space corresponding to physically relevant or challenging deformations.
+        \end{itemize}
+        \item \textbf{Considerations for "Optimal" Sampling:}
+        \begin{itemize}
+            \item \textbf{Magnitude of Deformation:} Should sample \(\bm{z}\) values that lead to a range of deformation magnitudes, including those expected in target applications.
+            \item \textbf{Mode Importance:} Higher-energy (lower frequency) modes often contribute more significantly. Should their corresponding \(z_i\) be sampled differently?
+            \item \textbf{Regions of High Nonlinearity:} If known, try to sample more densely in regions where linear modes are poor approximations. (Difficult without prior knowledge).
+            \item \textbf{Paper's Approach:} The paper often uses random sampling from a fixed range, which we also adopted for initial tests.
+        \end{itemize}
+        \item \textbf{Future Work Idea:} Adaptive sampling or importance sampling based on observed errors or energy gradients during training.
+    \end{itemize}
+\end{frame}
+
+
 \begin{frame}
     \frametitle{What now?}
     \begin{itemize}
