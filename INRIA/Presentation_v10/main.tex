@@ -64,6 +64,194 @@
     \end{itemize}
 \end{frame}
 
+
+\begin{frame}{New Approach: Enhanced Reduced Order Models}
+    \begin{itemize}
+        \item \textbf{Main Goal:} Study the efficacy of a Reduced Order Model (ROM) based on linear modes, enhanced by Deep Learning.
+        \item \textbf{Objective:} Achieve realistic simulations significantly faster than traditional FEM.
+        \item \textbf{Core Idea:} Train a DL model to correct linear modes.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Mathematical Framework Overview}
+    \begin{itemize}
+        \item Our approach integrates three core elements:
+        \begin{enumerate}
+            \item \textbf{Hyperelastic Mechanical Model:} Represents material's constitutive behavior.
+            \item \textbf{Linear Modal Analysis:} For efficient dimensionality reduction.
+            \item \textbf{Neural Modes Technique:} Incorporates nonlinear effects.
+        \end{enumerate}
+        \item \textbf{Goal:} Accurate and computationally tractable simulations of soft tissue deformation.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Mechanical Model: Kinematics}
+    \begin{itemize}
+        \item \textbf{Reference Configuration:} Material coordinates \(\bm{X}\).
+        \item \textbf{Deformation:} Displacement vector \(\bm{u}(\bm{X},t)\).
+        \item \textbf{Deformed Configuration:} Spatial coordinates \(\bm{x}(\bm{X},t)\).
+        \begin{equation*}
+            \bm{x}(\bm{X},t) = \bm{X} + \bm{u}(\bm{X},t)
+        \end{equation*}
+        \item Focus on hyperelastic models for soft tissues (e.g., Neo-Hookean) to handle large, nonlinear deformations.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Mechanical Model: Neo-Hookean Hyperelasticity}
+    \begin{itemize}
+        \item \textbf{Deformation Gradient:}
+        \begin{equation*}
+            \bm{F} = \frac{\partial \bm{x}}{\partial \bm{X}} = \bm{I} + \nabla_X \bm{u}
+        \end{equation*}
+        \item \textbf{Neo-Hookean Strain-Energy Density Function \(\Psi\):}
+        \begin{equation*}
+            \Psi(\bm{F}) = \frac{\mu}{2} (I_C - 3 - 2\ln(J)) + \frac{\lambda}{4} (J^2 - 1 - 2\ln(J))
+        \end{equation*}
+        \item \(J = \det(\bm{F})\), \(\mu\) (shear modulus), \(\lambda\) (Lamé's first parameter).
+        \item Material parameters related to Young's modulus \(E\) and Poisson's ratio \(\nu\).
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Linear Modal Analysis: Motivation}
+    \begin{itemize}
+        \item Simulating deformations in real-time is computationally challenging.
+        \item \textbf{Modal Analysis:} Accelerates simulations by approximating complex deformations as a combination of dominant vibration patterns (modes).
+        \item Reduces dimensionality by focusing on low-frequency modes.
+        \item Enables faster simulations while maintaining reasonable accuracy for certain regimes.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Linear Modal Analysis: Core Steps}
+    \begin{enumerate}
+        \item \textbf{Linearize the System:}
+        \begin{itemize}
+            \item Linearize governing equations around undeformed state (\(\bm{u}=\bm{0}\)).
+            \item Results in constant stiffness matrix \(\bm{K}\) and mass matrix \(\bm{M}\).
+        \end{itemize}
+        \item \textbf{Solve Generalized Eigenvalue Problem:}
+        \begin{equation*}
+            \bm{K} \bm{\phi}_i = \omega_i^2 \bm{M} \bm{\phi}_i
+        \end{equation*}
+        \begin{itemize}
+            \item \(\omega_i^2\): Eigenvalues (squared natural frequencies).
+            \item \(\bm{\phi}_i\): Eigenvectors (mode shapes).
+        \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Linear Modal Analysis: Modal Decomposition \& Limitations}
+    \begin{itemize}
+        \item \textbf{Modal Decomposition (Reduced Basis):}
+        \begin{itemize}
+            \item Select first \(m\) modes (lowest frequencies).
+            \item Approximate displacement:
+            \begin{equation*}
+                \bm{u}(\bm{X},t) \approx \sum_{i=1}^{m} q_i(t) \bm{\phi}_i(\bm{X})
+            \end{equation*}
+            \item \(q_i(t)\): Time-varying modal coordinates.
+        \end{itemize}
+        \item \textbf{Fundamental Limitation:}
+        \begin{itemize}
+            \item Initial linearization holds well only for \textbf{small deformations}.
+            \item Breaks down for large, nonlinear deformations (e.g., hyperelastic materials).
+            \item Constant \(\bm{K}\) doesn't capture nonlinear material resistance.
+        \end{itemize}
+        \item \textbf{Motivation for Neural Modes:} Overcome these limitations by incorporating nonlinear effects.
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Neural Modes Architecture}
+    \begin{itemize}
+        \item \textbf{Goal:} Learn nonlinear corrections to linear deformation modes for Neo-Hookean materials.
+        \item \textbf{Input:} Modal coordinate vector \( \bm{z} \in \mathbb{R}^m \).
+        \item \textbf{Core:} Deep residual neural network.
+        \begin{itemize}
+            \item Several residual blocks (fully connected layers + Leaky ReLU + skip connection).
+        \end{itemize}
+        \item \textbf{Output:} Nonlinear correction to displacement field \( \bm{y} \in \mathbb{R}^n \).
+        \item \textbf{Concept:} Maps low-dimensional modal space \(\bm{z}\) to high-dimensional correction \(\bm{y}\).
+    \end{itemize}
+    \begin{center}
+    \begin{tikzpicture}[scale=0.8, transform shape]
+        % Modal coordinate (z)
+        \draw[fill=green!20] (-3, 1) rectangle (-2.5,2);
+        \node at (-2.75, 1.5) {$\bm{z}$};
+        % Neural Network
+        \draw[fill=blue!60,opacity=0.8] (-2,1) -- (2,-0) -- (2,3) -- (-2,2) -- cycle;
+        \node at (0,1.5) {Neural Network};
+        % Displacement (y)
+        \draw[fill=green!20] (2.5,0) rectangle (3,3);
+        \node at (2.75, 1.5) {$\bm{y}$};
+        % Arrow and Text
+        \draw[thick,->] (-2.2, 1.5) -- (-1.8,1.5); % z to NN
+        \draw[thick,->] (1.8,1.5) -- (2.2,1.5); % NN to y
+    \end{tikzpicture}
+    \end{center}
+\end{frame}
+
+\begin{frame}{Training Neural Modes: Physics-Informed Loss}
+    \begin{itemize}
+        \item Self-supervised: Minimize physics-based losses, not just prediction error.
+        \item \textbf{Total Loss:} Weighted sum of:
+        \begin{enumerate}
+            \item \textbf{Energy Loss:} Minimize internal strain energy \(E(\bm{X} + \bm{l} + \bm{y})\).
+            \begin{itemize}
+                \item \(\bm{l}\): linear displacement from \(\bm{z}\).
+                \item \(\bm{y}\): nonlinear correction from NN.
+            \end{itemize}
+            \item \textbf{Orthogonality Loss:} Ensure correction \(\bm{y}\) is orthogonal to linear modes: \(\bm{y}^T \bm{l} = 0\).
+            \item \textbf{Boundary Condition Penalty:} Enforce displacement BCs.
+        \end{enumerate}
+        \begin{equation*}
+            \text{Loss} = E(\bm{X} + \bm{l} + \bm{y}) + \lambda_1 (\bm{y}^T \bm{l})^2 + \lambda_2 \text{BC Penalty}
+        \end{equation*}
+        \item \textbf{Zero Correction at Origin:} Ensured by bias-free NN architecture (output is zero if \(\bm{z}=\bm{0}\)).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Subspace Learning: Efficiently Finding Solutions}
+    \begin{itemize}
+        \item \textbf{Problem:} Find displacement \(\bm{x}^*\) minimizing energy \(E_\phi(\bm{x})\) subject to constraints \(C_\psi(\bm{x})=0\).
+        \begin{equation*}
+            \bm{x}^*(\phi, \psi) = \underset{\bm{x}}{\argmin} E_\phi(\bm{x}) \quad \text{s.t.} \quad C_\psi(\bm{x}) = 0
+        \end{equation*}
+        \item Classical FEM solves this for each configuration (expensive).
+        \item \textbf{Idea (Wang et al.):} Approximate \(\bm{x}^*\) with a NN \(\bm{x}[\theta^*](\phi, \psi)\).
+        \item \textbf{Our Application (Neural Modes):}
+        \begin{itemize}
+            \item Nonlinear modes \(\bm{n}(\bm{z}) = \bm{l} + \bm{y}[\theta^*](\bm{z})\).
+            \item Train NN \(\bm{y}[\theta](\bm{z})\) by minimizing the physics-informed loss:
+            \begin{equation*}
+                \mathcal{L}(\theta) = \mathbb{E}_{\bm{z}} \left[ E(\bm{X} + \bm{l} + \bm{y}[\theta]) + \lambda_1 (\bm{l}^T \bm{y}[\theta])^2 + \dots \right]
+            \end{equation*}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Dynamic Simulation with Neural Modes}
+    \begin{itemize}
+        \item At each time step \(n+1\), solve for modal coordinates \(\bm{z}_{n+1}\):
+        \begin{equation*}
+            \bm{z}_{n+1} = \underset{\bm{z}}{\argmin} \frac{1}{2h^2} \|\bm{n}(\bm{z}) - 2\bm{u}_n + \bm{u}_{n-1}\|_{\bm{M}}^2 + E(\bm{n}(\bm{z}))
+        \end{equation*}
+        \begin{itemize}
+            \item \(\bm{n}(\bm{z}) = \bm{l}(\bm{z}) + \bm{y}(\bm{z})\): Full displacement (linear + NN correction).
+            \item \(h\): time step, \(\bm{M}\): mass matrix.
+            \item Solved using L-BFGS-B.
+        \end{itemize}
+        \item \textbf{Challenge:} Current formulation doesn't explicitly account for external forces.
+        \begin{itemize}
+            \item Network minimizes internal energy.
+            \item May affect accuracy for large deformations or complex external loads.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+
+
+
 \begin{frame}{Neural Modes Paper - Key Ideas}
     \begin{itemize}
         \item The paper wants to extend the concept of linear modes to ``neural modes''.
@@ -82,69 +270,6 @@
     \end{itemize}
 \end{frame}
 
-
-\begin{frame}{Detailed Progress: Task/Area 1}
-    \frametitle{Detailed Progress: [Specific Task/Area 1 Name]}
-    \begin{itemize}
-        \item What was the specific goal for this task?
-        \item What actions were taken?
-        \item Key results or developments.
-        \item (Include figures, equations, or code snippets if relevant)
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{Detailed Progress: Task/Area 2}
-    \frametitle{Detailed Progress: [Specific Task/Area 2 Name]}
-    \begin{itemize}
-        \item What was the specific goal for this task?
-        \item What actions were taken?
-        \item Key results or developments.
-        \item (Include figures, equations, or code snippets if relevant)
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{Detailed Progress: Task/Area 3 (Optional)}
-    \frametitle{Detailed Progress: [Specific Task/Area 3 Name]}
-    \begin{itemize}
-        \item What was the specific goal for this task?
-        \item What actions were taken?
-        \item Key results or developments.
-        \item (Include figures, equations, or code snippets if relevant)
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{Key Findings \& Learnings}
-    \begin{itemize}
-        \item What are the most important insights gained during this period?
-        \item Any unexpected results or discoveries?
-        \item How have these findings influenced the project direction?
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{Challenges Encountered \& Solutions Explored}
-    \begin{itemize}
-        \item What major obstacles or difficulties did you face?
-        \item How did you attempt to overcome them?
-        \item Were the solutions successful? What was learned from these challenges?
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{Current Status \& Next Steps}
-    \begin{itemize}
-        \item Where does the project stand right now?
-        \item What are the immediate next steps for the coming weeks?
-        \item Any adjustments to the original plan based on recent work?
-        \item Long-term outlook (if applicable).
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{Points for Discussion / Questions for Supervisor}
-    \begin{itemize}
-        \item Specific areas where you need input or guidance.
-        \item Questions about project direction or specific problems.
-        \item Any decisions that need to be made.
-    \end{itemize}
-\end{frame}
 
 
 
