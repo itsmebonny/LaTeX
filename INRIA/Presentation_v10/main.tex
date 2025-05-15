@@ -37,7 +37,7 @@
 
 
 \title{Weekly Updates\\
-\tiny{Wednesday, 12/03/2025}}
+\tiny{Wednesday, 15/05/2025}}
 \author{Andrea Bonifacio}
 \date{}
 
@@ -65,37 +65,19 @@
 \end{frame}
 
 
-\begin{frame}{New Approach: Enhanced Reduced Order Models}
+
+\begin{frame}{Neural Modes Paper - Key Ideas}
     \begin{itemize}
-        \item \textbf{Main Goal:} Study the efficacy of a Reduced Order Model (ROM) based on linear modes, enhanced by Deep Learning.
-        \item \textbf{Objective:} Achieve realistic simulations significantly faster than traditional FEM.
-        \item \textbf{Core Idea:} Train a DL model to correct linear modes.
+        \item The paper wants to extend the concept of linear modes to ``neural modes''.
+        \item The idea is to compute a non-linear correction of the displacement field, by having the network minimize the energy of the system.
+        \item Once the network has been trained and learned the non-linear modes for any modal coordinate in the subspace, it can be extended to dynamics by using a finite difference scheme.
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Mathematical Framework Overview}
-    \begin{itemize}
-        \item Our approach integrates three core elements:
-        \begin{enumerate}
-            \item \textbf{Hyperelastic Mechanical Model:} Represents material's constitutive behavior.
-            \item \textbf{Linear Modal Analysis:} For efficient dimensionality reduction.
-            \item \textbf{Neural Modes Technique:} Incorporates nonlinear effects.
-        \end{enumerate}
-        \item \textbf{Goal:} Accurate and computationally tractable simulations of soft tissue deformation.
-    \end{itemize}
-\end{frame}
 
-\begin{frame}{Mechanical Model: Kinematics}
-    \begin{itemize}
-        \item \textbf{Reference Configuration:} Material coordinates \(\bm{X}\).
-        \item \textbf{Deformation:} Displacement vector \(\bm{u}(\bm{X},t)\).
-        \item \textbf{Deformed Configuration:} Spatial coordinates \(\bm{x}(\bm{X},t)\).
-        \begin{equation*}
-            \bm{x}(\bm{X},t) = \bm{X} + \bm{u}(\bm{X},t)
-        \end{equation*}
-        \item Focus on hyperelastic models for soft tissues (e.g., Neo-Hookean) to handle large, nonlinear deformations.
-    \end{itemize}
-\end{frame}
+
+
+
 
 \begin{frame}{Mechanical Model: Neo-Hookean Hyperelasticity}
     \begin{itemize}
@@ -171,128 +153,8 @@
             \item Several residual blocks (fully connected layers + Leaky ReLU + skip connection).
         \end{itemize}
         \item \textbf{Output:} Nonlinear correction to displacement field \( \bm{y} \in \mathbb{R}^n \).
-        \item \textbf{Concept:} Maps low-dimensional modal space \(\bm{z}\) to high-dimensional correction \(\bm{y}\).
     \end{itemize}
     \begin{center}
-    \begin{tikzpicture}[scale=0.8, transform shape]
-        % Modal coordinate (z)
-        \draw[fill=green!20] (-3, 1) rectangle (-2.5,2);
-        \node at (-2.75, 1.5) {$\bm{z}$};
-        % Neural Network
-        \draw[fill=blue!60,opacity=0.8] (-2,1) -- (2,-0) -- (2,3) -- (-2,2) -- cycle;
-        \node at (0,1.5) {Neural Network};
-        % Displacement (y)
-        \draw[fill=green!20] (2.5,0) rectangle (3,3);
-        \node at (2.75, 1.5) {$\bm{y}$};
-        % Arrow and Text
-        \draw[thick,->] (-2.2, 1.5) -- (-1.8,1.5); % z to NN
-        \draw[thick,->] (1.8,1.5) -- (2.2,1.5); % NN to y
-    \end{tikzpicture}
-    \end{center}
-\end{frame}
-
-\begin{frame}{Training Neural Modes: Physics-Informed Loss}
-    \begin{itemize}
-        \item Self-supervised: Minimize physics-based losses, not just prediction error.
-        \item \textbf{Total Loss:} Weighted sum of:
-        \begin{enumerate}
-            \item \textbf{Energy Loss:} Minimize internal strain energy \(E(\bm{X} + \bm{l} + \bm{y})\).
-            \begin{itemize}
-                \item \(\bm{l}\): linear displacement from \(\bm{z}\).
-                \item \(\bm{y}\): nonlinear correction from NN.
-            \end{itemize}
-            \item \textbf{Orthogonality Loss:} Ensure correction \(\bm{y}\) is orthogonal to linear modes: \(\bm{y}^T \bm{l} = 0\).
-            \item \textbf{Boundary Condition Penalty:} Enforce displacement BCs.
-        \end{enumerate}
-        \begin{equation*}
-            \text{Loss} = E(\bm{X} + \bm{l} + \bm{y}) + \lambda_1 (\bm{y}^T \bm{l})^2 + \lambda_2 \text{BC Penalty}
-        \end{equation*}
-        \item \textbf{Zero Correction at Origin:} Ensured by bias-free NN architecture (output is zero if \(\bm{z}=\bm{0}\)).
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{Subspace Learning: Efficiently Finding Solutions}
-    \begin{itemize}
-        \item \textbf{Problem:} Find displacement \(\bm{x}^*\) minimizing energy \(E_\phi(\bm{x})\) subject to constraints \(C_\psi(\bm{x})=0\).
-        \begin{equation*}
-            \bm{x}^*(\phi, \psi) = \underset{\bm{x}}{\argmin} E_\phi(\bm{x}) \quad \text{s.t.} \quad C_\psi(\bm{x}) = 0
-        \end{equation*}
-        \item Classical FEM solves this for each configuration (expensive).
-        \item \textbf{Idea (Wang et al.):} Approximate \(\bm{x}^*\) with a NN \(\bm{x}[\theta^*](\phi, \psi)\).
-        \item \textbf{Our Application (Neural Modes):}
-        \begin{itemize}
-            \item Nonlinear modes \(\bm{n}(\bm{z}) = \bm{l} + \bm{y}[\theta^*](\bm{z})\).
-            \item Train NN \(\bm{y}[\theta](\bm{z})\) by minimizing the physics-informed loss:
-            \begin{equation*}
-                \mathcal{L}(\theta) = \mathbb{E}_{\bm{z}} \left[ E(\bm{X} + \bm{l} + \bm{y}[\theta]) + \lambda_1 (\bm{l}^T \bm{y}[\theta])^2 + \dots \right]
-            \end{equation*}
-        \end{itemize}
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{Dynamic Simulation with Neural Modes}
-    \begin{itemize}
-        \item At each time step \(n+1\), solve for modal coordinates \(\bm{z}_{n+1}\):
-        \begin{equation*}
-            \bm{z}_{n+1} = \underset{\bm{z}}{\argmin} \frac{1}{2h^2} \|\bm{n}(\bm{z}) - 2\bm{u}_n + \bm{u}_{n-1}\|_{\bm{M}}^2 + E(\bm{n}(\bm{z}))
-        \end{equation*}
-        \begin{itemize}
-            \item \(\bm{n}(\bm{z}) = \bm{l}(\bm{z}) + \bm{y}(\bm{z})\): Full displacement (linear + NN correction).
-            \item \(h\): time step, \(\bm{M}\): mass matrix.
-            \item Solved using L-BFGS-B.
-        \end{itemize}
-        \item \textbf{Challenge:} Current formulation doesn't explicitly account for external forces.
-        \begin{itemize}
-            \item Network minimizes internal energy.
-            \item May affect accuracy for large deformations or complex external loads.
-        \end{itemize}
-    \end{itemize}
-\end{frame}
-
-
-
-
-\begin{frame}{Neural Modes Paper - Key Ideas}
-    \begin{itemize}
-        \item The paper wants to extend the concept of linear modes to ``neural modes''.
-        \item The idea is to compute a non-linear correction of the displacement field, by having the network minimize the energy of the system.
-        \item Once the network has been trained and learned the non-linear modes for any modal coordinate in the subspace, it can be extended to dynamics by using a finite difference scheme.
-    \end{itemize}
-\end{frame}
-
-
-
-\begin{frame}{Neural Modes Paper - Our Implementation}
-    \begin{itemize}
-        \item We developed a fully differentiable energy calculator for both StVenant-Kirchhoff and Neo-Hookean materials, completely written in PyTorch, that helps with the training speed.
-        \item Most of the deformation is already captured by the linear modes (the nonlinear correction is small, around 1\%).
-        \item I am having problem with changing the material properties during the simulation.
-    \end{itemize}
-\end{frame}
-
-
-
-
-\begin{frame}{Neural Modes Paper - Critical Review}
-    \begin{itemize}
-        \item After implementing both StVenant-Kirchhoff and Neo-Hookean materials, I realized that this method works well for small deformations.
-        \item Most of the deformation is already captured by the linear modes (the nonlinear correction is small, around 1\%).
-        \item I am having problem with changing the material properties during the simulation.
-    \end{itemize}
-\end{frame}
-
-
-\begin{frame}
-    \frametitle{Network Architecture}
-    \begin{itemize}
-        \item The network is a feedforward neural network.
-        \item The input is the modal coordinate \( z \in \mathbb{R}^m \).
-        \item The output is a correction on the displacement field \( \mathbf{y} \in \mathbb{R}^n \).
-    \end{itemize}
-
-
-
-\begin{center}
         
         \begin{tikzpicture}
             % Modal coordinate (z)
@@ -312,51 +174,29 @@
         
         \end{tikzpicture}
 \end{center}
-    
+
 \end{frame}
 
-\begin{frame}
-    \frametitle{Training the network}
+\begin{frame}{Training Neural Modes: Physics-Informed Loss}
     \begin{itemize}
-        \item At each iteration, the network is trained on a batch of modal coordinates randomly selected.
-        \item Four loss functions are used:
-        \begin{itemize}
-            \item Energy loss: \( E(X + l + y)\), where \(X\) is the rest position, \(l\) is the linear mode given by \(z\) and \(y\) is the nonlinear correction.
-            \item Orthogonality loss: \( y^T l = 0 \).
-            \item Origin loss: \( y(0) = 0 \).
-        \end{itemize}
-        \item The network is trained by minimizing the weighted sum of these losses.
-        \[
-        \text{Loss} = \text{Energy } + \lambda_1 \text{Orthogonality } + \lambda_2 \text{Origin}
-        \]
+        \item \textbf{Total Loss:} Weighted sum of:
+        \begin{enumerate}
+            \item \textbf{Energy Loss:} Minimize internal strain energy \(E(\bm{X} + \bm{l} + \bm{y})\).
+            \begin{itemize}
+                \item \(\bm{l}\): linear displacement from \(\bm{z}\).
+                \item \(\bm{y}\): nonlinear correction from NN.
+            \end{itemize}
+            \item \textbf{Orthogonality Loss:} Ensure correction \(\bm{y}\) is orthogonal to linear modes: \(\bm{y}^T \bm{l} = 0\).
+            \item \textbf{Boundary Condition Penalty:} Enforce displacement BCs.
+        \end{enumerate}
+        \begin{equation*}
+            \text{Loss} = E(\bm{X} + \bm{l} + \bm{y}) + \lambda_1 (\bm{y}^T \bm{l})^2 + \lambda_2 \text{BC Penalty}
+        \end{equation*}
+        \item \textbf{Zero Correction at Origin:} Ensured by bias-free NN architecture (output is zero if \(\bm{z}=\bm{0}\)).
     \end{itemize}
 \end{frame}
 
-\begin{frame}
-    \frametitle{Visualization}
-    \begin{figure}
-        \centering
-        \includegraphics[scale=0.15]{Images/image.png}
-        \caption{Nonlinear latent space.}
-    \end{figure}
-\end{frame}
 
-\begin{frame}
-    \frametitle{Dynamic simulation}
-    I started implementing it, but the optimization problem takes too long to solve.
-    \begin{itemize}
-        \item The optimization problem is solved using the L-BFGS-B algorithm. (As in the paper)
-        \item Each iteration takes around 3-4 seconds.
-        \item Maybe another optimization algorithm could be used?
-    \end{itemize}
-    \begin{itemize}
-        \item The non-linear correction can be computed by:
-        \[
-        z_{n+1} = \underset{z}{\argmin}  \frac{1}{2h^2} \norm{n(z) - 2u_n + u_{n-1}}^2_M + E(n(z))
-        \]
-        \item Here \(n(z)\) is the non-linear correction computed by the network, and \(M\) is the mass matrix.
-    \end{itemize}
-\end{frame}
 
 \begin{frame}{Dynamic Simulation with Neural Modes}
     \begin{itemize}
@@ -369,7 +209,7 @@
             \item \(h\): time step, \(\bm{M}\): mass matrix.
             \item Solved using L-BFGS-B.
         \end{itemize}
-        \item \textbf{Challenge:} Current formulation doesn't explicitly account for external forces.
+        \item  Current formulation doesn't explicitly account for external forces.
         \begin{itemize}
             \item Network minimizes internal energy.
             \item May affect accuracy for large deformations or complex external loads.
@@ -377,18 +217,21 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Critique: Minimizing Only Internal Energy}
+\begin{frame}{Neural Modes Paper - Our Implementation}
     \begin{itemize}
-        \item The original "Neural Modes" paper proposes minimizing only the internal elastic energy \(E(\bm{n}(\bm{z}))\) during the dynamic step.
-        \item \textbf{Question:} Is this sufficient when significant external forces or prescribed displacements are present?
-        \begin{itemize}
-            \item The system should find a state that balances internal forces with external influences.
-            \item Minimizing only internal energy might lead to unrealistic behavior if external work is not considered.
-            \item For example, a constant external force should lead to a static equilibrium where internal and external forces balance, not necessarily the absolute minimum internal energy.
-        \end{itemize}
-        \item \textbf{Our Observation:} This formulation seems more suited for free vibration or scenarios where the primary goal is to find low-energy configurations, rather than accurately tracking deformations under arbitrary loads.
-        \item This was a key motivation for exploring extensions to include external work terms.
+        \item We developed a fully differentiable energy calculator for both StVenant-Kirchhoff and Neo-Hookean materials, completely written in PyTorch, that helps with the training speed.
+        \item Also the eigenvalue problem is solved directly using SOFA, which enables faster prototyping and testing.
+        \item We observed good results for small deformations, but the energy from linear modes tend to explode for larger deformations.
     \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Our Results}
+    \begin{centering}
+        \includegraphics[width=0.8\textwidth]{Images/results_no_train.png}
+        \captionof{figure}{Energies for the nonlinear elastic beam, the linear elastic beam, the linear modes, and the neural modes.}
+    
+    \end{centering}
 \end{frame}
 
 \begin{frame}{Determining the Number of Modes (\(m\))}
@@ -398,51 +241,57 @@
             \item Too few: May not capture enough of the object's deformation behavior, even with NN correction.
             \item Too many: Increases the dimensionality of \(\bm{z}\), potentially making NN training harder and dynamic optimization slower.
         \end{itemize}
-        \item \textbf{Empirical Approach (as in the paper and our tests):}
+        \item \textbf{Empirical Approach:}
         \begin{itemize}
             \item Start with a reasonable number (e.g., 10-20).
-            \item Observe the energy spectrum of linear modes: how much deformation energy is captured by the first \(m\) modes for typical scenarios.
             \item Evaluate reconstruction error of linear modes for target deformations.
-            \item Test NN performance (training loss, validation accuracy) with different \(m\).
-            \item For our beam examples, \(m \approx 6-12\) modes often provided a good balance.
+            \item For our beam examples, \(m \approx 10\) modes often provided a good balance.
         \end{itemize}
-        \item \textbf{Consideration:} The optimal \(m\) can be problem-dependent (geometry, material, expected deformations).
     \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Choosing the Number of Modes (\(m\))}
+    \begin{centering}
+        \includegraphics[width=0.8\textwidth]{Images/mse_10_modes.png}
+        \captionof{figure}{Mean Squared Error (MSE) of the linear modes for 10 modes.}
+    \end{centering}
+
 \end{frame}
 
 \begin{frame}{Optimal Sampling of Modal Coordinates (\(\bm{z}\))}
     \begin{itemize}
         \item During NN training, we need to sample modal coordinates \(\bm{z}\) to generate linear displacements \(\bm{l}(\bm{z})\) for the loss function.
-        \item \textbf{Simple Approach (Uniform/Gaussian Sampling):}
-        \begin{itemize}
-            \item Sample each component \(z_i\) from a uniform distribution (e.g., \([-A, A]\)) or a Gaussian distribution (e.g., \(\mathcal{N}(0, \sigma^2)\)).
-            \item Easy to implement.
-            \item May not efficiently cover regions of \(\bm{z}\)-space corresponding to physically relevant or challenging deformations.
-        \end{itemize}
-        \item \textbf{Considerations for "Optimal" Sampling:}
-        \begin{itemize}
-            \item \textbf{Magnitude of Deformation:} Should sample \(\bm{z}\) values that lead to a range of deformation magnitudes, including those expected in target applications.
-            \item \textbf{Mode Importance:} Higher-energy (lower frequency) modes often contribute more significantly. Should their corresponding \(z_i\) be sampled differently?
-            \item \textbf{Regions of High Nonlinearity:} If known, try to sample more densely in regions where linear modes are poor approximations. (Difficult without prior knowledge).
-            \item \textbf{Paper's Approach:} The paper often uses random sampling from a fixed range, which we also adopted for initial tests.
-        \end{itemize}
-        \item \textbf{Future Work Idea:} Adaptive sampling or importance sampling based on observed errors or energy gradients during training.
+        \item We use a uniform distribution to sample \(\bm{z}\) values.
+
+        \item \textbf{Question:} Is uniform sampling the best approach? Randomly sampled \(\bm{z}\) values might create unnatural or unrealistic deformations. Also, lower frequency modes contribute more significantly to the overall deformation.
+        \item Maybe adaptive sampling or importance sampling based on observed errors or energy gradients during training.
     \end{itemize}
 \end{frame}
+
+\begin{frame}{Issues: Minimizing Only Internal Energy}
+    \begin{itemize}
+        \item The original "Neural Modes" paper proposes minimizing only the internal elastic energy \(E(\bm{n}(\bm{z}))\) during the dynamic step.
+        \item Is this sufficient when significant external forces or prescribed displacements are present?
+        \begin{itemize}
+            \item The system should find a state that balances internal forces with external influences.
+            \item Minimizing only internal energy might lead to unrealistic behavior if external work is not considered.
+            \item For example, a constant external force should lead to a static equilibrium where internal and external forces balance, not necessarily the absolute minimum internal energy.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+
 
 
 \begin{frame}
-    \frametitle{What now?}
+    \frametitle{Concluding Questions and Future Directions}
     \begin{itemize}
-        \item What is our goal?
-        \item Are there similar methods? There are some papers on strain modes from the same authors.
-        \item In the same paper they mention a Rotation-Strain decomposition. Could be useful?
-        \item Learn how to do simulations correctly
-    
+        \item What should we address in the remaining time?
+        \item Are neural modes just a nonlinear version of the linear modes (i.e. they work well for small deformations)?
+        \item Is the work done so far good, or there is something we could explore more to wrap up the project?
     \end{itemize}
 \end{frame}
-
-% Q&A
 \begin{frame}
     \begin{center}
         \color{blue} \Huge{Questions?}
