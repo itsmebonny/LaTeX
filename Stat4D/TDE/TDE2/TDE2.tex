@@ -1,0 +1,394 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+\usepackage{parskip} % Spazio tra paragrafi invece di indentazione
+\usepackage{enumitem} % Per personalizzare elenchi
+\usepackage{ FiraSans } % Font più moderno
+\usepackage{graphicx} % Necessario per \newpage
+\usepackage{multicol} % Per le soluzioni su più colonne
+\usepackage{amsfonts} % Per simboli matematici aggiuntivi se necessari
+
+% ----- Impostazioni Liste -----
+\setlist[enumerate,1]{label=\arabic*.} % Numeri per domande principali
+\setlist[enumerate,2]{label=(\alph*), leftmargin=*} % Lettere per opzioni
+
+\begin{document}
+
+\begin{center}
+    \Large\textbf{Simulazione Esame - Tecniche di Ricerca e Analisi dei Dati (Sim. 2)} \\
+    \vspace{0.2cm}
+    \large\textit{Psicologia} \\
+    \vspace{0.5cm}
+    \normalsize{Istruzioni: Scegli l'unica risposta corretta per ogni domanda. Le soluzioni sono disponibili nell'ultima pagina.}
+\end{center}
+\vspace{1cm}
+
+% ----- MODULO 1 -----
+\section*{Modulo 1: Introduzione alla Ricerca in Psicologia}
+\begin{enumerate}[resume]
+    \item Qual è la distinzione fondamentale tra "metodo" e "metodologia" nella ricerca?
+    \begin{enumerate}
+        \item Il metodo si riferisce alle tecniche statistiche, la metodologia alla raccolta dati.
+        \item Il metodo è la procedura specifica usata, la metodologia è lo studio e l'applicazione dei metodi.
+        \item Il metodo è usato nella ricerca qualitativa, la metodologia in quella quantitativa.
+        \item Non c'è una distinzione significativa tra i due termini.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Un ricercatore vuole studiare "l'intelligenza emotiva". Poiché è un costrutto astratto, deve prima:
+    \begin{enumerate}
+        \item Scegliere un campione rappresentativo.
+        \item Definirlo operativamente attraverso indicatori misurabili.
+        \item Formulare un'ipotesi nulla.
+        \item Selezionare il test statistico più appropriato.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item La scala di misura che classifica le persone in base al loro partito politico di preferenza (es. Partito A, Partito B, Partito C) è di tipo:
+    \begin{enumerate}
+        \item Ordinale.
+        \item A intervalli.
+        \item A rapporti.
+        \item Nominale.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item In uno studio sugli effetti del sonno sulla memoria, un ricercatore assegna casualmente i partecipanti a tre gruppi: 4 ore di sonno, 6 ore di sonno, 8 ore di sonno. Le "ore di sonno" rappresentano:
+    \begin{enumerate}
+        \item La variabile dipendente.
+        \item Una variabile di disturbo.
+        \item La variabile indipendente.
+        \item Un errore sistematico.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Un errore casuale in una misurazione è caratterizzato dal fatto che:
+    \begin{enumerate}
+        \item È sempre dovuto a un difetto dello strumento.
+        \item Varia in modo imprevedibile da una misurazione all'altra.
+        \item Influenza tutte le misurazioni per eccesso.
+        \item Può essere completamente eliminato con un buon disegno di ricerca.
+    \end{enumerate}
+    \vspace{0.3cm}
+\end{enumerate}
+
+% ----- MODULO 2 -----
+\section*{Modulo 2: Elementi di Statistica Descrittiva e Inferenziale}
+\begin{enumerate}[resume]
+    \item Quale indice di tendenza centrale è definito come il valore che divide la distribuzione ordinata dei punteggi esattamente a metà?
+    \begin{enumerate}
+        \item Media.
+        \item Moda.
+        \item Mediana.
+        \item Devianza.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item La varianza è calcolata come:
+    \begin{enumerate}
+        \item La radice quadrata della deviazione standard.
+        \item La media degli scarti dalla media.
+        \item La media dei quadrati degli scarti dalla media.
+        \item La somma degli scarti quadratici divisa per (n-2).
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Se la media di una distribuzione di punteggi Z è 0 e la deviazione standard è 1, un punteggio grezzo che corrisponde a Z = 0 si trova:
+    \begin{enumerate}
+        \item Una deviazione standard sotto la media dei punteggi grezzi.
+        \item Esattamente sulla media dei punteggi grezzi.
+        \item Una deviazione standard sopra la media dei punteggi grezzi.
+        \item All'estremo inferiore della distribuzione.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item La distribuzione campionaria della media tende ad avere una forma normale se:
+    \begin{enumerate}
+        \item La popolazione di origine è normale, indipendentemente dalla numerosità del campione.
+        \item La numerosità del campione è sufficientemente elevata (es. n >= 30), anche se la popolazione non è normale.
+        \item La varianza della popolazione è nota.
+        \item Sia (a) che (b) sono vere.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Rifiutare l'ipotesi nulla ($H_0$) quando essa è vera, nel contesto della verifica delle ipotesi, è definito:
+    \begin{enumerate}
+        \item Errore di II Tipo.
+        \item Decisione corretta.
+        \item Errore standard.
+        \item Errore di I Tipo.
+    \end{enumerate}
+    \vspace{0.3cm}
+\end{enumerate}
+
+% ----- MODULO 3 -----
+\section*{Modulo 3: La Significatività Statistica e il Confronto fra Due Campioni}
+\begin{enumerate}[resume]
+    \item La probabilità di commettere un Errore di II Tipo ($\beta$) è la probabilità di:
+    \begin{enumerate}
+        \item Rifiutare $H_0$ quando $H_0$ è vera.
+        \item Accettare $H_0$ quando $H_0$ è falsa.
+        \item Rifiutare $H_0$ quando $H_0$ è falsa.
+        \item Accettare $H_1$ quando $H_1$ è vera.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Un ricercatore calcola il d di Cohen e ottiene un valore di 0.75. Secondo le convenzioni, questo indica una dimensione dell'effetto:
+    \begin{enumerate}
+        \item Piccola.
+        \item Media.
+        \item Grande.
+        \item Trascurabile.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Se si riduce il livello di significatività $\alpha$ (es. da 0.05 a 0.01), a parità di altre condizioni, la probabilità di commettere un Errore di I Tipo:
+    \begin{enumerate}
+        \item Aumenta.
+        \item Diminuisce.
+        \item Rimane invariata.
+        \item Diventa uguale a $\beta$.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Il t-test per campioni indipendenti è appropriato per confrontare:
+    \begin{enumerate}
+        \item Le mediane di due gruppi.
+        \item Le medie di due gruppi distinti di soggetti.
+        \item Le medie dello stesso gruppo di soggetti misurate in due momenti diversi.
+        \item Le varianze di due gruppi.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item L'analisi della potenza "a priori" viene condotta principalmente per:
+    \begin{enumerate}
+        \item Determinare la significatività statistica di un risultato già ottenuto.
+        \item Calcolare la dimensione dell'effetto dopo aver condotto lo studio.
+        \item Stimare il numero di soggetti necessari per condurre uno studio con una potenza adeguata.
+        \item Verificare l'assunto di normalità dei dati.
+    \end{enumerate}
+    \vspace{0.3cm}
+\end{enumerate}
+
+% ----- MODULO 4 -----
+\section*{Modulo 4: L'Analisi Della Varianza (ANOVA)}
+\begin{enumerate}[resume]
+    \item Qual è il principale vantaggio dell'ANOVA rispetto all'esecuzione di multipli t-test per confrontare le medie di più di due gruppi?
+    \begin{enumerate}
+        \item L'ANOVA è più semplice da calcolare.
+        \item L'ANOVA controlla meglio l'inflazione dell'Errore di I Tipo complessivo.
+        \item L'ANOVA non richiede l'assunto di omogeneità delle varianze.
+        \item L'ANOVA può essere usata solo con due gruppi.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Se la varianza "tra i gruppi" è molto più grande della varianza "entro i gruppi", il valore del test F tenderà ad essere:
+    \begin{enumerate}
+        \item Vicino a 0.
+        \item Vicino a 1.
+        \item Significativamente maggiore di 1.
+        \item Negativo.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item In un disegno fattoriale 2x3 (due fattori, il primo con 2 livelli e il secondo con 3 livelli), quante condizioni sperimentali (o gruppi) ci sono in totale?
+    \begin{enumerate}
+        \item 2
+        \item 3
+        \item 5
+        \item 6
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item I test post-hoc (es. test di Tukey, test di Bonferroni) nell'ANOVA vengono utilizzati quando:
+    \begin{enumerate}
+        \item Il test F non è risultato significativo.
+        \item Si vuole aumentare la potenza del test F.
+        \item Il test F è risultato significativo e si vuole identificare quali specifiche medie di gruppo differiscono tra loro.
+        \item L'assunto di normalità è violato.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Il test t per misure ripetute è concettualmente un caso particolare di quale tipo di ANOVA?
+    \begin{enumerate}
+        \item ANOVA a una via per campioni indipendenti.
+        \item ANOVA fattoriale.
+        \item ANOVA per misure ripetute (con due soli livelli della variabile indipendente).
+        \item MANOVA.
+    \end{enumerate}
+    \vspace{0.3cm}
+\end{enumerate}
+
+% ----- MODULO 5 -----
+\section*{Modulo 5: Correlazione e Regressione Lineare}
+\begin{enumerate}[resume]
+    \item Se osserviamo che al diminuire dei punteggi di ansia aumentano i punteggi di rendimento scolastico, che tipo di correlazione lineare ci aspettiamo?
+    \begin{enumerate}
+        \item Positiva.
+        \item Negativa.
+        \item Nulla.
+        \item Curvilinea.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item L'interpretazione di un coefficiente di correlazione di Pearson (r) deve sempre tenere conto che:
+    \begin{enumerate}
+        \item Un valore elevato implica sempre una relazione di causa-effetto.
+        \item È sensibile solo a relazioni non lineari.
+        \item Misura solo la forza della relazione, non la direzione.
+        \item Una correlazione non implica necessariamente causalità.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Se il coefficiente di determinazione $r^2$ tra ore di studio e voto all'esame è 0.49, cosa significa?
+    \begin{enumerate}
+        \item Il 49\% degli studenti ha superato l'esame.
+        \item Le ore di studio spiegano il 49\% della variabilità dei voti all'esame.
+        \item La correlazione tra ore di studio e voto è 0.70.
+        \item Il 51\% della varianza è dovuto all'errore di misurazione.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Nella retta di regressione, il metodo dei minimi quadrati viene utilizzato per:
+    \begin{enumerate}
+        \item Massimizzare la somma dei quadrati degli errori di previsione.
+        \item Minimizzare la somma dei quadrati degli errori di previsione (differenza tra Y osservato e Y predetto).
+        \item Assicurare che il coefficiente di correlazione sia uguale a 1.
+        \item Garantire che l'intercetta sia uguale a 0.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Per poter generalizzare i risultati di un'analisi di regressione campionaria alla popolazione, è necessario verificare:
+    \begin{enumerate}
+        \item Solo la significatività del coefficiente di correlazione r.
+        \item La significatività dell'intercetta ($\alpha$) e/o del coefficiente di regressione ($\beta$) a livello poblazionale.
+        \item Che la varianza residua sia uguale a zero.
+        \item Che il campione sia composto da almeno 100 soggetti.
+    \end{enumerate}
+    \vspace{0.3cm}
+\end{enumerate}
+
+% ----- MODULO 6 -----
+\section*{Modulo 6: Le Statistiche Non Parametriche}
+\begin{enumerate}[resume]
+    \item Quale delle seguenti situazioni NON giustificherebbe l'uso di un test non parametrico?
+    \begin{enumerate}
+        \item Dati misurati su scala nominale.
+        \item Campioni molto piccoli con distribuzioni dei dati palesemente non normali.
+        \item Dati quantitativi che soddisfano tutti gli assunti dei test parametrici (normalità, omoschedasticità).
+        \item Presenza di outlier che distorcono marcatamente la media.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Il test Chi-quadrato per l'indipendenza valuta:
+    \begin{enumerate}
+        \item Se le medie di due o più categorie sono diverse.
+        \item Se esiste un'associazione o dipendenza tra due variabili categoriali.
+        \item Se la distribuzione di una singola variabile categoriale si adatta a un modello teorico.
+        \item Se le varianze di due variabili sono omogenee.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Il test H di Kruskal-Wallis è l'alternativa non parametrica:
+    \begin{enumerate}
+        \item Al t-test per campioni indipendenti.
+        \item All'ANOVA a una via per campioni indipendenti.
+        \item Al test Chi-quadrato.
+        \item All'ANOVA per misure ripetute.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Il test dei ranghi con segno di Wilcoxon è utilizzato per:
+    \begin{enumerate}
+        \item Confrontare due campioni indipendenti quando la variabile è ordinale.
+        \item Confrontare due misurazioni ripetute (appaiate) sullo stesso campione quando i dati non sono normali.
+        \item Verificare l'indipendenza tra due variabili nominali.
+        \item Confrontare tre o più misurazioni ripetute.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Un limite dei test non parametrici, quando si potrebbero usare i test parametrici (cioè quando i loro assunti sono rispettati), è che i test non parametrici:
+    \begin{enumerate}
+        \item Sono sempre più difficili da interpretare.
+        \item Richiedono campioni più grandi per raggiungere la stessa potenza.
+        \item Hanno generalmente una potenza statistica inferiore.
+        \item Non possono essere utilizzati con variabili quantitative.
+    \end{enumerate}
+    \vspace{0.3cm}
+\end{enumerate}
+
+\newpage
+\begin{center}
+    \Large\textbf{Griglia delle Soluzioni con Spiegazioni - Simulazione Esame (Sim. 2)}
+\end{center}
+\vspace{1cm}
+
+\begin{footnotesize}
+\begin{multicols}{2}
+\textbf{Modulo 1}
+\begin{enumerate}
+    \item (b) \textit{Metodologia è lo studio dei metodi, metodo è la procedura specifica.}
+    \item (b) \textit{Un costrutto va definito operativamente per essere misurato.}
+    \item (d) \textit{La scala nominale classifica in categorie senza ordine.}
+    \item (c) \textit{La VI è quella manipolata (ore di sonno).}
+    \item (b) \textit{Gli errori casuali variano imprevedibilmente.}
+\end{enumerate}
+\vspace{0.5cm}
+\textbf{Modulo 2}
+\begin{enumerate}
+    \setcounter{enumi}{5}
+    \item (c) \textit{La mediana divide la distribuzione a metà.}
+    \item (c) \textit{La varianza è la media dei quadrati degli scarti.}
+    \item (b) \textit{Z=0 corrisponde alla media nella scala grezza.}
+    \item (d) \textit{Tutte e due: popolazione normale o n elevato.}
+    \item (d) \textit{Errore di I Tipo: rifiuto H0 vera.}
+\end{enumerate}
+\vspace{0.5cm}
+\textbf{Modulo 3}
+\begin{enumerate}
+    \setcounter{enumi}{10}
+    \item (b) \textit{$\beta$ è accettare H0 falsa.}
+    \item (c) \textit{d=0.75 è una dimensione dell'effetto grande.}
+    \item (b) \textit{Riducendo $\alpha$, diminuisce la probabilità di Errore I.}
+    \item (b) \textit{t-test ind. confronta medie di gruppi distinti.}
+    \item (c) \textit{Potenza "a priori" stima n per potenza adeguata.}
+\end{enumerate}
+\columnbreak
+\textbf{Modulo 4}
+\begin{enumerate}
+    \setcounter{enumi}{15}
+    \item (b) \textit{ANOVA controlla l'inflazione dell'Errore I.}
+    \item (c) \textit{F grande indica varianza "tra" > "entro".}
+    \item (d) \textit{2x3 = 6 condizioni sperimentali.}
+    \item (c) \textit{Post-hoc identificano quali medie differiscono.}
+    \item (c) \textit{t-test RM è un caso di ANOVA RM a due livelli.}
+\end{enumerate}
+\vspace{0.5cm}
+\textbf{Modulo 5}
+\begin{enumerate}
+    \setcounter{enumi}{20}
+    \item (b) \textit{Correlazione negativa: al crescere di X, Y diminuisce.}
+    \item (d) \textit{Correlazione non implica causalità.}
+    \item (b) \textit{$r^2$ spiega la proporzione di varianza.}
+    \item (b) \textit{Minimi quadrati minimizzano gli errori di previsione.}
+    \item (b) \textit{Verificare la significatività di $\alpha$ e/o $\beta$ nella popolazione.}
+\end{enumerate}
+\vspace{0.5cm}
+\textbf{Modulo 6}
+\begin{enumerate}
+    \setcounter{enumi}{25}
+    \item (c) \textit{Se gli assunti sono rispettati, meglio il parametrico.}
+    \item (b) \textit{Chi-quadrato per indipendenza valuta l'associazione.}
+    \item (b) \textit{Kruskal-Wallis è l'alternativa non parametrica all'ANOVA a una via.}
+    \item (b) \textit{Wilcoxon confronta misure ripetute non normali.}
+    \item (c) \textit{I non parametrici hanno potenza inferiore se si possono usare i parametrici.}
+\end{enumerate}
+\end{multicols}
+\end{footnotesize}
+
+\end{document}

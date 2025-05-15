@@ -1,0 +1,394 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+\usepackage{parskip} % Spazio tra paragrafi invece di indentazione
+\usepackage{enumitem} % Per personalizzare elenchi
+\usepackage{ FiraSans } % Font più moderno
+\usepackage{graphicx} % Necessario per \newpage
+\usepackage{multicol} % Per le soluzioni su più colonne
+\usepackage{amsfonts} % Per simboli matematici aggiuntivi se necessari
+
+% ----- Impostazioni Liste -----
+\setlist[enumerate,1]{label=\arabic*.} % Numeri per domande principali
+\setlist[enumerate,2]{label=(\alph*), leftmargin=*} % Lettere per opzioni
+
+\begin{document}
+
+\begin{center}
+    \Large\textbf{Simulazione Esame - Tecniche di Ricerca e Analisi dei Dati (Sim. 4)} \\
+    \vspace{0.2cm}
+    \large\textit{Psicologia} \\
+    \vspace{0.5cm}
+    \normalsize{Istruzioni: Scegli l'unica risposta corretta per ogni domanda. Le soluzioni sono disponibili nell'ultima pagina.}
+\end{center}
+\vspace{1cm}
+
+% ----- MODULO 1 -----
+\section*{Modulo 1: Introduzione alla Ricerca in Psicologia}
+\begin{enumerate}[resume]
+    \item Quale dei seguenti è un esempio di variabile misurata su scala nominale?
+    \begin{enumerate}
+        \item Il tempo di reazione a uno stimolo.
+        \item Il genere dei partecipanti (maschio, femmina, altro).
+        \item Il punteggio a un test di intelligenza.
+        \item L'ordine di arrivo in una gara.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item La fase del processo di ricerca che implica la definizione precisa di come un costrutto verrà misurato è chiamata:
+    \begin{enumerate}
+        \item Formulazione dell'ipotesi.
+        \item Operazionalizzazione.
+        \item Analisi statistica.
+        \item Interpretazione dei risultati.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Un ricercatore studia l'effetto di un nuovo metodo di insegnamento sul rendimento scolastico. Il "rendimento scolastico" in questo caso è:
+    \begin{enumerate}
+        \item La variabile indipendente.
+        \item La variabile dipendente.
+        \item Una variabile di controllo.
+        \item Un parametro della popolazione.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item La differenza principale tra un disegno sperimentale e un disegno quasi-sperimentale risiede:
+    \begin{enumerate}
+        \item Nel tipo di analisi statistica utilizzata.
+        \item Nella presenza o assenza di una variabile dipendente.
+        \item Nella capacità del ricercatore di manipolare la variabile indipendente e/o assegnare casualmente i soggetti ai gruppi.
+        \item Nel numero di partecipanti coinvolti.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item L'errore di campionamento è inevitabile quando:
+    \begin{enumerate}
+        \item Si utilizza uno strumento di misura non valido.
+        \item Si studia un'intera popolazione invece di un campione.
+        \item Si traggono conclusioni su una popolazione basandosi sui dati di un campione.
+        \item Il ricercatore commette errori nel registrare i dati.
+    \end{enumerate}
+    \vspace{0.3cm}
+\end{enumerate}
+
+% ----- MODULO 2 -----
+\section*{Modulo 2: Elementi di Statistica Descrittiva e Inferenziale}
+\begin{enumerate}[resume]
+    \item In una distribuzione con i seguenti punteggi: 5, 7, 7, 8, 10, 12, 7. Qual è la moda?
+    \begin{enumerate}
+        \item 8
+        \item 7.5
+        \item 7
+        \item 10
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item La radice quadrata della varianza è conosciuta come:
+    \begin{enumerate}
+        \item Devianza.
+        \item Errore standard.
+        \item Deviazione standard.
+        \item Coefficiente di variazione.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Un punteggio Z negativo indica che il punteggio grezzo originale si trova:
+    \begin{enumerate}
+        \item Esattamente sulla media.
+        \item Al di sopra della media.
+        \item Al di sotto della media.
+        \item All'estremo superiore della distribuzione.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item La distribuzione normale standard ha:
+    \begin{enumerate}
+        \item Media 1 e deviazione standard 0.
+        \item Media 0 e deviazione standard 1.
+        \item Media e deviazione standard variabili a seconda del campione.
+        \item Media 100 e deviazione standard 15.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Se si conduce un test di ipotesi con $\alpha = 0.01$, significa che si è disposti ad accettare una probabilità dell'1\% di:
+    \begin{enumerate}
+        \item Commettere un Errore di II Tipo.
+        \item Commettere un Errore di I Tipo.
+        \item Ottenere un risultato non significativo.
+        \item Che l'ipotesi alternativa sia vera.
+    \end{enumerate}
+    \vspace{0.3cm}
+\end{enumerate}
+
+% ----- MODULO 3 -----
+\section*{Modulo 3: La Significatività Statistica e il Confronto fra Due Campioni}
+\begin{enumerate}[resume]
+    \item Accettare l'ipotesi nulla ($H_0$) quando in realtà essa è falsa, è un:
+    \begin{enumerate}
+        \item Errore di I Tipo.
+        \item Errore di II Tipo.
+        \item Decisione corretta.
+        \item Errore di campionamento.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item La dimensione dell'effetto standardizzata (es. d di Cohen) è utile perché:
+    \begin{enumerate}
+        \item Indica se il risultato è statisticamente significativo.
+        \item Permette di confrontare la grandezza degli effetti tra studi diversi, anche con scale di misura differenti.
+        \item Aumenta la potenza del test statistico.
+        \item È più facile da calcolare rispetto alla differenza tra le medie.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Aumentando l'ampiezza dell'effetto nella popolazione, a parità di altre condizioni, la potenza statistica di un test:
+    \begin{enumerate}
+        \item Diminuisce.
+        \item Aumenta.
+        \item Rimane invariata.
+        \item Diventa uguale a 1.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Il t-test per campioni indipendenti richiede che la variabile dipendente sia misurata almeno su scala:
+    \begin{enumerate}
+        \item Nominale.
+        \item Ordinale.
+        \item A intervalli.
+        \item Categoriale.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item La distribuzione campionaria delle differenze tra le medie, utilizzata nel t-test per campioni indipendenti, ha una media uguale a:
+    \begin{enumerate}
+        \item 0, se l'ipotesi nulla è vera (nessuna differenza tra le medie delle popolazioni).
+        \item 1, indipendentemente dall'ipotesi nulla.
+        \item La media del primo campione.
+        \item La differenza tra le medie dei due campioni.
+    \end{enumerate}
+    \vspace{0.3cm}
+\end{enumerate}
+
+% ----- MODULO 4 -----
+\section*{Modulo 4: L'Analisi Della Varianza (ANOVA)}
+\begin{enumerate}[resume]
+    \item L'ipotesi nulla nell'ANOVA a una via afferma che:
+    \begin{enumerate}
+        \item Almeno una delle medie dei gruppi è diversa dalle altre.
+        \item Tutte le medie dei gruppi sono diverse tra loro.
+        \item Tutte le medie delle popolazioni da cui i campioni sono estratti sono uguali.
+        \item Le varianze dei gruppi sono diverse.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Un valore elevato del test F nell'ANOVA suggerisce che:
+    \begin{enumerate}
+        \item La varianza entro i gruppi è maggiore della varianza tra i gruppi.
+        \item La varianza tra i gruppi è maggiore della varianza entro i gruppi, indicando possibili differenze tra le medie.
+        \item Non ci sono differenze significative tra le medie dei gruppi.
+        \item L'ipotesi alternativa è falsa.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item In un'ANOVA fattoriale, un effetto principale si riferisce a:
+    \begin{enumerate}
+        \item L'effetto combinato di due o più variabili indipendenti.
+        \item L'effetto di una singola variabile indipendente sulla variabile dipendente, ignorando le altre variabili indipendenti.
+        \item La differenza tra la media più alta e quella più bassa tra tutti i gruppi.
+        \item L'errore residuo del modello.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Se il test di Mauchly per la sfericità in un'ANOVA per misure ripetute risulta significativo (es. p < 0.05), cosa implica?
+    \begin{enumerate}
+        \item L'assunto di sfericità è rispettato e si può procedere con l'ANOVA standard.
+        \item L'assunto di sfericità è violato e potrebbero essere necessarie correzioni ai gradi di libertà.
+        \item Non ci sono differenze significative tra le misurazioni ripetute.
+        \item I dati non sono distribuiti normalmente.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item L'ANOVA per misure ripetute è vantaggiosa rispetto all'ANOVA per campioni indipendenti perché:
+    \begin{enumerate}
+        \item Richiede un minor numero di calcoli.
+        \item È meno sensibile alla violazione dell'assunto di normalità.
+        \item Riduce la varianza d'errore rimuovendo la variabilità dovuta alle differenze individuali tra i soggetti.
+        \item Può essere utilizzata solo con variabili dipendenti nominali.
+    \end{enumerate}
+    \vspace{0.3cm}
+\end{enumerate}
+
+% ----- MODULO 5 -----
+\section*{Modulo 5: Correlazione e Regressione Lineare}
+\begin{enumerate}[resume]
+    \item Quale delle seguenti affermazioni descrive una correlazione negativa?
+    \begin{enumerate}
+        \item All'aumentare di una variabile, aumenta anche l'altra.
+        \item All'aumentare di una variabile, l'altra variabile non cambia.
+        \item All'aumentare di una variabile, l'altra variabile diminuisce.
+        \item Le due variabili non sono correlate.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Il coefficiente di correlazione di Pearson (r) può assumere valori compresi tra:
+    \begin{enumerate}
+        \item 0 e +1.
+        \item -1 e +1.
+        \item 0 e 100.
+        \item Meno infinito e più infinito.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Se il coefficiente di determinazione $r^2$ è 0.64, quale percentuale di varianza della variabile dipendente NON è spiegata dalla variabile indipendente?
+    \begin{enumerate}
+        \item 64\%
+        \item 36\%
+        \item 80\%
+        \item 16\%
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item L'errore standard della stima in un modello di regressione lineare misura:
+    \begin{enumerate}
+        \item La pendenza della retta di regressione.
+        \item La dispersione media dei punti osservati attorno alla retta di regressione.
+        \item Il coefficiente di correlazione.
+        \item La significatività dell'intercetta.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item La verifica delle ipotesi nel contesto della regressione lineare serve principalmente a determinare se:
+    \begin{enumerate}
+        \item Il coefficiente di correlazione r è uguale a 1.
+        \item Il coefficiente di regressione $\beta$ (pendenza) nella popolazione è significativamente diverso da zero.
+        \item Tutti i punti osservati cadono esattamente sulla retta di regressione.
+        \item La variabile indipendente causa la variabile dipendente.
+    \end{enumerate}
+    \vspace{0.3cm}
+\end{enumerate}
+
+% ----- MODULO 6 -----
+\section*{Modulo 6: Le Statistiche Non Parametriche}
+\begin{enumerate}[resume]
+    \item In un test Chi-quadrato per la bontà di adattamento, se le frequenze osservate sono molto diverse da quelle attese, il valore del Chi-quadrato calcolato tenderà ad essere:
+    \begin{enumerate}
+        \item Vicino a 0.
+        \item Elevato.
+        \item Negativo.
+        \item Uguale al numero di categorie.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Il test U di Mann-Whitney è più appropriato del t-test per campioni indipendenti quando:
+    \begin{enumerate}
+        \item I campioni sono molto grandi e i dati normali.
+        \item La variabile dipendente è misurata su scala nominale.
+        \item Gli assunti di normalità e/o omoschedasticità del t-test sono palesemente violati, specialmente con campioni piccoli.
+        \item Si vogliono confrontare più di due gruppi.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Il test di Friedman è l'alternativa non parametrica:
+    \begin{enumerate}
+        \item Al test Chi-quadrato per l'indipendenza.
+        \item All'ANOVA a una via per campioni indipendenti.
+        \item Al t-test per campioni appaiati.
+        \item All'ANOVA per misure ripetute (con tre o più condizioni).
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Quale delle seguenti è una caratteristica dei test non parametrici basati sui ranghi?
+    \begin{enumerate}
+        \item Sono molto sensibili ai valori esatti dei punteggi e agli outlier.
+        \item Trasformano i dati grezzi in posizioni ordinali (ranghi), riducendo l'impatto degli outlier.
+        \item Richiedono sempre che la distribuzione dei dati sia perfettamente simmetrica.
+        \item Possono essere utilizzati solo per variabili nominali.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Se si confrontano due gruppi su una variabile dipendente ordinale e si vuole evitare l'assunzione di normalità, quale test è indicato?
+    \begin{enumerate}
+        \item t-test per campioni indipendenti.
+        \item Test U di Mann-Whitney.
+        \item ANOVA a una via.
+        \item Test di correlazione di Pearson.
+    \end{enumerate}
+    \vspace{0.3cm}
+\end{enumerate}
+
+\newpage
+\begin{center}
+    \Large\textbf{Griglia delle Soluzioni con Spiegazioni - Simulazione Esame (Sim. 4)}
+\end{center}
+\vspace{1cm}
+
+\begin{footnotesize}
+\begin{multicols}{3}
+\textbf{Modulo 1}
+\begin{enumerate}
+    \item (b) \textit{Il genere è una variabile categoriale senza ordine intrinseco.}
+    \item (b) \textit{Operazionalizzare definisce come misurare un costrutto.}
+    \item (b) \textit{Il rendimento scolastico è influenzato dal metodo di insegnamento.}
+    \item (c) \textit{Nei quasi-esperimenti manca la manipolazione e/o l'assegnazione casuale.}
+    \item (c) \textit{L'errore di campionamento si verifica quando si generalizza dal campione alla popolazione.}
+\end{enumerate}
+\vspace{0.5cm}
+\textbf{Modulo 2}
+\begin{enumerate}
+    \setcounter{enumi}{5}
+    \item (c) \textit{La moda è il valore più frequente.}
+    \item (c) \textit{La deviazione standard è la radice quadrata della varianza.}
+    \item (c) \textit{Un punteggio Z negativo è sotto la media.}
+    \item (b) \textit{La distribuzione normale standard ha media 0 e DS 1.}
+    \item (b) \textit{$\alpha$ è la probabilità di Errore di I Tipo (falso positivo).}
+\end{enumerate}
+\vspace{0.5cm}
+\textbf{Modulo 3}
+\begin{enumerate}
+    \setcounter{enumi}{10}
+    \item (b) \textit{Accettare H0 falsa è un Errore di II Tipo (falso negativo).}
+    \item (b) \textit{La dimensione dell'effetto standardizzata permette confronti tra studi.}
+    \item (b) \textit{Aumentare l'effetto aumenta la potenza.}
+    \item (c) \textit{Il t-test richiede scala a intervalli o rapporti.}
+    \item (a) \textit{La media della distribuzione campionaria è 0 se H0 è vera.}
+\end{enumerate}
+\columnbreak
+\textbf{Modulo 4}
+\begin{enumerate}
+    \setcounter{enumi}{15}
+    \item (c) \textit{H0 nell'ANOVA: tutte le medie delle popolazioni sono uguali.}
+    \item (b) \textit{F elevato indica che la varianza "tra" è maggiore di quella "entro".}
+    \item (b) \textit{L'effetto principale è l'effetto di una VI ignorando le altre.}
+    \item (b) \textit{Se Mauchly è significativo, l'assunto di sfericità è violato.}
+    \item (c) \textit{L'ANOVA RM riduce la varianza d'errore.}
+\end{enumerate}
+\vspace{0.5cm}
+\textbf{Modulo 5}
+\begin{enumerate}
+    \setcounter{enumi}{20}
+    \item (c) \textit{Correlazione negativa: X aumenta, Y diminuisce.}
+    \item (b) \textit{r varia tra -1 e +1.}
+    \item (b) \textit{Se $r^2$=0.64, allora 1-0.64=0.36 (36\%) non è spiegata.}
+    \item (b) \textit{L'errore standard della stima misura la dispersione attorno alla retta.}
+    \item (b) \textit{Si verifica se $\beta$ è significativamente diverso da zero.}
+\end{enumerate}
+\vspace{0.5cm}
+\textbf{Modulo 6}
+\begin{enumerate}
+    \setcounter{enumi}{25}
+    \item (b) \textit{Chi-quadrato elevato: frequenze osservate diverse da quelle attese.}
+    \item (c) \textit{Mann-Whitney si usa se non ci sono normalità e omoschedasticità.}
+    \item (d) \textit{Friedman è l'alternativa non parametrica all'ANOVA RM.}
+    \item (b) \textit{I test sui ranghi riducono l'impatto degli outlier.}
+    \item (b) \textit{Mann-Whitney si usa con VD ordinale e senza normalità.}
+\end{enumerate}
+\end{multicols}
+\end{footnotesize}
+
+\end{document}

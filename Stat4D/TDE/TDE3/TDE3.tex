@@ -1,0 +1,393 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+\usepackage{parskip} % Spazio tra paragrafi invece di indentazione
+\usepackage{enumitem} % Per personalizzare elenchi
+\usepackage{ FiraSans } % Font più moderno
+\usepackage{graphicx} % Necessario per \newpage
+\usepackage{multicol} % Per le soluzioni su più colonne
+\usepackage{amsfonts} % Per simboli matematici aggiuntivi se necessari
+
+% ----- Impostazioni Liste -----
+\setlist[enumerate,1]{label=\arabic*.} % Numeri per domande principali
+\setlist[enumerate,2]{label=(\alph*), leftmargin=*} % Lettere per opzioni
+
+\begin{document}
+
+\begin{center}
+    \Large\textbf{Simulazione Esame - Tecniche di Ricerca e Analisi dei Dati (Sim. 3)} \\
+    \vspace{0.2cm}
+    \large\textit{Psicologia} \\
+    \vspace{0.5cm}
+    \normalsize{Istruzioni: Scegli l'unica risposta corretta per ogni domanda. Le soluzioni sono disponibili nell'ultima pagina.}
+\end{center}
+\vspace{1cm}
+
+% ----- MODULO 1 -----
+\section*{Modulo 1: Introduzione alla Ricerca in Psicologia}
+\begin{enumerate}[resume]
+    \item La psicologia è considerata una scienza perché:
+    \begin{enumerate}
+        \item Si basa su opinioni soggettive e intuizioni.
+        \item Utilizza metodi empirici e sperimentali per raccogliere e analizzare dati.
+        \item Studia unicamente il comportamento osservabile, ignorando i processi mentali.
+        \item I suoi risultati sono sempre incontrovertibili e definitivi.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item In un disegno di ricerca, una "variabile di disturbo" (o confondente procedurale) è una variabile che:
+    \begin{enumerate}
+        \item È stata intenzionalmente manipolata dal ricercatore.
+        \item Covaria con la variabile indipendente a causa di errori metodologici e può influenzare la variabile dipendente.
+        \item È misurata come risultato dell'esperimento.
+        \item È intrinsecamente associata alla variabile indipendente nella sua operazionalizzazione.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Se un ricercatore misura il "livello di istruzione" classificando i partecipanti come "Scuola primaria", "Scuola secondaria", "Laurea", "Post-laurea", su quale scala di misura sta operando?
+    \begin{enumerate}
+        \item Nominale.
+        \item Ordinale.
+        \item A intervalli.
+        \item A rapporti.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Qual è lo scopo principale di una condizione di controllo in un esperimento?
+    \begin{enumerate}
+        \item Aumentare il numero di partecipanti allo studio.
+        \item Fornire una baseline di confronto per valutare l'effetto della condizione sperimentale.
+        \item Misurare la variabile indipendente.
+        \item Assicurare che tutti i partecipanti ricevano il trattamento.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item La sezione "Discussione" di un articolo scientifico ha tipicamente lo scopo di:
+    \begin{enumerate}
+        \item Descrivere dettagliatamente le procedure utilizzate per raccogliere i dati.
+        \item Presentare i risultati statistici in forma numerica e grafica.
+        \item Interpretare i risultati alla luce delle ipotesi e della letteratura esistente, evidenziando limiti e implicazioni.
+        \item Fornire un riassunto conciso dell'intero studio.
+    \end{enumerate}
+    \vspace{0.3cm}
+\end{enumerate}
+
+% ----- MODULO 2 -----
+\section*{Modulo 2: Elementi di Statistica Descrittiva e Inferenziale}
+\begin{enumerate}[resume]
+    \item Quale indice di tendenza centrale è meno influenzato dalla presenza di valori estremi (outlier) in una distribuzione?
+    \begin{enumerate}
+        \item Media.
+        \item Mediana.
+        \item Moda.
+        \item Deviazione standard.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item La devianza (Somma dei Quadrati, SS) rappresenta:
+    \begin{enumerate}
+        \item La media dei quadrati degli scarti dalla media.
+        \item La radice quadrata della varianza.
+        \item La somma dei quadrati delle differenze tra ogni punteggio e la media.
+        \item L'errore standard della media.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Se trasformiamo un'intera distribuzione di punteggi grezzi in punteggi Z, la nuova distribuzione Z avrà sempre:
+    \begin{enumerate}
+        \item Media 100 e deviazione standard 15.
+        \item Media 0 e deviazione standard 1.
+        \item Media uguale alla media dei punteggi grezzi e deviazione standard 0.
+        \item Media 1 e deviazione standard 0.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item La probabilità teorica di ottenere "testa" nel lancio di una moneta non truccata è un esempio di probabilità:
+    \begin{enumerate}
+        \item Frequentista (o a posteriori).
+        \item Soggettiva.
+        \item Classica (o a priori).
+        \item Condizionata.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Nel processo di verifica delle ipotesi, l'ipotesi nulla ($H_0$) viene formulata in modo da:
+    \begin{enumerate}
+        \item Affermare l'esistenza di un effetto o di una differenza.
+        \item Essere quella che il ricercatore spera di confermare.
+        \item Essere sottoposta direttamente a verifica statistica, ipotizzando l'assenza di un effetto o differenza significativa.
+        \item Coincidere sempre con l'ipotesi alternativa ($H_1$).
+    \end{enumerate}
+    \vspace{0.3cm}
+\end{enumerate}
+
+% ----- MODULO 3 -----
+\section*{Modulo 3: La Significatività Statistica e il Confronto fra Due Campioni}
+\begin{enumerate}[resume]
+    \item Se un test statistico produce un p-value di 0.02, e il livello $\alpha$ scelto è 0.05, la decisione corretta è:
+    \begin{enumerate}
+        \item Accettare $H_0$.
+        \item Rifiutare $H_0$.
+        \item Aumentare il campione e ripetere il test.
+        \item Concludere che non c'è effetto.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item La "dimensione dell'effetto dei punteggi grezzi" in un confronto tra due medie si riferisce semplicemente a:
+    \begin{enumerate}
+        \item La differenza tra le due medie campionarie.
+        \item Il rapporto tra la differenza delle medie e la deviazione standard.
+        \item La probabilità che la differenza sia dovuta al caso.
+        \item Il numero di deviazioni standard di cui le medie differiscono.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item A parità di altre condizioni, quale dei seguenti fattori NON influenza direttamente la potenza statistica di un test?
+    \begin{enumerate}
+        \item Il livello di significatività ($\alpha$) scelto.
+        \item L'ampiezza del campione (n).
+        \item La dimensione dell'effetto nella popolazione (d).
+        \item Il software statistico utilizzato per l'analisi.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Il t-test per campioni indipendenti assume che le osservazioni all'interno di ciascun gruppo siano:
+    \begin{enumerate}
+        \item Dipendenti tra loro.
+        \item Correlate positivamente.
+        \item Indipendenti le une dalle altre.
+        \item Misurate su scala nominale.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Quando si confrontano due campioni indipendenti e si sospetta una violazione dell'assunto di omogeneità delle varianze con numerosità campionarie diverse, è consigliabile:
+    \begin{enumerate}
+        \item Utilizzare sempre il test Z.
+        \item Ignorare la violazione se l'effetto è grande.
+        \item Considerare versioni modificate del t-test (es. test di Welch) o test non parametrici.
+        \item Aumentare il livello $\alpha$ per compensare.
+    \end{enumerate}
+    \vspace{0.3cm}
+\end{enumerate}
+
+% ----- MODULO 4 -----
+\section*{Modulo 4: L'Analisi Della Varianza (ANOVA)}
+\begin{enumerate}[resume]
+    \item Nell'ANOVA, la "varianza entro i gruppi" (within-group variance) riflette principalmente:
+    \begin{enumerate}
+        \item L'effetto della variabile indipendente.
+        \item Le differenze sistematiche tra i gruppi.
+        \item La variabilità casuale e le differenze individuali non spiegate dalla VI.
+        \item La media generale di tutti i punteggi.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Se il valore F calcolato in un'ANOVA è molto vicino a 1, è probabile che:
+    \begin{enumerate}
+        \item L'ipotesi nulla sia falsa e ci siano differenze significative tra i gruppi.
+        \item L'ipotesi nulla sia vera e non ci siano differenze significative tra i gruppi.
+        \item Ci sia un forte effetto di interazione.
+        \item L'assunto di normalità sia stato violato.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Un disegno fattoriale è definito tale perché:
+    \begin{enumerate}
+        \item Coinvolge una sola variabile indipendente con molti livelli.
+        \item Esamina l'effetto simultaneo di due o più variabili indipendenti (fattori) sulla variabile dipendente.
+        \item Utilizza sempre misure ripetute.
+        \item Si applica solo a variabili dipendenti misurate su scala nominale.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Nell'ANOVA per misure ripetute, come viene gestita la variabilità dovuta alle differenze individuali tra i soggetti?
+    \begin{enumerate}
+        \item Viene ignorata, assumendo che sia trascurabile.
+        \item Viene inclusa nella varianza tra i trattamenti.
+        \item Viene stimata e rimossa dalla varianza d'errore, aumentando la sensibilità del test.
+        \item Si controlla aumentando la numerosità del campione.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item L'Eta quadrato ($\eta^2$) nell'ANOVA indica:
+    \begin{enumerate}
+        \item La probabilità di commettere un Errore di I Tipo.
+        \item La proporzione di varianza della variabile dipendente spiegata dalla variabile indipendente (fattore).
+        \item Il numero di gruppi che differiscono significativamente.
+        \item La media dei quadrati della varianza d'errore.
+    \end{enumerate}
+    \vspace{0.3cm}
+\end{enumerate}
+
+% ----- MODULO 5 -----
+\section*{Modulo 5: Correlazione e Regressione Lineare}
+\begin{enumerate}[resume]
+    \item Se il grafico di dispersione tra due variabili mostra i punti che si dispongono approssimativamente lungo una linea retta che sale da sinistra a destra, la correlazione è:
+    \begin{enumerate}
+        \item Negativa e lineare.
+        \item Positiva e lineare.
+        \item Nulla.
+        \item Curvilinea.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Quale dei seguenti valori del coefficiente di correlazione di Pearson (r) indica la relazione lineare più forte?
+    \begin{enumerate}
+        \item +0.70
+        \item -0.85
+        \item +0.50
+        \item -0.10
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Se il coefficiente di correlazione tra X e Y è +0.60, il coefficiente di determinazione ($r^2$) sarà:
+    \begin{enumerate}
+        \item 0.60
+        \item 0.36
+        \item -0.60
+        \item 1.20
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Nella retta di regressione $Y = a + bX$, il coefficiente 'b' (pendenza) indica:
+    \begin{enumerate}
+        \item Il valore di Y quando X è zero.
+        \item La variazione media attesa in Y per ogni variazione unitaria in X.
+        \item La forza della relazione tra X e Y.
+        \item L'errore standard della stima.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item L'analisi della regressione è più appropriata della semplice correlazione quando:
+    \begin{enumerate}
+        \item Si vuole solo descrivere la forza e la direzione di un'associazione.
+        \item Si vuole predire i valori di una variabile dipendente basandosi su una variabile indipendente, ipotizzando una relazione causale.
+        \item Entrambe le variabili sono misurate su scala nominale.
+        \item Non si hanno ipotesi specifiche sulla relazione tra le variabili.
+    \end{enumerate}
+    \vspace{0.3cm}
+\end{enumerate}
+
+% ----- MODULO 6 -----
+\section*{Modulo 6: Le Statistiche Non Parametriche}
+\begin{enumerate}[resume]
+    \item Il test Chi-quadrato per la bontà di adattamento confronta:
+    \begin{enumerate}
+        \item Le medie osservate con le medie attese.
+        \item Le frequenze osservate in diverse categorie con le frequenze teoricamente attese per quelle categorie.
+        \item Le varianze di due campioni.
+        \item I ranghi di due campioni indipendenti.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Quale test non parametrico è appropriato per valutare se esiste un'associazione tra il genere (Maschio/Femmina) e la preferenza per un tipo di film (Azione/Commedia/Drammatico)?
+    \begin{enumerate}
+        \item Test U di Mann-Whitney.
+        \item Test H di Kruskal-Wallis.
+        \item Test Chi-quadrato per l'indipendenza.
+        \item Test di Friedman.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Il test di Kruskal-Wallis è utilizzato quando si vuole confrontare:
+    \begin{enumerate}
+        \item Due misurazioni ripetute su dati ordinali.
+        \item Le mediane/distribuzioni di tre o più campioni indipendenti su dati ordinali o non normali.
+        \item L'associazione tra due variabili ordinali.
+        \item Le frequenze di più di due categorie per una singola variabile.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Il test dei ranghi con segno di Wilcoxon è l'alternativa non parametrica al:
+    \begin{enumerate}
+        \item t-test per campioni indipendenti.
+        \item ANOVA a una via.
+        \item t-test per campioni appaiati (misure ripetute).
+        \item Coefficiente di correlazione di Pearson.
+    \end{enumerate}
+    \vspace{0.3cm}
+
+    \item Uno dei principali motivi per cui si ricorre ai test non parametrici è la violazione dell'assunto di:
+    \begin{enumerate}
+        \item Indipendenza delle osservazioni.
+        \item Linearità della relazione.
+        \item Normalità della distribuzione dei dati (specialmente con campioni piccoli).
+        \item Presenza di un effetto di interazione.
+    \end{enumerate}
+    \vspace{0.3cm}
+\end{enumerate}
+
+\newpage
+\begin{center}
+    \Large\textbf{Griglia delle Soluzioni con Spiegazioni - Simulazione Esame (Sim. 3)}
+\end{center}
+\vspace{1cm}
+
+\begin{footnotesize}
+\begin{multicols}{2} % Ridotto a 2 colonne per più spazio alle spiegazioni
+\textbf{Modulo 1}
+\begin{enumerate}
+    \item (b) \textit{La scienza si basa su metodi empirici e sperimentali, non su opinioni.}
+    \item (b) \textit{Una variabile di disturbo covaria con la VI per errori metodologici.}
+    \item (b) \textit{Le categorie ordinate (primaria, secondaria, laurea) definiscono una scala ordinale.}
+    \item (b) \textit{Il controllo fornisce una baseline per valutare l'effetto del trattamento.}
+    \item (c) \textit{La discussione interpreta i risultati, evidenziando limiti e implicazioni.}
+\end{enumerate}
+\vspace{0.5cm}
+\textbf{Modulo 2}
+\begin{enumerate}
+    \setcounter{enumi}{5}
+    \item (b) \textit{La mediana è meno sensibile agli outlier rispetto alla media.}
+    \item (c) \textit{La devianza è la somma dei quadrati degli scarti dalla media.}
+    \item (b) \textit{La standardizzazione Z produce media 0 e deviazione standard 1.}
+    \item (c) \textit{La probabilità teorica (es. lancio moneta) è un esempio di probabilità classica.}
+    \item (c) \textit{$H_0$ è formulata per essere testata, ipotizzando l'assenza di effetto.}
+\end{enumerate}
+\vspace{0.5cm}
+\textbf{Modulo 3}
+\begin{enumerate}
+    \setcounter{enumi}{10}
+    \item (b) \textit{Se p < $\alpha$, si rifiuta $H_0$.}
+    \item (a) \textit{La dimensione dell'effetto dei punteggi grezzi è semplicemente la differenza tra le medie.}
+    \item (d) \textit{Il software non influenza direttamente la potenza statistica.}
+    \item (c) \textit{Il t-test assume indipendenza delle osservazioni all'interno di ciascun gruppo.}
+    \item (c) \textit{In caso di violazione dell'omogeneità, si usano test modificati o non parametrici.}
+\end{enumerate}
+\columnbreak
+\textbf{Modulo 4}
+\begin{enumerate}
+    \setcounter{enumi}{15}
+    \item (c) \textit{La varianza entro i gruppi riflette la variabilità casuale non spiegata dalla VI.}
+    \item (b) \textit{F vicino a 1 suggerisce che l'ipotesi nulla è vera.}
+    \item (b) \textit{Un disegno fattoriale esamina l'effetto di due o più VI (fattori).}
+    \item (c) \textit{L'ANOVA RM rimuove la variabilità dovuta alle differenze individuali.}
+    \item (b) \textit{$\eta^2$ indica la proporzione di varianza spiegata dalla VI.}
+\end{enumerate}
+\vspace{0.5cm}
+\textbf{Modulo 5}
+\begin{enumerate}
+    \setcounter{enumi}{20}
+    \item (b) \textit{Una linea che sale da sinistra a destra indica una correlazione positiva.}
+    \item (b) \textit{Il valore assoluto più alto (in questo caso, |-0.85|) indica la relazione più forte.}
+    \item (b) \textit{$r^2 = r * r = 0.60 * 0.60 = 0.36$.}
+    \item (b) \textit{Il coefficiente 'b' indica la variazione attesa in Y per ogni unità di X.}
+    \item (b) \textit{La regressione è usata per predire Y da X, implicando una relazione causale.}
+\end{enumerate}
+\vspace{0.5cm}
+\textbf{Modulo 6}
+\begin{enumerate}
+    \setcounter{enumi}{25}
+    \item (b) \textit{Il Chi-quadrato per la bontà di adattamento confronta frequenze osservate e attese.}
+    \item (c) \textit{Il Chi-quadrato per l'indipendenza valuta l'associazione tra due variabili nominali.}
+    \item (b) \textit{Kruskal-Wallis confronta le distribuzioni di tre o più gruppi indipendenti.}
+    \item (c) \textit{Wilcoxon è l'alternativa non parametrica al t-test per campioni appaiati.}
+    \item (c) \textit{I test non parametrici sono usati quando non è soddisfatto l'assunto di normalità.}
+\end{enumerate}
+\end{multicols}
+\end{footnotesize}
+\end{document}
