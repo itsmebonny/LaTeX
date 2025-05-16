@@ -1,9 +1,9 @@
-\section{Mathematical Model}
 \label{sec:problem_setting}
 
-\textcolor{blue}{For the problem just described, we introduce here the mathematical model. We will first describe the mechanical model, then the linear modal analysis, and finally the neural modes: these are the three main components of our approach. Bla bla bla (giusto per introdurre brevemente cosa fai qui, queste frasi me le ha fatte copilot)}
+Simulating the dynamic behavior of soft tissues is crucial in various applications, from surgical planning to biomechanical analysis. However, accurately capturing the complex, nonlinear deformations of these materials remains a significant computational challenge. In this section, we present our mathematical framework for addressing this challenge. Our approach builds upon three core elements: a hyperelastic mechanical model to represent the material's constitutive behavior, linear modal analysis for efficient dimensionality reduction, and a novel neural modes technique to incorporate nonlinear effects. By integrating these elements, we aim to achieve accurate and computationally tractable simulations of soft tissue deformation.
 
-\subsection{Mechanical Model}
+
+\section{Mechanical Model}
 \label{sec:mechanical_model}
 
 To model the deformation of an object, we start from the vector \(\bm{X}\), which represents the material coordinates in the reference configuration (i.e. its non-deformed state). Any deformation of the object can be described by the displacement vector \(\bm{u}(\bm{X},t)\), which maps the material coordinates to the spatial coordinates \(\bm{x}\) in the deformed configuration. The relationship between these two configurations is given by:
@@ -15,7 +15,7 @@ where \(\bm{x} \in \mathbb{R}^d\) is the spatial position of a material point at
 
 To model the mechanical behavior of the material, there are many constitutive models available, ranging from linear elastic to hyperelastic models. Since we are interested in soft tissue mechanics, we will focus on the hyperelastic Neo-Hookean material model \textcolor{blue}{ref}. Such a model helps dealing with large deformations and is suitable for biological tissues, which often exhibit nonlinear elastic behavior.
 
-For the material \textcolor{blue}{material? model that describes the material? non capisco in che senso} model, we first compute the deformation gradient $\bm{F} \in \mathbb{R}^{d\times d}$:
+For the Neo-Hookean hyperelastic material model, we first compute the deformation gradient $\bm{F} \in \mathbb{R}^{d\times d}$:
 \begin{equation}
     \bm{F} = \frac{\partial \bm{x}}{\partial \bm{X}} = \bm{I} + \nabla_X \bm{u},
 \label{eq:deformation_gradient}
@@ -57,10 +57,11 @@ The weak form of equation \eqref{eq:dynamic_problem}, obtained from the principl
 where $\bm{v} \in \{\bm{v} \in H^1(\Omega) | \bm{v} = \bm{0} \text{ on } \Gamma_D\}$ is any vector-valued test function with $H^1(\Omega)$ being a Hilbert space. The first term on the left side represents the inertial forces, the second term denotes the internal virtual work, and the right side represents the virtual work from the applied external loads.
 
 
-\subsection{Linear Modal Analysis}
+\section{Linear Modal Analysis}
 \label{sec:linear_modes}
 
-Simulating the deformation of mechanical objects in real-time poses significant computational challenges. A common technique to accelerate these simulations, particularly in computer graphics and computational mechanics, is modal analysis \cite{Pentland_Williams_1989}. This approach leverages the idea that the complex deformation of an object can often be well-approximated by a combination of its dominant, low-frequency vibration patterns, known as modes. \textcolor{blue}{The modal analysis technique allows us to reduce the dimensionality of the problem by focusing on these low-frequency modes, thus enabling faster simulations while maintaining a reasonable level of accuracy.}
+Simulating the deformation of mechanical objects in real-time poses significant computational challenges. A common technique to accelerate these simulations, particularly in computer graphics and computational mechanics, is modal analysis \cite{Pentland_Williams_1989}. This approach leverages the idea that the complex deformation of an object can often be well-approximated by a combination of its dominant, low-frequency vibration patterns, known as modes. The modal analysis technique allows us to reduce the dimensionality of the problem by focusing on these low-frequency modes, thus enabling faster simulations while maintaining a reasonable level of accuracy.
+
 
 The core steps of linear modal analysis are as follows:
 
@@ -70,7 +71,7 @@ The core steps of linear modal analysis are as follows:
             \bm{M} = \int_{\Omega} \rho \bm{\phi}^T \bm{\phi} \, d\Omega, 
             \label{eq:mass_matrix}
         \end{equation}
-        where $\bm{\phi}$ represents the shape functions used in the finite element discretization\textcolor{blue}{, while} the stiffness matrix $\bm{K}$ represents the system's resistance to small deformations around the rest state and is derived from the linearization of the internal forces (i.e., the derivative of the internal force vector with respect to displacement, evaluated at $\bm{u}=\bm{0}$). For a hyperelastic material like Neo-Hookean, this linearization effectively corresponds to the standard linear elastic stiffness matrix at the origin.
+        where $\bm{\phi}$ represents the shape functions used in the finite element discretization, while the stiffness matrix $\bm{K}$ represents the system's resistance to small deformations around the rest state and is derived from the linearization of the internal forces (i.e., the derivative of the internal force vector with respect to displacement, evaluated at $\bm{u}=\bm{0}$). For a hyperelastic material like Neo-Hookean, this linearization effectively corresponds to the standard linear elastic stiffness matrix at the origin.
 
     \item \textbf{Solve the Generalized Eigenvalue Problem}: With the linearized system matrices, we solve the generalized eigenvalue problem:
         \begin{equation}
@@ -87,4 +88,6 @@ The core steps of linear modal analysis are as follows:
         where $q_i(t)$ are the time-varying modal coordinates, representing the amplitude or contribution of each mode shape to the overall deformation. The dynamics of the system can then be simulated in the reduced $m$-dimensional space of modal coordinates, significantly reducing computational cost.
 \end{enumerate}
 
-While linear modal analysis provides substantial speedups, its fundamental limitation lies in the initial linearization\textcolor{blue}{, done in the first step of this process}. This approximation holds well only for small deformations around the rest state. \textcolor{blue}{Indeed, w}hen deformations become large and enter the nonlinear regime characteristic of hyperelastic materials like Neo-Hookean, the linear modal approximation breaks down. It fails to capture the nonlinear effects accurately, often leading to unrealistic behavior such as exaggerated volume changes or inaccurate stress distributions. This limitation motivates the need for methods that can incorporate nonlinear effects while still benefiting from dimensionality reduction, such as the Neural Modes approach, \textcolor{blue}{that we will discuss} later.
+While linear modal analysis provides substantial speedups, its fundamental limitation lies in the initial linearization, done in the first step of this process. This approximation holds well only for small deformations around the rest state. Indeed, when deformations become large and enter the nonlinear regime characteristic of hyperelastic materials like Neo-Hookean, the linear modal approximation breaks down. Specifically, the constant stiffness matrix $\bm{K}$ no longer accurately represents the material's resistance to deformation. It fails to capture the nonlinear effects accurately, often leading to unrealistic behavior such as exaggerated volume changes or inaccurate stress distributions. This limitation motivates the need for methods that can incorporate nonlinear effects while still benefiting from dimensionality reduction, such as the Neural Modes approach that we will discuss later. This approach aims to address the limitations of linear modal analysis by learning a more accurate representation of the deformation space from data.
+
+\textcolor{blue}{io non ho idea di cosa sia sta cosa ma sono sicura che ne puoi parlare per più tempo}
