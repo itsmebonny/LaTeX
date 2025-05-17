@@ -145,7 +145,19 @@ Now we define a suitable function that will serve as a loss function for the sel
 \end{equation}
 where \( \lambda_1 \) and \( \lambda_2 \) are hyperparameters that control the importance of the orthogonality and boundary condition penalty terms, respectively. The first term is the energy loss, which minimizes the internal strain energy of the deformed configuration, while the second term ensures that the nonlinear correction is orthogonal to the linear mode space. The third term enforces the displacement boundary conditions on the deformed configuration.
 
-\section{Dynamic Simulation with Neural Modes}
+\subsection{Sampling the Modal Space}
+One of the main challenges for this method is finding a good way to sample the \(z\) vector that will be used as input for the neural network. Here are two examples that shows how choosing randomly the \(z\) vector can lead to unrealistic results. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{Images/dummy.png}
+    \caption{Example of a bad sampling of the modal space.}
+    \label{fig:bad_sampling}
+\end{figure}
+In this case, the vector \(z\) has some very high values in the last components, which provide very high energy deformations. This is not realistic and should be taken into account when sampling the modal space. One idea could be to sample the \(z\) vector using high values only for the first components, and then decrease the values for the last components. \textcolor{green}{blah blah allungare il brodo}.
+
+
+
+\subsection{Dynamic Simulation with Neural Modes}
 For dynamic simulations, the Neural Modes framework solves an optimization problem at each time step. Given the current and previous displacement states $\bm{u}_n$ and $\bm{u}_{n-1}$, the modal coordinates for the next time step $\bm{z}_{n+1}$ are computed by:
 \begin{equation}
     \bm{z}_{n+1} = \underset{\bm{z}}{\argmin} \frac{1}{2h^2} \|\bm{n}(\bm{z}) - 2\bm{u}_n + \bm{u}_{n-1}\|_{\bm{M}}^2 + E(\bm{n}(\bm{z})),
@@ -154,12 +166,5 @@ where $\bm{n}(\bm{z})$ represents the complete displacement field (linear modes 
 
 One challenge with this approach is that the optimization problem does not explicitly account for external forces. The network learns to minimize internal energy but lacks direct information about external forces that may be applied during simulation: this limitation can affect the accuracy of dynamic simulations, particularly for large deformations or complex loading conditions.
 
-\subsection{Extensions and Improvements}
-A possible extension to the Neural Modes approach is to incorporate information about external forces directly into the network. This could be achieved by learning a mapping $\Phi: \mathbb{R}^m \rightarrow \mathbb{R}^n$ that relates modal coordinates $\bm{z}$ to the corresponding external forces $\hat{\bm{f}}$ that would produce such deformation. This additional network could be trained on a dataset of deformations and corresponding external forces, and then integrated into the dynamic simulation process to improve accuracy.
 
-The objective function for dynamic simulation could then be extended to:
-\begin{equation}
-    \bm{z}_{n+1} = \underset{\bm{z}}{\argmin} \frac{1}{2h^2} \|\bm{n}(\bm{z}) - 2\bm{u}_n + \bm{u}_{n-1}\|_{\bm{M}}^2 + E(\bm{n}(\bm{z})) + \text{F}(\bm{z}, \bm{f}),
-\end{equation}
-where $\text{F}(\bm{z}, \bm{f})$ is a term that accounts for the external forces acting on the system.
 
