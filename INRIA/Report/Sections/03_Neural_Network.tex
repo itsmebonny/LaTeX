@@ -149,12 +149,17 @@ where \( \lambda_1 \) and \( \lambda_2 \) are hyperparameters that control the i
 One of the main challenges for this method is finding a good way to sample the \(z\) vector that will be used as input for the neural network. Here are two examples that shows how choosing randomly the \(z\) vector can lead to unrealistic results. 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{Images/dummy.png}
-    \caption{Example of a bad sampling of the modal space.}
+    \includegraphics[width=0.4\textwidth]{Images/z_random.png}
+    \caption{Example of a bad sampling of the modal space, the reference shape is the light blue outline.}
     \label{fig:bad_sampling}
 \end{figure}
-In this case, the vector \(z\) has some very high values in the last components, which provide very high energy deformations. This is not realistic and should be taken into account when sampling the modal space. One idea could be to sample the \(z\) vector using high values only for the first components, and then decrease the values for the last components. \textcolor{green}{blah blah allungare il brodo}.
+In this example, the random \(z\) vector has large values in its latter components. These components represent higher-frequency deformation modes, which naturally contain more strain energy. Using these modes with high amplitudes often creates physically unrealistic or extreme configurations. This shows why random sampling across all components of \(z\) can lead to unrealistic deformations.
 
+A better sampling approach considers the physical meaning of each mode. The first components of \(z\) typically correspond to lower-frequency, global deformation modes that represent major shape changes with less energy. Later components represent higher-frequency, localized, and more energetic modes. 
+
+For more effective sampling of the modal space, we can implement a strategic approach to generating the \(z\) vectors. This approach involves assigning larger coefficient values to the first several components of the vector, which typically correspond to the fundamental, lower-frequency deformation modes, while progressively reducing the magnitude of values assigned to later components. By structuring our sampling in this manner, the resulting deformations tend to be significantly more physically realistic and energetically feasible in real-world scenarios. This methodical sampling focuses the neural network's training process on common, naturally occurring deformation patterns rather than directing computational resources toward unlikely, high-energy configurations that rarely manifest in practical applications.
+
+The fundamental issue with purely random sampling across all modal coordinates is that it inadvertently forces the neural network to attempt energy minimization for physically implausible states. Given that the energy landscape for soft tissue deformation is already inherently complex and high-dimensional, introducing this additional unnecessary complexity substantially increases the difficulty of the training process and potentially compromises the quality of the learned model. This consideration underscores the necessity for developing a more sophisticated and physically-informed strategy to efficiently sample the modal space, allowing the network to concentrate on learning the most relevant aspects of the deformation behavior.
 
 
 \subsection{Dynamic Simulation with Neural Modes}
@@ -162,7 +167,7 @@ For dynamic simulations, the Neural Modes framework solves an optimization probl
 \begin{equation}
     \bm{z}_{n+1} = \underset{\bm{z}}{\argmin} \frac{1}{2h^2} \|\bm{n}(\bm{z}) - 2\bm{u}_n + \bm{u}_{n-1}\|_{\bm{M}}^2 + E(\bm{n}(\bm{z})),
 \end{equation}
-where $\bm{n}(\bm{z})$ represents the complete displacement field (linear modes plus nonlinear correction), $h$ is the time step, $\bm{M}$ is the mass matrix, and $E(\cdot)$ is the internal energy of the configuration. This optimization problem is typically solved using the L-BFGS-B algorithm \textcolor{blue}{ref}.
+where $\bm{n}(\bm{z})$ represents the complete displacement field (linear modes plus nonlinear correction), $h$ is the time step, $\bm{M}$ is the mass matrix, and $E(\cdot)$ is the internal energy of the configuration. This optimization problem is typically solved using the L-BFGS-B algorithm \cite{Liu_1989}.
 
 One challenge with this approach is that the optimization problem does not explicitly account for external forces. The network learns to minimize internal energy but lacks direct information about external forces that may be applied during simulation: this limitation can affect the accuracy of dynamic simulations, particularly for large deformations or complex loading conditions.
 

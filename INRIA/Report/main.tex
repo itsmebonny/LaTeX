@@ -168,6 +168,12 @@ a Data-Driven correction of Finite Element Methods}
 % -> academic year
 \newcommand{\YEAR}{2024-2025}
 
+\renewcommand{\abstract}{This work addresses the computational challenges inherent in simulating the dynamic, nonlinear deformation of soft tissues, particularly when using traditional Finite Element Methods (FEM). We propose a novel approach that combines the efficiency of linear modal analysis with the expressive power of deep learning to achieve fast and accurate simulations for hyperelastic Neo-Hookean materials. Our method, termed "Neural Modes," trains a deep neural network to learn nonlinear corrections to a reduced-order linear modal basis. The network is trained in a self-supervised manner, guided by a physics-informed loss function that minimizes the system's internal strain energy while enforcing orthogonality and boundary conditions. This approach not only accelerates simulations by operating in a reduced-dimensional space but also enhances the interpretability of the learned model, as the corrections are applied to physically meaningful linear modes. The efficacy of the Neural Modes framework is demonstrated through numerical experiments on a 3D benchmark problem, showcasing its potential for applications in biomechanics and surgical simulation where both speed and accuracy are paramount.
+}
+
+% -> key-words (only in English)
+\newcommand{\keywords}{here, the keywords, of your thesis}
+
 
 %-------------------------------------------------------------------------
 %	BEGIN OF YOUR DOCUMENT
@@ -203,6 +209,8 @@ a Data-Driven correction of Finite Element Methods}
 % CONCLUSION
 %-----------------------------------------------------------------------------
 
+\section{Conclusion}
+\label{sec:conclusion}
 
 %---------------------------------------------------------------------------
 %  BIBLIOGRAPHY

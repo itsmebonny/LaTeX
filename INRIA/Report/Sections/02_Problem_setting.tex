@@ -1,9 +1,10 @@
+\section{Mathematical Framework}
 \label{sec:problem_setting}
 
 Simulating the dynamic behavior of soft tissues is crucial in various applications, from surgical planning to biomechanical analysis. However, accurately capturing the complex, nonlinear deformations of these materials remains a significant computational challenge. In this section, we present our mathematical framework for addressing this challenge. Our approach builds upon three core elements: a hyperelastic mechanical model to represent the material's constitutive behavior, linear modal analysis for efficient dimensionality reduction, and a novel neural modes technique to incorporate nonlinear effects. By integrating these elements, we aim to achieve accurate and computationally tractable simulations of soft tissue deformation.
 
 
-\section{Mechanical Model}
+\subsection{Mechanical Model}
 \label{sec:mechanical_model}
 
 To model the deformation of an object, we start from the vector \(\bm{X}\), which represents the material coordinates in the reference configuration (i.e. its non-deformed state). Any deformation of the object can be described by the displacement vector \(\bm{u}(\bm{X},t)\), which maps the material coordinates to the spatial coordinates \(\bm{x}\) in the deformed configuration. The relationship between these two configurations is given by:
@@ -57,7 +58,7 @@ The weak form of equation \eqref{eq:dynamic_problem}, obtained from the principl
 where $\bm{v} \in \{\bm{v} \in H^1(\Omega) | \bm{v} = \bm{0} \text{ on } \Gamma_D\}$ is any vector-valued test function with $H^1(\Omega)$ being a Hilbert space. The first term on the left side represents the inertial forces, the second term denotes the internal virtual work, and the right side represents the virtual work from the applied external loads.
 
 
-\section{Linear Modal Analysis}
+\subsection{Linear Modal Analysis}
 \label{sec:linear_modes}
 
 Simulating the deformation of mechanical objects in real-time poses significant computational challenges. A common technique to accelerate these simulations, particularly in computer graphics and computational mechanics, is modal analysis \cite{Pentland_Williams_1989}. This approach leverages the idea that the complex deformation of an object can often be well-approximated by a combination of its dominant, low-frequency vibration patterns, known as modes. The modal analysis technique allows us to reduce the dimensionality of the problem by focusing on these low-frequency modes, thus enabling faster simulations while maintaining a reasonable level of accuracy.
