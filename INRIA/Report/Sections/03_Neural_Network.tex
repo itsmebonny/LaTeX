@@ -23,7 +23,7 @@ where \( L \) is a per-sample loss function (e.g., Mean Squared Error). The opti
 \begin{equation}
     \bm{\theta}^* = \argmin_{\bm{\theta}} \mathcal{L}(\bm{\theta}).
 \end{equation}
-Common optimization algorithms include Gradient Descent, Adam, and L-BFGS \cite{Liu_1989}.
+The optimization algorithm used is L-BFGS \cite{Liu_1989}.
 
 The full algorithm is the following one:
 \begin{algorithm} 
@@ -166,10 +166,85 @@ The fundamental issue with purely random sampling across all modal coordinates i
 For dynamic simulations, the Neural Modes framework solves an optimization problem at each time step. Given the current and previous displacement states $\bm{u}_n$ and $\bm{u}_{n-1}$, the modal coordinates for the next time step $\bm{z}_{n+1}$ are computed by:
 \begin{equation}
     \bm{z}_{n+1} = \underset{\bm{z}}{\argmin} \frac{1}{2h^2} \|\bm{n}(\bm{z}) - 2\bm{u}_n + \bm{u}_{n-1}\|_{\bm{M}}^2 + E(\bm{n}(\bm{z})),
+    \label{eq:optimization_problem}
 \end{equation}
 where $\bm{n}(\bm{z})$ represents the complete displacement field (linear modes plus nonlinear correction), $h$ is the time step, $\bm{M}$ is the mass matrix, and $E(\cdot)$ is the internal energy of the configuration. This optimization problem is typically solved using the L-BFGS-B algorithm \cite{Liu_1989}.
 
 One challenge with this approach is that the optimization problem does not explicitly account for external forces. The network learns to minimize internal energy but lacks direct information about external forces that may be applied during simulation: this limitation can affect the accuracy of dynamic simulations, particularly for large deformations or complex loading conditions.
 
 
+
+\subsection{Modal Forces}
+
+To validate the Neural Modes framework and generate physically meaningful training data, we employ a modal force generation approach that leverages the principal deformation modes of the mechanical system. This method addresses the challenge of creating external forces that produce representative deformations while maintaining the nonlinear capabilities essential for large deformation scenarios \cite{odotDeepPhysicsPhysicsAware2021}.
+
+\subsubsection{Mathematical Derivation and Linearization Process}
+
+The foundation of our modal force approach lies in the linearization of the nonlinear finite element equilibrium equations. Starting from the weak form of the hyperelastic boundary value problem, we seek displacement $\bm{u}$ such that:
+\begin{equation}
+    \int_{\Omega} \bm{P}(\bm{u}) : \nabla \bm{w} \, d\Omega = \int_{\Omega} \bm{f} \cdot \bm{w} \, d\Omega + \int_{\Gamma_N} \bm{h} \cdot \bm{w} \, d\Gamma \quad \forall \bm{w} \in V,
+\end{equation}
+where $\bm{P}(\bm{u})$ is the first Piola-Kirchhoff stress tensor, $\bm{f}$ represents body forces, and $\bm{h}$ are traction forces on the Neumann boundary $\Gamma_N$.
+
+In the finite element discretization, this leads to the nonlinear system:
+\begin{equation}
+    \bm{R}(\bm{u}) = \bm{f}^{int}(\bm{u}) - \bm{f}^{ext} = \bm{0},
+\end{equation}
+where $\bm{f}^{int}(\bm{u})$ are the internal forces (functions of displacement) and $\bm{f}^{ext}$ are the external forces. The residual vector $\bm{R}(\bm{u})$ represents the out-of-balance forces.
+
+To solve this nonlinear system, we employ the Newton-Raphson method, which requires linearization around the current configuration $\bm{u}^k$:
+\begin{equation}
+    \bm{R}(\bm{u}^k + \Delta\bm{u}^k) \approx \bm{R}(\bm{u}^k) + \frac{\partial \bm{R}}{\partial \bm{u}}\bigg|_{\bm{u}^k} \Delta\bm{u}^k = \bm{0}.
+\end{equation}
+
+The tangent stiffness matrix is defined as:
+\begin{equation}
+    \mathbb{K}(\bm{u}^k) = \frac{\partial \bm{R}}{\partial \bm{u}}\bigg|_{\bm{u}^k} = \frac{\partial \bm{f}^{int}}{\partial \bm{u}}\bigg|_{\bm{u}^k},
+\end{equation}
+leading to the linearized system at each Newton iteration:
+\begin{equation}
+    \mathbb{K}(\bm{u}^k) \Delta\bm{u}^k = -\bm{R}(\bm{u}^k) = \bm{f}^{ext} - \bm{f}^{int}(\bm{u}^k).
+\end{equation}
+
+For our modal force generation, we consider the linearization at the rest configuration $\bm{u}^0 = \bm{0}$, where the internal forces vanish: $\bm{f}^{int}(\bm{0}) = \bm{0}$. This simplifies the linearized system to:
+\begin{equation}
+    \mathbb{K}(\bm{0}) \Delta\bm{u}^0 = \bm{f}^{ext}.
+\end{equation}
+
+\subsubsection{Modal Decomposition and Force Generation}
+
+The tangent stiffness matrix at the rest configuration $\mathbb{K} = \mathbb{K}(\bm{0})$ can be decomposed using eigenvalue analysis:
+\begin{equation}
+    \mathbb{K} = \boldsymbol{\Phi} \boldsymbol{\Lambda} \boldsymbol{\Phi}^T,
+\end{equation}
+where $\boldsymbol{\Phi} = [\bm{\phi}_1, \bm{\phi}_2, \ldots, \bm{\phi}_n]$ contains the eigenvectors (deformation modes) and $\boldsymbol{\Lambda} = \text{diag}(\lambda_1, \lambda_2, \ldots, \lambda_n)$ contains the corresponding eigenvalues.
+
+From the linearized equilibrium equation, we can express:
+\begin{align}
+    \mathbb{K} \Delta\bm{u}^0 &= \bm{f}^{ext} \\
+    \boldsymbol{\Phi} \boldsymbol{\Lambda} \boldsymbol{\Phi}^T \Delta\bm{u}^0 &= \bm{f}^{ext} \\
+    \boldsymbol{\Phi} (\boldsymbol{\Lambda} \boldsymbol{\Phi}^T \Delta\bm{u}^0) &= \bm{f}^{ext}.
+\end{align}
+
+Defining the modal coefficients as $\bm{q} = \boldsymbol{\Lambda} \boldsymbol{\Phi}^T \Delta\bm{u}^0$, we obtain:
+\begin{equation}
+    \bm{f}^{ext} = \boldsymbol{\Phi} \bm{q}.
+\end{equation}
+
+This fundamental relationship allows us to generate external forces by selecting appropriate modal coefficients $\bm{q}$. Each component $q_i$ represents the amplitude of the $i$-th deformation mode in the applied force pattern.
+
+
+The modal force generation methodology offers several significant advantages that directly support the development and validation of our Neural Modes framework. First, the approach ensures physical meaningfulness in the generated test cases. Since the forces are derived from the principal deformation patterns of the mechanical system, the resulting displacements naturally exhibit the characteristic behavior of the material under consideration. This is particularly important for soft tissue simulation, where unrealistic deformation patterns can compromise the validity of the learned model.
+
+The method also provides controlled deformation generation capabilities. By systematically selecting specific combinations of modal coefficients $\bm{q}$, we can generate comprehensive datasets that span the most significant deformation modes of the system. This systematic approach allows us to ensure adequate coverage of the deformation space while avoiding the computational expense of exhaustive sampling. The ability to control the relative contributions of different modes enables us to focus the training process on the most relevant aspects of the mechanical behavior.
+
+Furthermore, the modal force approach preserves material properties throughout the generation process. Since the modal basis is directly derived from the material's stiffness matrix, which incorporates the constitutive relationships and geometric configuration, the generated forces inherently respect these fundamental characteristics without requiring manual calibration or parameter tuning. This automatic consistency reduces the likelihood of introducing artifacts or bias in the training data.
+
+Despite utilizing linear modal analysis for force generation, the framework retains full nonlinear capability in the solution process. The modal decomposition serves only to structure the external loading; the actual deformation computation employs the complete nonlinear finite element formulation, preserving all geometric and material nonlinearities. This approach allows us to leverage the computational efficiency of modal analysis while maintaining the accuracy required for large deformation scenarios.
+
+Finally, modal forces provide an ideal validation framework for the Neural Modes network. Since we possess analytical knowledge of the modal responses and can systematically vary the input conditions, we can rigorously assess the network's ability to capture both the linear modal behavior and the nonlinear corrections. This controlled environment enables us to verify that the learned corrections indeed improve upon the linear modal approximations and to identify potential limitations or areas for improvement in the network architecture or training process.
+
+For validation purposes, we generate test cases by sampling the modal coefficient vector $\bm{q}$ and computing the corresponding full nonlinear deformation using finite element analysis. The Neural Modes network's ability to reproduce these deformations accurately demonstrates its effectiveness in capturing the nonlinear behavior while leveraging the underlying modal structure.
+
+This modal force approach also facilitates the generation of training data that focuses on the most energetically favorable deformation patterns, complementing the strategic sampling of modal coordinates discussed earlier. By ensuring consistency between the force generation and the modal coordinate sampling, we create a coherent framework for both training and validation of the Neural Modes network.
 
