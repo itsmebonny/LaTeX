@@ -7,7 +7,7 @@ This section details the computational methodologies employed to learn and utili
 
 \subsection{Neural Network Principles}
 
-A Neural Network (NN) is a mathematical model that achieves statistical generalization drawing inspiration from the human brain. Indeed, it is based on neurons, which are connected one to another, and carry the information from the input to the output.
+A Neural Network (NN) is a mathematical model that achieves statistical generalization drawing inspiration from the human brain. Indeed, it is based on neurons, which are connected one to another, and carry the information from the input to the output \cite{Goodfellow-et-al-2016}.
 
 It is possible to define NN as a function that maps an input to an output, given a set of parameters \( \bm{\theta} \). The function \( \hat{y} = f(\bm{x}; \bm{\theta}) \) is obtained by composing a series of functions \( f_i \) called layers, where each layer is defined as
 \begin{equation}
@@ -41,6 +41,22 @@ The full algorithm is the following one:
     \end{algorithmic}
 \end{algorithm}
 
+\subsection{Residual Networks}
+
+Residual Networks (ResNets), introduced by He et al. \cite{He_Zhang_Ren_Sun_2015}, are a neural network architecture designed to overcome the difficulties in training very deep networks. The core idea is the "skip connection," which allows the network to bypass one or more layers.
+
+In a standard neural network, each layer \(f_i\) transforms the output of the previous layer \( \bm{x}_{i-1} \). A residual block, however, learns a residual function \( \mathcal{R}_i(\bm{x}_{i-1}) \). The output of the block \( \bm{x}_i \) is then the sum of the input \( \bm{x}_{i-1} \) (the skip connection) and the learned residual:
+\begin{equation}
+    \bm{x}_i = \bm{x}_{i-1} + \mathcal{R}_i(\bm{x}_{i-1}).
+\end{equation}
+The function \( \mathcal{R}_i(\bm{x}_{i-1}) \) typically consists of a few layers (e.g., two fully connected layers with activation functions).
+
+This architecture offers several significant advantages. Primarily, it mitigates the vanishing gradient problem often encountered in deep networks. During backpropagation, gradients can flow directly through the identity skip connections, providing an alternative path that prevents them from becoming excessively small. This is evident as the gradient of a residual block's output with respect to its input includes an identity term, \( \frac{\partial \bm{x}_i}{\partial \bm{x}_{i-1}} = I + \frac{\partial \mathcal{R}_i(\bm{x}_{i-1})}{\partial \bm{x}_{i-1}} \), where \( I \) is the identity matrix. This structure ensures that even if the gradient of the residual part is small, the overall gradient is not diminished.
+Furthermore, ResNets make it easier for the network to learn identity mappings. If an identity transformation is optimal for a certain part of the network, meaning the layer should ideally just pass its input through, it is simpler for the residual block to achieve this by learning a near-zero residual \( \mathcal{R}_i(\bm{x}_{i-1}) \approx \bm{0} \). This is considerably easier than compelling a stack of non-linear layers to approximate an identity function. Consequently, by addressing the vanishing gradient issue and simplifying the learning of identity or near-identity functions, ResNets enable the successful training of much deeper networks than was previously feasible, often leading to improved performance.
+
+For our Neural Modes framework, ResNets are particularly well-suited and perform a bit better than Fully Connected Networks. We aim to learn nonlinear corrections to an existing linear modal basis. The skip connections can be thought of as preserving the input (related to the linear modes), while the residual function learns the necessary nonlinear adjustments. This aligns with our goal of enhancing, rather than completely replacing, the linear modal approximation. The architecture's ability to learn small, incremental changes is beneficial for this physics-informed correction task. 
+
+
 
 
 \subsection{Neural Network Architectures}
@@ -48,18 +64,29 @@ In this work, we employ a deep residual neural network specifically designed for
 
 
 \subsubsection{Neural Modes Architecture}
-The Neural Modes architecture is designed to learn nonlinear corrections to linear deformation modes for Neo-Hookean materials. It consists of a deep residual neural network. The architecture is defined as follows:
+The Neural Modes architecture is designed to learn nonlinear corrections \( \bm{y} \) to linear deformation modes, which are parameterized by a modal coordinate vector \( \bm{z} \). A key feature of this architecture is that it ensures a zero correction output \( \bm{y}=\bm{0} \) when the input modal coordinate vector is zero \( \bm{z}=\bm{0} \), i.e., \( \text{model}(\bm{0}) = \bm{0} \). This is achieved by constructing the network entirely from layers that lack bias terms and by initializing the weights of the final output layer to zero. The specific implementation is a deep residual network, `ResidualNet', with the following structure:
 
 \begin{itemize}
-    \item The input is a modal coordinate vector \( \bm{z} \in \mathbb{R}^m \), where $m$ is the number of modal coordinates. These modal coordinates represent the weights of the linear modes used to approximate the deformation.
-    \item The network consists of several residual blocks, each containing two fully connected layers with Leaky ReLU activation functions, and a skip connection that adds the input of the block to its output. The number of residual blocks and the number of neurons per layer are hyperparameters that can be tuned to optimize performance.
-    \item The output layer has a linear activation function and outputs a nonlinear correction to the displacement field \( \bm{y} \in \mathbb{R}^n \), where $n$ is the total number of degrees of freedom in the mesh. This correction is added to the linear modal displacement to obtain a more accurate approximation of the deformed configuration.
+    \item \textbf{Input:} A modal coordinate vector \( \bm{z} \in \mathbb{R}^{\text{\texttt{latent\_dim}}} \), where \texttt{latent\_dim} is the dimension of the modal input space.
+    \item \textbf{Network Core:}
+    \begin{itemize}
+        \item \textbf{Input Projection Layer:} A linear layer without bias terms that maps the input \( \bm{z} \) to a hidden representation of dimension \texttt{hid\_dim}. An activation function (default: Leaky ReLU \cite{xu2015empiricalevaluationrectifiedactivations}) is applied to the output of this projection.
+        \item \textbf{Residual Blocks:} A sequence of \texttt{hid\_layers} residual blocks. Each block is designed to learn a residual function and consists of:
+        \begin{itemize}
+            \item Two linear layers, each without bias terms. The input to the block is first passed through a linear layer, followed by an activation function, then a Layer Normalization. This is repeated for the second linear layer and Layer Normalization within the block.
+            \item Two Layer Normalization (`LayerNorm`) layers, configured without learnable affine parameters (i.e., no learnable scale or shift).
+            \item An activation function (default: Leaky ReLU) applied after each linear transformation within the block, before the Layer Normalization.
+            \item A skip connection that adds the input to the residual block to its processed output (after all layers in the block), facilitating gradient flow and learning.
+        \end{itemize}
+        \item \textbf{Output Projection Layer:} A final linear layer without bias terms that maps the processed hidden representation from the last residual block to the output correction vector \( \bm{y} \). The weights of this layer are initialized to zero.
+    \end{itemize}
+    \item \textbf{Output:} A nonlinear correction vector \( \bm{y} \in \mathbb{R}^{\text{\texttt{output\_dim}}} \), where \texttt{output\_dim} is the dimension of the full displacement space (e.g., number of degrees of freedom in a mesh). This correction \( \bm{y} \) is intended to be added to a linear modal displacement.
+    \item \textbf{Zero-Output for Zero-Input Property:} The combined effect of using bias-free linear layers, LayerNorm without learnable affine parameters, and zero-initializing the weights of the output projection layer guarantees that if the input \( \bm{z} \) is a zero vector, the network's output \( \bm{y} \) will also be a zero vector. This is crucial for ensuring no artificial correction is applied at the rest state, aligning with physical expectations.
 \end{itemize}
 
-The network learns to map from the reduced modal space to full-dimensional correction vectors that improve the accuracy of the linear modal approximation. This architecture, which we call Neural Modes, can be visualized as a mapping from a low-dimensional modal space to a high-dimensional displacement space, where the neural network learns to correct the linear approximation provided by the modal basis. The following figure illustrates the architecture:
+The network learns to map from the reduced modal space (\( \mathbb{R}^{\text{latent\_dim}} \)) to full-dimensional correction vectors (\( \mathbb{R}^{\text{output\_dim}} \)) that improve the accuracy of the linear modal approximation. This architecture, which we call Neural Modes, can be visualized as a mapping from a low-dimensional modal space to a high-dimensional displacement space, where the neural network learns to correct the linear approximation provided by the modal basis. The following figure illustrates the architecture:
 % H per bloccare la figura. altrimenti metti la referenza
-\begin{figure}[H] 
-    \centering
+\begin{figure}[H]    \centering
     \begin{tikzpicture}
         % Modal coordinate (z)
         \draw[fill=green!20] (-3, 1) rectangle (-2.5,2);
@@ -84,7 +111,7 @@ The network learns to map from the reduced modal space to full-dimensional corre
 
 
 
-\subsubsection{Training the Neural Modes}
+\subsubsection{Training the Neural Modes} % fix this
 The training process for the Neural Modes Network is based on minimizing a combination of physics-based losses, rather than simply minimizing the prediction error against ground truth data, which is the classical loss used in most neural network training. The key terms that build the loss used in training are:
 
 \begin{enumerate}
@@ -102,7 +129,11 @@ The total loss function is a weighted sum of these individual losses:
 \end{equation}
 where $\lambda_1$ and $\lambda_2$ are weight parameters that balance the importance of each loss term.
 
-During the training process, we observed that the network tended to learn a non-zero correction even when the input modal coordinate vector was zero (\(\bm{z} = \bm{0}\)), corresponding to the rest position. Ideally, the network's output should be zero at the rest position, indicating no deformation correction. Unlike \cite{Wang_Du_Coros_Thomaszewski_2024}, who address this issue by adding an explicit origin loss term to their loss function, we enforce a zero correction at the origin by using a bias-free neural network architecture. This design choice ensures that the network's output is naturally centered around zero, promoting a zero correction when no modal displacement is applied.
+During the training process, we observed that the network had a tendency to learn a non-zero correction, even when the input modal coordinate vector was zero (\(\bm{z} = \bm{0}\)), which corresponds to the rest position of the simulated object. In an ideal scenario, the network's output should be precisely zero at this rest position, indicating that no deformation correction is necessary. This ensures that the network accurately reflects the object's behavior by only applying corrections when there are deviations from the rest state.
+
+In the work by Wang et al. \cite{Wang_Du_Coros_Thomaszewski_2024}, an explicit origin penalty is incorporated into the loss function as a mechanism to keep the network centered around the origin. This penalty term is designed to discourage the network from learning any offset or bias that would shift its output away from zero when the input is zero. However, through our experimentation, we observed slightly better results and more stable training by adopting a bias-free network architecture. This architectural choice inherently centers the network's output at the origin, effectively achieving the same goal as an origin penalty but without the need for an additional term in the loss function.
+
+The bias-free design ensures that the network's output is naturally centered around zero. Furthermore, this approach simplifies the loss function and potentially reduces the computational overhead during training, as it removes the need to calculate and apply an explicit origin penalty. 
 
 During training, the Neural Modes network is optimized using a self-supervised learning approach, where the loss function is designed to minimize the internal energy of the deformed configuration while enforcing orthogonality and boundary condition constraints. Specifically, we employ the Adam optimizer to minimize a loss function that combines the energy loss with penalty terms for deviations from orthogonality and boundary conditions. The per-sample loss function \( L \) includes a Mean Squared Error (MSE) term for each constraint, ensuring that deviations are quadratically penalized. This approach allows the network to learn the underlying physics of the deformation without relying on precomputed ground truth data.
 
@@ -192,7 +223,7 @@ In the finite element discretization, this leads to the nonlinear system:
 \end{equation}
 where $\bm{f}^{int}(\bm{u})$ are the internal forces (functions of displacement) and $\bm{f}^{ext}$ are the external forces. The residual vector $\bm{R}(\bm{u})$ represents the out-of-balance forces.
 
-To solve this nonlinear system, we employ the Newton-Raphson method, which requires linearization around the current configuration $\bm{u}^k$:
+To solve this nonlinear system, we employ the Newton-Raphson method \cite{Dedieu_2015}, which requires linearization around the current configuration $\bm{u}^k$:
 \begin{equation}
     \bm{R}(\bm{u}^k + \Delta\bm{u}^k) \approx \bm{R}(\bm{u}^k) + \frac{\partial \bm{R}}{\partial \bm{u}}\bigg|_{\bm{u}^k} \Delta\bm{u}^k = \bm{0}.
 \end{equation}

@@ -14,7 +14,7 @@ To model the deformation of an object, we start from the vector \(\bm{X}\), whic
 \end{equation}
 where \(\bm{x} \in \mathbb{R}^d\) is the spatial position of a material point at time \(t\), and \(d\) is the spatial dimension (2D or 3D). The displacement vector \(\bm{u}\) describes how the material point has moved from its original position \(\bm{X}\) to its new position \(\bm{x}\).
 
-To model the mechanical behavior of the material, there are many constitutive models available, ranging from linear elastic to hyperelastic models. Since we are interested in soft tissue mechanics, we will focus on the hyperelastic Neo-Hookean material model (manca ref). Such a model helps dealing with large deformations and is suitable for biological tissues, which often exhibit nonlinear elastic behavior. The Neo-Hookean model is characterized by its simplicity and ability to capture the essential nonlinear elastic behavior of soft tissues under moderate deformations. More complex hyperelastic models exist, such as the Mooney-Rivlin or Ogden models, which can provide greater accuracy for specific materials or loading conditions, but at the cost of increased computational complexity and parameter identification.
+To model the mechanical behavior of the material, there are many constitutive models available, ranging from linear elastic to hyperelastic models. Since we are interested in soft tissue mechanics, we will focus on the hyperelastic Neo-Hookean material model \cite{Ogden_1997}. Such a model helps dealing with large deformations and is suitable for biological tissues, which often exhibit nonlinear elastic behavior. The Neo-Hookean model is characterized by its simplicity and ability to capture the essential nonlinear elastic behavior of soft tissues under moderate deformations. More complex hyperelastic models exist, such as the Mooney-Rivlin or Ogden models \cite{Ogden_1997}, which can provide greater accuracy for specific materials or loading conditions, but at the cost of increased computational complexity and parameter identification.
 
 For the Neo-Hookean hyperelastic material model, we first compute the deformation gradient $\bm{F} \in \mathbb{R}^{d\times d}$:
 \begin{equation}
@@ -50,13 +50,12 @@ For dynamic problems, the equation of motion including inertial forces is:
 \end{equation}
 where $\rho$ is the material density in the reference configuration, $\bm{b}$ is the external body force, $\bm{N}$ is the unit normal to $\Gamma_N$ in the reference configuration, and $\bm{t}$ is the traction applied to the boundary.
 
-The weak form of equation \eqref{eq:dynamic_problem}, obtained from the principle of virtual work, is:
+The weak form of equation \eqref{eq:dynamic_problem} is:
 \begin{equation}
     \int_{\Omega} \rho \frac{\partial^2 \bm{u}}{\partial t^2} \cdot \bm{v} \, d\Omega + \int_{\Omega} \bm{P} : \nabla_X \bm{v} \, d\Omega = \int_{\Omega} \bm{b} \cdot \bm{v} \, d\Omega + \int_{\Gamma_N} \bm{t} \cdot \bm{v} \, d\Gamma,
 \label{eq:weak_form}
 \end{equation}
-where $\bm{v} \in \{\bm{v} \in H^1(\Omega) | \bm{v} = \bm{0} \text{ on } \Gamma_D\}$ is any vector-valued test function with $H^1(\Omega)$ being a Hilbert space. The first term on the left side represents the inertial forces, the second term denotes the internal virtual work, and the right side represents the virtual work from the applied external loads.
-
+where $\bm{v} \in \{\bm{v} \in H^1(\Omega) | \bm{v} = \bm{0} \text{ on } \Gamma_D\}$ is any vector-valued test function with $H^1(\Omega)$ being a Hilbert space. 
 
 \subsection{Linear Modal Analysis}
 \label{sec:linear_modes}
