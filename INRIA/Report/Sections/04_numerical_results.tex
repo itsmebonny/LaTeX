@@ -1,13 +1,23 @@
 \section{Numerical Results}
 \label{sec:numerical_results}
-To verify the performance of the proposed method we test it on a 3D problem. The reference geometry is a beam  with a square cross-section of size $1 \times 1$ and a length of $10$. The beam is clamped at one end and free at the other. The material properties are set to $E = 4e8$ and $\nu = 0.2$. 
+To verify the performance of the proposed method we test it on two different 3D problems: a cantilever beam and the Stanford bunny. Both geometries use material properties designed to mimic soft tissue behavior, with Young's modulus $E = 10^6$ Pa and Poisson's ratio $\nu = 0.45$.
+
+\subsubsection{Cantilever beam}
+\label{sec:cantilever_beam_setup}
+The first test case is a cantilever beam with a square cross-section of size $1 \times 1$ and a length of $10$. The beam is clamped at one end and free at the other. This geometry represents a classical benchmark problem in structural mechanics, allowing for clear interpretation of the modal behavior and providing a controlled environment to validate the fundamental capabilities of our neural network approach. The cantilever beam exhibits well-understood physics with distinct modal patterns: bending modes in two perpendicular directions, torsional modes, and higher-order coupled deformation modes. The soft tissue material properties result in large deformations under relatively small loads, making this an ideal test case for nonlinear mechanics validation.
+
+\subsubsection{Stanford bunny}
+\label{sec:stanford_bunny_setup}
+The second test case employs the Stanford bunny, a widely recognized benchmark geometry in computational mechanics and computer graphics. This complex 3D shape presents a significantly more challenging validation scenario due to its intricate surface topology, non-uniform geometry, and irregular mass distribution. The Stanford bunny is fixed at its base and subjected to various loading conditions to generate the training data for the POD-based model reduction. This geometry tests the robustness and generalization capabilities of our method on realistic, non-trivial shapes that are commonly encountered in biomedical engineering applications. The complex geometry introduces coupling between different deformation modes and provides a stringent test for the neural network's ability to capture intricate displacement patterns typical of soft biological tissues.
+
+Both geometries are discretized using tetrahedral finite elements, with mesh refinement studies performed to ensure convergence of the full-order solutions. The cantilever beam uses approximately 800 elements, while the Stanford bunny requires around 22000 elements.
 \subsection{Optimal number of modes}
 \label{sec:optimal_number_modes}
 One of the first steps is clearly to determine the optimal number of modes to be used in the approximation. If we choose too few modes, the approximation will not be accurate enough, but choosing too many modes only increases the complexity of the reduced model, with diminishing returns in terms of accuracy. The figure \ref{fig:optimal_number_modes} shows the error in the approximation of the displacement field as a function of the number of modes used. The error is computed as the Root Mean Square Error (RMSE) between the displacement field computed with the full model and the one computed with the reduced model. The RMSE is defined as:
 \begin{equation}
     RMSE = \sqrt{\frac{1}{N}\sum_{i=1}^N (\bm{u}_i^{full} - \bm{u}_i^{reduced})^2},
 \end{equation}
-where $N$ is the number of nodes in the mesh, $\bm{u}_i^{full}$ is the displacement field computed with the full model and $\bm{u}_i^{reduced}$ is the displacement field computed with the reduced model. The figure shows that the error decreases rapidly with the number of modes used, and then stabilizes around 20 modes. We can see that with 10 modes the error is already below \(10^{-3}\) and with 20 modes the error is below \(10^{-4}\). For our use case, 10 modes are sufficient.
+where $N$ is the number of nodes in the mesh, $\bm{u}_i^{full}$ is the displacement field computed with the full model and $\bm{u}_i^{reduced}$ is the displacement field computed with the reduced model. The figure shows that the error decreases rapidly with the number of modes used, and then stabilizes around 20 modes. We can see that with 10 modes the error is already below \(10^{-3}\) and with 20 modes the error is below \(10^{-4}\). For our use case, 7 modes are sufficient.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{Images/rmse_vs_modes.png}
@@ -17,61 +27,56 @@ where $N$ is the number of nodes in the mesh, $\bm{u}_i^{full}$ is the displacem
 
 \subsection{Training the model}
 \label{sec:training_model}
-The next step is to train the model. For the problem of sampling the latent space in a meaningful way, we decided to use a regular sampling along each mode, but changed the extremes of the intervals for each mode. The intervals are defined as:
-\begin{equation}
-    \begin{aligned}
-        \bm{\Phi}_1 &\in [-10, 10], \\
-        \bm{\Phi}_2 &\in [-10 , 10], \\
-        \bm{\Phi}_3 &\in [-1 , 1], \\
-        \bm{\Phi}_4 &\in [-1 , 1], \\
-        \bm{\Phi}_5 &\in [-25, 25], \\
-        \bm{\Phi}_6 &\in [-1 , 1], \\
-        \bm{\Phi}_7 &\in [-1 , 1], \\
-    \end{aligned}
-\end{equation}
-where the first two modes are the ones that correspond to the bending of the beam along the two free axes, and the fifth mode is the one that corresponds to the torsion of the beam, so they are the main responsible for most of the deformation, while keeping the energy of the system low. Higher, and more complex modes, tend to carry a very high amount of energy, making it difficult for the neural network to minimize it, while contributing very little, since multiplying them by a big coefficient would lead to unrealistic deformations. The network was trained for 1000 epochs with a batch size of 16. During each epoch, the optimizer L-BFGS ran for 150 iterations, and the learning rate was set to \(1e-3\). 
+The next step is to train the model using a supervised learning approach. For this purpose, we generate comprehensive datasets of labeled training examples for both geometries. The training data consists of pairs $(z, u, E)$ where $z$ represents the modal coordinates vector, $u$ is the corresponding displacement field, and $E$ is the associated mechanical energy of the deformed configuration.
+For the cantilever beam, we create a dataset of 600 deformations by applying different combinations of modal forces to the structure while maintaining the fixed boundary condition at one end. 
 
-% The training loss is shown in figure \ref{fig:training_loss}. The loss decreases rapidly during the first 100 epochs, and then stabilizes around \(10^{-3}\). 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=0.3\textwidth]{Images/dummy.png}
-%     \caption{Training loss during the training of the model.}
-%     \label{fig:training_loss}
-% \end{figure}
+For each combination of modal forces, we solve the static equilibrium problem using the full-order FEM solver to obtain the corresponding displacement field and mechanical energy. The resulting displacement field is then projected onto the modal basis to extract the modal coordinates $z$, forming training pairs $(z, u, E)$.
+
+For the Stanford bunny geometry, we generate a dataset of 500 deformations using a similar sampling strategy. The modal coefficient ranges are determined based on preliminary analysis of the bunny's natural vibration modes and their relative contribution to physically realistic deformations.
+
+Each training sample is generated by first selecting a random combination of modal coordinates within the specified ranges, then computing the corresponding displacement field and total mechanical energy using the full-order FEM solver. This supervised approach ensures that the neural network learns from accurate, physics-based ground truth data.
+
+The neural network is trained to simultaneously predict both the displacement field and the mechanical energy given the modal coordinates as input. This multi-output formulation allows the model to learn the coupled relationship between geometric deformation and energy, which is crucial for maintaining physical consistency during predictions. The network architecture consists of fully connected layers with appropriate activation functions to capture the nonlinear mapping from modal space to the physical displacement and energy fields.
+
+The training process is described in detail in Section \ref{sec:training_neural_modes}.
 
 \subsection{Testing the model}
 \label{sec:testing_model}
 Since the training is completely data-free we perform the validation of the model in two main ways. The first one is to check the accuracy of reconstruction of the displacement field for some random static configurations, given by applying random coefficients to the modal forces. The second way of validation is to see how well the model can predict the displacement field for a dynamic problem, where the FEM solver is used to compute the first two time steps of the dynamic problem, and then the equation \ref{eq:optimization_problem} is used to predict the next time steps. 
 
-% \subsubsection{Static validation}
-% \label{sec:static_validation}
-% For the static validation phase, we rigorously test the neural network model's ability to accurately reconstruct displacement fields for various static configurations that were not seen during training. This validation is crucial to establish confidence in the model's interpolation capabilities within the trained parameter space and to verify that the network has successfully learned the underlying physics of the structural mechanics problem.
+\subsubsection{Static validation}
+\label{sec:static_validation}
+For the static validation phase, we rigorously test the neural network model's ability to accurately reconstruct displacement fields for various static configurations that were not seen during training. This validation is crucial to establish confidence in the model's interpolation capabilities within the trained parameter space and to verify that the network has successfully learned the underlying physics of the structural mechanics problem.
 
-% We generate a comprehensive test dataset consisting of 100 random static configurations by sampling modal coefficients uniformly within the established training ranges for each mode. Each test case represents a unique static equilibrium state of the cantilever beam under different loading conditions. For each configuration, we compute the reference displacement field using the full-order FEM solver and compare it with the neural network's prediction. The comparison is performed both qualitatively through visual inspection of the displacement fields and quantitatively using the Root Mean Square Error (RMSE) metric.
+We generate a comprehensive test dataset consisting of 100 random static configurations by sampling modal coefficients uniformly within the established training ranges for each mode. Each test case represents a unique static equilibrium state of the cantilever beam under different loading conditions. For each configuration, we compute the reference displacement field using the full-order FEM solver and compare it with the neural network's prediction. The comparison is performed both qualitatively through visual inspection of the displacement fields and quantitatively using the Root Mean Square Error (RMSE) metric.
 
-% The static validation results demonstrate exceptional performance of the trained neural network model. Across all 100 test cases, we observe an average RMSE of $2.1 \times 10^{-4}$, with a standard deviation of $1.8 \times 10^{-5}$, indicating highly consistent accuracy. The maximum observed error is $3.7 \times 10^{-4}$, while the minimum is $1.2 \times 10^{-4}$, demonstrating that the model maintains excellent accuracy across the entire range of test configurations. These results confirm that the neural network has successfully learned to approximate the complex nonlinear relationship between modal coordinates and the resulting displacement fields with remarkable precision.
+At 500N of applied force, the maximum MSE is $10^{-4}$ for the neural model, significantly outperforming both the linear modes model ($10^{-3}$) and the FEM with linear elasticity ($10^{-2}$). The maximum observed error across all test cases is $1.2 \times 10^{-4}$, while the minimum is $1.2 \times 10^{-5}$, demonstrating that the model maintains excellent accuracy across the entire range of test configurations. Importantly, the neural network error remains bounded within this narrow range ($10^{-5}$ to $10^{-4}$) across all force magnitudes, making it significantly more reliable than linear modes, which perform very well for small displacements but exhibit exponentially growing errors when operating outside the small deformation range. These results confirm that the neural network has successfully learned to approximate the complex nonlinear relationship between modal coordinates and the resulting displacement fields with remarkable precision and consistent reliability.
 
-% Figure \ref{fig:static_validation_comparison} presents a detailed comparison between the FEM solution and the neural network prediction for a representative test case involving significant bending and mild torsional deformation. The left panel shows the reference FEM solution, while the right panel displays the neural network prediction. The displacement fields are rendered using the same color scale to facilitate direct comparison. Visual inspection reveals that the two solutions are virtually indistinguishable, with the neural network capturing both the overall deformation pattern and the fine-scale details with exceptional fidelity. The smooth gradients and the preservation of structural continuity in the neural network prediction demonstrate the model's ability to maintain physical consistency.
+Figure \ref{fig:static_mse_comparison} presents the average MSE comparison between three different approaches: neural modes, linear modes, and linear FEM, all evaluated against the nonlinear FEM ground truth across force magnitudes ranging from 0 to 500 N. The results reveal distinct performance characteristics across different deformation regimes. For small displacements in the linear range (low forces), the linear modes approach demonstrates superior accuracy due to its exact representation of the underlying linear physics. However, as the applied forces increase and the system enters the nonlinear deformation regime, the neural modes approach significantly outperforms both linear methods by approximately an order of magnitude. This performance crossover occurs around 100 N, where the geometric nonlinearities become dominant. The superior performance of neural modes in the nonlinear range validates the method's ability to capture complex deformation patterns that cannot be represented by linear modal decomposition alone.
 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=0.4\textwidth]{Images/dummy.png}
-%     \caption{Comparison between FEM solution (left) and neural network prediction (right) for a static test case involving combined bending and torsional deformation. The displacement fields show excellent agreement with virtually indistinguishable patterns.}
-%     \label{fig:static_validation_comparison}
-% \end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/beam_static_mse.png}
+    \caption{Average MSE between 40 different simulations with randomly applied forces.}
+    \label{fig:static_mse_comparison}
+\end{figure}
 
-% To provide a comprehensive statistical overview of the model's performance, Figure \ref{fig:static_rmse_distribution} presents the distribution of RMSE values across all 100 static validation test cases. The histogram reveals a tight distribution concentrated around the mean value, with most cases falling within one standard deviation of the average error. This narrow distribution confirms the consistent and reliable performance of the neural network across diverse loading scenarios. The absence of outliers or cases with significantly higher errors indicates that the model does not exhibit any pathological behavior or failure modes within the tested parameter space.
+Figure \ref{fig:static_rmse_distribution} provides a detailed visual comparison of the different modeling approaches applied to a representative beam deformation case. In this visualization, we can observe the predicted deformation patterns from four different computational methods: the neural network prediction (shown in magenta), the ground truth nonlinear FEM solution (displayed in green), the linear modes approximation (represented by the red wireframe), and the linear FEM model (illustrated by the blue wireframe). 
 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=0.4\textwidth]{Images/dummy.png}
-%     \caption{Distribution of RMSE values for static validation test cases showing consistent accuracy across all tested configurations. The tight distribution around the mean demonstrates reliable model performance.}
-%     \label{fig:static_rmse_distribution}
-% \end{figure}
+This particular example demonstrates a critical limitation of linear approaches when dealing with large deformations. The linear modes and linear FEM models tend to significantly underestimate the pronounced bending curvature that develops in the beam under substantial loading conditions. This loss of geometric fidelity represents a fundamental limitation of linear modeling approaches, as they cannot adequately capture the inherent nonlinear geometric effects that become dominant in large-deformation scenarios. The accentuated bending behavior observed in the ground truth solution is a characteristic manifestation of geometric nonlinearity, where the deformed configuration significantly influences the structural response.
+
+On the other hand, the neural modes approach successfully captures this complex nonlinear deformation pattern with remarkable accuracy. The magenta neural network prediction closely follows the green ground truth solution, demonstrating the model's capability to learn and reproduce the intricate relationships between modal coordinates and the resulting nonlinear displacement fields. This superior performance in capturing geometric nonlinearities represents one of the key advantages of the proposed neural modes' methodology over traditional linear model reduction techniques, particularly for applications involving soft tissues and other materials that undergo large deformations during normal operation.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{Images/sofa_example_beam.png}
+    \caption{Example of a static reconstruction in the case of the beam. The magenta beam represents the neural network prediction, the green one is the ground truth, the red wireframe represents the linear modes and the blue wireframe is the linear FEM model.}
+    \label{fig:static_rmse_distribution}
+\end{figure}
 
 % \subsubsection{Dynamic validation}
 % \label{sec:dynamic_validation}
-% The dynamic validation represents a more challenging and comprehensive test of the neural network model's capabilities, as it evaluates the model's performance in predicting time-dependent structural behavior over extended simulation periods. Unlike static validation, dynamic problems involve the accumulation of errors over time, making this validation particularly stringent and representative of real-world applications where the model would be used for long-term predictions.
+% The dynamic validation represents a more challenging and comprehensive test of the neural network model's capabilities, as it evaluates the model's performance in predicting time-dependent structural behavior over extended simulation periods. Unlike static validation, dynamic problems involve the accumulation of errors ove200r time, making this validation particularly stringent and representative of real-world applications where the model would be used for long-term predictions.
 
 % For the dynamic validation procedure, we implement a hybrid approach where the first two time steps are computed using the full-order FEM solver to establish accurate initial conditions, including both displacement and velocity fields. Subsequently, we employ the neural network model in conjunction with the optimization problem defined in equation \ref{eq:optimization_problem} to predict all subsequent time steps. This methodology allows us to assess how well the model can maintain physical consistency and accuracy when operating in a predictive mode over extended time horizons.
 

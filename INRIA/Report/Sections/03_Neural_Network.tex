@@ -112,12 +112,31 @@ The network learns to map from the reduced modal space (\( \mathbb{R}^{\text{lat
 
 
 \subsubsection{Training the Neural Modes} % fix this
-The training process for the Neural Modes Network is based on minimizing a combination of physics-based losses, rather than simply minimizing the prediction error against ground truth data, which is the classical loss used in most neural network training. The key terms that build the loss used in training are:
+\label{sec:training_neural_modes}
+The paper we took inspiration from, by Wang et al. \cite{Wang_Du_Coros_Thomaszewski_2024}, uses a data-free approach to learn the nonlinear modes, which is based on the idea of minimizing the internal energy of the deformed configuration. To do so, they provide two strategies for sampling the latent space, which is the space of the modal coordinates \( \bm{z} \). The first strategy is to sample the latent space uniformly, with each component of the modal coordinate vector \( \bm{z} \) being sampled uniformly from the same range. The second strategy is a stochastic sampling approach, where, at each epoch, a new random vector is generated, and the network is trained to minimize the energy loss for that specific configuration. Also in this case, the range of values is the same for each component of the modal coordinate vector \( \bm{z} \).
 
+During our testing, we observed that the data-free approach was working well, as long as the range from which the modal coordinate vector \( \bm{z} \) was sampled was not too large, similarly to how linear modes work. In subsection \ref{sec:sampling_modal_space}, we will discuss more in detail why sampling the latent space uniformly can lead to unrealistic deformations. Since finding a good sampling strategy is crucial for the success of the Neural Modes framework and the deformation range we were aiming to cover was quite large, leading to very difficult energy landscapes for the optimizer, we decided to adopt a different training strategy that keeps some ideas from the original paper, but loses the data-free approach in favor of a supervised learning strategy. 
+
+The dataset is generated starting from FEM simulations of the object of interest, applying the forces described in the Modal Forces section \ref{sec:modal_forces}. The dataset is built by linking the modal coordinate vector \( \bm{z} \) to the corresponding full nonlinear deformation \( \bm{u} \) of the object along with its internal energy \( E(\bm{u}) \). The dataset is structured as pairs of input-output samples, which are then fed to the neural network by randomly picking a batch of samples for each training epoch. T
+
+
+The training process for the Neural Modes Network is based on minimizing a combination of loss functions that tries to capture the essential physical properties of the deformation modes. The loss function is built around three main components:
 \begin{enumerate}
-    \item \textbf{Energy Loss}: minimizes the internal strain energy of the deformed configuration $E(\bm{X} + \bm{l} + \bm{y})$, where $\bm{X}$ is the rest position, $\bm{l}$ is the linear mode displacement given by $\bm{z}$, and $\bm{y}$ is the nonlinear correction.
+    \item \textbf{Energy Loss}: the MSE loss between the real internal energy of the deformed configuration and the predicted energy by the network:
+    \begin{equation}
+        \text{Energy Loss} = \frac{1}{N} \sum_{i=1}^N (E(\bm{X} + \bm{l} + \bm{y}) - E_{\text{pred}})^2,
+    \end{equation}
+    where \( E_{\text{pred}} \) is the predicted energy by the network, \( \bm{X} \) is the undeformed configuration, and \( \bm{l} \) is the linear mode displacement.
     
-    \item \textbf{Orthogonality Loss}: ensures that the nonlinear correction is orthogonal to the linear mode space: $\bm{y}^T \bm{l} = 0$.
+    \item \textbf{Displacement Loss}: the MSE loss between the predicted displacement \( \bm{X} + \bm{l} + \bm{y} \) and the ground truth displacement \( \bm{u} \):
+    \begin{equation}
+        \text{Displacement Loss} = \frac{1}{N} \sum_{i=1}^N \|\bm{X} + \bm{l} + \bm{y} - \bm{u}\|^2,
+    \end{equation}
+    where \( \bm{u} \) is the ground truth displacement obtained from the FEM simulation.
+    \item \textbf{Orthogonality Loss}: ensures that the nonlinear correction \( \bm{y} \) is orthogonal to the linear mode displacement \( \bm{l} \):
+    \begin{equation}
+        \text{Orthogonality Loss} = \frac{1}{N} \sum_{i=1}^N (\bm{l}^T \bm{y})^2,
+    \end{equation}
 
     \item \textbf{Boundary Condition Penalty}: enforces the displacement boundary conditions on the deformed configuration.
     
@@ -125,9 +144,9 @@ The training process for the Neural Modes Network is based on minimizing a combi
 
 The total loss function is a weighted sum of these individual losses:
 \begin{equation}
-    \text{Loss} = \text{Energy Loss} + \lambda_1 \text{Orthogonality Loss} + \lambda_2 \text{Boundary Condition Penalty},
+    \text{Loss} = \mu_1 \text{Energy Loss} + \mu_2 \text{Displacement Loss}+ \lambda_1 \text{Orthogonality Loss} + \lambda_2 \text{B. C. Penalty},
 \end{equation}
-where $\lambda_1$ and $\lambda_2$ are weight parameters that balance the importance of each loss term.
+where $\lambda_1$ and $\lambda_2$ are weight parameters that balance the importance of each loss term, and $\mu_1$ and $\mu_2$ are hyperparameters that control the relative importance of the energy and displacement losses, respectively. The choice of these hyperparameters is crucial for ensuring that the network learns meaningful corrections without overfitting.
 
 During the training process, we observed that the network had a tendency to learn a non-zero correction, even when the input modal coordinate vector was zero (\(\bm{z} = \bm{0}\)), which corresponds to the rest position of the simulated object. In an ideal scenario, the network's output should be precisely zero at this rest position, indicating that no deformation correction is necessary. This ensures that the network accurately reflects the object's behavior by only applying corrections when there are deviations from the rest state.
 
@@ -135,8 +154,9 @@ In the work by Wang et al. \cite{Wang_Du_Coros_Thomaszewski_2024}, an explicit o
 
 The bias-free design ensures that the network's output is naturally centered around zero. Furthermore, this approach simplifies the loss function and potentially reduces the computational overhead during training, as it removes the need to calculate and apply an explicit origin penalty. 
 
-During training, the Neural Modes network is optimized using a self-supervised learning approach, where the loss function is designed to minimize the internal energy of the deformed configuration while enforcing orthogonality and boundary condition constraints. Specifically, we employ the Adam optimizer to minimize a loss function that combines the energy loss with penalty terms for deviations from orthogonality and boundary conditions. The per-sample loss function \( L \) includes a Mean Squared Error (MSE) term for each constraint, ensuring that deviations are quadratically penalized. This approach allows the network to learn the underlying physics of the deformation without relying on precomputed ground truth data.
+During training, the Neural Modes network is optimized using a supervised learning approach, where the loss function is designed to match both the displacement field and the internal energy of the deformed configuration while enforcing orthogonality and boundary condition constraints. The network is trained on a dataset generated from FEM simulations, where each sample consists of a modal coordinate vector \( \bm{z} \), the corresponding full nonlinear displacement \( \bm{u} \), and the associated internal energy \( E(\bm{u}) \). The training process employs batch-based optimization using the L-BFGS algorithm, where mini-batches are randomly sampled from the dataset at each epoch. This supervised approach ensures that the network learns to accurately reproduce the nonlinear deformation behavior observed in the ground truth FEM simulations.
 
+The energy term in the loss function is particularly important inside this network, because it contains the equations that constitute the physics of the problem, helping the learning process to be more general and reducing the need for large datasets. The energy term is computed as the internal strain energy of the deformed configuration.
 
 \subsection{Subspace Learning}
 \begin{align}
@@ -177,6 +197,7 @@ Now we define a suitable function that will serve as a loss function for the sel
 where \( \lambda_1 \) and \( \lambda_2 \) are hyperparameters that control the importance of the orthogonality and boundary condition penalty terms, respectively. The first term is the energy loss, which minimizes the internal strain energy of the deformed configuration, while the second term ensures that the nonlinear correction is orthogonal to the linear mode space. The third term enforces the displacement boundary conditions on the deformed configuration.
 
 \subsection{Sampling the Modal Space}
+\label{sec:sampling_modal_space}
 One of the main challenges for this method is finding a good way to sample the \(z\) vector that will be used as input for the neural network. Here are two examples that shows how choosing randomly the \(z\) vector can lead to unrealistic results. 
 \begin{figure}[H]
     \centering
@@ -206,6 +227,7 @@ One challenge with this approach is that the optimization problem does not expli
 
 
 \subsection{Modal Forces}
+\label{sec:modal_forces}
 
 To validate the Neural Modes framework and generate physically meaningful training data, we employ a modal force generation approach that leverages the principal deformation modes of the mechanical system. This method addresses the challenge of creating external forces that produce representative deformations while maintaining the nonlinear capabilities essential for large deformation scenarios \cite{odotDeepPhysicsPhysicsAware2021}.
 
