@@ -159,14 +159,15 @@
 \newcommand\norm[1]{\lVert#1\rVert}
 \newcommand{\course}{Mimesis Team}
 % -> advisor name and surname
-\newcommand{\advisor}{Prof. Stefano Pagani, Dr. Stéphane Cotin}
+\newcommand{\advisor}{Prof. Stefano Pagani}
 % IF AND ONLY IF you need to modify the co-supervisors you also have to modify the file Configuration_files/title_page.tex (ONLY where it is marked)
-%\newcommand{\firstcoadvisor}{Name Surname} % insert if any otherwise comment
+\newcommand{\firstcoadvisor}{Dr. Stéphane Cotin} % insert if any otherwise comment
 %\newcommand{\secondcoadvisor}{Name Surname} % insert if any otherwise comment
 % -> academic year
 \newcommand{\YEAR}{2024-2025}
 
-\renewcommand{\abstract}{This work addresses the computational challenges inherent in simulating the dynamic, nonlinear deformation of soft tissues, particularly when using traditional Finite Element Methods (FEM). We investigate the efficiency and accuracy of a method, named ``Neural Modes'' and try to improve it with some modifications. The core of the method trains a deep neural network to learn nonlinear corrections to a reduced-order linear modal basis. The network is trained in a self-supervised manner, guided by a physics-informed loss function that minimizes the system's internal strain energy while enforcing orthogonality and boundary conditions. This approach not only accelerates simulations by operating in a reduced-dimensional space but also enhances the interpretability of the learned model, as the corrections are applied to physically meaningful linear modes. The efficacy of the Neural Modes framework is demonstrated through numerical experiments on a 3D benchmark problem, showcasing its potential for applications in biomechanics and surgical simulation where both speed and accuracy are paramount.
+\renewcommand{\abstract}{This work addresses the computational challenges inherent in simulating the dynamic, nonlinear deformation of soft tissues, particularly when using traditional Finite Element Methods (FEM). We investigate the efficiency and accuracy of a method, named ``Neural Modes'' and then build upon their ideas, to obtain a simulation framework that combines the computation of the energy during the training of the network, keeping the physics-informed loss function, with a supervised learning strategy that allows the network to learn nonlinear corrections for large deformations. 
+The core of the method trains a deep neural network to learn nonlinear corrections to a reduced-order linear modal basis. This approach not only accelerates simulations by operating in a reduced-dimensional space but also enhances the interpretability of the learned model, as the corrections are applied to physically meaningful linear modes. The efficacy of the Neural Modes framework is demonstrated through numerical experiments on a 3D benchmark problem, showcasing its potential for applications in biomechanics and surgical simulation where both speed and accuracy are fundamental.
 }
 
 % -> key-words (only in English)
@@ -209,7 +210,9 @@
 
 \section{Conclusion}
 \label{sec:conclusion}
+In this work, we have explored the Neural Modes framework, which combines the strengths of linear modal analysis and deep learning to simulate the nonlinear deformation of objects. After a careful analysis of the original method and developing an implementation that allowed us to test this method with the aid of SOFA as a numerical solver, we have identified some limitations of the original method, such as the limited range of deformations that can be accurately captured with the self-supervised training approach and the sampling of the latent space. To address these limitations in our use case, we have proposed a modified version of the Neural Modes framework that incorporates a supervised learning strategy, that uses a minimal amount of data to train the network, coupled with a loss function that includes the physics-informed energy term. This approach allows the network to generalize even to large deformations with a small amount of data needed and allows to use a reduced order model to compute a full FEM simulation, which is crucial for real-time applications. The results of our numerical experiments demonstrate the effectiveness of the modified Neural Modes framework in accurately capturing the nonlinear deformation of objects, even in the presence of large deformations. 
 
+This framework has the potential to be highly adaptable to different material properties and geometries, but also to different elasticity model, once the core of the code is promptly modified. While it wasn't the main focus of this work, a great application of this method could be in the field of subspace dynamics, briefly described in \ref{sec:subspace_dynamics}, where the model, trained on equilibrium configurations, could be used to predict the dynamic behaviour of the object once a few steps are computed with a FEM solver. This could lead to a significant speed-up in the simulation of dynamic problems, as the number of DOFs is drastically reduced, and the quasi-Newton method used to obtain the next modal coefficients is much faster than the Newton-Raphson method used in the FEM solver.
 %---------------------------------------------------------------------------
 %  BIBLIOGRAPHY
 %---------------------------------------------------------------------------

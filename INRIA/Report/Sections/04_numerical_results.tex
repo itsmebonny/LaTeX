@@ -2,13 +2,13 @@
 \label{sec:numerical_results}
 To verify the performance of the proposed method we test it on two different 3D problems: a cantilever beam and the Stanford bunny. Both geometries use material properties designed to mimic soft tissue behavior, with Young's modulus $E = 10^6$ Pa and Poisson's ratio $\nu = 0.45$.
 
-\subsubsection{Cantilever beam}
+\subsubsection*{Cantilever beam}
 \label{sec:cantilever_beam_setup}
 The first test case is a cantilever beam with a square cross-section of size $1 \times 1$ and a length of $10$. The beam is clamped at one end and free at the other. This geometry represents a classical benchmark problem in structural mechanics, allowing for clear interpretation of the modal behavior and providing a controlled environment to validate the fundamental capabilities of our neural network approach. The cantilever beam exhibits well-understood physics with distinct modal patterns: bending modes in two perpendicular directions, torsional modes, and higher-order coupled deformation modes. The soft tissue material properties result in large deformations under relatively small loads, making this an ideal test case for nonlinear mechanics validation.
 
-\subsubsection{Stanford bunny}
+\subsubsection*{Stanford bunny}
 \label{sec:stanford_bunny_setup}
-The second test case employs the Stanford bunny, a widely recognized benchmark geometry in computational mechanics and computer graphics. This complex 3D shape presents a significantly more challenging validation scenario due to its intricate surface topology, non-uniform geometry, and irregular mass distribution. The Stanford bunny is fixed at its base and subjected to various loading conditions to generate the training data for the POD-based model reduction. This geometry tests the robustness and generalization capabilities of our method on realistic, non-trivial shapes that are commonly encountered in biomedical engineering applications. The complex geometry introduces coupling between different deformation modes and provides a stringent test for the neural network's ability to capture intricate displacement patterns typical of soft biological tissues.
+The second test case employs the Stanford bunny \cite{bunny-mesh}, a widely recognized benchmark geometry in computational mechanics and computer graphics. This complex 3D shape presents a significantly more challenging validation scenario due to its intricate surface topology, non-uniform geometry, and irregular mass distribution. The Stanford bunny is fixed at its base and subjected to various loading conditions to generate the training data for the POD-based model reduction. This geometry tests the robustness and generalization capabilities of our method on realistic, non-trivial shapes that are commonly encountered in biomedical engineering applications. The complex geometry introduces coupling between different deformation modes and provides a stringent test for the neural network's ability to capture intricate displacement patterns typical of soft biological tissues.
 
 Both geometries are discretized using tetrahedral finite elements, with mesh refinement studies performed to ensure convergence of the full-order solutions. The cantilever beam uses approximately 800 elements, while the Stanford bunny requires around 22000 elements.
 \subsection{Optimal number of modes}
@@ -61,6 +61,15 @@ Figure \ref{fig:static_mse_comparison} presents the average MSE comparison betwe
     \label{fig:static_mse_comparison}
 \end{figure}
 
+To provide an additional layer of insight into the model's performance, Figure \ref{fig:static_energy_beam} illustrates the relationship between the applied force and the internal mechanical energy of the beam. The graph compares the energy computed by the neural network model against the ground truth obtained from the nonlinear FEM solution. As we can see again, in the small deformation regime, the linear modes outperform the neural modes, keeping the internal energy closer  to the ground truth. However, as the applied force increases and the beam undergoes larger deformations, the neural modes model manages to correct the linear model into a lower energy state, which is closer to the ground truth even in the case of large deformations. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/beam_static_energy.png}
+    \caption{Internal mechanical energy of the beam as a function of the applied force. The orange line represents the energy computed by the neural network model, while the blue line is the ground truth obtained from the nonlinear FEM solution. The red line represents the energy computed by the FEM with linear elasticity and the green line is the energy computed by the linear modes model.}
+    \label{fig:static_energy_beam}
+\end{figure}
+
+
 Figure \ref{fig:static_rmse_distribution} provides a detailed visual comparison of the different modeling approaches applied to a representative beam deformation case. In this visualization, we can observe the predicted deformation patterns from four different computational methods: the neural network prediction (shown in magenta), the ground truth nonlinear FEM solution (displayed in green), the linear modes approximation (represented by the red wireframe), and the linear FEM model (illustrated by the blue wireframe). 
 
 This particular example demonstrates a critical limitation of linear approaches when dealing with large deformations. The linear modes and linear FEM models tend to significantly underestimate the pronounced bending curvature that develops in the beam under substantial loading conditions. This loss of geometric fidelity represents a fundamental limitation of linear modeling approaches, as they cannot adequately capture the inherent nonlinear geometric effects that become dominant in large-deformation scenarios. The accentuated bending behavior observed in the ground truth solution is a characteristic manifestation of geometric nonlinearity, where the deformed configuration significantly influences the structural response.
@@ -73,6 +82,27 @@ On the other hand, the neural modes approach successfully captures this complex 
     \caption{Example of a static reconstruction in the case of the beam. The magenta beam represents the neural network prediction, the green one is the ground truth, the red wireframe represents the linear modes and the blue wireframe is the linear FEM model.}
     \label{fig:static_rmse_distribution}
 \end{figure}
+
+In the case of the Stanford bunny, the static validation follows a similar procedure. We generate a test dataset of 50 random configurations by sampling modal coefficients uniformly within the ranges established during training. Each configuration is then processed through the neural network to obtain the predicted displacement field, and grouped by the corresponding force applied to the bunny. The neural network's predictions are compared against the reference displacement fields computed using the full-order FEM solver equipped with the Neo-Hookean hyperelastic model, the linear modes approximation, and the linear FEM model.
+
+Figure \ref{fig:static_mse_bunny} presents the average MSE comparison between the neural modes, linear modes, and linear FEM approaches across different force magnitudes applied to the Stanford bunny. The results reveal a similar trend to that observed in the cantilever beam case. For small forces, the linear modes approach performs well, but as the applied force increases and the bunny undergoes larger deformations, the neural modes model significantly outperforms both linear methods. The neural network achieves an order of magnitude improvement in accuracy compared to linear modes, demonstrating its ability to capture complex nonlinear deformation patterns that are not adequately represented by linear modal decomposition.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/bunny_static_mse.png}
+    \caption{Average MSE between 50 different simulations with randomly applied forces on the Stanford bunny.}
+    \label{fig:static_mse_bunny}
+    \end{figure}
+
+Also in this case, Figure \ref{fig:static_energy_bunny} illustrates the relationship between the applied force and the internal mechanical energy of the object. Again, we have energies that are lower by an order of magnitude than the linear modes and two orders of magnitude lower than the linear FEM model. In the case of the bunny the energy datum is particularly important, as the principal modes of deformation of the object are related to his head and ears, which means that most of its body is not deformed, keeping the MSE between the predicted displacement field and the ground truth very low, even if the prediction is far from being correct. Having that many nodes that stay still even in the deformed configuration, calls for additional metrics to evaluate the performance of the model, such as the internal energy, which we observe has a tendency to explode using linear elasticity or a combination of linear modes, but in the case of the neural modes model, the energy is just a bit higher than the ground truth.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/bunny_static_energy.png}
+    \caption{Internal mechanical energy of the Stanford bunny as a function of the applied force. The orange line represents the energy computed by the neural network model, while the blue line is the ground truth obtained from the nonlinear FEM solution. The red line represents the energy computed by the FEM with linear elasticity and the green line is the energy computed by the linear modes model.}
+    \label{fig:static_energy_bunny}
+    \end{figure}
+
+    
 
 % \subsubsection{Dynamic validation}
 % \label{sec:dynamic_validation}

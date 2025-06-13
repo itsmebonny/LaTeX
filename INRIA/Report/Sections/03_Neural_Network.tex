@@ -99,7 +99,7 @@ The network learns to map from the reduced modal space (\( \mathbb{R}^{\text{lat
         % Energy loss transition
         \draw[fill=blue!60,opacity=0.8] (-2,1) -- (2,-0) -- (2,3) -- (-2,2) -- cycle;
         \node at (0,1.5) {Neural Network};
-        \node[below] at (0,-0.5) {\textbf{Energy minimization}};
+        \node[below] at (0,-0.5) {\textbf{Energy + Displacement Loss}};
         
         % Energy loss arrow
         \draw[thick,blue,->] (-2,-0.3) -- (2,-0.3);
@@ -122,11 +122,19 @@ The dataset is generated starting from FEM simulations of the object of interest
 
 The training process for the Neural Modes Network is based on minimizing a combination of loss functions that tries to capture the essential physical properties of the deformation modes. The loss function is built around three main components:
 \begin{enumerate}
-    \item \textbf{Energy Loss}: the MSE loss between the real internal energy of the deformed configuration and the predicted energy by the network:
+    \item \textbf{Energy Loss}: To train the neural network to accurately predict the internal energy of deformed configurations, we employ a Mean Squared Error (MSE) loss function.  However, instead of directly comparing the predicted energy with the actual energy, we compute the MSE between the base-10 logarithms of these values. This transformation serves two primary purposes:
+
+    \begin{enumerate}
+        \item \textit{Scale Invariance}:  The logarithmic transformation compresses the range of energy values, which can span several orders of magnitude. By using $\log_{10}(E)$, we reduce the sensitivity of the loss function to large absolute differences in energy, particularly at higher energy levels. This ensures that the network learns effectively across different energy scales, preventing the dominance of high-energy configurations in the training process.
+
+        \item \textit{Smoother Loss Landscape}: The logarithm function helps to create a smoother loss landscape.  The original energy values might lead to a highly irregular loss surface, making it difficult for gradient-based optimization algorithms to converge. By using the logarithm, we transform the error surface into a more convex shape, facilitating more stable and efficient training.  This is because the logarithm reduces the impact of outliers and sharp changes in the energy values, leading to more consistent gradients during optimization.
+    \end{enumerate}
+
+    The energy loss is thus defined as:
     \begin{equation}
-        \text{Energy Loss} = \frac{1}{N} \sum_{i=1}^N (E(\bm{X} + \bm{l} + \bm{y}) - E_{\text{pred}})^2,
+        \text{Energy Loss} = \frac{1}{N} \sum_{i=1}^N (\log_{10}(E(\bm{X} + \bm{l} + \bm{y})) - \log_{10}(E_{\text{pred}}))^2,
     \end{equation}
-    where \( E_{\text{pred}} \) is the predicted energy by the network, \( \bm{X} \) is the undeformed configuration, and \( \bm{l} \) is the linear mode displacement.
+    where \( E \) is the internal energy of the deformed configuration \( \bm{X} + \bm{l} + \bm{y} \), computed using the finite element method, \( E_{\text{pred}} \) is the predicted energy by the network, \( \bm{X} \) is the undeformed configuration, and \( \bm{l} \) is the linear mode displacement.  The vector \(\bm{y}\) represents the nonlinear displacement field predicted by the neural network.
     
     \item \textbf{Displacement Loss}: the MSE loss between the predicted displacement \( \bm{X} + \bm{l} + \bm{y} \) and the ground truth displacement \( \bm{u} \):
     \begin{equation}
@@ -215,6 +223,7 @@ The fundamental issue with purely random sampling across all modal coordinates i
 
 
 \subsection{Dynamic Simulation with Neural Modes}
+\label{sec:subspace_dynamics}
 For dynamic simulations, the Neural Modes framework solves an optimization problem at each time step. Given the current and previous displacement states $\bm{u}_n$ and $\bm{u}_{n-1}$, the modal coordinates for the next time step $\bm{z}_{n+1}$ are computed by:
 \begin{equation}
     \bm{z}_{n+1} = \underset{\bm{z}}{\argmin} \frac{1}{2h^2} \|\bm{n}(\bm{z}) - 2\bm{u}_n + \bm{u}_{n-1}\|_{\bm{M}}^2 + E(\bm{n}(\bm{z})),
