@@ -1,0 +1,202 @@
+\documentclass[a4paper, 11pt]{article}
+
+% --- PREAMBOLO ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[italian]{babel}
+\usepackage{geometry}
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{booktabs} % Per tabelle più eleganti
+\usepackage{enumitem} % Per personalizzare le liste
+\usepackage{colortbl} % Per colorare le celle delle tabelle
+
+% --- DEFINIZIONE COLORI E STILI ---
+\definecolor{darkblue}{RGB}{0, 80, 150}
+\definecolor{lightgray}{gray}{0.95}
+
+\titleformat{\section}
+  {\normalfont\Large\bfseries\color{darkblue}}
+  {\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}
+  {\thesubsection}{1em}{}
+
+\setlength{\parindent}{0pt} % Rimuove l'indentazione dei paragrafi
+\setlength{\parskip}{1em} % Aggiunge spazio tra i paragrafi
+
+% --- DOCUMENTO ---
+\begin{document}
+
+\begin{tabular}{@{}p{0.45\textwidth} p{0.45\textwidth}@{}}
+\toprule
+\textbf{Proteine e Latticini} & \textbf{Verdura e Frutta} \\
+\midrule
+\begin{itemize}[leftmargin=*]
+    \item Petto di pollo: circa 600g
+    \item Uova: 6
+    \item Tonno al naturale in scatola: 2 lattine da 80g
+    \item Ceci precotti: 1 barattolo grande (circa 400g)
+    \item Lenticchie secche: 200g
+    \item Ricotta fresca: 250g
+    \item Yogurt magro (bianco o frutta): 6 vasetti
+\end{itemize} & 
+\begin{itemize}[leftmargin=*]
+    \item Zucchine: 3-4 medie
+    \item Pomodori pelati o passata: 1 barattolo grande (800g)
+    \item Pomodorini freschi: 1 confezione (circa 250g)
+    \item Cipolle: 2
+    \item Aglio: 1 testa
+    \item Lattuga o insalata mista: 1 cespo grande o 2 buste
+    \item Carote: 3-4
+    \item Spinaci (freschi o surgelati): 300g
+    \item Patate: 3-4 medie (circa 500g)
+    \item Mele: 4-5
+    \item Banane: 4-5
+\end{itemize} \\
+\addlinespace[1em]
+\bottomrule
+\toprule
+\textbf{Carboidrati e Dispensa} & \\
+\midrule
+\begin{itemize}[leftmargin=*]
+    \item Pasta (integrale o di semola): 500g
+    \item Riso (per risotti o bianco): 300g
+    \item Pane integrale o bianco: 1 filone/confezione
+    \item Fette biscottate integrali: 1 pacco
+    \item Marmellata a ridotto tenore di zuccheri
+    \item Olio extra vergine di oliva
+    \item Sale, pepe, origano/basilico
+\end{itemize} & \\
+\bottomrule
+\end{tabular}
+
+\newpage
+
+\section{Piano Alimentare Dettagliato (per 2 persone)}
+
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|>{\bfseries}m{2.5cm}|m{12.5cm}|}
+\hline
+\multicolumn{2}{|c|}{\cellcolor{lightgray}\bfseries LUNEDÌ} \\
+\hline
+\textbf{Colazione} & 
+\begin{itemize}[noitemsep, topsep=0pt, leftmargin=*]
+    \item 2 vasetti di yogurt magro con pezzi di banana.
+\end{itemize} \\
+\hline
+\textbf{Pranzo} & 
+\begin{itemize}[noitemsep, topsep=0pt, leftmargin=*]
+    \item \textbf{Pasta con sugo di zucchine e pomodoro}: Pasta (160g) condita con un sugo preparato con 2 zucchine, mezza cipolla e metà del barattolo di pomodori pelati.
+    \item Olio EVO (2 cucchiaini a persona).
+\end{itemize} \\
+\hline
+\textbf{Cena} & 
+\begin{itemize}[noitemsep, topsep=0pt, leftmargin=*]
+    \item \textbf{Petto di pollo alla griglia}: Circa 300g di pollo grigliato con aromi.
+    \item \textbf{Insalata mista}: Lattuga e carote grattugiate.
+    \item Pane (40g a persona).
+\end{itemize} \\
+\hline
+\multicolumn{2}{|c|}{\cellcolor{lightgray}\bfseries MARTEDÌ} \\
+\hline
+\textbf{Colazione} & 
+\begin{itemize}[noitemsep, topsep=0pt, leftmargin=*]
+    \item Fette biscottate integrali (2-3 a persona) con marmellata.
+\end{itemize} \\
+\hline
+\textbf{Pranzo} & 
+\begin{itemize}[noitemsep, topsep=0pt, leftmargin=*]
+    \item \textbf{Riso e lenticchie}: Riso (160g) cotto insieme alle lenticchie (200g secche) con un soffritto di cipolla e carota.
+    \item Olio EVO (2 cucchiaini a persona).
+\end{itemize} \\
+\hline
+\textbf{Cena} & 
+\begin{itemize}[noitemsep, topsep=0pt, leftmargin=*]
+    \item \textbf{Frittata di patate e spinaci}: Frittata preparata con 4 uova, 2 patate lesse a cubetti e metà degli spinaci.
+    \item Pane (40g a persona).
+\end{itemize} \\
+\hline
+\multicolumn{2}{|c|}{\cellcolor{lightgray}\bfseries MERCOLEDÌ} \\
+\hline
+\textbf{Colazione} & 
+\begin{itemize}[noitemsep, topsep=0pt, leftmargin=*]
+    \item 2 vasetti di yogurt magro con una mela a pezzi.
+\end{itemize} \\
+\hline
+\textbf{Pranzo} & 
+\begin{itemize}[noitemsep, topsep=0pt, leftmargin=*]
+    \item \textbf{Insalatona con tonno e ceci}: Abbondante insalata mista con 2 lattine di tonno, i ceci precotti e pomodorini freschi.
+    \item Pane (40g a persona) e Olio EVO.
+\end{itemize} \\
+\hline
+\textbf{Cena} & 
+\begin{itemize}[noitemsep, topsep=0pt, leftmargin=*]
+    \item \textbf{Pasta con ricotta e spinaci}: Pasta (160g) condita con la ricotta (250g) e gli spinaci rimasti, saltati in padella con aglio.
+    \item Una spolverata di pepe.
+\end{itemize} \\
+\hline
+\end{tabular}
+
+\newpage
+
+\begin{tabular}{|>{\bfseries}m{2.5cm}|m{12.5cm}|}
+\hline
+\multicolumn{2}{|c|}{\cellcolor{lightgray}\bfseries GIOVEDÌ} \\
+\hline
+\textbf{Colazione} & 
+\begin{itemize}[noitemsep, topsep=0pt, leftmargin=*]
+    \item Fette biscottate integrali (2-3 a persona) con marmellata.
+\end{itemize} \\
+\hline
+\textbf{Pranzo} & 
+\begin{itemize}[noitemsep, topsep=0pt, leftmargin=*]
+    \item \textbf{Riso al pomodoro}: Riso (160g) condito con la salsa di pomodoro avanzata dal lunedì (o preparata al momento).
+    \item Una porzione di pane per accompagnare (30g a persona).
+\end{itemize} \\
+\hline
+\textbf{Cena} & 
+\begin{itemize}[noitemsep, topsep=0pt, leftmargin=*]
+    \item \textbf{Bocconcini di pollo con zucchine}: Il restante pollo (circa 300g) tagliato a cubetti e cotto in padella con le zucchine avanzate, aglio e pomodorini.
+    \item Pane (40g a persona).
+\end{itemize} \\
+\hline
+\multicolumn{2}{|c|}{\cellcolor{lightgray}\bfseries VENERDÌ} \\
+\hline
+\textbf{Colazione} & 
+\begin{itemize}[noitemsep, topsep=0pt, leftmargin=*]
+    \item 2 vasetti di yogurt magro con frutta a scelta (banana o mela).
+\end{itemize} \\
+\hline
+\textbf{Pranzo} & 
+\begin{itemize}[noitemsep, topsep=0pt, leftmargin=*]
+    \item \textbf{Pasta al tonno}: La pasta restante (circa 180g) condita con un sugo semplice di pomodoro e le ultime scatolette di tonno (se avanzate, altrimenti usare una nuova).
+    \item Olio EVO e origano.
+\end{itemize} \\
+\hline
+\textbf{Cena} & 
+\begin{itemize}[noitemsep, topsep=0pt, leftmargin=*]
+    \item \textbf{Uova strapazzate e verdure}: Le 2 uova rimaste, strapazzate.
+    \item \textbf{Contorno di patate e carote}: Le patate e le carote avanzate, cotte al forno o lesse.
+    \item Pane (40g a persona).
+\end{itemize} \\
+\hline
+\end{tabular}
+\vspace{1cm}
+\begin{center}
+    \textit{Spuntini di metà mattina e merenda: una mela o una banana a persona.}
+\end{center}
+
+\section*{Consigli Utili}
+\begin{itemize}
+    \item \textbf{Cotture}: Prediligere metodi di cottura sani come griglia, vapore, forno o padella con poco olio.
+    \item \textbf{Idratazione}: Ricordare di bere circa 1,5-2 litri di acqua al giorno a persona.
+    \item \textbf{Flessibilità}: Gli ingredienti delle insalate o dei contorni possono essere scambiati in base alla disponibilità (es. usare carote invece di pomodorini).
+    \item \textbf{Condimenti}: Limitare il sale e usare liberamente spezie e aromi per insaporire i piatti. L'olio EVO va dosato come da piano (circa 4 cucchiaini a persona al giorno).
+\end{itemize}
+
+\end{document}

@@ -93,6 +93,8 @@
 %----------------------------------------------------------------------------
 \usepackage{amsfonts} 
 \usepackage[font=footnotesize,labelfont=bf]{caption}
+\usepackage{placeins} % in your preamble
+
 
 %----------------------------------------------------------------------------
 %	ADD YOUR DEFINITIONS AND COMMANDS (be careful of existing commands)
@@ -115,6 +117,8 @@
 }
 \newcommand*{\oldepsilon}{\epsilon}
 \renewcommand*{\epsilon}{\varepsilon}
+\newcommand*{\oldphi}{\phi}
+\renewcommand*{\phi}{\varphi}
 \DeclareMathOperator*{\esssup}{ess\,sup}
 \DeclareMathOperator*{\argmax}{arg\,max}
 \DeclareMathOperator*{\argmin}{arg\,min}
@@ -212,7 +216,28 @@ The core of the method trains a deep neural network to learn nonlinear correctio
 \label{sec:conclusion}
 In this work, we have explored the Neural Modes framework, which combines the strengths of linear modal analysis and deep learning to simulate the nonlinear deformation of objects. After a careful analysis of the original method and developing an implementation that allowed us to test this method with the aid of SOFA as a numerical solver, we have identified some limitations of the original method, such as the limited range of deformations that can be accurately captured with the self-supervised training approach and the sampling of the latent space. To address these limitations in our use case, we have proposed a modified version of the Neural Modes framework that incorporates a supervised learning strategy, that uses a minimal amount of data to train the network, coupled with a loss function that includes the physics-informed energy term. This approach allows the network to generalize even to large deformations with a small amount of data needed and allows to use a reduced order model to compute a full FEM simulation, which is crucial for real-time applications. The results of our numerical experiments demonstrate the effectiveness of the modified Neural Modes framework in accurately capturing the nonlinear deformation of objects, even in the presence of large deformations. 
 
-This framework has the potential to be highly adaptable to different material properties and geometries, but also to different elasticity model, once the core of the code is promptly modified. While it wasn't the main focus of this work, a great application of this method could be in the field of subspace dynamics, briefly described in \ref{sec:subspace_dynamics}, where the model, trained on equilibrium configurations, could be used to predict the dynamic behaviour of the object once a few steps are computed with a FEM solver. This could lead to a significant speed-up in the simulation of dynamic problems, as the number of DOFs is drastically reduced, and the quasi-Newton method used to obtain the next modal coefficients is much faster than the Newton-Raphson method used in the FEM solver.
+
+\subsection{Computational Considerations and Performance}
+Our implementation demonstrates significant computational advantages over traditional nonlinear FEM approaches. The reduction from thousands of degrees of freedom to a handful of modal coordinates (typically 7-20 modes) represents a substantial decrease in computational complexity. This dimensionality reduction, combined with the neural network's ability to capture nonlinear corrections efficiently, enables real-time simulation of complex deformation scenarios that would otherwise require significant computational resources.
+
+The training phase, while requiring initial investment in data generation and network optimization, needs to be performed only once for a given geometry and material configuration. Once trained, the network provides instantaneous corrections to linear modal predictions, making it highly suitable for interactive applications. The memory footprint of the trained network is minimal compared to storing high-resolution FEM solutions, making deployment feasible even on resource-constrained platforms.
+
+\subsection{Limitations and Future Directions}
+Despite the promising results, several limitations merit attention and suggest directions for future research. The current framework's dynamic simulation accuracy, while maintaining energy conservation, shows some deviation from ground truth displacement fields over extended time periods. Future work could explore more sophisticated temporal integration schemes or adaptive optimization strategies to improve long-term stability.
+
+The modal force generation approach, while physically meaningful, represents a simplified loading scenario. Real-world applications often involve more complex, time-varying force patterns that may not align perfectly with the modal basis. Developing more robust force generation strategies or extending the framework to handle arbitrary external forces would significantly broaden its applicability.
+
+The current implementation focuses on Neo-Hookean materials, which, while suitable for many soft tissue applications, may not capture the full complexity of all biological materials. Extending the framework to more sophisticated constitutive models, such as anisotropic hyperelastic materials or viscoelastic models that include time-dependent behavior, represents an important direction for future development.
+
+Another promising avenue involves exploring different neural network architectures. While residual networks have shown good performance, other architectures such as transformer-based models or physics-informed neural operators might offer improved accuracy or training efficiency. The incorporation of attention mechanisms could potentially help the network focus on the most relevant modal contributions for different deformation scenarios.
+
+
+\subsection{Final Remarks}
+This framework represents a significant step toward bridging the gap between computational efficiency and simulation accuracy in nonlinear mechanics. By leveraging the interpretability of modal analysis and the expressiveness of neural networks, we have demonstrated a method that maintains physical consistency while achieving computational performance suitable for real-time applications.
+
+The success of this approach highlights the broader potential of physics-informed machine learning in computational science. Rather than replacing traditional numerical methods entirely, the integration of machine learning techniques with established physical principles offers a path toward more efficient and accurate simulation tools. This paradigm could be extended to other areas of computational physics where similar trade-offs between accuracy and efficiency exist.
+
+As we move forward, the ongoing development of these hybrid approaches will likely become increasingly important for enabling new applications that demand both accurate physics and real-time performance. The Neural Modes framework lays a foundation for this, showing that well-designed machine learning can improve, rather than replace, core physical modeling principles.
 %---------------------------------------------------------------------------
 %  BIBLIOGRAPHY
 %---------------------------------------------------------------------------
