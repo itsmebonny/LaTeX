@@ -47,6 +47,25 @@ The neural network is trained to simultaneously predict both the displacement fi
 
 The training process is described in detail in Section \ref{sec:training_neural_modes}.
 
+For the cantilever beam, we stopped the training, after 200 epochs, when the loss reached a plateau and we observed no significant improvement in the last 50 epochs. In Figure \ref{fig:training_loss_beam} we can see the training loss for the cantilever beam, which shows that immediately after the first epoch the loss drops significantly, meaning that the model is able to learn the underlying physics of the problem very quickly. We then let the model train for 200 so that it can receive as input a wide range of different configurations and be able to generalize well.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Images/training_loss_smoothed.png}
+    \caption{Training loss for the cantilever beam.}
+    \label{fig:training_loss_beam}
+\end{figure}
+
+We also provide the plot of the energy part of the loss function, which is computed as the mean of the internal energy of the batch of training samples. As we can see in Figure \ref{fig:training_energy_loss_beam}, at the first epoch the energy is very high, because the last layer of the neural network is set to have zero weights and biases, meaning that at the end of first epoch the prediction is just the linear modes approximation, then the energy loss drops significantly in the first few epochs, learning a meaningful correction to the linear modes approximation, while maintaning the ability to generalize even though the training set is not very large. The energy loss stabilizes around \(5e3\), which is on par with the energy computed in the validation phase with the full-order FEM solver.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Images/training_energy_smoothed.png}
+    \caption{Training energy loss for the cantilever beam.}
+    \label{fig:training_energy_loss_beam}
+\end{figure}
+
+
 \subsection{Testing the model}
 \label{sec:testing_model}
 Since the training is completely data-free we perform the validation of the model in two main ways. The first one is to check the accuracy of reconstruction of the displacement field for some random static configurations, given by applying random coefficients to the modal forces. The second way of validation is to see how well the model can predict the displacement field for a dynamic problem, where the FEM solver is used to compute the first two time steps of the dynamic problem, and then the equation \ref{eq:optimization_problem} is used to predict the next time steps. 
