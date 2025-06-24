@@ -240,9 +240,15 @@ Despite the promising results, several limitations merit attention and suggest d
 
 The modal force generation approach, while physically meaningful, represents a simplified loading scenario. Real-world applications often involve more complex, time-varying force patterns that may not align perfectly with the modal basis. Developing more robust force generation strategies or extending the framework to handle arbitrary external forces would significantly broaden its applicability.
 
-The current implementation focuses on Neo-Hookean materials, which, while suitable for many soft tissue applications, may not capture the full complexity of all biological materials. Extending the framework to more sophisticated constitutive models, such as anisotropic hyperelastic materials or viscoelastic models that include time-dependent behavior, represents an important direction for future development.
-
-Another promising avenue involves exploring different neural network architectures. While residual networks have shown good performance, other architectures such as transformer-based models or physics-informed neural operators might offer improved accuracy or training efficiency. The incorporation of attention mechanisms could potentially help the network focus on the most relevant modal contributions for different deformation scenarios.
+As described in \cite{Andersson_2021}, another promising direction for this work could be to completely modify the dynamics of the system, by using a fully reduced dynamic model, where we obtain \(\left[M\right]\) and \(\left[K\right]\) matrices that we obtain reducing the original matrices \(M\) and \(K\) with respect to the modal basis
+\begin{equation}
+    \left[M\right] = \left[\Phi\right]^T M \left[\Phi\right], \quad \left[K\right] = \left[\Phi\right]^T K \left[\Phi\right],
+\end{equation}
+where \(\left[\Phi\right]\) is the matrix of the modal basis. Then, projecting the displacement field \(\mathbf{u}\) onto the modal basis, we obtain the reduced displacement field \(\mathbf{q} = \left[\Phi\right]^T \mathbf{u}\). The reduced dynamic system can then be written as
+\begin{equation}
+    \left[{M}\right] \ddot{\mathbf{q}} + \left[{K}\right] \mathbf{q} = \mathbf{f},
+\end{equation}
+which can be solved using standard numerical methods and provide a more efficient way to obtain the trajectory of the system in the reduced space. Due to time constraints and software limitations, we were not able to explore this direction in this work, but it would be a natural extension of this framework. This would remove the use of a cost function that is optimized using a quasi-Newton method, which tend to accumulate numerical errors over time, and using a full dynamic model would allow to use a more robust numerical integration scheme, keeping the accuracy of the simulation higher.
 
 
 \subsection{Final Remarks}
