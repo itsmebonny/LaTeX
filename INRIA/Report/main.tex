@@ -155,26 +155,16 @@
 
 % Insert here the info that will be displayed into your Title page
 % -> title of your work
-\renewcommand{\title}{\noindent A Modified Neural Modes Approach for Soft Tissue Simulation: From Self-Supervised to Supervised Learning
-}
-% OTHER POSSIBLE TITLES
-% \renewcommand{\title}{\noindent Improving Neural Modes for Nonlinear Soft Tissue Simulation: A Supervised Learning Enhancement}
-% \renewcommand{\title}{\noindent Enhanced Neural Modes Framework: Supervised Training for Large Deformation Hyperelastic Simulation}
-% \renewcommand{\title}{\noindent Advancing the Neural Modes Method: Physics-Informed Supervised Learning for Nonlinear Mechanics}
-% \renewcommand{\title}{\noindent A Modified Neural Modes Approach for Soft Tissue Simulation: From Self-Supervised to Supervised Learning}
-% \renewcommand{\title}{\noindent Extending Neural Modes with Supervised Learning: Improved Accuracy for Large Deformation Neo-Hookean Materials}
-% \renewcommand{\title}{\noindent Neural Modes for Nonlinear Soft Tissue Simulation: A Physics-Informed Machine Learning Approach}
-% \renewcommand{\title}{\noindent Enhancing Linear Modal Analysis with Deep Learning for Real-Time Hyperelastic Deformation Simulation}
-% \renewcommand{\title}{\noindent Physics-Informed Neural Networks for Accelerated Nonlinear Mechanics: A Neural Modes Framework}
-% \renewcommand{\title}{\noindent Learning Nonlinear Corrections to Modal Analysis: A Supervised Approach for Large Deformation Simulation}
-% \renewcommand{\title}{\noindent Hybrid Modal-Neural Networks for Efficient Simulation of Neo-Hookean Materials in Biomedical Applications}
+\renewcommand{\title}{\noindent A Modified Neural Modes Approach for Soft Tissue Simulation}
 
 
 % -> author name and surname
 \renewcommand{\author}{Andrea Bonifacio}
+% -> student ID
+\newcommand{\ID}{217658} % insert your student ID here
 % -> MSc course
 \newcommand\norm[1]{\lVert#1\rVert}
-\newcommand{\course}{Mimesis Team}
+\newcommand{\course}{Mathematical Engineering - Ingegneria Matematica}
 % -> advisor name and surname
 \newcommand{\advisor}{Prof. Stefano Pagani}
 % IF AND ONLY IF you need to modify the co-supervisors you also have to modify the file Configuration_files/title_page.tex (ONLY where it is marked)
@@ -184,11 +174,29 @@
 \newcommand{\YEAR}{2024-2025}
 
 \renewcommand{\abstract}{This work addresses the computational challenges inherent in simulating the dynamic, nonlinear deformation of soft tissues, particularly when using traditional Finite Element Methods (FEM). We investigate the efficiency and accuracy of a method, named ``Neural Modes'' and then build upon their ideas, to obtain a simulation framework that combines the computation of the energy during the training of the network, keeping the physics-informed loss function, with a supervised learning strategy that allows the network to learn nonlinear corrections for large deformations. 
-The core of the method trains a deep neural network to learn nonlinear corrections to a reduced-order linear modal basis. This approach not only accelerates simulations by operating in a reduced-dimensional space but also enhances the interpretability of the learned model, as the corrections are applied to physically meaningful linear modes. The efficacy of the Neural Modes framework is demonstrated through numerical experiments on a 3D benchmark problem, showcasing its potential for applications in biomechanics and surgical simulation where both speed and accuracy are fundamental.
+The core of the method trains a deep neural network to learn nonlinear corrections to a reduced-order linear modal basis. This approach not only accelerates simulations by operating in a reduced-dimensional space but also enhances the interpretability of the learned model, as the corrections are applied to physically meaningful linear modes. The efficacy of the Neural Modes framework is demonstrated through numerical experiments on some 3D benchmark problems, showcasing its potential for applications in biomechanics and surgical simulation where both speed and accuracy are fundamental.
 }
+
+\newcommand{\abstractita}{Questa tesi affronta le sfide computazionali inerenti alla simu-
+lazione della deformazione dinamica e non lineare dei tessuti molli, in particolare quando si utilizzano
+metodi tradizionali agli elementi finiti (FEM). Si studia l'efficienza e la accuratezza di un metodo, denominato “Neural Modes”, e si sviluppa a partire da quest'ultimo per ottenere un quadro di simulazione che combina il calcolo dell'energia durante
+l'addestramento della rete, mantenendo le informazioni derivanti dalla fisica nella funzione obiettivo, con una
+strategia di apprendimento supervisionato che consente alla rete di apprendere correzioni non lineari per
+grandi deformazioni. Il nucleo del metodo addestra una rete neurale profonda per apprendere
+correzioni non lineari rispetto a una base modale lineare di ordine ridotto. Questo approccio non
+solo accelera le simulazioni operando in uno spazio di minore dimensione, ma
+migliora anche l'interpretabilità del modello, poiché le correzioni sono applicate
+a modalità lineari fisicamente significativi. L'efficacia del lavoro di Neural Modes
+è dimostrata attraverso esperimenti numerici su alcuni problemi di riferimento in 3D,
+mostrando il suo potenziale per applicazioni nella biomeccanica e nella simulazione chirurgica
+dove sia la velocità che la precisione sono fondamentali.
+}
+
 
 % -> key-words (only in English)
 \newcommand{\keywords}{Finite Element Method, Neural Networks, Model Order Reduction, Soft Tissue Simulation, Hyperelastic Materials}
+
+\newcommand{\keywordsita}{Metodi agli Elementi Finiti, Reti Neurali, Modelli a Ordine Ridotto, Simulazione Tessuti Molli, Materiali Iperelastici}
 
 
 %-------------------------------------------------------------------------
@@ -264,6 +272,13 @@ As we move forward, the ongoing development of these hybrid approaches will like
 \printbibliography
 % Remember to insert here only the essential bibliography of your work
 % automatically inserted and ordered with this command
+
+\newpage
+\textbf{Abstract italiano:} \abstractita
+
+\begin{tcolorbox}[arc=0pt, boxrule=0pt, colback=bluePoli!60, width=\textwidth, colupper=white]
+        \textbf{Parole chiave:} \keywordsita
+    \end{tcolorbox}
 
 \end{document}
 

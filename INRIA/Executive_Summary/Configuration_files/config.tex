@@ -8,16 +8,15 @@
   headheight= 2cm,
   headsep= 0cm,
 }
-\raggedbottom
+\raggedbottom 
 
 % Create color bluePoli (-> manuale grafica coordinata:  https://www.polimi.it/fileadmin/user_upload/il_Politecnico/grafica-coordinata/2015_05_11_46xy_manuale_grafica_coordinata.pdf)
 \definecolor{bluePoli}{cmyk}{0.4,0.1,0,0.4}
 
 % Custom theorem environments
 \declaretheoremstyle[
-  shaded={rulecolor=bluePoli!20, rulewidth=1pt, bgcolor=bluePoli!5},
   headfont=\color{bluePoli}\normalfont\bfseries,
-  bodyfont=\color{black}\normalfont,
+  bodyfont=\color{black}\normalfont\itshape,
 ]{colored}
 
 \captionsetup[figure]{labelfont={color=bluePoli}} % Set colour of the captions
@@ -27,9 +26,6 @@
 \theoremstyle{colored}
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{proposition}{Proposition}[section]
-\newtheorem{definition}{Definition}[section]
-\newtheorem*{remark}{Remark}
-\newtheorem{lemma}{Lemma}[section]
 
 % Enhances the features of the standard "table" and "tabular" environments.
 \newcommand\T{\rule{0pt}{2.6ex}}
@@ -44,7 +40,7 @@
     \stepcounter{algsubstate}%
     \Statex {\small\thealgsubstate:}\space}
     }{}
-
+    
 % Custom theorem environment
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
@@ -56,7 +52,7 @@
 \setlist[itemize,3]{label=$-$}
 \setlist{nosep}
 
-% Set separation of columns
+% Set separation of columns 
 \setlength{\columnsep}{30pt}
 
 % Create command for background pic
@@ -65,13 +61,13 @@
 		\parbox[b][\paperheight]{\paperwidth}{%
 			\vfill
 			\centering
-			\transparent{0.2}
-			\includegraphics[width=0.8\paperwidth]{raggiera_polimi.eps}%
+			\transparent{0.4}
+			\includegraphics[width=0.5\paperwidth]{raggiera_polimi.eps}%
 			\vfill
 }}}
 
 % Set indentation
-%\setlength\parindent{0pt}
+\setlength\parindent{0pt}
 
 % Custom title commands
 \titleformat{\section}
@@ -86,16 +82,10 @@
 \titlespacing*{\subsection}
 {0pt}{2ex}{1ex}
 
-\titleformat{\subsubsection}
-{\color{bluePoli}\normalfont\normalsize\bfseries}
-{\color{bluePoli}\thesubsubsection.}{1em}{}
-\titlespacing*{\subsubsection}
-{0pt}{2ex}{1ex}
-
 % Custom headers and footers
 \pagestyle{fancy}
 \fancyhf{}
-
+      
 \fancyfoot{}
 \fancyfoot[C]{\thepage} % page
 \renewcommand{\headrulewidth}{0mm} % headrule width
@@ -106,10 +96,10 @@
 \patchcmd{\footrule}{\hrule}{\color{black}\hrule}{}{} % footrule
 \makeatother
 
-% % -> Create the header
-% \chead[C]{
-% \centering
-% \begin{tcolorbox}[arc=0pt, boxrule=0pt, colback=bluePoli!60, width=\textwidth, colupper=white]
-%     \includegraphics[width=0.2\textwidth]{mimesis.png}
-% \end{tcolorbox}
-% }
+% -> Create the header
+\chead[C]{
+\centering
+\begin{tcolorbox}[arc=0pt, boxrule=0pt, colback=bluePoli!60, width=\textwidth, colupper=white]
+    \textbf{Executive summary} \hfill \textbf{\author}  
+\end{tcolorbox}
+}
