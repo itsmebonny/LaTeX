@@ -127,7 +127,7 @@ The training process for the Neural Modes Network is based on minimizing a combi
     \begin{enumerate}
         \item \textit{Scale Invariance}:  The logarithmic transformation compresses the range of energy values, which can span several orders of magnitude. By using $\log_{10}(E)$, we reduce the sensitivity of the loss function to large absolute differences in energy, particularly at higher energy levels. This ensures that the network learns effectively across different energy scales, preventing the dominance of high-energy configurations in the training process.
 
-        \item \textit{Smoother Loss Landscape}: The logarithm function helps to create a smoother loss landscape.  The original energy values might lead to a highly irregular loss surface, making it difficult for gradient-based optimization algorithms to converge. By using the logarithm, we transform the error surface into a more convex shape, facilitating more stable and efficient training.  This is because the logarithm reduces the impact of outliers and sharp changes in the energy values, leading to more consistent gradients during optimization.
+        \item \textit{Smoother Loss Landscape}: The logarithm function helps to create a smoother loss landscape.  The original energy values might lead to a highly irregular loss surface, making it difficult for gradient-based optimization algorithms to converge. By using the logarithm, we transform the error surface into a more smooth shape, facilitating more stable and efficient training.  This is because the logarithm reduces the impact of outliers and sharp changes in the energy values, leading to more consistent gradients during optimization.
     \end{enumerate}
 
     The energy loss is thus defined as:
