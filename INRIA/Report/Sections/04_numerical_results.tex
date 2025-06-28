@@ -207,23 +207,5 @@ Things change drastically when we take a look at the internal energy of the syst
 
 
 
-% Figure \ref{fig:dynamic_validation_time_series} illustrates the time evolution of the displacement at the free end of the beam over a simulation spanning 1000 time steps, comparing the neural network prediction with the reference FEM solution. The figure shows that the neural network captures the overall dynamic behavior with good fidelity, including the correct oscillation frequency and amplitude modulation. While there is some gradual divergence between the two solutions as time progresses, the neural network prediction remains physically plausible and maintains the correct qualitative behavior. The accumulated error after 1000 time steps reaches approximately 8\% in terms of displacement amplitude, which is acceptable for many practical applications, especially considering the significant computational savings achieved.
-
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=0.4\textwidth]{Images/dummy.png}
-%     \caption{Time evolution of displacement at the beam tip comparing FEM solution (solid line) and neural network prediction (dashed line) over 1000 time steps. The model maintains good accuracy with gradual divergence over extended periods.}
-%     \label{fig:dynamic_validation_time_series}
-% \end{figure}
-
-% A critical aspect of any physics-based model is its ability to preserve fundamental conservation laws. Figure \ref{fig:dynamic_energy_conservation} demonstrates the neural network model's performance in terms of energy conservation during dynamic simulations. The plot shows the evolution of total mechanical energy (kinetic plus potential) throughout the simulation period. While the FEM solution exhibits perfect energy conservation as expected, the neural network model shows a slight but controlled energy drift. Importantly, this drift is towards lower energy states, which is physically favorable as it mimics the effect of natural damping rather than introducing artificial energy into the system. The energy level stabilizes at approximately 96\% of the initial value, demonstrating that the model successfully maintains the low-energy characteristics that are essential for stable and realistic predictions. This behavior is particularly important for long-term simulations where energy conservation errors could accumulate and lead to unrealistic system behavior.
-
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=0.4\textwidth]{Images/dummy.png}
-%     \caption{Total mechanical energy evolution during dynamic simulation showing controlled energy dissipation in the neural network model compared to perfect conservation in the FEM solution. The model maintains physically realistic low-energy behavior.}
-%     \label{fig:dynamic_energy_conservation}
-% \end{figure}
-
 
 \FloatBarrier % Place this after the section where you want to stop floats from moving forward
