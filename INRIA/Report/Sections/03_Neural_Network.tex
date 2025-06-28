@@ -167,6 +167,10 @@ During training, the Neural Modes network is optimized using a supervised learni
 The energy term in the loss function is particularly important inside this network, because it contains the equations that constitute the physics of the problem, helping the learning process to be more general and reducing the need for large datasets. The energy term is computed as the internal strain energy of the deformed configuration.
 
 \subsection{Subspace Learning}
+Here we'll outline the training idea behind the original Neural Modes framework \cite{Wang_Du_Coros_Thomaszewski_2024}, which is based on learning a subspace of equilibrium configurations of the system. This is the approach we used to train in a self-supervised way the Neural Modes network, in order to obtain a comparison with the supervised learning approach we adopted in the previous section.
+
+
+Let \( \bm{X} \in \mathbb{R}^{n \times d} \) and \( \bm{x} \in \mathbb{R}^{d} \) be the vectors representing the undeformed and deformed configurations of a mesh, respectively. We can characterize equilibrium configurations of the system by constrained energy minimization principles, such as 
 \begin{align}
     \label{eq:constrained_energy_minimization}
     \bm{x}^*(\phi, \psi) = \underset{\bm{x}}{\argmin} \quad & E_\phi(\bm{x}) \\
@@ -210,7 +214,7 @@ One of the main challenges for this method is finding a good way to sample the \
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.4\textwidth]{Images/z_random.png}
-    \caption{Example of a bad sampling of the modal space, the reference shape is the light blue outline.}
+    \caption{Example of a bad sampling of the modal space, the reference shape is the light blue outline. The beam is unnaturally twisted and at the same time double bent, which is not a physically plausible deformation.}
     \label{fig:bad_sampling}
 \end{figure}
 In this example, the random \(z\) vector has large values in its latter components. These components represent higher-frequency deformation modes, which naturally contain more strain energy. Using these modes with high amplitudes often creates physically unrealistic or extreme configurations. This shows why random sampling across all components of \(z\) can lead to unrealistic deformations.
@@ -221,6 +225,7 @@ For more effective sampling of the modal space, we can implement a strategic app
 
 The fundamental issue with purely random sampling across all modal coordinates is that it inadvertently forces the neural network to attempt energy minimization for physically implausible states. Given that the energy landscape for soft tissue deformation is already inherently complex and high-dimensional, introducing this additional unnecessary complexity substantially increases the difficulty of the training process and potentially compromises the quality of the learned model. This consideration underscores the necessity for developing a more sophisticated and physically-informed strategy to efficiently sample the modal space, allowing the network to concentrate on learning the most relevant aspects of the deformation behavior.
 
+After trying to come up with a good sampling strategy, we decided to use a supervised learning approach, where the dataset is generated from FEM simulations of the object of interest, meaning that the modal coordinate vector \( \bm{z} \) that the network receives as input is necessarily a valid modal coordinate vector, in the sense that describes a physically plausible deformation of the object. The dataset is built by linking the modal coordinate vector \( \bm{z} \) to the corresponding full nonlinear deformation \( \bm{u} \) of the object along with its internal energy \( E(\bm{u}) \). 
 
 \subsection{Dynamic Simulation with Neural Modes}
 \label{sec:subspace_dynamics}
