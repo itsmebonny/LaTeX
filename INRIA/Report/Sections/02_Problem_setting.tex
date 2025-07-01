@@ -12,16 +12,17 @@ To model the deformation of an object, we start from the vector \(\bm{X}\), whic
     \bm{x}(\bm{X},t) = \bm{X} + \bm{u}(\bm{X},t),
 \label{eq:deformation}
 \end{equation}
-where \(\bm{x} \in \mathbb{R}^d\) is the spatial position of a material point at time \(t\), and \(d\) is the spatial dimension (2D or 3D). The displacement vector \(\bm{u}\) describes how the material point has moved from its original position \(\bm{X}\) to its new position \(\bm{x}\).
+where \(\bm{x} \in \mathbb{R}^d\) is the spatial position of a material point at time \(t\), and \(d\) is the spatial dimension (2D or 3D). 
 
-To model the mechanical behavior of the material, there are many constitutive models available, ranging from linear elastic to hyperelastic models. Since we are interested in soft tissue mechanics, we will focus on the hyperelastic Neo-Hookean material model \cite{Ogden_1997}. Such a model helps dealing with large deformations and is suitable for biological tissues, which often exhibit nonlinear elastic behavior. The Neo-Hookean model is characterized by its simplicity and ability to capture the essential nonlinear elastic behavior of soft tissues under moderate deformations. More complex hyperelastic models exist, such as the Mooney-Rivlin or Ogden models \cite{Ogden_1997}, which can provide greater accuracy for specific materials or loading conditions, but at the cost of increased computational complexity and parameter identification.
+To model the mechanical behavior of the material, there are many constitutive models available, ranging from linear elastic to hyperelastic models \cite{Ogden_1997}. Since we are interested in soft tissue mechanics, we will focus on the hyperelastic Neo-Hookean material model \cite{Ogden_1997}. Such a model helps dealing with large deformations and is suitable for biological tissues, which often exhibit nonlinear elastic behavior.
+More complex hyperelastic models exist, such as the Mooney-Rivlin or Ogden models \cite{Ogden_1997}, which can provide greater accuracy for specific materials or loading conditions, but at the cost of increased computational complexity and parameter identification.
 
 For the Neo-Hookean hyperelastic material model, we first compute the deformation gradient $\bm{F} \in \mathbb{R}^{d\times d}$:
 \begin{equation}
-    \bm{F} = \frac{\partial \bm{x}}{\partial \bm{X}} = \bm{I} + \nabla_X \bm{u},
+    \bm{F} = \frac{\partial \bm{x}}{\partial \bm{X}} = \bm{I} + \nabla_{\mathbf{X}} \bm{u},
 \label{eq:deformation_gradient}
 \end{equation}
-where $\bm{I} \in \mathbb{R}^{d\times d}$ is the identity matrix and $\nabla_X$ denotes the gradient with respect to material coordinates. The right Cauchy-Green deformation tensor is then defined as $\bm{C} = \bm{F}^T\bm{F}$, and the first invariant of $\bm{C}$ is $I_{\bm{C}} = \text{tr}(\bm{C})$.
+where $\bm{I} \in \mathbb{R}^{d\times d}$ is the identity matrix and $\nabla_{\mathbf{X}}$ denotes the gradient with respect to material coordinates. The right Cauchy-Green deformation tensor is then defined as $\bm{C} = \bm{F}^T\bm{F}$, and the first invariant of $\bm{C}$ is $I_{\bm{C}} = \text{tr}(\bm{C})$.
 
 The Neo-Hookean strain-energy density function $\Psi$ is given by:
 \begin{equation}
@@ -39,6 +40,17 @@ From the strain energy density function, we derive the first Piola-Kirchhoff str
 \label{eq:piola_stress}
 \end{equation}
 
+For static problems the equation of equilibrium is given by:
+\begin{equation}
+    \begin{cases}
+        - \nabla_X \cdot \bm{P} = \bm{b} \quad \text{in} \quad \Omega, \\
+        \bm{u} = \bm{u}_D \quad \text{on} \quad \Gamma_D, \\
+        \bm{P} \cdot \bm{N} = \bm{t} \quad \text{on} \quad \Gamma_N.
+    \end{cases}
+\label{eq:static_problem}
+\end{equation}
+This represents a boundary value problem that needs to be solved for the displacement field $\bm{u}$, where $\Omega$ is the domain of interest, $\Gamma_D$ is the Dirichlet boundary where displacements are prescribed, and $\Gamma_N$ is the Neumann boundary where tractions are applied. The vector $\bm{b}$ represents external body forces, and $\bm{t}$ is the traction applied on the boundary. The unit normal vector $\bm{N}$ is defined on the boundary $\Gamma_N$.
+
 For dynamic problems, the equation of motion including inertial forces is:
 \begin{equation}
     \begin{cases}
@@ -48,8 +60,7 @@ For dynamic problems, the equation of motion including inertial forces is:
     \end{cases}
 \label{eq:dynamic_problem}
 \end{equation}
-where $\rho$ is the material density in the reference configuration, $\bm{b}$ is the external body force, $\bm{N}$ is the unit normal to $\Gamma_N$ in the reference configuration, and $\bm{t}$ is the traction applied to the boundary.
-
+where $\rho$ is the material density in the reference configuration and the rest follows the same notation as in the static case. 
 The weak form of equation \eqref{eq:dynamic_problem} is:
 \begin{equation}
     \int_{\Omega} \rho \frac{\partial^2 \bm{u}}{\partial t^2} \cdot \bm{v} \, d\Omega + \int_{\Omega} \bm{P} : \nabla_X \bm{v} \, d\Omega = \int_{\Omega} \bm{b} \cdot \bm{v} \, d\Omega + \int_{\Gamma_N} \bm{t} \cdot \bm{v} \, d\Gamma,
@@ -82,10 +93,10 @@ The core steps of linear modal analysis are as follows:
 
     \item \textbf{Modal Decomposition}: A reduced basis is formed by selecting the first $m$ modes (eigenvectors), typically those corresponding to the lowest frequencies, which capture the large-scale deformations. The displacement field $\bm{u}(\bm{X},t)$ can then be approximated as a linear combination of these modes:
         \begin{equation}
-            \bm{u}(\bm{X},t) \approx \sum_{i=1}^{m} q_i(t) \bm{\phi}_i(\bm{X}),
+            \bm{u}(\bm{X},t) \approx \sum_{i=1}^{m} z_i(t) \bm{\phi}_i(\bm{X}),
             \label{eq:modal_decomposition}
         \end{equation}
-        where $q_i(t)$ are the time-varying modal coordinates, representing the amplitude or contribution of each mode shape to the overall deformation. The dynamics of the system can then be simulated in the reduced $m$-dimensional space of modal coordinates, significantly reducing computational cost.
+        where $z_i(t)$ are the time-varying modal coordinates, representing the amplitude or contribution of each mode shape to the overall deformation. The dynamics of the system can then be simulated in the reduced $m$-dimensional space of modal coordinates, significantly reducing computational cost.
 \end{enumerate}
 
 While linear modal analysis provides substantial speedups, its fundamental limitation lies in the initial linearization, done in the first step of this process. This approximation holds well only for small deformations around the rest state. Indeed, when deformations become large and enter the nonlinear regime characteristic of hyperelastic materials like Neo-Hookean, the linear modal approximation breaks down. Specifically, the constant stiffness matrix $\bm{K}$ no longer accurately represents the material's resistance to deformation. It fails to capture the nonlinear effects accurately, often leading to unrealistic behavior such as exaggerated volume changes or inaccurate stress distributions.

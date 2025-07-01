@@ -102,7 +102,7 @@
 % -> title of your work
 \renewcommand{\title}{A Modified Neural Modes Approach for Soft Tissue Simulation}
 % -> author name and surname
-\renewcommand{\author}{Name Surname}
+\renewcommand{\author}{Andrea Bonifacio}
 % -> MSc course
 \newcommand{\course}{Mathematical Engineering - Ingegneria Matematica}
 % -> advisor name and surname
@@ -146,7 +146,7 @@ This thesis addresses the need for efficient and accurate nonlinear simulation b
 \section{Mathematical Framework}
 \label{sec:es:mathematical_framework}
 
-Simulating the complex deformation of soft tissues requires a robust mathematical framework capable of describing their nonlinear mechanical behavior under dynamic conditions. We model the material using the hyperelastic Neo-Hookean constitutive law, which is well-suited for large deformations typical of biological tissues \cite{Ogden_1997}. The material's state is described by its strain-energy density function $\Psi$, from which the first Piola-Kirchhoff stress tensor $\bm{P}$ is derived. For the Neo-Hookean model, the strain-energy density is given by:
+Simulating the complex deformation of soft tissues requires a mathematical framework capable of describing their nonlinear mechanical behavior under dynamic conditions. We model the material using the hyperelastic Neo-Hookean constitutive law, which is well-suited for large deformations typical of biological tissues \cite{Ogden_1997}. The material's state is described by its strain-energy density function $\Psi$, from which the first Piola-Kirchhoff stress tensor $\bm{P}$ is derived. For the Neo-Hookean model, the strain-energy density is given by:
 \begin{equation}
 \begin{split}
         \Psi(\bm{F}) = \frac{\mu}{2} (\text{tr}(\bm{F}^T\bm{F}) - 3 \\- 2\ln(\det(\bm{F}))) + \frac{\lambda}{4} ((\det(\bm{F}))^2\\ - 1 - 2\ln(\det(\bm{F}))),
@@ -181,7 +181,7 @@ where $q_i(t)$ are the modal coordinates. External forces are projected onto the
 \section{Methods}
 \label{sec:es:methods}
 
-Our approach enhances the "Neural Modes" framework, initially proposed by Wang et al. \cite{Wang_Du_Coros_Thomaszewski_2024}, which aims to learn nonlinear deformation subspaces by augmenting linear modal analysis with a neural network. While the original work utilized a self-supervised energy minimization approach, we found this challenging for large deformations due to complex energy landscapes and difficulties in sampling the latent space effectively.
+Our approach enhances the ``Neural Modes'' framework, initially proposed by Wang et al. \cite{Wang_Du_Coros_Thomaszewski_2024}, which aims to learn nonlinear deformation subspaces by augmenting linear modal analysis with a neural network. While the original work utilized a self-supervised energy minimization approach, we found this challenging for large deformations due to complex energy landscapes and difficulties in sampling the latent space effectively.
 
 To overcome these limitations, we developed an enhanced framework based on a supervised learning strategy. The core idea remains to represent the total displacement $\bm{u}$ as the sum of a linear modal displacement $\bm{l} = \bm{\Phi} \bm{z}$ and a nonlinear correction $\bm{y}$ predicted by a neural network based on the modal coordinates $\bm{z}$:
 \begin{equation}
@@ -190,6 +190,14 @@ To overcome these limitations, we developed an enhanced framework based on a sup
 \end{equation}
 
 The neural network architecture is a deep residual network specifically designed to learn this nonlinear correction. A key design principle is ensuring that the network outputs a zero correction ($\bm{y}=\bm{0}$) when the input modal coordinate vector is zero ($\bm{z}=\bm{0}$), corresponding to the object's rest state. This is achieved by constructing the network entirely from layers that lack bias terms and by initializing the weights of the final output layer to zero. Residual connections are incorporated to facilitate the training of a deep network capable of capturing complex nonlinear relationships.
+The internal energy \( E(\bm{u}) \) of the deformed configuration is computed following this equation:
+
+
+\begin{equation}
+    E(\bm{u}) = \int_{\Omega} \Psi(\bm{F}(\bm{u})) \, d\Omega,
+\end{equation}
+where $\Psi$ is the Neo-Hookean strain energy density function (as defined in Equation \eqref{eq:neo_hookean_energy}). In the context of the loss function, $\bm{u}$ refers to the predicted total displacement $\bm{X} + \bm{l} + \bm{y}$.
+
 
 The network is trained using a dataset generated from high-fidelity nonlinear FEM simulations. Each data sample consists of a modal coordinate vector $\bm{z}$, the corresponding ground truth full displacement $\bm{u}_{gt}$, and the associated ground truth internal energy $E_{gt}$. The training minimizes a physics-informed loss function, which is a weighted sum of several components:
 \begin{itemize}
@@ -205,9 +213,13 @@ The network is trained using a dataset generated from high-fidelity nonlinear FE
     \begin{equation}
         \mathcal{L}_{ortho} = (\bm{l}^T \bm{y})^2.
     \end{equation}
-    \item \textbf{Boundary Condition Penalty}: A term to enforce prescribed displacement boundary conditions on the predicted displacement $\bm{u}$.
+        \item \textbf{Boundary Condition Penalty}: enforces the displacement boundary conditions on the deformed configuration. For nodes \( j \) belonging to the set of boundary nodes \( \mathcal{B} \), where the displacement is fixed (e.g., to zero), this loss penalizes deviations from the required displacement. It is defined as the sum of squared displacements at the boundary nodes:
+        \begin{equation}
+            \mathcal{L}_{BC} = \frac{1}{N} \sum_{i=1}^N \sum_{j \in \mathcal{B}} \|(\bm{u}_i)_j\|^2,
+        \end{equation}
+        where \( (\bm{u}_i)_j \) is the predicted displacement vector at node \( j \) for the \( i \)-th sample in the batch. This term encourages the network to predict corrections \( \bm{y} \) such that the total displacement \( \bm{u} = \bm{X} + \bm{l} + \bm{y} \) satisfies the fixed boundary conditions.
 \end{itemize}
-The total loss is a weighted sum of these terms, balancing the importance of displacement accuracy, physical consistency (energy), and structural properties (orthogonality, boundary conditions). This supervised, physics-informed approach allows the network to learn accurate nonlinear corrections and generalize effectively, even with a relatively small dataset, by leveraging the physical information embedded in the loss function.
+The total loss is a weighted sum of these terms, balancing the importance of displacement accuracy, physical consistency (energy), and the other properties (orthogonality, boundary conditions). This supervised, physics-informed approach allows the network to learn accurate nonlinear corrections and generalize effectively, even with a relatively small dataset, by leveraging the physical information embedded in the loss function.
 
 The conceptual architecture of the Neural Modes framework can be visualized as:
 
@@ -235,9 +247,9 @@ The conceptual architecture of the Neural Modes framework can be visualized as:
     \label{fig:neural_modes_arch_es}
 \end{figure}
 
-For generating the training data and validating the framework, we employed a modal force generation approach. This method creates external forces by projecting desired modal amplitudes onto the linear modal basis, ensuring that the generated forces induce physically meaningful deformations representative of the system's dominant modes. This allows for controlled generation of training data that spans relevant deformation states.
+For generating the training data and validating the framework, we employed a modal force generation approach. This method creates external forces by projecting desired modal amplitudes onto the linear modal basis, ensuring that the generated forces represents realistic deformations following the system's dominant modes. This allows for controlled generation of training data that spans relevant deformation states.
 
-In dynamic simulations, the enhanced Neural Modes framework determines the modal coordinates at each time step by solving an optimization problem that minimizes a cost function combining inertial terms and the predicted internal energy of the configuration. This optimization is typically solved using an iterative algorithm like L-BFGS-B. The optimization problem for finding the modal coordinates $\bm{z}_{n+1}$ at time step $n+1$, given states at $n$ and $n-1$, is formulated as:
+One of the main strenghts of the Neural Modes framework is its ability to perform dynamic simulations. In this context, once we have trained the model, we can use it to predict the system's behavior over time. The model determines the modal coordinates at each time step by solving an optimization problem that minimizes a cost function combining inertial terms and the predicted internal energy of the configuration. This optimization is typically solved using an iterative algorithm like L-BFGS-B. The optimization problem for finding the modal coordinates $\bm{z}_{n+1}$ at time step $n+1$, given states at $n$ and $n-1$, is formulated as:
 \begin{equation}
 \begin{split}
         \bm{z}_{n+1} = \underset{\bm{z}}{\argmin} \frac{1}{2h^2} \|\bm{n}(\bm{z}) - 2\bm{u}_n + \bm{u}_{n-1}\|_{\bm{M}}^2 \\+ E(\bm{n}(\bm{z})),
@@ -321,7 +333,7 @@ Dynamic validation assessed the model's performance over time. We initialized th
     \label{fig:dynamic_validation_energy_comparison}
 \end{figure}
 
-This indicates that, despite limitations in long-term displacement prediction accuracy when trained solely on static data, the enhanced Neural Modes framework yields physically more plausible dynamic simulations by better conserving energy.
+This indicates that, despite limitations in long-term displacement prediction accuracy when trained solely on static data, the enhanced Neural Modes framework is able to predict a physically consistent energy evolution, which creates a more realistic simulation, albeit with some drift in displacement accuracy over time. 
 
 \section{Conclusion and Future Work}
 \label{sec:es:conclusion}
@@ -330,7 +342,7 @@ This thesis successfully enhanced the Neural Modes framework by adopting a super
 
 The numerical results on benchmark problems, such as the cantilever beam, clearly show the superior performance of the supervised Neural Modes model compared to traditional linear methods for large deformations. This indicates that the framework provides a promising approach for efficient and accurate simulation of hyperelastic materials.
 
-Despite these advancements, avenues for future work remain. Improving the accuracy and stability of dynamic simulations over extended periods is crucial, potentially through more advanced temporal integration schemes or the integration of a fully reduced dynamic model. Extending the framework to handle more complex external forces and different material models would broaden its applicability. Further exploration of neural network architectures could also yield benefits.
+Despite these advancements, a lot of room for future work remain. Improving the accuracy and stability of dynamic simulations over extended periods is crucial, potentially through more advanced temporal integration schemes or the integration of a fully reduced dynamic model.  
 
 Overall, the enhanced Neural Modes framework represents a significant step towards bridging the gap between computational efficiency and simulation accuracy in nonlinear mechanics, highlighting the potential of physics-informed machine learning for real-time simulation applications in fields like biomedical engineering.
 
