@@ -157,7 +157,7 @@
 
 % Insert here the info that will be displayed into your Title page
 % -> title of your work
-\renewcommand{\title}{\noindent A Modified Neural Modes Approach for Soft Tissue Simulation}
+\renewcommand{\title}{\noindent  A Modified Neural Modes Approach for Soft Tissue Simulation}
 
 
 % -> author name and surname
@@ -179,7 +179,7 @@
 The efficacy of the Neural Modes framework is demonstrated through numerical experiments on some 3D benchmark problems, showcasing its potential for applications in biomechanics and surgical simulation where both speed and accuracy are fundamental.
 }
 
-\newcommand{\abstractita}{Questa tesi studia un approccio tramite modelli a ordine ridotto per affrontare le sfide computazionali della simulazione della deformazione dinamica e non lineare dei tessuti molli, in particolare quando si utilizzano i tradizionali metodi agli elementi finiti (FEM). In primo luogo, esaminiamo l'efficienza e l'accuratezza del metodo Neural Modes, sviluppato da Wang et al. \cite{Wang_Du_Coros_Thomaszewski_2024}. Alla base del metodo vi è l'addestramento di una rete neurale per apprendere correzioni non lineari rispetto a una base modale lineare di ordine ridotto. Questo approccio non solo accelera le simulazioni operando in uno spazio di dimensioni ridotte, ma migliora anche l'interpretabilità del modello, poiché le correzioni sono applicate a modalità lineari. Sulla base delle loro idee, sviluppiamo un framework di simulazione che combina il calcolo dell'energia durante l'addestramento della rete, mantenendo le informazioni derivanti dalla fisica all'interno della funzione obiettivo, con una strategia di apprendimento supervisionato che consente alla rete di apprendere correzioni non lineari per grandi deformazioni. 
+\newcommand{\abstractita}{Questa tesi studia un approccio tramite modelli a ordine ridotto per affrontare le sfide computazionali della simulazione della deformazione dinamica e non lineare dei tessuti molli, in particolare quando si utilizzano i tradizionali metodi agli elementi finiti (FEM). In primo luogo, esaminiamo l'efficienza e l'accuratezza del metodo Neural Modes, sviluppato da Wang et al. \cite{Wang_Du_Coros_Thomaszewski_2024}. Alla base del metodo vi è l'addestramento di una rete neurale per apprendere correzioni non lineari rispetto a un’espansione modale lineare di ordine ridotto. Questo approccio non solo accelera le simulazioni operando in uno spazio di dimensioni ridotte, ma migliora anche l'interpretabilità del modello, poiché le correzioni dipendono direttamente dai coefficienti ridotti dell’espansione. Sulla base delle loro idee, sviluppiamo un framework di simulazione che combina il calcolo dell'energia durante l'addestramento della rete, mantenendo le informazioni derivanti dalla fisica all'interno della funzione obiettivo, con una strategia di apprendimento supervisionato che consente alla rete di apprendere correzioni non lineari per grandi deformazioni. 
 L'efficacia del framework Neural Modes è dimostrata attraverso esperimenti numerici su alcuni problemi di benchmark 3D, mostrando il suo potenziale per applicazioni nella biomeccanica e nella simulazione chirurgica, dove velocità e precisione sono fondamentali.
 }
 
@@ -264,11 +264,16 @@ As we move forward, the ongoing development of these hybrid approaches will like
 % automatically inserted and ordered with this command
 
 \newpage
-\textbf{Abstract italiano:} \abstractita
+\section*{Abstract italiano} \abstractita
 
 \begin{tcolorbox}[arc=0pt, boxrule=0pt, colback=bluePoli!60, width=\textwidth, colupper=white]
         \textbf{Parole chiave:} \keywordsita
     \end{tcolorbox}
+%---------------------------------------------------------------------------
+% ACKNOWLEDGEMENTS
+%---------------------------------------------------------------------------
+\newpage
+\input{Sections/acknowledgements.tex}
 
 \end{document}
 

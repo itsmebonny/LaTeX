@@ -51,7 +51,7 @@ The full algorithm is the following one \cite{Rumelhart_Hinton_Williams_1986}
 \end{algorithm}
 
 \subsection{Residual Networks}
-Residual Networks (ResNets), introduced by He et al. \cite{He_Zhang_Ren_Sun_2015}, are a neural network architecture designed to overcome the difficulties in training very deep networks. The core idea is the ``skip connection'', also known as a "shortcut connection", which allows the network to bypass one or more layers. This seemingly simple addition has profound implications for the network's ability to learn and generalize.
+Residual Networks (ResNets), introduced by He et al. \cite{He_Zhang_Ren_Sun_2015}, are a neural network architecture designed to overcome the difficulties in training very deep networks. The core idea is the ``skip connection''c which allows the network to bypass one or more layers. This seemingly simple addition has profound implications for the network's ability to learn and generalize.
 
 To understand skip connections, consider a standard neural network where each layer transforms the input it receives from the previous layer. In contrast, a ResNet introduces an identity mapping, where the input of a layer is added to the output of that layer. This is typically implemented using residual blocks.
 
@@ -133,7 +133,7 @@ The Neural Modes architecture is specifically designed to learn non-linear corre
 
 
 
-The network learns to map from the reduced modal space (\( \mathbb{R}^{\ell_{dim}} \)) to full-dimensional correction vectors (\( \mathbb{R}^{d_u} \)) that improve the accuracy of the linear modal approximation. This architecture, which we call Neural Modes, can be visualized as a mapping from a low-dimensional modal space to a high-dimensional displacement space, where the neural network learns to correct the linear approximation provided by the modal basis. The following figure \ref{fig:neural_modes_arch} illustrates the architecture:
+The network learns to map from the reduced modal space (\( \mathbb{R}^{\ell_{dim}} \)) to full-dimensional correction vectors (\( \mathbb{R}^{d_u} \)) that improve the accuracy of the linear modal approximation. This architecture, which we call Neural Modes, can be visualized as a mapping from a low-dimensional modal space to a high-dimensional displacement space, where the neural network learns to correct the linear approximation provided by the modal basis. The following Figure \ref{fig:neural_modes_arch} illustrates the architecture:
 \begin{figure}[H]    \centering
     \begin{tikzpicture}
         % Modal coordinate (z)

@@ -21,7 +21,7 @@ Both geometries are discretized using tetrahedral finite elements, with mesh ref
 
 \subsection{Optimal number of modes}
 \label{sec:optimal_number_modes}
-One of the first steps is clearly to determine the optimal number of modes to be used in the approximation. Using a low number of modes compromises the ability of reconstruction of the model, while choosing a number of modes that is too high, means that the complexity of the model increases, but the ability to reconstruct the displacement field doesn't increase much. The figure \ref{fig:optimal_number_modes} shows the error in the approximation of the displacement field as a function of the number of modes used. The error is computed as the Root Mean Square Error (RMSE) \eqref{eq:rmse}between the displacement field computed with the full model and the one computed with the reduced model. Figure \ref{fig:optimal_number_modes} shows that the error decreases rapidly with the number of modes used, and then stabilizes around 20 modes. We can see that with 10 modes the error is already below \(10^{-3}\) and with 20 modes the error is below \(10^{-4}\). For our use case, 7 modes are sufficient.
+One of the first steps is clearly to determine the optimal number of modes to be used in the approximation. Using a low number of modes compromises the ability of reconstruction of the model, while choosing a number of modes that is too high, means that the complexity of the model increases, but the ability to reconstruct the displacement field doesn't increase much. The figure \ref{fig:optimal_number_modes} shows the error in the approximation of the displacement field as a function of the number of modes used. The error is computed as the Root Mean Square Error (RMSE) \eqref{eq:rmse} between the displacement field computed with the full model and the one computed with the reduced model. Figure \ref{fig:optimal_number_modes} shows that the error decreases rapidly with the number of modes used, and then stabilizes around 20 modes. We can see that with 10 modes the error is already below \(10^{-3}\) and with 20 modes the error is below \(10^{-4}\). For our use case, 7 modes are sufficient.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{Images/rmse_vs_modes.png}
@@ -113,6 +113,7 @@ To provide additional insights into the model's performance, Figure \ref{fig:sta
     \includegraphics[width=0.8\textwidth]{Images/beam_static_energy.png}
     \caption{Internal mechanical energy of the beam as a function of the applied force. The blue line represents the energy computed by the neural network model, while the red line is the ground truth obtained from the nonlinear FEM solution. The green line represents the energy computed by the FEM with linear elasticity and the orange line is the energy computed by the linear modes model.}
     \label{fig:static_energy_beam}
+    %WRONG IMAGE, I WILL CHANGE IT ASAP
 \end{figure}
 
 
@@ -202,7 +203,7 @@ Things change drastically when we take a look at the internal energy of the syst
     \label{fig:dynamic_validation_energy_comparison}
     \end{figure}
 
-This will be discussed more thoroughly in the conclusions of this thesis, but the main problem lies in the way the dynamic problem is set up \eqref{eq:dynamic_problem}. Since it is using a quasi-Newton method to optimize a cost function to find the best trajectory in the reduced space, we are already adding errors by using L-BFGS. We can see that, once the network is trained, is able to produce realistic simulation, but we completely miss on the accuracy of those simulations. This opens up to future improvements to this work, like computing the trajectory of the modal coordinates directly with a reduced system of equations as will be suggested in the next section.
+This will be discussed in more detail in the conclusions of this thesis, but the main problem lies in the way the dynamic problem is set up \eqref{eq:dynamic_problem}. Since we are using a quasi-Newton method to optimize a cost function to find the best trajectory in the reduced space, we are already adding errors using L-BFGS. We can see that, once the network is trained, is able to produce realistic simulation, but we completely miss on the accuracy of those simulations. This opens up to future improvements to this work, like computing the trajectory of the modal coordinates directly with a reduced system of equations, as will be suggested in the next section.
 
 
 \FloatBarrier % Place this after the section where you want to stop floats from moving forward
