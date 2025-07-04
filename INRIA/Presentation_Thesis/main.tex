@@ -212,44 +212,41 @@
 \begin{frame}{Our improvements}
     Despite the promising results of the Neural Modes paper, we identified several limitations that motivated our work:
     \begin{itemize}
-        \item \textbf{Limited range of deformations:} Our experiments showed that the self-supervised approach struggles with large, nonlinear deformations, leading to significant errors.
-        \item \textbf{Origin penalty:} The original paper imposes a penalty on the network output to ensure that the rest state (zero modal coordinates) produces a zero correction. We employed a different approach, using bias-free layers to guarantee this property by design.
-        \item \textbf{Neo-Hookean model:} The original Neural Modes framework is designed for St.Venant-Kirchhoff materials, but we needed a framework that can handle the Neo-Hookean model, which is more suitable for soft tissue simulation.
-        \end{itemize}    
+        \item \textbf{Limited deformation range:} The self-supervised approach fails for large nonlinear deformations.
+          \item \textbf{Rest state correction:} We replaced the original penalty with bias-free layers for zero correction at rest.
+          \item \textbf{Material model:} Adapted the framework for Neo-Hookean materials, suitable for soft tissue simulation.    
+    \end{itemize}
 \end{frame}
 
-\begin{frame}{Architectural Choice: Residual Networks (ResNets)}
-    \frametitle{Architectural Choice: Residual Networks (ResNets)}
+% \begin{frame}{Residual Networks (ResNets)}    
+%     We employ a Residual Network (ResNet) \cite{He_Zhang_Ren_Sun_2015}.
     
-    We employ a Residual Network (ResNet) \cite{He_Zhang_Ren_Sun_2015}.
+%     \begin{block}{Skip Connections}
+%         Instead of learning a direct transformation \( \mathcal{F}(\bm{x}) \), a ResNet block learns a residual function \( \mathcal{R}(\bm{x}) \). The output is the sum of the input and the residual:
+%         \begin{equation*}
+%             \bm{x}_{\text{out}} = \bm{x}_{\text{in}} + \mathcal{R}(\bm{x}_{\text{in}})
+%         \end{equation*}
+%     \end{block}
     
-    \begin{block}{Skip Connections}
-        Instead of learning a direct transformation \( \mathcal{F}(\bm{x}) \), a ResNet block learns a residual function \( \mathcal{R}(\bm{x}) \). The output is the sum of the input and the residual:
-        \begin{equation*}
-            \bm{x}_{\text{out}} = \bm{x}_{\text{in}} + \mathcal{R}(\bm{x}_{\text{in}})
-        \end{equation*}
-    \end{block}
-    
-    \begin{figure}
-        \centering
-        \begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}]
-            \node[rectangle, draw, minimum width=2cm, minimum height=1cm] (input) at (0,0) {Input $\bm{x}$};
-            \node[rectangle, draw, minimum width=2cm, minimum height=1cm, right=of input, node distance=3.5cm] (layer1) {Layer $\mathcal{R}(\bm{x})$};
-            \node[circle, draw, inner sep=2pt, right=of layer1, node distance=2.5cm] (plus) {$+$};
-            \node[rectangle, draw, minimum width=2.5cm, minimum height=1cm, right=of plus, node distance=2.5cm] (output) {Output $\bm{x} + \mathcal{R}(\bm{x})$};
-            \draw[->] (input) -- (layer1);
-            \draw[->] (layer1) -- (plus);
-            \draw[->] (plus) -- (output);
-            \draw[->] (input) to[bend left=45] (plus); % Skip connection
-        \end{tikzpicture}
-        \caption{A residual block with a skip connection.}
-    \end{figure}
+%     \begin{figure}
+%         \centering
+%         \begin{tikzpicture}[scale=0.8, every node/.style={scale=0.8}]
+%             \node[rectangle, draw, minimum width=2cm, minimum height=1cm] (input) at (0,0) {Input $\bm{x}$};
+%             \node[rectangle, draw, minimum width=2cm, minimum height=1cm, right=of input, node distance=3.5cm] (layer1) {Layer $\mathcal{R}(\bm{x})$};
+%             \node[circle, draw, inner sep=2pt, right=of layer1, node distance=2.5cm] (plus) {$+$};
+%             \node[rectangle, draw, minimum width=2.5cm, minimum height=1cm, right=of plus, node distance=2.5cm] (output) {Output $\bm{x} + \mathcal{R}(\bm{x})$};
+%             \draw[->] (input) -- (layer1);
+%             \draw[->] (layer1) -- (plus);
+%             \draw[->] (plus) -- (output);
+%             \draw[->] (input) to[bend left=45] (plus); % Skip connection
+%         \end{tikzpicture}
+%         \caption{A residual block with a skip connection.}
+%     \end{figure}
     
 
-\end{frame}
+% \end{frame}
 
-\begin{frame}{Our Model: The Neural Modes Architecture}
-    \frametitle{Our Model: The Neural Modes Architecture}
+\begin{frame}[allowframebreaks]{The Neural Modes Architecture}
     
     We designed a specific ResNet to learn nonlinear deformation modes.
     
@@ -274,7 +271,7 @@
             \node at (2.75, 1.5) {$\bm{y}$}; % Label inside the rectangle
             % NN mapping
             \draw[fill=blue!60,opacity=0.8] (-2,1) -- (2,-0) -- (2,3) -- (-2,2) -- cycle;
-            \node[white] at (0,1.5) {Neural Network};
+            \node[white] at (0,1.5) {Energy + Disp. Loss};
             % Arrow
             \draw[thick,->] (-2.5, 1.5) -- (-2, 1.5);
             \draw[thick,->] (2, 1.5) -- (2.5, 1.5);
@@ -286,30 +283,24 @@
     \textbf{Key Feature:} The network is designed with bias-free layers to guarantee that an input of \(\mathbf{z}=\bm{0}\) (rest state) produces an output of \(\bm{y}=\bm{0}\), ensuring physical correctness by design.
 \end{frame}
 
-\begin{frame}{Training Strategy: Supervised Learning}
-    \frametitle{Training Strategy: A Supervised, Physics-Informed Approach}
+\begin{frame}[allowframebreaks]{Training the network}
     
-    While the original Neural Modes work \cite{Wang_Du_Coros_Thomaszewski_2024} used a data-free, energy-minimization approach, we adopt a supervised strategy for robustness.
+    While the original Neural Modes work \cite{Wang_Du_Coros_Thomaszewski_2024} used a self-supervised approach, we opted for a hybrid supervised method that combines data-driven learning with physical constraints.
     
-    \begin{block}{Our Supervised Approach}
+    \begin{block}{Supervised Approach}
         \begin{enumerate}
-            \item \textbf{Generate a Dataset:} We use a high-fidelity FEM solver to create a dataset of ground truth samples: \( (\mathbf{z}, \bm{u}_{gt}, E_{gt}) \), where:
+            \item \textbf{Generate a Dataset:} We use a high-fidelity FEM solver to create a dataset of ground truth samples: \( (\mathbf{z}, \bm{u}_{FEM}, E_{FEM}) \), where:
             \begin{itemize}
                 \item \( \mathbf{z} \) are the input modal coordinates.
-                \item \( \bm{u}_{gt} \) is the full nonlinear ground truth displacement.
-                \item \( E_{gt} \) is the ground truth internal energy.
+                \item \( \bm{u}_{FEM} \) is the full nonlinear ground truth displacement.
+                \item \( E_{FEM} \) is the ground truth internal energy.
             \end{itemize}
             \item \textbf{Train the Network:} We train the network to minimize a composite loss function that forces the prediction to match the ground truth data while respecting physical laws.
         \end{enumerate}
     \end{block}
-    
-    \begin{alertblock}{Advantage}
-        This supervised method avoids difficult energy landscapes and ensures the network learns from physically valid, large-deformation examples, leading to better generalization.
-    \end{alertblock}
 \end{frame}
 
-\begin{frame}{The Loss Function: Blending Data and Physics}
-    \frametitle{The Loss Function: Blending Data and Physics}
+\begin{frame}[allowframebreaks]{The Loss Function}
     
     Our total loss function is a weighted sum of four components:
     \begin{equation*}
@@ -319,12 +310,12 @@
     \begin{description}
         \item[\(\mathcal{L}_u\) (Displacement Loss)] The primary supervised signal. Enforces that the predicted displacement matches the FEM ground truth.
         \begin{equation*}
-            \mathcal{L}_u = \text{MSE}(\bm{X} + \bm{l} + \bm{y}, \quad \bm{u}_{gt})
+            \mathcal{L}_u = \text{MSE}(\bm{u}_{pred}, \quad \bm{u}_{FEM})
         \end{equation*}
         
         \item[\(\mathcal{L}_E\) (Energy Loss)] A physics-informed term. Ensures the predicted configuration has the correct internal strain energy (compared on a log scale for stability).
         \begin{equation*}
-            \mathcal{L}_E = \text{MSE}(\log_{10}(E_{pred}), \quad \log_{10}(E_{gt}))
+            \mathcal{L}_E = \text{MSE}(\log_{10}(E_{pred}), \quad \log_{10}(E_{FEM}))
         \end{equation*}
         
         \item[\(\mathcal{L}_{ortho}\) (Orthogonality Loss)] A geometric constraint ensuring the nonlinear correction \(\bm{y}\) is orthogonal to the linear displacement \(\bm{l}\).
@@ -333,16 +324,14 @@
     \end{description}
 \end{frame}
 
-\begin{frame}{Data Generation via Modal Forces}
-    \frametitle{Data Generation via Modal Forces}
+\begin{frame}[allowframebreaks]{Data Generation}
     
-    To create a meaningful training dataset, we need physically plausible deformations.
+    To create a meaningful training dataset, we need physically plausible deformations, with a balance between number of samples and diversity of configurations.
+
+    But, for complex geometries, applying random forces can become increasingly difficult, especially if we want a smooth data generation pipeline for users. 
+
     
-    \begin{block}{Problem}
-        How do we generate external forces that produce a rich and relevant set of deformations?
-    \end{block}
-    
-    \begin{block}{Our Solution: Modal Forces}
+    \begin{block}{Modal Forces}
         \begin{enumerate}
             \item We linearize the system at rest to get the stiffness matrix \(\mathbb{K}\).
             
@@ -354,47 +343,46 @@
             \end{equation*}
             where \(\bm{q}\) is a vector of modal force coefficients that we can control.
             
-            \item We apply these physically-grounded forces \(\bm{f}^{ext}\) to the \textbf{full nonlinear FEM solver} to compute the ground truth displacement \(\bm{u}_{gt}\) and energy \(E_{gt}\).
+            \item We apply these physically-grounded forces \(\bm{f}^{ext}\) to the \textbf{full nonlinear FEM solver} to compute the ground truth displacement \(\bm{u}_{FEM}\) and energy \(E_{FEM}\).
         \end{enumerate}
     \end{block}
     
-    This ensures our training data is based on the object's natural deformation patterns.
 \end{frame}
 
-\begin{frame}{The Importance of Realistic Sampling}
-    \frametitle{The Importance of Realistic Sampling}
+\begin{frame}{Sampling Latent Space}
     
     \begin{columns}[T]
         \begin{column}{0.5\textwidth}
-            \textbf{Problem: Random Sampling}
+            \textbf{Random Sampling}
             
-            Simply picking random modal coordinates \(\mathbf{z}\) often results in physically implausible, high-energy configurations.
+            Picking random \(\mathbf{z}\) from a uniform distribution often results in high-energy configurations.
+
+            \textbf{Structured Data Generation}
             
+            The supervised approach generates samples of \(\mathbf{z}\) that are:
+            \begin{itemize}
+                \item Physically plausible.
+                \item Cover the most important deformation patterns of the object.
+            \end{itemize}
+            
+
+        \end{column}
+        
+        \begin{column}{0.5\textwidth}
+
             \begin{figure}
                 \includegraphics[width=\textwidth]{Images/z_random.png}
                 \caption{Unnatural deformation from random sampling of high-frequency modes.}
                 \label{fig:bad_sampling}
             \end{figure}
-        \end{column}
-        
-        \begin{column}{0.5\textwidth}
-            \textbf{Solution: Structured Data Generation}
-            
-            Our modal force approach generates deformations that are:
-            \begin{itemize}
-                \item Physically plausible.
-                \item Energetically favorable.
-                \item Cover the most important deformation patterns of the object.
-            \end{itemize}
-            
-            \vspace{2em}
-            This ensures the network is trained on meaningful examples, leading to a more robust and accurate model.
+           
         \end{column}
     \end{columns}
+
+    
 \end{frame}
 
-\begin{frame}{Application: Fast Dynamic Simulation}
-    \frametitle{Application: Fast Dynamic Simulation}
+\begin{frame}{Dynamic Simulation}
     
     Once trained, the Neural Modes network enables rapid dynamic simulations.
     
@@ -407,16 +395,12 @@
         where \(\bm{n}(\mathbf{z})\) is the full displacement predicted by our Neural Modes model.
     \end{block}
     
-    \begin{alertblock}{Result}
-        This approach drastically reduces the computational cost per time step, making real-time simulation of large, nonlinear deformations feasible.
-    \end{alertblock}
 \end{frame}
 
 
-\begin{frame}{Numerical Experiments: Setup}
-    \frametitle{Numerical Experiments: Setup and Test Cases}
+\begin{frame}{Numerical Results}
     
-    We validate our method on two 3D geometries with soft tissue properties ($E = 10^6$ Pa, $\nu = 0.45$).
+    We validate our method on two 3D geometries with soft tissue properties ($E = 10^6$ Pa, $\nu = 0.45$). Numerical results showed us that between \textbf{7 and 10 modes} are sufficient to capture the nonlinear deformation behavior of these objects.
     
     \begin{columns}[T]
         \begin{column}{0.45\textwidth}
@@ -430,22 +414,16 @@
         \end{column}
         
         \begin{column}{0.55\textwidth}
-            \textbf{2. Stanford Bunny} \cite{bunny-mesh}
+            \textbf{2. Stanford Bunny}
             \begin{itemize}
                 \item A complex, realistic geometry.
                 \item Tests robustness and generalization.
-                \item Irregular shape leads to coupled, intricate deformation modes.
+                \item Irregular shape leads to complex nonlinear deformation.
                 \item Discretized with ~22,000 tetrahedral elements.
             \end{itemize}
-            \begin{figure}
-                \includegraphics[width=0.6\textwidth]{Images/stanford_bunny.png}
-            \end{figure}
+    
         \end{column}
     \end{columns}
-    
-    \begin{alertblock}{Optimal Number of Modes}
-        An initial analysis showed that using \textbf{7 modes} provides a good balance between accuracy and model complexity, achieving a displacement error below $10^{-3}$.
-    \end{alertblock}
 \end{frame}
 
 \begin{frame}{Training and Model Justification}

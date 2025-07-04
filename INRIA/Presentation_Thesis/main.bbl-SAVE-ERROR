@@ -182,58 +182,6 @@
       \verb http://arxiv.org/abs/2404.17620
       \endverb
     \endentry
-    \entry{He_Zhang_Ren_Sun_2015}{article}{}
-      \name{author}{4}{}{%
-        {{hash=6b4b60e909e78633945f3f9c9dc83e01}{%
-           family={He},
-           familyi={H\bibinitperiod},
-           given={Kaiming},
-           giveni={K\bibinitperiod}}}%
-        {{hash=5e72bc22dbcf0984c6d113d280e36990}{%
-           family={Zhang},
-           familyi={Z\bibinitperiod},
-           given={Xiangyu},
-           giveni={X\bibinitperiod}}}%
-        {{hash=bb295293acacd54387339079ebbe4ead}{%
-           family={Ren},
-           familyi={R\bibinitperiod},
-           given={Shaoqing},
-           giveni={S\bibinitperiod}}}%
-        {{hash=f85751488058842b5777c7b4074077b5}{%
-           family={Sun},
-           familyi={S\bibinitperiod},
-           given={Jian},
-           giveni={J\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {arXiv}%
-      }
-      \strng{namehash}{6edb98fe38401d2fe4a026f5ce6e8451}
-      \strng{fullhash}{42c4b52dc3a62cebabbc11c73e1afb53}
-      \strng{bibnamehash}{6edb98fe38401d2fe4a026f5ce6e8451}
-      \strng{authorbibnamehash}{6edb98fe38401d2fe4a026f5ce6e8451}
-      \strng{authornamehash}{6edb98fe38401d2fe4a026f5ce6e8451}
-      \strng{authorfullhash}{42c4b52dc3a62cebabbc11c73e1afb53}
-      \field{labelalpha}{He+15}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{month}{12}
-      \field{note}{arXiv:1512.03385 [cs]}
-      \field{number}{arXiv:1512.03385}
-      \field{title}{Deep Residual Learning for Image Recognition}
-      \field{year}{2015}
-      \verb{doi}
-      \verb 10.48550/arXiv.1512.03385
-      \endverb
-      \verb{urlraw}
-      \verb http://arxiv.org/abs/1512.03385
-      \endverb
-      \verb{url}
-      \verb http://arxiv.org/abs/1512.03385
-      \endverb
-    \endentry
     \entry{bunny-mesh}{misc}{}
       \name{author}{1}{}{%
         {{hash=b962f3dccc305dbd0ce1dc6958107f6b}{%
