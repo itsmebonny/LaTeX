@@ -29,7 +29,14 @@
 \addbibresource{mimesis.bib}
 
 
-
+\newcommand{\supervisors}[2]{
+  
+    \hspace{-0.8em}
+  \begin{tabular}{ll}
+  \small Advisor: & \small #1 \\
+  \small Co-advisor: & \small #2
+  \end{tabular}
+}
 
 
 
@@ -40,10 +47,10 @@
 
 
 
-
 \title{A Modified Neural Modes Framework for\\ Soft Tissue Simulation}
-\author{Andrea Bonifacio}
-\date{}
+\author{Andrea Bonifacio }
+\date{AY: 2024-2025  \vspace{-5em} \hspace{2cm} \supervisors{Prof. Stefano Pagani}{Dr. Stéphane Cotin}
+}
 
 \begin{document}
 
@@ -51,87 +58,88 @@
 \titlepage
 \end{frame}
 
-\begin{frame}{Introduction: The Challenge of High-Fidelity Simulation}
+\begin{frame}{The problem: Soft Tissue Simulation}
+    \begin{columns}[T]
+        \begin{column}{0.6\textwidth}
+            \begin{itemize}
+                \item Soft tissue simulation is crucial in medical applications, such as computer-assisted surgery.
+                \item High-fidelity simulations are computationally expensive, making real-time applications challenging.
+                \item There is a strong need for fast, accurate methods that can handle large, nonlinear deformations.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.4\textwidth}
+            \begin{figure}
+                \centering
+                    \includegraphics[width=\textwidth]{Images/liver.png}
+                    \caption{Phases of the meshing process from MRI scan to obtain a digital twin of a liver. Figure from \cite{Courtecuisse_Peterlik_Trivisonne_Duriez_Cotin_2014}.}
+            \end{figure}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Related Work}
     \begin{itemize}
-        \item Finite Element Method (FEM) is a powerful tool for simulating complex physical phenomena like object deformation, but it is computationally expensive \cite{Quarteroni_2017}.
-        
-        \item High accuracy requires a large number of Degrees of Freedom (DOFs), making real-time applications, such as surgical simulation, very challenging.
-        
-        \item Reduced-Order Models (ROMs), like linear modal analysis, offer a significant speed-up by reducing the DOFs. However, they are often limited to small, linear deformations \cite{Pentland_Williams_1989}.
-        
-        \item \textbf{Our Goal:} To develop a method that combines the speed of ROMs with the accuracy of high-fidelity models for large, nonlinear deformations by leveraging Deep Learning.
-        
+        \item \textbf{MeshGraphNet} \cite{pfaffLearningMeshBasedSimulation2021a} and similar deep learning models have demonstrated impressive speedups in physical simulations.
+        \item However, these models are often \textbf{black-box} in nature, and they tend to \textbf{accumulate errors} over time, leading to inaccuracies in long-term simulations.
+        \item  We take inspiration from the \textbf{Neural Modes} framework \cite{Wang_Du_Coros_Thomaszewski_2024}, which tries to address these issues.
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Our Approach: Physics-Informed Neural Modes}
-    \begin{itemize}
-        \item \textbf{Related Work:} End-to-end deep learning models, such as MeshGraphNet \cite{pfaffLearningMeshBasedSimulation2021a}, have shown impressive speedups but can be difficult to interpret and may accumulate errors over time.
+
+\begin{frame}{Mathematical Framework}
+    \begin{columns}[T]
+        \begin{column}{0.5\textwidth}
+            \textbf{Neo-Hookean Model}
+            \begin{itemize}
+                \item A hyperelastic mechanical model designed to capture large, nonlinear deformations in soft tissues.
+                \item Suitable for applications requiring accurate stress-strain relationships and volume changes.
+                \item Commonly used in biomechanics and soft tissue simulations.
+            \end{itemize}
+        \end{column}
         
-        \item \textbf{Our Method:} We propose a hybrid approach that enhances a classical ROM.
-        \begin{itemize}
-            \item We start with an efficient linear modal basis.
-            \item We train a neural network to learn a \textbf{nonlinear correction} to this basis.
-            \item The network is guided by physics: it learns to minimize the system's potential energy, ensuring physically plausible results.
-        \end{itemize}
-        
-        \item \textbf{Key Advantages:}
-        \begin{itemize}
-            \item \textbf{Fast:} Retains the computational efficiency of the reduced-order model.
-            \item \textbf{Accurate:} Captures the complex nonlinearities of large deformations.
-            \item \textbf{Interpretable:} The learned corrections modify well-understood physical modes, providing insight into the system's behavior.
-        \end{itemize}
-        
-    \end{itemize}
+        \begin{column}{0.5\textwidth}
+            \textbf{Linear Modal Analysis}
+            \begin{itemize}
+                \item A classical technique for simplifying dynamic systems by reducing their complexity.
+                \item Focuses on dominant vibration shapes to approximate system behavior.
+                \item Efficient for small deformations but struggles with nonlinear effects in large deformations.
+            \end{itemize}
+        \end{column}
+    \end{columns}
 \end{frame}
 
-\begin{frame}{Mathematical Framework: Overview}
-    \begin{itemize}
-        \item Our goal is to simulate complex, nonlinear soft tissue deformation accurately and efficiently.
-        \vspace{1em}
-        \item To achieve this, our framework is built on three core components:
-        
-        \begin{enumerate}
-            \item \textbf{A Hyperelastic Mechanical Model:} We use the Neo-Hookean model to capture the large, nonlinear deformations characteristic of soft tissues \cite{Ogden_1997}.
-            \vspace{1em}
-            
-            \item \textbf{Linear Modal Analysis:} A classical technique to create a reduced-order model (ROM) for fast simulation by simplifying the system's dynamics \cite{Pentland_Williams_1989}.
-            \vspace{1em}
-            
-            \item \textbf{Neural Mode Corrections:} Our novel contribution, which uses deep learning to correct for the inaccuracies introduced by the linear model (to be discussed in the Methods section).
-        \end{enumerate}
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{Mechanical Model: Continuum Mechanics}
-    \frametitle{Mechanical Model: Continuum Mechanics}
-    
-    We model deformation using a displacement field \(\bm{u}(\bm{X},t)\) which maps points from a reference configuration \(\bm{X}\) to a deformed configuration \(\bm{x}\).
-    \begin{equation*}
-        \bm{x}(\bm{X},t) = \bm{X} + \bm{u}(\bm{X},t)
-    \end{equation*}
-
-    \begin{block}{Deformation Gradient}
-        The local deformation is described by the deformation gradient \(\bm{F}\):
-        \begin{equation}
-            \bm{F} = \frac{\partial \bm{x}}{\partial \bm{X}} = \bm{I} + \nabla_{\mathbf{X}} \bm{u}
-        \end{equation}
-    \end{block}
+\begin{frame}{Neo-Hookean Model}
+    We define the deformation of a material point \(\bm{X}\) in the reference configuration to its position \(\bm{x}(\bm{X},t)\) in the current configuration at time \(t\), and the deformation gradient \(\bm{F}\) as:
+    \begin{equation}
+        \bm{x}(\bm{X},t) = \bm{X} + \bm{u}(\bm{X},t), \quad \bm{F} = \frac{\partial \bm{x}}{\partial \bm{X}} = \bm{I} + \nabla_{\mathbf{X}} \bm{u}.
+    \end{equation}
     
     \begin{block}{Neo-Hookean Hyperelasticity}
-        We use the Neo-Hookean strain-energy density function $\Psi$, which is well-suited for large deformations in biological tissues.
+        We use the Neo-Hookean strain-energy density function $\Psi$,
         \begin{equation}
-            \Psi(\bm{F}) = \frac{\mu}{2} (I_C - 3 - 2\ln(J)) + \frac{\lambda}{4} (J^2 - 1 - 2\ln(J))
+            \Psi(\bm{F}) = \frac{\mu}{2} (I_C - 3 - 2\ln(J)) + \frac{\lambda}{4} (J^2 - 1 - 2\ln(J)),
         \end{equation}
         where \(\mu, \lambda\) are material parameters and \(J = \det(\bm{F})\) is the volume change.
     \end{block}
 \end{frame}
 
-\begin{frame}{The Full-Order Model (FOM)}
-    \frametitle{The Full-Order Model (FOM): Governing Equations}
-    
+\begin{frame}{Neo-Hookean Model}
     The stress in the material is derived from the strain energy: \(\bm{P} = \frac{\partial \Psi}{\partial \bm{F}}\).
     
+    \begin{block}{Static Problem}
+        The dynamic behavior of the object is governed by the following system of PDEs, which represents the full-order model. Solving this system is accurate but computationally expensive.
+        \begin{equation}
+            \begin{cases}
+                - \nabla_X \cdot \bm{P} = \bm{b} \quad \text{in} \quad \Omega, \\
+                \bm{u} = \bm{u}_D \quad \text{on} \quad \Gamma_D, \\
+                \bm{P} \cdot \bm{N} = \bm{t} \quad \text{on} \quad \Gamma_N.
+            \end{cases}
+        \end{equation}
+        Here, \(\bm{b}\) are body forces, and the equations are subject to boundary conditions on \(\Gamma_D\) (prescribed displacement) and \(\Gamma_N\) (applied traction).
+    \end{block}
+\end{frame}
+
+\begin{frame}{Neo-Hookean Model}    
     \begin{block}{Equation of Motion}
         The dynamic behavior of the object is governed by the following system of PDEs, which represents the full-order model. Solving this system is accurate but computationally expensive.
         \begin{equation}
@@ -141,14 +149,12 @@
                 \bm{P} \cdot \bm{N} = \bm{t} \quad \text{on} \quad \Gamma_N.
             \end{cases}
         \end{equation}
-        Here, \(\rho\) is density, \(\bm{b}\) are body forces, and the equations are subject to boundary conditions on \(\Gamma_D\) (prescribed displacement) and \(\Gamma_N\) (applied traction).
+        Here, \(\rho\) is density, and the rest of the notation is as before.
     \end{block}
 \end{frame}
 
-\begin{frame}{Dimensionality Reduction: Linear Modal Analysis}
-    \frametitle{Dimensionality Reduction: Linear Modal Analysis}
+\begin{frame}[allowframebreaks]{Modal Analysis}
     
-    To accelerate simulations, we reduce the problem's complexity using linear modal analysis.
     \begin{block}{Core Idea}
         Approximate the full deformation as a linear combination of a few dominant, low-frequency vibration shapes (modes).
     \end{block}
@@ -171,48 +177,53 @@
     \end{enumerate}
 \end{frame}
 
-\begin{frame}{The Limitation of Linear Modes}
-    \frametitle{The Limitation of Linear Modes: Why We Need More}
-    
+\begin{frame}{The Limitation of Linear Modes}    
     \begin{alertblock}{Fundamental Problem}
         Linear modal analysis is built on a \textbf{linearization} around the undeformed state. This approximation is only valid for small deformations.
     \end{alertblock}
     
-    When deformations become large, as is common with soft tissues:
+    When deformations become large:
     \begin{itemize}
-        \item The constant stiffness matrix \(\bm{K}\) no longer accurately represents the material's true nonlinear response.
-        \vspace{1em}
         \item The model fails to capture key nonlinear effects.
-        \vspace{1em}
         \item This leads to physically unrealistic behavior, such as incorrect volume changes and inaccurate stress distributions.
     \end{itemize}
     
-    \bigskip
-    \
-    \textbf{Conclusion:} While fast, linear modes are insufficient for accurate large deformation simulation. This motivates our work to develop a method that corrects these linear modes to account for nonlinearities.
+    While fast, linear modes are insufficient for accurate large deformation simulation. This motivates our work to develop a method that account for nonlinearities.
 \end{frame}
 
-\begin{frame}{Methodology: Overview}
-    \frametitle{Methodology: An Overview of Our Approach}
-    Our method is designed to learn and simulate complex nonlinear deformations efficiently. The workflow consists of four main stages:
+\begin{frame}[allowframebreaks]{Neural Modes Paper}
+    The original Neural Modes framework \cite{Wang_Du_Coros_Thomaszewski_2024} introduces a novel approach to simulate nonlinear deformations by correcting the output of linear modes using a neural network. The methodology consists of the following key stages:
     
     \begin{enumerate}
-        \item \textbf{Architectural Choice:} We use a Residual Neural Network (ResNet) to learn corrections to a linear model. This architecture is ideal for learning small, nonlinear adjustments.
+        \item \textbf{Linear Modal Approximation:} The deformation is initially approximated using classical linear modal analysis, which is computationally efficient but fails to capture nonlinear effects.
         \vspace{1em}
-        \item \textbf{Data Generation:} We create a high-quality training dataset by applying "Modal Forces" to a full Finite Element (FEM) solver, ensuring physically plausible deformation examples.
+        \item \textbf{Neural Network Correction:} A neural network is trained to learn the nonlinear corrections to the linear modal approximation. The network maps low-dimensional modal coordinates to high-dimensional corrections.
         \vspace{1em}
-        \item \textbf{Supervised Training:} We train the network using a physics-informed loss function that combines data-driven accuracy with physical constraints (energy, boundary conditions).
+        \item \textbf{Self-Supervised Training:} Instead of relying on ground truth data, the network is trained by minimizing the object's internal strain energy, ensuring physically plausible corrections.
         \vspace{1em}
-        \item \textbf{Dynamic Simulation:} The trained network is integrated into a dynamic solver to enable fast and accurate simulations by operating in a reduced-dimensional space.
+        \item \textbf{Dynamic Simulation:} The corrected modal approximation is used in a reduced-order dynamic solver, enabling fast simulations of large, nonlinear deformations.
     \end{enumerate}
+    
+    \begin{alertblock}{Key Insight}
+        The self-supervised approach leverages physical principles to guide the learning process, avoiding the need for extensive labeled datasets while maintaining computational efficiency.
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{Our improvements}
+    Despite the promising results of the Neural Modes paper, we identified several limitations that motivated our work:
+    \begin{itemize}
+        \item \textbf{Limited range of deformations:} Our experiments showed that the self-supervised approach struggles with large, nonlinear deformations, leading to significant errors.
+        \item \textbf{Origin penalty:} The original paper imposes a penalty on the network output to ensure that the rest state (zero modal coordinates) produces a zero correction. We employed a different approach, using bias-free layers to guarantee this property by design.
+        \item \textbf{Neo-Hookean model:} The original Neural Modes framework is designed for St.Venant-Kirchhoff materials, but we needed a framework that can handle the Neo-Hookean model, which is more suitable for soft tissue simulation.
+        \end{itemize}    
 \end{frame}
 
 \begin{frame}{Architectural Choice: Residual Networks (ResNets)}
     \frametitle{Architectural Choice: Residual Networks (ResNets)}
     
-    We employ a Residual Network (ResNet) \cite{He_Zhang_Ren_Sun_2015} due to its suitability for our task.
+    We employ a Residual Network (ResNet) \cite{He_Zhang_Ren_Sun_2015}.
     
-    \begin{block}{Core Idea: Skip Connections}
+    \begin{block}{Skip Connections}
         Instead of learning a direct transformation \( \mathcal{F}(\bm{x}) \), a ResNet block learns a residual function \( \mathcal{R}(\bm{x}) \). The output is the sum of the input and the residual:
         \begin{equation*}
             \bm{x}_{\text{out}} = \bm{x}_{\text{in}} + \mathcal{R}(\bm{x}_{\text{in}})
@@ -234,9 +245,7 @@
         \caption{A residual block with a skip connection.}
     \end{figure}
     
-    \begin{alertblock}{Why is this perfect for us?}
-        Our goal is to \textbf{correct} a linear modal approximation. The ResNet naturally preserves the input (the linear part) via the skip connection and focuses on learning the necessary \textbf{nonlinear correction} in the residual block.
-    \end{alertblock}
+
 \end{frame}
 
 \begin{frame}{Our Model: The Neural Modes Architecture}
@@ -526,7 +535,7 @@
             \begin{itemize}
                 \item The energy metric is crucial for the bunny, as much of the body does not deform.
                 \item Linear models have energy errors of \textbf{two+ orders of magnitude}, while our NM model remains close to the ground truth.
-            \end{itemize}
+            \end{itemize} 
             \begin{figure}
                 \includegraphics[width=\textwidth]{Images/bunny_static_energy.png}
                 \caption{Internal Energy vs. Applied Force.}
@@ -691,7 +700,7 @@
 \end{frame}
 
 %bibliography
-\begin{frame}{References}
+\begin{frame}[allowframebreaks]{References}
     \printbibliography[heading=none]
 \end{frame}
 

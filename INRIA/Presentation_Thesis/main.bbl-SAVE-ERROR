@@ -1,0 +1,261 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global}
+    \entry{Courtecuisse_Peterlik_Trivisonne_Duriez_Cotin_2014}{inproceedings}{}
+      \name{author}{5}{}{%
+        {{hash=7a009db510eb2b754eb3e3bcad621fae}{%
+           family={Courtecuisse},
+           familyi={C\bibinitperiod},
+           given={Hadrien},
+           giveni={H\bibinitperiod}}}%
+        {{hash=b914e0f07895802f14a867ba027125d5}{%
+           family={Peterlik},
+           familyi={P\bibinitperiod},
+           given={Igor},
+           giveni={I\bibinitperiod}}}%
+        {{hash=1b14c2370ca45260bf72e05b0f5dd335}{%
+           family={Trivisonne},
+           familyi={T\bibinitperiod},
+           given={Raffaella},
+           giveni={R\bibinitperiod}}}%
+        {{hash=cbacbbeb2589c5d86138c72b463d8bd7}{%
+           family={Duriez},
+           familyi={D\bibinitperiod},
+           given={Christian},
+           giveni={C\bibinitperiod}}}%
+        {{hash=483e7500a60d0e80350944be0201a2f7}{%
+           family={Cotin},
+           familyi={C\bibinitperiod},
+           given={Stéphane},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {en}%
+      }
+      \strng{namehash}{c352a7c6af7b4d32f51b00fe76c443d7}
+      \strng{fullhash}{72cca2354330b7d3205b5ca0b0223df0}
+      \strng{bibnamehash}{c352a7c6af7b4d32f51b00fe76c443d7}
+      \strng{authorbibnamehash}{c352a7c6af7b4d32f51b00fe76c443d7}
+      \strng{authornamehash}{c352a7c6af7b4d32f51b00fe76c443d7}
+      \strng{authorfullhash}{72cca2354330b7d3205b5ca0b0223df0}
+      \field{labelalpha}{Cou+14}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{2}
+      \field{title}{Constraint-Based Simulation for Non-Rigid Real-Time Registration}
+      \field{year}{2014}
+      \verb{urlraw}
+      \verb https://inria.hal.science/hal-01160739
+      \endverb
+      \verb{url}
+      \verb https://inria.hal.science/hal-01160739
+      \endverb
+    \endentry
+    \entry{pfaffLearningMeshBasedSimulation2021a}{misc}{}
+      \name{author}{4}{}{%
+        {{hash=a726408819b6f955652c3ffaaedef966}{%
+           family={Pfaff},
+           familyi={P\bibinitperiod},
+           given={Tobias},
+           giveni={T\bibinitperiod}}}%
+        {{hash=dfc7f8069848dbc66435c3acc3172871}{%
+           family={Fortunato},
+           familyi={F\bibinitperiod},
+           given={Meire},
+           giveni={M\bibinitperiod}}}%
+        {{hash=cfe62c9365c523ba7d4f7fd1147cff41}{%
+           family={{Sanchez-Gonzalez}},
+           familyi={S\bibinitperiod},
+           given={Alvaro},
+           giveni={A\bibinitperiod}}}%
+        {{hash=2e5b4b0fd5bc4903da838ce86f63998b}{%
+           family={Battaglia},
+           familyi={B\bibinitperiod},
+           given={Peter\bibnamedelima W.},
+           giveni={P\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{27055f9d7ff2885284c907973547bedf}
+      \strng{fullhash}{50c51d06ac37a13d5c329f216a76b4ff}
+      \strng{bibnamehash}{27055f9d7ff2885284c907973547bedf}
+      \strng{authorbibnamehash}{27055f9d7ff2885284c907973547bedf}
+      \strng{authornamehash}{27055f9d7ff2885284c907973547bedf}
+      \strng{authorfullhash}{50c51d06ac37a13d5c329f216a76b4ff}
+      \field{labelalpha}{Pfa+21}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{abstract}{Mesh-based simulations are central to modeling complex physical systems in many disciplines across science and engineering. Mesh representations support powerful numerical integration methods and their resolution can be adapted to strike favorable trade-offs between accuracy and efficiency. However, high-dimensional scientific simulations are very expensive to run, and solvers and parameters must often be tuned individually to each system studied. Here we introduce MeshGraphNets, a framework for learning mesh-based simulations using graph neural networks. Our model can be trained to pass messages on a mesh graph and to adapt the mesh discretization during forward simulation. Our results show it can accurately predict the dynamics of a wide range of physical systems, including aerodynamics, structural mechanics, and cloth. The model's adaptivity supports learning resolution-independent dynamics and can scale to more complex state spaces at test time. Our method is also highly efficient, running 1-2 orders of magnitude faster than the simulation on which it is trained. Our approach broadens the range of problems on which neural network simulators can operate and promises to improve the efficiency of complex, scientific modeling tasks.}
+      \field{eprintclass}{cs}
+      \field{eprinttype}{arXiv}
+      \field{month}{6}
+      \field{number}{arXiv:2010.03409}
+      \field{title}{Learning {{Mesh-Based Simulation}} with {{Graph Networks}}}
+      \field{urlday}{17}
+      \field{urlmonth}{1}
+      \field{urlyear}{2024}
+      \field{year}{2021}
+      \field{urldateera}{ce}
+      \verb{doi}
+      \verb 10.48550/arXiv.2010.03409
+      \endverb
+      \verb{eprint}
+      \verb 2010.03409
+      \endverb
+      \verb{file}
+      \verb /home/andrea/Zotero/storage/CG7ZVBT7/Pfaff et al. - 2021 - Learning Mesh-Based Simulation with Graph Networks.pdf;/home/andrea/Zotero/storage/FXUGV7BX/2010.html
+      \endverb
+      \keyw{Computer Science - Computational Engineering Finance and Science,Computer Science - Machine Learning}
+    \endentry
+    \entry{Wang_Du_Coros_Thomaszewski_2024}{article}{}
+      \name{author}{4}{}{%
+        {{hash=5a068ff5c91568c3532ffe5477e1ec9e}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Jiahong},
+           giveni={J\bibinitperiod}}}%
+        {{hash=3225dcb80c64951a34e47480610638d4}{%
+           family={Du},
+           familyi={D\bibinitperiod},
+           given={Yinwei},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=13225ed6e7e48d736b22bcd6564ee228}{%
+           family={Coros},
+           familyi={C\bibinitperiod},
+           given={Stelian},
+           giveni={S\bibinitperiod}}}%
+        {{hash=1909def289b78ff70d798a6a25c9a5f1}{%
+           family={Thomaszewski},
+           familyi={T\bibinitperiod},
+           given={Bernhard},
+           giveni={B\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{e3b4a9d0f2e699421b3fcb5ff2ec4bb0}
+      \strng{fullhash}{67af7c92e6aa07e0580b5b417feed091}
+      \strng{bibnamehash}{e3b4a9d0f2e699421b3fcb5ff2ec4bb0}
+      \strng{authorbibnamehash}{e3b4a9d0f2e699421b3fcb5ff2ec4bb0}
+      \strng{authornamehash}{e3b4a9d0f2e699421b3fcb5ff2ec4bb0}
+      \strng{authorfullhash}{67af7c92e6aa07e0580b5b417feed091}
+      \field{labelalpha}{Wan+24}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{4}
+      \field{note}{arXiv:2404.17620 [cs]}
+      \field{number}{arXiv:2404.17620}
+      \field{title}{Neural Modes: Self-supervised Learning of Nonlinear Modal Subspaces}
+      \field{year}{2024}
+      \verb{doi}
+      \verb 10.48550/arXiv.2404.17620
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/2404.17620
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/2404.17620
+      \endverb
+    \endentry
+    \entry{He_Zhang_Ren_Sun_2015}{article}{}
+      \name{author}{4}{}{%
+        {{hash=6b4b60e909e78633945f3f9c9dc83e01}{%
+           family={He},
+           familyi={H\bibinitperiod},
+           given={Kaiming},
+           giveni={K\bibinitperiod}}}%
+        {{hash=5e72bc22dbcf0984c6d113d280e36990}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Xiangyu},
+           giveni={X\bibinitperiod}}}%
+        {{hash=bb295293acacd54387339079ebbe4ead}{%
+           family={Ren},
+           familyi={R\bibinitperiod},
+           given={Shaoqing},
+           giveni={S\bibinitperiod}}}%
+        {{hash=f85751488058842b5777c7b4074077b5}{%
+           family={Sun},
+           familyi={S\bibinitperiod},
+           given={Jian},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {arXiv}%
+      }
+      \strng{namehash}{6edb98fe38401d2fe4a026f5ce6e8451}
+      \strng{fullhash}{42c4b52dc3a62cebabbc11c73e1afb53}
+      \strng{bibnamehash}{6edb98fe38401d2fe4a026f5ce6e8451}
+      \strng{authorbibnamehash}{6edb98fe38401d2fe4a026f5ce6e8451}
+      \strng{authornamehash}{6edb98fe38401d2fe4a026f5ce6e8451}
+      \strng{authorfullhash}{42c4b52dc3a62cebabbc11c73e1afb53}
+      \field{labelalpha}{He+15}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{12}
+      \field{note}{arXiv:1512.03385 [cs]}
+      \field{number}{arXiv:1512.03385}
+      \field{title}{Deep Residual Learning for Image Recognition}
+      \field{year}{2015}
+      \verb{doi}
+      \verb 10.48550/arXiv.1512.03385
+      \endverb
+      \verb{urlraw}
+      \verb http://arxiv.org/abs/1512.03385
+      \endverb
+      \verb{url}
+      \verb http://arxiv.org/abs/1512.03385
+      \endverb
+    \endentry
+    \entry{bunny-mesh}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=b962f3dccc305dbd0ce1dc6958107f6b}{%
+           family={{The Stanford 3D Scanning Repository}},
+           familyi={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{b962f3dccc305dbd0ce1dc6958107f6b}
+      \strng{fullhash}{b962f3dccc305dbd0ce1dc6958107f6b}
+      \strng{bibnamehash}{b962f3dccc305dbd0ce1dc6958107f6b}
+      \strng{authorbibnamehash}{b962f3dccc305dbd0ce1dc6958107f6b}
+      \strng{authornamehash}{b962f3dccc305dbd0ce1dc6958107f6b}
+      \strng{authorfullhash}{b962f3dccc305dbd0ce1dc6958107f6b}
+      \field{labelalpha}{The21}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Downloaded modified version from odedstein-meshes \url{github.com/odedstein/meshes/tree/master/objects/bunny}. Original mesh at \url{graphics.stanford.edu/data/3Dscanrep}.}
+      \field{title}{{Bunny}}
+      \field{year}{2021}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
