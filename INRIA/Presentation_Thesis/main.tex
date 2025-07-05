@@ -1,6 +1,5 @@
 \documentclass{beamer}
 \usetheme{polimi}
-\beamertemplatenavigationsymbolsempty
 
 
 \usepackage{amsmath}
@@ -16,6 +15,10 @@
 \usepackage{multirow}
 \usepackage{multicol}
 \usepackage{color}
+\definecolor{darkblue}{rgb}{0.12, 0.47, 0.71}
+\definecolor{darkorange}{rgb}{1.0, 0.50, 0.05}
+\definecolor{darkgreen}{rgb}{0.17, 0.63, 0.17}
+\definecolor{darkred}{rgb}{0.84, 0.15, 0.16}
 \usepackage{url}
 \usepackage{hyperref}
 \usepackage{listings}
@@ -407,8 +410,7 @@
             \textbf{1. Cantilever Beam}
             \begin{itemize}
                 \item A classic structural benchmark.
-                \item Simple, well-understood deformation modes (bending, torsion).
-                \item Ideal for initial validation.
+                \item Simple deformation modes.
                 \item Discretized with ~800 tetrahedral elements.
             \end{itemize}
         \end{column}
@@ -417,7 +419,6 @@
             \textbf{2. Stanford Bunny}
             \begin{itemize}
                 \item A complex, realistic geometry.
-                \item Tests robustness and generalization.
                 \item Irregular shape leads to complex nonlinear deformation.
                 \item Discretized with ~22,000 tetrahedral elements.
             \end{itemize}
@@ -426,66 +427,81 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}{Training and Model Justification}
-    \frametitle{Training and Justification for Supervised Learning}
+\begin{frame}{Training}
     
     We trained our model using a supervised approach on datasets of 600 (beam) and 500 (bunny) FEM simulations.
     
-    \begin{columns}[T]
-        \begin{column}{0.5\textwidth}
+\begin{columns}
+    
+    \begin{column}{0.5\textwidth}
             \textbf{Training Loss (Beam)}
             \begin{itemize}
                 \item The model learns quickly, with the loss dropping significantly in the first few epochs.
                 \item Training was stable over 200 epochs, indicating good generalization.
             \end{itemize}
+    \end{column}
+    \begin{column}{0.5\textwidth}
             \begin{figure}
                 \includegraphics[width=\textwidth]{Images/training_loss_smoothed_logy.png}
                 \caption{Total training loss.}
             \end{figure}
+
+    \end{column}
+        
+\end{columns}
+
+\end{frame}
+
+\begin{frame}{Self-Supervised Approach}
+    \begin{columns}[T]
+        \begin{column}{0.4\textwidth}
+            We tested the self-supervised energy-minimization approach, but it \textbf{failed} to achieve \textbf{sufficient accuracy} for our {problem}.         
+    
         \end{column}
         
-        \begin{column}{0.5\textwidth}
-            \textbf{Why not self-supervised?}
-            We tested the data-free, energy-minimization approach from prior work \cite{Wang_Du_Coros_Thomaszewski_2024}.
-            \begin{itemize}
-                \item \textbf{Result:} The self-supervised model performed no better than simple linear modes.
-            \end{itemize}
+        \begin{column}{0.6\textwidth}
             \begin{figure}
                 \includegraphics[width=\textwidth]{Images/self_supervised_mse.png}
-                \caption{Self-supervised (blue) vs. Linear Modes (orange).}
+                                \caption{\textcolor{darkblue}{Self-supervised} vs. \textcolor{darkorange}{Linear Modes}.}
             \end{figure}
-            \textbf{Conclusion:} A supervised approach is necessary for this problem to achieve high accuracy.
         \end{column}
     \end{columns}
 \end{frame}
 
-\begin{frame}{Static Validation: Cantilever Beam}
-    \frametitle{Static Validation: Cantilever Beam}
+\begin{frame}{Static Validation - 3D Beam}
     
-    We compared our Neural Modes (NM) against Linear Modes (LM) and Linear FEM using the nonlinear FEM solution as ground truth.
-    
+    We obtain more than \textbf{one order of magnitude} improvement in accuracy over linear modes. Also for reference we included the \textcolor{darkgreen}{linear FEM} solution.
     \begin{columns}[T]
         \begin{column}{0.5\textwidth}
-            \textbf{Displacement Error (MSE)}
-            \begin{itemize}
-                \item For small forces, LM is accurate.
-                \item For large, nonlinear deformations, \textbf{NM is an order of magnitude more accurate} than both linear methods.
-            \end{itemize}
+   
             \begin{figure}
                 \includegraphics[width=\textwidth]{Images/beam_static_mse.png}
-                \caption{Average MSE vs. Applied Force.}
+                \caption{MSE comparison between \textcolor{darkorange}{Linear Modes} and \textcolor{darkblue}{Neural Modes}.}
             \end{figure}
         \end{column}
         
         \begin{column}{0.5\textwidth}
-            \textbf{Internal Energy}
-            \begin{itemize}
-                \item The energy of the linear models diverges significantly from the ground truth under large deformation.
-                \item Our \textbf{NM model predicts physically realistic energy levels}, closely matching the ground truth.
-            \end{itemize}
             \begin{figure}
                 \includegraphics[width=\textwidth]{Images/beam_static_energy.png}
-                \caption{Internal Energy vs. Applied Force.}
+                \caption{Energy comparison. \textcolor{darkred}{Nonlinear FEM} is the ground truth.}
+            \end{figure}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Qualitative Results}
+    \begin{columns}[T]
+        \begin{column}{0.5\textwidth}            
+
+            \begin{figure}
+                \includegraphics[width=\textwidth]{Images/sofa_example_beam.png}
+                \caption{Cantilever Beam}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{figure}
+                \includegraphics[width=\textwidth]{Images/sofa_example_bunny.png}
+                \caption{Stanford Bunny}
             \end{figure}
         \end{column}
     \end{columns}
@@ -494,14 +510,10 @@
 \begin{frame}{Static Validation: Stanford Bunny}
     \frametitle{Static Validation: Stanford Bunny}
     
-    The same trend holds for the complex bunny geometry, where nonlinear effects are even more pronounced.
-    
+Also for the bunny we compared our \textcolor{darkblue}{Neural Modes} against \textcolor{darkorange}{Linear Modes} and \textcolor{darkgreen}{Linear FEM} using the \textcolor{darkred}{nonlinear FEM} solution as ground truth.    
     \begin{columns}[T]
         \begin{column}{0.5\textwidth}
-            \textbf{Displacement Error (MSE)}
-            \begin{itemize}
-                \item The NM model again shows a significant accuracy improvement of nearly an order of magnitude in the nonlinear regime.
-            \end{itemize}
+
             \begin{figure}
                 \includegraphics[width=\textwidth]{Images/bunny_static_mse.png}
                 \caption{Average MSE vs. Applied Force.}
@@ -509,11 +521,6 @@
         \end{column}
         
         \begin{column}{0.5\textwidth}
-            \textbf{Internal Energy}
-            \begin{itemize}
-                \item The energy metric is crucial for the bunny, as much of the body does not deform.
-                \item Linear models have energy errors of \textbf{two+ orders of magnitude}, while our NM model remains close to the ground truth.
-            \end{itemize} 
             \begin{figure}
                 \includegraphics[width=\textwidth]{Images/bunny_static_energy.png}
                 \caption{Internal Energy vs. Applied Force.}
@@ -522,40 +529,24 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}{Qualitative Results and Interpretability}
-    \frametitle{Qualitative Results and Interpretability}
-    
-    \begin{columns}[T]
-        \begin{column}{0.4\textwidth}
-            \textbf{Visual Comparison}
-            \begin{itemize}
-                \item Our model (\textcolor{magenta}{magenta}) closely matches the ground truth (\textcolor{green!50!black}{green}).
-                \item Linear models (\textcolor{red}{red wireframe}) fail to capture the large, nonlinear bending.
-            \end{itemize}
-            \begin{figure}
-                \includegraphics[width=\textwidth]{Images/sofa_example_beam.png}
-                \caption{Cantilever Beam}
-            \end{figure}
-            \begin{figure}
-                \includegraphics[width=\textwidth]{Images/sofa_example_bunny.png}
-                \caption{Stanford Bunny}
-            \end{figure}
-        \end{column}
+% \begin{frame}{Qualitative Results and Interpretability}
+%     \frametitle{Qualitative Results and Interpretability}
+
         
-        \begin{column}{0.6\textwidth}
-            \textbf{Interpretability}
-            \begin{itemize}
-                \item Unlike a pure black-box model, our framework is interpretable.
-                \item We can visualize how the network learns to correct each individual linear mode.
-                \item This provides physical insight into the learned nonlinearities.
-            \end{itemize}
-            \begin{figure}
-                \includegraphics[width=\textwidth]{Images/latent_space_viz.png}
-                \caption{Visualization of the learned corrections for the 7 modes of the Stanford Bunny.}
-            \end{figure}
-        \end{column}
-    \end{columns}
-\end{frame}
+%         \begin{column}{0.6\textwidth}
+%             \textbf{Interpretability}
+%             \begin{itemize}
+%                 \item Unlike a pure black-box model, our framework is interpretable.
+%                 \item We can visualize how the network learns to correct each individual linear mode.
+%                 \item This provides physical insight into the learned nonlinearities.
+%             \end{itemize}
+%             \begin{figure}
+%                 \includegraphics[width=\textwidth]{Images/latent_space_viz.png}
+%                 \caption{Visualization of the learned corrections for the 7 modes of the Stanford Bunny.}
+%             \end{figure}
+%         \end{column}
+%     \end{columns}
+% \end{frame}
 
 \begin{frame}{Dynamic Validation: A More Challenging Test}
     \frametitle{Dynamic Validation: A More Challenging Test}

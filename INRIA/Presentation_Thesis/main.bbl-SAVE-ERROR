@@ -182,27 +182,6 @@
       \verb http://arxiv.org/abs/2404.17620
       \endverb
     \endentry
-    \entry{bunny-mesh}{misc}{}
-      \name{author}{1}{}{%
-        {{hash=b962f3dccc305dbd0ce1dc6958107f6b}{%
-           family={{The Stanford 3D Scanning Repository}},
-           familyi={T\bibinitperiod}}}%
-      }
-      \strng{namehash}{b962f3dccc305dbd0ce1dc6958107f6b}
-      \strng{fullhash}{b962f3dccc305dbd0ce1dc6958107f6b}
-      \strng{bibnamehash}{b962f3dccc305dbd0ce1dc6958107f6b}
-      \strng{authorbibnamehash}{b962f3dccc305dbd0ce1dc6958107f6b}
-      \strng{authornamehash}{b962f3dccc305dbd0ce1dc6958107f6b}
-      \strng{authorfullhash}{b962f3dccc305dbd0ce1dc6958107f6b}
-      \field{labelalpha}{The21}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{note}{Downloaded modified version from odedstein-meshes \url{github.com/odedstein/meshes/tree/master/objects/bunny}. Original mesh at \url{graphics.stanford.edu/data/3Dscanrep}.}
-      \field{title}{{Bunny}}
-      \field{year}{2021}
-    \endentry
   \enddatalist
 \endrefsection
 \endinput
