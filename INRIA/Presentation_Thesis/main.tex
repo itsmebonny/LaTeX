@@ -1,4 +1,4 @@
-\documentclass{beamer}
+\documentclass[9pt]{beamer}
 \usetheme{polimi}
 
 
@@ -66,15 +66,15 @@
         \begin{column}{0.6\textwidth}
             \begin{itemize}
                 \item Soft tissue simulation is crucial in medical applications, such as computer-assisted surgery.
-                \item High-fidelity simulations are computationally expensive, making real-time applications challenging.
+                \item High-fidelity, like Finite Elements Method (FEM) simulations are computationally expensive, making real-time applications challenging.
                 \item There is a strong need for fast, accurate methods that can handle large, nonlinear deformations.
             \end{itemize}
         \end{column}
         \begin{column}{0.4\textwidth}
             \begin{figure}
                 \centering
-                    \includegraphics[width=\textwidth]{Images/liver.png}
-                    \caption{Phases of the meshing process from MRI scan to obtain a digital twin of a liver. Figure from \cite{Courtecuisse_Peterlik_Trivisonne_Duriez_Cotin_2014}.}
+                    \includegraphics[width=\textwidth]{Images/liver_2.png}
+                    \caption{Digital twin of a liver undergoing a deformation during computer-assisted surgery. Figure from \cite{Haouchine_Dequidt_Peterlik_Kerrien_Berger_Cotin_2013}.}
             \end{figure}
         \end{column}
     \end{columns}
@@ -84,142 +84,166 @@
     \begin{itemize}
         \item \textbf{MeshGraphNet} \cite{pfaffLearningMeshBasedSimulation2021a} and similar deep learning models have demonstrated impressive speedups in physical simulations.
         \item However, these models are often \textbf{black-box} in nature, and they tend to \textbf{accumulate errors} over time, leading to inaccuracies in long-term simulations.
-        \item  We take inspiration from the \textbf{Neural Modes} framework \cite{Wang_Du_Coros_Thomaszewski_2024}, which tries to address these issues.
+        \item  We take inspiration from the \textbf{Neural Modes} paper \cite{Wang_Du_Coros_Thomaszewski_2024}, which tries to address these issues.
     \end{itemize}
 \end{frame}
 
 
-\begin{frame}{Mathematical Framework}
+\begin{frame}{Computational Mechanics Notation}
+    \begin{block}{Kinematics of Deformation}
+        \begin{itemize}
+            \item \(\bm{X}\): Position of a material point in the \textbf{reference configuration}.
+            \item \(\bm{x}(\bm{X}, t)\): Position of the same point in the \textbf{current configuration} at time \(t\).
+            \item \(\bm{u}(\bm{X}, t)\): \textbf{Displacement vector}, defined as:
+            \(
+                \bm{u}(\bm{X}, t) = \bm{x}(\bm{X}, t) - \bm{X}.
+            \)
+        \end{itemize}
+    \end{block}
+    
+    \begin{block}{Deformation Gradient}
+        \[
+            \bm{F} = \frac{\partial \bm{x}}{\partial \bm{X}} = \bm{I} + \nabla_{\bm{X}} \bm{u},
+        \]
+        where:
+        \begin{itemize}
+            \item \(\bm{F}\): Deformation gradient tensor.
+            \item \(\bm{I}\): Identity tensor.
+            \item \(\nabla_{\bm{X}} \bm{u}\): Gradient of the displacement field.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Neo-Hookean Model}
     \begin{columns}[T]
         \begin{column}{0.5\textwidth}
-            \textbf{Neo-Hookean Model}
-            \begin{itemize}
-                \item A hyperelastic mechanical model designed to capture large, nonlinear deformations in soft tissues.
-                \item Suitable for applications requiring accurate stress-strain relationships and volume changes.
-                \item Commonly used in biomechanics and soft tissue simulations.
-            \end{itemize}
+            \textbf{Neo-Hookean Hyperelasticity}
+                The strain-energy density function $\Psi$ is:
+                \[
+\begin{split}
+                        \Psi(\bm{F}) = \frac{\mu}{2} (I_C - 3 - 2\ln(J))\\ + \frac{\lambda}{4} (J^2 - 1 - 2\ln(J)),
+\end{split}                \]
+                where:
+                \begin{itemize}
+                    \item \(\mu, \lambda\): Material parameters.
+                    \item \(J = \det(\bm{F})\): Volume change.
+                \end{itemize}
+                We define the first Piola-Kirchhoff stress tensor \(\bm{P}\) as:
+                \[
+                    \bm{P} = \frac{\partial \Psi}{\partial \bm{F}} 
+                \]
         \end{column}
-        
         \begin{column}{0.5\textwidth}
-            \textbf{Linear Modal Analysis}
-            \begin{itemize}
-                \item A classical technique for simplifying dynamic systems by reducing their complexity.
-                \item Focuses on dominant vibration shapes to approximate system behavior.
-                \item Efficient for small deformations but struggles with nonlinear effects in large deformations.
-            \end{itemize}
+            \textbf{Static Problem}
+                The static equilibrium of the object is described by the following system of PDEs, which represents the full-order model:
+                \begin{equation}
+                    \begin{cases}
+                        - \nabla_X \cdot \bm{P} = \bm{b} \quad \text{in} \quad \Omega, \\
+                        \bm{u} = \bm{u}_D \quad \text{on} \quad \Gamma_D, \\
+                        \bm{P} \cdot \bm{N} = \bm{t} \quad \text{on} \quad \Gamma_N.
+                    \end{cases}
+                    \label{eq:static_problem}
+                \end{equation}
+                where:
+                \begin{itemize}
+                    \item \(\bm{b}\): Body forces.
+                    \item \(\Gamma_D, \Gamma_N\): Boundary conditions.
+                \end{itemize}
         \end{column}
     \end{columns}
 \end{frame}
 
-\begin{frame}{Neo-Hookean Model}
-    We define the deformation of a material point \(\bm{X}\) in the reference configuration to its position \(\bm{x}(\bm{X},t)\) in the current configuration at time \(t\), and the deformation gradient \(\bm{F}\) as:
-    \begin{equation}
-        \bm{x}(\bm{X},t) = \bm{X} + \bm{u}(\bm{X},t), \quad \bm{F} = \frac{\partial \bm{x}}{\partial \bm{X}} = \bm{I} + \nabla_{\mathbf{X}} \bm{u}.
-    \end{equation}
-    
-    \begin{block}{Neo-Hookean Hyperelasticity}
-        We use the Neo-Hookean strain-energy density function $\Psi$,
-        \begin{equation}
-            \Psi(\bm{F}) = \frac{\mu}{2} (I_C - 3 - 2\ln(J)) + \frac{\lambda}{4} (J^2 - 1 - 2\ln(J)),
-        \end{equation}
-        where \(\mu, \lambda\) are material parameters and \(J = \det(\bm{F})\) is the volume change.
-    \end{block}
-\end{frame}
-
-\begin{frame}{Neo-Hookean Model}
-    The stress in the material is derived from the strain energy: \(\bm{P} = \frac{\partial \Psi}{\partial \bm{F}}\).
-    
-    \begin{block}{Static Problem}
-        The dynamic behavior of the object is governed by the following system of PDEs, which represents the full-order model. Solving this system is accurate but computationally expensive.
-        \begin{equation}
-            \begin{cases}
-                - \nabla_X \cdot \bm{P} = \bm{b} \quad \text{in} \quad \Omega, \\
-                \bm{u} = \bm{u}_D \quad \text{on} \quad \Gamma_D, \\
-                \bm{P} \cdot \bm{N} = \bm{t} \quad \text{on} \quad \Gamma_N.
-            \end{cases}
-        \end{equation}
-        Here, \(\bm{b}\) are body forces, and the equations are subject to boundary conditions on \(\Gamma_D\) (prescribed displacement) and \(\Gamma_N\) (applied traction).
-    \end{block}
-\end{frame}
-
-\begin{frame}{Neo-Hookean Model}    
-    \begin{block}{Equation of Motion}
-        The dynamic behavior of the object is governed by the following system of PDEs, which represents the full-order model. Solving this system is accurate but computationally expensive.
-        \begin{equation}
-            \begin{cases}
-                \rho \frac{\partial^2 \bm{u}}{\partial t^2} - \nabla_X \cdot \bm{P} = \bm{b} \quad \text{in} \quad \Omega, \\
-                \bm{u} = \bm{u}_D \quad \text{on} \quad \Gamma_D, \\
-                \bm{P} \cdot \bm{N} = \bm{t} \quad \text{on} \quad \Gamma_N.
-            \end{cases}
-        \end{equation}
-        Here, \(\rho\) is density, and the rest of the notation is as before.
-    \end{block}
-\end{frame}
+% \begin{frame}{Neo-Hookean Model}    
+%     \begin{block}{Equation of Motion}
+%         The dynamic behavior of the object is governed by the following system of PDEs, which represents the full-order model. Solving this system is accurate but computationally expensive.
+%         \begin{equation}
+%             \begin{cases}
+%                 \rho \frac{\partial^2 \bm{u}}{\partial t^2} - \nabla_X \cdot \bm{P} = \bm{b} \quad \text{in} \quad \Omega, \\
+%                 \bm{u} = \bm{u}_D \quad \text{on} \quad \Gamma_D, \\
+%                 \bm{P} \cdot \bm{N} = \bm{t} \quad \text{on} \quad \Gamma_N.
+%             \end{cases}
+%         \end{equation}
+%         Here, \(\rho\) is density, and the rest of the notation is as before.
+%     \end{block}
+% \end{frame}
 
 \begin{frame}[allowframebreaks]{Modal Analysis}
     
     \begin{block}{Core Idea}
         Approximate the full deformation as a linear combination of a few dominant, low-frequency vibration shapes (modes).
     \end{block}
-    
-    \begin{enumerate}
-        \item \textbf{Linearize System:} The nonlinear equations are linearized around the rest state (\(\bm{u}=\bm{0}\)) to get constant mass \(\bm{M}\) and stiffness \(\bm{K}\) matrices.
-        \vspace{0.5em}
-        
-        \item \textbf{Solve Eigenvalue Problem:} We find the natural vibration modes \(\bm{\phi}_i\) and frequencies \(\omega_i\) by solving:
-            \begin{equation*}
-                \bm{K} \bm{\phi}_i = \omega_i^2 \bm{M} \bm{\phi}_i
-            \end{equation*}
-        \vspace{0.5em}
-            
-        \item \textbf{Modal Decomposition:} The full displacement \(\bm{u}\) is approximated using the first \(m\) modes:
-            \begin{equation*}
-                \bm{u}(\bm{X},t) \approx \sum_{i=1}^{m} z_i(t) \bm{\phi}_i(\bm{X})
-            \end{equation*}
-            We then only need to solve for the \(m\) modal coordinates \(z_i(t)\), where \(m \ll\) number of DOFs.
-    \end{enumerate}
-\end{frame}
 
-\begin{frame}{The Limitation of Linear Modes}    
-    \begin{alertblock}{Fundamental Problem}
+    \begin{enumerate}
+        \item \textbf{Linearization:} Linearize the system around the rest state (\(\bm{u} = \bm{0}\)) to obtain the mass matrix \(\bm{M}\) and stiffness matrix \(\bm{K}\).
+        \item \textbf{Eigenvalue Problem:} Solve the generalized eigenvalue problem:
+        \[
+            \bm{K} \bm{\phi}_i = \omega_i^2 \bm{M} \bm{\phi}_i, \quad i = 1, \dots, m,
+        \]
+        where \(\bm{\phi}_i\) are the eigenmodes and \(\omega_i\) are the natural frequencies.
+        \item \textbf{Modal Approximation:} Approximate the displacement field as:
+        \[
+            \bm{u}(\bm{X}, t) \approx \sum_{i=1}^{m} z_i(t) \bm{\phi}_i(\bm{X}),
+        \]
+        where \(z_i(t)\) are the modal coordinates, and \(m \ll \text{DOFs}\).
+    \end{enumerate}
+    \begin{alertblock}{Problem}
         Linear modal analysis is built on a \textbf{linearization} around the undeformed state. This approximation is only valid for small deformations.
     \end{alertblock}
-    
-    When deformations become large:
-    \begin{itemize}
-        \item The model fails to capture key nonlinear effects.
-        \item This leads to physically unrealistic behavior, such as incorrect volume changes and inaccurate stress distributions.
-    \end{itemize}
-    
-    While fast, linear modes are insufficient for accurate large deformation simulation. This motivates our work to develop a method that account for nonlinearities.
 \end{frame}
 
-\begin{frame}[allowframebreaks]{Neural Modes Paper}
-    The original Neural Modes framework \cite{Wang_Du_Coros_Thomaszewski_2024} introduces a novel approach to simulate nonlinear deformations by correcting the output of linear modes using a neural network. The methodology consists of the following key stages:
+
+
+
+\begin{frame}[allowframebreaks]{Neural Modes method}
+    The original Neural Modes paper \cite{Wang_Du_Coros_Thomaszewski_2024} introduces these steps:
+        
+        \begin{enumerate}
+            \item \textbf{Linear Modal Approximation:} The deformation is approximated using linear modal analysis:
+            \[
+                \bm{u}(\bm{X}, t) \approx \sum_{i=1}^{m} z_i(t) \bm{\phi}_i(\bm{X}),
+            \]
+            where \( \bm{\phi}_i \) are the linear modes, and \( z_i(t) \) the modal coordinates.
+
+            \item \textbf{Neural Network Correction:} A neural network is trained to apply corrections to the linear approximation:
+            \[
+                \bm{u}_{\text{predicted}} = \bm{l}(\mathbf{z}) + \bm{y}(\mathbf{z}),
+            \]
+            where \( \bm{l}(\mathbf{z}) = \sum_{i=1}^{m} z_i \bm{\phi}_i \) is the approximation, and \( \bm{y}(\mathbf{z}) \) is the predicted correction.
+
+            \item \textbf{Self-Supervised Training:} The network is trained by minimizing the object's internal strain energy.
+            \item \textbf{Dynamic Simulation:} The corrected modal approximation is used in a reduced-order dynamic solver. The modal coordinates \( \mathbf{z} \) are updated by solving:
+            \begin{equation}
+                \mathbf{z}_{n+1} = \underset{\mathbf{z}}{\argmin} \left[ \frac{1}{2h^2} \|\bm{n}(\mathbf{z}) - 2\bm{u}_n + \bm{u}_{n-1}\|_{\bm{M}}^2 + \mathcal{E}(\bm{n}(\mathbf{z})) \right],
+                \label{eq:dynamic_update}
+            \end{equation}
+            where \( \bm{n}(\mathbf{z}) \) is the predicted displacement, and \( \mathcal{E} \) is the potential energy.
+        \end{enumerate}
     
-    \begin{enumerate}
-        \item \textbf{Linear Modal Approximation:} The deformation is initially approximated using classical linear modal analysis, which is computationally efficient but fails to capture nonlinear effects.
-        \vspace{1em}
-        \item \textbf{Neural Network Correction:} A neural network is trained to learn the nonlinear corrections to the linear modal approximation. The network maps low-dimensional modal coordinates to high-dimensional corrections.
-        \vspace{1em}
-        \item \textbf{Self-Supervised Training:} Instead of relying on ground truth data, the network is trained by minimizing the object's internal strain energy, ensuring physically plausible corrections.
-        \vspace{1em}
-        \item \textbf{Dynamic Simulation:} The corrected modal approximation is used in a reduced-order dynamic solver, enabling fast simulations of large, nonlinear deformations.
-    \end{enumerate}
-    
-    \begin{alertblock}{Key Insight}
-        The self-supervised approach leverages physical principles to guide the learning process, avoiding the need for extensive labeled datasets while maintaining computational efficiency.
-    \end{alertblock}
 \end{frame}
 
-\begin{frame}{Our improvements}
-    Despite the promising results of the Neural Modes paper, we identified several limitations that motivated our work:
-    \begin{itemize}
-        \item \textbf{Limited deformation range:} The self-supervised approach fails for large nonlinear deformations.
-          \item \textbf{Rest state correction:} We replaced the original penalty with bias-free layers for zero correction at rest.
-          \item \textbf{Material model:} Adapted the framework for Neo-Hookean materials, suitable for soft tissue simulation.    
-    \end{itemize}
+\begin{frame}{Limitations \& Our Innovations}
+    \begin{columns}[T]
+        \begin{column}{0.5\textwidth}
+            \textbf{Limitations:}
+            \begin{itemize}
+                \item \textbf{Limited deformation range:} The self-supervised approach fails for large nonlinear deformations.
+                \item \textbf{Rest state correction:} Original penalty for zero correction at rest was insufficient.
+                \item \textbf{Material model:} Framework initially supported only St.Venant-Kirchhoff materials.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \textbf{Our Innovations:}
+            \begin{itemize}
+                \item \textbf{Supervised:} We trained the network on a dataset of deformations.
+                \item \textbf{Bias-free layers:} Replaced the original penalty with bias-free layers for zero correction at rest.
+                \item \textbf{Neo-Hookean adaptation:} Extended the framework to support Neo-Hookean materials, suitable for soft tissue simulation.
+            \end{itemize}
+        \end{column}
+    \end{columns}
 \end{frame}
+
+
+
 
 % \begin{frame}{Residual Networks (ResNets)}    
 %     We employ a Residual Network (ResNet) \cite{He_Zhang_Ren_Sun_2015}.
@@ -249,156 +273,170 @@
 
 % \end{frame}
 
-\begin{frame}[allowframebreaks]{The Neural Modes Architecture}
+\begin{frame}{The Neural Modes Architecture}
     
-    We designed a specific ResNet to learn nonlinear deformation modes.
-    
-    \begin{itemize}
-        \item \textbf{Input:} A low-dimensional vector of modal coordinates \( \mathbf{z} \in \mathbb{R}^{\ell_{dim}} \).
-        \item \textbf{Output:} A high-dimensional nonlinear correction vector \( \bm{y} \in \mathbb{R}^{d_u} \).
-    \end{itemize}
-    
-    The final predicted displacement is a combination of the linear modes and the learned nonlinear correction:
-    \begin{equation*}
-        \bm{u}_{\text{predicted}} = \underbrace{\bm{l}(\mathbf{z})}_{\text{Linear Modes}} + \underbrace{\bm{y}(\mathbf{z})}_{\text{NN Correction}}
-    \end{equation*}
-    
-    \begin{figure}
-        \centering
-        \begin{tikzpicture}
-            % Modal coordinate (z)
-            \draw[fill=green!20] (-3, 1) rectangle (-2.5,2);
-            \node at (-2.75, 1.5) {$\mathbf{z}$}; % Label inside the rectangle
-            % Displacement (y)
-            \draw[fill=green!20] (2.5,0) rectangle (3,3);
-            \node at (2.75, 1.5) {$\bm{y}$}; % Label inside the rectangle
-            % NN mapping
-            \draw[fill=blue!60,opacity=0.8] (-2,1) -- (2,-0) -- (2,3) -- (-2,2) -- cycle;
-            \node[white] at (0,1.5) {Energy + Disp. Loss};
-            % Arrow
-            \draw[thick,->] (-2.5, 1.5) -- (-2, 1.5);
-            \draw[thick,->] (2, 1.5) -- (2.5, 1.5);
-        \end{tikzpicture}
-        \caption{Neural Modes learn a mapping from low-dimensional modal coordinates \(\mathbf{z}\) to high-dimensional corrections \(\bm{y}\).}
-        \label{fig:neural_modes_arch}
-    \end{figure}
-    
-    \textbf{Key Feature:} The network is designed with bias-free layers to guarantee that an input of \(\mathbf{z}=\bm{0}\) (rest state) produces an output of \(\bm{y}=\bm{0}\), ensuring physical correctness by design.
+    \begin{columns}[T]
+        \begin{column}{0.6\textwidth}
+            \textbf{Neural Modes Architecture}
+            \begin{itemize}
+                \item The predicted displacement is:
+                \begin{equation*}
+                    \bm{u}_{\text{predicted}} = \underbrace{\bm{l}(\mathbf{z})}_{\text{Linear Modes}} + \underbrace{\bm{y}(\mathbf{z})}_{\text{NN Correction}}.
+                \end{equation*}
+                \item Bias-free layers ensure that \(\mathbf{z}=\bm{0}\) (rest state) produces \(\bm{y}=\bm{0}\), guaranteeing physical correctness.
+            \end{itemize}
+        \end{column}
+        
+        \begin{column}{0.4\textwidth}
+            \begin{figure}
+                \centering
+                \begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6}]
+                          % Modal coordinate (z)
+                          \draw[fill=green!20] (-3, 1) rectangle (-2.5,2);
+                          \node at (-2.75, 1.5) {$\mathbf{z}$}; % Label inside the rectangle
+                          % Displacement (y)
+                          \draw[fill=green!20] (2.5,0) rectangle (3,3);
+                          \node at (2.75, 1.5) {$\bm{y}$}; % Label inside the rectangle
+                          % NN mapping
+                          \draw[fill=blue!60,opacity=0.8] (-2,1) -- (2,-0) -- (2,3) -- (-2,2) -- cycle;
+                          \node[white] at (0,1.5) {Energy + Disp. Loss};
+                          % Arrow
+                          \draw[thick,->] (-2.5, 1.5) -- (-2, 1.5);
+                          \draw[thick,->] (2, 1.5) -- (2.5, 1.5);
+                      \end{tikzpicture}
+                \caption{Neural Modes architecture.}
+                \label{fig:neural_modes_arch}
+            \end{figure}
+        \end{column}
+    \end{columns}
 \end{frame}
 
-\begin{frame}[allowframebreaks]{Training the network}
+\begin{frame}{Training the Network}
     
-    While the original Neural Modes work \cite{Wang_Du_Coros_Thomaszewski_2024} used a self-supervised approach, we opted for a hybrid supervised method that combines data-driven learning with physical constraints.
-    
-    \begin{block}{Supervised Approach}
+    To apply our supervised approach, we follow these steps:
+    \vspace{2em}
         \begin{enumerate}
-            \item \textbf{Generate a Dataset:} We use a high-fidelity FEM solver to create a dataset of ground truth samples: \( (\mathbf{z}, \bm{u}_{FEM}, E_{FEM}) \), where:
-            \begin{itemize}
-                \item \( \mathbf{z} \) are the input modal coordinates.
-                \item \( \bm{u}_{FEM} \) is the full nonlinear ground truth displacement.
-                \item \( E_{FEM} \) is the ground truth internal energy.
-            \end{itemize}
-            \item \textbf{Train the Network:} We train the network to minimize a composite loss function that forces the prediction to match the ground truth data while respecting physical laws.
+            \item We use SOFA \cite{Faure_Duriez_Delingette_Allard_Gilles_Marchesseau_Talbot_Courtecuisse_Bousquet_Peterlik_2012} to solve Equation \ref{eq:static_problem} and generate a dataset of \( (\mathbf{z}, \bm{u}_{FEM}, E_{FEM}) \), where:
+                        \begin{itemize}
+                            \item \( \mathbf{z} \) are the input modal coordinates.
+                            \item \( \bm{u}_{FEM} \) is the full nonlinear ground truth displacement.
+                            \item \( E_{FEM} \) is the ground truth internal energy.
+                        \end{itemize}
+                        \item We \textbf{train the network} to minimize a loss function \(\mathcal{L}\) that combines supervised training with physics constraints, as defined in the loss function:
+                        \[
+                            \mathcal{L} = \alpha_1 \mathcal{L}_E + \alpha_2 \mathcal{L}_u + \gamma_1 \mathcal{L}_{ortho} + \gamma_2 \mathcal{L}_{BC}.
+                        \]
         \end{enumerate}
-    \end{block}
 \end{frame}
 
 \begin{frame}[allowframebreaks]{The Loss Function}
-    
-    Our total loss function is a weighted sum of four components:
+    We define:
     \begin{equation*}
-        \mathcal{L} = \alpha_1 \mathcal{L}_E + \alpha_2 \mathcal{L}_u + \gamma_1 \mathcal{L}_{ortho} + \gamma_2 \mathcal{L}_{BC}
+        \text{MSE} = \frac{1}{N} \sum_{i=1}^{N} (\bm{u}_{pred,i} - \bm{u}_{FEM,i})^2,
     \end{equation*}
-    
+     where \(N\) is the number of samples, and \(\bm{u}_{pred,i}, \bm{u}_{FEM,i}\) are the predicted and ground truth displacements.
+    \begin{equation*}
+    \mathcal{L}_{BC} = \frac{1}{N_{BC}} \sum_{i \in \mathcal{B}} \|\bm{u}_{pred,i} - \bm{u}_{BC,i}\|^2,
+    \end{equation*}
+    where \(N_{BC}\) is the number of boundary nodes, \(\mathcal{B}\) the set of boundary nodes \(\bm{u}_{pred,i}\) and \(\bm{u}_{BC,i}\) are the predicted and prescribed displacements at node \(i\).
+    \vspace{7em}
+
+    Our total loss function is a weighted sum of four components:
+     \begin{equation*}
+          \mathcal{L} = \textcolor{darkgreen}{\alpha_1 \mathcal{L}_E} + \textcolor{darkblue}{\alpha_2 \mathcal{L}_u} + \textcolor{darkorange}{\gamma_1 \mathcal{L}_{ortho}} + \textcolor{darkred}{\gamma_2 \mathcal{L}_{BC}}
+     \end{equation*}
     \begin{description}
-        \item[\(\mathcal{L}_u\) (Displacement Loss)] The primary supervised signal. Enforces that the predicted displacement matches the FEM ground truth.
-        \begin{equation*}
-            \mathcal{L}_u = \text{MSE}(\bm{u}_{pred}, \quad \bm{u}_{FEM})
-        \end{equation*}
-        
-        \item[\(\mathcal{L}_E\) (Energy Loss)] A physics-informed term. Ensures the predicted configuration has the correct internal strain energy (compared on a log scale for stability).
-        \begin{equation*}
-            \mathcal{L}_E = \text{MSE}(\log_{10}(E_{pred}), \quad \log_{10}(E_{FEM}))
-        \end{equation*}
-        
-        \item[\(\mathcal{L}_{ortho}\) (Orthogonality Loss)] A geometric constraint ensuring the nonlinear correction \(\bm{y}\) is orthogonal to the linear displacement \(\bm{l}\).
-        
-        \item[\(\mathcal{L}_{BC}\) (Boundary Loss)] A physical constraint that penalizes any violation of fixed boundary conditions.
-    \end{description}
+          \item[\textcolor{darkblue}{\(\mathcal{L}_u\) (Displacement Loss)}]
+        \(\mathcal{L}_u = \text{MSE}(\bm{u}_{pred}, \bm{u}_{FEM})\).
+          
+          \item[\textcolor{darkgreen}{\(\mathcal{L}_E\) (Energy Loss)}] 
+        \(\mathcal{L}_E = \text{MSE}(\log_{10}(E_{pred}), \log_{10}(E_{FEM})).\)
+          
+          \item[\textcolor{darkorange}{\(\mathcal{L}_{ortho}\) (Orthogonality Loss)}] A geometric constraint:
+          \(
+                \bm{l}^T \bm{y} = 0
+          \)
+          
+          \item[\textcolor{darkred}{\(\mathcal{L}_{BC}\) (Boundary Loss)}] Penalizes violations of boundary conditions.
+     \end{description}
+     
 \end{frame}
 
-\begin{frame}[allowframebreaks]{Data Generation}
+% \begin{frame}{Sampling Latent Space}
     
-    To create a meaningful training dataset, we need physically plausible deformations, with a balance between number of samples and diversity of configurations.
+%     \begin{columns}[T]
+%         \begin{column}{0.5\textwidth}
+%             \textbf{Random Sampling}
+            
+%             Picking random \(\mathbf{z}\) from a uniform distribution often results in high-energy configurations.
 
-    But, for complex geometries, applying random forces can become increasingly difficult, especially if we want a smooth data generation pipeline for users. 
-
-    
-    \begin{block}{Modal Forces}
-        \begin{enumerate}
-            \item We linearize the system at rest to get the stiffness matrix \(\mathbb{K}\).
+%             \textbf{Structured Data Generation}
             
-            \item We perform an eigenvalue decomposition of \(\mathbb{K}\) to find the deformation modes \(\boldsymbol{\Phi}\).
-            
-            \item We generate external forces as a linear combination of these modes:
-            \begin{equation*}
-                \bm{f}^{ext} = \boldsymbol{\Phi} \bm{q}
-            \end{equation*}
-            where \(\bm{q}\) is a vector of modal force coefficients that we can control.
-            
-            \item We apply these physically-grounded forces \(\bm{f}^{ext}\) to the \textbf{full nonlinear FEM solver} to compute the ground truth displacement \(\bm{u}_{FEM}\) and energy \(E_{FEM}\).
-        \end{enumerate}
-    \end{block}
-    
-\end{frame}
-
-\begin{frame}{Sampling Latent Space}
-    
-    \begin{columns}[T]
-        \begin{column}{0.5\textwidth}
-            \textbf{Random Sampling}
-            
-            Picking random \(\mathbf{z}\) from a uniform distribution often results in high-energy configurations.
-
-            \textbf{Structured Data Generation}
-            
-            The supervised approach generates samples of \(\mathbf{z}\) that are:
-            \begin{itemize}
-                \item Physically plausible.
-                \item Cover the most important deformation patterns of the object.
-            \end{itemize}
+%             The supervised approach generates samples of \(\mathbf{z}\) that are:
+%             \begin{itemize}
+%                 \item Physically plausible.
+%                 \item Cover the most important deformation patterns of the object.
+%             \end{itemize}
             
 
-        \end{column}
+%         \end{column}
         
-        \begin{column}{0.5\textwidth}
+%         \begin{column}{0.5\textwidth}
 
-            \begin{figure}
-                \includegraphics[width=\textwidth]{Images/z_random.png}
-                \caption{Unnatural deformation from random sampling of high-frequency modes.}
-                \label{fig:bad_sampling}
-            \end{figure}
+%             \begin{figure}
+%                 \includegraphics[width=\textwidth]{Images/z_random.png}
+%                 \caption{Unnatural deformation from random sampling of high-frequency modes.}
+%                 \label{fig:bad_sampling}
+%             \end{figure}
            
-        \end{column}
-    \end{columns}
+%         \end{column}
+%     \end{columns}
 
     
-\end{frame}
+% \end{frame}
 
-\begin{frame}{Dynamic Simulation}
+% \begin{frame}[allowframebreaks]{Data Generation}
+%     \begin{itemize}
+%         \item Ensure that the generated dataset represents \textbf{realistic deformations}.
+%         \item Maintain a \textbf{balance} between the number of samples and the diversity of configurations.
+%         \item Design a user-friendly and efficient pipeline for generating training data, especially for \textbf{complex geometries}.
+%     \end{itemize}
+
     
-    Once trained, the Neural Modes network enables rapid dynamic simulations.
+%     \begin{block}{Modal Forces}
+%         \begin{enumerate}
+%             \item We linearize the system at rest to get the stiffness matrix \(\mathbb{K}\).
+            
+%             \item We perform an eigenvalue decomposition of \(\mathbb{K}\) to find the deformation modes \(\boldsymbol{\Phi}\).
+            
+%             \item We generate external forces as a linear combination of these modes:
+%             \begin{equation*}
+%                 \bm{f}^{ext} = \boldsymbol{\Phi} \bm{q}
+%             \end{equation*}
+%             where \(\bm{q}\) is a vector of modal force coefficients that we can control.
+            
+%             \item We apply these physically-grounded forces \(\bm{f}^{ext}\) to the \textbf{full nonlinear FEM solver} to compute the ground truth displacement \(\bm{u}_{FEM}\) and energy \(E_{FEM}\).
+%         \end{enumerate}
+%     \end{block}
     
-    \begin{block}{Process at Each Time Step}
-        Instead of solving a large, computationally expensive FEM problem, we solve a small optimization problem in the low-dimensional modal space. We find the next set of modal coordinates \(\mathbf{z}_{n+1}\) by minimizing the total energy of the system:
+% \end{frame}
+
+
+
+% \begin{frame}{Dynamic Simulation}
+    
+%     Once trained, the Neural Modes network enables rapid dynamic simulations, by using L-BFGS to solve the optimization problem at each time step.
+    
+%     \begin{block}{Objective Function}
+%         We find the next set of modal coordinates \(\mathbf{z}_{n+1}\) using:
         
-        \begin{equation}
-            \mathbf{z}_{n+1} = \underset{\mathbf{z}}{\argmin} \underbrace{\frac{1}{2h^2} \|\bm{n}(\mathbf{z}) - 2\bm{u}_n + \bm{u}_{n-1}\|_{\bm{M}}^2}_{\text{Inertial Term (Implicit Euler)}} + \underbrace{\mathcal{E}(\bm{n}(\mathbf{z}))}_{\text{Potential Energy}}
-        \end{equation}
-        where \(\bm{n}(\mathbf{z})\) is the full displacement predicted by our Neural Modes model.
-    \end{block}
+%         \begin{equation}
+%             \mathbf{z}_{n+1} = \underset{\mathbf{z}}{\argmin} \underbrace{\frac{1}{2h^2} \|\bm{n}(\mathbf{z}) - 2\bm{u}_n + \bm{u}_{n-1}\|_{\bm{M}}^2}_{\text{Inertial Term (Implicit Euler)}} + \underbrace{\mathcal{E}(\bm{n}(\mathbf{z}))}_{\text{Potential Energy}}
+%         \end{equation}
+%         where \(\bm{n}(\mathbf{z})\) is the full displacement predicted by our Neural Modes model and \(\mathcal{E}(\bm{n}(\mathbf{z}))\) the total potential energy of the system at time \(n\).
+%     \end{block}
     
-\end{frame}
+% \end{frame}
 
 
 \begin{frame}{Numerical Results}
@@ -427,6 +465,21 @@
     \end{columns}
 \end{frame}
 
+\begin{frame}{Meshes}
+    \begin{columns}[T]
+        \begin{column}{0.5\textwidth}
+            \centering
+            \includegraphics[width=0.8\textwidth]{Images/beam.png}
+            \captionof{figure}{Cantilever Beam Mesh}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \centering
+            \includegraphics[width=0.8\textwidth]{Images/stanford_bunny.png}
+            \captionof{figure}{Stanford Bunny Mesh \cite{bunny-mesh}}
+        \end{column}
+    \end{columns}
+\end{frame}
+
 \begin{frame}{Training}
     
     We trained our model using a supervised approach on datasets of 600 (beam) and 500 (bunny) FEM simulations.
@@ -437,7 +490,7 @@
             \textbf{Training Loss (Beam)}
             \begin{itemize}
                 \item The model learns quickly, with the loss dropping significantly in the first few epochs.
-                \item Training was stable over 200 epochs, indicating good generalization.
+                \item Training was stable over 200 epochs.
             \end{itemize}
     \end{column}
     \begin{column}{0.5\textwidth}
@@ -455,7 +508,8 @@
 \begin{frame}{Self-Supervised Approach}
     \begin{columns}[T]
         \begin{column}{0.4\textwidth}
-            We tested the self-supervised energy-minimization approach, but it \textbf{failed} to achieve \textbf{sufficient accuracy} for our {problem}.         
+            \vspace{5em}
+            We tested the self-supervised approach, but it \textbf{failed} to achieve \textbf{sufficient accuracy} for our {problem}.  
     
         \end{column}
         
@@ -471,6 +525,8 @@
 \begin{frame}{Static Validation - 3D Beam}
     
     We obtain more than \textbf{one order of magnitude} improvement in accuracy over linear modes. Also for reference we included the \textcolor{darkgreen}{linear FEM} solution.
+    \vspace{-1em}
+
     \begin{columns}[T]
         \begin{column}{0.5\textwidth}
    
@@ -489,183 +545,149 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}{Qualitative Results}
-    \begin{columns}[T]
-        \begin{column}{0.5\textwidth}            
+% \begin{frame}{Qualitative Results}
+%     A visual result of the static validation for the beam and bunny geometries. We compare our \textcolor{magenta}{Neural Modes} and \textcolor{red}{Linear Modes} against the \textcolor{green}{Nonlinear FEM} solution. The \textcolor{blue}{Linear FEM} solution is also included for reference.
+%     \begin{columns}[T]
+%         \begin{column}{0.5\textwidth}            
 
-            \begin{figure}
-                \includegraphics[width=\textwidth]{Images/sofa_example_beam.png}
-                \caption{Cantilever Beam}
-            \end{figure}
-        \end{column}
-        \begin{column}{0.5\textwidth}
-            \begin{figure}
-                \includegraphics[width=\textwidth]{Images/sofa_example_bunny.png}
-                \caption{Stanford Bunny}
-            \end{figure}
-        \end{column}
-    \end{columns}
-\end{frame}
+%             \begin{figure}
+%                 \includegraphics[width=0.7\textwidth]{Images/sofa_example_beam.png}
+%                 \caption{Cantilever Beam}
+%             \end{figure}
+%         \end{column}
+%         \begin{column}{0.5\textwidth}
+%             \begin{figure}
+%                 \includegraphics[width=0.8\textwidth]{Images/sofa_example_bunny.png}
+%                 \caption{Stanford Bunny}
+%             \end{figure}
+%         \end{column}
+%     \end{columns}
+% \end{frame}
 
-\begin{frame}{Static Validation: Stanford Bunny}
-    \frametitle{Static Validation: Stanford Bunny}
+\begin{frame}{Static Validation - Stanford Bunny}
     
-Also for the bunny we compared our \textcolor{darkblue}{Neural Modes} against \textcolor{darkorange}{Linear Modes} and \textcolor{darkgreen}{Linear FEM} using the \textcolor{darkred}{nonlinear FEM} solution as ground truth.    
+    On this complex geometry we obtain more than \textbf{one order of magnitude} improvement in accuracy over linear modes only in the range between 0-120 N. 
+    \vspace{-1em}
+
     \begin{columns}[T]
         \begin{column}{0.5\textwidth}
-
+   
             \begin{figure}
                 \includegraphics[width=\textwidth]{Images/bunny_static_mse.png}
-                \caption{Average MSE vs. Applied Force.}
+                \caption{MSE comparison between \textcolor{darkorange}{Linear Modes} and \textcolor{darkblue}{Neural Modes}.}
             \end{figure}
         \end{column}
         
         \begin{column}{0.5\textwidth}
             \begin{figure}
                 \includegraphics[width=\textwidth]{Images/bunny_static_energy.png}
-                \caption{Internal Energy vs. Applied Force.}
+                \caption{Energy comparison. \textcolor{darkred}{Nonlinear FEM} is the ground truth.}
             \end{figure}
         \end{column}
     \end{columns}
 \end{frame}
 
-% \begin{frame}{Qualitative Results and Interpretability}
-%     \frametitle{Qualitative Results and Interpretability}
-
-        
-%         \begin{column}{0.6\textwidth}
-%             \textbf{Interpretability}
-%             \begin{itemize}
-%                 \item Unlike a pure black-box model, our framework is interpretable.
-%                 \item We can visualize how the network learns to correct each individual linear mode.
-%                 \item This provides physical insight into the learned nonlinearities.
-%             \end{itemize}
-%             \begin{figure}
-%                 \includegraphics[width=\textwidth]{Images/latent_space_viz.png}
-%                 \caption{Visualization of the learned corrections for the 7 modes of the Stanford Bunny.}
-%             \end{figure}
-%         \end{column}
-%     \end{columns}
-% \end{frame}
-
-\begin{frame}{Dynamic Validation: A More Challenging Test}
-    \frametitle{Dynamic Validation: A More Challenging Test}
-    
-    We tested the model's predictive capability over time, initializing with two FEM steps and then letting the model run.
-    
-    \begin{block}{Key Finding: Physical Plausibility over Positional Accuracy}
-    While positional accuracy (MSE) degrades over time for all reduced models, our Neural Modes model shows a crucial advantage in maintaining physical realism.
-    \end{block}
-    
+\begin{frame}{Interpretability}
+    \begin{columns}[T]
+        \begin{column}{0.3\textwidth}
+            \vspace{3em}
+   The framework allows us to \textbf{visualize the corrections} for each mode, which is a significant \textbf{advantage} over ``black-box'' neural networks.
+        \end{column}
+        \begin{column}{0.7\textwidth}
+            \begin{figure}
+                \includegraphics[width=0.8\textwidth]{Images/latent_space_viz.png}
+                \caption{Visualization of the learned corrections for the 7 modes of the Stanford Bunny.}
+            \end{figure}
+        \end{column}
+    \end{columns}
+\end{frame}
+\begin{frame}{Dynamic Validation}
     \begin{columns}[T]
         \begin{column}{0.5\textwidth}
-            \textbf{Displacement Error (MSE)}
+            \textbf{Validation Process}
             \begin{itemize}
-                \item The MSE of our NM model is only slightly better than the Linear Modes model.
-                \item Both models drift from the ground truth over a long simulation.
+                \item We let SOFA solve the first 70 timesteps of the dynamic problem (see Equation \ref{eq:dynamic_problem}).
+                \item After 70 timesteps, we switch to the dynamic update method (see Equation \ref{eq:dynamic_update}).
+                \item The error is computed with respect to the FEM solver for the remaining timesteps.
             \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \textbf{Dynamic Problem}
+            \begin{equation}
+                \begin{cases}
+                    \rho \frac{\partial^2 \bm{u}}{\partial t^2} - \nabla_X \cdot \bm{P} = \bm{b} \quad \text{in} \quad \Omega, \\
+                    \bm{u} = \bm{u}_D \quad \text{on} \quad \Gamma_D, \\
+                    \bm{P} \cdot \bm{N} = \bm{t} \quad \text{on} \quad \Gamma_N.
+                \end{cases}
+                \label{eq:dynamic_problem}
+            \end{equation}
+            Here, \(\rho\) is density, and the rest of the notation is as before.
+        \end{column}
+    \end{columns}
+\end{frame}
+
+
+
+
+
+\begin{frame}{Dynamic Validation}
+    
+    We let the model predict almost \textbf{200 time steps} of dynamic simulation, and the results show that while the displacement accuracy drifts over time, the internal energy remains \textbf{stable}.
+    \vspace{-1em}
+        
+    \begin{columns}[T]
+        \begin{column}{0.5\textwidth}
             \begin{figure}
                 \includegraphics[width=\textwidth]{Images/beam_dynamic_mse.png}
+                                \caption{\textcolor{darkblue}{Neural Modes} vs. \textcolor{darkorange}{Linear Modes} displacement accuracy over time.}
             \end{figure}
         \end{column}
         
         \begin{column}{0.5\textwidth}
-            \textbf{Internal Energy}
-            \begin{itemize}
-                \item \textbf{This is the key result.} The energy of the Linear Modes model explodes, a classic failure of linear models in nonlinear dynamics.
-                \item Our \textbf{NM model's energy remains bounded and close to the ground truth}, producing a stable and physically plausible simulation.
-            \end{itemize}
             \begin{figure}
                 \includegraphics[width=\textwidth]{Images/beam_dynamic_energy.png}
+                \caption{\textcolor{darkblue}{Neural Modes} vs. \textcolor{darkorange}{Linear Modes} internal energy over time.}
             \end{figure}
         \end{column}
     \end{columns}
 \end{frame}
 
-\begin{frame}{Summary of Results}
-    \frametitle{Summary of Results}
+\begin{frame}{Conclusions}
     
     \begin{itemize}
-        \item \textbf{Supervised learning is essential:} A data-free, self-supervised approach was insufficient for this problem.
-        \vspace{1.5em}
+        \item A data-free, self-supervised approach was insufficient for our problem, while a \textbf{supervised training} returned excellent results.
         
-        \item \textbf{Excellent Static Accuracy:} In static tests, our Neural Modes model is up to an \textbf{order of magnitude more accurate} than linear models for large, nonlinear deformations.
-        \begin{itemize}
-            \item This holds for both simple (beam) and complex (bunny) geometries.
-        \end{itemize}
-        \vspace{1.5em}
+        \item  In static tests, our Neural Modes model is up to an \textbf{order of magnitude more accurate} than linear models for large, nonlinear deformations.
+   
         
-        \item \textbf{Physically Plausible Dynamics:} In dynamic simulations, while positional accuracy eventually drifts, our model maintains \textbf{stable and physically realistic internal energy}, avoiding the "explosion" characteristic of linear models.
-        \vspace{1.5em}
-        
-        \item \textbf{Interpretability:} The framework allows us to visualize and understand the learned nonlinear corrections, which is a significant advantage over typical "black-box" neural networks.
+        \item In dynamic simulations, while positional accuracy eventually drifts, our model maintains \textbf{stable and realistic internal energy}
+        \item The framework is \textbf{interpretable}, allowing us to visualize the learned nonlinear corrections.
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Conclusion: Summary of Contributions}
-    \frametitle{Conclusion: Summary of Contributions}
-    
-    We have successfully developed and validated a modified Neural Modes framework for simulating large, nonlinear deformations.
-    
-    \begin{itemize}
-        \item \textbf{Identified Limitations:} We showed that the original data-free, self-supervised approach was insufficient for our large-deformation use case.
-        \vspace{1em}
-        
-        \item \textbf{Proposed a Supervised Method:} Our key contribution is a supervised training strategy that:
-        \begin{itemize}
-            \item Requires only a small amount of FEM simulation data.
-            \item Uses a physics-informed loss function (blending displacement data with energy constraints).
-            \item Achieves up to an order of magnitude greater accuracy than linear models in static, nonlinear regimes.
-        \end{itemize}
-        \vspace{1em}
-        
-        \item \textbf{Enabled Real-Time Performance:} By drastically reducing dimensionality (from thousands of DOFs to \textasciitilde{}7 modes), our method makes high-fidelity simulation feasible for interactive applications.
-    \end{itemize}
-\end{frame}
 
 \begin{frame}{Limitations and Future Work}
-    \frametitle{Limitations and Future Work}
     
-    \begin{block}{Current Limitation: Dynamic Accuracy}
-        While our dynamic simulations are physically plausible (conserving energy), the displacement accuracy drifts over long time horizons. This is likely due to error accumulation from the step-by-step optimization solver (L-BFGS).
-    \end{block}
-    
-    \begin{alertblock}{Promising Future Direction: Fully Reduced Dynamics}
-        Instead of optimizing at each time step, a more robust approach would be to solve a reduced system of equations directly in the modal space.
-        
-        \begin{itemize}
-            \item Project the system matrices onto the modal basis:
-            \begin{equation*}
-                \left[M\right] = \left[\Phi\right]^T M \left[\Phi\right], \quad \left[K\right] = \left[\Phi\right]^T K \left[\Phi\right]
-            \end{equation*}
-            
-            \item Solve the much smaller system of ODEs for the modal coordinates \(\mathbf{q}\):
-            \begin{equation*}
-                \left[{M}\right] \ddot{\mathbf{q}} + \left[{K}\right] \mathbf{q} = \mathbf{f}
-            \end{equation*}
-        \end{itemize}
-        This would eliminate optimization errors and allow for more stable numerical integration, likely improving long-term accuracy significantly.
-    \end{alertblock}
+    One of the current limitations of our approach is the dynamic accuracy.
+
+    A promising future direction to address this limitation is to adopt a \textbf{fully reduced dynamics approach}. Projecting the system matrices onto the modal basis:
+    \[
+        \left[M\right] = \left[\Phi\right]^T M \left[\Phi\right], \quad \left[K\right] = \left[\Phi\right]^T K \left[\Phi\right].
+    \]
+Then one would solve:
+    \[
+        \left[{M}\right] \ddot{\mathbf{q}} + \left[{K}\right] \mathbf{q} = \mathbf{f}.
+    \]
+    This approach could enable more stable numerical integration and significantly improve long-term accuracy.
+
 \end{frame}
 
-\begin{frame}{Final Remarks}
-    \frametitle{Final Remarks: The Big Picture}
+%closing frame 
+\begin{frame} %
+    \centering
+    \Huge Thank you for your attention! 
+    \vspace{1em}
     
-    This work represents a significant step toward bridging the gap between computational speed and physical accuracy in nonlinear mechanics.
-    
-    \begin{itemize}
-        \item \textbf{Performance:} We achieved real-time simulation speeds by combining dimensionality reduction with a fast neural network.
-        \vspace{1em}
-        
-        \item \textbf{Physical Consistency:} The physics-informed loss ensures that our model produces energetically stable and plausible results, avoiding the failures of purely linear models.
-        \vspace{1em}
-        
-        \item \textbf{Interpretability:} By learning corrections to a known physical basis, our model avoids being a complete "black box" and provides insight into nonlinear behavior.
-    \end{itemize}
-    
-    \begin{alertblock}{Key Takeaway}
-        The Neural Modes framework demonstrates how machine learning can be used to \textbf{enhance and augment} established physical modeling principles, rather than simply replacing them, paving the way for a new class of hybrid simulation tools.
-    \end{alertblock}
 \end{frame}
 
 %bibliography
